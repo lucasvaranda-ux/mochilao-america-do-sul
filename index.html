@@ -140,6 +140,18 @@
   .sumcard .val.saldo{color:var(--sky)}
   .savedmsg{font-size:.82rem;color:var(--accent2);opacity:0;transition:.3s}
   .savedmsg.show{opacity:1}
+  /* EDITOR DE ROTEIRO (aba Datas) */
+  .datas-editor{margin:0 0 28px}
+  .ed-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.95rem;margin-bottom:12px}
+  .ed-on{color:var(--accent2);font-size:.76rem}
+  .ed-off{color:#e06a5a;font-size:.76rem}
+  .ed-flash{font-size:.8rem;font-weight:700}
+  .ed-add{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .ed-table th,.ed-table td{padding:8px 12px}
+  .ed-btn{background:var(--bg2);border:1px solid var(--line);color:var(--muted);border-radius:7px;padding:4px 9px;cursor:pointer;font-size:.85rem;margin-left:3px}
+  .ed-btn:hover:not(:disabled){border-color:var(--accent);color:var(--txt)}
+  .ed-btn:disabled{opacity:.35;cursor:default}
+  .ed-del:hover{border-color:#e06a5a;color:#e06a5a}
   /* SHOPPING */
   .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
   .shop{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
@@ -227,6 +239,7 @@
       <input type="date" id="dep-date" value="2026-07-01" class="fin-input" style="width:175px;text-align:left">
       <span id="ret-date" style="color:var(--accent2);font-size:.9rem;font-weight:600"></span>
     </div>
+    <div id="datas-editor" class="datas-editor"></div>
     <table><thead><tr><th>#</th><th>Destino</th><th>Período</th><th class="r">Dias</th></tr></thead><tbody id="crono-body"></tbody></table>
     <div class="note">Encadeei só as estadias; não somo os deslocamentos longos. Na prática, ônibus e conexões esticam o total em ~10 dias — ainda dentro do seu limite de voltar até dezembro.</div>
 
@@ -294,7 +307,7 @@
 <footer><div class="wrap">Feito pra Lucas · seu guia de viagem vivo — ajuste as paradas conforme o coração pedir. Buen viaje. 🌎</div></footer>
 
 <script>
-const stops = [
+let stops = [
  {n:1,name:"Cartagena",pais:"Colômbia",flag:"🇨🇴",coord:[10.391,-75.479],wiki:"Castillo_San_Felipe_de_Barajas",dias:4,tag:"Caribe · Colonial",
   vibe:"Começo caribenho: cidade amuralhada colorida, salsa nas praças e o pôr do sol no mar.",
   bairros:"Getsemaní (mochileiro, arte de rua, Plaza Trinidad à noite), Centro Histórico amuralhado, Bocagrande (praia urbana).",
@@ -510,7 +523,8 @@ function initMap(){
 const wikiCache={};
 
 // ---------- STOP CARDS (agrupados por país) ----------
-const cont=document.getElementById('stops');
+function buildCards(){
+const cont=document.getElementById('stops');cont.innerHTML='';
 let lastPais=null, curGrid=null;
 stops.forEach((s,i)=>{
   try{
@@ -531,6 +545,8 @@ stops.forEach((s,i)=>{
     loadWiki(s.wiki,['pt','en'],src=>{var th=document.getElementById('th-'+s.n);if(th)th.style.backgroundImage=`url(${src})`;});
   }catch(err){console.warn('card',s&&s.n,err);}
 });
+}
+buildCards();
 
 // ---------- MODAL ----------
 const modal=document.getElementById('modal'),mbox=document.getElementById('mbox');
@@ -623,15 +639,16 @@ const finTrans=[
  {id:"t7",item:"Ônibus e vans entre cidades (vários trechos)",plan:1000},
  {id:"t8",item:"Ferry Buenos Aires → Colonia",plan:300},
 ];
+function finOf(s){return {cd:(s.cd!=null?Number(s.cd):((finStops[s.n]||{}).cd||0)),ex:((s.extras&&s.extras.length)?s.extras:((finStops[s.n]||{}).ex||[]))};}
 function buildFinModel(){
   const rows=[];
   rows.push({cat:"✈️ Antes da viagem (uma vez)"});
   finPre.forEach(r=>rows.push(r));
   let lastP=null;
   stops.forEach(s=>{
-    const fs=finStops[s.n]||{cd:0,ex:[]};
+    const fs=finOf(s);
     if(s.pais!==lastP){
-      const sub=stops.filter(x=>x.pais===s.pais).reduce((a,x)=>{const f=finStops[x.n]||{cd:0,ex:[]};return a+x.dias*f.cd+f.ex.reduce((b,e)=>b+e[1],0);},0);
+      const sub=stops.filter(x=>x.pais===s.pais).reduce((a,x)=>{const f=finOf(x);return a+x.dias*f.cd+f.ex.reduce((b,e)=>b+e[1],0);},0);
       rows.push({cat:`${s.flag} ${s.pais} · planejado R$ ${Math.round(sub).toLocaleString('pt-BR')}`});
       lastP=s.pais;
     }
@@ -646,7 +663,7 @@ function buildFinModel(){
   rows.push({id:"reserva",item:"Reserva / emergência",plan:2000});
   return rows;
 }
-const finDefault=buildFinModel();
+let finDefault=buildFinModel();
 const FK='mochilao_fin_v3';
 function loadFin(){try{return JSON.parse(localStorage.getItem(FK))||{}}catch(e){return{}}}
 function saveFin(showMsg){
@@ -779,6 +796,134 @@ function showTab(id){
 tabBtns.forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
 const start=(location.hash||'#tab-perfil').replace('#','');
 showTab(document.getElementById(start)?start:'tab-perfil');
+</script>
+<script>
+/* ===== Mochilão · persistência Supabase + edição de roteiro =====
+   stops/finanças/data de saída sincronizam na nuvem (iPhone <-> PC).
+   O array bundled acima é o padrão/fallback offline; o Supabase sobrescreve quando disponível. */
+(function(){
+  const SB_URL='https://znyfcvtbqrmblkknpcdd.supabase.co';
+  const SB_KEY='sb_publishable_tPWDg2CwpZgrya2pLuHKwQ_9jHXORS6';
+  const REST=SB_URL+'/rest/v1/';
+  const H={apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json'};
+  let online=false, removed=[], flashT=null, finT=null;
+
+  async function sb(path,opts){const r=await fetch(REST+path,Object.assign({headers:H},opts||{}));if(!r.ok)throw new Error('sb '+r.status+' '+(await r.text()));const t=await r.text();return t?JSON.parse(t):null;}
+  const uuid=()=>(crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-'+Math.round(Math.random()*1e6));
+  function ccFlag(cc){cc=(cc||'').toUpperCase();return /^[A-Z]{2}$/.test(cc)?cc.replace(/./g,c=>String.fromCodePoint(127397+c.charCodeAt(0))):'📍';}
+
+  function toRow(s,i){return {id:s.id,n:i+1,position:i,name:s.name,pais:s.pais||'',flag:s.flag||'',lat:s.coord?s.coord[0]:s.lat,lng:s.coord?s.coord[1]:s.lng,wiki:s.wiki||'',dias:s.dias||1,tag:s.tag||'',vibe:s.vibe||'',bairros:s.bairros||'',ver:s.ver||[],nat:s.nat||[],hostels:s.hostels||[],comer:s.comer||[],custo:s.custo||'',trans:s.trans||'',cd:(s.cd!=null?s.cd:((finStops[s.n]||{}).cd||0)),extras:s.extras||((finStops[s.n]||{}).ex||[])};}
+  function fromRow(r){return {id:r.id,n:r.n,name:r.name,pais:r.pais||'',flag:r.flag||'',coord:[Number(r.lat),Number(r.lng)],wiki:r.wiki||'',dias:r.dias||1,tag:r.tag||'',vibe:r.vibe||'',bairros:r.bairros||'',ver:r.ver||[],nat:r.nat||[],hostels:r.hostels||[],comer:r.comer||[],custo:r.custo||'',trans:r.trans||'',cd:Number(r.cd)||0,extras:r.extras||[],position:r.position};}
+  function ensureIds(){stops.forEach(s=>{if(!s.id)s.id=uuid();});}
+
+  function renderAll(){
+    stops.sort((a,b)=>(a.position!=null?a.position:0)-(b.position!=null?b.position:0));
+    stops.forEach((s,i)=>{s.n=i+1;s.position=i;});
+    try{buildCards();}catch(e){console.warn('cards',e);}
+    try{finDefault=buildFinModel();buildFin();}catch(e){console.warn('fin',e);}
+    try{buildCrono();}catch(e){console.warn('crono',e);}
+    try{redrawMap();}catch(e){console.warn('map',e);}
+    try{buildEditor();}catch(e){console.warn('editor',e);}
+  }
+
+  function redrawMap(){
+    if(!window.map||!window.L)return;
+    map.eachLayer(l=>{if(!(l instanceof L.TileLayer))map.removeLayer(l);});
+    for(const k in markers)delete markers[k];
+    const pts=stops.filter(s=>isFinite(s.coord[0])&&isFinite(s.coord[1]));
+    if(pts.length>1)L.polyline(pts.map(s=>s.coord),{color:'#e8a04e',weight:2.5,opacity:.7,dashArray:'5,8'}).addTo(map);
+    stops.forEach((s,i)=>{
+      if(!isFinite(s.coord[0])||!isFinite(s.coord[1]))return;
+      const icon=L.divIcon({className:'',html:`<div style="background:#e8a04e;color:#0f1419;width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;font-weight:800;border:2px solid #16130d;box-shadow:0 2px 6px rgba(0,0,0,.5)"><span style="transform:rotate(45deg);font-size:.75rem">${s.n}</span></div>`,iconSize:[28,28],iconAnchor:[14,28],popupAnchor:[0,-28]});
+      markers[s.n]=L.marker(s.coord,{icon}).addTo(map).bindPopup(`<div class="pop"><span class="ptag">${s.flag} ${s.pais}</span><h4>${s.n}. ${s.name}</h4><div class="pdays">${s.dias} dias · ${s.tag}</div><button onclick="openModal(${i})">Ver guia completo →</button></div>`,{maxWidth:260});
+    });
+    try{map.invalidateSize();}catch(e){}
+  }
+  window.redrawMap=redrawMap;
+
+  async function pushStops(){
+    if(!online){flash('offline — não salvo',true);return;}
+    ensureIds();
+    const rows=stops.map((s,i)=>toRow(s,i));
+    try{
+      await sb('stops?on_conflict=id',{method:'POST',headers:Object.assign({},H,{Prefer:'resolution=merge-duplicates,return=minimal'}),body:JSON.stringify(rows)});
+      if(removed.length){await sb('stops?id=in.('+removed.join(',')+')',{method:'DELETE'});removed=[];}
+      flash('salvo ✓');
+    }catch(e){console.warn('pushStops',e);flash('erro ao salvar',true);}
+  }
+  async function getKv(k){try{const r=await sb('kv?key=eq.'+encodeURIComponent(k)+'&select=value');return r&&r[0]?r[0].value:null;}catch(e){return null;}}
+  async function setKv(k,v){if(!online)return;try{await sb('kv?on_conflict=key',{method:'POST',headers:Object.assign({},H,{Prefer:'resolution=merge-duplicates,return=minimal'}),body:JSON.stringify({key:k,value:v})});}catch(e){console.warn('setKv',e);}}
+
+  async function geocode(q){
+    const url='https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&accept-language=pt&limit=1&q='+encodeURIComponent(q);
+    const r=await fetch(url,{headers:{Accept:'application/json'}});
+    const j=await r.json();
+    if(!j||!j.length)return null;
+    const it=j[0],ad=it.address||{};
+    return {lat:parseFloat(it.lat),lng:parseFloat(it.lon),pais:ad.country||'',flag:ccFlag(ad.country_code)};
+  }
+
+  function buildEditor(){
+    const host=document.getElementById('datas-editor');if(!host)return;
+    const status=online?'<span class="ed-on">● sincronizado na nuvem</span>':'<span class="ed-off">● offline — alterações não serão salvas</span>';
+    const rows=stops.map((s,i)=>`<tr>
+      <td class="r" style="color:var(--muted)">${i+1}</td>
+      <td>${s.flag||''} ${s.name}<div style="font-size:.74rem;color:var(--muted)">${s.pais||''}</div></td>
+      <td class="r"><input type="number" min="1" class="fin-input ed-dias" data-i="${i}" value="${s.dias}" style="width:64px"></td>
+      <td class="r" style="white-space:nowrap">
+        <button class="ed-btn" data-act="up" data-i="${i}" ${i===0?'disabled':''}>↑</button>
+        <button class="ed-btn" data-act="down" data-i="${i}" ${i===stops.length-1?'disabled':''}>↓</button>
+        <button class="ed-btn ed-del" data-act="del" data-i="${i}" title="remover">✕</button>
+      </td></tr>`).join('');
+    host.innerHTML=`<div class="ed-bar"><b>✏️ Editar roteiro</b> ${status} <span id="ed-flash" class="ed-flash"></span></div>
+      <div class="ed-add">
+        <input id="ed-city" class="fin-input" placeholder="Cidade (ex: Florianópolis)" style="flex:1;min-width:170px;text-align:left">
+        <input id="ed-days" class="fin-input" type="number" min="1" value="3" style="width:70px" title="dias">
+        <button id="ed-add-btn" class="btn">+ Adicionar destino</button>
+      </div>
+      <table class="ed-table"><thead><tr><th class="r">#</th><th>Destino</th><th class="r">Dias</th><th class="r">Ações</th></tr></thead><tbody>${rows}</tbody></table>`;
+    host.querySelectorAll('.ed-dias').forEach(inp=>inp.addEventListener('change',()=>{const i=+inp.dataset.i;stops[i].dias=Math.max(1,parseInt(inp.value)||1);renderAll();pushStops();}));
+    host.querySelectorAll('.ed-btn').forEach(b=>b.addEventListener('click',()=>{
+      const i=+b.dataset.i,act=b.dataset.act;
+      if(act==='del'){if(!confirm('Remover '+stops[i].name+'?'))return;const s=stops.splice(i,1)[0];if(s.id)removed.push(s.id);}
+      else if(act==='up'&&i>0){const t=stops[i-1];stops[i-1]=stops[i];stops[i]=t;}
+      else if(act==='down'&&i<stops.length-1){const t=stops[i+1];stops[i+1]=stops[i];stops[i]=t;}
+      else return;
+      renderAll();pushStops();
+    }));
+    const addBtn=document.getElementById('ed-add-btn');
+    if(addBtn)addBtn.addEventListener('click',async()=>{
+      const ci=document.getElementById('ed-city'),city=ci.value.trim(),days=Math.max(1,parseInt(document.getElementById('ed-days').value)||3);
+      if(!city)return;
+      addBtn.disabled=true;addBtn.textContent='Buscando…';
+      try{
+        const g=await geocode(city);
+        if(!g){flash('cidade não encontrada',true);}
+        else{stops.push({id:uuid(),name:city,pais:g.pais,flag:g.flag,coord:[g.lat,g.lng],wiki:city.replace(/ /g,'_'),dias:days,tag:'Novo destino',vibe:'(toque pra editar os detalhes depois)',bairros:'',ver:[],nat:[],hostels:[],comer:[],custo:'',trans:'',cd:0,extras:[]});ci.value='';renderAll();pushStops();flash('adicionado ✓');}
+      }catch(e){flash('erro na busca',true);}
+      addBtn.disabled=false;addBtn.textContent='+ Adicionar destino';
+    });
+  }
+  window.buildEditor=buildEditor;
+  function flash(msg,err){const e=document.getElementById('ed-flash');if(!e)return;e.textContent=msg;e.style.color=err?'#e06a5a':'var(--accent2)';clearTimeout(flashT);flashT=setTimeout(()=>{e.textContent='';},2200);}
+
+  // finanças -> nuvem (mantém localStorage como cache offline)
+  if(typeof saveFin==='function'){const _save=saveFin;window.saveFin=function(m){_save(m);clearTimeout(finT);finT=setTimeout(()=>setKv('finance',loadFin()),700);};}
+  // data de saída -> nuvem
+  const dep=document.getElementById('dep-date');if(dep)dep.addEventListener('change',()=>setKv('dep_date',dep.value));
+
+  (async()=>{
+    try{
+      const rows=await sb('stops?select=*&order=position');
+      online=true;
+      if(rows&&rows.length){stops=rows.map(fromRow);}
+      else{ensureIds();await pushStops();}
+    }catch(e){online=false;console.warn('boot stops (usando padrão offline)',e);}
+    try{const d=await getKv('dep_date');if(d&&dep){dep.value=d;}}catch(e){}
+    try{const f=await getKv('finance');if(f){localStorage.setItem('mochilao_fin_v3',JSON.stringify(f));}}catch(e){}
+    renderAll();
+  })();
+})();
 </script>
 </body>
 </html>
