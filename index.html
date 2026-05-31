@@ -204,7 +204,7 @@
     <p class="lead">Escolha sua data de saída e o cronograma se ajusta sozinho. As estadias encadeiam na ordem do roteiro.</p>
     <div class="fin-actions">
       <label style="color:var(--muted);font-size:.9rem">Saída de Vitória:</label>
-      <input type="date" id="dep-date" value="2026-06-29" class="fin-input" style="width:175px;text-align:left">
+      <input type="date" id="dep-date" value="2026-07-01" class="fin-input" style="width:175px;text-align:left">
       <span id="ret-date" style="color:var(--accent2);font-size:.9rem;font-weight:600"></span>
     </div>
     <table><thead><tr><th>#</th><th>Destino</th><th>Período</th><th class="r">Dias</th></tr></thead><tbody id="crono-body"></tbody></table>
@@ -302,7 +302,7 @@ const stops = [
   comer:["Mondongo's — bandeja paisa tradicional","El Altar Taquería","Mercado del Río (food hall)","Alambique (rooftop)"],
   custo:"R$ 140–190 / dia",
   trans:"→ Salento: ônibus ~6h via Pereira (R$70)."},
- {n:4,name:"Salento · Valle de Cocora",pais:"Colômbia",flag:"🇨🇴",coord:[4.637,-75.570],wiki:"Salento_(Quindío)",dias:3,tag:"Café · Natureza",
+ {n:4,name:"Salento · Valle de Cocora",pais:"Colômbia",flag:"🇨🇴",coord:[4.637,-75.570],wiki:"Cocora_Valley",dias:3,tag:"Café · Natureza",
   vibe:"Coração do Eixo Cafeeiro: palmeiras de cera gigantes e café direto da fazenda.",
   bairros:"Vila colorida de Salento, Calle Real.",
   ver:["Mirante Alto de la Cruz","Jogo de tejo (com cerveja, tradição paisa)","Tour de fazenda de café orgânico (Finca El Ocaso)"],
@@ -484,6 +484,11 @@ function initMap(){
   }
 }
 
+// cache das imagens da Wikipedia — declarado ANTES dos cards: a montagem dos
+// cards (abaixo) chama loadWiki, e como wikiCache é const, declará-lo só depois
+// caía na temporal dead zone e cada chamada estourava (nenhuma foto carregava).
+const wikiCache={};
+
 // ---------- STOP CARDS (agrupados por país) ----------
 const cont=document.getElementById('stops');
 let lastPais=null, curGrid=null;
@@ -538,8 +543,7 @@ function closeModal(){modal.classList.remove('open');document.body.style.overflo
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// ---------- WIKI IMAGE LOADER ----------
-const wikiCache={};
+// ---------- WIKI IMAGE LOADER (função; wikiCache já declarado antes dos cards) ----------
 function loadWiki(title,langs,cb,orig){
   if(wikiCache[title]){cb(wikiCache[title]);return;}
   (async()=>{
@@ -716,7 +720,7 @@ function fmtD(d){return d.getDate()+' '+meses[d.getMonth()]+'.';}
 function buildCrono(){
   try{
     const inp=document.getElementById('dep-date');
-    const base=(inp&&inp.value)?new Date(inp.value+'T00:00:00'):new Date('2026-06-29T00:00:00');
+    const base=(inp&&inp.value)?new Date(inp.value+'T00:00:00'):new Date('2026-07-01T00:00:00');
     const body=document.getElementById('crono-body');if(!body)return;body.innerHTML='';
     const cursor=new Date(base);let lastP=null;
     stops.forEach(s=>{
