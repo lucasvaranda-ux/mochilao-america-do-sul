@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mochilão América do Sul — Lucas</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f2c46b'/%3E%3Cstop offset='1' stop-color='%23e8804e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='%230f1419'/%3E%3Ccircle cx='42' cy='23' r='10' fill='url(%23s)'/%3E%3Cpath d='M2 56 L22 26 L37 56 Z' fill='%234ea3c9'/%3E%3Cpath d='M24 56 L45 24 L63 56 Z' fill='%23c9683b'/%3E%3Cpath d='M45 24 L39 33 L51 33 Z' fill='%23eef3f6'/%3E%3Cpath d='M2 56 H63' stroke='%235fc9a0' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root{
+    --bg:#0f1419; --bg2:#161d26; --card:#1c2530; --line:#2a3744;
+    --txt:#e8eef2; --muted:#9bb0bf; --accent:#e8a04e; --accent2:#5fc9a0;
+    --terra:#c9683b; --sky:#4ea3c9; --red:#e06a5a;
+    --font:'Segoe UI',system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  .hero{background:linear-gradient(160deg,#1a2530 0%,#0f1419 60%,#16130d 100%);padding:60px 0 44px;border-bottom:1px solid var(--line)}
+  .hero h1{font-size:2.6rem;font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+  .hero h1 span{color:var(--accent)}
+  .hero .sub{color:var(--muted);font-size:1.1rem;max-width:700px}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+  .badge{background:var(--card);border:1px solid var(--line);padding:6px 13px;border-radius:20px;font-size:.82rem;color:var(--muted)}
+  .badge b{color:var(--accent2)}
+  /* TABS */
+  .tabs{position:sticky;top:0;z-index:500;background:rgba(15,20,25,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .tabs .wrap{display:flex;gap:2px;overflow-x:auto}
+  .tab{background:none;border:none;color:var(--muted);font-family:var(--font);font-size:.93rem;font-weight:600;padding:16px 20px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:.15s;display:flex;align-items:center;gap:8px}
+  .tab:hover{color:var(--txt)}
+  .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tabpanel{display:none;padding:46px 0;border-bottom:1px solid var(--line)}
+  .tabpanel.active{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .eyebrow{color:var(--accent);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+  h2{font-size:1.8rem;font-weight:700;margin-bottom:6px;letter-spacing:-.5px}
+  .lead{color:var(--muted);max-width:760px;margin-bottom:26px}
+  /* PROFILE */
+  .profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;transition:.2s}
+  .pcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .pcard .ico{font-size:1.6rem;margin-bottom:8px}
+  .pcard h3{font-size:1.02rem;margin-bottom:5px}
+  .pcard p{font-size:.9rem;color:var(--muted)}
+  .note{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;font-size:.88rem;color:var(--muted);margin-top:18px}
+  /* MAP */
+  #map{height:540px;border-radius:16px;border:1px solid var(--line);z-index:1}
+  .map-hint{font-size:.82rem;color:var(--muted);margin-bottom:14px}
+  .leaflet-popup-content-wrapper{background:var(--card);color:var(--txt);border-radius:12px;border:1px solid var(--line)}
+  .leaflet-popup-tip{background:var(--card)}
+  .leaflet-popup-content{margin:0;width:240px!important}
+  .pop{padding:13px 15px}
+  .pop .ptag{display:inline-block;background:rgba(232,160,78,.16);color:var(--accent);font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.5px}
+  .pop h4{font-size:1.08rem;margin:7px 0 1px;color:var(--txt)}
+  .pop .pdays{color:var(--accent2);font-size:.8rem;font-weight:600;margin-bottom:9px}
+  .pop button{background:var(--accent);color:#0f1419;border:none;font-weight:700;font-size:.8rem;padding:7px 12px;border-radius:8px;cursor:pointer;width:100%}
+  .season{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
+  .season div{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+  .season h4{font-size:.85rem;color:var(--accent);margin-bottom:3px}
+  .season p{font-size:.8rem;color:var(--muted)}
+  /* STOP CARDS */
+  .country-head{display:flex;align-items:center;gap:10px;margin:30px 0 14px;font-size:1.15rem;font-weight:700;color:var(--accent2)}
+  .country-head .ln{flex:1;height:1px;background:var(--line)}
+  .country-head .dys{font-size:.78rem;color:var(--muted);font-weight:500}
+  .stops{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .stop{background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden;cursor:pointer;transition:.2s}
+  .stop:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .stop .thumb{height:120px;background:linear-gradient(135deg,#2a3744,#1c2530);background-size:cover;background-position:center;position:relative}
+  .stop .num{position:absolute;background:var(--accent);color:#0f1419;font-weight:800;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;margin:10px}
+  .stop .dbadge{position:absolute;right:8px;bottom:8px;background:rgba(15,20,25,.8);color:var(--accent2);font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:10px}
+  .stop .si{padding:12px 15px}
+  .stop .si h4{font-size:1.02rem}
+  .stop .si .loc{font-size:.75rem;color:var(--accent2);font-weight:600;margin-bottom:4px}
+  .stop .si p{font-size:.83rem;color:var(--muted)}
+  /* MODAL */
+  .modal{position:fixed;inset:0;background:rgba(8,11,15,.82);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding:30px 16px;overflow-y:auto}
+  .modal.open{display:flex}
+  .mbox{background:var(--bg2);border:1px solid var(--line);border-radius:18px;max-width:760px;width:100%;overflow:hidden;animation:pop .25s ease}
+  @keyframes pop{from{opacity:0;transform:scale(.97) translateY(10px)}to{opacity:1;transform:none}}
+  .mhead{height:200px;background:linear-gradient(135deg,#2a3744,#1c2530);background-size:cover;background-position:center;position:relative;display:flex;align-items:flex-end}
+  .mhead::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(15,20,25,.95),transparent 70%)}
+  .mhead .mh-in{position:relative;z-index:2;padding:18px 24px}
+  .mhead h3{font-size:1.7rem;font-weight:800;letter-spacing:-.5px}
+  .mhead .mh-sub{color:var(--accent2);font-weight:600;font-size:.9rem}
+  .mclose{position:absolute;top:14px;right:14px;z-index:3;background:rgba(15,20,25,.7);border:1px solid var(--line);color:#fff;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;line-height:1}
+  .mbody{padding:22px 24px 28px}
+  .mvibe{font-size:1.02rem;color:var(--txt);font-style:italic;border-left:3px solid var(--accent);padding-left:12px;margin-bottom:20px}
+  .msec{margin-bottom:18px}
+  .msec h5{font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+  .msec p,.msec li{font-size:.92rem;color:var(--muted)}
+  .msec ul{list-style:none;display:grid;gap:6px}
+  .msec li{padding-left:16px;position:relative}
+  .msec li::before{content:'▸';position:absolute;left:0;color:var(--accent2)}
+  .msec li b{color:var(--txt)}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:600px){.mgrid{grid-template-columns:1fr}.hero h1{font-size:2rem}.mhead h3{font-size:1.4rem}}
+  .mcost{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .mcost .big{color:var(--accent2);font-weight:800;font-size:1.15rem}
+  /* FINANCE */
+  table{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--card);border-radius:12px;overflow:hidden}
+  th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+  th{background:var(--bg2);color:var(--accent);font-size:.74rem;text-transform:uppercase;letter-spacing:1px}
+  td.r,th.r{text-align:right;white-space:nowrap}
+  .fin-input{background:#0f1419;border:1px solid var(--line);color:var(--txt);border-radius:7px;padding:6px 9px;width:108px;text-align:right;font-family:var(--font);font-size:.9rem}
+  .fin-input:focus{outline:none;border-color:var(--accent)}
+  .fin-input.real{border-color:rgba(95,201,160,.4)}
+  .catrow td{background:var(--bg2);font-weight:700;color:var(--accent2);font-size:.82rem;text-transform:uppercase;letter-spacing:.5px}
+  .fin-actions{display:flex;gap:10px;align-items:center;margin:16px 0;flex-wrap:wrap}
+  .btn{background:var(--accent);color:#0f1419;border:none;font-weight:700;padding:9px 18px;border-radius:9px;cursor:pointer;font-size:.88rem}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
+  .btn:hover{filter:brightness(1.08)}
+  .fin-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:22px}
+  .sumcard{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px}
+  .sumcard .lbl{font-size:.74rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+  .sumcard .val{font-size:1.5rem;font-weight:800;margin-top:4px}
+  .sumcard .val.plan{color:var(--accent)}
+  .sumcard .val.real{color:var(--accent2)}
+  .sumcard .val.saldo{color:var(--sky)}
+  .savedmsg{font-size:.82rem;color:var(--accent2);opacity:0;transition:.3s}
+  .savedmsg.show{opacity:1}
+  /* SHOPPING */
+  .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+  .shop{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .shop .sphoto{height:140px;background:linear-gradient(135deg,#2a3744,#1c2530);background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:3rem}
+  .shop .sin{padding:14px 15px;flex:1;display:flex;flex-direction:column}
+  .shop .scat{font-size:.7rem;text-transform:uppercase;letter-spacing:.6px;color:var(--accent2);font-weight:700;margin-bottom:3px}
+  .shop h4{font-size:1.02rem;margin-bottom:5px;line-height:1.25}
+  .shop .why{font-size:.83rem;color:var(--muted);flex:1;margin-bottom:10px}
+  .shop .srow{display:flex;justify-content:space-between;align-items:center}
+  .shop .price{color:var(--accent2);font-weight:700;font-size:.9rem}
+  .buy{display:inline-block;background:var(--accent);color:#0f1419;font-weight:700;font-size:.78rem;padding:6px 13px;border-radius:8px;text-decoration:none}
+  .buy:hover{background:#f2b366}
+  footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Guia de viagem · 90 dias · 7 países</div>
+    <h1>Mochilão pela <span>América do Sul</span></h1>
+    <p class="sub">Dos Andes ao Caribe, do deserto do Atacama ao Rio da Prata — um roteiro completo desenhado a partir de quem você é. Hostels, restaurantes, monumentos, cachoeiras e custos reais, parada por parada.</p>
+    <div class="badges">
+      <div class="badge">📅 Fim de junho → outubro (~90 dias)</div>
+      <div class="badge">💰 Orçamento <b>médio</b> · ~R$32k</div>
+      <div class="badge">🇨🇴🇪🇨🇵🇪🇧🇴🇨🇱🇦🇷🇺🇾 7 países</div>
+      <div class="badge">🥾 Natureza · 🏛️ Cultura · 🏖️ Praia · 🌿 Sagrado</div>
+    </div>
+  </div>
+</div>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button class="tab" data-tab="tab-perfil">🧭 Perfil</button>
+    <button class="tab" data-tab="tab-roteiro">🗺️ Roteiro</button>
+    <button class="tab" data-tab="tab-datas">📅 Datas</button>
+    <button class="tab" data-tab="tab-financas">💰 Finanças</button>
+    <button class="tab" data-tab="tab-compras">🎒 Compras</button>
+  </div>
+</nav>
+
+<!-- PERFIL -->
+<section class="tabpanel" id="tab-perfil">
+  <div class="wrap">
+    <div class="eyebrow">Quem você é (pelo que você salva)</div>
+    <h2>O viajante por trás do mochilão</h2>
+    <p class="lead">Vasculhei suas pastas no Instagram — <i>places to visit, nature, eu, sabedoria, listening, learning, o que vc veio fazer aqui?, rituais, umbanda, aprendizados, lugares peru</i>. Um padrão claríssimo apareceu, e ele aponta direto pra América do Sul.</p>
+    <div class="profile-grid">
+      <div class="pcard"><div class="ico">🌄</div><h3>Natureza como sagrado</h3><p>Samaúma, Amazônia vista do espaço, cachoeiras, Projeto Tamar, "o homem que sopra a concha e a natureza responde". Você não vê paisagem — você reverencia.</p></div>
+      <div class="pcard"><div class="ico">🧘</div><h3>Busca espiritual e de propósito</h3><p>Umbanda, jurema, ayahuasca, Mooji, mantras do Sam Garrett, esotérico vs exotérico. "O que vc veio fazer aqui?" é o nome de uma pasta inteira.</p></div>
+      <div class="pcard"><div class="ico">📚</div><h3>Mente introspectiva</h3><p>Jung, Fernando Pessoa, Edgar Morin, Brené Brown, provérbios persas. Você viaja pra dentro tanto quanto pra fora.</p></div>
+      <div class="pcard"><div class="ico">🍽️</div><h3>Gosto por boa comida</h3><p>Salvou o ranking dos melhores restaurantes da América Latina, pratos, comidas do Rio, flan portenho. Comida é parte da viagem.</p></div>
+      <div class="pcard"><div class="ico">🏛️</div><h3>Estética e cultura</h3><p>Vilarejos, arquitetura, bibliotecas, centros coloniais, cinema. Beleza construída te atrai tanto quanto a natural.</p></div>
+      <div class="pcard"><div class="ico">👨‍👩‍👦</div><h3>Conexão e família</h3><p>Pastas "parenthood", "minha dupla", "us"; "let's go together" na bio. Viagem com sentido afetivo — talvez um divisor de águas.</p></div>
+    </div>
+    <div class="note">📌 Detalhe revelador: você já tinha uma pasta chamada <b>"lugares peru"</b>. O subconsciente já comprou a passagem — este roteiro só dá forma ao que você já vinha sentindo. Por isso o Peru é o coração da rota (26 dias).</div>
+  </div>
+</section>
+
+<!-- ROTEIRO -->
+<section class="tabpanel" id="tab-roteiro">
+  <div class="wrap">
+    <div class="eyebrow">Itinerário interativo · 90 dias</div>
+    <h2>Dos Andes ao Rio da Prata</h2>
+    <p class="lead">Rota norte→sul: começa no Caribe colombiano em julho (quando o extremo sul está no auge do inverno) e desce conforme a primavera chega ao cone sul. Clique em qualquer parada — no mapa ou nos cards — pra abrir o <b>guia completo</b>: bairros, monumentos, natureza, hostels, onde comer e custos.</p>
+    <p class="map-hint">🖱️ Arraste e dê zoom · clique nos pinos 📍 · 20 paradas · Chile/Argentina/Uruguai como passagem rápida</p>
+    <div id="map"></div>
+    <div class="season">
+      <div><h4>🏖️ Jul · Colômbia + Equador</h4><p>Caribe e Andes equatoriais — quente e ameno o ano todo. Evita o frio do sul.</p></div>
+      <div><h4>🏔️ Ago · Peru + Bolívia</h4><p>Auge da estação seca andina: céu limpo, ideal pra Machu Picchu, Colca e Uyuni.</p></div>
+      <div><h4>🌅 Set–Out · Cone Sul</h4><p>Atacama, Chile, Argentina e Uruguai com a primavera chegando — passagem rápida.</p></div>
+    </div>
+    <div id="stops"></div>
+  </div>
+</section>
+
+<!-- DATAS -->
+<section class="tabpanel" id="tab-datas">
+  <div class="wrap">
+    <div class="eyebrow">Cronograma & voos</div>
+    <h2>Datas, parada por parada</h2>
+    <p class="lead">Escolha sua data de saída e o cronograma se ajusta sozinho. As estadias encadeiam na ordem do roteiro.</p>
+    <div class="fin-actions">
+      <label style="color:var(--muted);font-size:.9rem">Saída de Vitória:</label>
+      <input type="date" id="dep-date" value="2026-06-29" class="fin-input" style="width:175px;text-align:left">
+      <span id="ret-date" style="color:var(--accent2);font-size:.9rem;font-weight:600"></span>
+    </div>
+    <table><thead><tr><th>#</th><th>Destino</th><th>Período</th><th class="r">Dias</th></tr></thead><tbody id="crono-body"></tbody></table>
+    <div class="note">Encadeei só as estadias; não somo os deslocamentos longos. Na prática, ônibus e conexões esticam o total em ~10 dias — ainda dentro do seu limite de voltar até dezembro.</div>
+
+    <h2 style="margin-top:42px">✈️ Voos internos</h2>
+    <p class="lead">Os trechos onde voar compensa o ônibus (ou é a única opção). Preços ~2025–2026, só ida, em reais — reserve cedo no Google Flights / Skyscanner e nos apps das companhias.</p>
+    <table>
+      <thead><tr><th>Trecho</th><th>Duração</th><th>Companhias</th><th class="r">~R$ (ida)</th></tr></thead>
+      <tbody>
+        <tr><td>✈️ <b>Vitória → Bogotá/Cartagena</b> (chegada)</td><td>9–12h c/ conexão</td><td>LATAM, Avianca, GOL</td><td class="r">1.800–2.600</td></tr>
+        <tr><td>Santa Marta → Medellín</td><td>~1h15</td><td>Avianca, LATAM, Wingo, Clic</td><td class="r">250–400</td></tr>
+        <tr><td>Bogotá → Quito</td><td>~1h40</td><td>Avianca, LATAM</td><td class="r">300–500</td></tr>
+        <tr><td>Guayaquil/Quito → Lima</td><td>~2h</td><td>LATAM, Avianca</td><td class="r">300–500</td></tr>
+        <tr><td>La Paz → Uyuni</td><td>~55min</td><td>Boliviana (BoA), Amaszonas</td><td class="r">250–350</td></tr>
+        <tr><td>Calama (Atacama) → Santiago</td><td>~2h</td><td>LATAM, SKY, JetSmart</td><td class="r">250–400</td></tr>
+        <tr><td>Mendoza → Buenos Aires</td><td>~1h45</td><td>Aerolíneas, Flybondi, JetSmart</td><td class="r">250–450</td></tr>
+        <tr><td>✈️ <b>Montevidéu → Vitória</b> (volta)</td><td>10–13h c/ conexão</td><td>LATAM, Aerolíneas, GOL</td><td class="r">1.800–2.800</td></tr>
+      </tbody>
+    </table>
+    <div class="note">💡 As low-cost (Wingo/Clic na Colômbia, SKY/JetSmart no Chile, Flybondi/JetSmart na Argentina) saem baratas, mas cobram bagagem despachada à parte — viaje com mochila de mão quando der. Os demais trechos do roteiro são por ônibus (mais barato e parte da experiência).</div>
+  </div>
+</section>
+
+<!-- FINANÇAS -->
+<section class="tabpanel" id="tab-financas">
+  <div class="wrap">
+    <div class="eyebrow">Planejamento financeiro</div>
+    <h2>Planejado × Realizado</h2>
+    <p class="lead">Os valores planejados já vêm preenchidos com a estimativa do roteiro — <b>edite à vontade</b>. Preencha a coluna "Realizado" conforme gasta. Tudo soma sozinho e fica salvo no seu navegador (mesmo fechando o arquivo). Câmbio base: US$ 1 ≈ R$ 5,00.</p>
+
+    <div class="fin-summary">
+      <div class="sumcard"><div class="lbl">Total planejado</div><div class="val plan" id="sum-plan">R$ 0</div></div>
+      <div class="sumcard"><div class="lbl">Total realizado</div><div class="val real" id="sum-real">R$ 0</div></div>
+      <div class="sumcard"><div class="lbl">Saldo (plan − real)</div><div class="val saldo" id="sum-saldo">R$ 0</div></div>
+      <div class="sumcard"><div class="lbl">% do orçamento gasto</div><div class="val saldo" id="sum-pct">0%</div></div>
+    </div>
+
+    <div class="fin-actions">
+      <button class="btn" id="fin-save">💾 Salvar agora</button>
+      <button class="btn ghost" id="fin-reset">↺ Restaurar padrão</button>
+      <span class="savedmsg" id="fin-saved">✓ salvo no navegador</span>
+    </div>
+
+    <table id="fin-table">
+      <thead><tr><th>Item</th><th class="r">Planejado (R$)</th><th class="r">Realizado (R$)</th></tr></thead>
+      <tbody id="fin-body"></tbody>
+    </table>
+    <div class="note">💡 Dica: a categoria "Reserva/emergência" é seu colchão — mantenha intacta. Se o "Realizado" total passar do planejado, o saldo fica negativo (vermelho) e é hora de segurar.</div>
+  </div>
+</section>
+
+<!-- COMPRAS -->
+<section class="tabpanel" id="tab-compras">
+  <div class="wrap">
+    <div class="eyebrow">Lista de compras</div>
+    <h2>O kit do mochilão</h2>
+    <p class="lead">Produtos reais, escolhidos por durabilidade e boas avaliações — vários com garantia vitalícia. Cada botão "Ver produto" vai direto à página oficial do modelo (specs, fotos reais e tamanhos). No Brasil você acha os mesmos modelos na Amazon.com.br, Mercado Livre e Decathlon; preços em R$ são estimativas. A foto do card pode ser representativa quando a marca não tem imagem livre.</p>
+    <div class="shop-grid" id="shop-grid"></div>
+    <div class="note">💳 Antes de ir: <a href="https://wise.com/br/" target="_blank">cartão multimoeda Wise</a> ou Nomad (câmbio e saque baratos), <a href="https://www.airalo.com/pt" target="_blank">eSIM Airalo</a> (dados sem trocar chip) e <a href="https://www.segurospromo.com.br/" target="_blank">comparar seguro viagem</a> (essencial pra trilhas e exigido em alguns lugares). Vacina de febre amarela: gratuita no SUS.</div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+
+<footer><div class="wrap">Feito pra Lucas · seu guia de viagem vivo — ajuste as paradas conforme o coração pedir. Buen viaje. 🌎</div></footer>
+
+<script>
+const stops = [
+ {n:1,name:"Cartagena",pais:"Colômbia",flag:"🇨🇴",coord:[10.391,-75.479],wiki:"Cartagena_das_Índias",dias:4,tag:"Caribe · Colonial",
+  vibe:"Começo caribenho: cidade amuralhada colorida, salsa nas praças e o pôr do sol no mar.",
+  bairros:"Getsemaní (mochileiro, arte de rua, Plaza Trinidad à noite), Centro Histórico amuralhado, Bocagrande (praia urbana).",
+  ver:["Muralhas + <b>Castillo San Felipe</b> de Barajas","Torre del Reloj e Plaza Santo Domingo","Pôr do sol no Café del Mar, sobre as muralhas","Tour de arte de rua em Getsemaní"],
+  nat:["<b>Islas del Rosario</b> / Playa Blanca — bate-volta de lancha, mar turquesa","Vulcão de lama El Totumo"],
+  hostels:["Casa del Pozo Boutique (~R$80)","Media Luna (festa/piscina, ~R$80)","Los Patios (rooftop, ~R$75)"],
+  comer:["<b>Celele</b> — alta gastronomia caribenha (top 20 AL)","La Cevichería","Arepa de huevo na Plaza Trinidad (rua)","Demente — tapas e pizza, Getsemaní"],
+  custo:"R$ 170–230 / dia",
+  trans:"→ Santa Marta: ônibus ~4h (R$40) ou van."},
+ {n:2,name:"Santa Marta · Tayrona · Minca",pais:"Colômbia",flag:"🇨🇴",coord:[11.24,-74.21],wiki:"Santa_Marta",dias:5,tag:"Selva · Caribe · Trilha",
+  vibe:"A selva encontra o Caribe; trilhas sagradas e cachoeiras na Sierra Nevada.",
+  bairros:"Centro de Santa Marta (base), Taganga (vila de pescadores e mergulho).",
+  ver:["<b>Parque Tayrona</b> — praias Cabo San Juan entre selva e mar","Quinta de San Pedro Alejandrino (onde Bolívar morreu)"],
+  nat:["<b>Minca</b> — cachoeiras Marinka e Pozo Azul, fazendas de café e cacau, nascer do sol","<b>Palomino</b> — boia-cross descendo o rio da serra ao mar","Trek à <b>Cidade Perdida</b> (Ciudad Perdida) — 4 dias, ~R$1.500, território indígena sagrado"],
+  hostels:["La Brisa Loca (Santa Marta, social, ~R$55)","Masaya (~R$70)","Viajero / Origen (perto do Tayrona)"],
+  comer:["Mercado de Santa Marta (almoço ~R$15)","Lulo Café da Manhã","Peixe fresco em Taganga"],
+  custo:"R$ 150–200 / dia",
+  trans:"→ Medellín: voo ~1h (R$250–400) ou ônibus longo."},
+ {n:3,name:"Medellín · Guatapé",pais:"Colômbia",flag:"🇨🇴",coord:[6.244,-75.581],wiki:"Medellín",dias:5,tag:"Cidade · Transformação",
+  vibe:"A cidade da eterna primavera e da reinvenção — a transformação que você lê em Jung virou urbanismo aqui.",
+  bairros:"El Poblado (turístico, vida noturna), <b>Laureles</b> (mais local, recomendado), Comuna 13.",
+  ver:["<b>Comuna 13</b> — graffititour, escadas rolantes, história de superação","Metrocable + Parque Arví","Plaza Botero e Pueblito Paisa","Jardín Botânico"],
+  nat:["<b>Guatapé</b> (bate-volta 2h): subir a Piedra del Peñol (740 degraus) e o povoado mais colorido da Colômbia, à beira da represa"],
+  hostels:["Wandering Paisa (Laureles, ~R$55)","Black Sheep (~R$60)","Masaya (rooftop pool, ~R$90)"],
+  comer:["Mondongo's — bandeja paisa tradicional","El Altar Taquería","Mercado del Río (food hall)","Alambique (rooftop)"],
+  custo:"R$ 140–190 / dia",
+  trans:"→ Salento: ônibus ~6h via Pereira (R$70)."},
+ {n:4,name:"Salento · Valle de Cocora",pais:"Colômbia",flag:"🇨🇴",coord:[4.637,-75.570],wiki:"Salento_(Quindío)",dias:3,tag:"Café · Natureza",
+  vibe:"Coração do Eixo Cafeeiro: palmeiras de cera gigantes e café direto da fazenda.",
+  bairros:"Vila colorida de Salento, Calle Real.",
+  ver:["Mirante Alto de la Cruz","Jogo de tejo (com cerveja, tradição paisa)","Tour de fazenda de café orgânico (Finca El Ocaso)"],
+  nat:["<b>Valle de Cocora</b> — trilha (~5h) entre as palmeiras de cera mais altas do mundo, bosque de névoa e beija-flores"],
+  hostels:["La Floresta (jardim, redes, vista, ~R$50)","Viajero Salento"],
+  comer:["Trucha (truta) com patacón","Cafés de especialidade (Jesús Martín)"],
+  custo:"R$ 130–170 / dia",
+  trans:"→ Bogotá: ônibus ~7–8h (R$90) ou voo de Pereira/Armenia."},
+ {n:5,name:"Bogotá",pais:"Colômbia",flag:"🇨🇴",coord:[4.711,-74.072],wiki:"Bogotá",dias:3,tag:"Museus · Altitude",
+  vibe:"Altitude, museus e a alma andina urbana antes de cruzar pro Equador.",
+  bairros:"La Candelaria (centro colonial), Chapinero, Usaquén (brunch de domingo).",
+  ver:["<b>Museo del Oro</b> — ouro pré-colombiano, imperdível","Museu Botero (grátis)","Teleférico de Monserrate (vista da cidade)","Graffititour na Candelaria"],
+  nat:["Catedral de Sal de Zipaquirá — igreja a 180m dentro de uma mina de sal (bate-volta)","Laguna de Guatavita — lenda de El Dorado"],
+  hostels:["Cranky Croc (Candelaria, ~R$55)","Viajero Bogotá","Masaya"],
+  comer:["Ajiaco (sopa típica)","Mercado de Paloquemao","La Puerta Falsa — chocolate santafereño"],
+  custo:"R$ 140–180 / dia",
+  trans:"→ Quito: voo ~1h40 (R$300–500)."},
+ {n:6,name:"Quito · Quilotoa",pais:"Equador",flag:"🇪🇨",coord:[-0.1807,-78.4678],wiki:"Quito",dias:4,tag:"Colonial · Vulcões",
+  vibe:"Centro colonial Patrimônio da Humanidade, no meio do mundo.",
+  bairros:"Centro Histórico (igrejas barrocas), La Mariscal / La Floresta (cafés e vida noturna).",
+  ver:["<b>La Compañía</b> — igreja folheada a ouro","Basílica del Voto Nacional (subir as torres)","TelefériQo (4.100m)","Mitad del Mundo — a linha do equador"],
+  nat:["<b>Laguna de Quilotoa</b> — cratera vulcânica turquesa (bate-volta ou Quilotoa Loop a pé)","Vulcão Cotopaxi"],
+  hostels:["Community Hostel (~R$50, jantares comunitários)","Secret Garden (rooftop, ~R$55)"],
+  comer:["Mercado Central (almuerzo ~R$10)","Locro de papa","Hornado","Jantares do Community Hostel"],
+  custo:"R$ 120–160 / dia (Equador usa dólar; comida barata)",
+  trans:"→ Baños: ônibus ~3–4h (R$25), sai a cada 20 min."},
+ {n:7,name:"Baños de Agua Santa",pais:"Equador",flag:"🇪🇨",coord:[-1.396,-78.425],wiki:"Baños_de_Agua_Santa",dias:3,tag:"Aventura · Cachoeiras",
+  vibe:"Capital da aventura e das cachoeiras — adrenalina, termas e selva à porta.",
+  bairros:"Centro pequeno e caminhável, ao pé do vulcão Tungurahua.",
+  ver:["<b>La Casa del Árbol</b> — o balanço no fim do mundo sobre o vulcão","Termas de Agua Santa"],
+  nat:["<b>Ruta de las Cascadas</b> de bike — várias cachoeiras, sendo o <b>Pailón del Diablo</b> a mais potente","Rafting (~R$150)","Canyoning e tirolesa"],
+  hostels:["Great Hostel (café + organiza passeios, ~R$45)","Selina Baños (central)"],
+  comer:["Menú del día (R$8–15)","Melcocha (doce puxado típico)","Cuy — porquinho-da-índia, pros corajosos"],
+  custo:"R$ 120–180 / dia",
+  trans:"→ Lima: voo de Quito/Guayaquil (~R$300–500). Volte a Quito de ônibus ou voe de Guayaquil."},
+ {n:8,name:"Lima",pais:"Peru",flag:"🇵🇪",coord:[-12.046,-77.043],wiki:"Lima",dias:4,tag:"Gastronomia · Costa",
+  vibe:"Capital gastronômica do mundo, à beira do Pacífico. Você salvou o ranking dos melhores restaurantes da AL — comece pelo topo.",
+  bairros:"Miraflores (malecón, falésias, parapente), <b>Barranco</b> (boêmio, arte, Puente de los Suspiros), Centro Histórico.",
+  ver:["Malecón de Miraflores ao pôr do sol","Barranco — murais e bares","Huaca Pucllana (pirâmide pré-inca)","Plaza Mayor"],
+  nat:["Parapente sobre as falésias de Miraflores","Praias da Costa Verde"],
+  hostels:["Pariwana (Miraflores, ~R$60)","Kokopelli Barranco (~R$70)","1900 Backpackers"],
+  comer:["<b>Central</b> — eleito melhor restaurante do mundo (reserve com meses!)","La Mar — cebicheria do Gastón","Mercado de Surquillo — cebiche barato","Isolina (Barranco)","Anticuchos de rua"],
+  custo:"R$ 150–200 / dia (mais se comer nos tops)",
+  trans:"→ Paracas: ônibus Cruz del Sur / Peru Hop ~4h (R$60)."},
+ {n:9,name:"Paracas · Huacachina",pais:"Peru",flag:"🇵🇪",coord:[-13.84,-76.25],wiki:"Huacachina",dias:3,tag:"Deserto · Oásis",
+  vibe:"O deserto encontra o oceano; um oásis de cinema cercado de dunas.",
+  bairros:"Vila de Paracas (frente-mar) e o oásis de Huacachina (perto de Ica).",
+  ver:["<b>Islas Ballestas</b> — leões-marinhos, pinguins ('Galápagos dos pobres', ~R$80)","Reserva de Paracas — falésias e deserto vermelho"],
+  nat:["<b>Huacachina</b> — buggy nas dunas + sandboard ao pôr do sol (~R$100)","Vinícolas e destilarias de pisco em Ica"],
+  hostels:["Viajero Paracas (piscina, frente-mar)","Wild Rover Huacachina (festa)","Banana's Adventure"],
+  comer:["Peixe fresco em Paracas","Menús em Ica"],
+  custo:"R$ 140–180 / dia",
+  trans:"→ Arequipa: ônibus noturno ~10–12h (R$120)."},
+ {n:10,name:"Arequipa · Colca",pais:"Peru",flag:"🇵🇪",coord:[-16.409,-71.537],wiki:"Arequipa",dias:4,tag:"Cidade Branca · Cânion",
+  vibe:"A 'Cidade Branca' de sillar vulcânico, cercada de vulcões; o cânion dos condores.",
+  bairros:"Centro histórico (Plaza de Armas), San Lázaro.",
+  ver:["<b>Monasterio de Santa Catalina</b> — uma cidade dentro da cidade (imperdível)","Mirantes dos vulcões Misti e Chachani","Múmia Juanita (Museo Santuarios Andinos)"],
+  nat:["<b>Colca Canyon</b> — 2x mais fundo que o Grand Canyon; trek de 2 dias","Cruz del Cóndor — condores planando ao amanhecer","Termas e povoados do vale"],
+  hostels:["Flying Dog (rooftop com vista de vulcão, ~R$55)","Lonko Hostel"],
+  comer:["Rocoto relleno","Adobo arequipeño","Picanterías tradicionais","Chicha de jora"],
+  custo:"R$ 140–180 / dia",
+  trans:"→ Cusco: ônibus noturno ~10h (R$110)."},
+ {n:11,name:"Cusco · Vale Sagrado · Machu Picchu",pais:"Peru",flag:"🇵🇪",coord:[-13.532,-71.967],wiki:"Cusco",dias:8,tag:"Sagrado · Inca · Trilha",
+  vibe:"O umbigo do mundo inca — coração espiritual e cultural da viagem. Onde seu lado ancestral encontra a cosmologia andina.",
+  bairros:"Centro (Plaza de Armas), <b>San Blas</b> (bairro de artistas, ladeiras e mirantes).",
+  ver:["<b>Qorikancha</b> — templo do sol","Sacsayhuamán — muralhas de pedras ciclópicas","Catedral e mercado de San Pedro","Bairro de San Blas ao entardecer"],
+  nat:["<b>Vale Sagrado</b>: Pisac (ruínas+mercado), Ollantaytambo, Moray e Salineras de Maras","Montanha 7 Cores (Vinicunca) ou Palccoyo","Laguna Humantay (turquesa, a 4.200m)"],
+  hostels:["Pariwana Cusco (~R$55)","Kokopelli (~R$65)","Wild Rover (festa)"],
+  comer:["Lomo saltado","Green Point (veg, San Blas)","Chicharrón no Mercado San Pedro","Morena"],
+  custo:"R$ 160–220 / dia",
+  trans:"<b>Machu Picchu:</b> trek Salkantay 4–5 dias (glaciares + selva, ~R$900–1.400) OU trem a Aguas Calientes (~R$160) + ingresso (~R$160) — reserve com antecedência. Depois → Puno: ônibus turístico ~7h (R$70)."},
+ {n:12,name:"Puno · Lago Titicaca",pais:"Peru",flag:"🇵🇪",coord:[-15.84,-70.02],wiki:"Puno",dias:3,tag:"Lago Sagrado",
+  vibe:"O lago navegável mais alto do mundo e berço do mito de origem inca.",
+  bairros:"Puno (base à beira do lago, a 3.800m).",
+  ver:["<b>Ilhas flutuantes dos Uros</b> — feitas de junco totora","Ilha Taquile — têxteis Patrimônio da Humanidade","Chullpas de Sillustani — torres funerárias pré-incas"],
+  nat:["Homestay nas ilhas — dormir com uma família local","Pôr do sol sobre o lago imenso"],
+  hostels:["Bothy Hostel","Wild Rover Puno"],
+  comer:["Trucha do lago","Quinoa","Mercado central"],
+  custo:"R$ 130–170 / dia",
+  trans:"→ Copacabana (Bolívia): ônibus ~3–4h (R$50) com travessia de fronteira."},
+ {n:13,name:"Copacabana · Isla del Sol",pais:"Bolívia",flag:"🇧🇴",coord:[-16.166,-69.086],wiki:"Copacabana_(Bolívia)",dias:2,tag:"Titicaca · Ilha Sagrada",
+  vibe:"O lado boliviano do Titicaca e a ilha sagrada onde, segundo o mito, nasceu o sol inca.",
+  bairros:"Vila de Copacabana, à beira do lago.",
+  ver:["<b>Basílica de Copacabana</b> — a Virgem morena","Cerro Calvario ao pôr do sol"],
+  nat:["<b>Isla del Sol</b> (barco ~R$25 ida/volta): trilha entre ruínas incas, sem carros, vistas do lago — durma 1 noite no topo"],
+  hostels:["Hostais simples em Copacabana (~R$40)","Guesthouses na ilha (~R$50)"],
+  comer:["Trucha grelhada à beira do lago"],
+  custo:"R$ 110–150 / dia",
+  trans:"→ La Paz: ônibus ~3,5–4h (R$30), com travessia de balsa no Estrecho de Tiquina."},
+ {n:14,name:"La Paz",pais:"Bolívia",flag:"🇧🇴",coord:[-16.4897,-68.1193],wiki:"La_Paz",dias:3,tag:"Altiplano · Teleféricos",
+  vibe:"A capital mais alta do mundo, vista de teleféricos que cruzam o céu. Ritual e cotidiano misturados.",
+  bairros:"Centro / Sopocachi, e o Mercado de las Brujas (Mercado das Bruxas).",
+  ver:["<b>Mi Teleférico</b> — rede de teleféricos que é transporte e mirante ao mesmo tempo","Mercado das Bruxas (tradição aymara)","Valle de la Luna","Calle Jaén colonial"],
+  nat:["<b>Death Road</b> (Camino de la Muerte) de bike — descida épica (~R$300)","Tiwanaku — ruínas pré-incas (bate-volta)","Chacaltaya"],
+  hostels:["The Rooftop","Wild Rover La Paz","Loki (~R$45–60)"],
+  comer:["Salteñas (de manhã)","Mercado Lanza","Anticuchos","Almoço local < R$15"],
+  custo:"R$ 110–160 / dia (país mais barato da rota)",
+  trans:"→ Uyuni: voo ~1h (R$250) ou ônibus noturno ~10h (R$80)."},
+ {n:15,name:"Salar de Uyuni",pais:"Bolívia",flag:"🇧🇴",coord:[-20.133,-67.489],wiki:"Salar_de_Uyuni",dias:3,tag:"Natureza surreal",
+  vibe:"O maior espelho do mundo — o lugar que 'não parece real' que você tanto salva.",
+  bairros:"Cidade de Uyuni (base e ponto de partida dos tours).",
+  ver:["O salar — 10.582 km² de sal","Ilha Incahuasi — cactos gigantes","Cemitério de trens","Fotos de perspectiva no infinito branco"],
+  nat:["<b>Tour 3 dias</b> cruzando lagunas coloridas (Laguna Colorada com flamingos), gêiseres Sol de Mañana, termas e o deserto de Siloli — terminando em San Pedro de Atacama"],
+  hostels:["Hostal Marith / Piedra Blanca (~R$50–70)","No tour: refúgios feitos de sal"],
+  comer:["Refeições incluídas no tour","Pizza Minuteman em Uyuni"],
+  custo:"Tour 3 dias ~R$ 700–1.200 (guia, 4x4, refeições e hospedagem)",
+  trans:"O tour de 3 dias termina em <b>San Pedro de Atacama</b> (entrada no Chile)."},
+ {n:16,name:"San Pedro de Atacama",pais:"Chile",flag:"🇨🇱",coord:[-22.911,-68.2],wiki:"San_Pedro_de_Atacama",dias:3,tag:"Deserto · Estrelas",
+  vibe:"Oásis no deserto mais árido do mundo, sob o céu mais limpo do planeta. (Passagem rápida no Chile.)",
+  bairros:"Vila de adobe de San Pedro.",
+  ver:["<b>Valle de la Luna</b> ao pôr do sol","Gêiseres del Tatio ao amanhecer (4.300m)","Lagunas Altiplânicas e Piedras Rojas","Valle de la Muerte (sandboard)"],
+  nat:["Lagunas de sal com flamingos","Termas de Puritama","<b>Tour astronômico</b> — o céu mais nítido do mundo"],
+  hostels:["Hostal Pangea","Sol Atacama","ANKA (~R$90–130 — Chile é caro)"],
+  comer:["Cozinhe (mercado caro)","Menús perto do campo de futebol (~R$25)"],
+  custo:"R$ 200–280 / dia (mais caro da rota)",
+  trans:"→ Santiago: voo de Calama ~2h (R$300, recomendado) ou ônibus noturno longo."},
+ {n:17,name:"Santiago · Valparaíso",pais:"Chile",flag:"🇨🇱",coord:[-33.4489,-70.6693],wiki:"Santiago",dias:4,tag:"Cidade · Arte · Vinho",
+  vibe:"Metrópole entre a cordilheira e o mar; arte, poesia de Neruda e vinho.",
+  bairros:"Bellavista (boêmio), Lastarria e Bellas Artes (cafés e museus).",
+  ver:["Cerro San Cristóbal — teleférico e vista dos Andes","La Chascona — casa de Pablo Neruda","Mercado Central — frutos do mar","Plaza de Armas"],
+  nat:["<b>Valparaíso</b> (~1h30): Cerros Alegre e Concepción — murais, ascensores funiculares, casa de Neruda La Sebastiana, boêmia portuária","Viña del Mar e o Pacífico ao lado"],
+  hostels:["Hostal Río Amazonas / La Chimba (Santiago)","Casa Aventura / Hostal Po (Valpo) ~R$90–120"],
+  comer:["Empanadas de pino","Completo (hot dog chileno)","Pastel de choclo","Vinhos Carménère"],
+  custo:"R$ 190–250 / dia",
+  trans:"→ Mendoza: ônibus ~7h cruzando os Andes (paisagem épica, R$150) ou voo."},
+ {n:18,name:"Mendoza",pais:"Argentina",flag:"🇦🇷",coord:[-32.889,-68.845],wiki:"Mendoza_(Argentina)",dias:3,tag:"Vinho · Andes",
+  vibe:"Terra do Malbec aos pés do Aconcágua. (Passagem rápida na Argentina.)",
+  bairros:"Centro (Plaza Independencia), Chacras de Coria.",
+  ver:["<b>Rota do vinho</b> em Maipú e Luján de Cuyo — bike & wine entre vinícolas, degustações (~R$60–150)","Parque San Martín"],
+  nat:["<b>Aconcágua</b> — maior pico das Américas (6.961m): bate-volta ao mirante do parque","Puente del Inca","Termas de Cacheuta"],
+  hostels:["Hostel Lao","Penthouse 1004","Square Independencia (~R$70–100)"],
+  comer:["Asado / parrilla","Empanadas mendocinas","Vinho Malbec","Alfajores"],
+  custo:"R$ 160–220 / dia (varia muito com o câmbio argentino)",
+  trans:"→ Buenos Aires: ônibus-cama noturno ~13–15h (R$200) ou voo ~2h (R$300)."},
+ {n:19,name:"Buenos Aires",pais:"Argentina",flag:"🇦🇷",coord:[-34.6037,-58.3816],wiki:"Buenos_Aires",dias:5,tag:"Tango · Cultura · Café",
+  vibe:"A Paris da América do Sul — tango, livrarias monumentais, parrillas e cultura de café.",
+  bairros:"<b>Palermo</b> (Soho/Hollywood — cafés, bares, parques), San Telmo (colonial, antiguidades, tango), Recoleta (elegante), La Boca.",
+  ver:["Cemitério da Recoleta (túmulo de Evita)","<b>Ateneo Grand Splendid</b> — livraria num teatro","Casa Rosada e Plaza de Mayo","Feira de domingo de San Telmo","Caminito (La Boca)"],
+  nat:["Bosques de Palermo (parques e lagos)","Bate-volta de barco ao Tigre / Delta do Paraná"],
+  hostels:["Art Factory San Telmo (~R$60)","Che Juan","Casa Caravan (Palermo)"],
+  comer:["Parrilla (Desnivel, San Telmo)","Choripán","Milanesa","Sorvete artesanal","Show de tango"],
+  custo:"R$ 150–220 / dia",
+  trans:"→ Colonia (Uruguai): ferry Buquebus ~1h15 (R$300) cruzando o Rio da Prata."},
+ {n:20,name:"Colonia · Montevidéu",pais:"Uruguai",flag:"🇺🇾",coord:[-34.47,-57.84],wiki:"Colónia_do_Sacramento",dias:4,tag:"Colonial · Rio da Prata",
+  vibe:"O fecho tranquilo da jornada: vila colonial portuguesa e a capital à beira-rio. (Passagem rápida no Uruguai.)",
+  bairros:"Colonia: Barrio Histórico. Montevidéu: Ciudad Vieja, Pocitos.",
+  ver:["<b>Colonia del Sacramento</b> — Barrio Histórico (Patrimônio Mundial), ruas de pedra portuguesas, o Faro (111 degraus), carros antigos","Montevidéu: Estádio Centenário (1ª Copa do Mundo, 1930), Mercado del Puerto, a Rambla de 22 km"],
+  nat:["Pôr do sol sobre o Rio da Prata em Colonia","Praia urbana de Pocitos em Montevidéu"],
+  hostels:["Viajero Colonia","El Viajero Montevideo (~R$70–90)"],
+  comer:["Chivito (sanduíche nacional)","Asado no Mercado del Puerto","Medio y medio (vinho)"],
+  custo:"R$ 170–230 / dia (Uruguai é caro)",
+  trans:"→ Casa: voo Montevidéu → Vitória (via São Paulo/Buenos Aires). Fim da jornada. 🌎"}
+];
+
+// ---------- MAP (preguiçoso + à prova de falha) ----------
+var map=null, mapReady=false;
+var markers={};
+function initMap(){
+  if(mapReady) return;
+  if(!window.L){
+    var el0=document.getElementById('map');
+    if(el0&&!el0.dataset.err){el0.dataset.err=1;el0.innerHTML='<div style="padding:26px;color:#9bb0bf;text-align:center">🗺️ O mapa precisa de internet pra carregar.<br>O roteiro completo está nos cards logo abaixo — clique em qualquer parada. 👇</div>';}
+    return;
+  }
+  try{
+    map=L.map('map',{scrollWheelZoom:true}).setView([-18,-68],3);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:18}).addTo(map);
+    L.polyline(stops.map(s=>s.coord),{color:'#e8a04e',weight:2.5,opacity:.7,dashArray:'5,8'}).addTo(map);
+    stops.forEach(function(s){
+      var icon=L.divIcon({className:'',html:`<div style="background:#e8a04e;color:#0f1419;width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;font-weight:800;border:2px solid #16130d;box-shadow:0 2px 6px rgba(0,0,0,.5)"><span style="transform:rotate(45deg);font-size:.75rem">${s.n}</span></div>`,iconSize:[28,28],iconAnchor:[14,28],popupAnchor:[0,-28]});
+      markers[s.n]=L.marker(s.coord,{icon}).addTo(map).bindPopup(
+        `<div class="pop"><span class="ptag">${s.flag} ${s.pais}</span><h4>${s.n}. ${s.name}</h4><div class="pdays">${s.dias} dias · ${s.tag}</div><button onclick="openModal(${s.n-1})">Ver guia completo →</button></div>`,{maxWidth:260});
+    });
+    mapReady=true;
+    setTimeout(function(){try{map.invalidateSize();}catch(e){}},60);
+  }catch(e){
+    var el=document.getElementById('map');
+    if(el)el.innerHTML='<div style="padding:26px;color:#9bb0bf;text-align:center">🗺️ Não foi possível carregar o mapa. O roteiro completo está nos cards abaixo. 👇</div>';
+  }
+}
+
+// ---------- STOP CARDS (agrupados por país) ----------
+const cont=document.getElementById('stops');
+let lastPais=null, curGrid=null;
+stops.forEach((s,i)=>{
+  try{
+    if(s.pais!==lastPais){
+      const days=stops.filter(x=>x.pais===s.pais).reduce((a,x)=>a+x.dias,0);
+      const h=document.createElement('div');h.className='country-head';
+      h.innerHTML=`<span>${s.flag} ${s.pais}</span><span class="ln"></span><span class="dys">${days} dias</span>`;
+      cont.appendChild(h);
+      curGrid=document.createElement('div');curGrid.className='stops';
+      cont.appendChild(curGrid);
+      lastPais=s.pais;
+    }
+    const d=document.createElement('div');d.className='stop';
+    d.innerHTML=`<div class="thumb" id="th-${s.n}"><span class="num">${s.n}</span><span class="dbadge">${s.dias} dias</span></div>
+      <div class="si"><div class="loc">${s.tag}</div><h4>${s.name}</h4><p>${s.vibe.slice(0,80)}…</p></div>`;
+    d.addEventListener('click',()=>openModal(i));
+    (curGrid||cont).appendChild(d);
+    loadWiki(s.wiki,['pt','en'],src=>{var th=document.getElementById('th-'+s.n);if(th)th.style.backgroundImage=`url(${src})`;});
+  }catch(err){console.warn('card',s&&s.n,err);}
+});
+
+// ---------- MODAL ----------
+const modal=document.getElementById('modal'),mbox=document.getElementById('mbox');
+function li(arr){return '<ul>'+arr.map(x=>`<li>${x}</li>`).join('')+'</ul>';}
+function openModal(i){
+  const s=stops[i];
+  mbox.innerHTML=`
+   <button class="mclose" onclick="closeModal()">×</button>
+   <div class="mhead" id="mhead"><div class="mh-in"><div class="mh-sub">${s.flag} ${s.pais} · ${s.dias} dias · ${s.tag}</div><h3>${s.n}. ${s.name}</h3></div></div>
+   <div class="mbody">
+     <div class="mvibe">${s.vibe}</div>
+     <div class="msec"><h5>🏘️ Bairros</h5><p>${s.bairros}</p></div>
+     <div class="mgrid">
+       <div class="msec"><h5>🏛️ Pra ver</h5>${li(s.ver)}</div>
+       <div class="msec"><h5>🌿 Natureza & day-trips</h5>${li(s.nat)}</div>
+     </div>
+     <div class="mgrid">
+       <div class="msec"><h5>🛏️ Onde dormir</h5>${li(s.hostels)}</div>
+       <div class="msec"><h5>🍽️ Onde comer</h5>${li(s.comer)}</div>
+     </div>
+     <div class="msec"><h5>💰 Custo & transporte</h5>
+       <div class="mcost"><span>Custo médio</span><span class="big">${s.custo}</span></div>
+       <p style="margin-top:10px">${s.trans}</p>
+     </div>
+   </div>`;
+  modal.classList.add('open');document.body.style.overflow='hidden';
+  loadWiki(s.wiki,['pt','en'],src=>{const h=document.getElementById('mhead');if(h)h.style.backgroundImage=`url(${src})`;},true);
+}
+function closeModal(){modal.classList.remove('open');document.body.style.overflow='';}
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ---------- WIKI IMAGE LOADER ----------
+const wikiCache={};
+function loadWiki(title,langs,cb,orig){
+  if(wikiCache[title]){cb(wikiCache[title]);return;}
+  (async()=>{
+    for(const lg of langs){
+      try{const r=await fetch(`https://${lg}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`);
+        if(!r.ok)continue;const j=await r.json();
+        const src=(orig&&j.originalimage&&j.originalimage.source)||(j.thumbnail&&j.thumbnail.source)||(j.originalimage&&j.originalimage.source);
+        if(src){wikiCache[title]=src;cb(src);return;}
+      }catch(e){}
+    }
+  })();
+}
+
+// ---------- FINANÇAS (espelhada do roteiro) ----------
+// custo/dia (hostel+comida+local) + tours marcantes, por parada
+const finStops={
+ 1:{cd:200,ex:[["Islas del Rosario",150]]},
+ 2:{cd:175,ex:[["Trek Cidade Perdida (opcional)",1500]]},
+ 3:{cd:165,ex:[["Guatapé",100]]},
+ 4:{cd:150,ex:[]},
+ 5:{cd:160,ex:[["Zipaquirá",120]]},
+ 6:{cd:140,ex:[["Quilotoa",120]]},
+ 7:{cd:150,ex:[["Rafting/canyoning",200]]},
+ 8:{cd:175,ex:[["Jantar no Central (opcional)",400]]},
+ 9:{cd:160,ex:[["Ballestas + buggy",180]]},
+ 10:{cd:160,ex:[["Colca 2 dias",300]]},
+ 11:{cd:190,ex:[["Machu Picchu / Salkantay",1200]]},
+ 12:{cd:150,ex:[["Ilhas do Titicaca",100]]},
+ 13:{cd:130,ex:[]},
+ 14:{cd:135,ex:[["Death Road de bike",300]]},
+ 15:{cd:0,ex:[["Tour Salar 3 dias",950]]},
+ 16:{cd:240,ex:[["Tours (Luna/Tatio/astro)",300]]},
+ 17:{cd:220,ex:[]},
+ 18:{cd:190,ex:[["Vinícolas (bike & wine)",150]]},
+ 19:{cd:185,ex:[["Show de tango",120]]},
+ 20:{cd:200,ex:[]}
+};
+const finPre=[
+ {id:"aereo",item:"Passagem internacional (VIX→Bogotá / Montevidéu→VIX, open-jaw)",plan:4000},
+ {id:"seguro",item:"Seguro viagem 90 dias",plan:900},
+ {id:"equip",item:"Equipamentos e compras iniciais",plan:3600},
+ {id:"vacina",item:"Vacinas / taxas",plan:0},
+];
+const finTrans=[
+ {id:"t1",item:"Santa Marta → Medellín (voo)",plan:325},
+ {id:"t2",item:"Bogotá → Quito (voo)",plan:400},
+ {id:"t3",item:"Guayaquil → Lima (voo)",plan:400},
+ {id:"t4",item:"La Paz → Uyuni (voo)",plan:300},
+ {id:"t5",item:"Calama → Santiago (voo)",plan:325},
+ {id:"t6",item:"Mendoza → Buenos Aires (voo)",plan:350},
+ {id:"t7",item:"Ônibus e vans entre cidades (vários trechos)",plan:1000},
+ {id:"t8",item:"Ferry Buenos Aires → Colonia",plan:300},
+];
+function buildFinModel(){
+  const rows=[];
+  rows.push({cat:"✈️ Antes da viagem (uma vez)"});
+  finPre.forEach(r=>rows.push(r));
+  let lastP=null;
+  stops.forEach(s=>{
+    const fs=finStops[s.n]||{cd:0,ex:[]};
+    if(s.pais!==lastP){
+      const sub=stops.filter(x=>x.pais===s.pais).reduce((a,x)=>{const f=finStops[x.n]||{cd:0,ex:[]};return a+x.dias*f.cd+f.ex.reduce((b,e)=>b+e[1],0);},0);
+      rows.push({cat:`${s.flag} ${s.pais} · planejado R$ ${Math.round(sub).toLocaleString('pt-BR')}`});
+      lastP=s.pais;
+    }
+    const exTot=fs.ex.reduce((a,e)=>a+e[1],0);
+    const exLbl=fs.ex.length?(' + '+fs.ex.map(e=>e[0]).join(' + ')):'';
+    const hint=fs.cd>0?`${s.dias}d × R$${fs.cd}${exLbl}`:exLbl.replace(/^ \+ /,'');
+    rows.push({id:'stop'+s.n,item:`${s.n}. ${s.name} <small style="color:#7d92a1">(${hint})</small>`,plan:Math.round(s.dias*fs.cd+exTot)});
+  });
+  rows.push({cat:"🚌 Transporte interno"});
+  finTrans.forEach(r=>rows.push(r));
+  rows.push({cat:"🛟 Reserva"});
+  rows.push({id:"reserva",item:"Reserva / emergência",plan:2000});
+  return rows;
+}
+const finDefault=buildFinModel();
+const FK='mochilao_fin_v3';
+function loadFin(){try{return JSON.parse(localStorage.getItem(FK))||{}}catch(e){return{}}}
+function saveFin(showMsg){
+  const data={};
+  document.querySelectorAll('#fin-body input').forEach(inp=>{
+    if(!data[inp.dataset.id])data[inp.dataset.id]={};
+    data[inp.dataset.id][inp.dataset.col]=inp.value;
+  });
+  try{localStorage.setItem(FK,JSON.stringify(data));}catch(e){}
+  if(showMsg){const m=document.getElementById('fin-saved');m.classList.add('show');setTimeout(()=>m.classList.remove('show'),1500);}
+}
+function buildFin(){
+  const saved=loadFin();const body=document.getElementById('fin-body');body.innerHTML='';
+  finDefault.forEach(row=>{
+    const tr=document.createElement('tr');
+    if(row.cat){tr.className='catrow';tr.innerHTML=`<td colspan="3">${row.cat}</td>`;}
+    else{
+      const sp=(saved[row.id]&&saved[row.id].plan!=null)?saved[row.id].plan:row.plan;
+      const sr=(saved[row.id]&&saved[row.id].real!=null)?saved[row.id].real:'';
+      tr.innerHTML=`<td>${row.item}</td>
+        <td class="r"><input class="fin-input" type="number" min="0" data-id="${row.id}" data-col="plan" value="${sp}"></td>
+        <td class="r"><input class="fin-input real" type="number" min="0" data-id="${row.id}" data-col="real" value="${sr}" placeholder="—"></td>`;
+    }
+    body.appendChild(tr);
+  });
+  body.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',()=>{calcFin();saveFin(false);}));
+  calcFin();
+}
+function brl(n){return 'R$ '+Math.round(n).toLocaleString('pt-BR');}
+function calcFin(){
+  let p=0,r=0;
+  document.querySelectorAll('#fin-body input').forEach(inp=>{
+    const v=parseFloat(inp.value)||0;
+    if(inp.dataset.col==='plan')p+=v;else r+=v;
+  });
+  document.getElementById('sum-plan').textContent=brl(p);
+  document.getElementById('sum-real').textContent=brl(r);
+  const saldo=p-r;const sEl=document.getElementById('sum-saldo');
+  sEl.textContent=brl(saldo);sEl.style.color=saldo<0?'#e06a5a':'var(--sky)';
+  document.getElementById('sum-pct').textContent=(p>0?Math.round(r/p*100):0)+'%';
+}
+document.getElementById('fin-save').onclick=()=>saveFin(true);
+document.getElementById('fin-reset').onclick=()=>{if(confirm('Restaurar os valores planejados padrão e apagar o que você preencheu?')){try{localStorage.removeItem(FK);}catch(e){}buildFin();}};
+try{buildFin();}catch(e){console.warn('fin',e);}
+
+// ---------- COMPRAS ----------
+// foto: tenta a marca no Wikimedia Commons, depois a categoria; senão fica o emoji
+function loadCommons(kws,cb){
+  const list=Array.isArray(kws)?kws.slice():[kws];
+  (function tryNext(){
+    if(!list.length)return;
+    const kw=list.shift();
+    try{
+      const url='https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrsearch='+encodeURIComponent(kw)+'&gsrlimit=12&prop=imageinfo&iiprop=url|mime&iiurlwidth=440';
+      fetch(url).then(r=>r.json()).then(j=>{
+        const pgs=(j&&j.query&&j.query.pages)?Object.values(j.query.pages):[];
+        pgs.sort((a,b)=>(a.index||99)-(b.index||99));
+        for(const p of pgs){const ii=p.imageinfo&&p.imageinfo[0];
+          if(ii&&ii.thumburl&&/jpeg|jpg|png/i.test((ii.mime||'')+ii.thumburl)){cb(ii.thumburl);return;}}
+        tryNext();
+      }).catch(tryNext);
+    }catch(e){tryNext();}
+  })();
+}
+const shopItems=[
+ {nome:"Osprey Farpoint 40",cat:"Mochila cargueira",why:"Cargueira carry-on com garantia vitalícia — referência em conforto e durabilidade pra mochilão.",preco:"R$ 1.200–1.900",emoji:"🎒",kw:["Osprey backpack","hiking backpack"],link:"https://www.osprey.com/farpointtm-40-travel-pack-1"},
+ {nome:"Sea to Summit Ultra-Sil Day Pack",cat:"Daypack dobrável (20L)",why:"Pesa ~70g, dobra do tamanho de um punho e tem garantia vitalícia. Pros passeios do dia.",preco:"R$ 250–400",emoji:"🥾",kw:["Sea to Summit backpack","daypack backpack"],link:"https://seatosummit.com/products/ultra-sil-day-pack"},
+ {nome:"Eagle Creek Pack-It",cat:"Organizadores (packing cubes)",why:"Os cubes mais duráveis do mercado, garantia vitalícia — ordem na mochila por anos.",preco:"R$ 300–500",emoji:"🧳",kw:["packing cubes"],link:"https://eaglecreek.com/collections/pack-it-sets"},
+ {nome:"Columbia Watertight II",cat:"Casaco impermeável",why:"Capa de chuva leve, compactável e com costuras seladas (Omni-Tech). Clássico testado e barato.",preco:"R$ 350–600",emoji:"🧥",kw:["rain jacket"],link:"https://www.columbia.com/p/mens-watertight-ii-jacket-1533891.html"},
+ {nome:"Columbia Omni-Heat Baselayer",cat:"Segunda pele térmica",why:"Forro térmico-reflexivo pras noites dos Andes e do Uyuni, perto de 0°C.",preco:"R$ 250–450",emoji:"🌡️",kw:["thermal base layer shirt"],link:"https://www.columbia.com/p/mens-omni-heat-midweight-baselayer-half-zip-1638571.html"},
+ {nome:"Merrell Moab 3",cat:"Bota / tênis de trilha",why:"Das botas mais vendidas e duráveis; amacia rápido e custa bem. Pra Machu Picchu, Colca e Cidade Perdida.",preco:"R$ 550–850",emoji:"👟",kw:["Merrell hiking boot","hiking boots"],link:"https://www.merrell.com/US/en/moab-3-collection/"},
+ {nome:"Anker 325 PowerCore 20K",cat:"Power bank 20.000mAh",why:"Marca referência em confiabilidade; aguenta ônibus de 12h e dias sem tomada.",preco:"R$ 300–450",emoji:"🔋",kw:["Anker power bank","power bank"],link:"https://www.anker.com/eu-en/products/a1268"},
+ {nome:"EPICKA Universal TA-105",cat:"Adaptador de tomada universal",why:"Plugues do mundo todo + várias portas USB/USB-C. Premiado e muito bem avaliado.",preco:"R$ 150–280",emoji:"🔌",kw:["travel power adapter","AC power plug"],link:"https://www.epickatech.com/products/epicka-universal-travel-adapter"},
+ {nome:"LifeStraw Go 650ml",cat:"Garrafa com filtro",why:"Filtra 99,9% de bactérias e protozoários — água segura direto da torneira ou do rio, sem gastar em garrafa.",preco:"R$ 250–400",emoji:"💧",kw:["LifeStraw","water filter bottle"],link:"https://lifestraw.com/products/lifestraw-go-series-650-ml"},
+ {nome:"Sea to Summit DryLite Towel",cat:"Toalha de microfibra",why:"Super absorvente, seca rápido e ocupa quase nada. Garantia vitalícia.",preco:"R$ 130–220",emoji:"🧴",kw:["microfiber towel"],link:"https://seatosummit.com/products/dry-lite-towel"},
+ {nome:"Sea to Summit Ultra-Sil Dry Bag",cat:"Saco estanque",why:"Mantém eletrônicos e roupas secos na Amazônia, no rafting e na chuva dos Andes.",preco:"R$ 120–200",emoji:"🌧️",kw:["dry bag","waterproof bag"],link:"https://seatosummit.com/products/ultra-sil-dry-bag"},
+ {nome:"Master Lock 4688D (TSA)",cat:"Cadeado de viagem",why:"Cabo flexível de aço, combinação, aprovado TSA — lockers de hostel e zíperes da mochila.",preco:"R$ 90–140",emoji:"🔒",kw:["combination padlock"],link:"https://www.masterlock.com/products/product/4688D"},
+ {nome:"Pacsafe Coversafe S100",cat:"Pochete secreta antifurto",why:"Bolso discreto sob a roupa pra passaporte e dinheiro. Marca referência em antifurto.",preco:"R$ 150–280",emoji:"👝",kw:["money belt"],link:"https://pacsafe.com/products/coversafe-s100-secret-travel-waist-pouch"},
+ {nome:"Adventure Medical Kits UL/WT .7",cat:"Kit de primeiros socorros",why:"Kit compacto e à prova d'água com itens de qualidade hospitalar. (Remédio pra altitude: peça receita ao médico.)",preco:"R$ 250–400",emoji:"🩹",kw:["first aid kit"],link:"https://adventuremedicalkits.com/products/ultralight-watertight-medical-kit-7"}
+];
+const sg=document.getElementById('shop-grid');
+shopItems.forEach((it,idx)=>{
+  try{
+    const d=document.createElement('div');d.className='shop';
+    d.innerHTML=`<div class="sphoto" id="sp-${idx}">${it.emoji}</div>
+      <div class="sin"><div class="scat">${it.cat}</div><h4>${it.nome}</h4><p class="why">${it.why}</p>
+      <div class="srow"><span class="price">${it.preco}</span>
+      <a class="buy" href="${it.link}" target="_blank" rel="noopener">Ver produto</a></div></div>`;
+    sg.appendChild(d);
+    loadCommons(it.kw,src=>{const el=document.getElementById('sp-'+idx);if(el){el.textContent='';el.style.backgroundImage=`url(${src})`;}});
+  }catch(e){console.warn('shop',idx,e);}
+});
+
+// ---------- CRONOGRAMA ----------
+const meses=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+function fmtD(d){return d.getDate()+' '+meses[d.getMonth()]+'.';}
+function buildCrono(){
+  try{
+    const inp=document.getElementById('dep-date');
+    const base=(inp&&inp.value)?new Date(inp.value+'T00:00:00'):new Date('2026-06-29T00:00:00');
+    const body=document.getElementById('crono-body');if(!body)return;body.innerHTML='';
+    const cursor=new Date(base);let lastP=null;
+    stops.forEach(s=>{
+      if(s.pais!==lastP){const cr=document.createElement('tr');cr.className='catrow';cr.innerHTML=`<td colspan="4">${s.flag} ${s.pais}</td>`;body.appendChild(cr);lastP=s.pais;}
+      const start=new Date(cursor);const end=new Date(cursor);end.setDate(end.getDate()+s.dias-1);
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td><b>${s.n}</b></td><td>${s.name}</td><td>${fmtD(start)} – ${fmtD(end)}</td><td class="r">${s.dias}</td>`;
+      body.appendChild(tr);
+      cursor.setDate(cursor.getDate()+s.dias);
+    });
+    const ret=new Date(cursor);ret.setDate(ret.getDate()-1);
+    const total=stops.reduce((a,s)=>a+s.dias,0);
+    const el=document.getElementById('ret-date');
+    if(el)el.textContent='→ estadias terminam ~'+fmtD(ret)+' · '+total+' dias (+ ~10 de deslocamento)';
+  }catch(e){console.warn('crono',e);}
+}
+const depInp=document.getElementById('dep-date');
+if(depInp)depInp.addEventListener('change',buildCrono);
+buildCrono();
+
+// ---------- TABS ----------
+const tabBtns=document.querySelectorAll('.tab'),panels=document.querySelectorAll('.tabpanel');
+function showTab(id){
+  tabBtns.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+  panels.forEach(p=>p.classList.toggle('active',p.id===id));
+  if(id==='tab-roteiro')setTimeout(initMap,60);
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(history.replaceState)history.replaceState(null,'','#'+id);
+}
+tabBtns.forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+const start=(location.hash||'#tab-perfil').replace('#','');
+showTab(document.getElementById(start)?start:'tab-perfil');
+</script>
+</body>
+</html>
