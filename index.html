@@ -275,7 +275,7 @@
 
 <script>
 const stops = [
- {n:1,name:"Cartagena",pais:"Colômbia",flag:"🇨🇴",coord:[10.391,-75.479],wiki:"Cartagena_das_Índias",dias:4,tag:"Caribe · Colonial",
+ {n:1,name:"Cartagena",pais:"Colômbia",flag:"🇨🇴",coord:[10.391,-75.479],wiki:"Castillo_San_Felipe_de_Barajas",dias:4,tag:"Caribe · Colonial",
   vibe:"Começo caribenho: cidade amuralhada colorida, salsa nas praças e o pôr do sol no mar.",
   bairros:"Getsemaní (mochileiro, arte de rua, Plaza Trinidad à noite), Centro Histórico amuralhado, Bocagrande (praia urbana).",
   ver:["Muralhas + <b>Castillo San Felipe</b> de Barajas","Torre del Reloj e Plaza Santo Domingo","Pôr do sol no Café del Mar, sobre as muralhas","Tour de arte de rua em Getsemaní"],
@@ -284,7 +284,7 @@ const stops = [
   comer:["<b>Celele</b> — alta gastronomia caribenha (top 20 AL)","La Cevichería","Arepa de huevo na Plaza Trinidad (rua)","Demente — tapas e pizza, Getsemaní"],
   custo:"R$ 170–230 / dia",
   trans:"→ Santa Marta: ônibus ~4h (R$40) ou van."},
- {n:2,name:"Santa Marta · Tayrona · Minca",pais:"Colômbia",flag:"🇨🇴",coord:[11.24,-74.21],wiki:"Santa_Marta",dias:5,tag:"Selva · Caribe · Trilha",
+ {n:2,name:"Santa Marta · Tayrona · Minca",pais:"Colômbia",flag:"🇨🇴",coord:[11.24,-74.21],wiki:"Parque_Nacional_Natural_Tayrona",dias:5,tag:"Selva · Caribe · Trilha",
   vibe:"A selva encontra o Caribe; trilhas sagradas e cachoeiras na Sierra Nevada.",
   bairros:"Centro de Santa Marta (base), Taganga (vila de pescadores e mergulho).",
   ver:["<b>Parque Tayrona</b> — praias Cabo San Juan entre selva e mar","Quinta de San Pedro Alejandrino (onde Bolívar morreu)"],
@@ -293,7 +293,7 @@ const stops = [
   comer:["Mercado de Santa Marta (almoço ~R$15)","Lulo Café da Manhã","Peixe fresco em Taganga"],
   custo:"R$ 150–200 / dia",
   trans:"→ Medellín: voo ~1h (R$250–400) ou ônibus longo."},
- {n:3,name:"Medellín · Guatapé",pais:"Colômbia",flag:"🇨🇴",coord:[6.244,-75.581],wiki:"Medellín",dias:5,tag:"Cidade · Transformação",
+ {n:3,name:"Medellín · Guatapé",pais:"Colômbia",flag:"🇨🇴",coord:[6.244,-75.581],wiki:"El_Peñón_de_Guatapé",dias:5,tag:"Cidade · Transformação",
   vibe:"A cidade da eterna primavera e da reinvenção — a transformação que você lê em Jung virou urbanismo aqui.",
   bairros:"El Poblado (turístico, vida noturna), <b>Laureles</b> (mais local, recomendado), Comuna 13.",
   ver:["<b>Comuna 13</b> — graffititour, escadas rolantes, história de superação","Metrocable + Parque Arví","Plaza Botero e Pueblito Paisa","Jardín Botânico"],
@@ -320,7 +320,7 @@ const stops = [
   comer:["Ajiaco (sopa típica)","Mercado de Paloquemao","La Puerta Falsa — chocolate santafereño"],
   custo:"R$ 140–180 / dia",
   trans:"→ Quito: voo ~1h40 (R$300–500)."},
- {n:6,name:"Quito · Quilotoa",pais:"Equador",flag:"🇪🇨",coord:[-0.1807,-78.4678],wiki:"Quito",dias:4,tag:"Colonial · Vulcões",
+ {n:6,name:"Quito · Quilotoa",pais:"Equador",flag:"🇪🇨",coord:[-0.1807,-78.4678],wiki:"Centro_histórico_de_Quito",dias:4,tag:"Colonial · Vulcões",
   vibe:"Centro colonial Patrimônio da Humanidade, no meio do mundo.",
   bairros:"Centro Histórico (igrejas barrocas), La Mariscal / La Floresta (cafés e vida noturna).",
   ver:["<b>La Compañía</b> — igreja folheada a ouro","Basílica del Voto Nacional (subir as torres)","TelefériQo (4.100m)","Mitad del Mundo — a linha do equador"],
@@ -365,7 +365,7 @@ const stops = [
   comer:["Rocoto relleno","Adobo arequipeño","Picanterías tradicionais","Chicha de jora"],
   custo:"R$ 140–180 / dia",
   trans:"→ Cusco: ônibus noturno ~10h (R$110)."},
- {n:11,name:"Cusco · Vale Sagrado · Machu Picchu",pais:"Peru",flag:"🇵🇪",coord:[-13.532,-71.967],wiki:"Cusco",dias:8,tag:"Sagrado · Inca · Trilha",
+ {n:11,name:"Cusco · Vale Sagrado · Machu Picchu",pais:"Peru",flag:"🇵🇪",coord:[-13.532,-71.967],wiki:"Machu_Picchu",dias:8,tag:"Sagrado · Inca · Trilha",
   vibe:"O umbigo do mundo inca — coração espiritual e cultural da viagem. Onde seu lado ancestral encontra a cosmologia andina.",
   bairros:"Centro (Plaza de Armas), <b>San Blas</b> (bairro de artistas, ladeiras e mirantes).",
   ver:["<b>Qorikancha</b> — templo do sol","Sacsayhuamán — muralhas de pedras ciclópicas","Catedral e mercado de San Pedro","Bairro de San Blas ao entardecer"],
@@ -547,13 +547,19 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 function loadWiki(title,langs,cb,orig){
   if(wikiCache[title]){cb(wikiCache[title]);return;}
   (async()=>{
+    // bandeiras/escudos/emblemas vêm como .svg; foto de verdade é .jpg/.png.
+    // Guardamos o .svg só como último recurso e tentamos a foto no próximo idioma.
+    let fallback=null;
     for(const lg of langs){
       try{const r=await fetch(`https://${lg}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`);
         if(!r.ok)continue;const j=await r.json();
         const src=(orig&&j.originalimage&&j.originalimage.source)||(j.thumbnail&&j.thumbnail.source)||(j.originalimage&&j.originalimage.source);
-        if(src){wikiCache[title]=src;cb(src);return;}
+        if(!src)continue;
+        if(/\.svg/i.test(src)){if(!fallback)fallback=src;continue;}
+        wikiCache[title]=src;cb(src);return;
       }catch(e){}
     }
+    if(fallback){wikiCache[title]=fallback;cb(fallback);}
   })();
 }
 
