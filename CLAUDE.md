@@ -4,7 +4,7 @@ Contexto pro Claude Code continuar este projeto de onde paramos no Cowork.
 
 ## O que é
 
-App de **página única** (`mochilao-america-do-sul.html`) — um guia de viagem interativo, personalizado pro Lucas, pra um mochilão de ~90 dias pela América do Sul (Colômbia → Equador → Peru → Bolívia → Chile → Argentina → Uruguai). Tudo (HTML + CSS + JS) está num único arquivo, sem build.
+App de **página única** (`index.html`) — um guia de viagem interativo, personalizado pro Lucas, pra um mochilão de ~90 dias pela América do Sul (Colômbia → Equador → Peru → Bolívia → Chile → Argentina → Uruguai). Tudo (HTML + CSS + JS) está num único arquivo, sem build.
 
 O conteúdo foi montado a partir do perfil do Lucas (interesses: natureza, espiritualidade, cultura, gastronomia) e de pesquisa em guias de mochileiro.
 
@@ -14,14 +14,14 @@ O conteúdo foi montado a partir do perfil do Lucas (interesses: natureza, espir
 
 ```bash
 python3 -m http.server 8000
-# abrir http://localhost:8000/mochilao-america-do-sul.html
+# abrir http://localhost:8000/index.html
 ```
 
 Não há dependências de build, npm ou bundler.
 
 ## Estrutura do arquivo
 
-Tudo em `mochilao-america-do-sul.html`:
+Tudo em `index.html`:
 - `<style>` — tema escuro com variáveis CSS em `:root` (--bg, --accent, etc.).
 - HTML das 5 abas: Perfil, Roteiro, Datas, Finanças, Compras (cada uma é `<section class="tabpanel" id="tab-...">`).
 - `<script>` no fim, dividido em blocos comentados (`// ---------- NOME ----------`).

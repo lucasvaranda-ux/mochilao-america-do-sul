@@ -2,7 +2,7 @@
 
 Guia de viagem interativo (página única) pra um mochilão de ~90 dias pela América do Sul: **Colômbia → Equador → Peru → Bolívia → Chile → Argentina → Uruguai**.
 
-Arquivo principal: **`mochilao-america-do-sul.html`** (HTML + CSS + JS num só arquivo, sem build).
+Arquivo principal: **`index.html`** (HTML + CSS + JS num só arquivo, sem build).
 
 ## Abas
 - **🧭 Perfil** — o viajante por trás do mochilão.
@@ -16,7 +16,7 @@ Arquivo principal: **`mochilao-america-do-sul.html`** (HTML + CSS + JS num só a
 ```bash
 # na pasta do projeto
 python3 -m http.server 8000
-# abra: http://localhost:8000/mochilao-america-do-sul.html
+# abra: http://localhost:8000/index.html
 ```
 
 > Precisa de internet: o mapa (Leaflet/CARTO) e as fotos (APIs da Wikipedia e do Wikimedia Commons) carregam em tempo real.
@@ -37,14 +37,14 @@ python3 -m http.server 8000
 
 ```bash
 git init
-git add mochilao-america-do-sul.html CLAUDE.md README.md .gitignore
+git add index.html CLAUDE.md README.md .gitignore
 git commit -m "Mochilão América do Sul — versão inicial migrada do Cowork"
 ```
 
 ## Estrutura
 
 ```
-mochilao-america-do-sul.html   # o app inteiro
+index.html   # o app inteiro
 CLAUDE.md                       # contexto pro Claude Code
 README.md                       # este arquivo
 .gitignore
