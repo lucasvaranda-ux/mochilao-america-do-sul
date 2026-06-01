@@ -140,6 +140,12 @@
   .sumcard .val.saldo{color:var(--sky)}
   .savedmsg{font-size:.82rem;color:var(--accent2);opacity:0;transition:.3s}
   .savedmsg.show{opacity:1}
+  /* GATE DE SENHA (Finanças) */
+  .fin-gate{display:flex;justify-content:center;padding:40px 0}
+  .fin-gate-box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:34px 30px;max-width:420px;text-align:center}
+  .fin-gate-ico{font-size:2.6rem;margin-bottom:10px}
+  .fin-gate-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .fin-gate-err{color:#e06a5a;font-size:.85rem;font-weight:600;margin-top:12px;min-height:18px}
   /* EDITOR DE ROTEIRO (aba Datas) */
   .datas-editor{margin:0 0 28px}
   .ed-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.95rem;margin-bottom:12px}
@@ -176,7 +182,6 @@
     <p class="sub">Dos Andes ao Caribe, do deserto do Atacama ao Rio da Prata — um roteiro completo desenhado a partir de quem você é. Hostels, restaurantes, monumentos, cachoeiras e custos reais, parada por parada.</p>
     <div class="badges">
       <div class="badge">📅 Fim de junho → outubro (~90 dias)</div>
-      <div class="badge">💰 Orçamento <b>médio</b> · ~R$32k</div>
       <div class="badge">🇨🇴🇪🇨🇵🇪🇧🇴🇨🇱🇦🇷🇺🇾 7 países</div>
       <div class="badge">🥾 Natureza · 🏛️ Cultura · 🏖️ Praia · 🌿 Sagrado</div>
     </div>
@@ -265,6 +270,19 @@
 <!-- FINANÇAS -->
 <section class="tabpanel" id="tab-financas">
   <div class="wrap">
+    <div id="fin-gate" class="fin-gate">
+      <div class="fin-gate-box">
+        <div class="fin-gate-ico">🔒</div>
+        <h2>Finanças protegidas</h2>
+        <p class="lead" style="margin-bottom:16px">Esta aba é privada. Digite a senha pra ver e editar o orçamento.</p>
+        <form id="fin-gate-form" class="fin-gate-form">
+          <input type="password" id="fin-pass" class="fin-input" placeholder="Senha" autocomplete="off" style="width:200px;text-align:left">
+          <button class="btn" type="submit">Desbloquear</button>
+        </form>
+        <div id="fin-gate-err" class="fin-gate-err"></div>
+      </div>
+    </div>
+    <div id="fin-content" hidden>
     <div class="eyebrow">Planejamento financeiro</div>
     <h2>Planejado × Realizado</h2>
     <p class="lead">Os valores planejados já vêm preenchidos com a estimativa do roteiro — <b>edite à vontade</b>. Preencha a coluna "Realizado" conforme gasta. Tudo soma sozinho e fica salvo no seu navegador (mesmo fechando o arquivo). Câmbio base: US$ 1 ≈ R$ 5,00.</p>
@@ -287,6 +305,7 @@
       <tbody id="fin-body"></tbody>
     </table>
     <div class="note">💡 Dica: a categoria "Reserva/emergência" é seu colchão — mantenha intacta. Se o "Realizado" total passar do planejado, o saldo fica negativo (vermelho) e é hora de segurar.</div>
+    </div>
   </div>
 </section>
 
@@ -295,7 +314,7 @@
   <div class="wrap">
     <div class="eyebrow">Lista de compras</div>
     <h2>O kit do mochilão</h2>
-    <p class="lead">Produtos reais, escolhidos por durabilidade e boas avaliações — vários com garantia vitalícia. Cada botão "Ver produto" vai direto à página oficial do modelo (specs, fotos reais e tamanhos). No Brasil você acha os mesmos modelos na Amazon.com.br, Mercado Livre e Decathlon; preços em R$ são estimativas. A foto do card pode ser representativa quando a marca não tem imagem livre.</p>
+    <p class="lead">Produtos reais, escolhidos por durabilidade e boas avaliações — vários com garantia vitalícia. Cada botão <b>"Comprar no Brasil"</b> abre a busca do modelo no <b>Mercado Livre</b> (preços e disponibilidade nacionais). Também vale comparar na Amazon.com.br e na Decathlon. Preços em R$ são estimativas. A foto do card pode ser representativa quando a marca não tem imagem livre.</p>
     <div class="shop-grid" id="shop-grid"></div>
     <div class="note">💳 Antes de ir: <a href="https://wise.com/br/" target="_blank">cartão multimoeda Wise</a> ou Nomad (câmbio e saque baratos), <a href="https://www.airalo.com/pt" target="_blank">eSIM Airalo</a> (dados sem trocar chip) e <a href="https://www.segurospromo.com.br/" target="_blank">comparar seguro viagem</a> (essencial pra trilhas e exigido em alguns lugares). Vacina de febre amarela: gratuita no SUS.</div>
   </div>
@@ -729,20 +748,20 @@ function loadCommons(kws,cb){
   })();
 }
 const shopItems=[
- {nome:"Osprey Farpoint 40",cat:"Mochila cargueira",why:"Cargueira carry-on com garantia vitalícia — referência em conforto e durabilidade pra mochilão.",preco:"R$ 1.200–1.900",emoji:"🎒",kw:["Osprey backpack","hiking backpack"],link:"https://www.osprey.com/farpointtm-40-travel-pack-1"},
- {nome:"Sea to Summit Ultra-Sil Day Pack",cat:"Daypack dobrável (20L)",why:"Pesa ~70g, dobra do tamanho de um punho e tem garantia vitalícia. Pros passeios do dia.",preco:"R$ 250–400",emoji:"🥾",kw:["Sea to Summit backpack","daypack backpack"],link:"https://seatosummit.com/products/ultra-sil-day-pack"},
- {nome:"Eagle Creek Pack-It",cat:"Organizadores (packing cubes)",why:"Os cubes mais duráveis do mercado, garantia vitalícia — ordem na mochila por anos.",preco:"R$ 300–500",emoji:"🧳",kw:["packing cubes"],link:"https://eaglecreek.com/collections/pack-it-sets"},
- {nome:"Columbia Watertight II",cat:"Casaco impermeável",why:"Capa de chuva leve, compactável e com costuras seladas (Omni-Tech). Clássico testado e barato.",preco:"R$ 350–600",emoji:"🧥",kw:["rain jacket"],link:"https://www.columbia.com/p/mens-watertight-ii-jacket-1533891.html"},
- {nome:"Columbia Omni-Heat Baselayer",cat:"Segunda pele térmica",why:"Forro térmico-reflexivo pras noites dos Andes e do Uyuni, perto de 0°C.",preco:"R$ 250–450",emoji:"🌡️",kw:["thermal base layer shirt"],link:"https://www.columbia.com/p/mens-omni-heat-midweight-baselayer-half-zip-1638571.html"},
- {nome:"Merrell Moab 3",cat:"Bota / tênis de trilha",why:"Das botas mais vendidas e duráveis; amacia rápido e custa bem. Pra Machu Picchu, Colca e Cidade Perdida.",preco:"R$ 550–850",emoji:"👟",kw:["Merrell hiking boot","hiking boots"],link:"https://www.merrell.com/US/en/moab-3-collection/"},
- {nome:"Anker 325 PowerCore 20K",cat:"Power bank 20.000mAh",why:"Marca referência em confiabilidade; aguenta ônibus de 12h e dias sem tomada.",preco:"R$ 300–450",emoji:"🔋",kw:["Anker power bank","power bank"],link:"https://www.anker.com/eu-en/products/a1268"},
- {nome:"EPICKA Universal TA-105",cat:"Adaptador de tomada universal",why:"Plugues do mundo todo + várias portas USB/USB-C. Premiado e muito bem avaliado.",preco:"R$ 150–280",emoji:"🔌",kw:["travel power adapter","AC power plug"],link:"https://www.epickatech.com/products/epicka-universal-travel-adapter"},
- {nome:"LifeStraw Go 650ml",cat:"Garrafa com filtro",why:"Filtra 99,9% de bactérias e protozoários — água segura direto da torneira ou do rio, sem gastar em garrafa.",preco:"R$ 250–400",emoji:"💧",kw:["LifeStraw","water filter bottle"],link:"https://lifestraw.com/products/lifestraw-go-series-650-ml"},
- {nome:"Sea to Summit DryLite Towel",cat:"Toalha de microfibra",why:"Super absorvente, seca rápido e ocupa quase nada. Garantia vitalícia.",preco:"R$ 130–220",emoji:"🧴",kw:["microfiber towel"],link:"https://seatosummit.com/products/dry-lite-towel"},
- {nome:"Sea to Summit Ultra-Sil Dry Bag",cat:"Saco estanque",why:"Mantém eletrônicos e roupas secos na Amazônia, no rafting e na chuva dos Andes.",preco:"R$ 120–200",emoji:"🌧️",kw:["dry bag","waterproof bag"],link:"https://seatosummit.com/products/ultra-sil-dry-bag"},
- {nome:"Master Lock 4688D (TSA)",cat:"Cadeado de viagem",why:"Cabo flexível de aço, combinação, aprovado TSA — lockers de hostel e zíperes da mochila.",preco:"R$ 90–140",emoji:"🔒",kw:["combination padlock"],link:"https://www.masterlock.com/products/product/4688D"},
- {nome:"Pacsafe Coversafe S100",cat:"Pochete secreta antifurto",why:"Bolso discreto sob a roupa pra passaporte e dinheiro. Marca referência em antifurto.",preco:"R$ 150–280",emoji:"👝",kw:["money belt"],link:"https://pacsafe.com/products/coversafe-s100-secret-travel-waist-pouch"},
- {nome:"Adventure Medical Kits UL/WT .7",cat:"Kit de primeiros socorros",why:"Kit compacto e à prova d'água com itens de qualidade hospitalar. (Remédio pra altitude: peça receita ao médico.)",preco:"R$ 250–400",emoji:"🩹",kw:["first aid kit"],link:"https://adventuremedicalkits.com/products/ultralight-watertight-medical-kit-7"}
+ {nome:"Osprey Farpoint 40",cat:"Mochila cargueira",why:"Cargueira carry-on com garantia vitalícia — referência em conforto e durabilidade pra mochilão.",preco:"R$ 1.200–1.900",emoji:"🎒",kw:["Osprey backpack","hiking backpack"],link:"https://lista.mercadolivre.com.br/osprey-farpoint-40"},
+ {nome:"Sea to Summit Ultra-Sil Day Pack",cat:"Daypack dobrável (20L)",why:"Pesa ~70g, dobra do tamanho de um punho e tem garantia vitalícia. Pros passeios do dia.",preco:"R$ 250–400",emoji:"🥾",kw:["Sea to Summit backpack","daypack backpack"],link:"https://lista.mercadolivre.com.br/mochila-dobravel-daypack-20l"},
+ {nome:"Eagle Creek Pack-It",cat:"Organizadores (packing cubes)",why:"Os cubes mais duráveis do mercado, garantia vitalícia — ordem na mochila por anos.",preco:"R$ 300–500",emoji:"🧳",kw:["packing cubes"],link:"https://lista.mercadolivre.com.br/packing-cubes-organizador-mala"},
+ {nome:"Columbia Watertight II",cat:"Casaco impermeável",why:"Capa de chuva leve, compactável e com costuras seladas (Omni-Tech). Clássico testado e barato.",preco:"R$ 350–600",emoji:"🧥",kw:["rain jacket"],link:"https://lista.mercadolivre.com.br/columbia-watertight-jaqueta-impermeavel"},
+ {nome:"Columbia Omni-Heat Baselayer",cat:"Segunda pele térmica",why:"Forro térmico-reflexivo pras noites dos Andes e do Uyuni, perto de 0°C.",preco:"R$ 250–450",emoji:"🌡️",kw:["thermal base layer shirt"],link:"https://lista.mercadolivre.com.br/columbia-omni-heat-segunda-pele"},
+ {nome:"Merrell Moab 3",cat:"Bota / tênis de trilha",why:"Das botas mais vendidas e duráveis; amacia rápido e custa bem. Pra Machu Picchu, Colca e Cidade Perdida.",preco:"R$ 550–850",emoji:"👟",kw:["Merrell hiking boot","hiking boots"],link:"https://lista.mercadolivre.com.br/merrell-moab-3"},
+ {nome:"Anker 325 PowerCore 20K",cat:"Power bank 20.000mAh",why:"Marca referência em confiabilidade; aguenta ônibus de 12h e dias sem tomada.",preco:"R$ 300–450",emoji:"🔋",kw:["Anker power bank","power bank"],link:"https://lista.mercadolivre.com.br/anker-powercore-20000mah"},
+ {nome:"EPICKA Universal TA-105",cat:"Adaptador de tomada universal",why:"Plugues do mundo todo + várias portas USB/USB-C. Premiado e muito bem avaliado.",preco:"R$ 150–280",emoji:"🔌",kw:["travel power adapter","AC power plug"],link:"https://lista.mercadolivre.com.br/adaptador-tomada-universal-viagem-usb"},
+ {nome:"LifeStraw Go 650ml",cat:"Garrafa com filtro",why:"Filtra 99,9% de bactérias e protozoários — água segura direto da torneira ou do rio, sem gastar em garrafa.",preco:"R$ 250–400",emoji:"💧",kw:["LifeStraw","water filter bottle"],link:"https://lista.mercadolivre.com.br/lifestraw-go-garrafa-filtro"},
+ {nome:"Sea to Summit DryLite Towel",cat:"Toalha de microfibra",why:"Super absorvente, seca rápido e ocupa quase nada. Garantia vitalícia.",preco:"R$ 130–220",emoji:"🧴",kw:["microfiber towel"],link:"https://lista.mercadolivre.com.br/toalha-microfibra-viagem-secagem-rapida"},
+ {nome:"Sea to Summit Ultra-Sil Dry Bag",cat:"Saco estanque",why:"Mantém eletrônicos e roupas secos na Amazônia, no rafting e na chuva dos Andes.",preco:"R$ 120–200",emoji:"🌧️",kw:["dry bag","waterproof bag"],link:"https://lista.mercadolivre.com.br/saco-estanque-impermeavel-dry-bag"},
+ {nome:"Master Lock 4688D (TSA)",cat:"Cadeado de viagem",why:"Cabo flexível de aço, combinação, aprovado TSA — lockers de hostel e zíperes da mochila.",preco:"R$ 90–140",emoji:"🔒",kw:["combination padlock"],link:"https://lista.mercadolivre.com.br/cadeado-viagem-tsa-segredo"},
+ {nome:"Pacsafe Coversafe S100",cat:"Pochete secreta antifurto",why:"Bolso discreto sob a roupa pra passaporte e dinheiro. Marca referência em antifurto.",preco:"R$ 150–280",emoji:"👝",kw:["money belt"],link:"https://lista.mercadolivre.com.br/porta-passaporte-pescoco-antifurto-viagem"},
+ {nome:"Adventure Medical Kits UL/WT .7",cat:"Kit de primeiros socorros",why:"Kit compacto e à prova d'água com itens de qualidade hospitalar. (Remédio pra altitude: peça receita ao médico.)",preco:"R$ 250–400",emoji:"🩹",kw:["first aid kit"],link:"https://lista.mercadolivre.com.br/kit-primeiros-socorros-viagem"}
 ];
 const sg=document.getElementById('shop-grid');
 shopItems.forEach((it,idx)=>{
@@ -751,7 +770,7 @@ shopItems.forEach((it,idx)=>{
     d.innerHTML=`<div class="sphoto" id="sp-${idx}">${it.emoji}</div>
       <div class="sin"><div class="scat">${it.cat}</div><h4>${it.nome}</h4><p class="why">${it.why}</p>
       <div class="srow"><span class="price">${it.preco}</span>
-      <a class="buy" href="${it.link}" target="_blank" rel="noopener">Ver produto</a></div></div>`;
+      <a class="buy" href="${it.link}" target="_blank" rel="noopener">Comprar no Brasil</a></div></div>`;
     sg.appendChild(d);
     loadCommons(it.kw,src=>{const el=document.getElementById('sp-'+idx);if(el){el.textContent='';el.style.backgroundImage=`url(${src})`;}});
   }catch(e){console.warn('shop',idx,e);}
@@ -908,6 +927,22 @@ showTab(document.getElementById(start)?start:'tab-perfil');
     ensureIds();
     renderAll();
   })();
+})();
+</script>
+<script>
+/* Gate de senha da aba Finanças (proteção leve no front; libera por sessão) */
+(function(){
+  const PASS='D21m09', SK='mochilao_fin_unlocked';
+  const gate=document.getElementById('fin-gate'),content=document.getElementById('fin-content'),
+        form=document.getElementById('fin-gate-form'),pass=document.getElementById('fin-pass'),err=document.getElementById('fin-gate-err');
+  if(!gate||!content)return;
+  function unlock(){gate.style.display='none';content.hidden=false;try{sessionStorage.setItem(SK,'1');}catch(e){}}
+  try{if(sessionStorage.getItem(SK)==='1')unlock();}catch(e){}
+  if(form)form.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(pass.value===PASS){err.textContent='';unlock();}
+    else{err.textContent='Senha incorreta.';pass.value='';pass.focus();}
+  });
 })();
 </script>
 </body>
