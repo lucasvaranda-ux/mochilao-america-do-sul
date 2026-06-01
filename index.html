@@ -930,19 +930,26 @@ showTab(document.getElementById(start)?start:'tab-perfil');
 })();
 </script>
 <script>
-/* Gate de senha da aba Finanças (proteção leve no front; libera por sessão) */
+/* Gate de senha da aba Finanças — pede a senha toda vez que a aba é aberta
+   e re-tranca ao sair. (Proteção leve no front: a senha está no código público,
+   serve pra privacidade casual, não como segurança forte.) */
 (function(){
-  const PASS='D21m09', SK='mochilao_fin_unlocked';
+  const PASS='D21m09';
   const gate=document.getElementById('fin-gate'),content=document.getElementById('fin-content'),
         form=document.getElementById('fin-gate-form'),pass=document.getElementById('fin-pass'),err=document.getElementById('fin-gate-err');
   if(!gate||!content)return;
-  function unlock(){gate.style.display='none';content.hidden=false;try{sessionStorage.setItem(SK,'1');}catch(e){}}
-  try{if(sessionStorage.getItem(SK)==='1')unlock();}catch(e){}
+  function lock(){content.hidden=true;gate.style.display='flex';if(pass)pass.value='';if(err)err.textContent='';}
+  function unlock(){gate.style.display='none';content.hidden=false;}
+  lock();                                   // começa sempre trancado
   if(form)form.addEventListener('submit',e=>{
     e.preventDefault();
     if(pass.value===PASS){err.textContent='';unlock();}
     else{err.textContent='Senha incorreta.';pass.value='';pass.focus();}
   });
+  // re-trancar toda vez que a aba Finanças é aberta (e ao trocar de aba)
+  const finBtn=document.querySelector('.tab[data-tab="tab-financas"]');
+  if(finBtn)finBtn.addEventListener('click',()=>{lock();setTimeout(()=>{if(pass)pass.focus();},80);});
+  document.querySelectorAll('.tab:not([data-tab="tab-financas"])').forEach(b=>b.addEventListener('click',lock));
 })();
 </script>
 </body>
