@@ -798,22 +798,18 @@ const start=(location.hash||'#tab-perfil').replace('#','');
 showTab(document.getElementById(start)?start:'tab-perfil');
 </script>
 <script>
-/* ===== Mochilão · persistência Supabase + edição de roteiro =====
-   stops/finanças/data de saída sincronizam na nuvem (iPhone <-> PC).
-   O array bundled acima é o padrão/fallback offline; o Supabase sobrescreve quando disponível. */
+/* ===== Mochilão · persistência LOCAL (localStorage) + edição de roteiro =====
+   stops/finanças/data de saída ficam salvos NESTE aparelho (localStorage).
+   O array bundled acima é o padrão; o localStorage sobrescreve quando existe.
+   (Sincronização com Supabase será religada depois — projeto em uso pra outra coisa por ora.) */
 (function(){
-  const SB_URL='https://znyfcvtbqrmblkknpcdd.supabase.co';
-  const SB_KEY='sb_publishable_tPWDg2CwpZgrya2pLuHKwQ_9jHXORS6';
-  const REST=SB_URL+'/rest/v1/';
-  const H={apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json'};
-  let online=false, removed=[], flashT=null, finT=null;
+  const LS_STOPS='mochilao_stops_v1';
+  const LS_DEP='mochilao_dep_date';
+  const online=true, removed=[]; let flashT=null;
 
-  async function sb(path,opts){const r=await fetch(REST+path,Object.assign({headers:H},opts||{}));if(!r.ok)throw new Error('sb '+r.status+' '+(await r.text()));const t=await r.text();return t?JSON.parse(t):null;}
   const uuid=()=>(crypto.randomUUID?crypto.randomUUID():'id-'+Date.now()+'-'+Math.round(Math.random()*1e6));
   function ccFlag(cc){cc=(cc||'').toUpperCase();return /^[A-Z]{2}$/.test(cc)?cc.replace(/./g,c=>String.fromCodePoint(127397+c.charCodeAt(0))):'📍';}
 
-  function toRow(s,i){return {id:s.id,n:i+1,position:i,name:s.name,pais:s.pais||'',flag:s.flag||'',lat:s.coord?s.coord[0]:s.lat,lng:s.coord?s.coord[1]:s.lng,wiki:s.wiki||'',dias:s.dias||1,tag:s.tag||'',vibe:s.vibe||'',bairros:s.bairros||'',ver:s.ver||[],nat:s.nat||[],hostels:s.hostels||[],comer:s.comer||[],custo:s.custo||'',trans:s.trans||'',cd:(s.cd!=null?s.cd:((finStops[s.n]||{}).cd||0)),extras:s.extras||((finStops[s.n]||{}).ex||[])};}
-  function fromRow(r){return {id:r.id,n:r.n,name:r.name,pais:r.pais||'',flag:r.flag||'',coord:[Number(r.lat),Number(r.lng)],wiki:r.wiki||'',dias:r.dias||1,tag:r.tag||'',vibe:r.vibe||'',bairros:r.bairros||'',ver:r.ver||[],nat:r.nat||[],hostels:r.hostels||[],comer:r.comer||[],custo:r.custo||'',trans:r.trans||'',cd:Number(r.cd)||0,extras:r.extras||[],position:r.position};}
   function ensureIds(){stops.forEach(s=>{if(!s.id)s.id=uuid();});}
 
   function renderAll(){
@@ -841,18 +837,12 @@ showTab(document.getElementById(start)?start:'tab-perfil');
   }
   window.redrawMap=redrawMap;
 
-  async function pushStops(){
-    if(!online){flash('offline — não salvo',true);return;}
+  function pushStops(){
     ensureIds();
-    const rows=stops.map((s,i)=>toRow(s,i));
-    try{
-      await sb('stops?on_conflict=id',{method:'POST',headers:Object.assign({},H,{Prefer:'resolution=merge-duplicates,return=minimal'}),body:JSON.stringify(rows)});
-      if(removed.length){await sb('stops?id=in.('+removed.join(',')+')',{method:'DELETE'});removed=[];}
-      flash('salvo ✓');
-    }catch(e){console.warn('pushStops',e);flash('erro ao salvar',true);}
+    stops.forEach((s,i)=>{s.n=i+1;s.position=i;});
+    try{localStorage.setItem(LS_STOPS,JSON.stringify(stops));removed.length=0;flash('salvo neste aparelho ✓');}
+    catch(e){console.warn('pushStops',e);flash('erro ao salvar',true);}
   }
-  async function getKv(k){try{const r=await sb('kv?key=eq.'+encodeURIComponent(k)+'&select=value');return r&&r[0]?r[0].value:null;}catch(e){return null;}}
-  async function setKv(k,v){if(!online)return;try{await sb('kv?on_conflict=key',{method:'POST',headers:Object.assign({},H,{Prefer:'resolution=merge-duplicates,return=minimal'}),body:JSON.stringify({key:k,value:v})});}catch(e){console.warn('setKv',e);}}
 
   async function geocode(q){
     const url='https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&accept-language=pt&limit=1&q='+encodeURIComponent(q);
@@ -865,7 +855,7 @@ showTab(document.getElementById(start)?start:'tab-perfil');
 
   function buildEditor(){
     const host=document.getElementById('datas-editor');if(!host)return;
-    const status=online?'<span class="ed-on">● sincronizado na nuvem</span>':'<span class="ed-off">● offline — alterações não serão salvas</span>';
+    const status='<span class="ed-on">● salvo neste aparelho</span>';
     const rows=stops.map((s,i)=>`<tr>
       <td class="r" style="color:var(--muted)">${i+1}</td>
       <td>${s.flag||''} ${s.name}<div style="font-size:.74rem;color:var(--muted)">${s.pais||''}</div></td>
@@ -907,20 +897,15 @@ showTab(document.getElementById(start)?start:'tab-perfil');
   window.buildEditor=buildEditor;
   function flash(msg,err){const e=document.getElementById('ed-flash');if(!e)return;e.textContent=msg;e.style.color=err?'#e06a5a':'var(--accent2)';clearTimeout(flashT);flashT=setTimeout(()=>{e.textContent='';},2200);}
 
-  // finanças -> nuvem (mantém localStorage como cache offline)
-  if(typeof saveFin==='function'){const _save=saveFin;window.saveFin=function(m){_save(m);clearTimeout(finT);finT=setTimeout(()=>setKv('finance',loadFin()),700);};}
-  // data de saída -> nuvem
-  const dep=document.getElementById('dep-date');if(dep)dep.addEventListener('change',()=>setKv('dep_date',dep.value));
+  // finanças já persistem em localStorage (chave mochilao_fin_v3) via saveFin original
+  // data de saída -> localStorage
+  const dep=document.getElementById('dep-date');
+  if(dep){try{const d=localStorage.getItem(LS_DEP);if(d)dep.value=d;}catch(e){}
+    dep.addEventListener('change',()=>{try{localStorage.setItem(LS_DEP,dep.value);}catch(e){}});}
 
-  (async()=>{
-    try{
-      const rows=await sb('stops?select=*&order=position');
-      online=true;
-      if(rows&&rows.length){stops=rows.map(fromRow);}
-      else{ensureIds();await pushStops();}
-    }catch(e){online=false;console.warn('boot stops (usando padrão offline)',e);}
-    try{const d=await getKv('dep_date');if(d&&dep){dep.value=d;}}catch(e){}
-    try{const f=await getKv('finance');if(f){localStorage.setItem('mochilao_fin_v3',JSON.stringify(f));}}catch(e){}
+  (function boot(){
+    try{const raw=localStorage.getItem(LS_STOPS);if(raw){const arr=JSON.parse(raw);if(arr&&arr.length)stops=arr;}}catch(e){console.warn('boot stops',e);}
+    ensureIds();
     renderAll();
   })();
 })();
