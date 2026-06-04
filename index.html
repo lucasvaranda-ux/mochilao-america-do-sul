@@ -158,6 +158,35 @@
   .ed-btn:hover:not(:disabled){border-color:var(--accent);color:var(--txt)}
   .ed-btn:disabled{opacity:.35;cursor:default}
   .ed-del:hover{border-color:#e06a5a;color:#e06a5a}
+  /* SOBRETELA ADICIONAR DESTINO */
+  .add-box{background:var(--bg2);border:1px solid var(--line);border-radius:18px;max-width:620px;width:100%;position:relative;animation:pop .25s ease;display:flex;flex-direction:column;max-height:92vh}
+  .add-head{padding:22px 24px 6px}
+  .add-head h3{font-size:1.4rem;font-weight:800}
+  .add-head p{color:var(--muted);font-size:.88rem;margin-top:4px}
+  .add-body{padding:8px 24px 4px;overflow-y:auto}
+  .add-step{margin:14px 0}
+  .add-lbl{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--accent);font-weight:700;margin-bottom:8px}
+  .add-searchrow{display:flex;gap:8px}
+  .add-results{margin-top:10px;display:flex;flex-direction:column;gap:7px;max-height:230px;overflow-y:auto}
+  .add-res{display:flex;align-items:center;gap:11px;padding:10px 12px;background:var(--card);border:1px solid var(--line);border-radius:11px;cursor:pointer;transition:.15s;text-align:left}
+  .add-res:hover{border-color:var(--accent);transform:translateX(2px)}
+  .add-res.sel{border-color:var(--accent2);background:rgba(95,201,160,.08)}
+  .add-res .rflag{font-size:1.5rem;line-height:1}
+  .add-res .rname{font-weight:700;font-size:.95rem}
+  .add-res .rsub{font-size:.76rem;color:var(--muted);margin-top:1px}
+  .add-res-empty{color:var(--muted);font-size:.85rem;padding:8px 2px}
+  .add-picked{display:flex;gap:14px;align-items:stretch}
+  .add-map{width:190px;height:130px;border-radius:12px;border:1px solid var(--line);overflow:hidden;flex-shrink:0;background:#10161d}
+  .add-picked-info{display:flex;flex-direction:column;justify-content:center}
+  .add-picked-name{font-weight:800;font-size:1.1rem}
+  .add-picked-sub{color:var(--muted);font-size:.82rem;margin-top:3px}
+  .add-grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .add-days{display:flex;gap:7px;align-items:center}
+  .add-days .ed-btn{font-size:1.1rem;padding:4px 12px}
+  .add-suggest{font-size:.78rem;color:var(--accent2);margin-top:7px;min-height:16px}
+  .add-foot{display:flex;align-items:center;gap:10px;padding:16px 24px;border-top:1px solid var(--line);margin-top:6px}
+  .add-foot .ed-flash{flex:1}
+  @media(max-width:600px){.add-grid2{grid-template-columns:1fr}.add-picked{flex-direction:column}.add-map{width:100%;height:150px}}
   /* SHOPPING */
   .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
   .shop{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
@@ -322,6 +351,46 @@
 
 <!-- MODAL -->
 <div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+
+<!-- SOBRETELA: ADICIONAR DESTINO -->
+<div class="modal addov" id="add-modal"><div class="add-box">
+  <button class="mclose" onclick="closeAddModal()">×</button>
+  <div class="add-head"><h3>➕ Adicionar destino</h3><p>Busque a cidade, confirme no mapa, escolha quantos dias e onde encaixar.</p></div>
+  <div class="add-body">
+    <div class="add-step">
+      <label class="add-lbl">1 · Buscar cidade</label>
+      <div class="add-searchrow">
+        <input id="add-q" class="fin-input" placeholder="Ex: Florianópolis, Foz do Iguaçu, Cusco…" autocomplete="off" style="flex:1;min-width:0;text-align:left">
+        <button id="add-search-btn" class="btn" type="button">Buscar</button>
+      </div>
+      <div id="add-results" class="add-results"></div>
+    </div>
+    <div id="add-confirm" class="add-confirm" hidden>
+      <div class="add-step">
+        <label class="add-lbl">2 · Confirme o local</label>
+        <div class="add-picked"><div id="add-map" class="add-map"></div>
+          <div class="add-picked-info"><div id="add-picked-name" class="add-picked-name"></div><div id="add-picked-sub" class="add-picked-sub"></div></div>
+        </div>
+      </div>
+      <div class="add-step add-grid2">
+        <div><label class="add-lbl">3 · Quantos dias?</label>
+          <div class="add-days"><button type="button" class="ed-btn" id="add-days-minus">−</button>
+          <input id="add-days" class="fin-input" type="number" min="1" value="3" style="width:64px;text-align:center">
+          <button type="button" class="ed-btn" id="add-days-plus">+</button></div>
+        </div>
+        <div><label class="add-lbl">4 · Onde encaixar?</label>
+          <select id="add-pos" class="fin-input" style="width:100%;text-align:left"></select>
+          <div id="add-suggest" class="add-suggest"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="add-foot">
+    <span id="add-flash" class="ed-flash"></span>
+    <button class="btn ghost" type="button" onclick="closeAddModal()">Cancelar</button>
+    <button class="btn" type="button" id="add-confirm-btn" disabled>Adicionar ao roteiro</button>
+  </div>
+</div></div>
 
 <footer><div class="wrap">Feito pra Lucas · seu guia de viagem vivo — ajuste as paradas conforme o coração pedir. Buen viaje. 🌎</div></footer>
 
@@ -908,9 +977,7 @@ showTab(document.getElementById(start)?start:'tab-perfil');
       </td></tr>`).join('');
     host.innerHTML=`<div class="ed-bar"><b>✏️ Editar roteiro</b> ${status} <span id="ed-flash" class="ed-flash"></span></div>
       <div class="ed-add">
-        <input id="ed-city" class="fin-input" placeholder="Cidade (ex: Florianópolis)" style="flex:1;min-width:170px;text-align:left">
-        <input id="ed-days" class="fin-input" type="number" min="1" value="3" style="width:70px" title="dias">
-        <button id="ed-add-btn" class="btn">+ Adicionar destino</button>
+        <button id="ed-add-btn" class="btn">➕ Adicionar destino</button>
       </div>
       <table class="ed-table"><thead><tr><th class="r">#</th><th>Destino</th><th class="r">Dias</th><th class="r">Ações</th></tr></thead><tbody>${rows}</tbody></table>`;
     host.querySelectorAll('.ed-dias').forEach(inp=>inp.addEventListener('change',()=>{const i=+inp.dataset.i;stops[i].dias=Math.max(1,parseInt(inp.value)||1);renderAll();pushStops();}));
@@ -923,20 +990,117 @@ showTab(document.getElementById(start)?start:'tab-perfil');
       renderAll();pushStops();
     }));
     const addBtn=document.getElementById('ed-add-btn');
-    if(addBtn)addBtn.addEventListener('click',async()=>{
-      const ci=document.getElementById('ed-city'),city=ci.value.trim(),days=Math.max(1,parseInt(document.getElementById('ed-days').value)||3);
-      if(!city)return;
-      addBtn.disabled=true;addBtn.textContent='Buscando…';
-      try{
-        const g=await geocode(city);
-        if(!g){flash('cidade não encontrada',true);}
-        else{stops.push({id:uuid(),name:city,pais:g.pais,flag:g.flag,coord:[g.lat,g.lng],wiki:city.replace(/ /g,'_'),dias:days,tag:'Novo destino',vibe:'(toque pra editar os detalhes depois)',bairros:'',ver:[],nat:[],hostels:[],comer:[],custo:'',trans:'',cd:0,extras:[]});ci.value='';renderAll();pushStops();flash('adicionado ✓');}
-      }catch(e){flash('erro na busca',true);}
-      addBtn.disabled=false;addBtn.textContent='+ Adicionar destino';
-    });
+    if(addBtn)addBtn.addEventListener('click',openAddModal);
   }
   window.buildEditor=buildEditor;
   function flash(msg,err){const e=document.getElementById('ed-flash');if(!e)return;e.textContent=msg;e.style.color=err?'#e06a5a':'var(--accent2)';clearTimeout(flashT);flashT=setTimeout(()=>{e.textContent='';},2200);}
+
+  /* ===== Sobretela "Adicionar destino" ===== */
+  let addPick=null, addMap=null, addMarker=null, searchT=null;
+  function geoSearch(q){
+    const url='https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&accept-language=pt&limit=6&featuretype=city&q='+encodeURIComponent(q);
+    return fetch(url,{headers:{Accept:'application/json'}}).then(r=>r.json());
+  }
+  function placeLabel(it){
+    const a=it.address||{};
+    const city=a.city||a.town||a.village||a.municipality||a.county||(it.display_name||'').split(',')[0];
+    const region=[a.state,a.country].filter(Boolean).join(' · ');
+    return {city,region,pais:a.country||'',flag:ccFlag(a.country_code),lat:parseFloat(it.lat),lng:parseFloat(it.lon)};
+  }
+  function aFlash(msg,err){const e=document.getElementById('add-flash');if(!e)return;e.textContent=msg||'';e.style.color=err?'#e06a5a':'var(--accent2)';}
+  function haversine(a,b){const R=6371,dLat=(b[0]-a[0])*Math.PI/180,dLng=(b[1]-a[1])*Math.PI/180,la1=a[0]*Math.PI/180,la2=b[0]*Math.PI/180;const x=Math.sin(dLat/2)**2+Math.cos(la1)*Math.cos(la2)*Math.sin(dLng/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+
+  function openAddModal(){
+    addPick=null;
+    const m=document.getElementById('add-modal');if(!m)return;
+    document.getElementById('add-q').value='';
+    document.getElementById('add-results').innerHTML='';
+    document.getElementById('add-confirm').hidden=true;
+    document.getElementById('add-confirm-btn').disabled=true;
+    document.getElementById('add-days').value=3;
+    aFlash('');
+    m.classList.add('open');document.body.style.overflow='hidden';
+    setTimeout(()=>document.getElementById('add-q').focus(),120);
+  }
+  window.openAddModal=openAddModal;
+  function closeAddModal(){const m=document.getElementById('add-modal');if(m)m.classList.remove('open');document.body.style.overflow='';if(addMap){try{addMap.remove();}catch(e){}addMap=null;}}
+  window.closeAddModal=closeAddModal;
+
+  async function runSearch(){
+    const q=document.getElementById('add-q').value.trim();
+    const box=document.getElementById('add-results');
+    if(q.length<2){box.innerHTML='';return;}
+    box.innerHTML='<div class="add-res-empty">Buscando…</div>';
+    try{
+      const raw=await geoSearch(q);
+      if(!raw||!raw.length){box.innerHTML='<div class="add-res-empty">Nada encontrado. Tente o nome em outro formato.</div>';return;}
+      const list=raw.map(placeLabel).filter(p=>isFinite(p.lat));
+      box.innerHTML='';
+      list.forEach(p=>{
+        const el=document.createElement('button');el.type='button';el.className='add-res';
+        el.innerHTML=`<span class="rflag">${p.flag}</span><span><div class="rname">${p.city}</div><div class="rsub">${p.region}</div></span>`;
+        el.addEventListener('click',()=>{box.querySelectorAll('.add-res').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');pickPlace(p);});
+        box.appendChild(el);
+      });
+    }catch(e){box.innerHTML='<div class="add-res-empty">Erro na busca. Tente de novo.</div>';}
+  }
+
+  function suggestPosition(p){
+    // sugere encaixar logo após a parada geograficamente mais próxima
+    let best=-1,bd=1e9;
+    stops.forEach((s,i)=>{if(!s.coord||!isFinite(s.coord[0]))return;const d=haversine([p.lat,p.lng],s.coord);if(d<bd){bd=d;best=i;}});
+    return best;
+  }
+  function pickPlace(p){
+    addPick=p;
+    document.getElementById('add-confirm').hidden=false;
+    document.getElementById('add-picked-name').textContent=`${p.flag} ${p.city}`;
+    document.getElementById('add-picked-sub').textContent=p.region+` · ${p.lat.toFixed(3)}, ${p.lng.toFixed(3)}`;
+    // mini-mapa de confirmação
+    setTimeout(()=>{
+      if(!window.L)return;
+      if(addMap){try{addMap.remove();}catch(e){}addMap=null;}
+      addMap=L.map('add-map',{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false}).setView([p.lat,p.lng],6);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(addMap);
+      L.marker([p.lat,p.lng]).addTo(addMap);
+      setTimeout(()=>{try{addMap.invalidateSize();}catch(e){}},60);
+    },80);
+    // seletor "onde encaixar" + sugestão
+    const sel=document.getElementById('add-pos');
+    const sug=suggestPosition(p);
+    sel.innerHTML='<option value="0">No começo (antes de tudo)</option>'+
+      stops.map((s,i)=>`<option value="${i+1}">Depois de ${i+1}. ${s.name}</option>`).join('');
+    sel.value=String(sug+1);
+    const sgEl=document.getElementById('add-suggest');
+    if(sug>=0){const d=Math.round(haversine([p.lat,p.lng],stops[sug].coord));sgEl.textContent=`💡 Sugestão: depois de ${sug+1}. ${stops[sug].name} (${d} km — parada mais próxima)`;}
+    else sgEl.textContent='';
+    document.getElementById('add-confirm-btn').disabled=false;
+  }
+
+  function confirmAdd(){
+    if(!addPick)return;
+    const days=Math.max(1,parseInt(document.getElementById('add-days').value)||3);
+    const pos=Math.max(0,Math.min(stops.length,parseInt(document.getElementById('add-pos').value)||stops.length));
+    const novo={id:uuid(),name:addPick.city,pais:addPick.pais,flag:addPick.flag,coord:[addPick.lat,addPick.lng],wiki:addPick.city.replace(/ /g,'_'),dias:days,tag:'Novo destino',vibe:'(toque pra editar os detalhes depois)',bairros:'',ver:[],nat:[],hostels:[],comer:[],custo:'',trans:'',cd:0,extras:[]};
+    stops.splice(pos,0,novo);
+    renderAll();pushStops();
+    closeAddModal();
+    flash(`${addPick.city} adicionado ✓`);
+  }
+
+  // listeners da sobretela
+  (function wireAddModal(){
+    const q=document.getElementById('add-q');
+    if(q)q.addEventListener('input',()=>{clearTimeout(searchT);searchT=setTimeout(runSearch,450);});
+    if(q)q.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();clearTimeout(searchT);runSearch();}});
+    const sb=document.getElementById('add-search-btn');if(sb)sb.addEventListener('click',()=>{clearTimeout(searchT);runSearch();});
+    const dm=document.getElementById('add-days-minus'),dp=document.getElementById('add-days-plus'),di=document.getElementById('add-days');
+    if(dm)dm.addEventListener('click',()=>{di.value=Math.max(1,(parseInt(di.value)||3)-1);});
+    if(dp)dp.addEventListener('click',()=>{di.value=Math.max(1,(parseInt(di.value)||3)+1);});
+    const cb=document.getElementById('add-confirm-btn');if(cb)cb.addEventListener('click',confirmAdd);
+    const mod=document.getElementById('add-modal');if(mod)mod.addEventListener('click',e=>{if(e.target===mod)closeAddModal();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){const m=document.getElementById('add-modal');if(m&&m.classList.contains('open'))closeAddModal();}});
+  })();
 
   // finanças já persistem em localStorage (chave mochilao_fin_v3) via saveFin original
   // data de saída -> localStorage
