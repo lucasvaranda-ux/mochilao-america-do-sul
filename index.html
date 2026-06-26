@@ -232,6 +232,35 @@
   .blog-empty{text-align:center;color:var(--muted);padding:46px 18px;background:var(--bg2);border:1px dashed var(--line);border-radius:14px}
   .blog-empty .bem{font-size:2.4rem;margin-bottom:10px}
   .blog-lightimg{display:block;max-width:100%;max-height:86vh;margin:0 auto;border-radius:12px}
+  /* GUIA — sub-abas */
+  .subtabs{display:flex;gap:8px;overflow-x:auto;margin:0 0 28px;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .subtab{background:var(--card);border:1px solid var(--line);color:var(--muted);font-family:var(--font);font-size:.86rem;font-weight:600;padding:9px 15px;border-radius:22px;cursor:pointer;white-space:nowrap;transition:.15s;display:flex;align-items:center;gap:6px}
+  .subtab:hover{color:var(--txt);border-color:var(--accent)}
+  .subtab.active{background:var(--accent);color:#0f1419;border-color:var(--accent)}
+  .subpanel{display:none;animation:fade .3s ease}
+  .subpanel.active{display:block}
+  .guia-intro{color:var(--muted);max-width:780px;margin-bottom:24px}
+  .guia-intro b{color:var(--txt)}
+  /* óleos */
+  .oil-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:18px 0}
+  .oilcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 19px;display:flex;flex-direction:column;gap:9px}
+  .oilcard.sacred{border-color:rgba(232,160,78,.4);background:linear-gradient(170deg,#1f2630,#1a160f)}
+  .oil-top{display:flex;align-items:center;gap:11px}
+  .oil-emoji{font-size:1.9rem;line-height:1}
+  .oil-name{font-size:1.12rem;font-weight:700}
+  .oil-moment{font-size:.74rem;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .oil-block{font-size:.88rem;color:var(--muted);line-height:1.6}
+  .oil-block .lab{color:var(--accent);font-weight:700;font-size:.74rem;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:2px}
+  .oil-block.alma .lab{color:var(--terra)}
+  .arc{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:8px 0 18px;font-size:.95rem;line-height:1.7}
+  .arc b{color:var(--accent2)}
+  .note.warn{border-left-color:var(--red)}
+  .note.sacred{border-left-color:var(--terra)}
+  .guia-h3{font-size:1.15rem;margin:30px 0 10px;display:flex;align-items:center;gap:8px}
+  .risk-sev{display:inline-block;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:8px;vertical-align:middle}
+  .sev-hi{background:rgba(224,106,90,.16);color:#e06a5a;border:1px solid rgba(224,106,90,.4)}
+  .sev-mid{background:rgba(232,160,78,.16);color:var(--accent);border:1px solid rgba(232,160,78,.4)}
+  .sev-lo{background:rgba(95,201,160,.14);color:var(--accent2);border:1px solid rgba(95,201,160,.35)}
   footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.85rem}
 </style>
 </head>
@@ -255,9 +284,11 @@
     <button class="tab" data-tab="tab-perfil">🧭 Perfil</button>
     <button class="tab" data-tab="tab-roteiro">🗺️ Roteiro</button>
     <button class="tab" data-tab="tab-diario">📔 Diário</button>
+    <button class="tab" data-tab="tab-guia">📖 Guia</button>
     <button class="tab" data-tab="tab-datas">📅 Datas</button>
     <button class="tab" data-tab="tab-financas">💰 Finanças</button>
     <button class="tab" data-tab="tab-compras">🎒 Compras</button>
+    <button class="tab" data-tab="tab-mural">💬 Mural</button>
   </div>
 </nav>
 
@@ -423,6 +454,156 @@
     </form>
 
     <div class="blog-timeline" id="blog-timeline"></div>
+  </div>
+</section>
+
+<!-- GUIA -->
+<section class="tabpanel" id="tab-guia">
+  <div class="wrap">
+    <div class="eyebrow">Guia de bordo · dicas & atenção</div>
+    <h2>O que saber antes (e durante)</h2>
+    <p class="lead">Não é o roteiro — é a sabedoria da estrada: o que respirar em cada momento, os riscos do El Niño na sua janela, os inegociáveis da mochila e como cuidar do corpo na altitude. Tudo destilado da nossa conversa e dos principais blogs de mochileiro.</p>
+
+    <div class="subtabs" id="guia-subtabs">
+      <button class="subtab active" data-sub="sub-oleos">🌿 Óleos essenciais</button>
+      <button class="subtab" data-sub="sub-riscos">⚠️ Riscos & El Niño</button>
+      <button class="subtab" data-sub="sub-mochila">🎒 Sabedoria de mochila</button>
+      <button class="subtab" data-sub="sub-saude">💊 Saúde & altitude</button>
+    </div>
+
+    <!-- ÓLEOS -->
+    <div class="subpanel active" id="sub-oleos">
+      <p class="guia-intro">Você está num <b>limiar</b> — larga o conhecido, sozinho, por três meses. Na tradição da aromaterapia, os óleos não são só química: cada planta carrega uma assinatura emocional, e juntos formam quase um <b>arco da partida</b>. E o aroma é a mais antiga ponte entre a terra e o céu — quando você respira um óleo e fecha os olhos, faz o gesto litúrgico mais velho da humanidade: oferecer o cheiro pra cima. Seu mochilão tem nome antigo: <b>peregrinação</b>. Os Andes são chão que ainda reza — Pachamama, os Apus, a folha de coca, o <i>ayni</i>. Então aqui vai o kit em três camadas: o uso prático, a leitura emocional e o eixo do sagrado.</p>
+
+      <h3 class="guia-h3">🌿 Os seis de cada dia</h3>
+      <div class="oil-grid">
+        <div class="oilcard">
+          <div class="oil-top"><span class="oil-emoji">🌅</span><div><div class="oil-name">Hortelã-pimenta</div><div class="oil-moment">Manhã · ao despertar</div></div></div>
+          <div class="oil-block"><span class="lab">Prático</span>O MVP. Náusea de altitude (soroche) e enjoo nas serpentinas, dor de cabeça, ânimo e alívio muscular pós-trilha.</div>
+          <div class="oil-block alma"><span class="lab">Alma</span>A clareza de quem desperta: dissipa a névoa mental, abre o olhar. O despertar pro capítulo novo — a mente limpa pra enxergar a estrada antes de pisá-la.</div>
+        </div>
+        <div class="oilcard">
+          <div class="oil-top"><span class="oil-emoji">🔥</span><div><div class="oil-name">Gengibre</div><div class="oil-moment">Na hora de agir · frio na barriga</div></div></div>
+          <div class="oil-block"><span class="lab">Prático</span>Enjoo de movimento nos ônibus longos e estômago embrulhado (a higiene alimentar que pede cuidado na Bolívia).</div>
+          <div class="oil-block alma"><span class="lab">Alma</span>A raiz-guerreira, o fogo na barriga. Vence a hesitação e a inércia. O óleo do <i>ato</i> da viagem: fechar a mochila e partir só. Quando bater o frio na véspera, é dele a chama.</div>
+        </div>
+        <div class="oilcard">
+          <div class="oil-top"><span class="oil-emoji">🛡️</span><div><div class="oil-name">Melaleuca (tea tree)</div><div class="oil-moment">Tarde · corpo cansado, cortes e pele</div></div></div>
+          <div class="oil-block"><span class="lab">Prático</span>Antisséptico de bolso pra corte, bolha e pele. Coringa de primeiros socorros.</div>
+          <div class="oil-block alma"><span class="lab">Alma</span>Proteção e o que se larga: limpeza e fronteira. Desapegar da rotina velha e, ao mesmo tempo, a couraça suave pros momentos vulneráveis da estrada.</div>
+        </div>
+        <div class="oilcard">
+          <div class="oil-top"><span class="oil-emoji">🫁</span><div><div class="oil-name">Eucalipto</div><div class="oil-moment">Ar seco · fumaça · peito apertado</div></div></div>
+          <div class="oil-block"><span class="lab">Prático</span>Vias respiratórias no ar seco de altitude e na fumaça de queimada (o cenário El Niño de ago–out).</div>
+          <div class="oil-block alma"><span class="lab">Alma</span>O peito que se abre: abre o tórax, faz caber mais ar. Combina com os céus largos do altiplano — respirar dentro de uma vida maior do que a que cabia antes.</div>
+        </div>
+        <div class="oilcard">
+          <div class="oil-top"><span class="oil-emoji">🍃</span><div><div class="oil-name">Capim-limão / citronela</div><div class="oil-moment">Transição entre cidades · recomeço</div></div></div>
+          <div class="oil-block"><span class="lab">Prático</span>Repelente natural <i>de ambiente</i>. Complemento, não substituto: em zona de dengue/malária vale o repelente com icaridina/DEET da lista.</div>
+          <div class="oil-block alma"><span class="lab">Alma</span>A leveza do recomeço: corta o que está embolado, traz otimismo e folha em branco. O óleo da estrada limpa, leve a cada cidade.</div>
+        </div>
+        <div class="oilcard">
+          <div class="oil-top"><span class="oil-emoji">🌙</span><div><div class="oil-name">Lavanda</div><div class="oil-moment">Noite · antes de dormir, ansiedade</div></div></div>
+          <div class="oil-block"><span class="lab">Prático</span>Sono em hostel barulhento, ansiedade de quem está sempre em trânsito; serve também pra picada e queimadura leve de sol.</div>
+          <div class="oil-block alma"><span class="lab">Alma</span>A paz com o que se deixa: entrega e reconciliação entre o desejo de partir e o luto miúdo de deixar Vitória. Permissão pra descansar no turbilhão.</div>
+        </div>
+      </div>
+
+      <h3 class="guia-h3">🕊️ O eixo do sagrado — o aromático devocional</h3>
+      <p class="guia-intro">Em quase toda tradição o sagrado se manifesta como cheiro que sobe: o incenso na missa, a defumação na Umbanda, o olíbano e a mirra dos magos. O que falta na mala não é mais um óleo prático — é a <b>resina de quem reza</b>.</p>
+      <div class="oil-grid">
+        <div class="oilcard sacred">
+          <div class="oil-top"><span class="oil-emoji">🕊️</span><div><div class="oil-name">Olíbano (incenso)</div><div class="oil-moment">Momento sagrado · abrir o dia</div></div></div>
+          <div class="oil-block alma"><span class="lab">Sagrado</span>A resina da adoração e da presença divina. O cheiro do "estou diante de Algo maior que eu". Pra abrir o dia ou um silêncio numa igreja colonial vazia de Cusco ou Sucre.</div>
+        </div>
+        <div class="oilcard sacred">
+          <div class="oil-top"><span class="oil-emoji">🌑</span><div><div class="oil-name">Mirra</div><div class="oil-moment">Entrega · consagração</div></div></div>
+          <div class="oil-block alma"><span class="lab">Sagrado</span>A irmã amarga do olíbano: consagração e entrega, o sagrado que também é renúncia. Óleo de quem oferece a própria caminhada.</div>
+        </div>
+        <div class="oilcard sacred">
+          <div class="oil-top"><span class="oil-emoji">🪷</span><div><div class="oil-name">Sândalo</div><div class="oil-moment">Meditação · recolhimento</div></div></div>
+          <div class="oil-block alma"><span class="lab">Sagrado</span>Sagrado no Oriente: o óleo da meditação e da devoção, o que aquieta a mente pra que ela possa rezar.</div>
+        </div>
+        <div class="oilcard sacred">
+          <div class="oil-top"><span class="oil-emoji">🌳</span><div><div class="oil-name">Palo santo</div><div class="oil-moment">Compre lá · Peru / Equador</div></div></div>
+          <div class="oil-block alma"><span class="lab">Sagrado</span>O presente que a própria viagem te dá. Pau santo: os povos andinos e amazônicos queimam pra limpar o ambiente, afastar o peso e convidar o sagrado. Barato e autêntico — seu modo de entrar na relação com aquela terra, não como turista.</div>
+        </div>
+      </div>
+
+      <div class="arc">🧭 <b>O arco do dia:</b> clarear → ter coragem → proteger → respirar → seguir leve → repousar → e, no alto de tudo, o sagrado. Deixa de ser um kit de bem-estar e vira um pequeno <b>altar portátil</b> — seu jeito de manter o sagrado por perto a 4.000 m de casa.</div>
+
+      <div class="note">💧 <b>Como levar:</b> frascos de 5–10 ml dentro de saco plástico/dry bag (pressão e altitude fazem vazar). Sempre <b>diluir</b> num carreador (óleo de coco fracionado) — nunca puro na pele. Versão <b>roll-on</b> já diluída é a mais prática. Pra inalar, 2–3 gotas num lenço ou no travesseiro, sem precisar de difusor. Confira a regra de líquidos da mala de mão.</div>
+      <div class="note sacred">🌿 <b>Honestidade:</b> essas leituras vêm da tradição simbólica/energética da aromaterapia, não de evidência clínica — e falo de dentro das tradições (cristã, oriental, andina) sem empurrar nenhuma fé. Recebe como linguagem do sagrado pra você preencher com o seu próprio Deus, ou o seu próprio silêncio. E lembra: óleo é conforto complementar — <b>não troca</b> o Diamox, o soro, o repelente forte nem a vacina.</div>
+    </div>
+
+    <!-- RISCOS & EL NIÑO -->
+    <div class="subpanel" id="sub-riscos">
+      <p class="guia-intro">O El Niño está <b>oficialmente em curso</b> (NOAA Advisory; a OMM aponta ~80% de chance em jun–ago e perto de 90% de continuar até novembro). Pode virar evento forte ("muito forte" se passar de 2,0 °C). Mas os impactos são mais fortes no <b>segundo ano</b> do evento — então na sua janela (jul–set, começo do evento) tende a ser mais ameno que no pico (nov–fev). Ranking pro seu período: <b>fogo/fumaça e seca &gt; calor &gt; chuva costeira</b>.</p>
+      <div class="profile-grid">
+        <div class="pcard"><div class="ico">🔥</div><h3>Fogo & fumaça <span class="risk-sev sev-hi">risco nº1</span></h3><p>Ago–out é estação de queimadas na Bolívia e na Amazônia, e a seca do El Niño agrava muito. Resultado: ar ruim, trilhas/áreas fechadas e voos regionais atrasados — foi o que travou Santa Cruz e a Amazônia em anos anteriores. <b>Leve a máscara N95.</b></p></div>
+        <div class="pcard"><div class="ico">🏜️</div><h3>Seca & água no altiplano <span class="risk-sev sev-hi">alto</span></h3><p>El Niño seca a Bolívia e partes do altiplano: racionamento de água em cidades, rios e o nível do Titicaca baixos, e travessias de barco na Amazônia (Iquitos, Pantanal) comprometidas por rios rasos. <b>Garrafa com filtro pesa ainda mais aqui.</b></p></div>
+        <div class="pcard"><div class="ico">🌡️</div><h3>Calor acima do normal <span class="risk-sev sev-mid">médio</span></h3><p>A previsão jun–jul–ago projeta domínio quase universal de temperaturas acima do normal — mais estresse térmico em altitude e nas cidades. Hidrate e respeite o sol da serra.</p></div>
+        <div class="pcard"><div class="ico">🌧️</div><h3>Chuva & deslizamento na costa <span class="risk-sev sev-lo">menor agora</span></h3><p>O efeito clássico do El Niño — huaicos, estradas bloqueadas, Lima/costa norte alagada — mas pica no verão austral (dez–mar). Na sua janela o risco está baixo.</p></div>
+        <div class="pcard"><div class="ico">❓</div><h3>Incerteza da previsão</h3><p>O evento ainda está se formando perto da "barreira de previsibilidade" — força e timing podem mudar. <b>Reconfira o boletim da NOAA</b> (atualiza toda 2ª quinta do mês) já em viagem.</p></div>
+      </div>
+      <div class="note">☀️ A boa notícia: jul–set é <b>estação seca</b> na serra andina, então o clima de viagem em si colabora (céu limpo, ideal pra Machu Picchu, Colca e Uyuni). O problema não é a chuva — é o que a seca arrasta junto.</div>
+    </div>
+
+    <!-- SABEDORIA DE MOCHILA -->
+    <div class="subpanel" id="sub-mochila">
+      <p class="guia-intro">Compilado dos principais blogs de mochileiro (Along Dusty Roads, South America Backpacker, That Backpacker, Bucketlistly, Practical Wanderlust) pra Bolívia–Peru–Equador–Paraguai em estação seca de altitude. Os <b>inegociáveis</b>:</p>
+      <div class="profile-grid">
+        <div class="pcard"><div class="ico">🧥</div><h3>Sistema de camadas <span class="risk-sev sev-hi">nº1 de todos</span></h3><p>Dias quentes, noites perto de zero na serra. Combo mínimo: <b>base layer térmica + fleece + pluma compactável + corta-vento impermeável</b>. É o ponto que todo blog cita primeiro.</p></div>
+        <div class="pcard"><div class="ico">☀️</div><h3>Sol em altitude</h3><p>O UV é brutal em altitude e deserto: <b>chapéu de aba larga + SPF 50+ + óculos de sol</b> não são negociáveis. Pro Salar de Uyuni, óculos polarizados pela reflexão intensa.</p></div>
+        <div class="pcard"><div class="ico">💧</div><h3>Água</h3><p>Não beba da torneira: <b>garrafa com filtro</b> ou purificador pra áreas remotas (Amazônia, cidades pequenas). A seca/racionamento do El Niño reforça isso.</p></div>
+        <div class="pcard"><div class="ico">🔌</div><h3>Tech & segurança</h3><p>220V com tomadas mistas → <b>adaptador universal + régua curta</b>. <b>Power bank 10–20k mAh</b> pros ônibus e mapas offline. Mais cadeado de combinação, dry bag e daypack que fica sempre com você (a mochila grande vai no bagageiro).</p></div>
+        <div class="pcard"><div class="ico">📄</div><h3>Documentos</h3><p>Passaporte com <b>6 meses de validade</b>, cartão de vacina de febre amarela e cópias físicas + digitais.</p></div>
+        <div class="pcard"><div class="ico">🛍️</div><h3>Compre lá (não superlote)</h3><p><b>Lã de alpaca</b> (gorro/chullo/suéter) é barata e autêntica no Peru e na Bolívia. <b>Palo santo</b> no Peru/Equador. Deixe espaço na mochila pra isso.</p></div>
+      </div>
+      <div class="note warn">🚫 <b>O que NÃO vale levar:</b> lã/gorros (compra lá mais barato e autêntico) e excesso de adaptadores — é fácil comprar na hora.</div>
+    </div>
+
+    <!-- SAÚDE & ALTITUDE -->
+    <div class="subpanel" id="sub-saude">
+      <p class="guia-intro">A serra cobra pedágio do corpo. O essencial pra chegar inteiro — e o que <b>só</b> pode ser resolvido com médico antes de viajar.</p>
+      <h3 class="guia-h3">⛰️ Soroche (mal de altitude)</h3>
+      <p class="guia-intro">Suba gradualmente, hidrate e <b>evite álcool nos primeiros dias</b>. Bala/chá de coca ajuda, e lá tem as <i>Sorochi pills</i>. A profilaxia de verdade é a <b>Acetazolamida (Diamox)</b>, que é <b>receita</b> — converse com uma clínica de medicina do viajante antes de ir.</p>
+
+      <h3 class="guia-h3">💊 Farmácia do viajante</h3>
+      <p class="guia-intro">Monte numa necessaire com <b>princípio ativo + marca BR</b> (analgésico é caro lá fora, e no Equador a farmácia exige passaporte pra vender remédio):</p>
+      <table>
+        <thead><tr><th>Para quê</th><th>Princípio ativo</th><th>Marca comum</th></tr></thead>
+        <tbody>
+          <tr><td>Dor / febre</td><td>Paracetamol ou Dipirona</td><td>Tylenol / Novalgina</td></tr>
+          <tr><td>Anti-inflamatório</td><td>Ibuprofeno</td><td>Advil / Alivium</td></tr>
+          <tr><td>Cortar diarreia (sem febre/sangue)</td><td>Loperamida</td><td>Imosec</td></tr>
+          <tr><td>Reidratação</td><td>Sais de reidratação oral</td><td>Floralyte / Rehidrat</td></tr>
+          <tr><td>Enjoo de estrada (serpentinas)</td><td>Dimenidrinato + B6</td><td>Dramin B6</td></tr>
+          <tr><td>Alergia / picada</td><td>Loratadina</td><td>Claritin</td></tr>
+          <tr><td>Azia / estômago pesado</td><td>Omeprazol / antiácido</td><td>Omeprazol / Estomazil</td></tr>
+          <tr><td>Picada e coceira (tópico)</td><td>Hidrocortisona 1%</td><td>Berlison</td></tr>
+          <tr><td>Repelente forte</td><td>Icaridina ou DEET</td><td>Exposis / OFF!</td></tr>
+        </tbody>
+      </table>
+      <div class="note">🩹 <b>Tópicos/curativos:</b> antisséptico (clorexidina ou PVPI), curativos/band-aid, gaze, micropore, soro fisiológico, pomada cicatrizante e protetor labial com FPS.</div>
+
+      <h3 class="guia-h3">👨‍⚕️ Só com médico — não compre por conta</h3>
+      <div class="profile-grid">
+        <div class="pcard"><div class="ico">⛰️</div><h3>Altitude (soroche)</h3><p>A profilaxia é <b>Acetazolamida (Diamox)</b>, receita. Converse com clínica de medicina do viajante. No destino dá pra complementar com chá/bala de coca e Sorochi pills.</p></div>
+        <div class="pcard"><div class="ico">🦠</div><h3>Diarreia por infecção</h3><p>Às vezes precisa de <b>antibiótico</b> (ex.: azitromicina), também só com orientação médica. <b>Leve a receita.</b></p></div>
+      </div>
+      <div class="note warn">⚠️ <b>Não sou médico</b> — confirme doses e os itens de receita numa clínica do viajante ou CIEVS antes de comprar. (A febre amarela precisa de ~10 dias de antecedência pra valer internacionalmente.)</div>
+    </div>
+  </div>
+</section>
+
+<!-- MURAL -->
+<section class="tabpanel" id="tab-mural">
+  <div class="wrap">
+    <div class="eyebrow">Recados de quem torce por você</div>
+    <h2>Mural de amigos & família</h2>
+    <p class="lead">Um espaço pra família e amigos deixarem um recado, uma força ou uma saudade pra acompanhar o Lucas pela estrada. 💛</p>
+    <div id="mural-root"></div>
   </div>
 </section>
 
@@ -1372,6 +1553,94 @@ showTab(document.getElementById(start)?start:'tab-perfil');
 
   resetForm();
   render();
+})();
+</script>
+<script>
+/* ===== GUIA — sub-abas internas ===== */
+(function(){
+  try{
+    const subs=document.querySelectorAll('#guia-subtabs .subtab');
+    const panels=document.querySelectorAll('#tab-guia .subpanel');
+    subs.forEach(b=>b.addEventListener('click',()=>{
+      subs.forEach(x=>x.classList.toggle('active',x===b));
+      panels.forEach(p=>p.classList.toggle('active',p.id===b.dataset.sub));
+    }));
+  }catch(e){console.warn('guia subtabs',e);}
+})();
+</script>
+<script>
+/* ===== MURAL — recados de amigos & família (Supabase via REST) =====
+   O site é estático; o Supabase é o "backend" dos recados. O navegador fala
+   direto com a API REST do Supabase usando a chave PÚBLICA (anon) — segura de
+   expor porque o RLS só permite ler e inserir recados, nada além disso.
+   Enquanto SUPA_URL/SUPA_KEY estiverem vazios, o mural mostra um aviso amigável. */
+(function(){
+  const SUPA_URL=''; // ex.: https://xxxx.supabase.co  (preenchido após criar o projeto)
+  const SUPA_KEY=''; // chave pública (anon/publishable)
+  const TABLE='mural_recados';
+
+  const root=document.getElementById('mural-root');
+  if(!root)return;
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const configured=()=>SUPA_URL&&SUPA_KEY;
+
+  function fmt(iso){try{const d=new Date(iso);return d.toLocaleDateString('pt-BR',{day:'numeric',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});}catch(e){return'';}}
+
+  function shell(){
+    root.innerHTML=`
+      <form class="blog-form" id="mural-form" autocomplete="off">
+        <h3>💬 Deixe seu recado</h3>
+        <div class="fhint">Uma palavra de força, uma saudade, um "buen viaje". Aparece pra todo mundo que abrir o site.</div>
+        <div class="blog-frow">
+          <div class="blog-field grow"><label for="mu-nome">Seu nome</label><input type="text" id="mu-nome" class="blog-input" maxlength="60" placeholder="Ex: Tia Sônia"></div>
+        </div>
+        <div class="blog-field grow"><label for="mu-msg">Recado</label><textarea id="mu-msg" class="blog-textarea" maxlength="600" placeholder="Manda sua mensagem pro Lucas…"></textarea></div>
+        <div class="blog-formfoot">
+          <button type="submit" class="btn" id="mu-send">Enviar recado</button>
+          <span class="savedmsg" id="mu-saved">✓ recado enviado!</span>
+          <span id="mu-err" class="fin-gate-err" style="margin:0"></span>
+        </div>
+      </form>
+      <div class="blog-timeline" id="mural-list"></div>`;
+    const f=document.getElementById('mural-form');
+    if(f)f.addEventListener('submit',submit);
+  }
+
+  function notConfigured(){
+    root.innerHTML=`<div class="blog-empty"><div class="bem">💬</div><b>Mural quase pronto!</b><br>Falta ligar o backend (Supabase) pra guardar os recados online. Assim que o projeto estiver criado, o Lucas cola as duas chaves aqui e o mural entra no ar pra todo mundo.</div>`;
+  }
+
+  async function load(){
+    const list=document.getElementById('mural-list');if(!list)return;
+    list.innerHTML='<div class="blog-empty">Carregando recados…</div>';
+    try{
+      const r=await fetch(`${SUPA_URL}/rest/v1/${TABLE}?select=*&order=created_at.desc`,{headers:{apikey:SUPA_KEY,Authorization:'Bearer '+SUPA_KEY}});
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      const rows=await r.json();
+      if(!rows.length){list.innerHTML='<div class="blog-empty"><div class="bem">🌱</div>Ainda não tem recados. Seja o primeiro a mandar uma força!</div>';return;}
+      list.innerHTML=rows.map(x=>`<article class="blog-post"><div class="blog-post-head"><div class="blog-post-date">${esc(fmt(x.created_at))}</div><h3>💛 ${esc(x.nome||'Anônimo')}</h3></div><div class="blog-post-body">${esc(x.mensagem||'')}</div></article>`).join('');
+    }catch(e){console.warn('mural load',e);list.innerHTML='<div class="blog-empty">Não consegui carregar os recados agora. Tente recarregar a página.</div>';}
+  }
+
+  async function submit(e){
+    e.preventDefault();
+    const nome=document.getElementById('mu-nome').value.trim();
+    const msg=document.getElementById('mu-msg').value.trim();
+    const err=document.getElementById('mu-err');err.textContent='';
+    if(!nome||!msg){err.textContent='Preencha nome e recado.';return;}
+    const btn=document.getElementById('mu-send');btn.disabled=true;
+    try{
+      const r=await fetch(`${SUPA_URL}/rest/v1/${TABLE}`,{method:'POST',headers:{apikey:SUPA_KEY,Authorization:'Bearer '+SUPA_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({nome,mensagem:msg})});
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      document.getElementById('mu-nome').value='';document.getElementById('mu-msg').value='';
+      const sv=document.getElementById('mu-saved');sv.classList.add('show');setTimeout(()=>sv.classList.remove('show'),2200);
+      load();
+    }catch(e){console.warn('mural submit',e);err.textContent='Não consegui enviar agora. Tente de novo em instantes.';}
+    finally{btn.disabled=false;}
+  }
+
+  if(!configured()){notConfigured();return;}
+  shell();load();
 })();
 </script>
 </body>
