@@ -1,42 +1,34 @@
-# Próximos passos — deploy mochilao.madeinbr.app
+# Deploy mochilao.madeinbr.app — CONCLUÍDO ✅
 
-> Nota pro Claude da próxima sessão: este arquivo é um handoff. Leia e continue.
+> Handoff atualizado: o site está no ar em **https://mochilao.madeinbr.app**.
 
-## Objetivo
-Publicar o site no domínio **mochilao.madeinbr.app** (DNS na Cloudflare).
+## Resultado (jun/2026)
+- **DNS (Cloudflare):** CNAME `mochilao → cname.vercel-dns.com` (DNS only,
+  `proxied:false`) criado na zona `madeinbr.app` (`ee30e437a4b382c89de70dc9f0b856ce`).
+  Registro id `0e9bb462ca8e614ba4ef202426b18641`.
+- **Vercel:** projeto `mochilao-america-do-sul` (`prj_gwNXD66C2teuBXsx8FilI7sacpBz`)
+  ligado ao repo `lucasvaranda-ux/mochilao-america-do-sul`, branch de produção `main`.
+- **Domínio:** `mochilao.madeinbr.app` anexado ao projeto, **verified** e **não
+  misconfigured** (o CNAME resolve direitinho).
+- **Deploy de produção:** READY (commit `27e9c4e`), com `mochilao.madeinbr.app` nos
+  aliases ativos.
 
-## Já feito
-- Abas novas (Diário, Guia, Mural) commitadas e **mergeadas na `main`** → Netlify
-  já republicou em https://mochilao.netlify.app
-- **Mural** ligado ao Supabase (projeto `madeinbr`, ref `irawlnmcinqkxzgczmrb`,
-  tabela isolada `public.mochilao_mural` com RLS: select+insert público, sem
-  update/delete). A chave anon pública está no `index.html`. **Não preciso de
-  key do Supabase** — uso o conector MCP.
-- `vercel.json` adicionado (static, headers do manifest).
-- Ambiente configurado: network policy **Custom** liberando `api.cloudflare.com`
-  (e `api.vercel.com`), e a variável **`CLOUDFLARE_API_TOKEN`** (escopo
-  Zone:DNS:Edit só do `madeinbr.app`). `VERCEL_TOKEN` é opcional.
+## Deploys futuros
+- O repo está ligado ao Vercel: **todo `push` na `main` redeploya sozinho**. Não
+  precisa de nada manual.
 
-## A fazer nesta sessão (rede já liberada + token deve estar presente agora)
-1. Conferir o token (sem imprimir o valor):
-   `curl -s https://api.cloudflare.com/client/v4/user/tokens/verify -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"`
-   → esperar `"status":"active"`.
-2. Pegar o `zone_id` do `madeinbr.app`:
-   `curl -s "https://api.cloudflare.com/client/v4/zones?name=madeinbr.app" -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"`
-3. Criar o registro **CNAME** (DNS only → `proxied:false`):
-   `POST https://api.cloudflare.com/client/v4/zones/<zone_id>/dns_records`
-   body: `{"type":"CNAME","name":"mochilao","content":"cname.vercel-dns.com","proxied":false,"ttl":1}`
-   (se já existir, usar PUT/PATCH no record id)
-4. Confirmar o registro criado.
+## Segurança (revisar)
+- 🔑 **Revogar o token antigo do Netlify** (pendência do handoff anterior).
+- 🔑 Os tokens `mochilao-madeinbr` (Vercel) e Cloudflare (Zone:DNS:Edit, 1 zona) já
+  cumpriram o papel. Pode **revogar** se não quiser deploys por API no futuro; ou
+  manter, se quiser. Ambos estavam como "Never expires".
+- A chave **anon** do Supabase no `index.html` é pública por design (RLS protege a
+  tabela `public.mochilao_mural`: select+insert público, sem update/delete). OK expor.
 
-## Lado Vercel (pra o domínio realmente servir o site)
-- A 1ª ligação do repo ao Vercel (OAuth GitHub) é mais fácil pelo painel:
-  vercel.com → Add New → Project → import `lucasvaranda-ux/mochilao-america-do-sul`
-  → Framework: Other → Deploy.
-- Depois, em Settings → Domains, adicionar `mochilao.madeinbr.app`.
-- Se `VERCEL_TOKEN` estiver no ambiente, dá pra anexar o domínio por API:
-  `POST https://api.vercel.com/v10/projects/<projectId>/domains` `{"name":"mochilao.madeinbr.app"}`.
-
-## Segurança
-- Lembrar o Lucas de revogar o token antigo do Netlify (handoff anterior).
-- Token Cloudflare é escopo mínimo (1 zona, só DNS). Pode revogar quando quiser.
+## Histórico (o que era "a fazer" e virou feito)
+1. ✅ Conferir token Cloudflare no ambiente — presente e funcional. (O endpoint
+   `/user/tokens/verify` retorna "Invalid API Token" porque é do namespace `/user/`
+   e o token tem escopo só-DNS; a validade foi provada pelas chamadas de zona/DNS.)
+2. ✅ Pegar o `zone_id` do `madeinbr.app`.
+3. ✅ Criar o CNAME `mochilao`.
+4. ✅ Ligar o repo ao Vercel + anexar o domínio + deploy de produção (tudo via API).
