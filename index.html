@@ -199,6 +199,39 @@
   .shop .price{color:var(--accent2);font-weight:700;font-size:.9rem}
   .buy{display:inline-block;background:var(--accent);color:#0f1419;font-weight:700;font-size:.78rem;padding:6px 13px;border-radius:8px;text-decoration:none}
   .buy:hover{background:#f2b366}
+  /* DIÁRIO / BLOG */
+  .blog-form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:30px}
+  .blog-form h3{font-size:1.05rem;margin-bottom:4px}
+  .blog-form .fhint{font-size:.82rem;color:var(--muted);margin-bottom:14px}
+  .blog-frow{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .blog-field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:160px}
+  .blog-field.grow{flex:2 1 240px}
+  .blog-field label{font-size:.76rem;color:var(--muted);font-weight:600;letter-spacing:.3px}
+  .blog-input,.blog-textarea{background:#0f1419;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:9px 11px;font-family:var(--font);font-size:.92rem;width:100%}
+  .blog-input:focus,.blog-textarea:focus{outline:none;border-color:var(--accent)}
+  .blog-textarea{min-height:120px;resize:vertical;line-height:1.6}
+  .blog-photobtn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1px dashed var(--line);color:var(--muted);border-radius:9px;padding:10px 16px;cursor:pointer;font-size:.88rem;font-weight:600}
+  .blog-photobtn:hover{border-color:var(--accent);color:var(--txt)}
+  .blog-photos-preview{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 4px}
+  .blog-thumb{position:relative;width:84px;height:84px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+  .blog-thumb img{width:100%;height:100%;object-fit:cover}
+  .blog-thumb button{position:absolute;top:3px;right:3px;background:rgba(8,11,15,.85);color:#fff;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;font-size:.85rem;line-height:1;padding:0}
+  .blog-formfoot{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+  .blog-timeline{display:flex;flex-direction:column;gap:24px}
+  .blog-post{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .blog-post-head{padding:18px 20px 0}
+  .blog-post-date{font-size:.76rem;color:var(--accent);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+  .blog-post h3{font-size:1.25rem;margin:5px 0 2px;line-height:1.25}
+  .blog-post-loc{font-size:.9rem;color:var(--muted)}
+  .blog-post-body{padding:12px 20px 16px;color:var(--txt);white-space:pre-wrap;line-height:1.7}
+  .blog-post-photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;padding:0 6px 6px}
+  .blog-post-photos img{width:100%;height:170px;object-fit:cover;border-radius:8px;cursor:pointer;transition:.15s}
+  .blog-post-photos img:hover{opacity:.88}
+  .blog-badge-local{display:inline-block;font-size:.68rem;background:rgba(95,201,160,.14);color:var(--accent2);border:1px solid rgba(95,201,160,.35);padding:2px 9px;border-radius:20px;margin-left:8px;vertical-align:middle;letter-spacing:.3px}
+  .blog-post-actions{display:flex;gap:8px;padding:0 20px 16px}
+  .blog-empty{text-align:center;color:var(--muted);padding:46px 18px;background:var(--bg2);border:1px dashed var(--line);border-radius:14px}
+  .blog-empty .bem{font-size:2.4rem;margin-bottom:10px}
+  .blog-lightimg{display:block;max-width:100%;max-height:86vh;margin:0 auto;border-radius:12px}
   footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.85rem}
 </style>
 </head>
@@ -221,6 +254,7 @@
   <div class="wrap">
     <button class="tab" data-tab="tab-perfil">🧭 Perfil</button>
     <button class="tab" data-tab="tab-roteiro">🗺️ Roteiro</button>
+    <button class="tab" data-tab="tab-diario">📔 Diário</button>
     <button class="tab" data-tab="tab-datas">📅 Datas</button>
     <button class="tab" data-tab="tab-financas">💰 Finanças</button>
     <button class="tab" data-tab="tab-compras">🎒 Compras</button>
@@ -346,6 +380,49 @@
     <p class="lead">Produtos reais, escolhidos por durabilidade e boas avaliações — vários com garantia vitalícia. Cada botão <b>"Comprar no Brasil"</b> abre a busca do modelo no <b>Mercado Livre</b> (preços e disponibilidade nacionais). Também vale comparar na Amazon.com.br e na Decathlon. Preços em R$ são estimativas. A foto do card pode ser representativa quando a marca não tem imagem livre.</p>
     <div class="shop-grid" id="shop-grid"></div>
     <div class="note">💳 Antes de ir: <a href="https://wise.com/br/" target="_blank">cartão multimoeda Wise</a> ou Nomad (câmbio e saque baratos), <a href="https://www.airalo.com/pt" target="_blank">eSIM Airalo</a> (dados sem trocar chip) e <a href="https://www.segurospromo.com.br/" target="_blank">comparar seguro viagem</a> (essencial pra trilhas e exigido em alguns lugares). Vacina de febre amarela: gratuita no SUS.</div>
+  </div>
+</section>
+
+<!-- DIÁRIO / BLOG -->
+<section class="tabpanel" id="tab-diario">
+  <div class="wrap">
+    <div class="eyebrow">Diário de bordo · dia a dia</div>
+    <h2>O blog da viagem</h2>
+    <p class="lead">Registre como foi cada dia — escreva um trecho, marque o lugar e anexe fotos direto do celular. O que você posta aqui fica salvo <b>neste aparelho</b> na hora. Quando quiser publicar pra todo mundo ver no site, é só me contar no chat que eu publico de verdade. ✍️</p>
+
+    <form class="blog-form" id="blog-form" autocomplete="off">
+      <h3>✍️ Novo registro</h3>
+      <div class="fhint">Conta como foi o dia. Capricha ou só joga as ideias — depois dá pra editar.</div>
+      <div class="blog-frow">
+        <div class="blog-field"><label for="bf-date">Data</label><input type="date" id="bf-date" class="blog-input"></div>
+        <div class="blog-field grow"><label for="bf-loc">Onde você estava</label><input type="text" id="bf-loc" class="blog-input" placeholder="Ex: Cartagena, Colômbia 🇨🇴"></div>
+        <div class="blog-field"><label for="bf-mood">Clima do dia</label>
+          <select id="bf-mood" class="blog-input">
+            <option value="">—</option>
+            <option value="🤩">🤩 inesquecível</option>
+            <option value="😊">😊 muito bom</option>
+            <option value="😌">😌 tranquilo</option>
+            <option value="🥾">🥾 cansativo</option>
+            <option value="😤">😤 corrido/estressante</option>
+            <option value="🌧️">🌧️ chuvoso/parado</option>
+            <option value="🧘">🧘 espiritual</option>
+          </select>
+        </div>
+      </div>
+      <div class="blog-frow">
+        <div class="blog-field grow"><label for="bf-title">Título (opcional)</label><input type="text" id="bf-title" class="blog-input" placeholder="Ex: O dia em que subi o Cerro de Monserrate"></div>
+      </div>
+      <div class="blog-field grow"><label for="bf-body">Como foi o dia</label><textarea id="bf-body" class="blog-textarea" placeholder="O que rolou hoje? O que comeu, viu, sentiu, conheceu…"></textarea></div>
+      <label class="blog-photobtn" for="bf-photos">📷 Adicionar fotos<input type="file" id="bf-photos" accept="image/*" multiple hidden></label>
+      <div class="blog-photos-preview" id="bf-preview"></div>
+      <div class="blog-formfoot">
+        <button type="submit" class="btn" id="bf-save">Salvar registro</button>
+        <button type="button" class="btn ghost" id="bf-clear">Limpar</button>
+        <span class="savedmsg" id="bf-saved">✓ salvo neste aparelho</span>
+      </div>
+    </form>
+
+    <div class="blog-timeline" id="blog-timeline"></div>
   </div>
 </section>
 
@@ -1136,6 +1213,165 @@ showTab(document.getElementById(start)?start:'tab-perfil');
   const finBtn=document.querySelector('.tab[data-tab="tab-financas"]');
   if(finBtn)finBtn.addEventListener('click',()=>{lock();setTimeout(()=>{if(pass)pass.focus();},80);});
   document.querySelectorAll('.tab:not([data-tab="tab-financas"])').forEach(b=>b.addEventListener('click',lock));
+})();
+</script>
+<script>
+/* ===== DIÁRIO / BLOG da viagem =====
+   Dois tipos de post:
+   - PUBLICADOS: ficam no array `blogPosts` abaixo (versionado no git). Quando o Lucas
+     me conta o dia no chat, eu escrevo o post aqui e dou push → aparece pra todo mundo.
+   - LOCAIS: criados pelo formulário, salvos em localStorage SÓ neste aparelho.
+   A timeline junta os dois, ordenados por data (mais recente primeiro).
+   Cada bloco em try/catch pra uma falha isolada não derrubar a aba. */
+(function(){
+  const LS_BLOG='mochilao_blog_local_v1';
+
+  // ---- Posts publicados (edite/ditando no chat que eu adiciono aqui) ----
+  const blogPosts=[
+    {date:"2026-06-26", loc:"Vitória, ES 🇧🇷", mood:"😊",
+     title:"O diário tá no ar — bora pra estrada!",
+     body:"Faltam poucos dias pra decolar. Criei este diário pra registrar o mochilão dia a dia: o que eu vir, comer, sentir e aprender pela América do Sul.\n\nDá pra postar de dois jeitos: pelo formulário aqui em cima (rápido, salva no celular na hora) ou me contando no chat, que eu publico de verdade pra família e amigos acompanharem.\n\nPróxima parada: Caribe colombiano. Buen viaje! 🌎"}
+  ];
+
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function loadLocal(){try{const r=localStorage.getItem(LS_BLOG);if(r){const a=JSON.parse(r);if(Array.isArray(a))return a;}}catch(e){console.warn('blog load',e);}return[];}
+  function saveLocal(arr){try{localStorage.setItem(LS_BLOG,JSON.stringify(arr));return true;}catch(e){console.warn('blog save',e);alert('Não consegui salvar — o armazenamento do navegador pode estar cheio (fotos ocupam espaço). Tente apagar algum registro antigo ou usar fotos menores.');return false;}}
+
+  function fmtDate(iso){
+    try{
+      if(!iso)return'';
+      const p=iso.split('-');if(p.length!==3)return iso;
+      const d=new Date(+p[0],+p[1]-1,+p[2]);
+      let s=d.toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+      return s.replace('.','').replace(/(^\w)/,m=>m.toUpperCase());
+    }catch(e){return iso;}
+  }
+
+  // ---- foto: redimensiona pra não estourar o localStorage ----
+  function fileToThumb(file){
+    return new Promise((resolve,reject)=>{
+      try{
+        const fr=new FileReader();
+        fr.onload=()=>{
+          const img=new Image();
+          img.onload=()=>{
+            try{
+              const MAX=1400;let{width:w,height:h}=img;
+              if(w>MAX||h>MAX){const r=Math.min(MAX/w,MAX/h);w=Math.round(w*r);h=Math.round(h*r);}
+              const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+              cv.getContext('2d').drawImage(img,0,0,w,h);
+              resolve(cv.toDataURL('image/jpeg',0.82));
+            }catch(e){reject(e);}
+          };
+          img.onerror=reject;img.src=fr.result;
+        };
+        fr.onerror=reject;fr.readAsDataURL(file);
+      }catch(e){reject(e);}
+    });
+  }
+
+  // ---- formulário ----
+  const form=$('blog-form');
+  let pending=[]; // dataURLs das fotos do post sendo escrito
+
+  function renderPreview(){
+    const box=$('bf-preview');if(!box)return;
+    box.innerHTML=pending.map((src,i)=>`<div class="blog-thumb"><img src="${src}" alt=""><button type="button" data-rm="${i}" title="Remover">×</button></div>`).join('');
+    box.querySelectorAll('button[data-rm]').forEach(b=>b.addEventListener('click',()=>{pending.splice(+b.dataset.rm,1);renderPreview();}));
+  }
+
+  function resetForm(){
+    if(!form)return;
+    form.reset();pending=[];renderPreview();
+    const di=$('bf-date');if(di){const t=new Date();di.value=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;}
+  }
+
+  function flashSaved(){const m=$('bf-saved');if(!m)return;m.classList.add('show');setTimeout(()=>m.classList.remove('show'),1800);}
+
+  if(form){
+    const fi=$('bf-photos');
+    if(fi)fi.addEventListener('change',async()=>{
+      const files=[...fi.files];fi.value='';
+      for(const f of files){if(!f.type.startsWith('image/'))continue;try{pending.push(await fileToThumb(f));}catch(e){console.warn('thumb',e);}}
+      renderPreview();
+    });
+    const clr=$('bf-clear');if(clr)clr.addEventListener('click',resetForm);
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const body=$('bf-body').value.trim();
+      const title=$('bf-title').value.trim();
+      if(!body&&!title&&!pending.length){alert('Escreve alguma coisa ou adiciona uma foto antes de salvar. 🙂');return;}
+      const post={
+        id:'l'+Date.now(),
+        date:$('bf-date').value||new Date().toISOString().slice(0,10),
+        loc:$('bf-loc').value.trim(),
+        mood:$('bf-mood').value,
+        title,body,photos:pending.slice()
+      };
+      const arr=loadLocal();arr.push(post);
+      if(saveLocal(arr)){resetForm();render();flashSaved();}
+    });
+  }
+
+  // ---- timeline ----
+  function postCard(p,isLocal){
+    const head=`<div class="blog-post-head">
+        <div class="blog-post-date">${esc(fmtDate(p.date))}${isLocal?'<span class="blog-badge-local">só neste aparelho</span>':''}</div>
+        ${p.title?`<h3>${p.mood?esc(p.mood)+' ':''}${esc(p.title)}</h3>`:(p.mood?`<h3>${esc(p.mood)}</h3>`:'')}
+        ${p.loc?`<div class="blog-post-loc">📍 ${esc(p.loc)}</div>`:''}
+      </div>`;
+    const body=p.body?`<div class="blog-post-body">${esc(p.body)}</div>`:'';
+    const photos=(p.photos&&p.photos.length)?`<div class="blog-post-photos">${p.photos.map(src=>`<img src="${src}" alt="foto" data-photo="${src}">`).join('')}</div>`:'';
+    const actions=isLocal?`<div class="blog-post-actions">
+        <button class="btn ghost" type="button" data-pub="${p.id}">📤 Copiar pra eu publicar</button>
+        <button class="btn ghost" type="button" data-del="${p.id}">🗑️ Apagar</button>
+      </div>`:'';
+    return `<article class="blog-post">${head}${body}${photos}${actions}</article>`;
+  }
+
+  function render(){
+    const tl=$('blog-timeline');if(!tl)return;
+    try{
+      const local=loadLocal().map(p=>({p,isLocal:true}));
+      const pub=blogPosts.map(p=>({p,isLocal:false}));
+      const all=local.concat(pub).sort((a,b)=>{
+        const da=a.p.date||'',db=b.p.date||'';
+        if(da!==db)return db.localeCompare(da);          // data mais recente primeiro
+        return (b.p.id||'').localeCompare(a.p.id||'');   // empate: mais novo primeiro
+      });
+      if(!all.length){tl.innerHTML='<div class="blog-empty"><div class="bem">📔</div>Ainda não tem nenhum registro. Conta como foi o primeiro dia aí em cima! ✍️</div>';return;}
+      tl.innerHTML=all.map(o=>postCard(o.p,o.isLocal)).join('');
+      // lightbox das fotos
+      tl.querySelectorAll('img[data-photo]').forEach(im=>im.addEventListener('click',()=>openPhoto(im.dataset.photo)));
+      // apagar
+      tl.querySelectorAll('button[data-del]').forEach(b=>b.addEventListener('click',()=>{
+        if(!confirm('Apagar este registro deste aparelho? Não dá pra desfazer.'))return;
+        const arr=loadLocal().filter(p=>p.id!==b.dataset.del);saveLocal(arr);render();
+      }));
+      // copiar pra publicar
+      tl.querySelectorAll('button[data-pub]').forEach(b=>b.addEventListener('click',()=>{
+        const p=loadLocal().find(x=>x.id===b.dataset.pub);if(!p)return;
+        const txt=`Publica esse dia no blog:\nData: ${p.date}\nLocal: ${p.loc||'-'}\nClima: ${p.mood||'-'}\nTítulo: ${p.title||'-'}\n\n${p.body||''}\n\n(${(p.photos||[]).length} foto(s) — te mando em seguida)`;
+        const done=()=>{b.textContent='✓ Copiado! Cola no chat';setTimeout(()=>{b.textContent='📤 Copiar pra eu publicar';},2200);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>{prompt('Copie o texto e cole no chat:',txt);});}
+        else{prompt('Copie o texto e cole no chat:',txt);}
+      }));
+    }catch(e){console.warn('blog render',e);tl.innerHTML='<div class="blog-empty">Algo deu errado ao montar o diário.</div>';}
+  }
+
+  // ---- lightbox de foto (reusa o modal existente) ----
+  function openPhoto(src){
+    try{
+      const modal=$('modal'),mbox=$('mbox');if(!modal||!mbox)return;
+      mbox.innerHTML=`<button class="mclose" onclick="closeModal()">×</button><img class="blog-lightimg" src="${src}" alt="foto">`;
+      modal.classList.add('open');document.body.style.overflow='hidden';
+    }catch(e){console.warn('openPhoto',e);}
+  }
+
+  resetForm();
+  render();
 })();
 </script>
 </body>
