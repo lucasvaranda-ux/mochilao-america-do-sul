@@ -11,3 +11,8 @@ desktop.ini
 # Logs e temporários
 *.log
 .tmp/
+
+# Segredos — NUNCA versionar (.env.example é o modelo, esse sim vai pro git)
+.env
+.env.*
+!.env.example
