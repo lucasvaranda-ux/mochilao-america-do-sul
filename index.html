@@ -1575,9 +1575,9 @@ showTab(document.getElementById(start)?start:'tab-perfil');
    expor porque o RLS só permite ler e inserir recados, nada além disso.
    Enquanto SUPA_URL/SUPA_KEY estiverem vazios, o mural mostra um aviso amigável. */
 (function(){
-  const SUPA_URL=''; // ex.: https://xxxx.supabase.co  (preenchido após criar o projeto)
-  const SUPA_KEY=''; // chave pública (anon/publishable)
-  const TABLE='mural_recados';
+  const SUPA_URL='https://irawlnmcinqkxzgczmrb.supabase.co'; // projeto madeinbr (tabela isolada)
+  const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlyYXdsbm1jaW5xa3h6Z2N6bXJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4ODYyMDEsImV4cCI6MjA5NTQ2MjIwMX0.KD3ikv8JSIgqEegR6EhJ1chYVAIVtlJkV_DVYATfZvM'; // chave pública anon (segura de expor; RLS protege)
+  const TABLE='mochilao_mural';
 
   const root=document.getElementById('mural-root');
   if(!root)return;
