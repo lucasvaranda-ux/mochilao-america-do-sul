@@ -262,6 +262,14 @@
   .sev-mid{background:rgba(232,160,78,.16);color:var(--accent);border:1px solid rgba(232,160,78,.4)}
   .sev-lo{background:rgba(95,201,160,.14);color:var(--accent2);border:1px solid rgba(95,201,160,.35)}
   footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.85rem}
+  /* ===== Atualizar: botão de refresh + pull-to-refresh (iOS standalone) ===== */
+  .fab-refresh{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:1200;width:52px;height:52px;border-radius:50%;border:none;background:var(--accent);color:#12171d;font-size:1.5rem;line-height:1;box-shadow:0 6px 18px rgba(0,0,0,.45);cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+  .fab-refresh:active{transform:scale(.92)}
+  .fab-refresh.spin{animation:spin360 .8s linear infinite}
+  @keyframes spin360{to{transform:rotate(360deg)}}
+  .ptr{position:fixed;top:0;left:50%;transform:translateX(-50%) translateY(-52px);z-index:1300;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.25rem;opacity:0;pointer-events:none}
+  .ptr.ready{color:var(--accent2);border-color:var(--accent2)}
+  .ptr.spinning{animation:spin360 .8s linear infinite}
 </style>
 </head>
 <body>
@@ -1645,6 +1653,49 @@ showTab(start);
 
   if(!configured()){notConfigured();return;}
   shell();load();
+})();
+</script>
+<button class="fab-refresh" type="button" aria-label="Atualizar — recarregar do servidor" title="Atualizar">↻</button>
+<script>
+/* ---------- ATUALIZAR: hard refresh + pull-to-refresh (iOS standalone) ---------- */
+(function(){
+  // recarrega ignorando o cache do navegador (cache-busting) e limpando caches/SW se existirem
+  async function hardRefresh(){
+    try{
+      if(window.caches&&caches.keys){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)));}
+      if(navigator.serviceWorker&&navigator.serviceWorker.getRegistrations){const rs=await navigator.serviceWorker.getRegistrations();await Promise.all(rs.map(r=>r.unregister()));}
+    }catch(e){}
+    const base=location.pathname.replace(/\?.*$/,'');
+    location.replace(base+'?r='+Date.now()+(location.hash||''));
+  }
+  // botão flutuante de atualizar
+  try{
+    const fab=document.querySelector('.fab-refresh');
+    if(fab)fab.addEventListener('click',()=>{fab.classList.add('spin');hardRefresh();});
+  }catch(e){}
+  // pull-to-refresh: puxar pra baixo com a página no topo
+  try{
+    const ind=document.createElement('div');ind.className='ptr';ind.textContent='↻';document.body.appendChild(ind);
+    let startY=0,pulling=false,dist=0;const TH=72;
+    const atTop=()=>(window.scrollY||document.documentElement.scrollTop||0)<=0;
+    const reset=()=>{ind.style.transform='translateX(-50%) translateY(-52px)';ind.style.opacity='0';ind.classList.remove('ready');};
+    window.addEventListener('touchstart',e=>{if(e.touches.length===1&&atTop()){startY=e.touches[0].clientY;pulling=true;dist=0;}},{passive:true});
+    window.addEventListener('touchmove',e=>{
+      if(!pulling)return;
+      dist=e.touches[0].clientY-startY;
+      if(dist>0&&atTop()){
+        const d=Math.min(dist,150);
+        ind.style.transform='translateX(-50%) translateY('+(d-52)+'px)';
+        ind.style.opacity=String(Math.min(d/TH,1));
+        ind.classList.toggle('ready',dist>=TH);
+        if(dist>6&&e.cancelable)e.preventDefault();
+      }else{pulling=false;reset();}
+    },{passive:false});
+    window.addEventListener('touchend',()=>{
+      if(!pulling)return;pulling=false;
+      if(dist>=TH){ind.classList.add('spinning');hardRefresh();}else reset();
+    },{passive:true});
+  }catch(e){}
 })();
 </script>
 </body>
