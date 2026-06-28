@@ -281,7 +281,7 @@
 
 <nav class="tabs">
   <div class="wrap">
-    <button class="tab" data-tab="tab-perfil">🧭 Perfil</button>
+    <button class="tab" data-tab="tab-perfil" style="display:none">🧭 Perfil</button>
     <button class="tab" data-tab="tab-roteiro">🗺️ Roteiro</button>
     <button class="tab" data-tab="tab-diario">📔 Diário</button>
     <button class="tab" data-tab="tab-guia">📖 Guia</button>
@@ -340,7 +340,7 @@
       <span id="ret-date" style="color:var(--accent2);font-size:.9rem;font-weight:600"></span>
     </div>
     <div id="datas-editor" class="datas-editor"></div>
-    <table><thead><tr><th>#</th><th>Destino</th><th>Período</th><th class="r">Dias</th></tr></thead><tbody id="crono-body"></tbody></table>
+    <table><thead><tr><th>#</th><th>Destino</th><th>Período</th><th class="r">Chegada</th></tr></thead><tbody id="crono-body"></tbody></table>
     <div class="note">Encadeei só as estadias; não somo os deslocamentos longos. Na prática, ônibus e conexões esticam o total em ~10 dias — ainda dentro do seu limite de voltar até dezembro.</div>
 
     <h2 style="margin-top:42px">✈️ Voos internos</h2>
@@ -1138,7 +1138,7 @@ function buildCrono(){
       if(s.pais!==lastP){const cr=document.createElement('tr');cr.className='catrow';cr.innerHTML=`<td colspan="4">${s.flag} ${s.pais}</td>`;body.appendChild(cr);lastP=s.pais;}
       const start=new Date(cursor);const end=new Date(cursor);end.setDate(end.getDate()+s.dias-1);
       const tr=document.createElement('tr');
-      tr.innerHTML=`<td><b>${s.n}</b></td><td>${s.name}</td><td>${fmtD(start)} – ${fmtD(end)}</td><td class="r">${s.dias}</td>`;
+      tr.innerHTML=`<td><b>${s.n}</b></td><td>${s.name}</td><td>${fmtD(start)} – ${fmtD(end)}</td><td class="r">${fmtD(start)}</td>`;
       body.appendChild(tr);
       cursor.setDate(cursor.getDate()+s.dias);
     });
@@ -1162,8 +1162,11 @@ function showTab(id){
   if(history.replaceState)history.replaceState(null,'','#'+id);
 }
 tabBtns.forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
-const start=(location.hash||'#tab-perfil').replace('#','');
-showTab(document.getElementById(start)?start:'tab-perfil');
+// abre na primeira aba VISÍVEL (ignora abas ocultas via display:none, ex.: Perfil/Finanças/Compras)
+const tabVisible=id=>{const b=document.querySelector('.tab[data-tab="'+id+'"]');return !!b&&b.style.display!=='none';};
+const reqStart=(location.hash||'').replace('#','');
+const start=(reqStart&&document.getElementById(reqStart)&&tabVisible(reqStart))?reqStart:'tab-roteiro';
+showTab(start);
 </script>
 <script>
 /* ===== Mochilão · persistência LOCAL (localStorage) + edição de roteiro =====
