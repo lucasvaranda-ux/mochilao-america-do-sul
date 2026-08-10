@@ -344,8 +344,8 @@
     <h2>Datas, parada por parada</h2>
     <p class="lead">Escolha sua data de saída e o cronograma se ajusta sozinho. As estadias encadeiam na ordem do roteiro.</p>
     <div class="fin-actions">
-      <label style="color:var(--muted);font-size:.9rem">1º dia em Cartagena:</label>
-      <input type="date" id="dep-date" value="2026-08-15" class="fin-input" style="width:175px;text-align:left">
+      <label style="color:var(--muted);font-size:.9rem">1º dia em Bogotá:</label>
+      <input type="date" id="dep-date" value="2026-07-01" class="fin-input" style="width:175px;text-align:left">
       <span id="ret-date" style="color:var(--accent2);font-size:.9rem;font-weight:600"></span>
     </div>
     <div id="datas-editor" class="datas-editor"></div>
@@ -360,8 +360,7 @@
         <tr><td>✈️ <b>Vitória → Bogotá</b> (chegada internacional)</td><td>9–12h · conexão em São Paulo/Panamá</td><td>LATAM, Avianca, GOL, Copa</td><td class="r">1.800–2.600</td></tr>
         <tr><td>✈️ <b>Bogotá → Cartagena</b> (início do Caribe · 1ª parada)</td><td>~1h30 · direto</td><td>Wingo, JetSMART, Avianca, LATAM</td><td class="r">150–600</td></tr>
         <tr><td>Santa Marta → Medellín</td><td>~1h15</td><td>Avianca, LATAM, Wingo, Clic</td><td class="r">250–400</td></tr>
-        <tr><td>Bogotá → Quito</td><td>~1h40</td><td>Avianca, LATAM</td><td class="r">300–500</td></tr>
-        <tr><td>Guayaquil/Quito → Lima</td><td>~2h</td><td>LATAM, Avianca</td><td class="r">300–500</td></tr>
+        <tr><td>Quito → Lima</td><td>~2h</td><td>LATAM, Avianca</td><td class="r">300–500</td></tr>
         <tr><td>La Paz → Uyuni</td><td>~55min</td><td>Boliviana (BoA), Amaszonas</td><td class="r">250–350</td></tr>
         <tr><td>Calama (Atacama) → Santiago</td><td>~2h</td><td>LATAM, SKY, JetSmart</td><td class="r">250–400</td></tr>
         <tr><td>Mendoza → Buenos Aires</td><td>~1h45</td><td>Aerolíneas, Flybondi, JetSmart</td><td class="r">250–450</td></tr>
@@ -665,7 +664,16 @@
 
 <script>
 let stops = [
- {n:1,name:"Cartagena",pais:"Colômbia",flag:"🇨🇴",coord:[10.391,-75.479],wiki:"Castillo_San_Felipe_de_Barajas",dias:4,tag:"Caribe · Colonial",
+ {n:1,name:"Bogotá",pais:"Colômbia",flag:"🇨🇴",coord:[4.711,-74.072],wiki:"Bogotá",dias:3,tag:"Início · Museus · Altitude",
+  vibe:"Ponto de partida da jornada: altitude, museus e a alma andina urbana antes de descer pro Caribe.",
+  bairros:"La Candelaria (centro colonial), Chapinero, Usaquén (brunch de domingo).",
+  ver:["<b>Museo del Oro</b> — ouro pré-colombiano, imperdível","Museu Botero (grátis)","Teleférico de Monserrate (vista da cidade)","Graffititour na Candelaria"],
+  nat:["Catedral de Sal de Zipaquirá — igreja a 180m dentro de uma mina de sal (bate-volta)","Laguna de Guatavita — lenda de El Dorado"],
+  hostels:["Cranky Croc (Candelaria, ~R$55)","Viajero Bogotá","Masaya"],
+  comer:["Ajiaco (sopa típica)","Mercado de Paloquemao","La Puerta Falsa — chocolate santafereño"],
+  custo:"R$ 140–180 / dia",
+  trans:"<b>Chegada do Brasil</b> (voo via São Paulo/Panamá). Aclimate à altitude aqui. → Cartagena: voo ~1h30 (R$300–600) pra começar o Caribe."},
+ {n:2,name:"Cartagena",pais:"Colômbia",flag:"🇨🇴",coord:[10.391,-75.479],wiki:"Castillo_San_Felipe_de_Barajas",dias:4,tag:"Caribe · Colonial",
   vibe:"Começo caribenho: cidade amuralhada colorida, salsa nas praças e o pôr do sol no mar.",
   bairros:"Getsemaní (mochileiro, arte de rua, Plaza Trinidad à noite), Centro Histórico amuralhado, Bocagrande (praia urbana).",
   ver:["Muralhas + <b>Castillo San Felipe</b> de Barajas","Torre del Reloj e Plaza Santo Domingo","Pôr do sol no Café del Mar, sobre as muralhas","Tour de arte de rua em Getsemaní"],
@@ -673,17 +681,26 @@ let stops = [
   hostels:["Casa del Pozo Boutique (~R$80)","Media Luna (festa/piscina, ~R$80)","Los Patios (rooftop, ~R$75)"],
   comer:["<b>Celele</b> — alta gastronomia caribenha (top 20 AL)","La Cevichería","Arepa de huevo na Plaza Trinidad (rua)","Demente — tapas e pizza, Getsemaní"],
   custo:"R$ 170–230 / dia",
-  trans:"<b>Chegada:</b> você entra pela Colômbia em <b>Bogotá</b> e voa <b>Bogotá → Cartagena</b> (~1h30, aeroporto CTG) pra começar o Caribe. Bogotá fica pra parada 5, na volta. → Santa Marta: ônibus ~4h (R$40) ou van."},
- {n:2,name:"Santa Marta · Tayrona · Minca",pais:"Colômbia",flag:"🇨🇴",coord:[11.24,-74.21],wiki:"Parque_Nacional_Natural_Tayrona",dias:5,tag:"Selva · Caribe · Trilha",
+  trans:"<b>Chegada:</b> voo Bogotá → Cartagena (~1h30, aeroporto CTG). → Santa Marta: ônibus ~4h (R$40) ou van."},
+ {n:3,name:"Santa Marta · Tayrona · Minca",pais:"Colômbia",flag:"🇨🇴",coord:[11.24,-74.21],wiki:"Parque_Nacional_Natural_Tayrona",dias:5,tag:"Selva · Caribe · Trilha",
   vibe:"A selva encontra o Caribe; trilhas sagradas e cachoeiras na Sierra Nevada.",
   bairros:"Centro de Santa Marta (base), Taganga (vila de pescadores e mergulho).",
   ver:["<b>Parque Tayrona</b> — praias Cabo San Juan entre selva e mar","Quinta de San Pedro Alejandrino (onde Bolívar morreu)"],
-  nat:["<b>Minca</b> — cachoeiras Marinka e Pozo Azul, fazendas de café e cacau, nascer do sol","<b>Palomino</b> — boia-cross descendo o rio da serra ao mar","Trek à <b>Cidade Perdida</b> (Ciudad Perdida) — 4 dias, ~R$1.500, território indígena sagrado"],
+  nat:["<b>Minca</b> — cachoeiras Marinka e Pozo Azul, fazendas de café e cacau, nascer do sol","Trek à <b>Cidade Perdida</b> (Ciudad Perdida) — 4 dias, ~R$1.500, território indígena sagrado"],
   hostels:["La Brisa Loca (Santa Marta, social, ~R$55)","Masaya (~R$70)","Viajero / Origen (perto do Tayrona)"],
   comer:["Mercado de Santa Marta (almoço ~R$15)","Lulo Café da Manhã","Peixe fresco em Taganga"],
   custo:"R$ 150–200 / dia",
-  trans:"→ Medellín: voo ~1h (R$250–400) ou ônibus longo."},
- {n:3,name:"Medellín · Guatapé",pais:"Colômbia",flag:"🇨🇴",coord:[6.244,-75.581],wiki:"El_Peñón_de_Guatapé",dias:5,tag:"Cidade · Transformação",
+  trans:"→ Palomino: van/ônibus pela costa ~1h30 (R$25)."},
+ {n:4,name:"Palomino",pais:"Colômbia",flag:"🇨🇴",coord:[11.249,-73.573],wiki:"Palomino,_La_Guajira",dias:3,tag:"Praia · Rio · Descanso",
+  vibe:"Vila de praia na Guajira onde a Sierra Nevada desce até o Caribe: ritmo lento, redes e o famoso tubing no rio.",
+  bairros:"Rua principal descendo até a praia; vila pequena, moto-táxi liga a estrada à areia.",
+  ver:["Pôr do sol na praia de ondas fortes","Dias de descanso nas redes / yoga","Cultura indígena Kogi da Sierra Nevada"],
+  nat:["<b>Tubing no Rio Palomino</b> — sobe a serra de moto e desce boiando numa câmara de ar até o mar","Trilhas e cachoeiras na Sierra Nevada","Observação de aves"],
+  hostels:["The Dreamer Palomino (piscina, ~R$70)","Tiki Hut Hostel","Aire Beach (frente-mar)"],
+  comer:["Peixe fresco na praia","Bowls e comida saudável na vila","Arepa e patacón"],
+  custo:"R$ 130–180 / dia",
+  trans:"→ Medellín: volta a Santa Marta e voo ~1h (R$250–400)."},
+ {n:5,name:"Medellín · Guatapé",pais:"Colômbia",flag:"🇨🇴",coord:[6.244,-75.581],wiki:"El_Peñón_de_Guatapé",dias:5,tag:"Cidade · Transformação",
   vibe:"A cidade da eterna primavera e da reinvenção — a transformação que você lê em Jung virou urbanismo aqui.",
   bairros:"El Poblado (turístico, vida noturna), <b>Laureles</b> (mais local, recomendado), Comuna 13.",
   ver:["<b>Comuna 13</b> — graffititour, escadas rolantes, história de superação","Metrocable + Parque Arví","Plaza Botero e Pueblito Paisa","Jardín Botânico"],
@@ -691,8 +708,17 @@ let stops = [
   hostels:["Wandering Paisa (Laureles, ~R$55)","Black Sheep (~R$60)","Masaya (rooftop pool, ~R$90)"],
   comer:["Mondongo's — bandeja paisa tradicional","El Altar Taquería","Mercado del Río (food hall)","Alambique (rooftop)"],
   custo:"R$ 140–190 / dia",
-  trans:"→ Salento: ônibus ~6h via Pereira (R$70)."},
- {n:4,name:"Salento · Valle de Cocora",pais:"Colômbia",flag:"🇨🇴",coord:[4.637,-75.570],wiki:"Cocora_Valley",dias:3,tag:"Café · Natureza",
+  trans:"→ Jardín: ônibus ~3–4h pelo sudoeste antioquenho (R$40)."},
+ {n:6,name:"Jardín",pais:"Colômbia",flag:"🇨🇴",coord:[5.598,-75.818],wiki:"Jardín",dias:2,tag:"Pueblo · Café · Natureza",
+  vibe:"Um dos povoados mais bonitos da Colômbia: praça colorida, cafezais nas montanhas de Antioquia e o galo-da-serra ao amanhecer.",
+  bairros:"Tudo em volta do Parque El Libertador (a praça), com a basílica neogótica; caminhável.",
+  ver:["Praça com cafés coloridos e cavalos","Basílica Menor da Imaculada Conceição","Garruchas (teleféricos rústicos) sobre o vale","Cascada del Amor"],
+  nat:["<b>Reserva do Gallito de Roca</b> — o galo-da-serra andino (ave laranja) ao amanhecer","<b>Cueva del Esplendor</b> — cachoeira caindo por dentro de uma caverna","Fincas de café e trilhas"],
+  hostels:["Posadas na praça (~R$45–70)","Cóndor de los Andes","Hostel Sierra Morena"],
+  comer:["Trucha","Café de origem local","Fríjoles antioquenhos"],
+  custo:"R$ 110–150 / dia",
+  trans:"→ Salento: ônibus ~5–6h via Riosucio/Pereira (R$70)."},
+ {n:7,name:"Salento · Valle de Cocora",pais:"Colômbia",flag:"🇨🇴",coord:[4.637,-75.570],wiki:"Cocora_Valley",dias:3,tag:"Café · Natureza",
   vibe:"Coração do Eixo Cafeeiro: palmeiras de cera gigantes e café direto da fazenda.",
   bairros:"Vila colorida de Salento, Calle Real.",
   ver:["Mirante Alto de la Cruz","Jogo de tejo (com cerveja, tradição paisa)","Tour de fazenda de café orgânico (Finca El Ocaso)"],
@@ -700,17 +726,35 @@ let stops = [
   hostels:["La Floresta (jardim, redes, vista, ~R$50)","Viajero Salento"],
   comer:["Trucha (truta) com patacón","Cafés de especialidade (Jesús Martín)"],
   custo:"R$ 130–170 / dia",
-  trans:"→ Bogotá: ônibus ~7–8h (R$90) ou voo de Pereira/Armenia."},
- {n:5,name:"Bogotá",pais:"Colômbia",flag:"🇨🇴",coord:[4.711,-74.072],wiki:"Bogotá",dias:3,tag:"Museus · Altitude",
-  vibe:"Altitude, museus e a alma andina urbana antes de cruzar pro Equador.",
-  bairros:"La Candelaria (centro colonial), Chapinero, Usaquén (brunch de domingo).",
-  ver:["<b>Museo del Oro</b> — ouro pré-colombiano, imperdível","Museu Botero (grátis)","Teleférico de Monserrate (vista da cidade)","Graffititour na Candelaria"],
-  nat:["Catedral de Sal de Zipaquirá — igreja a 180m dentro de uma mina de sal (bate-volta)","Laguna de Guatavita — lenda de El Dorado"],
-  hostels:["Cranky Croc (Candelaria, ~R$55)","Viajero Bogotá","Masaya"],
-  comer:["Ajiaco (sopa típica)","Mercado de Paloquemao","La Puerta Falsa — chocolate santafereño"],
-  custo:"R$ 140–180 / dia",
-  trans:"→ Quito: voo ~1h40 (R$300–500)."},
- {n:6,name:"Quito · Quilotoa",pais:"Equador",flag:"🇪🇨",coord:[-0.1807,-78.4678],wiki:"Centro_histórico_de_Quito",dias:4,tag:"Colonial · Vulcões",
+  trans:"→ Cali: ônibus ~3h30 via Armenia (R$50)."},
+ {n:8,name:"Cali",pais:"Colômbia",flag:"🇨🇴",coord:[3.4516,-76.532],wiki:"Cali",dias:3,tag:"Salsa · Calor",
+  vibe:"A capital mundial da salsa: calor tropical, ritmo nos pés e a porta de entrada pro sul da Colômbia.",
+  bairros:"Granada e San Antonio (boêmios, cafés, mirantes), El Peñón.",
+  ver:["<b>Aula de salsa</b> + uma noche de rumba (Cali é a capital mundial)","Cristo Rey e o Gato del Río de Tejada","Bairro San Antonio ao pôr do sol","Zoológico de Cali (um dos melhores da AL)"],
+  nat:["Cerro de las Tres Cruces — subida com vista da cidade","Bate-volta a <b>San Cipriano</b> — mata atlântica com 'brujita' sobre trilhos","Lago Calima"],
+  hostels:["El Viajero Cali","La Sucursal Hostel","Hostels em San Antonio (~R$50)"],
+  comer:["Chontaduro (na rua)","Cholado (raspadinha de frutas)","Sancocho de gallina","Aborrajado"],
+  custo:"R$ 120–160 / dia",
+  trans:"→ Pasto: ônibus ~9–10h subindo a cordilheira (R$110). Faça de dia."},
+ {n:9,name:"Pasto",pais:"Colômbia",flag:"🇨🇴",coord:[1.2136,-77.278],wiki:"Pasto,_Colombia",dias:2,tag:"Andes · Laguna",
+  vibe:"Cidade andina do extremo sul, ao pé do vulcão Galeras — parada rumo à fronteira, com uma laguna de tirar o fôlego por perto.",
+  bairros:"Centro histórico ao redor da Plaza de Nariño.",
+  ver:["Centro colonial e igrejas","Museo del Carnaval (Negros y Blancos, Patrimônio da Humanidade)"],
+  nat:["<b>Laguna de la Cocha</b> — lago andino com a Isla La Corota; casinhas coloridas de El Encano, trutas e clima de fiorde","Vulcão Galeras (mirantes)"],
+  hostels:["Koala Inn","Hostels simples no centro (~R$40)"],
+  comer:["Cuy assado (tradição de Nariño)","Trucha da Laguna de la Cocha","Empanadas de añejo"],
+  custo:"R$ 100–140 / dia",
+  trans:"→ Ipiales: ônibus/colectivo ~2h (R$25)."},
+ {n:10,name:"Ipiales · Las Lajas",pais:"Colômbia",flag:"🇨🇴",coord:[0.8055,-77.585],wiki:"Las_Lajas_Sanctuary",dias:1,tag:"Santuário · Fronteira",
+  vibe:"A despedida da Colômbia: o santuário de Las Lajas, uma catedral neogótica erguida dentro de um desfiladeiro sobre o rio. Passagem espiritual antes do Equador.",
+  bairros:"Ipiales é cidade de fronteira, funcional; o santuário fica ~7 km fora.",
+  ver:["<b>Santuário de Las Lajas</b> — igreja sobre uma ponte no cânion do rio Guáitara, uma das mais bonitas do mundo","Velas e ex-votos dos peregrinos","Mirantes do desfiladeiro"],
+  nat:["O cânion do rio Guáitara","Teleférico até o santuário (opcional)"],
+  hostels:["Hotéis simples em Ipiales (~R$50)","Hospedagem básica perto do santuário"],
+  comer:["Cuy","Almoços de fronteira baratos"],
+  custo:"R$ 90–130 / dia",
+  trans:"<b>Cruzar a fronteira:</b> colectivo até Rumichaca, carimbo Colômbia + Equador (vá cedo, meio de semana), e de Tulcán ônibus a <b>Quito</b> ~5h (R$40). Nunca à noite."},
+ {n:11,name:"Quito",pais:"Equador",flag:"🇪🇨",coord:[-0.1807,-78.4678],wiki:"Centro_histórico_de_Quito",dias:4,tag:"Colonial · Vulcões",
   vibe:"Centro colonial Patrimônio da Humanidade, no meio do mundo.",
   bairros:"Centro Histórico (igrejas barrocas), La Mariscal / La Floresta (cafés e vida noturna).",
   ver:["<b>La Compañía</b> — igreja folheada a ouro","Basílica del Voto Nacional (subir as torres)","TelefériQo (4.100m)","Mitad del Mundo — a linha do equador"],
@@ -719,7 +763,7 @@ let stops = [
   comer:["Mercado Central (almuerzo ~R$10)","Locro de papa","Hornado","Jantares do Community Hostel"],
   custo:"R$ 120–160 / dia (Equador usa dólar; comida barata)",
   trans:"→ Baños: ônibus ~3–4h (R$25), sai a cada 20 min."},
- {n:7,name:"Baños de Agua Santa",pais:"Equador",flag:"🇪🇨",coord:[-1.396,-78.425],wiki:"Baños_de_Agua_Santa",dias:3,tag:"Aventura · Cachoeiras",
+ {n:12,name:"Baños de Agua Santa",pais:"Equador",flag:"🇪🇨",coord:[-1.396,-78.425],wiki:"Baños_de_Agua_Santa",dias:3,tag:"Aventura · Cachoeiras",
   vibe:"Capital da aventura e das cachoeiras — adrenalina, termas e selva à porta.",
   bairros:"Centro pequeno e caminhável, ao pé do vulcão Tungurahua.",
   ver:["<b>La Casa del Árbol</b> — o balanço no fim do mundo sobre o vulcão","Termas de Agua Santa"],
@@ -727,26 +771,8 @@ let stops = [
   hostels:["Great Hostel (café + organiza passeios, ~R$45)","Selina Baños (central)"],
   comer:["Menú del día (R$8–15)","Melcocha (doce puxado típico)","Cuy — porquinho-da-índia, pros corajosos"],
   custo:"R$ 120–180 / dia",
-  trans:"→ Guayaquil (ônibus ~6h) e de lá pra Montañita (~3h, ~R$30)."},
- {n:8,name:"Montañita",pais:"Equador",flag:"🇪🇨",coord:[-1.8286,-80.7516],wiki:"Montañita,_Ecuador",dias:3,tag:"Surf · Praia · Festa",
-  vibe:"Pausa litorânea: a capital do surf do Equador, ceviche barato, pôr do sol no Pacífico e a vila mais animada da costa.",
-  bairros:"Vila compacta e caminhável; o point break de La Punta na ponta norte.",
-  ver:["Aula de surf em La Punta (~R$80)","Pôr do sol na praia com coco","Rua dos coquetéis (cocktail alley) à noite","Bate-volta a Olón — praia vizinha mais tranquila"],
-  nat:["Surf o ano todo (melhor swell dez–maio)","Montañita a pé até o farol","Isla de la Plata ('Galápagos dos pobres') saindo de Puerto López"],
-  hostels:["Balsa Surf Camp (~R$70)","Casa del Sol (na praia)","Hostels baratos no centro (~R$45)"],
-  comer:["Ceviche de camarão na rua","Encebollado (sopa marinha)","Bares de praia"],
-  custo:"R$ 130–180 / dia",
-  trans:"→ Galápagos: ônibus a Guayaquil + voo (GYE→Baltra/San Cristóbal, ~R$1.500 ida/volta)."},
- {n:9,name:"Galápagos",pais:"Equador",flag:"🇪🇨",coord:[-0.7437,-90.3136],wiki:"Puerto_Ayora",dias:3,tag:"Vida selvagem · Ilhas",
-  vibe:"O lugar que mudou Darwin: tartarugas gigantes, leões-marinhos e iguanas marinhas que nem ligam pra você. O ápice natural da viagem.",
-  bairros:"Base em Puerto Ayora (Santa Cruz), o hub do island-hopping econômico.",
-  ver:["<b>Estação Charles Darwin</b> — tartarugas gigantes e história da evolução","Tortuga Bay — praia branca com iguanas marinhas","Los Gemelos e o rancho de tartarugas nas terras altas","Lava tunnels"],
-  nat:["<b>Island-hopping</b> de ferry público (~$30/trecho) a Isabela e San Cristóbal","Snorkel em Las Grietas e Concha de Perla — leões-marinhos e tubarões-de-recife","Mergulho livre com pinguins e raias"],
-  hostels:["Hostais em Puerto Ayora (~R$80–130)","Galápagos Native","Hostal España"],
-  comer:["Calle de los Kioscos (Charles Binford) — peixe e marisco baratos","Almuerzos locais (~R$30)"],
-  custo:"R$ 600–800 / dia (o trecho mais caro da viagem)",
-  trans:"⚠️ Só por avião. Custos fixos: voo ~R$1.500 + taxa do Parque Nacional <b>US$200</b> (~R$1.000) + cartão de trânsito US$20. → Lima: voo de Guayaquil (~R$300–500)."},
- {n:10,name:"Lima",pais:"Peru",flag:"🇵🇪",coord:[-12.046,-77.043],wiki:"Lima",dias:4,tag:"Gastronomia · Costa",
+  trans:"→ Lima: volta a Quito (ou Guayaquil) e voo pra Lima (~2h, R$300–500)."},
+ {n:13,name:"Lima",pais:"Peru",flag:"🇵🇪",coord:[-12.046,-77.043],wiki:"Lima",dias:4,tag:"Gastronomia · Costa",
   vibe:"Capital gastronômica do mundo, à beira do Pacífico. Você salvou o ranking dos melhores restaurantes da AL — comece pelo topo.",
   bairros:"Miraflores (malecón, falésias, parapente), <b>Barranco</b> (boêmio, arte, Puente de los Suspiros), Centro Histórico.",
   ver:["Malecón de Miraflores ao pôr do sol","Barranco — murais e bares","Huaca Pucllana (pirâmide pré-inca)","Plaza Mayor"],
@@ -755,7 +781,7 @@ let stops = [
   comer:["<b>Central</b> — eleito melhor restaurante do mundo (reserve com meses!)","La Mar — cebicheria do Gastón","Mercado de Surquillo — cebiche barato","Isolina (Barranco)","Anticuchos de rua"],
   custo:"R$ 150–200 / dia (mais se comer nos tops)",
   trans:"→ Paracas: ônibus Cruz del Sur / Peru Hop ~4h (R$60)."},
- {n:11,name:"Paracas · Huacachina",pais:"Peru",flag:"🇵🇪",coord:[-13.84,-76.25],wiki:"Huacachina",dias:3,tag:"Deserto · Oásis",
+ {n:14,name:"Paracas · Huacachina",pais:"Peru",flag:"🇵🇪",coord:[-13.84,-76.25],wiki:"Huacachina",dias:3,tag:"Deserto · Oásis",
   vibe:"O deserto encontra o oceano; um oásis de cinema cercado de dunas.",
   bairros:"Vila de Paracas (frente-mar) e o oásis de Huacachina (perto de Ica).",
   ver:["<b>Islas Ballestas</b> — leões-marinhos, pinguins ('Galápagos dos pobres', ~R$80)","Reserva de Paracas — falésias e deserto vermelho"],
@@ -764,7 +790,7 @@ let stops = [
   comer:["Peixe fresco em Paracas","Menús em Ica"],
   custo:"R$ 140–180 / dia",
   trans:"→ Arequipa: ônibus noturno ~10–12h (R$120)."},
- {n:12,name:"Arequipa · Colca",pais:"Peru",flag:"🇵🇪",coord:[-16.409,-71.537],wiki:"Arequipa",dias:4,tag:"Cidade Branca · Cânion",
+ {n:15,name:"Arequipa · Colca",pais:"Peru",flag:"🇵🇪",coord:[-16.409,-71.537],wiki:"Arequipa",dias:4,tag:"Cidade Branca · Cânion",
   vibe:"A 'Cidade Branca' de sillar vulcânico, cercada de vulcões; o cânion dos condores.",
   bairros:"Centro histórico (Plaza de Armas), San Lázaro.",
   ver:["<b>Monasterio de Santa Catalina</b> — uma cidade dentro da cidade (imperdível)","Mirantes dos vulcões Misti e Chachani","Múmia Juanita (Museo Santuarios Andinos)"],
@@ -773,7 +799,7 @@ let stops = [
   comer:["Rocoto relleno","Adobo arequipeño","Picanterías tradicionais","Chicha de jora"],
   custo:"R$ 140–180 / dia",
   trans:"→ Cusco: ônibus noturno ~10h (R$110)."},
- {n:13,name:"Cusco · Vale Sagrado · Machu Picchu",pais:"Peru",flag:"🇵🇪",coord:[-13.532,-71.967],wiki:"Machu_Picchu",dias:8,tag:"Sagrado · Inca · Trilha",
+ {n:16,name:"Cusco · Vale Sagrado · Machu Picchu",pais:"Peru",flag:"🇵🇪",coord:[-13.532,-71.967],wiki:"Machu_Picchu",dias:8,tag:"Sagrado · Inca · Trilha",
   vibe:"O umbigo do mundo inca — coração espiritual e cultural da viagem. Onde seu lado ancestral encontra a cosmologia andina.",
   bairros:"Centro (Plaza de Armas), <b>San Blas</b> (bairro de artistas, ladeiras e mirantes).",
   ver:["<b>Qorikancha</b> — templo do sol","Sacsayhuamán — muralhas de pedras ciclópicas","Catedral e mercado de San Pedro","Bairro de San Blas ao entardecer"],
@@ -782,7 +808,7 @@ let stops = [
   comer:["Lomo saltado","Green Point (veg, San Blas)","Chicharrón no Mercado San Pedro","Morena"],
   custo:"R$ 160–220 / dia",
   trans:"<b>Machu Picchu:</b> trek Salkantay 4–5 dias (glaciares + selva, ~R$900–1.400) OU trem a Aguas Calientes (~R$160) + ingresso (~R$160) — reserve com antecedência. Depois → Puno: ônibus turístico ~7h (R$70)."},
- {n:14,name:"Puno · Lago Titicaca",pais:"Peru",flag:"🇵🇪",coord:[-15.84,-70.02],wiki:"Puno",dias:3,tag:"Lago Sagrado",
+ {n:17,name:"Puno · Lago Titicaca",pais:"Peru",flag:"🇵🇪",coord:[-15.84,-70.02],wiki:"Puno",dias:3,tag:"Lago Sagrado",
   vibe:"O lago navegável mais alto do mundo e berço do mito de origem inca.",
   bairros:"Puno (base à beira do lago, a 3.800m).",
   ver:["<b>Ilhas flutuantes dos Uros</b> — feitas de junco totora","Ilha Taquile — têxteis Patrimônio da Humanidade","Chullpas de Sillustani — torres funerárias pré-incas"],
@@ -791,7 +817,7 @@ let stops = [
   comer:["Trucha do lago","Quinoa","Mercado central"],
   custo:"R$ 130–170 / dia",
   trans:"→ Copacabana (Bolívia): ônibus ~3–4h (R$50) com travessia de fronteira."},
- {n:15,name:"Copacabana · Isla del Sol",pais:"Bolívia",flag:"🇧🇴",coord:[-16.166,-69.086],wiki:"Copacabana_(Bolívia)",dias:2,tag:"Titicaca · Ilha Sagrada",
+ {n:18,name:"Copacabana · Isla del Sol",pais:"Bolívia",flag:"🇧🇴",coord:[-16.166,-69.086],wiki:"Copacabana_(Bolívia)",dias:2,tag:"Titicaca · Ilha Sagrada",
   vibe:"O lado boliviano do Titicaca e a ilha sagrada onde, segundo o mito, nasceu o sol inca.",
   bairros:"Vila de Copacabana, à beira do lago.",
   ver:["<b>Basílica de Copacabana</b> — a Virgem morena","Cerro Calvario ao pôr do sol"],
@@ -800,7 +826,7 @@ let stops = [
   comer:["Trucha grelhada à beira do lago"],
   custo:"R$ 110–150 / dia",
   trans:"→ La Paz: ônibus ~3,5–4h (R$30), com travessia de balsa no Estrecho de Tiquina."},
- {n:16,name:"La Paz",pais:"Bolívia",flag:"🇧🇴",coord:[-16.4897,-68.1193],wiki:"La_Paz",dias:3,tag:"Altiplano · Teleféricos",
+ {n:19,name:"La Paz",pais:"Bolívia",flag:"🇧🇴",coord:[-16.4897,-68.1193],wiki:"La_Paz",dias:3,tag:"Altiplano · Teleféricos",
   vibe:"A capital mais alta do mundo, vista de teleféricos que cruzam o céu. Ritual e cotidiano misturados.",
   bairros:"Centro / Sopocachi, e o Mercado de las Brujas (Mercado das Bruxas).",
   ver:["<b>Mi Teleférico</b> — rede de teleféricos que é transporte e mirante ao mesmo tempo","Mercado das Bruxas (tradição aymara)","Valle de la Luna","Calle Jaén colonial"],
@@ -809,7 +835,7 @@ let stops = [
   comer:["Salteñas (de manhã)","Mercado Lanza","Anticuchos","Almoço local < R$15"],
   custo:"R$ 110–160 / dia (país mais barato da rota)",
   trans:"→ Uyuni: voo ~1h (R$250) ou ônibus noturno ~10h (R$80)."},
- {n:17,name:"Salar de Uyuni",pais:"Bolívia",flag:"🇧🇴",coord:[-20.133,-67.489],wiki:"Salar_de_Uyuni",dias:3,tag:"Natureza surreal",
+ {n:20,name:"Salar de Uyuni",pais:"Bolívia",flag:"🇧🇴",coord:[-20.133,-67.489],wiki:"Salar_de_Uyuni",dias:3,tag:"Natureza surreal",
   vibe:"O maior espelho do mundo — o lugar que 'não parece real' que você tanto salva.",
   bairros:"Cidade de Uyuni (base e ponto de partida dos tours).",
   ver:["O salar — 10.582 km² de sal","Ilha Incahuasi — cactos gigantes","Cemitério de trens","Fotos de perspectiva no infinito branco"],
@@ -818,7 +844,7 @@ let stops = [
   comer:["Refeições incluídas no tour","Pizza Minuteman em Uyuni"],
   custo:"Tour 3 dias ~R$ 700–1.200 (guia, 4x4, refeições e hospedagem)",
   trans:"O tour de 3 dias termina em <b>San Pedro de Atacama</b> (entrada no Chile)."},
- {n:18,name:"San Pedro de Atacama",pais:"Chile",flag:"🇨🇱",coord:[-22.911,-68.2],wiki:"San_Pedro_de_Atacama",dias:3,tag:"Deserto · Estrelas",
+ {n:21,name:"San Pedro de Atacama",pais:"Chile",flag:"🇨🇱",coord:[-22.911,-68.2],wiki:"San_Pedro_de_Atacama",dias:3,tag:"Deserto · Estrelas",
   vibe:"Oásis no deserto mais árido do mundo, sob o céu mais limpo do planeta. (Passagem rápida no Chile.)",
   bairros:"Vila de adobe de San Pedro.",
   ver:["<b>Valle de la Luna</b> ao pôr do sol","Gêiseres del Tatio ao amanhecer (4.300m)","Lagunas Altiplânicas e Piedras Rojas","Valle de la Muerte (sandboard)"],
@@ -827,7 +853,7 @@ let stops = [
   comer:["Cozinhe (mercado caro)","Menús perto do campo de futebol (~R$25)"],
   custo:"R$ 200–280 / dia (mais caro da rota)",
   trans:"→ Santiago: voo de Calama ~2h (R$300, recomendado) ou ônibus noturno longo."},
- {n:19,name:"Santiago · Valparaíso",pais:"Chile",flag:"🇨🇱",coord:[-33.4489,-70.6693],wiki:"Santiago",dias:4,tag:"Cidade · Arte · Vinho",
+ {n:22,name:"Santiago · Valparaíso",pais:"Chile",flag:"🇨🇱",coord:[-33.4489,-70.6693],wiki:"Santiago",dias:4,tag:"Cidade · Arte · Vinho",
   vibe:"Metrópole entre a cordilheira e o mar; arte, poesia de Neruda e vinho.",
   bairros:"Bellavista (boêmio), Lastarria e Bellas Artes (cafés e museus).",
   ver:["Cerro San Cristóbal — teleférico e vista dos Andes","La Chascona — casa de Pablo Neruda","Mercado Central — frutos do mar","Plaza de Armas"],
@@ -836,7 +862,7 @@ let stops = [
   comer:["Empanadas de pino","Completo (hot dog chileno)","Pastel de choclo","Vinhos Carménère"],
   custo:"R$ 190–250 / dia",
   trans:"→ Mendoza: ônibus ~7h cruzando os Andes (paisagem épica, R$150) ou voo."},
- {n:20,name:"Mendoza",pais:"Argentina",flag:"🇦🇷",coord:[-32.889,-68.845],wiki:"Mendoza_(Argentina)",dias:3,tag:"Vinho · Andes",
+ {n:23,name:"Mendoza",pais:"Argentina",flag:"🇦🇷",coord:[-32.889,-68.845],wiki:"Mendoza_(Argentina)",dias:3,tag:"Vinho · Andes",
   vibe:"Terra do Malbec aos pés do Aconcágua. (Passagem rápida na Argentina.)",
   bairros:"Centro (Plaza Independencia), Chacras de Coria.",
   ver:["<b>Rota do vinho</b> em Maipú e Luján de Cuyo — bike & wine entre vinícolas, degustações (~R$60–150)","Parque San Martín"],
@@ -845,7 +871,7 @@ let stops = [
   comer:["Asado / parrilla","Empanadas mendocinas","Vinho Malbec","Alfajores"],
   custo:"R$ 160–220 / dia (varia muito com o câmbio argentino)",
   trans:"→ Buenos Aires: ônibus-cama noturno ~13–15h (R$200) ou voo ~2h (R$300)."},
- {n:21,name:"Buenos Aires",pais:"Argentina",flag:"🇦🇷",coord:[-34.6037,-58.3816],wiki:"Buenos_Aires",dias:5,tag:"Tango · Cultura · Café",
+ {n:24,name:"Buenos Aires",pais:"Argentina",flag:"🇦🇷",coord:[-34.6037,-58.3816],wiki:"Buenos_Aires",dias:5,tag:"Tango · Cultura · Café",
   vibe:"A Paris da América do Sul — tango, livrarias monumentais, parrillas e cultura de café.",
   bairros:"<b>Palermo</b> (Soho/Hollywood — cafés, bares, parques), San Telmo (colonial, antiguidades, tango), Recoleta (elegante), La Boca.",
   ver:["Cemitério da Recoleta (túmulo de Evita)","<b>Ateneo Grand Splendid</b> — livraria num teatro","Casa Rosada e Plaza de Mayo","Feira de domingo de San Telmo","Caminito (La Boca)"],
@@ -854,7 +880,7 @@ let stops = [
   comer:["Parrilla (Desnivel, San Telmo)","Choripán","Milanesa","Sorvete artesanal","Show de tango"],
   custo:"R$ 150–220 / dia",
   trans:"→ Colonia (Uruguai): ferry Buquebus ~1h15 (R$300) cruzando o Rio da Prata."},
- {n:22,name:"Colonia · Montevidéu",pais:"Uruguai",flag:"🇺🇾",coord:[-34.47,-57.84],wiki:"Colónia_do_Sacramento",dias:4,tag:"Colonial · Rio da Prata",
+ {n:25,name:"Colonia · Montevidéu",pais:"Uruguai",flag:"🇺🇾",coord:[-34.47,-57.84],wiki:"Colónia_do_Sacramento",dias:4,tag:"Colonial · Rio da Prata",
   vibe:"O fecho tranquilo da jornada: vila colonial portuguesa e a capital à beira-rio. (Passagem rápida no Uruguai.)",
   bairros:"Colonia: Barrio Histórico. Montevidéu: Ciudad Vieja, Pocitos.",
   ver:["<b>Colonia del Sacramento</b> — Barrio Histórico (Patrimônio Mundial), ruas de pedra portuguesas, o Faro (111 degraus), carros antigos","Montevidéu: Estádio Centenário (1ª Copa do Mundo, 1930), Mercado del Puerto, a Rambla de 22 km"],
@@ -977,28 +1003,31 @@ function loadWiki(title,langs,cb,orig){
 // ---------- FINANÇAS (espelhada do roteiro) ----------
 // custo/dia (hostel+comida+local) + tours marcantes, por parada
 const finStops={
- 1:{cd:200,ex:[["Islas del Rosario",150]]},
- 2:{cd:175,ex:[["Trek Cidade Perdida (opcional)",1500]]},
- 3:{cd:165,ex:[["Guatapé",100]]},
- 4:{cd:150,ex:[]},
- 5:{cd:160,ex:[["Zipaquirá",120]]},
- 6:{cd:140,ex:[["Quilotoa",120]]},
- 7:{cd:150,ex:[["Rafting/canyoning",200]]},
- 8:{cd:155,ex:[["Aula de surf",80]]},
- 9:{cd:200,ex:[["Voo GYE↔Galápagos",1500],["Taxa Parque Nacional (US$200)",1000],["Island-hopping + snorkel",400]]},
- 10:{cd:175,ex:[["Jantar no Central (opcional)",400]]},
- 11:{cd:160,ex:[["Ballestas + buggy",180]]},
- 12:{cd:160,ex:[["Colca 2 dias",300]]},
- 13:{cd:190,ex:[["Machu Picchu / Salkantay",1200]]},
- 14:{cd:150,ex:[["Ilhas do Titicaca",100]]},
- 15:{cd:130,ex:[]},
- 16:{cd:135,ex:[["Death Road de bike",300]]},
- 17:{cd:0,ex:[["Tour Salar 3 dias",950]]},
- 18:{cd:240,ex:[["Tours (Luna/Tatio/astro)",300]]},
- 19:{cd:220,ex:[]},
- 20:{cd:190,ex:[["Vinícolas (bike & wine)",150]]},
- 21:{cd:185,ex:[["Show de tango",120]]},
- 22:{cd:200,ex:[]}
+ 1:{cd:160,ex:[["Zipaquirá",120]]},
+ 2:{cd:200,ex:[["Islas del Rosario",150]]},
+ 3:{cd:175,ex:[["Trek Cidade Perdida (opcional)",1500]]},
+ 4:{cd:150,ex:[["Tubing no rio",30]]},
+ 5:{cd:165,ex:[["Guatapé",100]]},
+ 6:{cd:140,ex:[["Cueva del Esplendor",120]]},
+ 7:{cd:150,ex:[]},
+ 8:{cd:140,ex:[["Aula de salsa",60]]},
+ 9:{cd:120,ex:[["Laguna de la Cocha",50]]},
+ 10:{cd:110,ex:[]},
+ 11:{cd:140,ex:[["Quilotoa",120]]},
+ 12:{cd:150,ex:[["Rafting/canyoning",200]]},
+ 13:{cd:175,ex:[["Jantar no Central (opcional)",400]]},
+ 14:{cd:160,ex:[["Ballestas + buggy",180]]},
+ 15:{cd:160,ex:[["Colca 2 dias",300]]},
+ 16:{cd:190,ex:[["Machu Picchu / Salkantay",1200]]},
+ 17:{cd:150,ex:[["Ilhas do Titicaca",100]]},
+ 18:{cd:130,ex:[]},
+ 19:{cd:135,ex:[["Death Road de bike",300]]},
+ 20:{cd:0,ex:[["Tour Salar 3 dias",950]]},
+ 21:{cd:240,ex:[["Tours (Luna/Tatio/astro)",300]]},
+ 22:{cd:220,ex:[]},
+ 23:{cd:190,ex:[["Vinícolas (bike & wine)",150]]},
+ 24:{cd:185,ex:[["Show de tango",120]]},
+ 25:{cd:200,ex:[]}
 };
 const finPre=[
  {id:"aereo",item:"Passagem internacional (VIX→Bogotá / Montevidéu→VIX, open-jaw)",plan:4000},
@@ -1007,9 +1036,9 @@ const finPre=[
  {id:"vacina",item:"Vacinas / taxas",plan:0},
 ];
 const finTrans=[
+ {id:"t0",item:"Bogotá → Cartagena (voo)",plan:500},
  {id:"t1",item:"Santa Marta → Medellín (voo)",plan:325},
- {id:"t2",item:"Bogotá → Quito (voo)",plan:400},
- {id:"t3",item:"Galápagos → Lima (voo, via Guayaquil)",plan:450},
+ {id:"t3",item:"Quito → Lima (voo)",plan:400},
  {id:"t4",item:"La Paz → Uyuni (voo)",plan:300},
  {id:"t5",item:"Calama → Santiago (voo)",plan:325},
  {id:"t6",item:"Mendoza → Buenos Aires (voo)",plan:350},
@@ -1141,7 +1170,7 @@ function fmtD(d){return d.getDate()+' '+meses[d.getMonth()]+'.';}
 function buildCrono(){
   try{
     const inp=document.getElementById('dep-date');
-    const base=(inp&&inp.value)?new Date(inp.value+'T00:00:00'):new Date('2026-08-15T00:00:00');
+    const base=(inp&&inp.value)?new Date(inp.value+'T00:00:00'):new Date('2026-07-01T00:00:00');
     const body=document.getElementById('crono-body');if(!body)return;body.innerHTML='';
     const cursor=new Date(base);let lastP=null;
     stops.forEach(s=>{
@@ -1377,11 +1406,7 @@ showTab(start);
   // finanças já persistem em localStorage (chave mochilao_fin_v3) via saveFin original
   // data de saída -> localStorage
   const dep=document.getElementById('dep-date');
-  if(dep){try{const d=localStorage.getItem(LS_DEP);
-      // ignora data salva que já ficou no passado (evita cronograma velho preso no aparelho)
-      const hoje=new Date();hoje.setHours(0,0,0,0);
-      if(d&&new Date(d+'T00:00:00')>=hoje)dep.value=d;else if(d)localStorage.removeItem(LS_DEP);
-    }catch(e){}
+  if(dep){try{const d=localStorage.getItem(LS_DEP);if(d)dep.value=d;}catch(e){}
     dep.addEventListener('change',()=>{try{localStorage.setItem(LS_DEP,dep.value);}catch(e){}});}
 
   (function boot(){
