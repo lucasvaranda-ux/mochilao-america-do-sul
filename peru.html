@@ -374,10 +374,10 @@ async function photo(titles){
       const r=await fetch(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(t)}`);
       if(!r.ok)continue;
       const j=await r.json();
-      const thumb=(j.thumbnail&&j.thumbnail.source)||'';
-      // versão ~640px (nítida mas leve pra dados móveis); fallback pra original
-      const img=thumb?thumb.replace(/\/\d+px-/,'/640px-'):(j.originalimage&&j.originalimage.source);
-      if(img)return{img,extract:j.extract||'',url:(j.content_urls&&j.content_urls.desktop&&j.content_urls.desktop.page)||''};
+      const raw=(j.thumbnail&&j.thumbnail.source)||(j.originalimage&&j.originalimage.source)||'';
+      if(!raw||/\.svg/i.test(raw))continue;           // pula escudos/bandeiras SVG
+      const img=raw.replace(/\/\d+px-/,'/720px-');     // ~720px: nítido mas leve pra dados móveis
+      return{img,extract:j.extract||'',url:(j.content_urls&&j.content_urls.desktop&&j.content_urls.desktop.page)||''};
     }catch(e){}
   }
   return null;
@@ -405,9 +405,12 @@ function open(i){
 
   const done=(d)=>{
     if(!d)return;
-    const im=document.createElement('img');im.alt=p.n;im.src=d.img;
-    im.onload=()=>im.classList.add('on');
+    const im=document.createElement('img');im.alt=p.n;
+    im.addEventListener('load',()=>im.classList.add('on'));   // listener ANTES do src
+    im.addEventListener('error',()=>im.remove());
     hero.insertBefore(im,hero.firstChild);
+    im.src=d.img;
+    if(im.complete&&im.naturalWidth>0)im.classList.add('on'); // caso já esteja em cache
     const b=document.getElementById('wkblk');
     if(b&&d.extract)b.innerHTML=`<h4>Sobre</h4><p>${d.extract}</p>`+
       (d.url?`<a class="wk" href="${d.url}" target="_blank" rel="noopener">Ler na Wikipédia ↗</a>`:'');
