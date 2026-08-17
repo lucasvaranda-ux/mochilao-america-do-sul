@@ -152,6 +152,22 @@ ul.pas li:last-child{border-bottom:none;padding-bottom:0}
 .mi{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 6px 5px 11px;font-size:.8rem;color:var(--tx);font-weight:600}
 .mi button{border:none;background:#e7ebf0;color:#7d8b9a;width:18px;height:18px;border-radius:50%;font-size:.68rem;cursor:pointer;line-height:1;padding:0;display:flex;align-items:center;justify-content:center}
 .clr{border:none;background:none;color:var(--accent);font-weight:700;font-size:.78rem;cursor:pointer;font-family:inherit;text-decoration:underline;padding:0}
+/* minha rota: roteiro com dias e datas editáveis */
+.ithead{display:flex;align-items:baseline;gap:9px;font-size:.9rem;color:var(--muted);margin-bottom:9px;flex-wrap:wrap}
+.ithead b{color:var(--tx)}
+.itstart{font-size:.82rem;color:var(--muted);margin-bottom:11px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.itstart input{font-family:inherit;font-size:.82rem;border:1px solid var(--line);border-radius:8px;padding:5px 8px;color:var(--tx);background:var(--bg)}
+.ittable{display:flex;flex-direction:column}
+.itrow{display:grid;grid-template-columns:1fr auto;column-gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.itrow:last-child{border-bottom:none}
+.itn{grid-column:1;grid-row:1;font-size:.92rem;font-weight:600;color:var(--tx);display:flex;align-items:center;gap:7px}
+.itnum{background:var(--accent);color:#fff;width:20px;height:20px;border-radius:50%;font-size:.72rem;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.itx{border:none;background:none;color:#b7c0ca;font-size:.82rem;cursor:pointer;padding:0 2px;margin-left:auto}
+.itd{grid-column:1;grid-row:2;font-size:.77rem;color:var(--muted);padding-left:27px;margin-top:3px}
+.itstep{grid-column:2;grid-row:1/3;align-self:center;display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg)}
+.itstep button{border:none;background:none;color:var(--accent);width:32px;height:32px;font-size:1.15rem;font-weight:700;cursor:pointer;font-family:inherit;line-height:1;padding:0}
+.itstep button:active{background:#efefef}
+.itstep span{min-width:32px;text-align:center;font-size:.8rem;font-weight:700;color:var(--tx)}
 </style>
 </head>
 <body>
@@ -410,18 +426,28 @@ function icon(color,big){
 const LS_MINE='peru_myroute_v1';
 let routeLine=null, activeRoute=-1;
 let myRoute=[]; try{myRoute=JSON.parse(localStorage.getItem(LS_MINE)||'[]').filter(i=>P[i]!=null);}catch(e){}
+let myDays={}; try{myDays=JSON.parse(localStorage.getItem('peru_mydays_v1')||'{}');}catch(e){}
+let myStart=localStorage.getItem('peru_mystart_v1')||'';
 function coordOf(name){
   const p=P.find(p=>p.n===name)||P.find(p=>p.n.includes(name)||name.includes(p.n));
   return p?p.c:null;
 }
 function inSeq(seq,pn){return seq.some(s=>pn.includes(s)||s.includes(pn));}
 function dimPin(k,dim){const m=MK[k];if(!m)return;const el=m.getElement&&m.getElement();if(el&&el.firstChild)el.firstChild.classList.toggle('dim',dim);}
-function estDays(idxs){let s=0;idxs.forEach(i=>{const m=(P[i].d||'').match(/\d+/);if(m)s+=+m[0];});return s;}
-function saveMine(){try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));}catch(e){}}
+function defaultDays(i){const m=(P[i].d||'').match(/\d+/);return m?+m[0]:2;}
+function daysOf(i){return myDays[i]!=null?myDays[i]:defaultDays(i);}
+function totalDays(){return myRoute.reduce((s,i)=>s+daysOf(i),0);}
+function lastFriday(){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()-5+7)%7));return d;}
+function startDate(){return myStart?new Date(myStart+'T00:00:00'):lastFriday();}
+function isoD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function fmtBR(d){return d.toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'}).replace(/\./g,'');}
+function saveMine(){try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));localStorage.setItem('peru_mydays_v1',JSON.stringify(myDays));}catch(e){}}
 function inMine(i){return myRoute.indexOf(i)>=0;}
-function updateMineChip(){const c=document.getElementById('mineChip');if(!c)return;const n=myRoute.length;c.querySelector('small').textContent=n?`${n} lugares · ~${estDays(myRoute)} dias`:'vazia — monte a sua';}
+function updateMineChip(){const c=document.getElementById('mineChip');if(!c)return;const n=myRoute.length;c.querySelector('small').textContent=n?`${n} lugares · ${totalDays()} dias`:'vazia — monte a sua';}
 function setAddBtn(i){const ab=document.getElementById('addbtn');if(!ab)return;ab.dataset.i=i;if(inMine(i)){ab.classList.add('added');ab.textContent='✓ Na minha rota — remover';}else{ab.classList.remove('added');ab.textContent='➕ Adicionar à minha rota';}}
-function toggleMineItem(i){const k=myRoute.indexOf(i);if(k>=0)myRoute.splice(k,1);else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(activeRoute==='mine')drawMine();}
+function setDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();drawMine();}
+function setStart(v){myStart=v;try{localStorage.setItem('peru_mystart_v1',v);}catch(e){}drawMine();}
+function toggleMineItem(i){const k=myRoute.indexOf(i);if(k>=0){myRoute.splice(k,1);delete myDays[i];}else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(activeRoute==='mine')drawMine();}
 (function(){
   const host=document.getElementById('rchips');if(!host)return;
   const mine=document.createElement('button');mine.className='rc mine';mine.id='mineChip';
@@ -441,15 +467,30 @@ function drawMine(){
   if(routeLine&&map){try{map.removeLayer(routeLine);}catch(e){}routeLine=null;}
   const chip=document.getElementById('mineChip');if(chip)chip.classList.add('on');
   const det=document.getElementById('rdetail');det.className='rdetail show';
-  if(!myRoute.length){det.innerHTML='<b>Minha rota</b> — ainda vazia. Abra qualquer lugar e toque em <b>“➕ Adicionar à minha rota”</b>. A ordem em que você adicionar vira a rota.';return;}
-  const items=myRoute.map((idx,pos)=>`<span class="mi">${pos+1}. ${P[idx].n}<button data-rm="${idx}" aria-label="remover">✕</button></span>`).join('');
-  det.innerHTML=`<b>Minha rota</b> · ${myRoute.length} lugares · ~${estDays(myRoute)} dias &nbsp;<button class="clr" id="clrMine">limpar</button><div class="milist">${items}</div>`;
+  if(!myRoute.length){det.innerHTML='<b>Minha rota</b> — ainda vazia. Abra qualquer lugar e toque em <b>“➕ Adicionar à minha rota”</b>. A ordem em que você adicionar vira o roteiro, com datas.';P.forEach((p,k)=>dimPin(k,false));return;}
+  const start=startDate();let cursor=new Date(start);
+  const rows=myRoute.map((idx,pos)=>{
+    const dd=daysOf(idx);const a=new Date(cursor);const b=new Date(cursor);b.setDate(b.getDate()+dd-1);
+    cursor.setDate(cursor.getDate()+dd);
+    return `<div class="itrow">
+      <div class="itn"><span class="itnum">${pos+1}</span> ${P[idx].n} <button class="itx" data-rm="${idx}" aria-label="remover">✕</button></div>
+      <div class="itstep"><button data-dec="${idx}" aria-label="menos">−</button><span>${dd}d</span><button data-inc="${idx}" aria-label="mais">+</button></div>
+      <div class="itd">📅 ${fmtBR(a)}${dd>1?' – '+fmtBR(b):''}</div>
+    </div>`;
+  }).join('');
+  const end=new Date(cursor);end.setDate(end.getDate()-1);
+  det.innerHTML=`<div class="ithead"><b>Minha rota</b> · ${myRoute.length} lugares · ${totalDays()} dias <button class="clr" id="clrMine">limpar</button></div>
+    <div class="itstart">Início: <input type="date" id="itstart" value="${isoD(start)}"> <span>→ fim ~${fmtBR(end)}</span></div>
+    <div class="ittable">${rows}</div>`;
+  const si=document.getElementById('itstart');if(si)si.addEventListener('change',e=>{if(e.target.value)setStart(e.target.value);});
   det.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>toggleMineItem(+b.dataset.rm)));
-  const cm=document.getElementById('clrMine');if(cm)cm.addEventListener('click',()=>{myRoute=[];saveMine();updateMineChip();drawMine();});
+  det.querySelectorAll('[data-dec]').forEach(b=>b.addEventListener('click',()=>setDays(+b.dataset.dec,-1)));
+  det.querySelectorAll('[data-inc]').forEach(b=>b.addEventListener('click',()=>setDays(+b.dataset.inc,1)));
+  const cm=document.getElementById('clrMine');if(cm)cm.addEventListener('click',()=>{myRoute=[];myDays={};saveMine();updateMineChip();drawMine();});
   P.forEach((p,k)=>dimPin(k,myRoute.indexOf(k)<0));
   if(map){const pts=myRoute.map(i=>P[i].c).filter(Boolean);
-    if(pts.length>1){routeLine=L.polyline(pts,{color:'#e8822e',weight:3.5,opacity:.95,dashArray:'2,9',lineCap:'round',lineJoin:'round'}).addTo(map);try{map.fitBounds(routeLine.getBounds(),{padding:[46,46]});}catch(e){}window.scrollTo({top:0,behavior:'smooth'});}
-    else if(pts.length===1){map.setView(pts[0],7);window.scrollTo({top:0,behavior:'smooth'});}
+    if(pts.length>1){routeLine=L.polyline(pts,{color:'#e8822e',weight:3.5,opacity:.95,dashArray:'2,9',lineCap:'round',lineJoin:'round'}).addTo(map);try{map.fitBounds(routeLine.getBounds(),{padding:[46,46]});}catch(e){}}
+    else if(pts.length===1){map.setView(pts[0],7);}
   }
 }
 function clearRoute(){
