@@ -2,6 +2,13 @@
 
 Contexto pro Claude Code continuar este projeto de onde paramos no Cowork.
 
+## Estado compartilhado
+Antes de responder qualquer coisa sobre a viagem, buscar no Notion a
+página "Mochilão — Estado Compartilhado" e ler inteira.
+Depois de qualquer decisão, atualizar a seção correspondente e
+adicionar uma linha no Changelog.
+Nunca sobrescrever seção sem ler antes.
+
 ## O que é
 
 App de **página única** (`index.html`) — um guia de viagem interativo, personalizado pro Lucas, pra um mochilão de ~90 dias pela América do Sul (Colômbia → Equador → Peru → Bolívia → Chile → Argentina → Uruguai). Tudo (HTML + CSS + JS) está num único arquivo, sem build.

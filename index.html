@@ -36,8 +36,9 @@
   /* TABS */
   .tabs{position:sticky;top:0;z-index:500;background:rgba(15,20,25,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .tabs .wrap{display:flex;gap:2px;overflow-x:auto}
-  .tab{background:none;border:none;color:var(--muted);font-family:var(--font);font-size:.93rem;font-weight:600;padding:16px 20px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:.15s;display:flex;align-items:center;gap:8px}
-  .tab:hover{color:var(--txt)}
+  .tab,.tablink{background:none;border:none;color:var(--muted);font-family:var(--font);font-size:.93rem;font-weight:600;padding:16px 20px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:.15s;display:flex;align-items:center;gap:8px;text-decoration:none}
+  .tab:hover,.tablink:hover{color:var(--txt)}
+  .tablink{color:var(--accent)}
   .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
   .tabpanel{display:none;padding:46px 0;border-bottom:1px solid var(--line)}
   .tabpanel.active{display:block;animation:fade .3s ease}
@@ -112,7 +113,7 @@
     .lead{font-size:1rem}
     /* tabelas largas (finanças) rolam na horizontal em vez de estourar a tela */
     table{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
-    .tab{padding:14px 13px}
+    .tab,.tablink{padding:14px 13px}
     .modal{padding:16px 10px}
     td input,td .fin-input{width:90px}
   }
@@ -291,6 +292,7 @@
   <div class="wrap">
     <button class="tab" data-tab="tab-perfil" style="display:none">🧭 Perfil</button>
     <button class="tab" data-tab="tab-roteiro">🗺️ Roteiro</button>
+    <a class="tablink" href="/peru" title="Mapa de possibilidades do Peru">🇵🇪 Peru</a>
     <button class="tab" data-tab="tab-diario">📔 Diário</button>
     <button class="tab" data-tab="tab-guia">📖 Guia</button>
     <button class="tab" data-tab="tab-datas">📅 Datas</button>
