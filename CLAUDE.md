@@ -3,11 +3,15 @@
 Contexto pro Claude Code continuar este projeto de onde paramos no Cowork.
 
 ## Estado compartilhado
-Antes de responder qualquer coisa sobre a viagem, buscar no Notion a
-página "Mochilão — Estado Compartilhado" e ler inteira.
-Depois de qualquer decisão, atualizar a seção correspondente e
-adicionar uma linha no Changelog.
+Fonte da verdade da viagem: página do Notion
+"Mochilão — Estado Compartilhado"
+(3bf0a12cfde481d1ba77da564a5a2572)
+
+Antes de responder qualquer coisa sobre a viagem, ler a página inteira.
+Depois de qualquer decisão, reserva ou mudança de rota, atualizar a
+seção correspondente e adicionar linha no Changelog com data e agente.
 Nunca sobrescrever seção sem ler antes.
+Se o usuário contradisser a página, o usuário vence — e a página é corrigida.
 
 ## O que é
 
