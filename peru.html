@@ -142,6 +142,16 @@ ul.pas li:last-child{border-bottom:none;padding-bottom:0}
 .pas .pt{display:block;color:var(--tx);font-weight:600;font-size:.9rem;line-height:1.4}
 .pas .pm{display:block;color:var(--accent);font-size:.78rem;font-weight:600;margin-top:2px}
 .dica{background:#fdf6ea;border:1px solid #efdcbb;color:#7a5620;border-radius:12px;padding:11px 13px;font-size:.88rem;line-height:1.55;margin-bottom:15px}
+/* minha rota */
+.rc.mine{background:#fff5e9;border-color:#e8822e;color:#8a4e12}
+.rc.mine.on{background:#e8822e;border-color:#e8822e;color:#fff}
+.rc.mine.on small{color:#ffe4c9}
+.addbtn{width:100%;margin:4px 0 16px;padding:12px;border-radius:12px;border:1.5px solid var(--accent);background:var(--accent);color:#fff;font-family:inherit;font-size:.92rem;font-weight:700;cursor:pointer;transition:.15s var(--ease)}
+.addbtn.added{background:#fff;color:var(--accent)}
+.milist{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.mi{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 6px 5px 11px;font-size:.8rem;color:var(--tx);font-weight:600}
+.mi button{border:none;background:#e7ebf0;color:#7d8b9a;width:18px;height:18px;border-radius:50%;font-size:.68rem;cursor:pointer;line-height:1;padding:0;display:flex;align-items:center;justify-content:center}
+.clr{border:none;background:none;color:var(--accent);font-weight:700;font-size:.78rem;cursor:pointer;font-family:inherit;text-decoration:underline;padding:0}
 </style>
 </head>
 <body>
@@ -396,23 +406,52 @@ function icon(color,big){
   count();
 })();
 
-/* ---------------- rotas sugeridas ---------------- */
+/* ---------------- rotas: sugeridas + a minha ---------------- */
+const LS_MINE='peru_myroute_v1';
 let routeLine=null, activeRoute=-1;
+let myRoute=[]; try{myRoute=JSON.parse(localStorage.getItem(LS_MINE)||'[]').filter(i=>P[i]!=null);}catch(e){}
 function coordOf(name){
   const p=P.find(p=>p.n===name)||P.find(p=>p.n.includes(name)||name.includes(p.n));
   return p?p.c:null;
 }
 function inSeq(seq,pn){return seq.some(s=>pn.includes(s)||s.includes(pn));}
 function dimPin(k,dim){const m=MK[k];if(!m)return;const el=m.getElement&&m.getElement();if(el&&el.firstChild)el.firstChild.classList.toggle('dim',dim);}
+function estDays(idxs){let s=0;idxs.forEach(i=>{const m=(P[i].d||'').match(/\d+/);if(m)s+=+m[0];});return s;}
+function saveMine(){try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));}catch(e){}}
+function inMine(i){return myRoute.indexOf(i)>=0;}
+function updateMineChip(){const c=document.getElementById('mineChip');if(!c)return;const n=myRoute.length;c.querySelector('small').textContent=n?`${n} lugares · ~${estDays(myRoute)} dias`:'vazia — monte a sua';}
+function setAddBtn(i){const ab=document.getElementById('addbtn');if(!ab)return;ab.dataset.i=i;if(inMine(i)){ab.classList.add('added');ab.textContent='✓ Na minha rota — remover';}else{ab.classList.remove('added');ab.textContent='➕ Adicionar à minha rota';}}
+function toggleMineItem(i){const k=myRoute.indexOf(i);if(k>=0)myRoute.splice(k,1);else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(activeRoute==='mine')drawMine();}
 (function(){
   const host=document.getElementById('rchips');if(!host)return;
+  const mine=document.createElement('button');mine.className='rc mine';mine.id='mineChip';
+  mine.innerHTML='⭐ Minha rota<small></small>';
+  mine.addEventListener('click',toggleMine);
+  host.appendChild(mine);
   ROUTES.forEach((r,i)=>{
     const b=document.createElement('button');b.className='rc';b.dataset.i=i;
     b.innerHTML=`${r.nome}<small>${r.dias} dias · ${r.foco}</small>`;
     b.addEventListener('click',()=>toggleRoute(i));
     host.appendChild(b);
   });
+  updateMineChip();
 })();
+function toggleMine(){if(activeRoute==='mine'){clearRoute();return;}clearRoute();activeRoute='mine';drawMine();}
+function drawMine(){
+  if(routeLine&&map){try{map.removeLayer(routeLine);}catch(e){}routeLine=null;}
+  const chip=document.getElementById('mineChip');if(chip)chip.classList.add('on');
+  const det=document.getElementById('rdetail');det.className='rdetail show';
+  if(!myRoute.length){det.innerHTML='<b>Minha rota</b> — ainda vazia. Abra qualquer lugar e toque em <b>“➕ Adicionar à minha rota”</b>. A ordem em que você adicionar vira a rota.';return;}
+  const items=myRoute.map((idx,pos)=>`<span class="mi">${pos+1}. ${P[idx].n}<button data-rm="${idx}" aria-label="remover">✕</button></span>`).join('');
+  det.innerHTML=`<b>Minha rota</b> · ${myRoute.length} lugares · ~${estDays(myRoute)} dias &nbsp;<button class="clr" id="clrMine">limpar</button><div class="milist">${items}</div>`;
+  det.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>toggleMineItem(+b.dataset.rm)));
+  const cm=document.getElementById('clrMine');if(cm)cm.addEventListener('click',()=>{myRoute=[];saveMine();updateMineChip();drawMine();});
+  P.forEach((p,k)=>dimPin(k,myRoute.indexOf(k)<0));
+  if(map){const pts=myRoute.map(i=>P[i].c).filter(Boolean);
+    if(pts.length>1){routeLine=L.polyline(pts,{color:'#e8822e',weight:3.5,opacity:.95,dashArray:'2,9',lineCap:'round',lineJoin:'round'}).addTo(map);try{map.fitBounds(routeLine.getBounds(),{padding:[46,46]});}catch(e){}window.scrollTo({top:0,behavior:'smooth'});}
+    else if(pts.length===1){map.setView(pts[0],7);window.scrollTo({top:0,behavior:'smooth'});}
+  }
+}
 function clearRoute(){
   if(routeLine&&map){try{map.removeLayer(routeLine);}catch(e){}}
   routeLine=null;activeRoute=-1;
@@ -473,6 +512,7 @@ function open(i){
       ${p.work?'<span class="tag">💻 dá pra trabalhar</span>':''}
       ${p.opt?'<span class="tag">se couber</span>':''}
     </div>
+    <button class="addbtn" id="addbtn" data-i="${i}"></button>
     <p class="why">${p.why}</p>
     ${ex.context?`<p class="ctx">${ex.context}</p>`:''}
     <div class="blk"><h4>O que ver</h4><ul>${list(p.see)}</ul></div>
@@ -481,6 +521,7 @@ function open(i){
     <div class="blk"><h4>Como chegar</h4><p>🚌 ${p.go}</p></div>
     ${ex.dica?`<div class="dica">💡 ${ex.dica}</div>`:''}
     <div class="blk" id="wkblk"></div>`;
+  const ab=document.getElementById('addbtn');if(ab){ab.onclick=()=>toggleMineItem(i);setAddBtn(i);}
   sheet.classList.add('on');scrim.classList.add('on');sheet.setAttribute('aria-hidden','false');
   sheet.querySelector('.sheetscroll').scrollTop=0;
   if(map&&MK[i]){try{map.flyTo(p.c,/Machu|Humantay|Colores|Colca/.test(p.n)?8:6.6,{duration:.75});}catch(e){}}
