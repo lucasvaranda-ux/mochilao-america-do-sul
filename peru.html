@@ -484,16 +484,22 @@ const sheet=document.getElementById('sheet'),scrim=document.getElementById('scri
 const CACHE={};
 
 async function photo(titles){
+  // Action API com origin=* = CORS liberado de verdade (mesmo método das fotos do site principal).
+  // A REST API sem origin=* era bloqueada por CORS no navegador → foto sumia.
   for(const [idx,t] of titles.entries()){
     const lang=['pt','es','en'][idx]||'en';
     try{
-      const r=await fetch(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(t)}`);
+      const u=`https://${lang}.wikipedia.org/w/api.php?action=query&format=json&origin=*&redirects=1`+
+              `&prop=extracts%7Cpageimages&exintro=1&explaintext=1&exchars=340&piprop=thumbnail&pithumbsize=800`+
+              `&titles=${encodeURIComponent(t)}`;
+      const r=await fetch(u);
       if(!r.ok)continue;
       const j=await r.json();
-      const raw=(j.thumbnail&&j.thumbnail.source)||(j.originalimage&&j.originalimage.source)||'';
-      if(!raw||/\.svg/i.test(raw))continue;           // pula escudos/bandeiras SVG
-      const img=raw.replace(/\/\d+px-/,'/720px-');     // ~720px: nítido mas leve pra dados móveis
-      return{img,extract:j.extract||'',url:(j.content_urls&&j.content_urls.desktop&&j.content_urls.desktop.page)||''};
+      const pages=j.query&&j.query.pages;if(!pages)continue;
+      const pg=Object.values(pages)[0];if(!pg)continue;
+      const src=pg.thumbnail&&pg.thumbnail.source;
+      if(!src||/\.svg/i.test(src))continue;            // pula escudos/bandeiras SVG
+      return{img:src,extract:pg.extract||'',url:`https://${lang}.wikipedia.org/wiki/${encodeURIComponent(t.replace(/ /g,'_'))}`};
     }catch(e){}
   }
   return null;
