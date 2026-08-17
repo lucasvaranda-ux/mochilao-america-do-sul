@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
-  --bg:#0d1117; --bg2:#141b23; --card:#19212b; --line:#253040;
-  --tx:#eef3f8; --muted:#93a4b6; --accent:#f0a95c;
-  --nat:#3ecf7f; --cul:#f0a95c; --esp:#b18cf5; --gas:#ff7a68; --cos:#41c2e0; --ama:#2fae7a;
+  --bg:#f4f6f8; --bg2:#ffffff; --card:#ffffff; --line:#e4e9ef;
+  --tx:#1c2530; --muted:#5f7286; --accent:#cc781b;
+  --nat:#22b56a; --cul:#e08a2e; --esp:#8f68e6; --gas:#f0604c; --cos:#1f9fc4; --ama:#1f9c6e;
   --ease:cubic-bezier(.22,.9,.3,1);
 }
 *{box-sizing:border-box}
@@ -22,7 +22,7 @@ a{color:var(--accent)}
 
 /* ---------- topo enxuto ---------- */
 .top{position:relative;z-index:600;padding:calc(14px + env(safe-area-inset-top)) 0 10px;
-  background:linear-gradient(180deg,rgba(19,44,54,.9),rgba(13,17,23,0))}
+  background:linear-gradient(180deg,#e8f0f2,rgba(244,246,248,0))}
 .top .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .brand{display:flex;flex-direction:column;gap:1px;min-width:0}
 .eyebrow{color:var(--accent);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
@@ -46,18 +46,18 @@ h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:
 #map{position:absolute;inset:0;background:var(--bg2)}
 .mapnote{position:absolute;left:0;right:0;bottom:0;z-index:450;pointer-events:none;
   padding:22px 18px 10px;font-size:.76rem;color:var(--muted);
-  background:linear-gradient(180deg,rgba(13,17,23,0),rgba(13,17,23,.82))}
+  background:linear-gradient(180deg,rgba(244,246,248,0),rgba(244,246,248,.92))}
 .mapfail{display:flex;align-items:center;justify-content:center;height:100%;padding:26px;
   text-align:center;color:var(--muted);font-size:.92rem;line-height:1.6}
 .pin{width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
-  border:2px solid rgba(13,17,23,.85);box-shadow:0 3px 10px rgba(0,0,0,.5);
+  border:2px solid #fff;box-shadow:0 2px 8px rgba(20,30,45,.3);
   transition:transform .2s var(--ease)}
 .pin.big{width:32px;height:32px}
 .pin.dim{opacity:.22}
 .leaflet-marker-icon:hover .pin{transform:rotate(-45deg) scale(1.16)}
 .leaflet-container{background:var(--bg2)}
-.leaflet-control-attribution{background:rgba(13,17,23,.7)!important;color:#6f8296!important;font-size:.62rem!important}
-.leaflet-control-attribution a{color:#8fa3b8!important}
+.leaflet-control-attribution{background:rgba(255,255,255,.82)!important;color:#7c8b9c!important;font-size:.62rem!important}
+.leaflet-control-attribution a{color:#5f7286!important}
 .leaflet-bar a{background:var(--card)!important;color:var(--tx)!important;border-color:var(--line)!important}
 
 /* ---------- carrossel ---------- */
@@ -69,8 +69,8 @@ h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:
 .rail::-webkit-scrollbar{display:none}
 .card{flex:0 0 auto;width:200px;scroll-snap-align:start;background:var(--card);
   border:1px solid var(--line);border-radius:16px;padding:13px 14px;cursor:pointer;
-  transition:transform .22s var(--ease),border-color .22s var(--ease),opacity .22s var(--ease)}
-.card:hover{transform:translateY(-3px);border-color:var(--tone,var(--accent))}
+  transition:transform .22s var(--ease),border-color .22s var(--ease),opacity .22s var(--ease);box-shadow:0 1px 3px rgba(20,30,45,.05)}
+.card:hover{transform:translateY(-3px);border-color:var(--tone,var(--accent));box-shadow:0 6px 16px rgba(20,30,45,.09)}
 .card.hide{display:none}
 .card .tone{width:26px;height:3px;border-radius:2px;background:var(--tone);margin-bottom:9px}
 .card h3{margin:0;font-size:.95rem;font-weight:700;line-height:1.25}
@@ -79,13 +79,13 @@ h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:
   border:1px dashed var(--line);border-radius:999px;padding:2px 8px}
 
 /* ---------- painel deslizante ---------- */
-.scrim{position:fixed;inset:0;z-index:900;background:rgba(6,9,13,.6);backdrop-filter:blur(3px);
+.scrim{position:fixed;inset:0;z-index:900;background:rgba(22,30,40,.42);backdrop-filter:blur(3px);
   opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
 .scrim.on{opacity:1;pointer-events:auto}
 .sheet{position:fixed;z-index:950;left:0;right:0;bottom:0;max-height:88vh;
   background:var(--bg2);border-top:1px solid var(--line);border-radius:22px 22px 0 0;
   transform:translateY(101%);transition:transform .38s var(--ease);
-  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -18px 50px rgba(0,0,0,.5)}
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -18px 50px rgba(20,30,45,.16)}
 .sheet.on{transform:translateY(0)}
 .grab{flex:0 0 auto;padding:9px 0 4px;display:flex;justify-content:center}
 .grab i{width:38px;height:4px;border-radius:99px;background:var(--line);display:block}
@@ -94,8 +94,8 @@ h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:
 .hero img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s var(--ease)}
 .hero img.on{opacity:1}
 .hero .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-size:2.6rem;color:var(--muted);background:linear-gradient(135deg,#1b2530,#131a22)}
-.hero .fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,27,35,0) 45%,var(--bg2))}
+  font-size:2.6rem;color:#9aa8b6;background:linear-gradient(135deg,#eef1f5,#dfe5eb)}
+.hero .fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,17,23,0) 42%,rgba(12,17,23,.72))}
 .hero .cap{position:absolute;left:18px;right:18px;bottom:12px}
 .hero h2{margin:0;font-size:1.34rem;font-weight:700;letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.6)}
 .hero .sub{color:var(--accent);font-size:.8rem;font-weight:700;margin-top:3px}
@@ -264,6 +264,13 @@ const P=[
   eat:["Ceviche do norte","Cabrito a la norteña"],
   go:"De Lima: ônibus ~8–9h ou voo ~1h. Também ao norte."},
 
+ {n:"Máncora",c:[-4.103,-81.05],t:"cos",d:"3–4 dias",work:0,opt:1,
+  wiki:["Máncora","Máncora","Máncora"],
+  why:"A praia mais famosa do Peru, no extremo norte quente. Surf o ano todo, sol quase garantido, vida noturna na areia e tartarugas para nadar ali perto. Fica longe do circuito sul — é um desvio só se bater a vontade de praia.",
+  see:["Surf pra todos os níveis, o ano inteiro","Kitesurf na vizinha Vichayito","Nadar com tartarugas em Los Órganos (El Ñuro)","Pôr do sol e festa pé na areia"],
+  eat:["Ceviche e tiradito do norte","Peixe grelhado na praia","Barzinhos à beira-mar"],
+  go:"Longe: de Lima, voo a Piura/Tumbes + van ~2h, ou ônibus ~18h. Fora do circuito sul — vale como beach trip à parte."},
+
  {n:"Tambopata · Puerto Maldonado",c:[-12.60,-69.19],t:"ama",d:"3–4 dias",work:0,opt:1,
   wiki:["Reserva Nacional Tambopata","Reserva Nacional Tambopata","Tambopata National Reserve"],
   why:"A entrada mais fácil na Amazônia peruana, saindo de Cusco. Lodges à beira do rio, macacos no café da manhã e paredões de barro onde centenas de araras se juntam ao amanhecer.",
@@ -325,7 +332,7 @@ function icon(color,big){
     const PERU=L.latLngBounds([[-18.9,-82.5],[0.4,-67.8]]);
     map=L.map('map',{zoomControl:true,scrollWheelZoom:true,maxBounds:PERU,maxBoundsViscosity:.85,minZoom:4});
     map.fitBounds([[-18.4,-81.4],[-0.1,-68.6]],{padding:[16,16]});
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
       {attribution:'© OpenStreetMap © CARTO',maxZoom:17}).addTo(map);
     P.forEach((p,i)=>{
       const big=/Machu|Cusco|Lima/.test(p.n);
