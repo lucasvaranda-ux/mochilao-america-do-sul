@@ -3,221 +3,432 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f1419">
-<title>Peru · 30 dias — Mapa de possibilidades</title>
+<meta name="theme-color" content="#0d1117">
+<title>Peru · Mapa de possibilidades</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
-  --bg:#0f1419; --bg2:#151c24; --card:#1a222c; --line:#26313d;
-  --tx:#e9eef3; --muted:#9fb0c0; --accent:#e8a04e;
-  --nat:#35c26a; --cul:#e8a04e; --esp:#a67ef0; --gas:#ff6b5a; --cos:#37b6d3; --ama:#2f9e6f; --work:#5b8def;
+  --bg:#0d1117; --bg2:#141b23; --card:#19212b; --line:#253040;
+  --tx:#eef3f8; --muted:#93a4b6; --accent:#f0a95c;
+  --nat:#3ecf7f; --cul:#f0a95c; --esp:#b18cf5; --gas:#ff7a68; --cos:#41c2e0; --ama:#2fae7a;
+  --ease:cubic-bezier(.22,.9,.3,1);
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--tx);
+  font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
 a{color:var(--accent)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
-header{padding:calc(20px + env(safe-area-inset-top)) 0 14px;background:linear-gradient(180deg,#12303a,#0f1419)}
-.eyebrow{color:var(--accent);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
-h1{margin:.2em 0 .1em;font-size:1.7rem;line-height:1.15}
-h1 span{color:var(--accent)}
-.sub{color:var(--muted);font-size:.95rem;max-width:640px}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.badge{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.82rem}
-.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
-.lg{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--muted)}
-.dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
-#map{height:56vh;min-height:340px;width:100%;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);margin-top:12px}
-.maptip{color:var(--muted);font-size:.8rem;padding:10px 0 0}
-h2.region{font-size:1.15rem;margin:26px 0 4px;display:flex;align-items:center;gap:8px}
-.region small{color:var(--muted);font-weight:400;font-size:.82rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
-.c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:transform .12s,border-color .12s}
-.c:hover{transform:translateY(-2px);border-color:var(--accent)}
-.c.opt{border-style:dashed;opacity:.94}
-.c h3{margin:0 0 2px;font-size:1.05rem}
-.c .days{color:var(--accent);font-size:.8rem;font-weight:700}
-.c .why{color:var(--muted);font-size:.9rem;margin:8px 0}
-.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
-.chip{font-size:.72rem;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--bg2)}
-.reach{font-size:.8rem;color:var(--muted);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
-.work{display:inline-block;margin-top:6px;font-size:.72rem;color:var(--work);border:1px solid var(--work);border-radius:999px;padding:2px 8px}
-.note{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:12px 14px;margin:18px 0;font-size:.9rem;color:var(--muted)}
-footer{color:var(--muted);font-size:.82rem;padding:24px 0 calc(30px + env(safe-area-inset-bottom));text-align:center}
-.leaflet-popup-content-wrapper{background:var(--card);color:var(--tx);border:1px solid var(--line)}
-.leaflet-popup-tip{background:var(--card)}
-.leaflet-popup-content{margin:10px 12px;font-size:.9rem}
-.leaflet-popup-content b{color:var(--accent)}
-.pin{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #0d1116;box-shadow:0 2px 6px rgba(0,0,0,.5)}
-.pin span{transform:rotate(45deg);font-size:15px;line-height:1}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+
+/* ---------- topo enxuto ---------- */
+.top{position:relative;z-index:600;padding:calc(14px + env(safe-area-inset-top)) 0 10px;
+  background:linear-gradient(180deg,rgba(19,44,54,.9),rgba(13,17,23,0))}
+.top .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;gap:1px;min-width:0}
+.eyebrow{color:var(--accent);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+.back{margin-left:auto;color:var(--muted);text-decoration:none;font-size:.85rem;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;transition:.18s var(--ease);white-space:nowrap}
+.back:hover{color:var(--tx);border-color:var(--accent)}
+
+/* ---------- filtros ---------- */
+.filters{display:flex;gap:7px;overflow-x:auto;padding:10px 18px 12px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.f{flex:0 0 auto;border:1px solid var(--line);background:var(--bg2);color:var(--muted);
+  border-radius:999px;padding:7px 13px;font-size:.82rem;font-weight:600;cursor:pointer;
+  transition:.2s var(--ease);white-space:nowrap;font-family:inherit}
+.f:hover{color:var(--tx)}
+.f.on{color:#0d1117;background:var(--tone,var(--accent));border-color:transparent}
+
+/* ---------- mapa grande ---------- */
+.mapbox{position:relative;height:min(68vh,720px);min-height:400px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#map{position:absolute;inset:0;background:var(--bg2)}
+.mapnote{position:absolute;left:0;right:0;bottom:0;z-index:450;pointer-events:none;
+  padding:22px 18px 10px;font-size:.76rem;color:var(--muted);
+  background:linear-gradient(180deg,rgba(13,17,23,0),rgba(13,17,23,.82))}
+.mapfail{display:flex;align-items:center;justify-content:center;height:100%;padding:26px;
+  text-align:center;color:var(--muted);font-size:.92rem;line-height:1.6}
+.pin{width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+  border:2px solid rgba(13,17,23,.85);box-shadow:0 3px 10px rgba(0,0,0,.5);
+  transition:transform .2s var(--ease)}
+.pin.big{width:32px;height:32px}
+.pin.dim{opacity:.22}
+.leaflet-marker-icon:hover .pin{transform:rotate(-45deg) scale(1.16)}
+.leaflet-container{background:var(--bg2)}
+.leaflet-control-attribution{background:rgba(13,17,23,.7)!important;color:#6f8296!important;font-size:.62rem!important}
+.leaflet-control-attribution a{color:#8fa3b8!important}
+.leaflet-bar a{background:var(--card)!important;color:var(--tx)!important;border-color:var(--line)!important}
+
+/* ---------- carrossel ---------- */
+.railhead{display:flex;align-items:baseline;gap:9px;padding:20px 18px 0;max-width:1180px;margin:0 auto}
+.railhead h2{margin:0;font-size:1rem;font-weight:700}
+.railhead span{color:var(--muted);font-size:.8rem}
+.rail{display:flex;gap:11px;overflow-x:auto;padding:12px 18px 20px;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:1180px;margin:0 auto}
+.rail::-webkit-scrollbar{display:none}
+.card{flex:0 0 auto;width:200px;scroll-snap-align:start;background:var(--card);
+  border:1px solid var(--line);border-radius:16px;padding:13px 14px;cursor:pointer;
+  transition:transform .22s var(--ease),border-color .22s var(--ease),opacity .22s var(--ease)}
+.card:hover{transform:translateY(-3px);border-color:var(--tone,var(--accent))}
+.card.hide{display:none}
+.card .tone{width:26px;height:3px;border-radius:2px;background:var(--tone);margin-bottom:9px}
+.card h3{margin:0;font-size:.95rem;font-weight:700;line-height:1.25}
+.card .meta{color:var(--muted);font-size:.76rem;margin-top:5px}
+.card .opt{display:inline-block;margin-top:8px;font-size:.66rem;color:var(--muted);
+  border:1px dashed var(--line);border-radius:999px;padding:2px 8px}
+
+/* ---------- painel deslizante ---------- */
+.scrim{position:fixed;inset:0;z-index:900;background:rgba(6,9,13,.6);backdrop-filter:blur(3px);
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;z-index:950;left:0;right:0;bottom:0;max-height:88vh;
+  background:var(--bg2);border-top:1px solid var(--line);border-radius:22px 22px 0 0;
+  transform:translateY(101%);transition:transform .38s var(--ease);
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -18px 50px rgba(0,0,0,.5)}
+.sheet.on{transform:translateY(0)}
+.grab{flex:0 0 auto;padding:9px 0 4px;display:flex;justify-content:center}
+.grab i{width:38px;height:4px;border-radius:99px;background:var(--line);display:block}
+.sheetscroll{overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+.hero{position:relative;height:190px;background:var(--card);overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s var(--ease)}
+.hero img.on{opacity:1}
+.hero .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:2.6rem;color:var(--muted);background:linear-gradient(135deg,#1b2530,#131a22)}
+.hero .fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,27,35,0) 45%,var(--bg2))}
+.hero .cap{position:absolute;left:18px;right:18px;bottom:12px}
+.hero h2{margin:0;font-size:1.34rem;font-weight:700;letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.hero .sub{color:var(--accent);font-size:.8rem;font-weight:700;margin-top:3px}
+.body{padding:14px 18px 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:.72rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--card)}
+.tag.k{color:#0d1117;border-color:transparent;font-weight:700}
+.why{color:var(--tx);font-size:.94rem;line-height:1.62;margin:0 0 15px}
+.blk{margin-bottom:15px}
+.blk h4{margin:0 0 7px;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.blk ul{margin:0;padding-left:17px}
+.blk li{font-size:.9rem;line-height:1.62;margin-bottom:4px}
+.blk p{margin:0;font-size:.9rem;line-height:1.62;color:var(--tx)}
+.wk{display:inline-block;margin-top:2px;font-size:.75rem;color:var(--muted)}
+@media(min-width:760px){
+  .sheet{left:auto;right:0;top:0;bottom:0;width:430px;max-height:none;border-radius:0;
+    border-left:1px solid var(--line);border-top:none;transform:translateX(101%)}
+  .sheet.on{transform:translateX(0)}
+  .grab{display:none}
+  .hero{height:225px}
+  .card{width:215px}
+}
 </style>
 </head>
 <body>
-<header>
+
+<div class="top">
   <div class="wrap">
-    <div class="eyebrow">🇵🇪 Peru · ~30 dias · mapa de possibilidades</div>
-    <h1>Onde ir no <span>Peru</span></h1>
-    <p class="sub">Você está em Lima. Sem rota fixa: cada lugar é um pin por tema, com quantos dias vale e como chegar. Monte a viagem na estrada, no seu ritmo — e volte pro Brasil por Lima no fim.</p>
-    <div class="facts">
-      <div class="badge">📍 Base agora: Lima</div>
-      <div class="badge">🗓️ ~30 dias</div>
-      <div class="badge">⚖️ Ritmo equilibrado</div>
-      <div class="badge">💻 Bases com wifi marcadas</div>
-      <div class="badge">🏠 Volta ao BR por Lima</div>
+    <div class="brand">
+      <div class="eyebrow">🇵🇪 mapa de possibilidades</div>
+      <h1>Onde ir no Peru</h1>
     </div>
-    <div class="legend" id="legend"></div>
+    <a class="back" href="/">← Roteiro</a>
   </div>
-</header>
-
-<div id="map"></div>
-<div class="wrap"><div class="maptip" id="maptip">🗺️ Arraste, dê zoom e toque nos pins. Toque num card abaixo pra o mapa voar até o lugar. 👇</div></div>
-
-<div class="wrap" id="regions"></div>
-
-<div class="wrap">
-  <div class="note" id="flow"></div>
-  <footer>Feito pra Lucas · Peru é só uma parte — buen viaje. 🌎<br>Volte aqui e edite: é só me pedir mudanças.</footer>
 </div>
+
+<div class="filters" id="filters"></div>
+
+<div class="mapbox">
+  <div id="map"></div>
+  <div class="mapnote" id="mapnote">Toque num pin para ver fotos e detalhes</div>
+</div>
+
+<div class="railhead"><h2 id="railtitle">Todos os lugares</h2><span id="railcount"></span></div>
+<div class="rail" id="rail"></div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" aria-hidden="true">
+  <div class="grab"><i></i></div>
+  <div class="sheetscroll">
+    <div class="hero" id="hero"></div>
+    <div class="body" id="sbody"></div>
+  </div>
+</aside>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// ---------- TEMAS ----------
-const THEMES={
-  nat:{label:"Natureza",emoji:"🌿",color:"var(--nat)",hex:"#35c26a"},
-  cul:{label:"Cultura · História",emoji:"🏛️",color:"var(--cul)",hex:"#e8a04e"},
-  esp:{label:"Espiritualidade",emoji:"🙏",color:"var(--esp)",hex:"#a67ef0"},
-  gas:{label:"Gastronomia",emoji:"🍽️",color:"var(--gas)",hex:"#ff6b5a"},
-  cos:{label:"Costa · Praia",emoji:"🏖️",color:"var(--cos)",hex:"#37b6d3"},
-  ama:{label:"Amazônia (opcional)",emoji:"🌳",color:"var(--ama)",hex:"#2f9e6f"}
+/* ---------------- temas ---------------- */
+const T={
+  nat:{l:"Natureza",e:"🌿",c:"#3ecf7f"},
+  cul:{l:"Cultura",e:"🏛️",c:"#f0a95c"},
+  esp:{l:"Sagrado",e:"🙏",c:"#b18cf5"},
+  gas:{l:"Comer",e:"🍽️",c:"#ff7a68"},
+  cos:{l:"Costa",e:"🏖️",c:"#41c2e0"},
+  ama:{l:"Selva",e:"🌳",c:"#2fae7a"}
 };
 
-// ---------- DESTINOS ----------
-// theme = tema principal (cor do pin); tags = emojis extras; work = base de trabalho; opt = opcional/"se couber"
+/* ---------------- lugares ----------------
+   wiki = títulos tentados em pt → es → en (foto + resumo) */
 const P=[
- // COSTA SUL
- {r:"Costa Sul",name:"Lima",coord:[-12.046,-77.043],theme:"gas",tags:["🍽️","🏛️","🏖️"],dias:"2–4",work:true,base:true,
-  why:"Capital gastronômica do mundo (Central, Maido). Malecón de Miraflores, boêmia de Barranco. Você já está aqui — bom pra começar e pra fechar antes de voar pro BR.",
-  reach:"Você está aqui. Ponto de partida e de retorno."},
- {r:"Costa Sul",name:"Paracas · Islas Ballestas",coord:[-13.83,-76.25],theme:"nat",tags:["🌿","🏖️"],dias:"1–2",
-  why:"‘Galápagos dos pobres’: lobos-marinhos, pinguins e aves de barco. Reserva de Paracas com falésias e deserto no mar.",
-  reach:"De Lima: ônibus (Cruz del Sur / Peru Hop) ~4h."},
- {r:"Costa Sul",name:"Huacachina",coord:[-14.087,-75.763],theme:"nat",tags:["🌿"],dias:"1",
-  why:"Oásis de cinema cercado por dunas gigantes. Buggy + sandboard no pôr do sol. Vinícolas e pisco em Ica ao lado.",
-  reach:"~1h de Paracas/Ica de táxi ou ônibus."},
- {r:"Costa Sul",name:"Nazca",coord:[-14.83,-74.94],theme:"cul",tags:["🏛️"],dias:"1",opt:true,
-  why:"As enigmáticas Linhas de Nazca — sobrevoo de aeroplano sobre os geoglifos. Mais um desvio; entra se a curiosidade falar mais alto.",
-  reach:"~2h30 de ônibus ao sul de Huacachina."},
- // ANDES SUL
- {r:"Andes Sul",name:"Arequipa",coord:[-16.409,-71.537],theme:"cul",tags:["🏛️","🍽️"],dias:"2–3",work:true,base:true,
-  why:"A ‘Cidade Branca’ de sillar vulcânico, cercada de vulcões. Monasterio de Santa Catalina, gastronomia arequipenha, ótimas cafeterias pra trabalhar.",
-  reach:"De Lima: voo ~1h30, ou ônibus noturno ~15h."},
- {r:"Andes Sul",name:"Cañón del Colca",coord:[-15.61,-71.86],theme:"nat",tags:["🌿","🙏"],dias:"2",
-  why:"2× mais fundo que o Grand Canyon. Cruz del Cóndor: condores planando ao amanhecer. Trek de 2 dias, termas e povoados.",
-  reach:"De Arequipa: ~4h; tours de 1–2 dias saem de lá."},
- {r:"Andes Sul",name:"Cusco",coord:[-13.53,-71.97],theme:"cul",tags:["🏛️","🙏"],dias:"3–5",work:true,base:true,
-  why:"O umbigo do mundo inca — coração cultural e espiritual da viagem. Base perfeita pra explorar tudo à volta e pra trabalhar (San Blas tem cafés ótimos). Suba devagar: 3.400m.",
-  reach:"De Arequipa: ônibus noturno ~10h. De Lima: voo ~1h20."},
- {r:"Andes Sul",name:"Valle Sagrado (Pisac · Ollantaytambo · Maras/Moray)",coord:[-13.32,-72.08],theme:"esp",tags:["🙏","🏛️","🌿"],dias:"2–3",
-  why:"Ruínas incas, mercados, salinas de Maras e os círculos de Moray. Mais baixo e ameno que Cusco — muita gente aclimata aqui. Energia sagrada por todo lado.",
-  reach:"De Cusco: colectivos frequentes ~1h; dá pra dormir por lá."},
- {r:"Andes Sul",name:"Machu Picchu",coord:[-13.163,-72.545],theme:"esp",tags:["🙏","🏛️"],dias:"1–2",
-  why:"O imperdível. Reserve o ingresso (e o trem/Salkantay) com antecedência — cotas esgotam. Amanhecer na cidadela é inesquecível.",
-  reach:"De Ollantaytambo: trem a Aguas Calientes (~1h30). Ou trek Salkantay 4–5 dias."},
- {r:"Andes Sul",name:"Laguna Humantay",coord:[-13.34,-72.55],theme:"nat",tags:["🌿"],dias:"1",
-  why:"Lagoa turquesa glacial a 4.200m, sob o nevado Salkantay. Bate-volta puxado mas curto — recompensa gigante.",
-  reach:"Bate-volta de Cusco (dia inteiro, saída de madrugada)."},
- {r:"Andes Sul",name:"Montaña 7 Colores (Vinicunca / Palccoyo)",coord:[-13.87,-71.30],theme:"nat",tags:["🌿"],dias:"1",
-  why:"A montanha arco-íris (5.000m) ou a alternativa Palccoyo, mais calma e menos íngreme. Paisagem surreal do altiplano.",
-  reach:"Bate-volta de Cusco (dia inteiro). Aclimatize antes."},
- {r:"Andes Sul",name:"Puno · Lago Titicaca",coord:[-15.84,-70.02],theme:"esp",tags:["🙏","🏛️"],dias:"2–3",opt:true,
-  why:"O lago navegável mais alto do mundo e berço do mito inca. Ilhas flutuantes dos Uros e Taquile, com homestay. Fica no extremo sul — bom se quiser esticar; senão, volte de Cusco pra Lima.",
-  reach:"De Cusco: ônibus turístico ~7h (com paradas) ou direto."},
- // NORTE (opcional)
- {r:"Norte (se sobrar tempo)",name:"Huaraz · Cordillera Blanca",coord:[-9.53,-77.53],theme:"nat",tags:["🌿"],dias:"3–5",opt:true,
-  why:"O paraíso do trekking andino: Laguna 69, Pastoruri, trek Santa Cruz. Se natureza é seu forte, é o destino mais espetacular do país — mas fica ao norte de Lima (desvio grande).",
-  reach:"De Lima: ônibus noturno ~8h. Melhor como bloco à parte."},
- {r:"Norte (se sobrar tempo)",name:"Trujillo · Chan Chan · Huanchaco",coord:[-8.11,-79.03],theme:"cul",tags:["🏛️","🏖️"],dias:"2",opt:true,
-  why:"Cidade de barro Chan Chan (maior das Américas), Huacas del Sol y de la Luna e a vila de surf de Huanchaco com os caballitos de totora.",
-  reach:"De Lima: ônibus ~8–9h ou voo ~1h."},
- // AMAZÔNIA (opcional)
- {r:"Amazônia (opcional)",name:"Tambopata · Puerto Maldonado",coord:[-12.60,-69.19],theme:"ama",tags:["🌳","🌿"],dias:"3–4",opt:true,
-  why:"A forma mais fácil de entrar na Amazônia peruana: lodges na selva saindo de Cusco. Macacos, jacarés, collpas de araras. Combina demais com o teu lado natureza.",
-  reach:"De Cusco: voo ~45min a Puerto Maldonado + barco ao lodge."},
- {r:"Amazônia (opcional)",name:"Iquitos · Amazônia profunda",coord:[-3.75,-73.25],theme:"ama",tags:["🌳"],dias:"4+",opt:true,
-  why:"A maior cidade do mundo sem acesso por estrada — só avião ou barco. Cruzeiros e reservas (Pacaya-Samiria). Experiência intensa, mas puxa pro extremo norte.",
-  reach:"Só de avião (de Lima ~2h). Longe do circuito sul."}
+ {n:"Lima",c:[-12.046,-77.043],t:"gas",d:"2–4 dias",work:1,opt:0,
+  wiki:["Lima","Lima","Lima"],
+  why:"Capital gastronômica do mundo e sua base agora. Falésias sobre o Pacífico, boêmia em Barranco e o melhor ceviche da vida. É daqui que você volta pro Brasil.",
+  see:["Malecón de Miraflores no pôr do sol","Barranco: murais e a Puente de los Suspiros","Huaca Pucllana — pirâmide pré-inca no meio da cidade","Circuito Mágico del Agua à noite"],
+  eat:["<b>Central</b> e <b>Maido</b> — topo do ranking mundial (reserve com meses)","La Mar — cebicheria do Gastón","Mercado de Surquillo: cebiche barato e ótimo","Anticuchos de rua em Barranco"],
+  go:"Você está aqui. Ponto de partida e de retorno."},
+
+ {n:"Paracas · Islas Ballestas",c:[-13.83,-76.25],t:"nat",d:"1–2 dias",work:0,opt:0,
+  wiki:["Ilhas Ballestas","Islas Ballestas","Ballestas Islands"],
+  why:"As ‘Galápagos dos pobres’: passeio de barco entre lobos-marinhos, pinguins de Humboldt e paredões cobertos de aves. Em terra, a reserva junta deserto vermelho e oceano.",
+  see:["Passeio de barco às Ballestas (saída ~8h)","O Candelabro — geoglifo gigante na encosta","Reserva de Paracas: Playa Roja e falésias","Pôr do sol na baía"],
+  eat:["Peixe e frutos do mar no malecón","Conchas a la parmesana"],
+  go:"De Lima: ônibus (Cruz del Sur / Peru Hop) ~4h pela Panamericana."},
+
+ {n:"Huacachina",c:[-14.087,-75.763],t:"nat",d:"1 dia",work:0,opt:0,
+  wiki:["Huacachina","Huacachina","Huacachina"],
+  why:"Um oásis de verdade — palmeiras e uma lagoa cercada por dunas gigantes, no meio do deserto. Buggy e sandboard na hora dourada é o programa.",
+  see:["Buggy + sandboard no fim da tarde","Subir a duna pro pôr do sol","Vinícolas e destilarias de pisco em Ica"],
+  eat:["Barzinhos do oásis","Pisco sour na origem"],
+  go:"~1h de Paracas até Ica; do centro de Ica, táxi ~10min. Ônibus sai de Ica, não do oásis."},
+
+ {n:"Linhas de Nazca",c:[-14.739,-75.13],t:"cul",d:"1 dia",work:0,opt:1,
+  wiki:["Linhas de Nazca","Líneas de Nazca","Nazca Lines"],
+  why:"Geoglifos gigantes de 2 mil anos que só fazem sentido do alto: o beija-flor, o macaco, o astronauta. Sobrevoo de ~30min num teco-teco.",
+  see:["Sobrevoo dos geoglifos (manhã, menos vento)","Mirador na Panamericana (barato)","Cemitério de Chauchilla","Aquedutos de Cantalloc"],
+  eat:["Almoços simples no centro de Nazca"],
+  go:"~2h30 ao sul de Ica/Huacachina de ônibus. Enjoa fácil — vá leve no café da manhã."},
+
+ {n:"Arequipa",c:[-16.409,-71.537],t:"cul",d:"2–3 dias",work:1,opt:0,
+  wiki:["Arequipa","Arequipa","Arequipa"],
+  why:"A ‘Cidade Branca’, erguida em sillar vulcânico e emoldurada por três vulcões. Primeiro degrau de altitude (2.335m), gastronomia própria e cafés ótimos pra trabalhar.",
+  see:["<b>Monasterio de Santa Catalina</b> — uma cidade dentro da cidade","Múmia Juanita no Museo Santuarios Andinos","Plaza de Armas e o mirante de Yanahuara","Bairro San Lázaro ao entardecer"],
+  eat:["Picanterías tradicionais (rocoto relleno, adobo)","Chupe de camarones","Queso helado no mercado San Camilo"],
+  go:"De Lima: ônibus noturno ~15h (Cruz del Sur / Oltursa) ou voo ~1h30."},
+
+ {n:"Cañón del Colca",c:[-15.61,-71.86],t:"nat",d:"2 dias",work:0,opt:0,
+  wiki:["Cânion do Colca","Cañón del Colca","Colca Canyon"],
+  why:"Duas vezes mais fundo que o Grand Canyon. Ao amanhecer, os condores andinos sobem nas térmicas quase ao alcance da mão — um dos momentos mais bonitos do Peru.",
+  see:["<b>Cruz del Cóndor</b> ao amanhecer","Trek de 2 dias até o oásis de Sangalle","Termas de La Calera em Chivay","Vilarejos de Yanque e Maca"],
+  eat:["Truta andina","Chicharrón de alpaca"],
+  go:"De Arequipa: ~4h. Tours de 1 ou 2 dias saem de lá; sobe a 3.400m no caminho."},
+
+ {n:"Cusco",c:[-13.53,-71.97],t:"cul",d:"3–5 dias",work:1,opt:0,
+  wiki:["Cusco","Cusco","Cusco"],
+  why:"O umbigo do mundo inca — muros ciclópicos que sustentam igrejas coloniais. Coração cultural e espiritual da viagem, e a melhor base do país: tudo interessante está a um bate-volta.",
+  see:["<b>Qorikancha</b> — o templo do sol sob o convento","Sacsayhuamán e suas pedras impossíveis","San Blas: ladeiras, ateliês e mirantes","Mercado de San Pedro"],
+  eat:["Lomo saltado e cuy pros corajosos","Green Point (vegano, San Blas)","Chicharrón no San Pedro","Cafés de especialidade pra trabalhar"],
+  go:"De Arequipa: ônibus noturno ~10h. De Puno: Inka Express ~7h com paradas. Suba devagar: 3.400m."},
+
+ {n:"Valle Sagrado",c:[-13.32,-72.08],t:"esp",d:"2–3 dias",work:0,opt:0,
+  wiki:["Vale Sagrado dos Incas","Valle Sagrado de los Incas","Sacred Valley"],
+  why:"O vale do Urubamba, mais baixo e ameno que Cusco — muita gente aclimata aqui. Ruínas, mercados e as salinas escalonadas: paisagem que parece desenhada.",
+  see:["<b>Salineras de Maras</b> — milhares de poças de sal na encosta","<b>Moray</b> — círculos concêntricos incas","Pisac: ruínas no alto + mercado","Ollantaytambo — vila inca viva e porta do trem"],
+  eat:["Truta do rio","Chicha morada","Mercados de Pisac e Urubamba"],
+  go:"De Cusco: colectivos frequentes ~1h. Vale dormir por lá pra render mais."},
+
+ {n:"Machu Picchu",c:[-13.163,-72.545],t:"esp",d:"1–2 dias",work:0,opt:0,
+  wiki:["Machu Picchu","Machu Picchu","Machu Picchu"],
+  why:"O imperdível. A cidadela suspensa entre picos e neblina que resume a viagem inteira. Chegar ao amanhecer, antes dos ônibus, é outro nível.",
+  see:["A cidadela e o cartão-postal do Huayna Picchu","Subir o <b>Huayna Picchu</b> ou a Montaña (ingresso à parte)","Templo do Sol e Intihuatana","Puente Inca"],
+  eat:["Leve água e lanche — dentro não se come","Aguas Calientes tem o básico"],
+  go:"⚠️ Ingresso por circuito, cotas esgotam — compre em tuboleto.cultura.pe com antecedência. De Ollantaytambo: trem ~1h30 + ônibus. Ou trek Salkantay 4–5 dias."},
+
+ {n:"Laguna Humantay",c:[-13.34,-72.55],t:"nat",d:"1 dia",work:0,opt:0,
+  wiki:["Laguna Humantay","Laguna Humantay","Humantay Lake"],
+  why:"Uma lagoa turquesa impossível a 4.200m, com a geleira do Salkantay caindo dentro dela. Subida curta e puxada, recompensa desproporcional.",
+  see:["A caminhada final até a lagoa (~1h30)","Oferendas de pedra dos peregrinos","O nevado Salkantay ao fundo"],
+  eat:["Café da manhã e almoço saem no tour"],
+  go:"Bate-volta de Cusco: saída ~4h da manhã, volta à noite. Aclimatize antes."},
+
+ {n:"Montaña 7 Colores",c:[-13.87,-71.30],t:"nat",d:"1 dia",work:0,opt:0,
+  wiki:["Vinicunca","Vinicunca","Rainbow Mountain"],
+  why:"Faixas minerais que pintam a montanha de vermelho, ocre e turquesa, a 5.000m. Alternativa mais calma e menos íngreme: Palccoyo.",
+  see:["O mirante principal de Vinicunca","<b>Valle Rojo</b> ao lado (vale o extra)","Palccoyo — versão tranquila, 3 montanhas coloridas","Rebanhos de alpacas no caminho"],
+  eat:["Incluído no tour; leve coca e água"],
+  go:"Bate-volta de Cusco, dia inteiro. 5.000m: só depois de bem aclimatado."},
+
+ {n:"Puno · Lago Titicaca",c:[-15.84,-70.02],t:"esp",d:"2–3 dias",work:0,opt:0,
+  wiki:["Puno","Lago Titicaca","Lake Titicaca"],
+  why:"O lago navegável mais alto do mundo (3.800m) e, no mito, o berço do primeiro inca. Ilhas de junco que flutuam de verdade e comunidades que vivem nelas.",
+  see:["<b>Ilhas flutuantes dos Uros</b> — feitas de totora","Taquile: têxteis Patrimônio da Humanidade","Amantaní com homestay (dormir na ilha)","Chullpas de Sillustani ao pôr do sol"],
+  eat:["Trucha do lago","Quinoa em tudo","Mercado central de Puno"],
+  go:"De Cusco: Inka Express ~7h (com paradas) ou direto. Daqui saem ônibus pra Bolívia."},
+
+ {n:"Huaraz · Cordillera Blanca",c:[-9.53,-77.53],t:"nat",d:"3–5 dias",work:0,opt:1,
+  wiki:["Huaraz","Huaraz","Huaraz"],
+  why:"O paraíso do trekking andino: picos nevados de 6.000m e lagoas de um azul irreal. Se natureza é o que te move, é o lugar mais espetacular do país — mas fica ao norte de Lima.",
+  see:["<b>Laguna 69</b> — bate-volta clássico a 4.600m","Laguna Parón, a mais azul","Trek Santa Cruz (4 dias)","Ruínas de Chavín de Huántar"],
+  eat:["Cafés de montanha no centro","Trucha e pachamanca"],
+  go:"De Lima: ônibus noturno ~8h. É um bloco à parte — não fica no caminho do sul."},
+
+ {n:"Trujillo · Chan Chan",c:[-8.11,-79.03],t:"cul",d:"2 dias",work:0,opt:1,
+  wiki:["Chan Chan","Chan Chan","Chan Chan"],
+  why:"A maior cidade de barro das Américas, erguida pelos Chimú antes dos incas. Ao lado, Huanchaco: vila de surf onde ainda se pesca em caballitos de totora.",
+  see:["<b>Chan Chan</b> — cidadela de adobe","Huacas del Sol y de la Luna, com murais coloridos","Huanchaco e os caballitos de totora","Centro colonial colorido de Trujillo"],
+  eat:["Ceviche do norte","Cabrito a la norteña"],
+  go:"De Lima: ônibus ~8–9h ou voo ~1h. Também ao norte."},
+
+ {n:"Tambopata · Puerto Maldonado",c:[-12.60,-69.19],t:"ama",d:"3–4 dias",work:0,opt:1,
+  wiki:["Reserva Nacional Tambopata","Reserva Nacional Tambopata","Tambopata National Reserve"],
+  why:"A entrada mais fácil na Amazônia peruana, saindo de Cusco. Lodges à beira do rio, macacos no café da manhã e paredões de barro onde centenas de araras se juntam ao amanhecer.",
+  see:["<b>Collpa de guacamayos</b> — araras ao nascer do sol","Lago Sandoval: jacarés e lontras gigantes","Caminhada noturna na selva","Canopy e observação de aves"],
+  eat:["Pensão completa nos lodges","Juane e peixe amazônico"],
+  go:"De Cusco: voo ~45min a Puerto Maldonado + barco ao lodge. Ônibus leva ~10h."},
+
+ {n:"Iquitos",c:[-3.75,-73.25],t:"ama",d:"4+ dias",work:0,opt:1,
+  wiki:["Iquitos","Iquitos","Iquitos"],
+  why:"A maior cidade do mundo sem acesso por estrada — só de avião ou barco. Amazônia profunda, mercado de Belén sobre palafitas e cruzeiros rio adentro.",
+  see:["Reserva Pacaya-Samiria (cruzeiros)","Mercado de Belén e a ‘Veneza’ de palafitas","Casa de Fierro, de Eiffel","Encontro das águas do Amazonas"],
+  eat:["Juane, tacacho con cecina","Frutas amazônicas no mercado"],
+  go:"Só de avião: de Lima ~2h. Bem longe do circuito sul — é outra viagem."}
 ];
 
-// ---------- LEGENDA ----------
+/* ---------------- filtros ---------------- */
+let active="all";
 (function(){
-  const el=document.getElementById('legend');
-  Object.values(THEMES).forEach(t=>{
-    const s=document.createElement('span');s.className='lg';
-    s.innerHTML=`<span class="dot" style="background:${t.hex}"></span>${t.emoji} ${t.label}`;
-    el.appendChild(s);
-  });
-  const w=document.createElement('span');w.className='lg';
-  w.innerHTML=`<span class="dot" style="background:#5b8def"></span>💻 Base de trabalho`;
-  el.appendChild(w);
+  const host=document.getElementById('filters');
+  const mk=(key,label,color)=>{
+    const b=document.createElement('button');
+    b.className='f'+(key==='all'?' on':'');b.textContent=label;b.dataset.k=key;
+    if(color)b.style.setProperty('--tone',color);
+    b.addEventListener('click',()=>setFilter(key));
+    host.appendChild(b);return b;
+  };
+  mk('all','Tudo','#f0a95c');
+  Object.entries(T).forEach(([k,v])=>mk(k,v.e+' '+v.l,v.c));
+  mk('work','💻 Dá pra trabalhar','#5b8def');
 })();
-
-// ---------- MAPA (à prova de falha) ----------
-let map=null; const markers={};
-function pinIcon(hex){
-  return L.divIcon({className:'',html:`<div class="pin" style="background:${hex}"><span></span></div>`,iconSize:[30,30],iconAnchor:[15,28],popupAnchor:[0,-26]});
+function match(p){
+  if(active==='all')return true;
+  if(active==='work')return !!p.work;
+  return p.t===active;
 }
-function initMap(){
+function setFilter(k){
+  active=k;
+  document.querySelectorAll('.f').forEach(b=>b.classList.toggle('on',b.dataset.k===k));
+  document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hide',!match(P[+c.dataset.i])));
+  P.forEach((p,i)=>{const m=MK[i];if(!m)return;
+    const el=m.getElement&&m.getElement();if(el&&el.firstChild)el.firstChild.classList.toggle('dim',!match(p));});
+  const lbl=k==='all'?'Todos os lugares':(k==='work'?'Bases pra trabalhar':T[k].l);
+  document.getElementById('railtitle').textContent=lbl;
+  count();
+}
+function count(){
+  const n=P.filter(match).length;
+  document.getElementById('railcount').textContent=n+(n===1?' lugar':' lugares');
+}
+
+/* ---------------- mapa ---------------- */
+const MK={};let map=null;
+function icon(color,big){
+  return L.divIcon({className:'',html:`<div class="pin${big?' big':''}" style="background:${color}"></div>`,
+    iconSize:big?[32,32]:[26,26],iconAnchor:big?[16,30]:[13,24]});
+}
+(function initMap(){
   try{
-    map=L.map('map',{scrollWheelZoom:true}).setView([-11.5,-75.2],5);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-      attribution:'© OpenStreetMap © CARTO',maxZoom:18
-    }).addTo(map);
-    P.forEach((d,i)=>{
-      const th=THEMES[d.theme];
-      const m=L.marker(d.coord,{icon:pinIcon(th.hex)}).addTo(map);
-      m.bindPopup(`<b>${d.name}</b><br>${th.emoji} ${th.label} · ${d.dias} dia(s)${d.opt?' · opcional':''}<br><span style="color:#9fb0c0">${d.why.slice(0,110)}…</span>`);
-      markers[i]=m;
+    const PERU=L.latLngBounds([[-18.9,-82.5],[0.4,-67.8]]);
+    map=L.map('map',{zoomControl:true,scrollWheelZoom:true,maxBounds:PERU,maxBoundsViscosity:.85,minZoom:4});
+    map.fitBounds([[-18.4,-81.4],[-0.1,-68.6]],{padding:[16,16]});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+      {attribution:'© OpenStreetMap © CARTO',maxZoom:17}).addTo(map);
+    P.forEach((p,i)=>{
+      const big=/Machu|Cusco|Lima/.test(p.n);
+      const m=L.marker(p.c,{icon:icon(T[p.t].c,big),title:p.n}).addTo(map);
+      m.on('click',()=>open(i));
+      MK[i]=m;
     });
   }catch(e){
-    document.getElementById('map').innerHTML='<div style="padding:24px;text-align:center;color:#9fb0c0">🗺️ O mapa precisa de internet pra carregar. Os lugares estão nos cards logo abaixo. 👇</div>';
-    document.getElementById('maptip').style.display='none';
+    document.getElementById('map').innerHTML=
+      '<div class="mapfail">🗺️ O mapa precisa de internet pra carregar.<br>Os lugares estão logo abaixo — toque em qualquer um. 👇</div>';
+    const n=document.getElementById('mapnote');if(n)n.style.display='none';
   }
-}
-
-// ---------- CARDS ----------
-(function(){
-  const host=document.getElementById('regions');
-  const order=["Costa Sul","Andes Sul","Norte (se sobrar tempo)","Amazônia (opcional)"];
-  const byReg={};
-  P.forEach((d,i)=>{(byReg[d.r]=byReg[d.r]||[]).push({...d,_i:i});});
-  order.forEach(reg=>{
-    const list=byReg[reg]; if(!list) return;
-    const h=document.createElement('h2');h.className='region';
-    h.innerHTML=`${reg} <small>· ${list.length} lugares</small>`;
-    host.appendChild(h);
-    const g=document.createElement('div');g.className='grid';
-    list.forEach(d=>{
-      const th=THEMES[d.theme];
-      const c=document.createElement('div');c.className='c'+(d.opt?' opt':'');
-      c.innerHTML=`<h3>${d.name}</h3>
-        <div class="days">${d.dias} dia(s)${d.opt?' · se couber':''}</div>
-        <div class="chips">${d.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
-        <div class="why">${d.why}</div>
-        ${d.work?'<span class="work">💻 dá pra trabalhar</span>':''}
-        <div class="reach">🚌 ${d.reach}</div>`;
-      c.addEventListener('click',()=>{
-        if(map&&markers[d._i]){map.flyTo(d.coord,d.name.includes('Machu')||d.name.includes('Humantay')||d.name.includes('7 Colores')?9:7,{duration:.8});markers[d._i].openPopup();window.scrollTo({top:document.getElementById('map').offsetTop-4,behavior:'smooth'});}
-      });
-      g.appendChild(c);
-    });
-    host.appendChild(g);
-  });
 })();
 
-// ---------- SUGESTÃO DE FLUXO ----------
-document.getElementById('flow').innerHTML=`💡 <b>Um fluxo equilibrado (sugestão, não regra):</b> Lima 2–3d → Paracas + Huacachina 2–3d → Arequipa + Colca 4d → <b>Cusco como base</b> ~10–12d (Vale Sagrado, Machu Picchu, Humantay, 7 Colores + dias de trabalho) → opcional Puno/Titicaca <i>ou</i> Tambopata (selva) → volta a Lima pra voar pro BR. Sobra folga: dá pra encaixar Huaraz OU a Amazônia, não os dois.`;
+/* ---------------- carrossel ---------------- */
+(function(){
+  const rail=document.getElementById('rail');
+  P.forEach((p,i)=>{
+    const c=document.createElement('div');
+    c.className='card';c.dataset.i=i;c.style.setProperty('--tone',T[p.t].c);
+    c.innerHTML=`<div class="tone"></div><h3>${p.n}</h3>
+      <div class="meta">${T[p.t].e} ${T[p.t].l} · ${p.d}</div>
+      ${p.opt?'<span class="opt">se couber</span>':''}`;
+    c.addEventListener('click',()=>open(i));
+    rail.appendChild(c);
+  });
+  count();
+})();
 
-// start
-initMap();
+/* ---------------- painel + fotos ---------------- */
+const sheet=document.getElementById('sheet'),scrim=document.getElementById('scrim'),
+      hero=document.getElementById('hero'),sbody=document.getElementById('sbody');
+const CACHE={};
+
+async function photo(titles){
+  for(const [idx,t] of titles.entries()){
+    const lang=['pt','es','en'][idx]||'en';
+    try{
+      const r=await fetch(`https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(t)}`);
+      if(!r.ok)continue;
+      const j=await r.json();
+      const thumb=(j.thumbnail&&j.thumbnail.source)||'';
+      // versão ~640px (nítida mas leve pra dados móveis); fallback pra original
+      const img=thumb?thumb.replace(/\/\d+px-/,'/640px-'):(j.originalimage&&j.originalimage.source);
+      if(img)return{img,extract:j.extract||'',url:(j.content_urls&&j.content_urls.desktop&&j.content_urls.desktop.page)||''};
+    }catch(e){}
+  }
+  return null;
+}
+
+function open(i){
+  const p=P[i],th=T[p.t];
+  hero.innerHTML=`<div class="ph">${th.e}</div><div class="fade"></div>
+    <div class="cap"><h2>${p.n}</h2><div class="sub">${p.d}${p.opt?' · opcional':''}</div></div>`;
+  const list=(a)=>a.map(x=>`<li>${x}</li>`).join('');
+  sbody.innerHTML=`
+    <div class="tags">
+      <span class="tag k" style="background:${th.c}">${th.e} ${th.l}</span>
+      ${p.work?'<span class="tag">💻 dá pra trabalhar</span>':''}
+      ${p.opt?'<span class="tag">se couber</span>':''}
+    </div>
+    <p class="why">${p.why}</p>
+    <div class="blk"><h4>O que ver</h4><ul>${list(p.see)}</ul></div>
+    <div class="blk"><h4>Onde comer</h4><ul>${list(p.eat)}</ul></div>
+    <div class="blk"><h4>Como chegar</h4><p>🚌 ${p.go}</p></div>
+    <div class="blk" id="wkblk"></div>`;
+  sheet.classList.add('on');scrim.classList.add('on');sheet.setAttribute('aria-hidden','false');
+  sheet.querySelector('.sheetscroll').scrollTop=0;
+  if(map&&MK[i]){try{map.flyTo(p.c,/Machu|Humantay|Colores|Colca/.test(p.n)?8:6.6,{duration:.75});}catch(e){}}
+
+  const done=(d)=>{
+    if(!d)return;
+    const im=document.createElement('img');im.alt=p.n;im.src=d.img;
+    im.onload=()=>im.classList.add('on');
+    hero.insertBefore(im,hero.firstChild);
+    const b=document.getElementById('wkblk');
+    if(b&&d.extract)b.innerHTML=`<h4>Sobre</h4><p>${d.extract}</p>`+
+      (d.url?`<a class="wk" href="${d.url}" target="_blank" rel="noopener">Ler na Wikipédia ↗</a>`:'');
+  };
+  if(CACHE[i]!==undefined){done(CACHE[i]);}
+  else{photo(p.wiki).then(d=>{CACHE[i]=d;if(sheet.classList.contains('on'))done(d);});}
+}
+function close(){
+  sheet.classList.remove('on');scrim.classList.remove('on');sheet.setAttribute('aria-hidden','true');
+}
+scrim.addEventListener('click',close);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+/* arrastar pra baixo fecha (mobile) */
+(function(){
+  let y0=null;
+  sheet.addEventListener('touchstart',e=>{if(sheet.querySelector('.sheetscroll').scrollTop<=0)y0=e.touches[0].clientY;},{passive:true});
+  sheet.addEventListener('touchmove',e=>{
+    if(y0===null)return;const dy=e.touches[0].clientY-y0;
+    if(dy>0)sheet.style.transform=`translateY(${dy}px)`;
+  },{passive:true});
+  sheet.addEventListener('touchend',e=>{
+    if(y0===null)return;
+    const dy=(e.changedTouches[0].clientY-y0);
+    sheet.style.transform='';
+    if(dy>110)close();
+    y0=null;
+  },{passive:true});
+})();
 </script>
 </body>
 </html>
