@@ -432,6 +432,13 @@ function coordOf(name){
   const p=P.find(p=>p.n===name)||P.find(p=>p.n.includes(name)||name.includes(p.n));
   return p?p.c:null;
 }
+function idxOf(name){return P.findIndex(p=>p.n===name||p.n.includes(name)||name.includes(p.n));}
+function loadRouteToMine(i){
+  const r=ROUTES[i],seen=new Set(),idxs=[];
+  r.sequencia.forEach(nm=>{const k=idxOf(nm);if(k>=0&&!seen.has(k)){seen.add(k);idxs.push(k);}});
+  myRoute=idxs;myDays={};saveMine();updateMineChip();
+  clearRoute();activeRoute='mine';drawMine();
+}
 function inSeq(seq,pn){return seq.some(s=>pn.includes(s)||s.includes(pn));}
 function dimPin(k,dim){const m=MK[k];if(!m)return;const el=m.getElement&&m.getElement();if(el&&el.firstChild)el.firstChild.classList.toggle('dim',dim);}
 function defaultDays(i){const m=(P[i].d||'').match(/\d+/);return m?+m[0]:2;}
@@ -507,7 +514,8 @@ function toggleRoute(i){
   document.querySelector(`.rc[data-i="${i}"]`).classList.add('on');
   const det=document.getElementById('rdetail');
   det.className='rdetail show';
-  det.innerHTML=`<b>${r.nome}</b> · ${r.dias} dias — ${r.porque}<br><span class="rseq">${r.sequencia.join(' → ')}</span>`;
+  det.innerHTML=`<b>${r.nome}</b> · ${r.dias} dias — ${r.porque}<br><span class="rseq">${r.sequencia.join(' → ')}</span> <button class="clr" id="loadMine">✏️ editar como a minha</button>`;
+  const lm=document.getElementById('loadMine');if(lm)lm.addEventListener('click',()=>loadRouteToMine(i));
   P.forEach((p,k)=>dimPin(k,!inSeq(r.sequencia,p.n)));
   if(map){
     const pts=r.sequencia.map(coordOf).filter(Boolean);
