@@ -168,6 +168,14 @@ ul.pas li:last-child{border-bottom:none;padding-bottom:0}
 .itstep button{border:none;background:none;color:var(--accent);width:32px;height:32px;font-size:1.15rem;font-weight:700;cursor:pointer;font-family:inherit;line-height:1;padding:0}
 .itstep button:active{background:#efefef}
 .itstep span{min-width:32px;text-align:center;font-size:.8rem;font-weight:700;color:var(--tx)}
+/* editor de dias no painel do lugar */
+.daysedit{display:flex;align-items:center;gap:11px;flex-wrap:wrap;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px 13px;margin:0 0 16px}
+.daysedit .del{font-size:.86rem;font-weight:700;color:var(--tx)}
+.dstep{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg)}
+.dstep button{border:none;background:none;color:var(--accent);width:36px;height:36px;font-size:1.25rem;font-weight:700;cursor:pointer;font-family:inherit;line-height:1;padding:0}
+.dstep button:active{background:#efefef}
+.dstep span{min-width:38px;text-align:center;font-size:.92rem;font-weight:700;color:var(--tx)}
+.dsug{font-size:.76rem;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -454,7 +462,8 @@ function updateMineChip(){const c=document.getElementById('mineChip');if(!c)retu
 function setAddBtn(i){const ab=document.getElementById('addbtn');if(!ab)return;ab.dataset.i=i;if(inMine(i)){ab.classList.add('added');ab.textContent='✓ Na minha rota — remover';}else{ab.classList.remove('added');ab.textContent='➕ Adicionar à minha rota';}}
 function setDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();drawMine();}
 function setStart(v){myStart=v;try{localStorage.setItem('peru_mystart_v1',v);}catch(e){}drawMine();}
-function toggleMineItem(i){const k=myRoute.indexOf(i);if(k>=0){myRoute.splice(k,1);delete myDays[i];}else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(activeRoute==='mine')drawMine();}
+function setPlaceDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();const v=document.getElementById('dVal');if(v)v.textContent=daysOf(i)+'d';if(activeRoute==='mine')drawMine();}
+function toggleMineItem(i){const k=myRoute.indexOf(i);if(k>=0){myRoute.splice(k,1);}else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(activeRoute==='mine')drawMine();}
 (function(){
   const host=document.getElementById('rchips');if(!host)return;
   const mine=document.createElement('button');mine.className='rc mine';mine.id='mineChip';
@@ -568,6 +577,11 @@ function open(i){
       ${p.opt?'<span class="tag">se couber</span>':''}
     </div>
     <button class="addbtn" id="addbtn" data-i="${i}"></button>
+    <div class="daysedit">
+      <span class="del">🗓️ Quantos dias ficar</span>
+      <div class="dstep"><button id="dDec" aria-label="menos">−</button><span id="dVal"></span><button id="dInc" aria-label="mais">+</button></div>
+      <span class="dsug">sugestão: ${p.d}</span>
+    </div>
     <p class="why">${p.why}</p>
     ${ex.context?`<p class="ctx">${ex.context}</p>`:''}
     <div class="blk"><h4>O que ver</h4><ul>${list(p.see)}</ul></div>
@@ -577,6 +591,9 @@ function open(i){
     ${ex.dica?`<div class="dica">💡 ${ex.dica}</div>`:''}
     <div class="blk" id="wkblk"></div>`;
   const ab=document.getElementById('addbtn');if(ab){ab.onclick=()=>toggleMineItem(i);setAddBtn(i);}
+  const dv=document.getElementById('dVal');if(dv)dv.textContent=daysOf(i)+'d';
+  const dDec=document.getElementById('dDec');if(dDec)dDec.onclick=()=>setPlaceDays(i,-1);
+  const dInc=document.getElementById('dInc');if(dInc)dInc.onclick=()=>setPlaceDays(i,1);
   sheet.classList.add('on');scrim.classList.add('on');sheet.setAttribute('aria-hidden','false');
   sheet.querySelector('.sheetscroll').scrollTop=0;
   if(map&&MK[i]){try{map.flyTo(p.c,/Machu|Humantay|Colores|Colca/.test(p.n)?8:6.6,{duration:.75});}catch(e){}}
