@@ -133,15 +133,23 @@ h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:
   display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:background .2s}
 .sclose:hover{background:rgba(12,17,23,.82)}
 @media(min-width:760px){
-  .sheet{left:50%;right:auto;top:50%;bottom:auto;width:min(900px,94vw);max-height:92vh;
+  .sheet{left:50%;right:auto;top:50%;bottom:auto;width:min(760px,94vw);max-height:92vh;
     border-radius:20px;border:1px solid var(--line);border-top:1px solid var(--line);
     transform:translate(-50%,-48%) scale(.98);opacity:0;pointer-events:none;
     transition:transform .34s var(--ease),opacity .34s var(--ease);
     box-shadow:0 30px 90px rgba(20,30,45,.30)}
   .sheet.on{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:auto}
   .grab{display:none}
-  .hero{height:400px}
+  .hero{height:360px}
   .card{width:215px}
+}
+/* telas largas: duas colunas — foto grande à esquerda, conteúdo à direita */
+@media(min-width:1000px){
+  .sheet{width:min(1240px,96vw);max-height:90vh;height:90vh}
+  .sheetscroll{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);height:100%;overflow:hidden;padding-bottom:0}
+  .hero{height:100%}
+  .body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:24px 28px 32px}
+  .sclose{background:rgba(12,17,23,.6)}
 }
 /* rotas sugeridas */
 .routesbar{border-bottom:1px solid var(--line);background:var(--bg2)}
