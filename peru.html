@@ -91,12 +91,22 @@ h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:
 .grab i{width:38px;height:4px;border-radius:99px;background:var(--line);display:block}
 .sheetscroll{overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
 .hero{position:relative;height:190px;background:var(--card);overflow:hidden}
-.hero img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s var(--ease)}
-.hero img.on{opacity:1}
+.hero .gal{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;z-index:1}
+.hero .gal::-webkit-scrollbar{display:none}
+.hero .gal img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;
+  opacity:0;transition:opacity .5s var(--ease)}
+.hero .gal img.on{opacity:1}
+.hero .gal .dots{position:absolute;left:0;right:0;top:12px;display:flex;gap:5px;justify-content:center;z-index:3;pointer-events:none}
+.hero .gal .dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);transition:.2s}
+.hero .gal .dots i.on{background:#fff;width:16px;border-radius:3px}
+.hero .credit{position:absolute;right:12px;bottom:6px;z-index:4;font-size:.62rem;color:rgba(255,255,255,.8);
+  text-align:right;text-shadow:0 1px 4px rgba(0,0,0,.7);display:none}
+.hero .credit a{color:inherit;text-decoration:underline}
 .hero .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   font-size:2.6rem;color:#9aa8b6;background:linear-gradient(135deg,#eef1f5,#dfe5eb)}
-.hero .fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,17,23,0) 42%,rgba(12,17,23,.72))}
-.hero .cap{position:absolute;left:18px;right:18px;bottom:12px}
+.hero .fade{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(12,17,23,0) 42%,rgba(12,17,23,.72))}
+.hero .cap{position:absolute;left:18px;right:18px;bottom:12px;z-index:3}
 .hero h2{margin:0;font-size:1.34rem;font-weight:700;letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.6)}
 .hero .sub{color:var(--accent);font-size:.8rem;font-weight:700;margin-top:3px}
 .body{padding:14px 18px 0}
@@ -144,8 +154,11 @@ h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:
 /* painel: contexto, passeios, dica */
 .ctx{color:var(--muted);font-size:.9rem;line-height:1.62;margin:-4px 0 15px}
 ul.pas{list-style:none;padding:0;margin:0}
-ul.pas li{padding:9px 0;border-bottom:1px solid var(--line)}
+ul.pas li{padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:11px;align-items:center}
 ul.pas li:last-child{border-bottom:none;padding-bottom:0}
+.pas .pthumb{flex:0 0 auto;width:58px;height:58px;border-radius:10px;background:var(--card) center/cover no-repeat;
+  border:1px solid var(--line)}
+.pas .pinfo{flex:1 1 auto;min-width:0}
 .pas .pt{display:block;color:var(--tx);font-weight:600;font-size:.9rem;line-height:1.4}
 .pas .pm{display:block;color:var(--accent);font-size:.78rem;font-weight:600;margin-top:2px}
 .dica{background:#fdf6ea;border:1px solid #efdcbb;color:#7a5620;border-radius:12px;padding:11px 13px;font-size:.88rem;line-height:1.55;margin-bottom:15px}
@@ -547,7 +560,50 @@ function toggleRoute(i){
 /* ---------------- painel + fotos ---------------- */
 const sheet=document.getElementById('sheet'),scrim=document.getElementById('scrim'),
       hero=document.getElementById('hero'),sbody=document.getElementById('sbody');
-const CACHE={};
+/* ---------------- fotos: Unsplash (galeria) + Wikipedia (fallback) ---------------- */
+const UNSPLASH_KEY='eXa8UFgRWEmmsRZqw0bkMH6wWH0tmlBDZQYEvoEQc5g';
+const UTM='?utm_source=mochilao_peru&utm_medium=referral';
+const UQ={
+  "Lima":"Lima Peru city",
+  "Paracas · Islas Ballestas":"Ballestas Islands Peru",
+  "Huacachina":"Huacachina oasis Peru",
+  "Linhas de Nazca":"Nazca Lines Peru desert",
+  "Arequipa":"Arequipa Peru white city",
+  "Cañón del Colca":"Colca Canyon condor Peru",
+  "Cusco":"Cusco Peru plaza",
+  "Valle Sagrado":"Sacred Valley Peru Pisac",
+  "Machu Picchu":"Machu Picchu",
+  "Laguna Humantay":"Humantay Lake Peru",
+  "Montaña 7 Colores":"Vinicunca Rainbow Mountain Peru",
+  "Puno · Lago Titicaca":"Lake Titicaca Uros Peru",
+  "Huaraz · Cordillera Blanca":"Cordillera Blanca Huaraz Peru",
+  "Trujillo · Chan Chan":"Chan Chan Trujillo Peru",
+  "Máncora":"Mancora beach Peru",
+  "Tambopata · Puerto Maldonado":"Tambopata Amazon rainforest Peru",
+  "Iquitos":"Iquitos Amazon river Peru"
+};
+let PH={}; try{PH=JSON.parse(localStorage.getItem('peru_photos_v1')||'{}');}catch(e){}
+function savePH(){try{localStorage.setItem('peru_photos_v1',JSON.stringify(PH));}catch(e){}}
+async function unsplash(query,n){
+  const ck='q:'+query+'|'+n;
+  const c=PH[ck];
+  if(c && (Date.now()-c.ts)<1000*60*60*24*30) return c.photos;   // cache 30 dias no aparelho
+  try{
+    const u=`https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}`+
+            `&per_page=${n}&orientation=landscape&content_filter=high&client_id=${UNSPLASH_KEY}`;
+    const r=await fetch(u);
+    if(!r.ok) throw new Error('http '+r.status);
+    const j=await r.json();
+    const photos=(j.results||[]).map(x=>({
+      img:x.urls&&(x.urls.regular||x.urls.small),
+      author:(x.user&&x.user.name)||'Unsplash',
+      authorUrl:((x.user&&x.user.links&&x.user.links.html)||'https://unsplash.com')+UTM,
+      source:'Unsplash'
+    })).filter(p=>p.img);
+    if(photos.length){PH[ck]={ts:Date.now(),photos};savePH();}
+    return photos;
+  }catch(e){ return c?c.photos:[]; }
+}
 
 async function photo(titles){
   // Action API com origin=* = CORS liberado de verdade (mesmo método das fotos do site principal).
@@ -573,11 +629,12 @@ async function photo(titles){
 
 function open(i){
   const p=P[i],th=T[p.t];
-  hero.innerHTML=`<div class="ph">${th.e}</div><div class="fade"></div>
-    <div class="cap"><h2>${p.n}</h2><div class="sub">${p.d}${p.opt?' · opcional':''}</div></div>`;
+  hero.innerHTML=`<div class="ph">${th.e}</div><div class="gal" id="gal"></div><div class="fade"></div>
+    <div class="cap"><h2>${p.n}</h2><div class="sub">${p.d}${p.opt?' · opcional':''}</div></div>
+    <div class="credit" id="credit"></div>`;
   const list=(a)=>a.map(x=>`<li>${x}</li>`).join('');
   const ex=EX[p.n]||{};
-  const pas=(ex.passeios||[]).map(x=>`<li><span class="pt">${x.titulo}</span><span class="pm">${x.duracao} · ${x.preco}</span></li>`).join('');
+  const pas=(ex.passeios||[]).map((x,k)=>`<li id="pas${k}"><span class="pthumb"></span><span class="pinfo"><span class="pt">${x.titulo}</span><span class="pm">${x.duracao} · ${x.preco}</span></span></li>`).join('');
   sbody.innerHTML=`
     <div class="tags">
       <span class="tag k" style="background:${th.c}">${th.e} ${th.l}</span>
@@ -606,20 +663,33 @@ function open(i){
   sheet.querySelector('.sheetscroll').scrollTop=0;
   if(map&&MK[i]){try{map.flyTo(p.c,/Machu|Humantay|Colores|Colca/.test(p.n)?8:6.6,{duration:.75});}catch(e){}}
 
-  const done=(d)=>{
-    if(!d)return;
-    const im=document.createElement('img');im.alt=p.n;
-    im.addEventListener('load',()=>im.classList.add('on'));   // listener ANTES do src
-    im.addEventListener('error',()=>im.remove());
-    hero.insertBefore(im,hero.firstChild);
-    im.src=d.img;
-    if(im.complete&&im.naturalWidth>0)im.classList.add('on'); // caso já esteja em cache
-    const b=document.getElementById('wkblk');
-    if(b&&d.extract)b.innerHTML=`<h4>Sobre</h4><p>${d.extract}</p>`+
-      (d.url?`<a class="wk" href="${d.url}" target="_blank" rel="noopener">Ler na Wikipédia ↗</a>`:'');
+  // ---- galeria de fotos (Unsplash) com Wikipédia de reserva ----
+  const gal=document.getElementById('gal'), credit=document.getElementById('credit');
+  const renderGal=(photos)=>{
+    if(!photos||!photos.length)return false;
+    gal.innerHTML=photos.map(()=>`<img alt="${p.n}">`).join('')
+      +(photos.length>1?`<div class="dots">${photos.map((_,k)=>`<i class="${k===0?'on':''}"></i>`).join('')}</div>`:'');
+    const imgs=[...gal.querySelectorAll('img')];
+    imgs.forEach((im,k)=>{im.addEventListener('load',()=>im.classList.add('on'));im.addEventListener('error',()=>im.remove());im.src=photos[k].img;if(im.complete&&im.naturalWidth>0)im.classList.add('on');});
+    const setCredit=(k)=>{const ph=photos[k]||photos[0];credit.innerHTML=`Foto: <a href="${ph.authorUrl}" target="_blank" rel="noopener">${ph.author}</a>${ph.source?' · '+ph.source:''}`;credit.style.display='block';};
+    setCredit(0);
+    const dots=[...gal.querySelectorAll('.dots i')];
+    if(dots.length)gal.addEventListener('scroll',()=>{const k=Math.round(gal.scrollLeft/Math.max(1,gal.clientWidth));dots.forEach((d,j)=>d.classList.toggle('on',j===k));setCredit(k);},{passive:true});
+    return true;
   };
-  if(CACHE[i]!==undefined){done(CACHE[i]);}
-  else{photo(p.wiki).then(d=>{CACHE[i]=d;if(sheet.classList.contains('on'))done(d);});}
+  const uq=UQ[p.n]||(p.n.split(/[·(]/)[0].trim()+' Peru');
+  unsplash(uq,6).then(photos=>{
+    if(!sheet.classList.contains('on'))return;
+    if(renderGal(photos))return;
+    photo(p.wiki).then(d=>{if(sheet.classList.contains('on')&&d&&d.img)renderGal([{img:d.img,author:'Wikipédia',authorUrl:d.url||'#',source:''}]);});
+  });
+  // texto "Sobre" só busca na wiki quando não há contexto próprio
+  if(!ex.context){photo(p.wiki).then(d=>{const b=document.getElementById('wkblk');if(b&&d&&d.extract)b.innerHTML=`<h4>Sobre</h4><p>${d.extract}</p>`+(d.url?`<a class="wk" href="${d.url}" target="_blank" rel="noopener">Ler na Wikipédia ↗</a>`:'');});}
+  // foto de cada passeio
+  (ex.passeios||[]).forEach((x,k)=>{
+    const pq=x.foto||(x.titulo.split(/[—(·-]/)[0].trim()+' Peru');
+    unsplash(pq,1).then(ps=>{const li=document.getElementById('pas'+k);if(li&&ps&&ps[0]){const th=li.querySelector('.pthumb');if(th)th.style.backgroundImage=`url(${ps[0].img})`;}});
+  });
 }
 function close(){
   sheet.classList.remove('on');scrim.classList.remove('on');sheet.setAttribute('aria-hidden','true');
