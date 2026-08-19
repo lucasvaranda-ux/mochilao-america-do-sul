@@ -212,6 +212,11 @@ ul.pas li:last-child{border-bottom:none;padding-bottom:0}
 .dstep button:active{background:#efefef}
 .dstep span{min-width:38px;text-align:center;font-size:.92rem;font-weight:700;color:var(--tx)}
 .dsug{font-size:.76rem;color:var(--muted)}
+.pdates{display:flex;align-items:center;gap:7px;flex-wrap:wrap;border-radius:12px;padding:10px 13px;margin:-6px 0 16px;font-size:.9rem}
+.pdates.on{background:#eaf7ef;border:1px solid #bfe6cd;color:#1f7a44}
+.pdates.on b{color:#166a39;font-weight:800}
+.pdates.on span{color:#3a8a5c;font-weight:600;font-size:.82rem}
+.pdates.hint{background:var(--bg2);border:1px dashed var(--line);color:var(--muted);font-size:.82rem}
 </style>
 </head>
 <body>
@@ -469,7 +474,7 @@ function icon(color,big){
 
 /* ---------------- rotas: sugeridas + a minha ---------------- */
 const LS_MINE='peru_myroute_v1';
-let routeLine=null, activeRoute=-1;
+let routeLine=null, activeRoute=-1, curOpen=-1;
 let myRoute=[]; try{myRoute=JSON.parse(localStorage.getItem(LS_MINE)||'[]').filter(i=>P[i]!=null);}catch(e){}
 let myDays={}; try{myDays=JSON.parse(localStorage.getItem('peru_mydays_v1')||'{}');}catch(e){}
 let myStart=localStorage.getItem('peru_mystart_v1')||'';
@@ -489,6 +494,20 @@ function dimPin(k,dim){const m=MK[k];if(!m)return;const el=m.getElement&&m.getEl
 function defaultDays(i){const m=(P[i].d||'').match(/\d+/);return m?+m[0]:2;}
 function daysOf(i){return myDays[i]!=null?myDays[i]:defaultDays(i);}
 function totalDays(){return myRoute.reduce((s,i)=>s+daysOf(i),0);}
+function datesOf(i){
+  const pos=myRoute.indexOf(i);if(pos<0)return null;
+  let cursor=new Date(startDate());
+  for(let k=0;k<pos;k++){cursor.setDate(cursor.getDate()+daysOf(myRoute[k]));}
+  const a=new Date(cursor);const dd=daysOf(i);const b=new Date(cursor);b.setDate(b.getDate()+dd-1);
+  return {a,b,dd,pos};
+}
+function renderPanelDates(i){
+  const el=document.getElementById('pdates');if(!el)return;
+  const d=datesOf(i);
+  if(!d){el.className='pdates hint';el.innerHTML='📅 Adicione à sua rota pra ver as datas aqui';return;}
+  el.className='pdates on';
+  el.innerHTML=`📅 <b>${fmtBR(d.a)}${d.dd>1?' → '+fmtBR(d.b):''}</b> <span>· parada ${d.pos+1} da sua rota</span>`;
+}
 function lastFriday(){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()-5+7)%7));return d;}
 function startDate(){return myStart?new Date(myStart+'T00:00:00'):lastFriday();}
 function isoD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
@@ -499,8 +518,8 @@ function updateMineChip(){const c=document.getElementById('mineChip');if(!c)retu
 function setAddBtn(i){const ab=document.getElementById('addbtn');if(!ab)return;ab.dataset.i=i;if(inMine(i)){ab.classList.add('added');ab.textContent='✓ Na minha rota — remover';}else{ab.classList.remove('added');ab.textContent='➕ Adicionar à minha rota';}}
 function setDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();drawMine();}
 function setStart(v){myStart=v;try{localStorage.setItem('peru_mystart_v1',v);}catch(e){}drawMine();}
-function setPlaceDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();const v=document.getElementById('dVal');if(v)v.textContent=daysOf(i)+'d';if(activeRoute==='mine')drawMine();}
-function toggleMineItem(i){const k=myRoute.indexOf(i);if(k>=0){myRoute.splice(k,1);}else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(activeRoute==='mine')drawMine();}
+function setPlaceDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();const v=document.getElementById('dVal');if(v)v.textContent=daysOf(i)+'d';if(curOpen===i)renderPanelDates(i);if(activeRoute==='mine')drawMine();}
+function toggleMineItem(i){const k=myRoute.indexOf(i);if(k>=0){myRoute.splice(k,1);}else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(curOpen===i)renderPanelDates(i);if(activeRoute==='mine')drawMine();}
 (function(){
   const host=document.getElementById('rchips');if(!host)return;
   const mine=document.createElement('button');mine.className='rc mine';mine.id='mineChip';
@@ -663,6 +682,7 @@ function open(i){
       <div class="dstep"><button id="dDec" aria-label="menos">−</button><span id="dVal"></span><button id="dInc" aria-label="mais">+</button></div>
       <span class="dsug">sugestão: ${p.d}</span>
     </div>
+    <div class="pdates" id="pdates"></div>
     <p class="why">${p.why}</p>
     ${ex.context?`<p class="ctx">${ex.context}</p>`:''}
     <div class="blk"><h4>O que ver</h4><ul>${list(p.see)}</ul></div>
@@ -675,6 +695,7 @@ function open(i){
   const dv=document.getElementById('dVal');if(dv)dv.textContent=daysOf(i)+'d';
   const dDec=document.getElementById('dDec');if(dDec)dDec.onclick=()=>setPlaceDays(i,-1);
   const dInc=document.getElementById('dInc');if(dInc)dInc.onclick=()=>setPlaceDays(i,1);
+  curOpen=i;renderPanelDates(i);
   sheet.classList.add('on');scrim.classList.add('on');sheet.setAttribute('aria-hidden','false');
   sheet.querySelector('.sheetscroll').scrollTop=0;
   if(map&&MK[i]){try{map.flyTo(p.c,/Machu|Humantay|Colores|Colca/.test(p.n)?8:6.6,{duration:.75});}catch(e){}}
@@ -713,7 +734,7 @@ function open(i){
   });
 }
 function close(){
-  sheet.classList.remove('on');scrim.classList.remove('on');sheet.setAttribute('aria-hidden','true');
+  sheet.classList.remove('on');scrim.classList.remove('on');sheet.setAttribute('aria-hidden','true');curOpen=-1;
 }
 scrim.addEventListener('click',close);
 document.getElementById('sclose').addEventListener('click',close);
