@@ -82,7 +82,7 @@ h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:
 .scrim{position:fixed;inset:0;z-index:900;background:rgba(22,30,40,.42);backdrop-filter:blur(3px);
   opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
 .scrim.on{opacity:1;pointer-events:auto}
-.sheet{position:fixed;z-index:950;left:0;right:0;bottom:0;max-height:88vh;
+.sheet{position:fixed;z-index:950;left:0;right:0;bottom:0;max-height:94vh;
   background:var(--bg2);border-top:1px solid var(--line);border-radius:22px 22px 0 0;
   transform:translateY(101%);transition:transform .38s var(--ease);
   display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -18px 50px rgba(20,30,45,.16)}
@@ -110,12 +110,19 @@ h1{margin:0;font-size:1.28rem;font-weight:700;letter-spacing:-.02em;white-space:
 .blk li{font-size:.9rem;line-height:1.62;margin-bottom:4px}
 .blk p{margin:0;font-size:.9rem;line-height:1.62;color:var(--tx)}
 .wk{display:inline-block;margin-top:2px;font-size:.75rem;color:var(--muted)}
+.sclose{position:absolute;top:12px;right:12px;z-index:6;width:36px;height:36px;border-radius:50%;
+  border:none;background:rgba(12,17,23,.55);color:#fff;font-size:1.02rem;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:background .2s}
+.sclose:hover{background:rgba(12,17,23,.82)}
 @media(min-width:760px){
-  .sheet{left:auto;right:0;top:0;bottom:0;width:430px;max-height:none;border-radius:0;
-    border-left:1px solid var(--line);border-top:none;transform:translateX(101%)}
-  .sheet.on{transform:translateX(0)}
+  .sheet{left:50%;right:auto;top:50%;bottom:auto;width:min(720px,92vw);max-height:90vh;
+    border-radius:20px;border:1px solid var(--line);border-top:1px solid var(--line);
+    transform:translate(-50%,-48%) scale(.98);opacity:0;pointer-events:none;
+    transition:transform .34s var(--ease),opacity .34s var(--ease);
+    box-shadow:0 30px 90px rgba(20,30,45,.30)}
+  .sheet.on{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:auto}
   .grab{display:none}
-  .hero{height:225px}
+  .hero{height:250px}
   .card{width:215px}
 }
 /* rotas sugeridas */
@@ -208,6 +215,7 @@ ul.pas li:last-child{border-bottom:none;padding-bottom:0}
 
 <div class="scrim" id="scrim"></div>
 <aside class="sheet" id="sheet" aria-hidden="true">
+  <button class="sclose" id="sclose" aria-label="fechar">✕</button>
   <div class="grab"><i></i></div>
   <div class="sheetscroll">
     <div class="hero" id="hero"></div>
@@ -617,6 +625,7 @@ function close(){
   sheet.classList.remove('on');scrim.classList.remove('on');sheet.setAttribute('aria-hidden','true');
 }
 scrim.addEventListener('click',close);
+document.getElementById('sclose').addEventListener('click',close);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
 /* arrastar pra baixo fecha (mobile) */
 (function(){
