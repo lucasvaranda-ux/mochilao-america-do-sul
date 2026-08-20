@@ -498,15 +498,16 @@ function datesOf(i){
   const pos=myRoute.indexOf(i);if(pos<0)return null;
   let cursor=new Date(startDate());
   for(let k=0;k<pos;k++){cursor.setDate(cursor.getDate()+daysOf(myRoute[k]));}
-  const a=new Date(cursor);const dd=daysOf(i);const b=new Date(cursor);b.setDate(b.getDate()+dd-1);
+  const a=new Date(cursor);const dd=daysOf(i);const b=new Date(cursor);b.setDate(b.getDate()+dd);   // saída = chegada + noites (check-out)
   return {a,b,dd,pos};
 }
+function noites(n){return n+' noite'+(n>1?'s':'');}
 function renderPanelDates(i){
   const el=document.getElementById('pdates');if(!el)return;
   const d=datesOf(i);
   if(!d){el.className='pdates hint';el.innerHTML='📅 Adicione à sua rota pra ver as datas aqui';return;}
   el.className='pdates on';
-  el.innerHTML=`📅 <b>${fmtBR(d.a)}${d.dd>1?' → '+fmtBR(d.b):''}</b> <span>· parada ${d.pos+1} da sua rota</span>`;
+  el.innerHTML=`📅 <b>${fmtBR(d.a)} → ${fmtBR(d.b)}</b> <span>· ${noites(d.dd)} · parada ${d.pos+1}</span>`;
 }
 function lastFriday(){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()-5+7)%7));return d;}
 function startDate(){return myStart?new Date(myStart+'T00:00:00'):lastFriday();}
@@ -514,11 +515,11 @@ function isoD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0
 function fmtBR(d){return d.toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'}).replace(/\./g,'');}
 function saveMine(){try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));localStorage.setItem('peru_mydays_v1',JSON.stringify(myDays));}catch(e){}}
 function inMine(i){return myRoute.indexOf(i)>=0;}
-function updateMineChip(){const c=document.getElementById('mineChip');if(!c)return;const n=myRoute.length;c.querySelector('small').textContent=n?`${n} lugares · ${totalDays()} dias`:'vazia — monte a sua';}
+function updateMineChip(){const c=document.getElementById('mineChip');if(!c)return;const n=myRoute.length;c.querySelector('small').textContent=n?`${n} lugares · ${totalDays()} noites`:'vazia — monte a sua';}
 function setAddBtn(i){const ab=document.getElementById('addbtn');if(!ab)return;ab.dataset.i=i;if(inMine(i)){ab.classList.add('added');ab.textContent='✓ Na minha rota — remover';}else{ab.classList.remove('added');ab.textContent='➕ Adicionar à minha rota';}}
 function setDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();drawMine();}
 function setStart(v){myStart=v;try{localStorage.setItem('peru_mystart_v1',v);}catch(e){}drawMine();}
-function setPlaceDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();const v=document.getElementById('dVal');if(v)v.textContent=daysOf(i)+'d';if(curOpen===i)renderPanelDates(i);if(activeRoute==='mine')drawMine();}
+function setPlaceDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();const v=document.getElementById('dVal');if(v)v.textContent=daysOf(i);if(curOpen===i)renderPanelDates(i);if(activeRoute==='mine')drawMine();}
 function toggleMineItem(i){const k=myRoute.indexOf(i);if(k>=0){myRoute.splice(k,1);}else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(curOpen===i)renderPanelDates(i);if(activeRoute==='mine')drawMine();}
 (function(){
   const host=document.getElementById('rchips');if(!host)return;
@@ -542,16 +543,16 @@ function drawMine(){
   if(!myRoute.length){det.innerHTML='<b>Minha rota</b> — ainda vazia. Abra qualquer lugar e toque em <b>“➕ Adicionar à minha rota”</b>. A ordem em que você adicionar vira o roteiro, com datas.';P.forEach((p,k)=>dimPin(k,false));return;}
   const start=startDate();let cursor=new Date(start);
   const rows=myRoute.map((idx,pos)=>{
-    const dd=daysOf(idx);const a=new Date(cursor);const b=new Date(cursor);b.setDate(b.getDate()+dd-1);
+    const dd=daysOf(idx);const a=new Date(cursor);const b=new Date(cursor);b.setDate(b.getDate()+dd);   // check-out
     cursor.setDate(cursor.getDate()+dd);
     return `<div class="itrow">
       <div class="itn"><span class="itnum">${pos+1}</span> ${P[idx].n} <button class="itx" data-rm="${idx}" aria-label="remover">✕</button></div>
-      <div class="itstep"><button data-dec="${idx}" aria-label="menos">−</button><span>${dd}d</span><button data-inc="${idx}" aria-label="mais">+</button></div>
-      <div class="itd">📅 ${fmtBR(a)}${dd>1?' – '+fmtBR(b):''}</div>
+      <div class="itstep"><button data-dec="${idx}" aria-label="menos">−</button><span>${dd}n</span><button data-inc="${idx}" aria-label="mais">+</button></div>
+      <div class="itd">📅 ${fmtBR(a)} → ${fmtBR(b)}</div>
     </div>`;
   }).join('');
-  const end=new Date(cursor);end.setDate(end.getDate()-1);
-  det.innerHTML=`<div class="ithead"><b>Minha rota</b> · ${myRoute.length} lugares · ${totalDays()} dias <button class="clr" id="clrMine">limpar</button></div>
+  const end=new Date(cursor);
+  det.innerHTML=`<div class="ithead"><b>Minha rota</b> · ${myRoute.length} lugares · ${totalDays()} noites <button class="clr" id="clrMine">limpar</button></div>
     <div class="itstart">Início: <input type="date" id="itstart" value="${isoD(start)}"> <span>→ fim ~${fmtBR(end)}</span></div>
     <div class="ittable">${rows}</div>`;
   const si=document.getElementById('itstart');if(si)si.addEventListener('change',e=>{if(e.target.value)setStart(e.target.value);});
@@ -678,9 +679,9 @@ function open(i){
     </div>
     <button class="addbtn" id="addbtn" data-i="${i}"></button>
     <div class="daysedit">
-      <span class="del">🗓️ Quantos dias ficar</span>
+      <span class="del">🌙 Quantas noites</span>
       <div class="dstep"><button id="dDec" aria-label="menos">−</button><span id="dVal"></span><button id="dInc" aria-label="mais">+</button></div>
-      <span class="dsug">sugestão: ${p.d}</span>
+      <span class="dsug">sugestão: ${(p.d||'').replace(/dias/,'noites').replace(/dia\b/,'noite')}</span>
     </div>
     <div class="pdates" id="pdates"></div>
     <p class="why">${p.why}</p>
@@ -692,7 +693,7 @@ function open(i){
     ${ex.dica?`<div class="dica">💡 ${ex.dica}</div>`:''}
     <div class="blk" id="wkblk"></div>`;
   const ab=document.getElementById('addbtn');if(ab){ab.onclick=()=>toggleMineItem(i);setAddBtn(i);}
-  const dv=document.getElementById('dVal');if(dv)dv.textContent=daysOf(i)+'d';
+  const dv=document.getElementById('dVal');if(dv)dv.textContent=daysOf(i);
   const dDec=document.getElementById('dDec');if(dDec)dDec.onclick=()=>setPlaceDays(i,-1);
   const dInc=document.getElementById('dInc');if(dInc)dInc.onclick=()=>setPlaceDays(i,1);
   curOpen=i;renderPanelDates(i);
