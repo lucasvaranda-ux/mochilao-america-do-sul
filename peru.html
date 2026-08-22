@@ -229,6 +229,11 @@ ul.pas li:last-child{border-bottom:none;padding-bottom:0}
 .prazo.ok{background:#eaf7ef;border:1px solid #bfe6cd;color:#1f7a44}
 .prazo.bad{background:#fdeceb;border:1px solid #f3c4c0;color:#a5352c}
 .prazo.warn{background:#fdf6ea;border:1px solid #efdcbb;color:#7a5620}
+.syncst{margin-left:auto;font-size:.74rem;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid transparent}
+.syncst.ok{background:#eaf7ef;border-color:#bfe6cd;color:#1f7a44}
+.syncst.wait{background:#fdf6ea;border-color:#efdcbb;color:#7a5620}
+.syncst.off{background:#f1f3f6;border-color:#dde2e9;color:#78889b}
+.voltabar .vcount{margin-left:9px}
 </style>
 </head>
 <body>
@@ -534,7 +539,59 @@ function renderPanelDates(i){
 function startDate(){return myStart?new Date(myStart+'T00:00:00'):hoje0();}
 function isoD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function fmtBR(d){return d.toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'}).replace(/\./g,'');}
-function saveMine(){try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));localStorage.setItem('peru_mydays_v1',JSON.stringify(myDays));}catch(e){}}
+function saveMine(){try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));localStorage.setItem('peru_mydays_v1',JSON.stringify(myDays));}catch(e){}syncPush();}
+
+/* ---------------- sincronia (Supabase) ----------------
+   Log append-only: cada save insere uma versão nova; ler = pegar a mais recente.
+   A chave anon é pública por design e a policy não permite update/delete,
+   então nenhuma versão pode ser destruída. localStorage segue como cache offline. */
+const SB_URL='https://irawlnmcinqkxzgczmrb.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlyYXdsbm1jaW5xa3h6Z2N6bXJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4ODYyMDEsImV4cCI6MjA5NTQ2MjIwMX0.KD3ikv8JSIgqEegR6EhJ1chYVAIVtlJkV_DVYATfZvM';
+const SB_TAB='mochilao_peru_rota', SB_SLUG='lucas';
+const sbH={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
+let syncTimer=null, ultimoEnviado=null, syncPronto=false;
+/* fetch com prazo: sem isso, rede presa deixaria o status travado em "…" */
+function sbFetch(url,opt,ms){
+  opt=opt||{};ms=ms||7000;
+  if(typeof AbortController==='undefined')return fetch(url,opt);
+  const ac=new AbortController(),t=setTimeout(()=>ac.abort(),ms);
+  return fetch(url,Object.assign({},opt,{signal:ac.signal})).finally(()=>clearTimeout(t));
+}
+function estadoAtual(){return{inicio:isoD(startDate()),rota:myRoute.map(i=>P[i].n),noites:{},_idx:myRoute,_dias:myDays};}
+function estadoJSON(){const e=estadoAtual();myRoute.forEach(i=>{e.noites[P[i].n]=daysOf(i);});return e;}
+function setSyncStatus(t,cls){const el=document.getElementById('syncst');if(el){el.textContent=t;el.className='syncst '+(cls||'');}}
+function syncPush(){
+  if(!syncPronto)return;
+  clearTimeout(syncTimer);
+  syncTimer=setTimeout(()=>{
+    const est=estadoJSON(), corpo=JSON.stringify(est);
+    if(corpo===ultimoEnviado){return;}
+    setSyncStatus('salvando…','wait');
+    sbFetch(`${SB_URL}/rest/v1/${SB_TAB}`,{method:'POST',headers:sbH,
+      body:JSON.stringify({slug:SB_SLUG,origem:'site',estado:est})})
+      .then(r=>{if(!r.ok)throw new Error('http '+r.status);ultimoEnviado=corpo;
+        setSyncStatus('✓ salvo na nuvem','ok');})
+      .catch(()=>setSyncStatus('offline — salvo só aqui','off'));
+  },1500);
+}
+function syncPull(){
+  return sbFetch(`${SB_URL}/rest/v1/${SB_TAB}?slug=eq.${SB_SLUG}&select=estado,criado_em&order=criado_em.desc&limit=1`,{headers:sbH})
+    .then(r=>r.ok?r.json():null)
+    .then(j=>{
+      const est=j&&j[0]&&j[0].estado;if(!est)return false;
+      const idx=Array.isArray(est._idx)?est._idx.filter(i=>P[i]!=null):[];
+      // só adota a nuvem se tiver rota e o aparelho estiver vazio (não atropela edição local)
+      if(idx.length&&!myRoute.length){
+        myRoute=idx; myDays=est._dias||{};
+        if(est.inicio){myStart=est.inicio;try{localStorage.setItem('peru_mystart_v1',myStart);}catch(e){}}
+        try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));localStorage.setItem('peru_mydays_v1',JSON.stringify(myDays));}catch(e){}
+        updateMineChip();if(activeRoute==='mine')drawMine();
+        setSyncStatus('✓ rota carregada da nuvem','ok');return true;
+      }
+      setSyncStatus('✓ sincronizado','ok');return false;
+    })
+    .catch(()=>{setSyncStatus('offline — salvo só aqui','off');return false;});
+}
 function inMine(i){return myRoute.indexOf(i)>=0;}
 function updateMineChip(){const c=document.getElementById('mineChip');if(!c)return;const n=myRoute.length;c.querySelector('small').textContent=n?`${n} lugares · ${totalDays()} noites`:'vazia — monte a sua';}
 function setAddBtn(i){const ab=document.getElementById('addbtn');if(!ab)return;ab.dataset.i=i;if(inMine(i)){ab.classList.add('added');ab.textContent='✓ Na minha rota — remover';}else{ab.classList.remove('added');ab.textContent='➕ Adicionar à minha rota';}}
@@ -576,7 +633,7 @@ function prazoHTML(end){
     el.innerHTML=`<div class="wrap"><span class="vb">✈️ Volta comprada</span>
       <b>${fmtBR(v)} · ${VOLTA.hora}</b> — ${VOLTA.de} (${VOLTA.sigla}) → ${VOLTA.destino} (${VOLTA.destSigla})
       <span class="vsub">escalas em ${VOLTA.escalas} · chega ${VOLTA.chegada} · reserva ${VOLTA.cod}</span>
-      <span class="vcount">${faltam>0?'faltam '+faltam+' dia'+(faltam>1?'s':''):(faltam===0?'é hoje!':'já passou')}</span></div>`;
+      <span class="syncst" id="syncst">…</span><span class="vcount">${faltam>0?'faltam '+faltam+' dia'+(faltam>1?'s':''):(faltam===0?'é hoje!':'já passou')}</span></div>`;
   }catch(e){}
 })();
 function drawMine(){
@@ -784,6 +841,14 @@ function close(){
 scrim.addEventListener('click',close);
 document.getElementById('sclose').addEventListener('click',close);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+/* liga a sincronia depois que tudo carregou */
+(function(){
+  try{
+    syncPronto=true;
+    ultimoEnviado=JSON.stringify(estadoJSON());   // não reenvia o que já veio do aparelho
+    syncPull();
+  }catch(e){setSyncStatus('offline — salvo só aqui','off');}
+})();
 /* arrastar pra baixo fecha (mobile) */
 (function(){
   let y0=null;
