@@ -2,16 +2,29 @@
 
 Contexto pro Claude Code continuar este projeto de onde paramos no Cowork.
 
-## Estado compartilhado
-Fonte da verdade da viagem: página do Notion
-"Mochilão — Estado Compartilhado"
-(3bf0a12cfde481d1ba77da564a5a2572)
+## Estado compartilhado (Supabase, não Notion)
 
-Antes de responder qualquer coisa sobre a viagem, ler a página inteira.
-Depois de qualquer decisão, reserva ou mudança de rota, atualizar a
-seção correspondente e adicionar linha no Changelog com data e agente.
-Nunca sobrescrever seção sem ler antes.
-Se o usuário contradisser a página, o usuário vence — e a página é corrigida.
+Fonte da verdade da viagem: tabela **`public.mochilao_peru_rota`** no projeto
+Supabase **`madeinbr`** (`irawlnmcinqkxzgczmrb`). Substitui a antiga página do
+Notion — o Claude tem acesso direto a essa tabela por ferramenta, então não é
+preciso intermediário.
+
+É um **log append-only**: cada gravação insere uma versão nova.
+- **Ler** = pegar a linha mais recente do `slug` (`order by criado_em desc limit 1`).
+- **Escrever** = `insert` de uma linha nova. Nunca `update`/`delete`
+  (as policies do `anon` nem permitem — o histórico é imutável).
+
+Colunas: `slug` (padrão `lucas`), `origem` (`site` | `claude`), `nota` (recado
+livre em texto), `estado` (jsonb: `inicio`, `rota`, `noites`, `volta`, `_idx`,
+`_dias`).
+
+Antes de responder qualquer coisa sobre a viagem, ler a versão mais recente.
+Depois de qualquer decisão, reserva ou mudança de rota, inserir uma versão nova
+com `origem='claude'` e uma `nota` explicando o que mudou.
+Se o usuário contradisser o registro, o usuário vence — e grava-se a correção.
+
+O `peru.html` lê e grava nessa mesma tabela (chave anon pública, protegida por
+RLS), então a rota do Lucas viaja entre aparelhos e é legível de fora.
 
 ## O que é
 
