@@ -184,6 +184,7 @@ ul.pas li:last-child{border-bottom:none;padding-bottom:0}
 .rc.mine.on small{color:#ffe4c9}
 .addbtn{width:100%;margin:4px 0 16px;padding:12px;border-radius:12px;border:1.5px solid var(--accent);background:var(--accent);color:#fff;font-family:inherit;font-size:.92rem;font-weight:700;cursor:pointer;transition:.15s var(--ease)}
 .addbtn.added{background:#fff;color:var(--accent)}
+.addbtn.feito{background:#eef1f5;border-color:#d8dee6;color:#7d8b9a;cursor:default}
 .milist{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .mi{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 6px 5px 11px;font-size:.8rem;color:var(--tx);font-weight:600}
 .mi button{border:none;background:#e7ebf0;color:#7d8b9a;width:18px;height:18px;border-radius:50%;font-size:.68rem;cursor:pointer;line-height:1;padding:0;display:flex;align-items:center;justify-content:center}
@@ -500,7 +501,8 @@ function voltaDate(){return new Date(VOLTA.iso+'T00:00:00');}
 function hoje0(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function diffDias(a,b){return Math.round((b-a)/86400000);}
 let routeLine=null, activeRoute=-1, curOpen=-1;
-let myRoute=[]; try{myRoute=JSON.parse(localStorage.getItem(LS_MINE)||'[]').filter(i=>P[i]!=null);}catch(e){}
+function soPendentes(a){return (a||[]).filter(i=>P[i]!=null&&!P[i].feito);}
+let myRoute=[]; try{myRoute=soPendentes(JSON.parse(localStorage.getItem(LS_MINE)||'[]'));}catch(e){}
 let myDays={}; try{myDays=JSON.parse(localStorage.getItem('peru_mydays_v1')||'{}');}catch(e){}
 let myStart=localStorage.getItem('peru_mystart_v1')||'';
 /* data de início no passado = resquício de sessão antiga (o plano é daqui pra frente).
@@ -543,7 +545,11 @@ function renderPanelDates(i){
   el.className='pdates on';
   el.innerHTML=`📅 <b>${fmtBR(d.a)} → ${fmtBR(d.b)}</b> <span>· ${noites(d.dd)} · parada ${d.pos+1}</span>`;
 }
-function startDate(){return myStart?new Date(myStart+'T00:00:00'):hoje0();}
+function startDate(){
+  const h=hoje0();
+  if(myStart){const d=new Date(myStart+'T00:00:00');if(!isNaN(d)&&d>=h)return d;}
+  return h;   // qualquer data no passado (ex.: 14/08 salvo semanas atras) cai pra hoje
+}
 function isoD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function fmtBR(d){return d.toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'short'}).replace(/\./g,'');}
 function saveMine(){try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));localStorage.setItem('peru_mydays_v1',JSON.stringify(myDays));}catch(e){}syncPush();}
@@ -587,7 +593,7 @@ function syncPull(){
     .then(r=>r.ok?r.json():null)
     .then(j=>{
       const est=j&&j[0]&&j[0].estado;if(!est)return false;
-      const idx=Array.isArray(est._idx)?est._idx.filter(i=>P[i]!=null):[];
+      const idx=Array.isArray(est._idx)?soPendentes(est._idx):[];
       // quem gravou por último vence: adota se a nuvem for mais nova que este aparelho
       let local=0;try{local=Date.parse(localStorage.getItem('peru_sync_ts')||'')||0;}catch(e){}
       const remoto=Date.parse(j[0].criado_em||'')||0;
@@ -606,11 +612,13 @@ function syncPull(){
 }
 function inMine(i){return myRoute.indexOf(i)>=0;}
 function updateMineChip(){const c=document.getElementById('mineChip');if(!c)return;const n=myRoute.length;c.querySelector('small').textContent=n?`${n} lugares · ${totalDays()} noites`:'vazia — monte a sua';}
-function setAddBtn(i){const ab=document.getElementById('addbtn');if(!ab)return;ab.dataset.i=i;if(inMine(i)){ab.classList.add('added');ab.textContent='✓ Na minha rota — remover';}else{ab.classList.remove('added');ab.textContent='➕ Adicionar à minha rota';}}
+function setAddBtn(i){const ab=document.getElementById('addbtn');if(!ab)return;ab.dataset.i=i;
+  if(P[i]&&P[i].feito){ab.classList.add('feito');ab.disabled=true;ab.textContent='✅ Você já passou por aqui';return;}
+  ab.disabled=false;ab.classList.remove('feito');if(inMine(i)){ab.classList.add('added');ab.textContent='✓ Na minha rota — remover';}else{ab.classList.remove('added');ab.textContent='➕ Adicionar à minha rota';}}
 function setDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();drawMine();}
 function setStart(v){myStart=v;try{localStorage.setItem('peru_mystart_v1',v);}catch(e){}drawMine();}
 function setPlaceDays(i,delta){myDays[i]=Math.max(1,daysOf(i)+delta);saveMine();updateMineChip();const v=document.getElementById('dVal');if(v)v.textContent=daysOf(i);if(curOpen===i)renderPanelDates(i);if(activeRoute==='mine')drawMine();}
-function toggleMineItem(i){const k=myRoute.indexOf(i);if(k>=0){myRoute.splice(k,1);}else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(curOpen===i)renderPanelDates(i);if(activeRoute==='mine')drawMine();}
+function toggleMineItem(i){if(P[i]&&P[i].feito)return;const k=myRoute.indexOf(i);if(k>=0){myRoute.splice(k,1);}else myRoute.push(i);saveMine();updateMineChip();const ab=document.getElementById('addbtn');if(ab&&+ab.dataset.i===i)setAddBtn(i);if(curOpen===i)renderPanelDates(i);if(activeRoute==='mine')drawMine();}
 (function(){
   const host=document.getElementById('rchips');if(!host)return;
   const mine=document.createElement('button');mine.className='rc mine';mine.id='mineChip';
@@ -665,7 +673,7 @@ function drawMine(){
   }).join('');
   const end=new Date(cursor);
   det.innerHTML=`<div class="ithead"><b>Minha rota</b> · ${myRoute.length} lugares · ${totalDays()} noites <button class="clr" id="clrMine">limpar</button></div>
-    <div class="itstart">Início: <input type="date" id="itstart" value="${isoD(start)}"> <span>→ fim ~${fmtBR(end)}</span></div>
+    <div class="itstart">Início: <input type="date" id="itstart" min="${isoD(hoje0())}" value="${isoD(start)}"> <span>→ fim ~${fmtBR(end)}</span></div>
     ${prazoHTML(end)}
     <div class="ittable">${rows}</div>`;
   const si=document.getElementById('itstart');if(si)si.addEventListener('change',e=>{if(e.target.value)setStart(e.target.value);});
