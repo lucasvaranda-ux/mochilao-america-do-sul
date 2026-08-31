@@ -503,6 +503,12 @@ let routeLine=null, activeRoute=-1, curOpen=-1;
 let myRoute=[]; try{myRoute=JSON.parse(localStorage.getItem(LS_MINE)||'[]').filter(i=>P[i]!=null);}catch(e){}
 let myDays={}; try{myDays=JSON.parse(localStorage.getItem('peru_mydays_v1')||'{}');}catch(e){}
 let myStart=localStorage.getItem('peru_mystart_v1')||'';
+/* data de início no passado = resquício de sessão antiga (o plano é daqui pra frente).
+   Sem isso, um 14/08 gravado semanas atrás vencia o padrão e a rota nascia errada. */
+(function(){try{
+  if(myStart){const d=new Date(myStart+'T00:00:00'),h=new Date();h.setHours(0,0,0,0);
+    if(isNaN(d)||d<h){myStart='';localStorage.removeItem('peru_mystart_v1');}}
+}catch(e){myStart='';}})();
 function coordOf(name){
   const p=P.find(p=>p.n===name)||P.find(p=>p.n.includes(name)||name.includes(p.n));
   return p?p.c:null;
@@ -666,7 +672,7 @@ function drawMine(){
   det.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>toggleMineItem(+b.dataset.rm)));
   det.querySelectorAll('[data-dec]').forEach(b=>b.addEventListener('click',()=>setDays(+b.dataset.dec,-1)));
   det.querySelectorAll('[data-inc]').forEach(b=>b.addEventListener('click',()=>setDays(+b.dataset.inc,1)));
-  const cm=document.getElementById('clrMine');if(cm)cm.addEventListener('click',()=>{myRoute=[];myDays={};saveMine();updateMineChip();drawMine();});
+  const cm=document.getElementById('clrMine');if(cm)cm.addEventListener('click',()=>{myRoute=[];myDays={};myStart='';try{localStorage.removeItem('peru_mystart_v1');localStorage.removeItem('peru_sync_ts');}catch(e){}saveMine();updateMineChip();drawMine();});
   P.forEach((p,k)=>dimPin(k,myRoute.indexOf(k)<0));
   if(map){const pts=myRoute.map(i=>P[i].c).filter(Boolean);
     if(pts.length>1){routeLine=L.polyline(pts,{color:'#e8822e',weight:3.5,opacity:.95,dashArray:'2,9',lineCap:'round',lineJoin:'round'}).addTo(map);try{map.fitBounds(routeLine.getBounds(),{padding:[46,46]});}catch(e){}}
