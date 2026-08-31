@@ -293,10 +293,10 @@ const T={
 const P=[
  {n:"Lima",c:[-12.046,-77.043],t:"gas",d:"2–4 dias",work:1,opt:0,
   wiki:["Lima","Lima","Lima"],
-  why:"Capital gastronômica do mundo e sua base agora. Falésias sobre o Pacífico, boêmia em Barranco e o melhor ceviche da vida. É daqui que você volta pro Brasil.",
+  why:"Capital gastronômica do mundo, onde sua viagem no Peru começou. Falésias sobre o Pacífico, boêmia em Barranco e o melhor ceviche da vida. Você já passou por aqui — a volta pro Brasil agora sai de Cusco.",
   see:["Malecón de Miraflores no pôr do sol","Barranco: murais e a Puente de los Suspiros","Huaca Pucllana — pirâmide pré-inca no meio da cidade","Circuito Mágico del Agua à noite"],
   eat:["<b>Central</b> e <b>Maido</b> — topo do ranking mundial (reserve com meses)","La Mar — cebicheria do Gastón","Mercado de Surquillo: cebiche barato e ótimo","Anticuchos de rua em Barranco"],
-  go:"Você está aqui. Ponto de partida e de retorno."},
+  go:"Onde você chegou no Peru. De Lima, ônibus de ~4h pela Panamericana até Paracas.",feito:1},
 
  {n:"Paracas · Islas Ballestas",c:[-13.83,-76.25],t:"nat",d:"1–2 dias",work:0,opt:0,
   wiki:["Ilhas Ballestas","Islas Ballestas","Ballestas Islands"],
@@ -461,7 +461,7 @@ function icon(color,big){
     const PERU=L.latLngBounds([[-18.9,-82.5],[0.4,-67.8]]);
     map=L.map('map',{zoomControl:true,scrollWheelZoom:true,maxBounds:PERU,maxBoundsViscosity:.85,minZoom:4});
     map.fitBounds([[-18.4,-81.4],[-0.1,-68.6]],{padding:[16,16]});
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
       {attribution:'© OpenStreetMap © CARTO',maxZoom:17}).addTo(map);
     P.forEach((p,i)=>{
       const big=/Machu|Cusco|Lima/.test(p.n);
@@ -483,7 +483,7 @@ function icon(color,big){
     const c=document.createElement('div');
     c.className='card';c.dataset.i=i;c.style.setProperty('--tone',T[p.t].c);
     c.innerHTML=`<div class="tone"></div><h3>${p.n}</h3>
-      <div class="meta">${T[p.t].e} ${T[p.t].l} · ${p.d}</div>
+      <div class="meta">${T[p.t].e} ${T[p.t].l} · ${emNoites(p.d)}</div>
       ${p.opt?'<span class="opt">se couber</span>':''}`;
     c.addEventListener('click',()=>open(i));
     rail.appendChild(c);
@@ -518,6 +518,7 @@ function routeNightsOf(i,nm,k){const o=ROUTES[i].noites||{};return o[nm]!=null?o
 function routeNights(i){const seen=new Set();let t=0;ROUTES[i].sequencia.forEach(nm=>{const k=idxOf(nm);if(k>=0&&!seen.has(k)){seen.add(k);t+=routeNightsOf(i,nm,k);}});return t;}
 function inSeq(seq,pn){return seq.some(s=>pn.includes(s)||s.includes(pn));}
 function dimPin(k,dim){const m=MK[k];if(!m)return;const el=m.getElement&&m.getElement();if(el&&el.firstChild)el.firstChild.classList.toggle('dim',dim);}
+function emNoites(d){return (d||'').replace(/dias/g,'noites').replace(/\bdia\b/g,'noite');}
 function defaultDays(i){const m=(P[i].d||'').match(/\d+/);return m?+m[0]:2;}
 function daysOf(i){return myDays[i]!=null?myDays[i]:defaultDays(i);}
 function totalDays(){return myRoute.reduce((s,i)=>s+daysOf(i),0);}
@@ -570,6 +571,7 @@ function syncPush(){
     sbFetch(`${SB_URL}/rest/v1/${SB_TAB}`,{method:'POST',headers:sbH,
       body:JSON.stringify({slug:SB_SLUG,origem:'site',estado:est})})
       .then(r=>{if(!r.ok)throw new Error('http '+r.status);ultimoEnviado=corpo;
+        try{localStorage.setItem('peru_sync_ts',new Date().toISOString());}catch(e){}
         setSyncStatus('✓ salvo na nuvem','ok');})
       .catch(()=>setSyncStatus('offline — salvo só aqui','off'));
   },1500);
@@ -580,13 +582,17 @@ function syncPull(){
     .then(j=>{
       const est=j&&j[0]&&j[0].estado;if(!est)return false;
       const idx=Array.isArray(est._idx)?est._idx.filter(i=>P[i]!=null):[];
-      // só adota a nuvem se tiver rota e o aparelho estiver vazio (não atropela edição local)
-      if(idx.length&&!myRoute.length){
+      // quem gravou por último vence: adota se a nuvem for mais nova que este aparelho
+      let local=0;try{local=Date.parse(localStorage.getItem('peru_sync_ts')||'')||0;}catch(e){}
+      const remoto=Date.parse(j[0].criado_em||'')||0;
+      if(idx.length&&(!myRoute.length||remoto>local)){
         myRoute=idx; myDays=est._dias||{};
         if(est.inicio){myStart=est.inicio;try{localStorage.setItem('peru_mystart_v1',myStart);}catch(e){}}
         try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));localStorage.setItem('peru_mydays_v1',JSON.stringify(myDays));}catch(e){}
+        try{localStorage.setItem('peru_sync_ts',j[0].criado_em||new Date().toISOString());}catch(e){}
+        ultimoEnviado=JSON.stringify(estadoJSON());
         updateMineChip();if(activeRoute==='mine')drawMine();
-        setSyncStatus('✓ rota carregada da nuvem','ok');return true;
+        setSyncStatus('✓ rota atualizada da nuvem','ok');return true;
       }
       setSyncStatus('✓ sincronizado','ok');return false;
     })
@@ -767,7 +773,7 @@ async function photo(titles){
 function open(i){
   const p=P[i],th=T[p.t];
   hero.innerHTML=`<div class="ph">${th.e}</div><div class="gal" id="gal"></div><div class="fade"></div>
-    <div class="cap"><h2>${p.n}</h2><div class="sub">${p.d}${p.opt?' · opcional':''}</div></div>
+    <div class="cap"><h2>${p.n}</h2><div class="sub">${emNoites(p.d)}${p.opt?' · opcional':''}</div></div>
     <div class="credit" id="credit"></div>`;
   const list=(a)=>a.map(x=>`<li>${x}</li>`).join('');
   const ex=EX[p.n]||{};
@@ -782,7 +788,7 @@ function open(i){
     <div class="daysedit">
       <span class="del">🌙 Quantas noites</span>
       <div class="dstep"><button id="dDec" aria-label="menos">−</button><span id="dVal"></span><button id="dInc" aria-label="mais">+</button></div>
-      <span class="dsug">sugestão: ${(p.d||'').replace(/dias/,'noites').replace(/dia\b/,'noite')}</span>
+      <span class="dsug">sugestão: ${emNoites(p.d)}</span>
     </div>
     <div class="pdates" id="pdates"></div>
     <p class="why">${p.why}</p>

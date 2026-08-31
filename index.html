@@ -271,6 +271,7 @@
   .ptr{position:fixed;top:0;left:50%;transform:translateX(-50%) translateY(-52px);z-index:1300;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.25rem;opacity:0;pointer-events:none}
   .ptr.ready{color:var(--accent2);border-color:var(--accent2)}
   .ptr.spinning{animation:spin360 .8s linear infinite}
+.leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.92) saturate(.85)}
 </style>
 </head>
 <body>
@@ -905,7 +906,7 @@ function initMap(){
   }
   try{
     map=L.map('map',{scrollWheelZoom:true}).setView([-18,-68],3);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:18}).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:19}).addTo(map);
     L.polyline(stops.map(s=>s.coord),{color:'#e8a04e',weight:2.5,opacity:.7,dashArray:'5,8'}).addTo(map);
     stops.forEach(function(s){
       var icon=L.divIcon({className:'',html:`<div style="background:#e8a04e;color:#0f1419;width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;font-weight:800;border:2px solid #16130d;box-shadow:0 2px 6px rgba(0,0,0,.5)"><span style="transform:rotate(45deg);font-size:.75rem">${s.n}</span></div>`,iconSize:[28,28],iconAnchor:[14,28],popupAnchor:[0,-28]});
@@ -1364,7 +1365,7 @@ showTab(start);
       if(!window.L)return;
       if(addMap){try{addMap.remove();}catch(e){}addMap=null;}
       addMap=L.map('add-map',{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false}).setView([p.lat,p.lng],6);
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(addMap);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(addMap);
       L.marker([p.lat,p.lng]).addTo(addMap);
       setTimeout(()=>{try{addMap.invalidateSize();}catch(e){}},60);
     },80);
