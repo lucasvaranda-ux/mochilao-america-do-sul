@@ -200,6 +200,19 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 
 /* ---------- onde assistir ---------- */
 [hidden]{display:none!important}
+/* ---------- coleções ---------- */
+.colnote{color:var(--muted);font-size:.86rem;line-height:1.55;margin:0 0 12px;max-width:62ch}
+.colnote b{color:var(--tx)}
+.ctl2{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.vezes button[data-vz]{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--tx);font-size:1.05rem;line-height:1;cursor:pointer}
+.vezes output{min-width:28px;text-align:center;font-weight:700;font-size:1.05rem;color:var(--tx)}
+.fase{flex:1 1 200px;min-width:0;border:1px solid var(--line);background:var(--card);color:var(--tx);border-radius:10px;padding:7px 10px;font-size:.84rem}
+.rm{border:0;background:none;color:var(--faint);font-size:.74rem;cursor:pointer;padding:4px 2px;margin-left:auto}
+.filmes-saga summary{cursor:pointer;color:var(--muted);font-size:.8rem;font-weight:600}
+.filmes-saga ol{margin:8px 0 0;padding-left:20px;font-size:.8rem;color:var(--muted);line-height:1.6}
+.filmes-saga li b{color:var(--tx);font-weight:600}
+.addbox{margin-top:14px}
+.addbox .row input{flex:1 1 220px;min-width:0}
 .lang{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.06em;border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-right:5px;color:var(--faint);vertical-align:1px}
 .watch{display:flex;gap:5px;flex-wrap:wrap;align-items:center;font-size:.76rem;color:var(--muted)}
 .watch .wl{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:2px}
@@ -234,6 +247,8 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
   <div class="wrap" role="tablist">
     <button class="tab" role="tab" aria-selected="true" data-tab="filmes">Filmes<span class="ct num" id="ct-filmes"></span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="series">Séries<span class="ct num" id="ct-series"></span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="desligar" title="Desligar o cérebro">Desligar<span class="ct num" id="ct-desligar"></span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="repetidos">Repetidos<span class="ct num" id="ct-repetidos"></span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="cal">Calendário</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="pesos">Conexão</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="dados">Backup</button>
@@ -284,6 +299,28 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
     <p class="legend">Notas com ≈ e borda tracejada vieram de memória e ainda não foram conferidas na fonte.</p>
     <div class="grid" id="list-series" style="margin-top:12px"></div>
   </section>
+
+  <section class="panel" id="p-desligar" aria-label="Desligar o cérebro">
+    <p class="colnote"><b>Desligar o cérebro.</b> O que serve pra descansar a cabeça, cada um numa fase da vida.</p>
+    <div class="grid" id="list-desligar"></div>
+    <div class="box addbox">
+      <h3>Adicionar</h3>
+      <div class="row"><input class="search" type="text" list="todos-titulos" data-add="desligar" placeholder="Ex.: Seinfeld" aria-label="Título para adicionar em Desligar o cérebro" autocomplete="off"><button class="btn pri" data-addbtn="desligar">Adicionar</button></div>
+      <p class="addmsg" data-addmsg="desligar" style="margin-top:8px">Escolha da lista ou escreva qualquer título. O que não estiver na lista entra só com o nome e a busca no JustWatch; me conta no chat que eu completo os dados.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="p-repetidos" aria-label="Repetidos">
+    <p class="colnote"><b>Repetidos.</b> O que você vê dezenas de vezes.</p>
+    <div class="grid" id="list-repetidos"></div>
+    <div class="box addbox">
+      <h3>Adicionar</h3>
+      <div class="row"><input class="search" type="text" list="todos-titulos" data-add="repetidos" placeholder="Ex.: De Volta para o Futuro" aria-label="Título para adicionar em Repetidos" autocomplete="off"><button class="btn pri" data-addbtn="repetidos">Adicionar</button></div>
+      <p class="addmsg" data-addmsg="repetidos" style="margin-top:8px">Escolha da lista ou escreva qualquer título. O que não estiver na lista entra só com o nome e a busca no JustWatch; me conta no chat que eu completo os dados.</p>
+    </div>
+  </section>
+
+  <datalist id="todos-titulos"></datalist>
 
   <section class="panel" id="p-cal" aria-label="Calendário de episódios">
     <div class="ctrl">
@@ -344,9 +381,11 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 <script>
 // ---------- ESTADO ----------
 var KEY='telas_v1';
-var ST={notas:{},status:{},pesos:null,servicos:[]};
+var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{}};
 var STORE=true;
-try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'){ST.notas=p.notas||{};ST.status=p.status||{};ST.pesos=p.pesos||null;ST.servicos=Array.isArray(p.servicos)?p.servicos:[];}}}
+function obj(x){return x&&typeof x==='object'&&!Array.isArray(x)?x:{}}
+function restauraCol(p){ST.col=obj(p.col);ST.livres=obj(p.livres);ST.vezes=obj(p.vezes);ST.fase=obj(p.fase)}
+try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'){ST.notas=p.notas||{};ST.status=p.status||{};ST.pesos=p.pesos||null;ST.servicos=Array.isArray(p.servicos)?p.servicos:[];restauraCol(p);}}}
 catch(e){STORE=false}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){STORE=false}}
 
@@ -543,7 +582,7 @@ function renderList(kind){
   }catch(e){console.error(e)}
 }
 function renderAll(){
-  renderWatchCtl();renderList('filmes');renderList('series');renderPesos();renderDados();
+  renderWatchCtl();renderList('filmes');renderList('series');renderCol('desligar');renderCol('repetidos');renderPesos();renderDados();
   el('foot').textContent=(D.gerado_em?'Lista gerada em '+D.gerado_em+'. ':'')+'Notas dos agregadores mudam com o tempo — confira na fonte antes de citar.'+(STORE?'':' Este navegador não está guardando suas notas: faça backup.');
 }
 
@@ -558,7 +597,7 @@ function renderAll(){
       var t=e.target.closest('[data-f],[data-more],[data-s],[data-clr],[data-svc]');if(!t)return;
       if(t.dataset.svc){
         var n=t.dataset.svc,i=meus().indexOf(n);ST.servicos=meus().slice();if(i>-1)ST.servicos.splice(i,1);else ST.servicos.push(n);save();
-        renderWatchCtl();renderList('filmes');renderList('series');
+        renderWatchCtl();renderList('filmes');renderList('series');renderCol('desligar');renderCol('repetidos');
         var d=document.querySelector('[data-mysvc="'+kind+'"]');
         if(d){d.open=true;var b=[].filter.call(d.querySelectorAll('[data-svc]'),function(x){return x.dataset.svc===n})[0];if(b)b.focus()}
         return}
@@ -614,6 +653,105 @@ el('weights').addEventListener('input',function(e){
 el('weights').addEventListener('change',function(){save();renderList('filmes');renderList('series')});
 el('w-reset').addEventListener('click',function(){ST.pesos=null;save();renderPesos();renderList('filmes');renderList('series')});
 
+// ---------- COLEÇÕES ----------
+// Base em dados.json (colecoes + extras); o que ele acrescenta ou tira fica neste aparelho (ST.col),
+// junto com o contador de vezes (ST.vezes), a nota de fase (ST.fase) e os títulos livres (ST.livres).
+var CTIPO={filme:'Filme',serie:'Série',saga:'Saga'};
+function slug(t){return String(t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60)}
+function achar(id){
+  var k,i,l;
+  var fontes=[['filmes','filme'],['series','serie']];
+  for(k=0;k<fontes.length;k++){l=(D&&D[fontes[k][0]])||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:fontes[k][1]}}
+  l=(D&&D.extras)||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:l[i].tipo==='saga'?'saga':'serie'};
+  if(ST.livres[id])return {it:{id:id,titulo:ST.livres[id].titulo},tipo:'livre'};
+  return null;
+}
+function colEstado(col){var c=ST.col[col];if(!c||typeof c!=='object')c=ST.col[col]={add:[],rem:[]};c.add=Array.isArray(c.add)?c.add:[];c.rem=Array.isArray(c.rem)?c.rem:[];return c}
+function colItens(col){
+  var base=((D&&D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[]).slice(),c=colEstado(col),out=[];
+  base.concat(c.add).forEach(function(id){if(out.indexOf(id)<0&&c.rem.indexOf(id)<0&&achar(id))out.push(id)});
+  return out;
+}
+function sagaWatch(it){
+  var fs=it.filmes||[],cont={},comDado=0;
+  fs.forEach(function(f){var w=oferta(f);if(!w)return;comDado++;emStreaming(f).forEach(function(n){cont[n]=(cont[n]||0)+1})});
+  var lab='<span class="wl">Onde assistir</span>',busca='<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a>';
+  if(!comDado)return '<div class="watch">'+lab+busca+'</div>';
+  var m=meus(),nomes=Object.keys(cont).sort(function(a,b){return cont[b]-cont[a]||a.localeCompare(b,'pt-BR')});
+  var out=nomes.map(function(n){var mi=m.indexOf(n)>-1;return '<span class="svc'+(mi?' mine':'')+'">'+esc(n)+' <span class="alt">'+cont[n]+' de '+fs.length+'</span></span>'});
+  if(!out.length)out.push('<span class="alt">fora das assinaturas no Brasil</span>');
+  return '<div class="watch">'+lab+out.join('')+busca+'</div>';
+}
+function cardCol(id,col){
+  var a=achar(id);if(!a)return '';var it=a.it,t=a.tipo;
+  var meta=[];
+  if(t==='saga')meta.push((it.filmes||[]).length+' filmes',it.anos||it.ano);
+  else if(t==='serie')meta.push(it.anos||it.ano,it.temporadas?it.temporadas+(/^\d+$/.test(String(it.temporadas))?' temporadas':''):'',it.episodios?it.episodios+(/^\d+$/.test(String(it.episodios))?' episódios':''):'',it.criadores||it.autor||'');
+  else if(t==='filme')meta.push(it.ano,it.autor,it.duracao);
+  else meta.push('adicionado por você');
+  meta=meta.filter(Boolean).map(esc).join(' · ');
+  var watch=t==='saga'?sagaWatch(it):(t==='livre'?'<div class="watch"><span class="wl">Onde assistir</span><a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a></div>':watchHtml(it));
+  var lista=t==='saga'&&(it.filmes||[]).length?'<details class="filmes-saga"><summary>Os '+it.filmes.length+' filmes</summary><ol>'+it.filmes.map(function(f){
+    var en=f.titulo_en&&f.titulo_en!==f.titulo?' <span class="lang">EN</span>'+esc(f.titulo_en):'';
+    var sv=emStreaming(f);return '<li><b>'+esc(f.titulo)+'</b> ('+esc(f.ano)+')'+en+(sv.length?' · '+esc(sv.join(', ')):'')+'</li>'}).join('')+'</ol></details>':'';
+  var ctl='';
+  if(col==='repetidos'){var v=+ST.vezes[id]||0;
+    ctl='<div class="ctl2 vezes" role="group" aria-label="Quantas vezes você viu"><span>Vi</span><button data-vz="-1" aria-label="Uma vez a menos">−</button><output class="num">'+v+'</output><button data-vz="1" aria-label="Mais uma vez">+</button><span>'+(v===1?'vez':'vezes')+'</span><button class="rm" data-rm="1">tirar daqui</button></div>'}
+  else{ctl='<div class="ctl2"><input class="fase" data-fase="1" type="text" maxlength="120" placeholder="Em que fase da vida isso te serviu?" aria-label="Em que fase da vida isso te serviu" value="'+esc(ST.fase[id]||'')+'"><button class="rm" data-rm="1">tirar daqui</button></div>'}
+  return '<article class="card" data-id="'+esc(id)+'" data-col="'+col+'"><div class="head"><div class="ttl"><h3>'+esc(it.titulo)+'</h3>'+titulosExtras(it)+
+    '<div class="meta">'+(CTIPO[t]?'<span class="bdg">'+CTIPO[t]+'</span> ':'')+meta+'</div></div></div>'+watch+lista+ctl+'</article>';
+}
+function renderCol(col){
+  try{
+    var ids=colItens(col),box=el('list-'+col);if(!box)return;
+    box.innerHTML=ids.length?ids.map(function(id){try{return cardCol(id,col)}catch(e){console.error(e);return ''}}).join(''):'<p class="empty">Nada aqui ainda. Adicione logo abaixo.</p>';
+    el('ct-'+col).textContent=' '+ids.length;
+    renderDatalist();
+  }catch(e){console.error(e)}
+}
+function renderDatalist(){
+  try{
+    var dl=el('todos-titulos');if(!dl||dl.dataset.ok)return;
+    var vis={},op=[];
+    [].concat(D.filmes||[],D.series||[],D.extras||[]).forEach(function(it){if(it&&it.titulo&&!vis[it.titulo]){vis[it.titulo]=1;op.push('<option value="'+esc(it.titulo)+'">'+(it.titulo_en&&it.titulo_en!==it.titulo?esc(it.titulo_en):'')+'</option>')}});
+    dl.innerHTML=op.join('');dl.dataset.ok='1';
+  }catch(e){console.error(e)}
+}
+function idPorNome(t){
+  var q=String(t||'').trim().toLowerCase();if(!q)return null;
+  var todos=[].concat(D.filmes||[],D.series||[],D.extras||[]);
+  for(var i=0;i<todos.length;i++){var x=todos[i];if([x.titulo,x.titulo_en,x.titulo_original].some(function(v){return v&&String(v).trim().toLowerCase()===q}))return x.id}
+  for(var k in ST.livres)if(ST.livres[k]&&String(ST.livres[k].titulo).trim().toLowerCase()===q)return k;
+  return null;
+}
+function adicionar(col){
+  try{
+    var inp=document.querySelector('[data-add="'+col+'"]'),msg=document.querySelector('[data-addmsg="'+col+'"]'),t=(inp.value||'').trim();if(!t)return;
+    var id=idPorNome(t),c=colEstado(col),novo=false;
+    if(!id){id='livre-'+slug(t);if(!ST.livres[id])ST.livres[id]={titulo:t};novo=true}
+    var ri=c.rem.indexOf(id);if(ri>-1)c.rem.splice(ri,1);
+    var base=(D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[];
+    if(base.indexOf(id)<0&&c.add.indexOf(id)<0)c.add.push(id);
+    save();inp.value='';renderCol(col);
+    if(msg)msg.textContent=novo?'"'+t+'" entrou só com o nome. Me conta no chat que eu completo os dados e o onde assistir.':'"'+t+'" adicionado.';
+  }catch(e){console.error(e)}
+}
+['desligar','repetidos'].forEach(function(col){
+  try{
+    var p=el('p-'+col);if(!p)return;
+    p.querySelector('[data-addbtn]').addEventListener('click',function(){adicionar(col)});
+    p.querySelector('[data-add]').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();adicionar(col)}});
+    p.addEventListener('click',function(e){
+      var t=e.target.closest('[data-vz],[data-rm]');if(!t)return;var c=t.closest('.card');if(!c)return;var id=c.dataset.id;
+      if(t.dataset.vz){var v=Math.max(0,(+ST.vezes[id]||0)+(+t.dataset.vz));if(v)ST.vezes[id]=v;else delete ST.vezes[id];save();
+        c.querySelector('.vezes output').textContent=v;c.querySelector('.vezes span:last-of-type').textContent=v===1?'vez':'vezes';return}
+      if(t.dataset.rm){var s=colEstado(col),ai=s.add.indexOf(id);if(ai>-1)s.add.splice(ai,1);else if(s.rem.indexOf(id)<0)s.rem.push(id);save();renderCol(col);return}
+    });
+    p.addEventListener('input',function(e){var t=e.target;if(!t.dataset||!t.dataset.fase)return;var c=t.closest('.card');if(!c)return;
+      var v=t.value.trim();if(v)ST.fase[c.dataset.id]=t.value;else delete ST.fase[c.dataset.id];save()});
+  }catch(e){console.error(e)}
+});
+
 // ---------- BACKUP ----------
 function dataBR(s){var m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})/);return m?m[3]+'/'+m[2]+'/'+m[1]:''}
 function renderDados(){
@@ -637,7 +775,7 @@ el('imp').addEventListener('change',function(e){
   var r=new FileReader();
   r.onload=function(){
     try{var j=JSON.parse(r.result);var s=j.estado||j;
-      ST.notas=s.notas||{};ST.status=s.status||{};ST.pesos=s.pesos||null;ST.servicos=Array.isArray(s.servicos)?s.servicos:[];save();renderAll();renderCal();
+      ST.notas=s.notas||{};ST.status=s.status||{};ST.pesos=s.pesos||null;ST.servicos=Array.isArray(s.servicos)?s.servicos:[];restauraCol(s);save();renderAll();renderCal();
       el('impmsg').textContent='Backup restaurado: '+Object.keys(ST.notas).length+' notas, '+Object.keys(ST.status).length+' status.';
     }catch(err){el('impmsg').textContent='Esse arquivo não é um backup do Telas.'}
   };

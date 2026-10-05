@@ -120,11 +120,21 @@ async function provedores(ref) {
   return prov;
 }
 
+// a lista principal, mais as séries e os filmes das sagas das coleções (Desligar, Repetidos)
+const fila = [];
+const vistos = new Set();
+const poe = (it, tipo) => { if (it?.id && !vistos.has(it.id)) { vistos.add(it.id); fila.push([it, tipo]); } };
+for (const it of dados.filmes || []) poe(it, 'movie');
+for (const it of dados.series || []) poe(it, 'tv');
+for (const ex of dados.extras || []) {
+  if (ex?.tipo === 'saga') for (const f of ex.filmes || []) poe(f, 'movie');
+  else poe(ex, 'tv');
+}
+
 const titulos = {};
 let falhas = 0, seguidas = 0, total = 0;
-for (const [lista, tipo] of [['filmes', 'movie'], ['series', 'tv']]) {
-  for (const it of dados[lista] || []) {
-    if (!it?.id) continue;
+for (const [it, tipo] of fila) {
+  {
     total++;
     try {
       let ref = await acharId(it, tipo);
