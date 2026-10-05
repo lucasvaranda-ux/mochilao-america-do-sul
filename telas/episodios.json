@@ -1,0 +1,572 @@
+{
+ "gerado_em": "2026-10-05T04:33:23.040Z",
+ "fonte": "TVmaze (tvmaze.com)",
+ "series": [
+  {
+   "imdb_id": "tt22248376",
+   "tvmaze_id": 69956,
+   "nome": "Frieren: Beyond Journey's End",
+   "status": "Running",
+   "plataforma": "NTV",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt28534254",
+   "tvmaze_id": 75306,
+   "nome": "Spice and Wolf: Merchant Meets the Wise Wolf",
+   "status": "Running",
+   "plataforma": "TV Tokyo",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt22202452",
+   "tvmaze_id": 86175,
+   "nome": "Pluribus",
+   "status": "Running",
+   "plataforma": "Apple TV",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt21621494",
+   "tvmaze_id": 69046,
+   "nome": "Delicious in Dungeon",
+   "status": "Running",
+   "plataforma": "Tokyo MX",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt28093628",
+   "tvmaze_id": 69327,
+   "nome": "Common Side Effects",
+   "status": "Running",
+   "plataforma": "Adult Swim",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt9018736",
+   "tvmaze_id": 38753,
+   "nome": "Avatar: The Last Airbender",
+   "status": "Running",
+   "plataforma": "Netflix",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt11280740",
+   "tvmaze_id": 44933,
+   "nome": "Severance",
+   "status": "Running",
+   "plataforma": "Apple TV",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt2788316",
+   "tvmaze_id": 37336,
+   "nome": "Shōgun",
+   "status": "Running",
+   "plataforma": "Hulu",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt3581920",
+   "tvmaze_id": 46562,
+   "nome": "The Last of Us",
+   "status": "Running",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt8888462",
+   "tvmaze_id": 41375,
+   "nome": "Pachinko",
+   "status": "Running",
+   "plataforma": "Apple TV",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt15017118",
+   "tvmaze_id": 56325,
+   "nome": "Dark Winds",
+   "status": "Running",
+   "plataforma": "AMC+",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt11737520",
+   "tvmaze_id": 46065,
+   "nome": "One Piece",
+   "status": "Running",
+   "plataforma": "Netflix",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt7631058",
+   "tvmaze_id": 33352,
+   "nome": "The Lord of the Rings: The Rings of Power",
+   "status": "Running",
+   "plataforma": "Prime Video",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt14688458",
+   "tvmaze_id": 38052,
+   "nome": "Silo",
+   "status": "Running",
+   "plataforma": "Apple TV",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13016388",
+   "tvmaze_id": 53277,
+   "nome": "3 Body Problem",
+   "status": "Running",
+   "plataforma": "Netflix",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt27497448",
+   "tvmaze_id": 53063,
+   "nome": "A Knight of the Seven Kingdoms",
+   "status": "Running",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13918446",
+   "tvmaze_id": 68803,
+   "nome": "Harry Potter",
+   "status": "In Development",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt10986410",
+   "tvmaze_id": 44458,
+   "nome": "Ted Lasso",
+   "status": "Running",
+   "plataforma": "Apple TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt27740241",
+   "tvmaze_id": 68723,
+   "nome": "El Eternauta",
+   "status": "Running",
+   "plataforma": "Netflix",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13622776",
+   "tvmaze_id": 52343,
+   "nome": "Ahsoka",
+   "status": "Running",
+   "plataforma": "Disney+",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13406094",
+   "tvmaze_id": 51394,
+   "nome": "The White Lotus",
+   "status": "Running",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt19231492",
+   "tvmaze_id": 61315,
+   "nome": "Dark Matter",
+   "status": "Running",
+   "plataforma": "Apple TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt10466872",
+   "tvmaze_id": 42846,
+   "nome": "Dune: Prophecy",
+   "status": "Running",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt11198330",
+   "tvmaze_id": 44778,
+   "nome": "House of the Dragon",
+   "status": "Running",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt0388629",
+   "tvmaze_id": 1505,
+   "nome": "One Piece",
+   "status": "Running",
+   "plataforma": "Fuji TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt13210838",
+   "tvmaze_id": 64992,
+   "nome": "The Gentlemen",
+   "status": "Running",
+   "plataforma": "Netflix",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt26545992",
+   "tvmaze_id": 44776,
+   "nome": "Lanterns",
+   "status": "To Be Determined",
+   "plataforma": "HBO",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt27497393",
+   "tvmaze_id": 83360,
+   "nome": "Stuart Fails to Save the Universe",
+   "status": "Running",
+   "plataforma": "HBO Max",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt31510819",
+   "tvmaze_id": 75026,
+   "nome": "MobLand",
+   "status": "Running",
+   "plataforma": "Paramount+",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt12327578",
+   "tvmaze_id": 48090,
+   "nome": "Star Trek: Strange New Worlds",
+   "status": "Running",
+   "plataforma": "Paramount+",
+   "alerta": true
+  }
+ ],
+ "episodios": [
+  {
+   "imdb_id": "tt10986410",
+   "tvmaze_id": 3605515,
+   "serie": "Ted Lasso",
+   "temporada": 4,
+   "episodio": 9,
+   "titulo": "Mae Rides the Bus",
+   "data": "2026-09-30",
+   "airstamp": "2026-09-30T12:00:00+00:00",
+   "plataforma": "Apple TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt19231492",
+   "tvmaze_id": 3591069,
+   "serie": "Dark Matter",
+   "temporada": 2,
+   "episodio": 6,
+   "titulo": "What the Universe Is Made Of",
+   "data": "2026-10-02",
+   "airstamp": "2026-10-02T12:00:00+00:00",
+   "plataforma": "Apple TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt31510819",
+   "tvmaze_id": 3708482,
+   "serie": "MobLand",
+   "temporada": 2,
+   "episodio": 3,
+   "titulo": "Bonzo Goes to Bitburg",
+   "data": "2026-10-02",
+   "airstamp": "2026-10-02T12:00:00+00:00",
+   "plataforma": "Paramount+",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt26545992",
+   "tvmaze_id": 3695366,
+   "serie": "Lanterns",
+   "temporada": 1,
+   "episodio": 8,
+   "titulo": "Dirt and Stars",
+   "data": "2026-10-04",
+   "airstamp": "2026-10-05T01:00:00+00:00",
+   "plataforma": "HBO",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt10986410",
+   "tvmaze_id": 3605516,
+   "serie": "Ted Lasso",
+   "temporada": 4,
+   "episodio": 10,
+   "titulo": "The Departing Lass",
+   "data": "2026-10-07",
+   "airstamp": "2026-10-07T12:00:00+00:00",
+   "plataforma": "Apple TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt19231492",
+   "tvmaze_id": 3591070,
+   "serie": "Dark Matter",
+   "temporada": 2,
+   "episodio": 7,
+   "titulo": "The Pyramid",
+   "data": "2026-10-09",
+   "airstamp": "2026-10-09T12:00:00+00:00",
+   "plataforma": "Apple TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt31510819",
+   "tvmaze_id": 3708483,
+   "serie": "MobLand",
+   "temporada": 2,
+   "episodio": 4,
+   "titulo": "Blank Curtain",
+   "data": "2026-10-09",
+   "airstamp": "2026-10-09T12:00:00+00:00",
+   "plataforma": "Paramount+",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt19231492",
+   "tvmaze_id": 3591071,
+   "serie": "Dark Matter",
+   "temporada": 2,
+   "episodio": 8,
+   "titulo": "The Basic Oneness of Everything",
+   "data": "2026-10-16",
+   "airstamp": "2026-10-16T12:00:00+00:00",
+   "plataforma": "Apple TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt31510819",
+   "tvmaze_id": 3708484,
+   "serie": "MobLand",
+   "temporada": 2,
+   "episodio": 5,
+   "titulo": "Birdland",
+   "data": "2026-10-16",
+   "airstamp": "2026-10-16T12:00:00+00:00",
+   "plataforma": "Paramount+",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt19231492",
+   "tvmaze_id": 3591072,
+   "serie": "Dark Matter",
+   "temporada": 2,
+   "episodio": 9,
+   "titulo": "How to Build the Box",
+   "data": "2026-10-23",
+   "airstamp": "2026-10-23T12:00:00+00:00",
+   "plataforma": "Apple TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt31510819",
+   "tvmaze_id": 3708485,
+   "serie": "MobLand",
+   "temporada": 2,
+   "episodio": 6,
+   "titulo": "A Different Corner",
+   "data": "2026-10-23",
+   "airstamp": "2026-10-23T12:00:00+00:00",
+   "plataforma": "Paramount+",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt19231492",
+   "tvmaze_id": 3591073,
+   "serie": "Dark Matter",
+   "temporada": 2,
+   "episodio": 10,
+   "titulo": "No Quiet Life",
+   "data": "2026-10-30",
+   "airstamp": "2026-10-30T12:00:00+00:00",
+   "plataforma": "Apple TV",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt31510819",
+   "tvmaze_id": 3708487,
+   "serie": "MobLand",
+   "temporada": 2,
+   "episodio": 7,
+   "titulo": "Episode 7",
+   "data": "2026-10-30",
+   "airstamp": "2026-10-30T12:00:00+00:00",
+   "plataforma": "Paramount+",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt31510819",
+   "tvmaze_id": 3708488,
+   "serie": "MobLand",
+   "temporada": 2,
+   "episodio": 8,
+   "titulo": "Episode 8",
+   "data": "2026-11-06",
+   "airstamp": "2026-11-06T12:00:00+00:00",
+   "plataforma": "Paramount+",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt7631058",
+   "tvmaze_id": 3615601,
+   "serie": "The Lord of the Rings: The Rings of Power",
+   "temporada": 3,
+   "episodio": 1,
+   "titulo": "The Life of Celeborn",
+   "data": "2026-11-11",
+   "airstamp": "2026-11-11T12:00:00+00:00",
+   "plataforma": "Prime Video",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt7631058",
+   "tvmaze_id": 3682718,
+   "serie": "The Lord of the Rings: The Rings of Power",
+   "temporada": 3,
+   "episodio": 2,
+   "titulo": "Istar",
+   "data": "2026-11-11",
+   "airstamp": "2026-11-11T12:00:00+00:00",
+   "plataforma": "Prime Video",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt7631058",
+   "tvmaze_id": 3682719,
+   "serie": "The Lord of the Rings: The Rings of Power",
+   "temporada": 3,
+   "episodio": 3,
+   "titulo": "Halls of Honor",
+   "data": "2026-11-11",
+   "airstamp": "2026-11-11T12:00:00+00:00",
+   "plataforma": "Prime Video",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt7631058",
+   "tvmaze_id": 3682720,
+   "serie": "The Lord of the Rings: The Rings of Power",
+   "temporada": 3,
+   "episodio": 4,
+   "titulo": "Gothmog",
+   "data": "2026-11-11",
+   "airstamp": "2026-11-11T12:00:00+00:00",
+   "plataforma": "Prime Video",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt31510819",
+   "tvmaze_id": 3708489,
+   "serie": "MobLand",
+   "temporada": 2,
+   "episodio": 9,
+   "titulo": "Episode 9",
+   "data": "2026-11-13",
+   "airstamp": "2026-11-13T12:00:00+00:00",
+   "plataforma": "Paramount+",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt7631058",
+   "tvmaze_id": 3682721,
+   "serie": "The Lord of the Rings: The Rings of Power",
+   "temporada": 3,
+   "episodio": 5,
+   "titulo": "Triangle of Sadness",
+   "data": "2026-11-18",
+   "airstamp": "2026-11-18T12:00:00+00:00",
+   "plataforma": "Prime Video",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt7631058",
+   "tvmaze_id": 3682722,
+   "serie": "The Lord of the Rings: The Rings of Power",
+   "temporada": 3,
+   "episodio": 6,
+   "titulo": "Mairon",
+   "data": "2026-11-18",
+   "airstamp": "2026-11-18T12:00:00+00:00",
+   "plataforma": "Prime Video",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt31510819",
+   "tvmaze_id": 3708490,
+   "serie": "MobLand",
+   "temporada": 2,
+   "episodio": 10,
+   "titulo": "Episode 10",
+   "data": "2026-11-20",
+   "airstamp": "2026-11-20T12:00:00+00:00",
+   "plataforma": "Paramount+",
+   "alerta": true
+  },
+  {
+   "imdb_id": "tt7631058",
+   "tvmaze_id": 3682723,
+   "serie": "The Lord of the Rings: The Rings of Power",
+   "temporada": 3,
+   "episodio": 7,
+   "titulo": "Amon Amarth",
+   "data": "2026-11-25",
+   "airstamp": "2026-11-25T12:00:00+00:00",
+   "plataforma": "Prime Video",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt7631058",
+   "tvmaze_id": 3682724,
+   "serie": "The Lord of the Rings: The Rings of Power",
+   "temporada": 3,
+   "episodio": 8,
+   "titulo": "The One Ring",
+   "data": "2026-11-25",
+   "airstamp": "2026-11-25T12:00:00+00:00",
+   "plataforma": "Prime Video",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13918446",
+   "tvmaze_id": 3581384,
+   "serie": "Harry Potter",
+   "temporada": 1,
+   "episodio": 1,
+   "titulo": "TBA",
+   "data": "2026-12-25",
+   "airstamp": "2026-12-25T17:00:00+00:00",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13622776",
+   "tvmaze_id": 3700733,
+   "serie": "Ahsoka",
+   "temporada": 2,
+   "episodio": 1,
+   "titulo": "TBA",
+   "data": "2027-01-20",
+   "airstamp": "2027-01-20T12:00:00+00:00",
+   "plataforma": "Disney+",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt14688458",
+   "tvmaze_id": 3726616,
+   "serie": "Silo",
+   "temporada": 4,
+   "episodio": 1,
+   "titulo": "TBA",
+   "data": "2027-07-09",
+   "airstamp": "2027-07-09T12:00:00+00:00",
+   "plataforma": "Apple TV",
+   "alerta": false
+  }
+ ]
+}
