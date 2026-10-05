@@ -2,6 +2,30 @@
 
 Contexto pro Claude Code continuar este projeto de onde paramos no Cowork.
 
+## Estado compartilhado (Supabase, não Notion)
+
+Fonte da verdade da viagem: tabela **`public.mochilao_peru_rota`** no projeto
+Supabase **`madeinbr`** (`irawlnmcinqkxzgczmrb`). Substitui a antiga página do
+Notion — o Claude tem acesso direto a essa tabela por ferramenta, então não é
+preciso intermediário.
+
+É um **log append-only**: cada gravação insere uma versão nova.
+- **Ler** = pegar a linha mais recente do `slug` (`order by criado_em desc limit 1`).
+- **Escrever** = `insert` de uma linha nova. Nunca `update`/`delete`
+  (as policies do `anon` nem permitem — o histórico é imutável).
+
+Colunas: `slug` (padrão `lucas`), `origem` (`site` | `claude`), `nota` (recado
+livre em texto), `estado` (jsonb: `inicio`, `rota`, `noites`, `volta`, `_idx`,
+`_dias`).
+
+Antes de responder qualquer coisa sobre a viagem, ler a versão mais recente.
+Depois de qualquer decisão, reserva ou mudança de rota, inserir uma versão nova
+com `origem='claude'` e uma `nota` explicando o que mudou.
+Se o usuário contradisser o registro, o usuário vence — e grava-se a correção.
+
+O `peru.html` lê e grava nessa mesma tabela (chave anon pública, protegida por
+RLS), então a rota do Lucas viaja entre aparelhos e é legível de fora.
+
 ## O que é
 
 App de **página única** (`index.html`) — um guia de viagem interativo, personalizado pro Lucas, pra um mochilão de ~90 dias pela América do Sul (Colômbia → Equador → Peru → Bolívia → Chile → Argentina → Uruguai). Tudo (HTML + CSS + JS) está num único arquivo, sem build.
