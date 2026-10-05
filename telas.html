@@ -207,7 +207,7 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 .svc.mine{background:var(--ok-soft);border-color:transparent;color:var(--ok);font-weight:700}
 .watch a{color:var(--live);text-decoration:none;white-space:nowrap}
 .watch a:hover{text-decoration:underline}
-.watch .alt{color:var(--faint)}
+.watch .alt,.mysvc .alt{color:var(--faint);font-weight:400}
 .mysvc{margin:8px 0 0;font-size:.82rem}
 .mysvc summary{cursor:pointer;color:var(--muted);font-weight:600;list-style:none}
 .mysvc summary::-webkit-details-marker{display:none}
@@ -278,7 +278,7 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
     </div>
     <div class="chips" data-filter="series" role="group" aria-label="Filtrar por status"></div>
     <div class="ctrl" data-watchbox="series" hidden style="margin:8px 0 0">
-      <select class="sel" data-watch="series" aria-label="Onde assistir os séries"></select>
+      <select class="sel" data-watch="series" aria-label="Onde assistir as séries"></select>
     </div>
     <details class="mysvc" data-mysvc="series" hidden><summary></summary><div class="chips" role="group" aria-label="Seus serviços de streaming"></div><p>Marque os serviços que você assina: eles ficam em verde nos cards e entram no filtro "Nos meus serviços". Fica guardado neste aparelho, junto com suas notas.</p></details>
     <p class="legend">Notas com ≈ e borda tracejada vieram de memória e ainda não foram conferidas na fonte.</p>
@@ -412,7 +412,7 @@ function visiveis(kind){
     if(V.f!=='todos'&&s!==V.f)return false;
     if(V.w&&V.w!=='todos'&&!passaWatch(it,V.w))return false;
     if(!q)return true;
-    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,it.arquetipo].join(' ').toLowerCase().indexOf(q)>-1;
+    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,it.arquetipo,emStreaming(it).join(' ')].join(' ').toLowerCase().indexOf(q)>-1;
   }).sort(function(a,b){return sortKey(kind,b)-sortKey(kind,a)});
 }
 function rateChips(n,kind){
@@ -452,7 +452,7 @@ function passaWatch(it,v){
   if(v.indexOf('p:')===0)return o.indexOf(v.slice(2))>-1;
   return true;
 }
-function jwBusca(it){return 'https://www.justwatch.com/br/busca?q='+encodeURIComponent(it.titulo_original||it.titulo||'')}
+function jwBusca(it){return 'https://www.justwatch.com/br/busca?q='+encodeURIComponent(it.titulo||it.titulo_original||'')}
 function watchHtml(it){
   var lab='<span class="wl">Onde assistir</span>',busca='<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a>';
   var w=oferta(it);
@@ -482,13 +482,14 @@ function renderWatchCtl(){
       var list=D[kind]||[],V=VIEW[kind];
       var porServ={};list.forEach(function(it){emStreaming(it).forEach(function(n){porServ[n]=(porServ[n]||0)+1})});
       var nMeus=list.filter(function(it){return passaWatch(it,'meus')}).length,nAss=list.filter(function(it){return emStreaming(it).length>0}).length;
-      var opts=[['todos','Onde assistir: qualquer lugar'],['meus','Nos meus serviços ('+nMeus+')'],['assin','Em alguma assinatura ('+nAss+')']];
+      var opts=[['todos','Onde assistir: qualquer lugar'],['meus','Nos meus serviços ('+nMeus+')'],['assin','Em algum streaming ('+nAss+')']];
       Object.keys(porServ).sort(function(a,b){return porServ[b]-porServ[a]||a.localeCompare(b,'pt-BR')}).forEach(function(n){opts.push(['p:'+n,n+' ('+porServ[n]+')'])});
       if(!opts.some(function(o){return o[0]===V.w}))V.w='todos';
       box.querySelector('select').innerHTML=opts.map(function(o){return '<option value="'+esc(o[0])+'"'+(o[0]===V.w?' selected':'')+'>'+esc(o[1])+'</option>'}).join('');
-      var todos=contaServicos();
+      var todos=contaServicos(),vistos=todos.map(function(s){return s.n});
+      meus().forEach(function(n){if(vistos.indexOf(n)<0)todos.push({n:n,c:0})});
       det.querySelector('summary').textContent='Seus serviços de streaming'+(meus().length?' ('+meus().length+')':'');
-      det.querySelector('.chips').innerHTML=todos.map(function(s){return '<button class="chip" data-svc="'+esc(s.n)+'" aria-pressed="'+(meus().indexOf(s.n)>-1)+'">'+esc(s.n)+'</button>'}).join('');
+      det.querySelector('.chips').innerHTML=todos.map(function(s){return '<button class="chip" data-svc="'+esc(s.n)+'" aria-pressed="'+(meus().indexOf(s.n)>-1)+'">'+esc(s.n)+(s.c?'':' <span class="alt">(sem títulos agora)</span>')+'</button>'}).join('');
     });
   }catch(e){console.error(e)}
 }
@@ -501,7 +502,7 @@ function titulosExtras(it){
 }
 function card(it,kind){
   var st=stOf(it),nota=ST.notas[it.id];
-  var meta=[it.ano,it.autor,it.pais,kind==='filmes'?it.duracao:(it.plataforma||''),kind==='series'?it.temporadas:''].filter(Boolean).map(esc).join(' · ');
+  var meta=[it.ano,it.autor,it.pais,kind==='filmes'?it.duracao:(oferta(it)?'':(it.plataforma||'')),kind==='series'?it.temporadas:''].filter(Boolean).map(esc).join(' · ');
   var badges=[];
   if(it.biblioteca)badges.push('<span class="bdg live">na sua biblioteca</span>');
   if(it.radar)badges.push('<span class="bdg radar">no seu radar</span>');
@@ -558,7 +559,9 @@ function renderAll(){
       if(t.dataset.svc){
         var n=t.dataset.svc,i=meus().indexOf(n);ST.servicos=meus().slice();if(i>-1)ST.servicos.splice(i,1);else ST.servicos.push(n);save();
         renderWatchCtl();renderList('filmes');renderList('series');
-        var d=document.querySelector('[data-mysvc="'+kind+'"]');if(d)d.open=true;return}
+        var d=document.querySelector('[data-mysvc="'+kind+'"]');
+        if(d){d.open=true;var b=[].filter.call(d.querySelectorAll('[data-svc]'),function(x){return x.dataset.svc===n})[0];if(b)b.focus()}
+        return}
       if(t.dataset.f){VIEW[kind].f=t.dataset.f;VIEW[kind].n=30;renderList(kind);return}
       if(t.dataset.more){VIEW[kind].n+=30;renderList(kind);return}
       var c=t.closest('.card');if(!c)return;var id=c.dataset.id;

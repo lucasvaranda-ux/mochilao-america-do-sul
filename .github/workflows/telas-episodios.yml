@@ -34,8 +34,11 @@ jobs:
           ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
         run: node scripts/telas-episodios.mjs
       - name: Onde assistir no Brasil (JustWatch via TMDB)
-        # se o TMDB falhar, os episódios do dia ainda são salvos
+        id: streaming
+        # se o TMDB falhar ou travar, os episódios do dia ainda são salvos;
+        # o último passo deixa a execução vermelha para o GitHub avisar por e-mail
         continue-on-error: true
+        timeout-minutes: 8
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: node scripts/telas-streaming.mjs
@@ -51,3 +54,8 @@ jobs:
           else
             echo "sem mudanças"
           fi
+      - name: Avisar se o onde assistir falhou
+        if: steps.streaming.outcome == 'failure'
+        run: |
+          echo "::error::Onde assistir não foi atualizado — veja o passo do TMDB (chave TMDB_API_KEY ou TMDB fora do ar)"
+          exit 1
