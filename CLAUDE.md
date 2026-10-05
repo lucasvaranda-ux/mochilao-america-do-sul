@@ -65,6 +65,15 @@ Tudo em `index.html`:
 - `loadCommons()` — busca foto dos produtos na API do Wikimedia Commons (tenta marca, depois categoria; fallback = emoji).
 - `showTab()` — controla as abas; chama `initMap()` ao abrir o Roteiro.
 
+## Página /telas (filmes e séries)
+
+`telas.html` é uma página separada do roteiro (mesmo padrão do `peru.html`: arquivo único, JS puro, try/catch por bloco). Lista top 100 filmes e top 100 séries com porcentagem de conexão, nota pessoal 0–100, status e calendário de episódios.
+
+- **Dados públicos:** `telas/dados.json` — títulos, notas de IMDb/RT/Metacritic/Letterboxd, críticos, visão do autor, leitura arquetípica, as 9 dimensões e seus pesos. É gerado a partir de uma pesquisa cuja versão completa (com as pontes pessoais) fica no repositório **privado** `caminho`, em `contexto/telas/DOSSIE.md`. **Nunca** colocar aqui nada além de tema: nada de nomes de pessoas da vida do Lucas, diário, sonhos, áudio ou mensagens privadas.
+- **Estado do usuário** (notas, status, pesos): `localStorage`, chave `telas_v1`, com backup/restauração em JSON na aba Backup.
+- **Robô de episódios:** `.github/workflows/telas-episodios.yml` roda `scripts/telas-episodios.mjs` todo dia (cron só roda no `main`). Busca no TVmaze pelo IMDb ID, grava `telas/episodios.json` e `telas/lancamentos.ics`, e manda e-mail via Resend se existirem os segredos `RESEND_API_KEY` e `ALERT_EMAIL`. O e-mail do Lucas fica **só** no segredo, nunca no código.
+- **O que o robô acompanha:** séries com status "em exibição"/"renovada" em `dados.json` (calendário geral) e as de `telas/acompanhando.json` (alertas e calendário assinável). A página gera essa lista pronta pra colar.
+
 ## Dependências de runtime (precisam de internet)
 - **Leaflet** 1.9.4 (unpkg) + tiles do **CARTO** — mapa.
 - **API REST da Wikipedia** — fotos dos destinos.
