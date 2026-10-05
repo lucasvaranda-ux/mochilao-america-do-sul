@@ -1,0 +1,36 @@
+{
+  "series": [
+    {
+      "imdb_id": "tt10986410",
+      "titulo": "Ted Lasso"
+    },
+    {
+      "imdb_id": "tt19231492",
+      "titulo": "Matéria Escura"
+    },
+    {
+      "imdb_id": "tt0388629",
+      "titulo": "One Piece"
+    },
+    {
+      "imdb_id": "tt12327578",
+      "titulo": "Star Trek: Strange New Worlds"
+    },
+    {
+      "imdb_id": "tt13210838",
+      "titulo": "The Gentlemen"
+    },
+    {
+      "imdb_id": "tt26545992",
+      "titulo": "Lanternas"
+    },
+    {
+      "imdb_id": "tt27497393",
+      "titulo": "Stuart Não Consegue Salvar o Universo"
+    },
+    {
+      "imdb_id": "tt31510819",
+      "titulo": "MobLand"
+    }
+  ]
+}
