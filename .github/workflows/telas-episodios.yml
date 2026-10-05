@@ -1,4 +1,4 @@
-name: Telas · episódios
+name: Telas · episódios e onde assistir
 
 on:
   schedule:
@@ -10,6 +10,7 @@ on:
       - 'telas/acompanhando.json'
       - 'telas/dados.json'
       - 'scripts/telas-episodios.mjs'
+      - 'scripts/telas-streaming.mjs'
 
 permissions:
   contents: write
@@ -32,14 +33,29 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
         run: node scripts/telas-episodios.mjs
+      - name: Onde assistir no Brasil (JustWatch via TMDB)
+        id: streaming
+        # se o TMDB falhar ou travar, os episódios do dia ainda são salvos;
+        # o último passo deixa a execução vermelha para o GitHub avisar por e-mail
+        continue-on-error: true
+        timeout-minutes: 8
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node scripts/telas-streaming.mjs
       - name: Salvar se mudou
         run: |
           if [ -n "$(git status --porcelain telas/)" ]; then
             git config user.name "telas-robo"
             git config user.email "telas-robo@users.noreply.github.com"
             git add telas/episodios.json telas/lancamentos.ics
-            git commit -m "telas: episódios atualizados"
+            if [ -f telas/streaming.json ]; then git add telas/streaming.json; fi
+            git commit -m "telas: robô atualizou episódios e onde assistir"
             git push
           else
             echo "sem mudanças"
           fi
+      - name: Avisar se o onde assistir falhou
+        if: steps.streaming.outcome == 'failure'
+        run: |
+          echo "::error::Onde assistir não foi atualizado — veja o passo do TMDB (chave TMDB_API_KEY ou TMDB fora do ar)"
+          exit 1

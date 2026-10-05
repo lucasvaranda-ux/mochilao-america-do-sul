@@ -197,6 +197,24 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 .ann{font-size:.84rem;line-height:1.5}
 .ann li{margin-bottom:6px}
 .foot{color:var(--faint);font-size:.74rem;line-height:1.55;margin-top:26px}
+
+/* ---------- onde assistir ---------- */
+[hidden]{display:none!important}
+.lang{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.06em;border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-right:5px;color:var(--faint);vertical-align:1px}
+.watch{display:flex;gap:5px;flex-wrap:wrap;align-items:center;font-size:.76rem;color:var(--muted)}
+.watch .wl{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:2px}
+.svc{border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--tx);white-space:nowrap}
+.svc.mine{background:var(--ok-soft);border-color:transparent;color:var(--ok);font-weight:700}
+.watch a{color:var(--live);text-decoration:none;white-space:nowrap}
+.watch a:hover{text-decoration:underline}
+.watch .alt,.mysvc .alt{color:var(--faint);font-weight:400}
+.mysvc{margin:8px 0 0;font-size:.82rem}
+.mysvc summary{cursor:pointer;color:var(--muted);font-weight:600;list-style:none}
+.mysvc summary::-webkit-details-marker{display:none}
+.mysvc summary::before{content:"▸ ";color:var(--faint)}
+.mysvc[open] summary::before{content:"▾ "}
+.mysvc .chips{flex-wrap:wrap;overflow:visible;margin-top:8px}
+.mysvc p{color:var(--faint);font-size:.74rem;margin:6px 0 0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -238,6 +256,10 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
       </select>
     </div>
     <div class="chips" data-filter="filmes" role="group" aria-label="Filtrar por status"></div>
+    <div class="ctrl" data-watchbox="filmes" hidden style="margin:8px 0 0">
+      <select class="sel" data-watch="filmes" aria-label="Onde assistir os filmes"></select>
+    </div>
+    <details class="mysvc" data-mysvc="filmes" hidden><summary></summary><div class="chips" role="group" aria-label="Seus serviços de streaming"></div><p>Marque os serviços que você assina: eles ficam em verde nos cards e entram no filtro "Nos meus serviços". Fica guardado neste aparelho, junto com suas notas.</p></details>
     <p class="legend">Notas com ≈ e borda tracejada vieram de memória e ainda não foram conferidas na fonte.</p>
     <div class="grid" id="list-filmes" style="margin-top:12px"></div>
   </section>
@@ -255,6 +277,10 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
       </select>
     </div>
     <div class="chips" data-filter="series" role="group" aria-label="Filtrar por status"></div>
+    <div class="ctrl" data-watchbox="series" hidden style="margin:8px 0 0">
+      <select class="sel" data-watch="series" aria-label="Onde assistir as séries"></select>
+    </div>
+    <details class="mysvc" data-mysvc="series" hidden><summary></summary><div class="chips" role="group" aria-label="Seus serviços de streaming"></div><p>Marque os serviços que você assina: eles ficam em verde nos cards e entram no filtro "Nos meus serviços". Fica guardado neste aparelho, junto com suas notas.</p></details>
     <p class="legend">Notas com ≈ e borda tracejada vieram de memória e ainda não foram conferidas na fonte.</p>
     <div class="grid" id="list-series" style="margin-top:12px"></div>
   </section>
@@ -308,6 +334,7 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
     <div class="box">
       <h3>De onde vêm os dados</h3>
       <p id="fonte"></p>
+      <p id="fonte-streaming"></p>
     </div>
   </section>
 
@@ -317,15 +344,15 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 <script>
 // ---------- ESTADO ----------
 var KEY='telas_v1';
-var ST={notas:{},status:{},pesos:null};
+var ST={notas:{},status:{},pesos:null,servicos:[]};
 var STORE=true;
-try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'){ST.notas=p.notas||{};ST.status=p.status||{};ST.pesos=p.pesos||null;}}}
+try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'){ST.notas=p.notas||{};ST.status=p.status||{};ST.pesos=p.pesos||null;ST.servicos=Array.isArray(p.servicos)?p.servicos:[];}}}
 catch(e){STORE=false}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){STORE=false}}
 
-var D=null, EP=null;
+var D=null, EP=null, SV=null;
 var DIMS=[], PESOS0=[];
-var VIEW={filmes:{q:'',sort:'conn',f:'todos',n:30},series:{q:'',sort:'conn',f:'todos',n:30}};
+var VIEW={filmes:{q:'',sort:'conn',f:'todos',w:'todos',n:30},series:{q:'',sort:'conn',f:'todos',w:'todos',n:30}};
 var CAL={v:'semana',scope:'acomp',m:null,sel:null};
 
 function el(id){return document.getElementById(id)}
@@ -346,6 +373,8 @@ function load(){
   .then(function(j){
     D=j;DIMS=j.dimensoes||[];PESOS0=DIMS.map(function(d){return d.peso});
     try{renderAll()}catch(e){console.error(e)}
+    fetch('/telas/streaming.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})
+      .then(function(sj){if(sj&&sj.titulos){SV=sj;try{renderAll()}catch(e){console.error(e)}}});
     return fetch('/telas/episodios.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
   })
   .then(function(ej){EP=ej;try{renderCal()}catch(e){console.error(e)}})
@@ -381,8 +410,9 @@ function visiveis(kind){
   return (D[kind]||[]).filter(function(it){
     var s=stOf(it)||'sem';
     if(V.f!=='todos'&&s!==V.f)return false;
+    if(V.w&&V.w!=='todos'&&!passaWatch(it,V.w))return false;
     if(!q)return true;
-    return [it.titulo,it.titulo_original,it.autor,it.pais,it.plataforma,it.arquetipo].join(' ').toLowerCase().indexOf(q)>-1;
+    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,it.arquetipo,emStreaming(it).join(' ')].join(' ').toLowerCase().indexOf(q)>-1;
   }).sort(function(a,b){return sortKey(kind,b)-sortKey(kind,a)});
 }
 function rateChips(n,kind){
@@ -410,9 +440,69 @@ function critico(c){
     (c.posicao?'<p>'+esc(c.posicao)+'</p>':'')+(c.fonte?'<div class="src">'+(c.origem==='memoria'?'≈ de memória, a conferir · ':'')+linkOrText(c.fonte)+'</div>':'')+'</div>';
 }
 function linkOrText(s){s=String(s||'');var m=s.match(/https?:\/\/\S+/);if(!m)return esc(s);var u=m[0].replace(/[).,;]+$/,'');return esc(s.replace(m[0],'').trim())+' <a href="'+esc(u)+'" target="_blank" rel="noopener">fonte</a>'}
+// ---------- ONDE ASSISTIR ----------
+function uniq(a){var o=[];a.forEach(function(x){if(x&&o.indexOf(x)<0)o.push(x)});return o}
+function oferta(it){var w=SV&&SV.titulos&&SV.titulos[it.id];return w&&!w.nao_encontrado?w:null}
+function emStreaming(it){var w=oferta(it);return w?uniq([].concat(w.assinatura||[],w.gratis||[],w.anuncios||[])):[]}
+function meus(){return ST.servicos||[]}
+function passaWatch(it,v){
+  var o=emStreaming(it);
+  if(v==='meus')return o.some(function(x){return meus().indexOf(x)>-1});
+  if(v==='assin')return o.length>0;
+  if(v.indexOf('p:')===0)return o.indexOf(v.slice(2))>-1;
+  return true;
+}
+function jwBusca(it){return 'https://www.justwatch.com/br/busca?q='+encodeURIComponent(it.titulo||it.titulo_original||'')}
+function watchHtml(it){
+  var lab='<span class="wl">Onde assistir</span>',busca='<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a>';
+  var w=oferta(it);
+  if(!w)return '<div class="watch">'+lab+busca+'</div>';
+  var m=meus(),out=[];
+  function chip(n,extra){return '<span class="svc'+(m.indexOf(n)>-1?' mine':'')+'"'+(m.indexOf(n)>-1?' title="Você assina"':'')+'>'+esc(n)+(extra?' <span class="alt">'+extra+'</span>':'')+'</span>'}
+  (w.assinatura||[]).forEach(function(n){out.push(chip(n,''))});
+  (w.gratis||[]).forEach(function(n){out.push(chip(n,'grátis'))});
+  (w.anuncios||[]).forEach(function(n){if((w.gratis||[]).indexOf(n)<0)out.push(chip(n,'com anúncios'))});
+  var loja=uniq([].concat(w.aluguel||[],w.compra||[]));
+  if(!out.length)out.push('<span class="alt">fora das assinaturas no Brasil</span>');
+  if(loja.length)out.push('<span class="alt">alugar ou comprar: '+esc(loja.slice(0,3).join(', '))+(loja.length>3?' e mais '+(loja.length-3):'')+'</span>');
+  var link=w.link?'<a href="'+esc(w.link)+'" target="_blank" rel="noopener">ver ofertas ↗</a>':busca;
+  return '<div class="watch">'+lab+out.join('')+link+'</div>';
+}
+function contaServicos(){
+  var c={};['filmes','series'].forEach(function(k){(D[k]||[]).forEach(function(it){emStreaming(it).forEach(function(n){c[n]=(c[n]||0)+1})})});
+  return Object.keys(c).sort(function(a,b){return c[b]-c[a]||a.localeCompare(b,'pt-BR')}).map(function(n){return {n:n,c:c[n]}});
+}
+function renderWatchCtl(){
+  try{
+    var tem=!!(SV&&SV.titulos);
+    ['filmes','series'].forEach(function(kind){
+      var box=document.querySelector('[data-watchbox="'+kind+'"]'),det=document.querySelector('[data-mysvc="'+kind+'"]');
+      if(!box||!det)return;
+      box.hidden=!tem;det.hidden=!tem;if(!tem)return;
+      var list=D[kind]||[],V=VIEW[kind];
+      var porServ={};list.forEach(function(it){emStreaming(it).forEach(function(n){porServ[n]=(porServ[n]||0)+1})});
+      var nMeus=list.filter(function(it){return passaWatch(it,'meus')}).length,nAss=list.filter(function(it){return emStreaming(it).length>0}).length;
+      var opts=[['todos','Onde assistir: qualquer lugar'],['meus','Nos meus serviços ('+nMeus+')'],['assin','Em algum streaming ('+nAss+')']];
+      Object.keys(porServ).sort(function(a,b){return porServ[b]-porServ[a]||a.localeCompare(b,'pt-BR')}).forEach(function(n){opts.push(['p:'+n,n+' ('+porServ[n]+')'])});
+      if(!opts.some(function(o){return o[0]===V.w}))V.w='todos';
+      box.querySelector('select').innerHTML=opts.map(function(o){return '<option value="'+esc(o[0])+'"'+(o[0]===V.w?' selected':'')+'>'+esc(o[1])+'</option>'}).join('');
+      var todos=contaServicos(),vistos=todos.map(function(s){return s.n});
+      meus().forEach(function(n){if(vistos.indexOf(n)<0)todos.push({n:n,c:0})});
+      det.querySelector('summary').textContent='Seus serviços de streaming'+(meus().length?' ('+meus().length+')':'');
+      det.querySelector('.chips').innerHTML=todos.map(function(s){return '<button class="chip" data-svc="'+esc(s.n)+'" aria-pressed="'+(meus().indexOf(s.n)>-1)+'">'+esc(s.n)+(s.c?'':' <span class="alt">(sem títulos agora)</span>')+'</button>'}).join('');
+    });
+  }catch(e){console.error(e)}
+}
+// título original e título em inglês, sem repetir o que já está escrito
+function titulosExtras(it){
+  var pt=it.titulo||'',og=it.titulo_original||'',en=it.titulo_en||'',out='',tag='<span class="lang" title="Título em inglês">EN</span>';
+  if(og&&og!==pt)out+='<div class="meta">'+(en&&en===og?tag:'')+esc(og)+'</div>';
+  if(en&&en!==og&&en!==pt)out+='<div class="meta">'+tag+esc(en)+'</div>';
+  return out;
+}
 function card(it,kind){
   var st=stOf(it),nota=ST.notas[it.id];
-  var meta=[it.ano,it.autor,it.pais,kind==='filmes'?it.duracao:(it.plataforma||''),kind==='series'?it.temporadas:''].filter(Boolean).map(esc).join(' · ');
+  var meta=[it.ano,it.autor,it.pais,kind==='filmes'?it.duracao:(oferta(it)?'':(it.plataforma||'')),kind==='series'?it.temporadas:''].filter(Boolean).map(esc).join(' · ');
   var badges=[];
   if(it.biblioteca)badges.push('<span class="bdg live">na sua biblioteca</span>');
   if(it.radar)badges.push('<span class="bdg radar">no seu radar</span>');
@@ -431,11 +521,11 @@ function card(it,kind){
   if(it.notas&&it.notas.fonte)more.push('<div class="src">Notas: '+esc(it.notas.fonte)+'</div>');
   return '<article class="card'+(st?' s-'+st:'')+'" data-id="'+esc(it.id)+'">'+
     '<div class="head"><span class="rank num">'+(it.rank?('#'+it.rank):'')+'</span><div class="ttl"><h3>'+esc(it.titulo)+'</h3>'+
-      (it.titulo_original&&it.titulo_original!==it.titulo?'<div class="meta">'+esc(it.titulo_original)+'</div>':'')+
+      titulosExtras(it)+
       '<div class="meta">'+meta+'</div></div>'+
       '<div class="conn"><b class="num">'+(conexao(it)==null?'—':conexao(it)+'%')+'</b><span>conexão</span></div></div>'+
     (badges.length?'<div class="badges">'+badges.join('')+'</div>':'')+
-    (it.dims&&it.dims.length?dimsHtml(it):'')+rateChips(it.notas,kind)+
+    (it.dims&&it.dims.length?dimsHtml(it):'')+rateChips(it.notas,kind)+watchHtml(it)+
     '<div class="act"><div class="seg" role="group" aria-label="Status">'+segOpts.map(function(s){return '<button data-s="'+s+'" aria-pressed="'+(st===s)+'">'+SLAB[s]+'</button>'}).join('')+'</div>'+
       '<div class="score'+(nota==null?' vazio':'')+'"><label for="sc-'+esc(it.id)+'">Sua nota</label><input id="sc-'+esc(it.id)+'" type="range" min="0" max="100" step="1" value="'+(nota==null?50:nota)+'">'+
       '<output class="num'+(nota==null?' none':'')+'">'+(nota==null?'—':nota)+'</output>'+(nota!=null?'<button class="clr" data-clr="1" aria-label="Apagar nota">limpar</button>':'')+'</div></div>'+
@@ -445,7 +535,7 @@ function card(it,kind){
 function renderList(kind){
   try{
     var box=el('list-'+kind),all=visiveis(kind),V=VIEW[kind];
-    if(!all.length){box.innerHTML='<p class="empty">Nada aqui com esse filtro.</p>';return}
+    if(!all.length){box.innerHTML='<p class="empty">'+(V.w==='meus'&&!meus().length?'Você ainda não marcou seus serviços. Abra "Seus serviços de streaming", logo acima, e marque os que assina.':'Nada aqui com esse filtro.')+'</p>';el('ct-'+kind).textContent=' '+(D[kind]||[]).length;chips(kind);return}
     box.innerHTML=all.slice(0,V.n).map(function(it){try{return card(it,kind)}catch(e){return ''}}).join('')+
       (all.length>V.n?'<div style="grid-column:1/-1"><button class="loadmore" data-more="'+kind+'">Mostrar mais ('+(all.length-V.n)+')</button></div>':'');
     el('ct-'+kind).textContent=' '+(D[kind]||[]).length;
@@ -453,7 +543,7 @@ function renderList(kind){
   }catch(e){console.error(e)}
 }
 function renderAll(){
-  renderList('filmes');renderList('series');renderPesos();renderDados();
+  renderWatchCtl();renderList('filmes');renderList('series');renderPesos();renderDados();
   el('foot').textContent=(D.gerado_em?'Lista gerada em '+D.gerado_em+'. ':'')+'Notas dos agregadores mudam com o tempo — confira na fonte antes de citar.'+(STORE?'':' Este navegador não está guardando suas notas: faça backup.');
 }
 
@@ -463,8 +553,15 @@ function renderAll(){
     var p=el('p-'+kind);
     p.querySelector('[data-q]').addEventListener('input',function(e){VIEW[kind].q=e.target.value;VIEW[kind].n=30;renderList(kind)});
     p.querySelector('[data-sort]').addEventListener('change',function(e){VIEW[kind].sort=e.target.value;renderList(kind)});
+    p.querySelector('[data-watch]').addEventListener('change',function(e){VIEW[kind].w=e.target.value;VIEW[kind].n=30;renderList(kind)});
     p.addEventListener('click',function(e){
-      var t=e.target.closest('[data-f],[data-more],[data-s],[data-clr]');if(!t)return;
+      var t=e.target.closest('[data-f],[data-more],[data-s],[data-clr],[data-svc]');if(!t)return;
+      if(t.dataset.svc){
+        var n=t.dataset.svc,i=meus().indexOf(n);ST.servicos=meus().slice();if(i>-1)ST.servicos.splice(i,1);else ST.servicos.push(n);save();
+        renderWatchCtl();renderList('filmes');renderList('series');
+        var d=document.querySelector('[data-mysvc="'+kind+'"]');
+        if(d){d.open=true;var b=[].filter.call(d.querySelectorAll('[data-svc]'),function(x){return x.dataset.svc===n})[0];if(b)b.focus()}
+        return}
       if(t.dataset.f){VIEW[kind].f=t.dataset.f;VIEW[kind].n=30;renderList(kind);return}
       if(t.dataset.more){VIEW[kind].n+=30;renderList(kind);return}
       var c=t.closest('.card');if(!c)return;var id=c.dataset.id;
@@ -518,8 +615,15 @@ el('weights').addEventListener('change',function(){save();renderList('filmes');r
 el('w-reset').addEventListener('click',function(){ST.pesos=null;save();renderPesos();renderList('filmes');renderList('series')});
 
 // ---------- BACKUP ----------
+function dataBR(s){var m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})/);return m?m[3]+'/'+m[2]+'/'+m[1]:''}
 function renderDados(){
   try{el('fonte').textContent=D.fonte||''}catch(e){}
+  try{
+    var p=el('fonte-streaming');if(!p)return;
+    p.textContent=SV&&SV.titulos
+      ?'Onde assistir: disponibilidade no Brasil segundo o JustWatch, pela API do TMDB. Um robô confere todo dia; a última mudança foi em '+(dataBR(SV.atualizado_em)||'data desconhecida')+'. Este site usa a API do TMDB, mas não é endossado nem certificado pelo TMDB.'
+      :'Onde assistir: o robô ainda não trouxe os dados de streaming. Enquanto isso, cada título tem um link que procura no JustWatch, sempre atualizado.';
+  }catch(e){}
 }
 el('exp').addEventListener('click',function(){
   try{
@@ -533,7 +637,7 @@ el('imp').addEventListener('change',function(e){
   var r=new FileReader();
   r.onload=function(){
     try{var j=JSON.parse(r.result);var s=j.estado||j;
-      ST.notas=s.notas||{};ST.status=s.status||{};ST.pesos=s.pesos||null;save();renderAll();renderCal();
+      ST.notas=s.notas||{};ST.status=s.status||{};ST.pesos=s.pesos||null;ST.servicos=Array.isArray(s.servicos)?s.servicos:[];save();renderAll();renderCal();
       el('impmsg').textContent='Backup restaurado: '+Object.keys(ST.notas).length+' notas, '+Object.keys(ST.status).length+' status.';
     }catch(err){el('impmsg').textContent='Esse arquivo não é um backup do Telas.'}
   };
