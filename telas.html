@@ -699,7 +699,8 @@ function cardCol(id,col){
     ctl='<div class="ctl2 vezes" role="group" aria-label="Quantas vezes você viu"><span>Vi</span><button data-vz="-1" aria-label="Uma vez a menos">−</button><output class="num">'+v+'</output><button data-vz="1" aria-label="Mais uma vez">+</button><span>'+(v===1?'vez':'vezes')+'</span><button class="rm" data-rm="1">tirar daqui</button></div>'}
   else{ctl='<div class="ctl2"><input class="fase" data-fase="1" type="text" maxlength="120" placeholder="Em que fase da vida isso te serviu?" aria-label="Em que fase da vida isso te serviu" value="'+esc(ST.fase[id]||'')+'"><button class="rm" data-rm="1">tirar daqui</button></div>'}
   return '<article class="card" data-id="'+esc(id)+'" data-col="'+col+'"><div class="head"><div class="ttl"><h3>'+esc(it.titulo)+'</h3>'+titulosExtras(it)+
-    '<div class="meta">'+(CTIPO[t]?'<span class="bdg">'+CTIPO[t]+'</span> ':'')+meta+'</div></div></div>'+watch+lista+ctl+'</article>';
+    '<div class="meta">'+(CTIPO[t]?'<span class="bdg">'+CTIPO[t]+'</span> ':'')+(/exib/i.test(it.status||'')?'<span class="bdg live">em exibição</span> ':'')+meta+'</div>'+
+    (it.situacao?'<div class="src" style="margin-top:4px">'+esc(it.situacao)+'</div>':'')+'</div></div>'+watch+lista+ctl+'</article>';
 }
 function renderCol(col){
   try{
