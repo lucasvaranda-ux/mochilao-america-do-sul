@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<title>Telas · Filmes e séries</title>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='p' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f4b65f'/%3E%3Cstop offset='1' stop-color='%23c9683b'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231b2733'/%3E%3Cstop offset='1' stop-color='%230c1015'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23b)'/%3E%3Cpath d='M27 17 q5 -6 10 0' fill='none' stroke='%235a6e80' stroke-width='3.5' stroke-linecap='round'/%3E%3Crect x='16' y='20' width='32' height='36' rx='12' fill='url(%23p)'/%3E%3Crect x='25.6' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Crect x='35' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Cpath d='M16 33 v-1 a12 12 0 0 1 12 -12 h8 a12 12 0 0 1 12 12 v1 a3 3 0 0 1 -3 3 H19 a3 3 0 0 1 -3 -3 Z' fill='%23f0a64e'/%3E%3Cpath d='M23 39 h18 a3 3 0 0 1 3 3 v7 a5 5 0 0 1 -5 5 H25 a5 5 0 0 1 -5 -5 v-7 a3 3 0 0 1 3 -3 Z' fill='%23b9572f'/%3E%3Ccircle cx='37.6' cy='45.5' r='2.3' fill='%23ffd27a'/%3E%3Cpath d='M23 53 L28 46 L32 50.5 L36.6 45 L41 53 Z' fill='%235fc9a0'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f4f6f8; --card:#ffffff; --raise:#eef2f5; --line:#e2e8ee;
+  --tx:#1c2530; --muted:#5f7286; --faint:#8a99a8;
+  --accent:#b8661a; --accent-soft:rgba(204,120,27,.12); --on-accent:#ffffff;
+  --ok:#1f8f57; --ok-soft:rgba(31,143,87,.12);
+  --live:#2563c9; --live-soft:rgba(37,99,201,.12);
+  --off:#7c8794; --off-soft:rgba(124,135,148,.14);
+  --track:#e6ebf0;
+  --ease:cubic-bezier(.22,.9,.3,1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1117; --card:#151b23; --raise:#1b222c; --line:#29313c;
+    --tx:#e6edf3; --muted:#9aa7b5; --faint:#6e7b89;
+    --accent:#e39a52; --accent-soft:rgba(227,154,82,.14); --on-accent:#15100a;
+    --ok:#4cc38a; --ok-soft:rgba(76,195,138,.14);
+    --live:#6ea4ff; --live-soft:rgba(110,164,255,.14);
+    --off:#8a96a3; --off-soft:rgba(138,150,163,.16);
+    --track:#232b35;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1117; --card:#151b23; --raise:#1b222c; --line:#29313c;
+  --tx:#e6edf3; --muted:#9aa7b5; --faint:#6e7b89;
+  --accent:#e39a52; --accent-soft:rgba(227,154,82,.14); --on-accent:#15100a;
+  --ok:#4cc38a; --ok-soft:rgba(76,195,138,.14);
+  --live:#6ea4ff; --live-soft:rgba(110,164,255,.14);
+  --off:#8a96a3; --off-soft:rgba(138,150,163,.16);
+  --track:#232b35;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--tx);
+  font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* ---------- topo ---------- */
+.top{padding:calc(16px + env(safe-area-inset-top)) 0 6px}
+.top .wrap{display:flex;align-items:center;gap:14px}
+.brand{display:flex;flex-direction:column;gap:2px;min-width:0}
+.eyebrow{color:var(--accent);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+h1{margin:0;font-size:1.32rem;font-weight:700;letter-spacing:-.02em}
+.back{margin-left:auto;color:var(--muted);text-decoration:none;font-size:.85rem;white-space:nowrap;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;transition:.18s var(--ease)}
+.back:hover{color:var(--tx);border-color:var(--accent)}
+
+/* ---------- abas ---------- */
+.tabs{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-top:6px}
+.tabs .wrap::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);
+  padding:10px 12px;font-size:.92rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--tx);border-bottom-color:var(--accent)}
+.tab .ct{color:var(--faint);font-weight:500;margin-left:4px}
+.panel{display:none;padding:14px 0 90px}
+.panel.on{display:block}
+
+/* ---------- barra de controle ---------- */
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.search{flex:1 1 220px;min-width:0;border:1px solid var(--line);background:var(--card);color:var(--tx);
+  border-radius:999px;padding:9px 14px;font-size:.92rem}
+.sel{border:1px solid var(--line);background:var(--card);color:var(--tx);border-radius:999px;
+  padding:8px 12px;font-size:.85rem}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--muted);
+  border-radius:999px;padding:6px 12px;font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.note{color:var(--muted);font-size:.82rem;line-height:1.55;margin:0 0 12px}
+
+/* ---------- cartões ---------- */
+.grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:860px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px;
+  display:flex;flex-direction:column;gap:10px;border-left:3px solid transparent}
+.card.s-quero{border-left-color:var(--accent)}
+.card.s-assisti{border-left-color:var(--ok)}
+.card.s-acompanhando{border-left-color:var(--live)}
+.card.s-abandonei{border-left-color:var(--off)}
+.head{display:flex;gap:12px;align-items:flex-start}
+.rank{font-size:.72rem;color:var(--faint);font-weight:700;min-width:26px;padding-top:4px}
+.ttl{flex:1;min-width:0}
+.ttl h3{margin:0;font-size:1.02rem;line-height:1.3;font-weight:700;letter-spacing:-.01em}
+.ttl .meta{color:var(--muted);font-size:.8rem;margin-top:3px;line-height:1.45}
+.conn{text-align:right;flex:0 0 auto}
+.conn b{display:block;font-size:1.5rem;line-height:1;font-weight:700;letter-spacing:-.02em}
+.conn span{font-size:.64rem;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+.badges{display:flex;gap:5px;flex-wrap:wrap}
+.bdg{font-size:.7rem;font-weight:700;border-radius:999px;padding:3px 8px;background:var(--raise);color:var(--muted)}
+.bdg.radar{background:var(--accent-soft);color:var(--accent)}
+.bdg.live{background:var(--live-soft);color:var(--live)}
+
+/* impressão digital das 9 dimensões */
+.dims{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;align-items:end;height:30px}
+.dims i{display:block;background:var(--accent);border-radius:2px 2px 0 0;min-height:2px;opacity:.85}
+.dimlab{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-top:3px}
+.dimlab span{font-size:.56rem;color:var(--faint);text-align:center;overflow:hidden;white-space:nowrap;text-overflow:clip}
+
+.rates{display:flex;gap:6px;flex-wrap:wrap}
+.rate{font-size:.74rem;border:1px solid var(--line);border-radius:8px;padding:3px 7px;color:var(--muted);white-space:nowrap}
+.rate b{color:var(--tx);font-weight:700}
+.rate.mem{border-style:dashed}
+.rate.mem b{color:var(--muted)}
+.legend{font-size:.74rem;color:var(--faint);margin:6px 0 0}
+
+/* status + nota */
+.act{display:flex;flex-direction:column;gap:8px;padding-top:2px}
+.seg{display:flex;gap:4px;flex-wrap:wrap}
+.seg button{border:1px solid var(--line);background:none;color:var(--muted);border-radius:999px;
+  padding:5px 10px;font-size:.76rem;font-weight:600;cursor:pointer}
+.seg button[aria-pressed="true"][data-s="quero"]{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.seg button[aria-pressed="true"][data-s="assisti"]{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.seg button[aria-pressed="true"][data-s="acompanhando"]{background:var(--live-soft);color:var(--live);border-color:transparent}
+.seg button[aria-pressed="true"][data-s="abandonei"]{background:var(--off-soft);color:var(--off);border-color:transparent}
+.score{display:flex;align-items:center;gap:10px}
+.score label{font-size:.76rem;color:var(--muted);white-space:nowrap}
+.score input[type=range]{flex:1;accent-color:var(--accent)}
+.score output{min-width:40px;text-align:right;font-weight:700;font-size:.95rem}
+.score output.none{color:var(--faint);font-weight:500;font-size:.8rem}
+.score.vazio input[type=range]{opacity:.38}
+.score .clr{border:0;background:none;color:var(--faint);font-size:.74rem;cursor:pointer;padding:2px}
+
+details{border-top:1px solid var(--line);padding-top:8px}
+summary{cursor:pointer;font-size:.8rem;color:var(--muted);font-weight:600;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent)}
+details[open] summary::before{content:"– "}
+.more{display:flex;flex-direction:column;gap:12px;padding-top:10px;font-size:.86rem;line-height:1.55}
+.more h4{margin:0 0 3px;font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);font-weight:700}
+.more p{margin:0}
+.src{color:var(--faint);font-size:.74rem}
+.crit{border-left:2px solid var(--line);padding-left:10px}
+.crit .who{font-weight:700}
+.dimtable{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;font-size:.78rem}
+.dimtable .bar{height:6px;background:var(--track);border-radius:3px;overflow:hidden}
+.dimtable .bar i{display:block;height:100%;background:var(--accent)}
+
+.empty{color:var(--muted);text-align:center;padding:40px 10px;font-size:.92rem;line-height:1.6}
+.loadmore{display:block;margin:14px auto 0;border:1px solid var(--line);background:var(--card);color:var(--tx);
+  border-radius:999px;padding:10px 18px;font-weight:600;cursor:pointer}
+
+/* ---------- pesos ---------- */
+.weights{display:flex;flex-direction:column;gap:14px;max-width:640px}
+.w{display:grid;grid-template-columns:1fr auto;gap:2px 12px}
+.w .n{font-weight:700;font-size:.92rem}
+.w .d{grid-column:1/-1;color:var(--muted);font-size:.8rem;line-height:1.45}
+.w input{grid-column:1/-1;accent-color:var(--accent);width:100%}
+.w output{font-weight:700}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--tx);border-radius:999px;
+  padding:9px 15px;font-size:.85rem;font-weight:600;cursor:pointer}
+.btn.pri{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.box h3{margin:0 0 6px;font-size:.98rem}
+.box p{margin:0 0 10px;color:var(--muted);font-size:.85rem;line-height:1.55}
+.box p:last-child{margin-bottom:0}
+code{font-size:.8rem;background:var(--raise);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+a.btn{text-decoration:none;display:inline-block}
+textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background:var(--raise);color:var(--tx);
+  border-radius:10px;padding:10px;font-size:.78rem;font-family:ui-monospace,Menlo,monospace}
+
+/* ---------- calendário ---------- */
+.agenda{display:flex;flex-direction:column;gap:14px}
+.day h4{margin:0 0 6px;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.day.today h4{color:var(--accent)}
+.ep{display:flex;gap:10px;align-items:baseline;background:var(--card);border:1px solid var(--line);
+  border-radius:10px;padding:9px 12px;margin-bottom:6px}
+.ep .when{font-size:.74rem;color:var(--faint);min-width:42px}
+.ep .what{flex:1;min-width:0;font-size:.88rem;line-height:1.4}
+.ep .what b{font-weight:700}
+.ep .what span{color:var(--muted)}
+.month{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.month .dow{font-size:.64rem;color:var(--faint);text-align:center;font-weight:700;text-transform:uppercase;padding-bottom:4px}
+.month .cell{min-height:52px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 5px;
+  font-size:.7rem;cursor:pointer;display:flex;flex-direction:column;gap:2px;text-align:left;color:var(--tx)}
+.month .cell.pad{visibility:hidden}
+.month .cell.today{border-color:var(--accent)}
+.month .cell.sel{background:var(--accent-soft)}
+.month .cell .dn{font-weight:700;color:var(--muted)}
+.month .cell .dot{display:block;height:4px;border-radius:2px;background:var(--live)}
+.mhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mhead b{font-size:1rem;flex:1;text-transform:capitalize}
+.ann{font-size:.84rem;line-height:1.5}
+.ann li{margin-bottom:6px}
+.foot{color:var(--faint);font-size:.74rem;line-height:1.55;margin-top:26px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="eyebrow">Mochilão · Telas</span>
+      <h1>Filmes e séries</h1>
+    </div>
+    <a class="back" href="/">← Roteiro</a>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Seções">
+  <div class="wrap" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="filmes">Filmes<span class="ct num" id="ct-filmes"></span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="series">Séries<span class="ct num" id="ct-series"></span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="cal">Calendário</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="pesos">Conexão</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="dados">Backup</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="panel on" id="p-filmes" aria-label="Filmes">
+    <div class="ctrl">
+      <input class="search" type="search" placeholder="Buscar título, diretor, país…" data-q="filmes" aria-label="Buscar filmes">
+      <select class="sel" data-sort="filmes" aria-label="Ordenar filmes">
+        <option value="conn">Maior conexão</option>
+        <option value="nota">Sua nota</option>
+        <option value="imdb">IMDb</option>
+        <option value="rt">Rotten (crítica)</option>
+        <option value="mc">Metacritic</option>
+        <option value="lb">Letterboxd</option>
+        <option value="ano">Mais recentes</option>
+      </select>
+    </div>
+    <div class="chips" data-filter="filmes" role="group" aria-label="Filtrar por status"></div>
+    <p class="legend">Notas com ≈ e borda tracejada vieram de memória e ainda não foram conferidas na fonte.</p>
+    <div class="grid" id="list-filmes" style="margin-top:12px"></div>
+  </section>
+
+  <section class="panel" id="p-series" aria-label="Séries">
+    <div class="ctrl">
+      <input class="search" type="search" placeholder="Buscar título, criador, plataforma…" data-q="series" aria-label="Buscar séries">
+      <select class="sel" data-sort="series" aria-label="Ordenar séries">
+        <option value="conn">Maior conexão</option>
+        <option value="nota">Sua nota</option>
+        <option value="imdb">IMDb</option>
+        <option value="rt">Rotten (crítica)</option>
+        <option value="mc">Metacritic</option>
+        <option value="ano">Mais recentes</option>
+      </select>
+    </div>
+    <div class="chips" data-filter="series" role="group" aria-label="Filtrar por status"></div>
+    <p class="legend">Notas com ≈ e borda tracejada vieram de memória e ainda não foram conferidas na fonte.</p>
+    <div class="grid" id="list-series" style="margin-top:12px"></div>
+  </section>
+
+  <section class="panel" id="p-cal" aria-label="Calendário de episódios">
+    <div class="ctrl">
+      <div class="chips" role="group" aria-label="Período" id="calview">
+        <button class="chip" aria-pressed="true" data-v="semana">Semana</button>
+        <button class="chip" aria-pressed="false" data-v="mes">Mês</button>
+        <button class="chip" aria-pressed="false" data-v="proximos">Próximos meses</button>
+      </div>
+      <select class="sel" id="calscope" aria-label="Quais séries">
+        <option value="acomp">Só o que acompanho</option>
+        <option value="todas">Todas da lista</option>
+      </select>
+    </div>
+    <div id="calbody"></div>
+
+    <div class="box" style="margin-top:22px">
+      <h3>Avisos no celular</h3>
+      <p>Assine o calendário de lançamentos e os episódios aparecem no app Calendário do iPhone, com alerta na véspera. Ele se atualiza sozinho todo dia.</p>
+      <div class="row"><a class="btn pri" id="ics-link" href="#">Assinar calendário</a><button class="btn" id="ics-copy">Copiar endereço</button></div>
+    </div>
+    <div class="box">
+      <h3>Alertas por e-mail</h3>
+      <p>Um robô roda todo dia de manhã no GitHub, olha os próximos episódios das séries que você acompanha e te manda e-mail na véspera — e um resumo da semana às segundas.</p>
+      <p>Ele só conhece as séries que estão no arquivo <code>telas/acompanhando.json</code> do repositório. Quando mudar o que você acompanha aqui, copie a lista abaixo e cole lá.</p>
+      <textarea class="out" id="acomp-json" readonly aria-label="Lista de séries acompanhadas"></textarea>
+      <div class="row" style="margin-top:8px"><button class="btn" id="acomp-copy">Copiar lista</button><a class="btn" id="acomp-edit" target="_blank" rel="noopener">Abrir o arquivo no GitHub</a></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-pesos" aria-label="Pesos da conexão">
+    <p class="note">A porcentagem de conexão de cada título é a média das nove dimensões abaixo, ponderada por estes pesos. Os pesos iniciais saíram do seu acervo; mexa à vontade — as listas se reordenam na hora.</p>
+    <div class="weights" id="weights"></div>
+    <div class="row" style="margin-top:16px"><button class="btn" id="w-reset">Voltar aos pesos iniciais</button></div>
+    <div class="box" style="margin-top:24px;max-width:640px">
+      <h3>Seus arquétipos</h3>
+      <p id="arq-dele"></p>
+      <p>Cada título traz o arquétipo do protagonista (os doze de Pearson e Mark), a etapa da jornada do herói que ele mais encena e quais dos seus arquétipos a obra ativa.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="p-dados" aria-label="Backup">
+    <div class="box">
+      <h3>Onde ficam suas notas</h3>
+      <p>Notas, status e pesos ficam guardados neste navegador, neste aparelho. Se trocar de celular ou limpar o navegador, eles somem — por isso o backup.</p>
+      <div class="row"><button class="btn pri" id="exp">Baixar backup</button><label class="btn" for="imp">Restaurar backup</label><input id="imp" type="file" accept="application/json" hidden></div>
+      <p id="impmsg" style="margin-top:10px"></p>
+    </div>
+    <div class="box">
+      <h3>De onde vêm os dados</h3>
+      <p id="fonte"></p>
+    </div>
+  </section>
+
+  <p class="foot" id="foot"></p>
+</main>
+
+<script>
+// ---------- ESTADO ----------
+var KEY='telas_v1';
+var ST={notas:{},status:{},pesos:null};
+var STORE=true;
+try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'){ST.notas=p.notas||{};ST.status=p.status||{};ST.pesos=p.pesos||null;}}}
+catch(e){STORE=false}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){STORE=false}}
+
+var D=null, EP=null;
+var DIMS=[], PESOS0=[];
+var VIEW={filmes:{q:'',sort:'conn',f:'todos',n:30},series:{q:'',sort:'conn',f:'todos',n:30}};
+var CAL={v:'semana',scope:'acomp',m:null,sel:null};
+
+function el(id){return document.getElementById(id)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function num(s){if(s==null)return NaN;var m=String(s).replace(',','.').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN}
+function stOf(it){var v=ST.status[it.id];if(v==='nenhum')return '';return v||(it.biblioteca?'acompanhando':'')}
+function pesos(){return (ST.pesos&&ST.pesos.length===DIMS.length)?ST.pesos:PESOS0}
+function conexao(it){
+  var w=pesos(),d=it.dims,s=0,t=0;
+  if(!d||!d.length)return null;
+  for(var i=0;i<w.length;i++){var v=+d[i];if(isNaN(v))continue;s+=w[i]*v;t+=w[i]}
+  return t?Math.round(s/t):null;
+}
+
+// ---------- CARREGAMENTO ----------
+function load(){
+  fetch('/telas/dados.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+  .then(function(j){
+    D=j;DIMS=j.dimensoes||[];PESOS0=DIMS.map(function(d){return d.peso});
+    try{renderAll()}catch(e){console.error(e)}
+    return fetch('/telas/episodios.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  })
+  .then(function(ej){EP=ej;try{renderCal()}catch(e){console.error(e)}})
+  .catch(function(e){
+    el('list-filmes').innerHTML='<p class="empty">Não consegui carregar a lista agora. Tente de novo em instantes.</p>';
+  });
+}
+
+// ---------- LISTAS ----------
+var SLAB={todos:'Todos',sem:'Sem status',quero:'Quero ver',assisti:'Assisti',acompanhando:'Acompanhando',abandonei:'Abandonei'};
+function chips(kind){
+  var box=document.querySelector('[data-filter="'+kind+'"]');if(!box)return;
+  var opts=kind==='filmes'?['todos','sem','quero','assisti','abandonei']:['todos','sem','quero','acompanhando','assisti','abandonei'];
+  var list=D[kind]||[];
+  box.innerHTML=opts.map(function(o){
+    var n=o==='todos'?list.length:list.filter(function(it){var s=stOf(it)||'sem';return s===o}).length;
+    return '<button class="chip" aria-pressed="'+(VIEW[kind].f===o)+'" data-f="'+o+'">'+SLAB[o]+' <span class="num">'+n+'</span></button>';
+  }).join('');
+}
+function sortKey(kind,it){
+  var s=VIEW[kind].sort,n=it.notas||{};
+  if(s==='conn'){var c=conexao(it);return c==null?-1:c}
+  if(s==='nota'){var v=ST.notas[it.id];return v==null?-1:v}
+  if(s==='imdb')return num(n.imdb)||-1;
+  if(s==='rt')return num(n.rt_critica)||-1;
+  if(s==='mc')return num(n.metacritic)||-1;
+  if(s==='lb')return num(n.letterboxd)||-1;
+  if(s==='ano')return num(it.ano)||-1;
+  return 0;
+}
+function visiveis(kind){
+  var V=VIEW[kind],q=V.q.trim().toLowerCase();
+  return (D[kind]||[]).filter(function(it){
+    var s=stOf(it)||'sem';
+    if(V.f!=='todos'&&s!==V.f)return false;
+    if(!q)return true;
+    return [it.titulo,it.titulo_original,it.autor,it.pais,it.plataforma,it.arquetipo].join(' ').toLowerCase().indexOf(q)>-1;
+  }).sort(function(a,b){return sortKey(kind,b)-sortKey(kind,a)});
+}
+function rateChips(n,kind){
+  n=n||{};var out=[],m=n.origem==='memoria',cls='rate'+(m?' mem':''),t=m?' title="De memória, ainda não conferida"':'',ap=m?'≈':'';
+  if(n.imdb)out.push('<span class="'+cls+'"'+t+'>IMDb <b class="num">'+ap+esc(n.imdb)+'</b>'+(n.imdb_votos?' <span class="num">('+esc(n.imdb_votos)+')</span>':'')+'</span>');
+  if(n.rt_critica)out.push('<span class="'+cls+'"'+t+'>Rotten <b class="num">'+ap+esc(n.rt_critica)+'</b></span>');
+  if(n.rt_publico)out.push('<span class="'+cls+'"'+t+'>Público <b class="num">'+ap+esc(n.rt_publico)+'</b></span>');
+  if(n.metacritic)out.push('<span class="'+cls+'"'+t+'>Metacritic <b class="num">'+ap+esc(n.metacritic)+'</b></span>');
+  if(kind==='filmes'&&n.letterboxd)out.push('<span class="'+cls+'"'+t+'>Letterboxd <b class="num">'+ap+esc(n.letterboxd)+'</b></span>');
+  return out.length?'<div class="rates">'+out.join('')+'</div>':'';
+}
+function dimsHtml(it){
+  var d=it.dims||[];
+  return '<div><div class="dims" aria-hidden="true">'+DIMS.map(function(x,i){var v=Math.max(0,Math.min(100,+d[i]||0));return '<i style="height:'+Math.max(2,v*0.3)+'px" title="'+esc(x.nome)+': '+v+'"></i>'}).join('')+
+    '</div><div class="dimlab" aria-hidden="true">'+DIMS.map(function(x){return '<span>'+esc(x.curto||x.nome.slice(0,4))+'</span>'}).join('')+'</div></div>';
+}
+function dimTable(it){
+  var d=it.dims||[];
+  return '<div class="dimtable">'+DIMS.map(function(x,i){var v=Math.max(0,Math.min(100,+d[i]||0));
+    return '<span>'+esc(x.nome)+'</span><span class="bar"><i style="width:'+v+'%"></i></span><span class="num">'+v+'</span>'}).join('')+'</div>';
+}
+function critico(c){
+  if(!c||!c.nome)return '';
+  return '<div class="crit"><div><span class="who">'+esc(c.nome)+'</span>'+(c.veiculo?' · '+esc(c.veiculo):'')+(c.nota?' · <b class="num">'+esc(c.nota)+'</b>':'')+'</div>'+
+    (c.posicao?'<p>'+esc(c.posicao)+'</p>':'')+(c.fonte?'<div class="src">'+(c.origem==='memoria'?'≈ de memória, a conferir · ':'')+linkOrText(c.fonte)+'</div>':'')+'</div>';
+}
+function linkOrText(s){s=String(s||'');var m=s.match(/https?:\/\/\S+/);if(!m)return esc(s);var u=m[0].replace(/[).,;]+$/,'');return esc(s.replace(m[0],'').trim())+' <a href="'+esc(u)+'" target="_blank" rel="noopener">fonte</a>'}
+function card(it,kind){
+  var st=stOf(it),nota=ST.notas[it.id];
+  var meta=[it.ano,it.autor,it.pais,kind==='filmes'?it.duracao:(it.plataforma||''),kind==='series'?it.temporadas:''].filter(Boolean).map(esc).join(' · ');
+  var badges=[];
+  if(it.biblioteca)badges.push('<span class="bdg live">na sua biblioteca</span>');
+  if(it.radar)badges.push('<span class="bdg radar">no seu radar</span>');
+  if(kind==='series'&&it.status)badges.push('<span class="bdg'+(/exib|renov/i.test(it.status)?' live':'')+'">'+esc(it.status)+'</span>');
+  if(it.arquetipo)badges.push('<span class="bdg">'+esc(it.arquetipo)+'</span>');
+  var segOpts=kind==='filmes'?['quero','assisti','abandonei']:['quero','acompanhando','assisti','abandonei'];
+  var more=[];
+  if(it.ponte)more.push('<div><h4>Por que conversa com você</h4><p>'+esc(it.ponte)+'</p></div>');
+  if(it.visao&&it.visao.texto)more.push('<div><h4>Visão '+(kind==='filmes'?'do diretor':'de quem criou')+'</h4><p>'+esc(it.visao.texto)+'</p>'+(it.visao.fonte?'<div class="src">'+linkOrText(it.visao.fonte)+'</div>':'')+'</div>');
+  var cr=(it.criticos||[]).map(critico).join('');
+  if(cr)more.push('<div><h4>Críticos</h4>'+cr+'</div>');
+  if(it.leitura||it.espelho||it.jornada)more.push('<div><h4>Leitura arquetípica</h4>'+(it.leitura?'<p>'+esc(it.leitura)+'</p>':'')+
+    (it.jornada?'<p class="src">Jornada: '+esc(it.jornada)+'</p>':'')+(it.espelho?'<p style="margin-top:6px"><b>Em você:</b> '+esc(it.espelho)+'</p>':'')+'</div>');
+  if(kind==='series'&&it.proximo)more.push('<div><h4>Próxima temporada</h4><p>'+esc(it.proximo)+'</p></div>');
+  if(it.dims&&it.dims.length)more.push('<div><h4>As nove dimensões</h4>'+dimTable(it)+'</div>');
+  if(it.notas&&it.notas.fonte)more.push('<div class="src">Notas: '+esc(it.notas.fonte)+'</div>');
+  return '<article class="card'+(st?' s-'+st:'')+'" data-id="'+esc(it.id)+'">'+
+    '<div class="head"><span class="rank num">'+(it.rank?('#'+it.rank):'')+'</span><div class="ttl"><h3>'+esc(it.titulo)+'</h3>'+
+      (it.titulo_original&&it.titulo_original!==it.titulo?'<div class="meta">'+esc(it.titulo_original)+'</div>':'')+
+      '<div class="meta">'+meta+'</div></div>'+
+      '<div class="conn"><b class="num">'+(conexao(it)==null?'—':conexao(it)+'%')+'</b><span>conexão</span></div></div>'+
+    (badges.length?'<div class="badges">'+badges.join('')+'</div>':'')+
+    (it.dims&&it.dims.length?dimsHtml(it):'')+rateChips(it.notas,kind)+
+    '<div class="act"><div class="seg" role="group" aria-label="Status">'+segOpts.map(function(s){return '<button data-s="'+s+'" aria-pressed="'+(st===s)+'">'+SLAB[s]+'</button>'}).join('')+'</div>'+
+      '<div class="score'+(nota==null?' vazio':'')+'"><label for="sc-'+esc(it.id)+'">Sua nota</label><input id="sc-'+esc(it.id)+'" type="range" min="0" max="100" step="1" value="'+(nota==null?50:nota)+'">'+
+      '<output class="num'+(nota==null?' none':'')+'">'+(nota==null?'—':nota)+'</output>'+(nota!=null?'<button class="clr" data-clr="1" aria-label="Apagar nota">limpar</button>':'')+'</div></div>'+
+    '<details><summary>Críticos, diretor, arquétipos</summary><div class="more">'+more.join('')+'</div></details>'+
+  '</article>';
+}
+function renderList(kind){
+  try{
+    var box=el('list-'+kind),all=visiveis(kind),V=VIEW[kind];
+    if(!all.length){box.innerHTML='<p class="empty">Nada aqui com esse filtro.</p>';return}
+    box.innerHTML=all.slice(0,V.n).map(function(it){try{return card(it,kind)}catch(e){return ''}}).join('')+
+      (all.length>V.n?'<div style="grid-column:1/-1"><button class="loadmore" data-more="'+kind+'">Mostrar mais ('+(all.length-V.n)+')</button></div>':'');
+    el('ct-'+kind).textContent=' '+(D[kind]||[]).length;
+    chips(kind);
+  }catch(e){console.error(e)}
+}
+function renderAll(){
+  renderList('filmes');renderList('series');renderPesos();renderDados();
+  el('foot').textContent=(D.gerado_em?'Lista gerada em '+D.gerado_em+'. ':'')+'Notas dos agregadores mudam com o tempo — confira na fonte antes de citar.'+(STORE?'':' Este navegador não está guardando suas notas: faça backup.');
+}
+
+// ---------- INTERAÇÕES DAS LISTAS ----------
+['filmes','series'].forEach(function(kind){
+  try{
+    var p=el('p-'+kind);
+    p.querySelector('[data-q]').addEventListener('input',function(e){VIEW[kind].q=e.target.value;VIEW[kind].n=30;renderList(kind)});
+    p.querySelector('[data-sort]').addEventListener('change',function(e){VIEW[kind].sort=e.target.value;renderList(kind)});
+    p.addEventListener('click',function(e){
+      var t=e.target.closest('[data-f],[data-more],[data-s],[data-clr]');if(!t)return;
+      if(t.dataset.f){VIEW[kind].f=t.dataset.f;VIEW[kind].n=30;renderList(kind);return}
+      if(t.dataset.more){VIEW[kind].n+=30;renderList(kind);return}
+      var c=t.closest('.card');if(!c)return;var id=c.dataset.id;
+      if(t.dataset.s){
+        var it=(D[kind]||[]).filter(function(x){return x.id===id})[0]||{id:id};
+        var atual=stOf(it),novo=(atual===t.dataset.s)?'':t.dataset.s;
+        if(novo)ST.status[id]=novo;else if(it.biblioteca)ST.status[id]='nenhum';else delete ST.status[id];
+        save();
+        c.className='card'+(novo?' s-'+novo:'');
+        c.querySelectorAll('.seg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.s===novo))});
+        chips(kind);if(kind==='series')renderCal();return}
+      if(t.dataset.clr){delete ST.notas[id];save();var o=c.querySelector('output');o.textContent='—';o.classList.add('none');c.querySelector('.score').classList.add('vazio');t.remove();return}
+    });
+    p.addEventListener('input',function(e){
+      var t=e.target;if(t.type!=='range')return;var c=t.closest('.card');if(!c)return;
+      var id=c.dataset.id,v=+t.value;ST.notas[id]=v;
+      var o=c.querySelector('output');o.textContent=v;o.classList.remove('none');c.querySelector('.score').classList.remove('vazio');
+      if(!c.querySelector('.clr')){var b=document.createElement('button');b.className='clr';b.dataset.clr='1';b.textContent='limpar';b.setAttribute('aria-label','Apagar nota');o.after(b)}
+    });
+    p.addEventListener('change',function(e){if(e.target.type==='range')save()});
+  }catch(e){console.error(e)}
+});
+
+// ---------- ABAS ----------
+document.querySelectorAll('.tab').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected',String(x===b))});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='p-'+b.dataset.tab)});
+    try{history.replaceState(null,'','#'+b.dataset.tab)}catch(e){}
+    if(b.dataset.tab==='cal')renderCal();
+  });
+});
+(function(){var h=(location.hash||'').slice(1);var b=document.querySelector('.tab[data-tab="'+h+'"]');if(b)b.click()})();
+
+// ---------- PESOS ----------
+function renderPesos(){
+  try{
+    var w=pesos();
+    el('weights').innerHTML=DIMS.map(function(d,i){
+      return '<div class="w"><span class="n">'+esc(d.nome)+'</span><output class="num" id="wo-'+i+'">'+w[i]+'</output>'+
+        '<span class="d">'+esc(d.desc||'')+'</span><input type="range" min="0" max="30" step="1" value="'+w[i]+'" data-w="'+i+'" aria-label="Peso de '+esc(d.nome)+'"></div>';
+    }).join('');
+    el('arq-dele').textContent=(D.arquetipos_dele||[]).join(' · ');
+  }catch(e){console.error(e)}
+}
+el('weights').addEventListener('input',function(e){
+  var i=e.target.dataset.w;if(i==null)return;
+  var w=pesos().slice();w[+i]=+e.target.value;ST.pesos=w;el('wo-'+i).textContent=w[+i];
+});
+el('weights').addEventListener('change',function(){save();renderList('filmes');renderList('series')});
+el('w-reset').addEventListener('click',function(){ST.pesos=null;save();renderPesos();renderList('filmes');renderList('series')});
+
+// ---------- BACKUP ----------
+function renderDados(){
+  try{el('fonte').textContent=D.fonte||''}catch(e){}
+}
+el('exp').addEventListener('click',function(){
+  try{
+    var blob=new Blob([JSON.stringify({app:'telas',versao:1,em:new Date().toISOString(),estado:ST},null,2)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='telas-backup-'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+  }catch(e){el('impmsg').textContent='Não consegui gerar o arquivo neste navegador.'}
+});
+el('imp').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{var j=JSON.parse(r.result);var s=j.estado||j;
+      ST.notas=s.notas||{};ST.status=s.status||{};ST.pesos=s.pesos||null;save();renderAll();renderCal();
+      el('impmsg').textContent='Backup restaurado: '+Object.keys(ST.notas).length+' notas, '+Object.keys(ST.status).length+' status.';
+    }catch(err){el('impmsg').textContent='Esse arquivo não é um backup do Telas.'}
+  };
+  r.readAsText(f);
+});
+
+// ---------- CALENDÁRIO ----------
+var DOW=['dom','seg','ter','qua','qui','sex','sáb'];
+var MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function ymd(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function parseYmd(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function localDate(e){if(e.airstamp){var d=new Date(e.airstamp);if(!isNaN(d))return d}return e.data?parseYmd(e.data):null}
+function hora(e){if(!e.airstamp)return '';var d=new Date(e.airstamp);if(isNaN(d))return '';var h=d.getHours(),m=d.getMinutes();return (h||m)?String(h).padStart(2,'0')+'h'+(m?String(m).padStart(2,'0'):''):''}
+function acompanhadas(){
+  var set={};
+  (D&&D.series||[]).forEach(function(s){if(stOf(s)==='acompanhando'&&s.imdb_id)set[s.imdb_id]=1});
+  return set;
+}
+function eventos(){
+  if(!EP||!EP.episodios)return [];
+  var set=acompanhadas();
+  return EP.episodios.filter(function(e){return CAL.scope==='todas'||set[e.imdb_id]}).map(function(e){var d=localDate(e);return d?{e:e,d:d,k:ymd(d)}:null}).filter(Boolean)
+    .sort(function(a,b){return a.d-b.d});
+}
+function epRow(x){
+  var e=x.e;
+  return '<div class="ep"><span class="when num">'+(hora(e)||'')+'</span><div class="what"><b>'+esc(e.serie)+'</b> <span class="num">T'+e.temporada+'E'+e.episodio+'</span>'+(e.titulo?'<br><span>'+esc(e.titulo)+'</span>':'')+(e.plataforma?'<br><span>'+esc(e.plataforma)+'</span>':'')+'</div></div>';
+}
+function agenda(list,hoje){
+  var by={};list.forEach(function(x){(by[x.k]=by[x.k]||[]).push(x)});
+  return '<div class="agenda">'+Object.keys(by).sort().map(function(k){var d=parseYmd(k);
+    return '<div class="day'+(k===hoje?' today':'')+'"><h4>'+(k===hoje?'Hoje · ':'')+DOW[d.getDay()]+', '+d.getDate()+' de '+MES[d.getMonth()]+'</h4>'+by[k].map(epRow).join('')+'</div>'}).join('')+'</div>';
+}
+function semEventos(msg){return '<p class="empty">'+msg+'</p>'}
+function renderCal(){
+  try{
+    var body=el('calbody');if(!body)return;
+    renderAcomp();
+    if(!EP||!EP.episodios){
+      body.innerHTML=semEventos('O calendário de episódios ainda não foi gerado. O robô que busca as datas roda uma vez por dia depois que esta página estiver no ar.')+anunciadas();return}
+    var all=eventos(),now=new Date(),hoje=ymd(now);
+    if(CAL.v==='semana'){
+      var ini=new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7)),fim=new Date(ini.getFullYear(),ini.getMonth(),ini.getDate()+7);
+      var w=all.filter(function(x){return x.d>=ini&&x.d<fim});
+      body.innerHTML='<p class="note">Semana de '+ini.getDate()+' de '+MES[ini.getMonth()]+'</p>'+(w.length?agenda(w,hoje):semEventos(CAL.scope==='acomp'?'Nenhum episódio esta semana nas séries que você acompanha. Marque séries como “Acompanhando” na aba Séries.':'Nenhum episódio esta semana.'));
+    }else if(CAL.v==='mes'){
+      if(!CAL.m)CAL.m=new Date(now.getFullYear(),now.getMonth(),1);
+      var m=CAL.m,first=(m.getDay()+6)%7,dias=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
+      var by={};all.forEach(function(x){if(x.d.getFullYear()===m.getFullYear()&&x.d.getMonth()===m.getMonth())(by[x.k]=by[x.k]||[]).push(x)});
+      var cells=['seg','ter','qua','qui','sex','sáb','dom'].map(function(d){return '<div class="dow">'+d+'</div>'});
+      for(var i=0;i<first;i++)cells.push('<div class="cell pad"></div>');
+      for(var dd=1;dd<=dias;dd++){var k=ymd(new Date(m.getFullYear(),m.getMonth(),dd)),n=(by[k]||[]).length;
+        cells.push('<button class="cell'+(k===hoje?' today':'')+(k===CAL.sel?' sel':'')+'" data-day="'+k+'" aria-label="'+dd+' de '+MES[m.getMonth()]+', '+n+' episódios"><span class="dn num">'+dd+'</span>'+(n?Array(Math.min(n,3)+1).join('<span class="dot"></span>'):'')+'</button>')}
+      var selList=CAL.sel&&by[CAL.sel]?agenda(by[CAL.sel],hoje):'<p class="note" style="margin-top:12px">Toque num dia pra ver os episódios.</p>';
+      body.innerHTML='<div class="mhead"><button class="btn" data-mv="-1" aria-label="Mês anterior">←</button><b>'+MES[m.getMonth()]+' '+m.getFullYear()+'</b><button class="btn" data-mv="1" aria-label="Próximo mês">→</button></div><div class="month">'+cells.join('')+'</div><div style="margin-top:12px">'+selList+'</div>';
+    }else{
+      var lim=new Date(now.getFullYear(),now.getMonth()+6,1),fut=all.filter(function(x){return x.d>=new Date(now.getFullYear(),now.getMonth(),now.getDate())&&x.d<lim});
+      var porMes={};fut.forEach(function(x){var k=x.d.getFullYear()+'-'+x.d.getMonth();(porMes[k]=porMes[k]||[]).push(x)});
+      body.innerHTML=(fut.length?Object.keys(porMes).map(function(k){var p=k.split('-');return '<h3 style="margin:18px 0 8px;font-size:1rem;text-transform:capitalize">'+MES[+p[1]]+' '+p[0]+'</h3>'+agenda(porMes[k],hoje)}).join(''):semEventos('Sem episódios com data nos próximos seis meses.'))+anunciadas();
+    }
+  }catch(e){console.error(e)}
+}
+function anunciadas(){
+  var s=(D&&D.series||[]).filter(function(x){return x.proximo&&(CAL.scope==='todas'||stOf(x)==='acompanhando')});
+  if(!s.length)return '';
+  return '<div class="box" style="margin-top:18px"><h3>Temporadas anunciadas, ainda sem data de episódio</h3><ul class="ann">'+s.map(function(x){return '<li><b>'+esc(x.titulo)+'</b> — '+esc(x.proximo)+'</li>'}).join('')+'</ul></div>';
+}
+el('calview').addEventListener('click',function(e){var b=e.target.closest('[data-v]');if(!b)return;var v=b.dataset.v;CAL.v=v;
+  el('calview').querySelectorAll('.chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v))});renderCal()});
+el('calscope').addEventListener('change',function(e){CAL.scope=e.target.value;renderCal()});
+el('calbody').addEventListener('click',function(e){
+  var t=e.target.closest('[data-mv],[data-day]');if(!t)return;
+  if(t.dataset.mv){CAL.m=new Date(CAL.m.getFullYear(),CAL.m.getMonth()+(+t.dataset.mv),1);CAL.sel=null}else{CAL.sel=t.dataset.day}
+  renderCal();
+});
+
+// ---------- ICS E LISTA DO ROBÔ ----------
+(function(){
+  try{
+    var u=location.origin+'/telas/lancamentos.ics';
+    el('ics-link').href=u.replace(/^https?:/,'webcal:');
+    el('ics-copy').addEventListener('click',function(){copiar(u,el('ics-copy'))});
+    el('acomp-edit').href='https://github.com/lucasvaranda-ux/mochilao-america-do-sul/edit/main/telas/acompanhando.json';
+    el('acomp-copy').addEventListener('click',function(){copiar(el('acomp-json').value,el('acomp-copy'))});
+  }catch(e){console.error(e)}
+})();
+function renderAcomp(){
+  try{
+    var list=[];
+    (D&&D.series||[]).forEach(function(s){if(stOf(s)==='acompanhando'&&s.imdb_id)list.push({imdb_id:s.imdb_id,titulo:s.titulo})});
+    el('acomp-json').value=JSON.stringify({series:list},null,2);
+  }catch(e){}
+}
+function copiar(txt,btn){
+  var ok=function(){var o=btn.textContent;btn.textContent='Copiado';setTimeout(function(){btn.textContent=o},1600)};
+  try{navigator.clipboard.writeText(txt).then(ok,function(){fallback()})}catch(e){fallback()}
+  function fallback(){try{var t=document.createElement('textarea');t.value=txt;t.style.position='fixed';t.style.top='-999px';document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();ok()}catch(e){}}
+}
+
+load();
+</script>
+</body>
+</html>
