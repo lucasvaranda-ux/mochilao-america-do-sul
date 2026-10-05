@@ -128,7 +128,7 @@ for (const it of dados.filmes || []) poe(it, 'movie');
 for (const it of dados.series || []) poe(it, 'tv');
 for (const ex of dados.extras || []) {
   if (ex?.tipo === 'saga') for (const f of ex.filmes || []) poe(f, 'movie');
-  else poe(ex, 'tv');
+  else poe(ex, ex?.tipo === 'filme' ? 'movie' : 'tv');
 }
 
 const titulos = {};
