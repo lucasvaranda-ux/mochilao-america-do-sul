@@ -200,6 +200,7 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 
 /* ---------- onde assistir ---------- */
 [hidden]{display:none!important}
+.lang{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.06em;border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-right:5px;color:var(--faint);vertical-align:1px}
 .watch{display:flex;gap:5px;flex-wrap:wrap;align-items:center;font-size:.76rem;color:var(--muted)}
 .watch .wl{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:2px}
 .svc{border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--tx);white-space:nowrap}
@@ -411,7 +412,7 @@ function visiveis(kind){
     if(V.f!=='todos'&&s!==V.f)return false;
     if(V.w&&V.w!=='todos'&&!passaWatch(it,V.w))return false;
     if(!q)return true;
-    return [it.titulo,it.titulo_original,it.autor,it.pais,it.plataforma,it.arquetipo].join(' ').toLowerCase().indexOf(q)>-1;
+    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,it.arquetipo].join(' ').toLowerCase().indexOf(q)>-1;
   }).sort(function(a,b){return sortKey(kind,b)-sortKey(kind,a)});
 }
 function rateChips(n,kind){
@@ -491,6 +492,13 @@ function renderWatchCtl(){
     });
   }catch(e){console.error(e)}
 }
+// título original e título em inglês, sem repetir o que já está escrito
+function titulosExtras(it){
+  var pt=it.titulo||'',og=it.titulo_original||'',en=it.titulo_en||'',out='',tag='<span class="lang" title="Título em inglês">EN</span>';
+  if(og&&og!==pt)out+='<div class="meta">'+(en&&en===og?tag:'')+esc(og)+'</div>';
+  if(en&&en!==og&&en!==pt)out+='<div class="meta">'+tag+esc(en)+'</div>';
+  return out;
+}
 function card(it,kind){
   var st=stOf(it),nota=ST.notas[it.id];
   var meta=[it.ano,it.autor,it.pais,kind==='filmes'?it.duracao:(it.plataforma||''),kind==='series'?it.temporadas:''].filter(Boolean).map(esc).join(' · ');
@@ -512,7 +520,7 @@ function card(it,kind){
   if(it.notas&&it.notas.fonte)more.push('<div class="src">Notas: '+esc(it.notas.fonte)+'</div>');
   return '<article class="card'+(st?' s-'+st:'')+'" data-id="'+esc(it.id)+'">'+
     '<div class="head"><span class="rank num">'+(it.rank?('#'+it.rank):'')+'</span><div class="ttl"><h3>'+esc(it.titulo)+'</h3>'+
-      (it.titulo_original&&it.titulo_original!==it.titulo?'<div class="meta">'+esc(it.titulo_original)+'</div>':'')+
+      titulosExtras(it)+
       '<div class="meta">'+meta+'</div></div>'+
       '<div class="conn"><b class="num">'+(conexao(it)==null?'—':conexao(it)+'%')+'</b><span>conexão</span></div></div>'+
     (badges.length?'<div class="badges">'+badges.join('')+'</div>':'')+
