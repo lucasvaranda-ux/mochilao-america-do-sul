@@ -502,9 +502,15 @@ function hoje0(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function diffDias(a,b){return Math.round((b-a)/86400000);}
 let routeLine=null, activeRoute=-1, curOpen=-1;
 function soPendentes(a){return (a||[]).filter(i=>P[i]!=null&&!P[i].feito);}
-let myRoute=[]; try{myRoute=soPendentes(JSON.parse(localStorage.getItem(LS_MINE)||'[]'));}catch(e){}
-let myDays={}; try{myDays=JSON.parse(localStorage.getItem('peru_mydays_v1')||'{}');}catch(e){}
-let myStart=localStorage.getItem('peru_mystart_v1')||'';
+/* O que vem da nuvem (tabela pública) ou do aparelho é dado de fora: só passam índices,
+   números de noites e datas no formato certo. Sem isso, um texto gravado na tabela ia parar
+   no innerHTML das datas e rodava como código no domínio inteiro. */
+function limpaIdx(a){return Array.isArray(a)?a.map(Number).filter(n=>Number.isInteger(n)&&n>=0&&n<P.length):[];}
+function limpaDias(o){const r={};if(o&&typeof o==='object'&&!Array.isArray(o))for(const k in o){const i=Number(k),n=parseInt(o[k],10);if(Number.isInteger(i)&&i>=0&&i<P.length&&n>=1&&n<=90)r[i]=n;}return r;}
+function limpaData(s){return typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)?s:'';}
+let myRoute=[]; try{myRoute=soPendentes(limpaIdx(JSON.parse(localStorage.getItem(LS_MINE)||'[]')));}catch(e){}
+let myDays={}; try{myDays=limpaDias(JSON.parse(localStorage.getItem('peru_mydays_v1')||'{}'));}catch(e){}
+let myStart=''; try{myStart=limpaData(localStorage.getItem('peru_mystart_v1')||'');}catch(e){}
 /* data de início no passado = resquício de sessão antiga (o plano é daqui pra frente).
    Sem isso, um 14/08 gravado semanas atrás vencia o padrão e a rota nascia errada. */
 (function(){try{
@@ -593,13 +599,14 @@ function syncPull(){
     .then(r=>r.ok?r.json():null)
     .then(j=>{
       const est=j&&j[0]&&j[0].estado;if(!est)return false;
-      const idx=Array.isArray(est._idx)?soPendentes(est._idx):[];
+      const idx=soPendentes(limpaIdx(est._idx));
       // quem gravou por último vence: adota se a nuvem for mais nova que este aparelho
       let local=0;try{local=Date.parse(localStorage.getItem('peru_sync_ts')||'')||0;}catch(e){}
       const remoto=Date.parse(j[0].criado_em||'')||0;
       if(idx.length&&(!myRoute.length||remoto>local)){
-        myRoute=idx; myDays=est._dias||{};
-        if(est.inicio){myStart=est.inicio;try{localStorage.setItem('peru_mystart_v1',myStart);}catch(e){}}
+        myRoute=idx; myDays=limpaDias(est._dias);
+        const ini=limpaData(est.inicio);
+        if(ini){myStart=ini;try{localStorage.setItem('peru_mystart_v1',myStart);}catch(e){}}
         try{localStorage.setItem(LS_MINE,JSON.stringify(myRoute));localStorage.setItem('peru_mydays_v1',JSON.stringify(myDays));}catch(e){}
         try{localStorage.setItem('peru_sync_ts',j[0].criado_em||new Date().toISOString());}catch(e){}
         ultimoEnviado=JSON.stringify(estadoJSON());

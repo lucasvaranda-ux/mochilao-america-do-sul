@@ -90,7 +90,7 @@
   ],
   "functions": {
     "api/telas-perguntar.mjs": {
-      "maxDuration": 60
+      "maxDuration": 300
     }
   }
 }

@@ -354,10 +354,11 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
         <button class="chip" data-sug="Uma série curta, de uma temporada, pra ver num fim de semana.">Série curta</button>
         <button class="chip" data-sug="Dos títulos que estão como Quero ver, por qual eu começo e por quê?">Por onde começo</button>
       </div>
-      <div class="row" id="ia-senha-box" hidden style="margin-top:12px">
-        <input class="search" id="ia-senha" type="password" autocomplete="current-password" placeholder="Senha da caixa" aria-label="Senha da caixa de perguntas" style="flex:0 1 240px">
-        <span class="opt">Fica guardada neste aparelho.</span>
-      </div>
+      <form class="row" id="ia-senha-box" hidden style="margin-top:12px" autocomplete="on">
+        <input type="text" name="username" value="telas" autocomplete="username" hidden>
+        <input class="search" id="ia-senha" name="password" type="password" autocomplete="current-password" placeholder="Senha da caixa" aria-label="Senha da caixa de perguntas" style="flex:0 1 240px">
+        <span class="opt">Vale até fechar o navegador; o chaveiro do aparelho pode guardar.</span>
+      </form>
     </div>
     <div id="ia-out" class="ans" aria-live="polite"></div>
     <details class="hist" id="ia-hist" hidden><summary>Perguntas anteriores</summary><div id="ia-hist-list" style="margin-top:10px"></div></details>
@@ -627,7 +628,7 @@ function renderList(kind){
 }
 function renderAll(){
   renderWatchCtl();renderList('filmes');renderList('series');renderCol('desligar');renderCol('repetidos');renderPesos();renderDados();
-  try{if((ST.ia||[]).length&&!IA_OCUPADA){el('ia-out').innerHTML=blocoResposta(ST.ia[0]);renderHist()}}catch(e){console.error(e)}
+  try{if(!IA_OCUPADA){el('ia-out').innerHTML=(ST.ia||[]).length?blocoResposta(ST.ia[0]):'';renderHist()}}catch(e){console.error(e)}
   el('foot').textContent=(D.gerado_em?'Lista gerada em '+D.gerado_em+'. ':'')+'Notas dos agregadores mudam com o tempo — confira na fonte antes de citar.'+(STORE?'':' Este navegador não está guardando suas notas: faça backup.');
 }
 
@@ -843,8 +844,11 @@ function adicionar(col){
 // O contexto sai do que está neste aparelho e vai, com a pergunta, para /api/telas-perguntar,
 // que chama o Claude com a chave guardada na Vercel. A senha da caixa fica em outra chave do
 // localStorage, fora do backup.
+// A senha fica no sessionStorage: some ao fechar o navegador e não fica ao alcance de outra página do domínio depois.
 var IA_SENHA='telas_ia_senha';
-function iaSenha(){try{return localStorage.getItem(IA_SENHA)||''}catch(e){return ''}}
+try{localStorage.removeItem(IA_SENHA)}catch(e){}
+function iaSenha(){try{return sessionStorage.getItem(IA_SENHA)||''}catch(e){return ''}}
+function guardaSenha(v){try{if(v)sessionStorage.setItem(IA_SENHA,v);else sessionStorage.removeItem(IA_SENHA)}catch(e){}}
 function contextoIA(){
   var c={hoje:new Date().toISOString().slice(0,10)};
   try{
@@ -870,6 +874,12 @@ function contextoIA(){
   return c;
 }
 function paragrafos(t){return String(t||'').split(/\n{2,}|\n(?=[-•])/).map(function(x){return x.trim()}).filter(Boolean).map(function(x){return '<p>'+esc(x)+'</p>'}).join('')}
+function naLista(id){return [].concat(D&&D.filmes||[],D&&D.series||[]).some(function(it){return it.id===id})}
+function verBotao(id){
+  if(naLista(id))return '<button data-ver="'+esc(id)+'">ver na lista</button>';
+  var col=['desligar','repetidos'].filter(function(c){return colItens(c).indexOf(id)>-1})[0];
+  return col?'<button data-vercol="'+col+'">ver em '+(col==='desligar'?'Desligar':'Repetidos')+'</button>':'';
+}
 function cardIndicacao(x){
   var tit=esc(x.titulo||'')+(x.titulo_original&&x.titulo_original!==x.titulo?'<div class="meta">'+esc(x.titulo_original)+'</div>':'');
   var na=x.ja_na_lista&&achar(x.ja_na_lista);
@@ -877,7 +887,7 @@ function cardIndicacao(x){
   return '<article class="card ind"><div class="head"><div class="ttl"><h3>'+tit+'</h3><div class="meta">'+
     '<span class="bdg">'+esc(x.tipo||'')+'</span> '+esc(x.ano||'')+(na?' · <span class="bdg live">já está na lista</span>':'')+'</div></div></div>'+
     '<p class="why">'+esc(x.por_que||'')+'</p><div class="acts"><a href="'+esc(jw)+'" target="_blank" rel="noopener">onde assistir ↗</a>'+
-    (na&&(na.tipo==='filme'||na.tipo==='serie')?'<button data-ver="'+esc(x.ja_na_lista)+'">ver na lista</button>':'')+'</div></article>';
+    (na?verBotao(x.ja_na_lista):'')+'</div></article>';
 }
 function blocoResposta(r){
   return '<p class="q">'+esc(r.pergunta)+'</p><div class="txt">'+paragrafos(r.resposta)+'</div>'+
@@ -895,35 +905,42 @@ var IA_OCUPADA=false;
 function perguntar(){
   if(IA_OCUPADA)return;
   var q=(el('ia-q').value||'').trim(),out=el('ia-out');if(!q){el('ia-q').focus();return}
+  if(!D){out.innerHTML='<p class="err">Sua lista ainda está carregando. Tente em instantes.</p>';return}
   var senhaIn=el('ia-senha'),senha=(senhaIn&&senhaIn.value.trim())||iaSenha();
   if(!senha){el('ia-senha-box').hidden=false;out.innerHTML='<p class="err">Digite a senha da caixa (a mesma que está em TELAS_SENHA na Vercel).</p>';senhaIn.focus();return}
   IA_OCUPADA=true;el('ia-go').disabled=true;
-  var t0=Date.now(),tick=setInterval(function(){var w=out.querySelector('.wait');if(w)w.textContent='Pensando… '+Math.round((Date.now()-t0)/1000)+' s'},1000);
-  out.innerHTML='<p class="wait">Pensando…</p>';
+  var t0=Date.now(),tick=setInterval(function(){var w=out.querySelector('.secs');if(w)w.textContent=Math.round((Date.now()-t0)/1000)+' s'},1000);
+  out.setAttribute('aria-busy','true');
+  out.innerHTML='<p class="wait">Pensando… <span class="secs" aria-hidden="true"></span></p>';
   fetch('/api/telas-perguntar',{method:'POST',headers:{'content-type':'application/json','x-telas-senha':senha},
     body:JSON.stringify({pergunta:q,contexto:contextoIA(),buscar:!!el('ia-web').checked})})
-  .then(function(r){return r.json().catch(function(){return {erro:'Resposta inesperada do servidor ('+r.status+').'}}).then(function(j){j._status=r.status;return j})})
+  .then(function(r){return r.json().catch(function(){return {erro:r.status===504?'Demorou demais. Tente de novo, talvez sem a busca na web.':'Resposta inesperada do servidor ('+r.status+').'}}).then(function(j){j._status=r.status;return j})})
   .then(function(j){
-    if(j._status===401){try{localStorage.removeItem(IA_SENHA)}catch(e){}el('ia-senha-box').hidden=false;if(senhaIn){senhaIn.value='';senhaIn.focus()}}
+    if(j._status===401){guardaSenha('');el('ia-senha-box').hidden=false;if(senhaIn){senhaIn.value='';senhaIn.focus()}}
     if(j.erro){out.innerHTML='<p class="err">'+esc(j.erro)+'</p>';return}
-    try{localStorage.setItem(IA_SENHA,senha)}catch(e){}
+    guardaSenha(senha);
     el('ia-senha-box').hidden=true;
     var r={pergunta:q,resposta:j.resposta,indicacoes:j.indicacoes||[],buscas:j.buscas||0,cortada:!!j.cortada,em:new Date().toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})};
     ST.ia=[r].concat(ST.ia||[]).slice(0,20);save();
     out.innerHTML=blocoResposta(r);renderHist();
   })
   .catch(function(){out.innerHTML='<p class="err">Não consegui falar com a caixa agora. Confira a internet e tente de novo.</p>'})
-  .then(function(){clearInterval(tick);IA_OCUPADA=false;el('ia-go').disabled=false});
+  .then(function(){clearInterval(tick);out.removeAttribute('aria-busy');IA_OCUPADA=false;el('ia-go').disabled=false});
 }
 (function(){
   try{
     el('ia-go').addEventListener('click',perguntar);
+    el('ia-senha-box').addEventListener('submit',function(e){e.preventDefault();perguntar()});
+    // o formulário tem dois campos e nenhum botão: o Enter não envia sozinho
+    el('ia-senha').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();perguntar()}});
     el('ia-q').addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();perguntar()}});
     el('ia-sug').addEventListener('click',function(e){var b=e.target.closest('[data-sug]');if(!b)return;el('ia-q').value=b.dataset.sug;el('ia-q').focus()});
     el('p-perguntar').addEventListener('click',function(e){
+      var bc=e.target.closest('[data-vercol]');if(bc){var t=document.querySelector('.tab[data-tab="'+bc.dataset.vercol+'"]');if(t)t.click();return}
       var b=e.target.closest('[data-ver]');if(!b)return;var a=achar(b.dataset.ver);if(!a)return;
       var kind=a.tipo==='filme'?'filmes':'series';VIEW[kind].q=a.it.titulo;VIEW[kind].f='todos';VIEW[kind].w='todos';
-      var inp=document.querySelector('[data-q="'+kind+'"]');if(inp)inp.value=a.it.titulo;renderList(kind);
+      var inp=document.querySelector('[data-q="'+kind+'"]');if(inp)inp.value=a.it.titulo;
+      var sw=document.querySelector('[data-watch="'+kind+'"]');if(sw)sw.value='todos';renderList(kind);
       var tab=document.querySelector('.tab[data-tab="'+kind+'"]');if(tab)tab.click();
     });
     if(!iaSenha())el('ia-senha-box').hidden=false;

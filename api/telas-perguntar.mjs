@@ -8,9 +8,12 @@ import { createHash, timingSafeEqual } from 'node:crypto';
 
 const MODELO = 'claude-opus-5-5';
 const LIMITE_PERGUNTA = 800;      // caracteres
-const LIMITE_CONTEXTO = 90000;    // caracteres do contexto em JSON
+const LIMITE_CONTEXTO = 60000;    // caracteres do contexto em JSON (o real, com ~215 títulos, fica perto de 25 mil)
 const POR_HORA = 30;              // perguntas por hora por IP (melhor esforço: cada instância conta a sua)
+const ERROS_POR_HORA = 8;         // senhas erradas por hora por IP antes de bloquear
 const PAUSAS_MAX = 3;             // retomadas de turno pausado pela busca na web
+const PRAZO_MS = 270000;          // a função tem 300 s na Vercel: cada chamada só usa o que sobra disso
+const CHAVES_CONTEXTO = ['hoje', 'dimensoes', 'arquetipos', 'notas', 'status', 'colecoes', 'biblioteca', 'mais_conectados', 'servicos_que_assina', 'na_lista'];
 
 const SISTEMA = `Você ajuda o Lucas a escolher filmes e séries, dentro da página pessoal dele.
 
@@ -62,13 +65,21 @@ function senhaConfere(dada) {
   const h = s => createHash('sha256').update(s).digest(); // mesmo tamanho, comparação em tempo constante
   return timingSafeEqual(h(dada), h(certa));
 }
-const vistos = new Map();
-function passouDoLimite(ip) {
-  const agora = Date.now(), hora = 3600e3;
-  const lista = (vistos.get(ip) || []).filter(t => agora - t < hora);
-  lista.push(agora);
-  vistos.set(ip, lista);
-  return lista.length > POR_HORA;
+// Contadores em memória: cada instância tem os seus e eles zeram quando ela reinicia. São só um
+// freio; o teto de gasto de verdade é o limite mensal do workspace da chave no Console da Anthropic.
+const pedidos = new Map(), erros = new Map();
+function conta(mapa, ip, soma) {
+  const agora = Date.now();
+  const lista = (mapa.get(ip) || []).filter(t => agora - t < 3600e3);
+  if (soma) lista.push(agora);
+  mapa.set(ip, lista);
+  return lista.length;
+}
+// só as chaves que a página manda; o resto é descartado antes de ir para o modelo
+function filtraContexto(c) {
+  const out = {};
+  if (c && typeof c === 'object' && !Array.isArray(c)) for (const k of CHAVES_CONTEXTO) if (k in c) out[k] = c[k];
+  return out;
 }
 
 // ---------- RESPOSTA ----------
@@ -86,23 +97,27 @@ export default async function handler(req, res) {
   try {
     if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ erro: 'Use POST.' }); }
     if (!process.env.ANTHROPIC_API_KEY || !process.env.TELAS_SENHA) {
-      return res.status(503).json({ erro: 'A caixa ainda não foi configurada: faltam ANTHROPIC_API_KEY e TELAS_SENHA nas variáveis do projeto na Vercel.' });
+      return res.status(503).json({ erro: 'A caixa ainda não foi configurada: faltam ANTHROPIC_API_KEY e TELAS_SENHA nas variáveis do projeto na Vercel (a senha deve ser longa e aleatória).' });
     }
-    if (!senhaConfere(req.headers['x-telas-senha'])) return res.status(401).json({ erro: 'Senha da caixa errada ou ausente.' });
     const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'sem-ip';
-    if (passouDoLimite(ip)) return res.status(429).json({ erro: 'Muitas perguntas nesta hora. Tente daqui a pouco.' });
+    // o freio vem antes da senha: tentativa errada também conta
+    if (conta(erros, ip, false) >= ERROS_POR_HORA) return res.status(429).json({ erro: 'Muitas tentativas de senha. Espere uma hora.' });
+    if (!senhaConfere(req.headers['x-telas-senha'])) { conta(erros, ip, true); return res.status(401).json({ erro: 'Senha da caixa errada ou ausente.' }); }
+    if (conta(pedidos, ip, true) > POR_HORA) return res.status(429).json({ erro: 'Muitas perguntas nesta hora. Tente daqui a pouco.' });
 
     const corpo = req.body && typeof req.body === 'object' ? req.body : {};
     const pergunta = typeof corpo.pergunta === 'string' ? corpo.pergunta.trim() : '';
     if (!pergunta) return res.status(400).json({ erro: 'Escreva uma pergunta.' });
     if (pergunta.length > LIMITE_PERGUNTA) return res.status(400).json({ erro: `Pergunta longa demais (até ${LIMITE_PERGUNTA} caracteres).` });
-    const contexto = JSON.stringify(corpo.contexto && typeof corpo.contexto === 'object' ? corpo.contexto : {});
+    const contexto = JSON.stringify(filtraContexto(corpo.contexto));
     if (contexto.length > LIMITE_CONTEXTO) return res.status(400).json({ erro: 'Contexto grande demais.' });
 
     const tools = [INDICAR];
     if (corpo.buscar === true) tools.push({ type: 'web_search_20260209', name: 'web_search', max_uses: 3 });
 
-    const client = new Anthropic();
+    // sem nova tentativa automática: uma segunda chamada não caberia no prazo da função
+    const client = new Anthropic({ maxRetries: 0 });
+    const t0 = Date.now();
     const messages = [{
       role: 'user',
       content: [
@@ -114,9 +129,11 @@ export default async function handler(req, res) {
 
     let msg;
     for (let i = 0; i <= PAUSAS_MAX; i++) {
+      const resta = PRAZO_MS - (Date.now() - t0);
+      if (resta < 20000) break; // não começa uma chamada que não vai caber
       msg = await client.beta.messages.create({
         model: MODELO,
-        max_tokens: 8000,
+        max_tokens: 16000, // o pensamento (sempre ligado no Opus 5.5) conta aqui dentro
         betas: ['server-side-fallback-2026-07-01'],
         fallbacks: 'default',
         output_config: { effort: 'medium' },
@@ -124,18 +141,26 @@ export default async function handler(req, res) {
         tools,
         tool_choice: { type: 'auto' },
         messages,
-      });
+      }, { timeout: resta });
       if (msg.stop_reason !== 'pause_turn') break;
       messages.push({ role: 'assistant', content: msg.content }); // a busca na web pausou: retoma de onde parou
     }
 
+    if (!msg) return res.status(504).json({ erro: 'Demorou demais. Tente de novo, talvez sem a busca na web.' });
     if (msg.stop_reason === 'refusal') {
       return res.status(200).json({ resposta: 'A IA não respondeu a essa pergunta. Tente escrever de outro jeito.', indicacoes: [], recusou: true });
     }
+    const temIndicar = msg.content.some(b => b.type === 'tool_use' && b.name === 'indicar');
     const { resposta, indicacoes } = lerResposta(msg);
-    const buscas = msg.content.filter(b => b.type === 'web_search_tool_result').length;
+    if (!temIndicar && (msg.stop_reason === 'pause_turn' || !resposta)) {
+      return res.status(502).json({ erro: 'A IA não terminou a resposta. Tente de novo' + (corpo.buscar ? ', talvez sem a busca na web.' : '.') });
+    }
+    // as respostas pausadas ficaram em messages: as buscas delas também contam
+    const blocos = messages.slice(1).flatMap(m => m.content).concat(msg.content);
+    const buscas = blocos.filter(b => b.type === 'web_search_tool_result').length;
     return res.status(200).json({ resposta, indicacoes: indicacoes.slice(0, 12), modelo: msg.model, buscas, cortada: msg.stop_reason === 'max_tokens' });
   } catch (e) {
+    if (e instanceof Anthropic.APIConnectionTimeoutError) return res.status(504).json({ erro: 'A IA demorou demais. Tente de novo, talvez sem a busca na web.' });
     if (e instanceof Anthropic.AuthenticationError) return res.status(502).json({ erro: 'A chave da Anthropic foi recusada. Confira ANTHROPIC_API_KEY na Vercel.' });
     if (e instanceof Anthropic.RateLimitError) return res.status(429).json({ erro: 'A Anthropic pediu uma pausa. Tente de novo em um minuto.' });
     if (e instanceof Anthropic.BadRequestError) { console.error(e.message); return res.status(502).json({ erro: 'A Anthropic recusou o pedido. Os detalhes estão no log da função.' }); }
