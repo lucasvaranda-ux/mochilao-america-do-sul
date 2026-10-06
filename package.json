@@ -1,0 +1,8 @@
+{
+  "name": "mochilao-america-do-sul",
+  "private": true,
+  "description": "Site estático do mochilão e do Telas; a única dependência é a da função api/telas-perguntar.mjs (caixa de perguntas à IA).",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0"
+  }
+}

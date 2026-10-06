@@ -16,3 +16,6 @@ desktop.ini
 .env
 .env.*
 !.env.example
+
+# Dependências da função da Vercel (instaladas no deploy)
+node_modules/
