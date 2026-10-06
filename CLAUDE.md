@@ -41,7 +41,7 @@ python3 -m http.server 8000
 # abrir http://localhost:8000/index.html
 ```
 
-Não há dependências de build, npm ou bundler.
+Não há build nem bundler. A única dependência npm é o SDK da Anthropic, usado só pela função `api/telas-perguntar.mjs` (a Vercel instala no deploy).
 
 ## Estrutura do arquivo
 
@@ -74,6 +74,7 @@ Tudo em `index.html`:
 - **Robô de episódios:** `.github/workflows/telas-episodios.yml` roda `scripts/telas-episodios.mjs` todo dia (cron só roda no `main`). Busca no TVmaze pelo IMDb ID, grava `telas/episodios.json` e `telas/lancamentos.ics`, e manda e-mail via Resend se existirem os segredos `RESEND_API_KEY` e `ALERT_EMAIL`. O e-mail do Lucas fica **só** no segredo, nunca no código.
 - **Onde assistir:** o mesmo workflow roda `scripts/telas-streaming.mjs`, que consulta a API do TMDB (dados do JustWatch) e grava `telas/streaming.json` com assinatura, grátis, com anúncios, aluguel e compra no Brasil. Só regrava quando algo muda. Precisa do segredo `TMDB_API_KEY`; sem ele, não faz nada e a página mostra um link de busca no JustWatch. Se o passo falhar, os episódios ainda são salvos e a execução fica vermelha.
 - **Coleções (abas Desligar e Repetidos):** `dados.json` tem `colecoes` (`desligar`, `repetidos`, cada uma com a lista `itens` de ids) e `extras` (séries, filmes avulsos e sagas que não estão no top 100: `tipo` é `"serie"`, `"filme"` ou `"saga"`, e a saga traz a lista `filmes`). Um id de coleção pode ser de `filmes`, `series` ou `extras`. O que o Lucas acrescenta ou tira na página, o contador de vezes e a nota de fase ficam só no aparelho (`telas_v1`: `col`, `livres`, `vezes`, `fase`) e vão no backup. Quando ele pedir um título novo no chat, entra em `extras` (com IMDb conferido) e no `itens` da coleção. O robô de streaming também consulta os `extras`.
+- **Perguntar (caixa de IA):** aba "Perguntar" do `telas.html` + função da Vercel `api/telas-perguntar.mjs` (única dependência npm do repo: `@anthropic-ai/sdk`, em `package.json`). A página monta o contexto no navegador (notas, status, coleções com vezes e fase, pesos, mais conectados, serviços, a lista com ids) e manda com a pergunta; a função chama o Claude (`claude-opus-5-5`, effort `medium`, `fallbacks: "default"`) e devolve a resposta pela ferramenta estrita `indicar`. Busca na web só quando o usuário marca a opção. Variáveis no projeto da Vercel, **nunca no código**: `ANTHROPIC_API_KEY` e `TELAS_SENHA` (a página manda a senha no cabeçalho `x-telas-senha`; fica em `localStorage` `telas_ia_senha`, fora do backup). Limite de 30 perguntas por hora por IP e `maxDuration` 60 s em `vercel.json`.
 - **Títulos em inglês:** campo `titulo_en` de cada título em `dados.json` (conferido por busca em 05/10/2026). Se o `dados.json` for regerado, manter esse campo.
 - **O que o robô acompanha:** séries com status "em exibição"/"renovada" em `dados.json` (calendário geral) e as de `telas/acompanhando.json` (alertas e calendário assinável). A página gera essa lista pronta pra colar.
 

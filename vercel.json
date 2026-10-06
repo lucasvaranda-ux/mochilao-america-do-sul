@@ -87,5 +87,10 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/telas-perguntar.mjs": {
+      "maxDuration": 60
+    }
+  }
 }
