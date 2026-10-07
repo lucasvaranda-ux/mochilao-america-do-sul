@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-05T04:33:23.040Z",
+ "gerado_em": "2026-10-07T17:27:52.553Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -30,7 +30,7 @@
    "imdb_id": "tt21621494",
    "tvmaze_id": 69046,
    "nome": "Delicious in Dungeon",
-   "status": "Running",
+   "status": "To Be Determined",
    "plataforma": "Tokyo MX",
    "alerta": false
   },
@@ -245,18 +245,6 @@
  ],
  "episodios": [
   {
-   "imdb_id": "tt10986410",
-   "tvmaze_id": 3605515,
-   "serie": "Ted Lasso",
-   "temporada": 4,
-   "episodio": 9,
-   "titulo": "Mae Rides the Bus",
-   "data": "2026-09-30",
-   "airstamp": "2026-09-30T12:00:00+00:00",
-   "plataforma": "Apple TV",
-   "alerta": true
-  },
-  {
    "imdb_id": "tt19231492",
    "tvmaze_id": 3591069,
    "serie": "Dark Matter",
@@ -298,7 +286,7 @@
    "serie": "Ted Lasso",
    "temporada": 4,
    "episodio": 10,
-   "titulo": "The Departing Lass",
+   "titulo": "Being Alive",
    "data": "2026-10-07",
    "airstamp": "2026-10-07T12:00:00+00:00",
    "plataforma": "Apple TV",
