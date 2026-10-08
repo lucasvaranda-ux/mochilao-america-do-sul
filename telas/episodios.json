@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-07T17:27:52.553Z",
+ "gerado_em": "2026-10-08T10:34:02.310Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -14,7 +14,7 @@
    "imdb_id": "tt28534254",
    "tvmaze_id": 75306,
    "nome": "Spice and Wolf: Merchant Meets the Wise Wolf",
-   "status": "Running",
+   "status": "To Be Determined",
    "plataforma": "TV Tokyo",
    "alerta": false
   },
@@ -142,7 +142,7 @@
    "imdb_id": "tt10986410",
    "tvmaze_id": 44458,
    "nome": "Ted Lasso",
-   "status": "Running",
+   "status": "To Be Determined",
    "plataforma": "Apple TV",
    "alerta": true
   },
@@ -382,7 +382,7 @@
    "serie": "MobLand",
    "temporada": 2,
    "episodio": 7,
-   "titulo": "Episode 7",
+   "titulo": "Ace of Spades",
    "data": "2026-10-30",
    "airstamp": "2026-10-30T12:00:00+00:00",
    "plataforma": "Paramount+",
