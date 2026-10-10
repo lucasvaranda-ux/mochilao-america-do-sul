@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-09T10:33:37.789Z",
+ "gerado_em": "2026-10-10T10:29:38.156Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -244,30 +244,6 @@
   }
  ],
  "episodios": [
-  {
-   "imdb_id": "tt19231492",
-   "tvmaze_id": 3591069,
-   "serie": "Dark Matter",
-   "temporada": 2,
-   "episodio": 6,
-   "titulo": "What the Universe Is Made Of",
-   "data": "2026-10-02",
-   "airstamp": "2026-10-02T12:00:00+00:00",
-   "plataforma": "Apple TV",
-   "alerta": true
-  },
-  {
-   "imdb_id": "tt31510819",
-   "tvmaze_id": 3708482,
-   "serie": "MobLand",
-   "temporada": 2,
-   "episodio": 3,
-   "titulo": "Bonzo Goes to Bitburg",
-   "data": "2026-10-02",
-   "airstamp": "2026-10-02T12:00:00+00:00",
-   "plataforma": "Paramount+",
-   "alerta": true
-  },
   {
    "imdb_id": "tt26545992",
    "tvmaze_id": 3695366,
@@ -542,6 +518,18 @@
    "data": "2027-01-20",
    "airstamp": "2027-01-20T12:00:00+00:00",
    "plataforma": "Disney+",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt28093628",
+   "tvmaze_id": 3784688,
+   "serie": "Common Side Effects",
+   "temporada": 2,
+   "episodio": 1,
+   "titulo": "TBA",
+   "data": "2027-01-24",
+   "airstamp": "2027-01-25T04:30:00+00:00",
+   "plataforma": "Adult Swim",
    "alerta": false
   },
   {
