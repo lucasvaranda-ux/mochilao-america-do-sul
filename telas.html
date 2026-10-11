@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta name="robots" content="noindex">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
@@ -1273,15 +1272,19 @@ function posterOk(u){
 }
 function lum(hex){var n=parseInt(hex.slice(1),16),r=(n>>16&255)/255,g=(n>>8&255)/255,b=(n&255)/255;return .2126*r+.7152*g+.0722*b}
 var TMDB_W=[92,154,185,342,500,780];
+// cópia no próprio site (telas/cartazes/, gravada pelo robô): carrega primeiro; se falhar, o <img> tenta o endereço original
+var LOCAL_OK=/^\/telas\/cartazes\/[0-9a-f]{16}\.(webp|jpg|png|gif)$/;
 function posterInfo(id){
   var p=PO[id];if(!p||typeof p!=='object')return null;
-  var u=String(p.img||'');if(!posterOk(u))return null;
+  var u=String(p.img||''),lc=String(p.local||'');if(!LOCAL_OK.test(lc))lc='';
+  if(!posterOk(u)){if(!lc)return null;u=''}
   var w=Math.round(+p.w)||500,h=Math.round(+p.h)||750;if(w<10||h<10||w>6000||h>9000){w=500;h=750}
   var tm=String(p.tmdb||''),ss='';
   if(/^https:\/\/image\.tmdb\.org\//.test(u)&&/^\/[A-Za-z0-9_-]{4,80}\.(jpe?g|png|webp)$/.test(tm))
     ss=TMDB_W.map(function(x){return 'https://image.tmdb.org/t/p/w'+x+tm+' '+x+'w'}).join(', ');
   // cartaz deitado ou quadrado (logo, title card): vai inteiro sobre uma cópia dele desfocada, nunca cortado
-  return {src:u,w:w,h:h,deit:h<1.2*w,trn:transp(u),srcset:ss,cor:corDe(id)};
+  if(lc)return {src:lc,remoto:u,w:w,h:h,deit:h<1.2*w,trn:transp(u||lc),srcset:'',ssRemoto:ss,cor:corDe(id)};
+  return {src:u,remoto:'',w:w,h:h,deit:h<1.2*w,trn:transp(u),srcset:ss,cor:corDe(id)};
 }
 // logo em SVG ou PNG com "logo" no nome: quase sempre tem fundo transparente (a tinta pode sumir no fundo escuro)
 function transp(u){var f=String(u).split('/').pop();return /\.svg(\.png)?$/i.test(f)||/logo[^/]*\.png$/i.test(f)}
@@ -1309,7 +1312,7 @@ function subPoster(it){
 }
 // <img> do cartaz: preguiçoso, decodificado fora da linha principal e com a proporção reservada (width/height)
 function imgPoster(p,cls,sz){
-  return '<img'+(cls?' class="'+cls+'"':'')+' src="'+esc(p.src)+'"'+(p.srcset?' srcset="'+esc(p.srcset)+'" sizes="'+esc(sz||'(min-width:900px) 150px, 112px')+'"':'')+
+  return '<img'+(cls?' class="'+cls+'"':'')+' src="'+esc(p.src)+'"'+(p.remoto?' data-r="'+esc(p.remoto)+'"':'')+(p.srcset?' srcset="'+esc(p.srcset)+'" sizes="'+esc(sz||'(min-width:900px) 150px, 112px')+'"':'')+
     ' alt="" loading="lazy" decoding="async" width="'+p.w+'" height="'+p.h+'">';
 }
 function posterHtml(it,o){
@@ -1328,6 +1331,8 @@ function miniPoster(it,o){o=o||{};return posterInfo(it.id)?posterHtml(it,{nada:t
 // nos pequenos (Avaliar, sugestões, Agenda, leque das coleções), o bloco com as iniciais, como os que não têm cartaz
 document.addEventListener('error',function(e){
   var t=e.target;if(!t||t.tagName!=='IMG')return;
+  // a cópia do site falhou: tenta uma vez o endereço original (Wikipedia ou TMDB) antes do substituto
+  try{var r=t.getAttribute('data-r');if(r&&posterOk(r)&&!t.getAttribute('data-tentou')){t.setAttribute('data-tentou','1');t.removeAttribute('srcset');t.src=r;return}}catch(err){}
   try{if(t.classList.contains('hero-bg')){t.remove();return}var po=t.parentNode;
     if(po&&po.classList&&po.classList.contains('po')){po.classList.add('sem');po.classList.remove('deit','trn');[].slice.call(po.querySelectorAll('img')).forEach(function(x){x.remove()});
       var w=po.offsetWidth,sb=po.querySelector('.po-sub');
@@ -1339,7 +1344,7 @@ document.addEventListener('load',function(e){
   var t=e.target;if(!t||t.tagName!=='IMG')return;
   try{var po=t.parentNode;if(!po||!po.classList||!po.classList.contains('po')||po.classList.contains('deit'))return;
     var w=t.naturalWidth,h=t.naturalHeight;if(!w||!h||h>=1.2*w)return;
-    var bg=t.cloneNode(false);bg.className='po-bg';bg.removeAttribute('loading');t.className='po-fg';po.classList.add('deit');if(transp(t.currentSrc||t.src))po.classList.add('trn');po.insertBefore(bg,t)}catch(err){}
+    var bg=t.cloneNode(false);bg.className='po-bg';bg.removeAttribute('loading');t.className='po-fg';po.classList.add('deit');if(transp(t.getAttribute('data-r')||t.currentSrc||t.src))po.classList.add('trn');po.insertBefore(bg,t)}catch(err){}
 },true);
 
 // ---------- CARREGAMENTO ----------
@@ -3058,7 +3063,7 @@ function renderFolha(){
   if(it.biblioteca)hs.push('<span class="bdg live">na sua biblioteca</span>');
   if(it.radar)hs.push('<span class="bdg radar">no seu radar</span>');
   if(it.rank)hs.push('<span class="num">nº '+esc(it.rank)+' da pesquisa</span>');
-  h.push('<div class="hero"><span class="hero-bgw" aria-hidden="true">'+(p?'<img class="hero-bg" src="'+esc(p.src)+'" alt="" decoding="async">':'<span class="hero-bg cor"'+(corDe(it.id)?' style="--pc:'+corDe(it.id)+'"':'')+'></span>')+'</span>'+
+  h.push('<div class="hero"><span class="hero-bgw" aria-hidden="true">'+(p?'<img class="hero-bg" src="'+esc(p.src)+'"'+(p.remoto?' data-r="'+esc(p.remoto)+'"':'')+' alt="" decoding="async">':'<span class="hero-bg cor"'+(corDe(it.id)?' style="--pc:'+corDe(it.id)+'"':'')+'></span>')+'</span>'+
     '<div class="hero-po">'+posterHtml(it,{semNota:true})+creditoCartaz(it.id)+'</div>'+
     '<div class="hero-t"><h2 id="sh-title">'+esc(it.titulo)+'</h2>'+titulosExtras(it)+(meta.length?'<p class="meta">'+meta.join(' · ')+'</p>':'')+(autor?'<p class="ha">'+esc(autor)+'</p>':'')+
     (mot.length?'<p class="mot">'+mot.map(esc).join(' · ')+'</p>':'')+(hs.length?'<p class="hs badges">'+hs.join(' ')+'</p>':'')+'</div></div>');

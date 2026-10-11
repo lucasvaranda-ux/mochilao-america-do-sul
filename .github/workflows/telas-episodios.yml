@@ -56,10 +56,13 @@ jobs:
         # mesma regra do onde assistir: se o TMDB e a Wikimedia falharem, o resto do dia ainda é
         # salvo e o último passo deixa a execução vermelha. Sem o segredo, só a Wikipedia.
         continue-on-error: true
-        timeout-minutes: 6
+        timeout-minutes: 7
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-        run: node scripts/telas-posteres.mjs
+        # cwebp (pacote webp) reduz as cópias locais dos cartazes para 360 px em WebP; sem ele, vão como vieram
+        run: |
+          (sudo apt-get update -qq && sudo apt-get install -y -qq webp) >/dev/null 2>&1 || echo "sem cwebp: cópias no formato original"
+          node scripts/telas-posteres.mjs
       - name: Salvar se mudou
         run: |
           if [ -n "$(git status --porcelain telas/)" ]; then
@@ -68,6 +71,7 @@ jobs:
             git add telas/episodios.json telas/lancamentos.ics
             if [ -f telas/streaming.json ]; then git add telas/streaming.json; fi
             if [ -f telas/posteres.json ]; then git add telas/posteres.json; fi
+            if [ -d telas/cartazes ]; then git add -A telas/cartazes; fi
             git commit -m "telas: robô atualizou episódios, onde assistir e pôsteres"
             git push
           else
