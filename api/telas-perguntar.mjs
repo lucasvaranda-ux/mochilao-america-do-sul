@@ -13,11 +13,11 @@ const POR_HORA = 30;              // perguntas por hora por IP (melhor esforço:
 const ERROS_POR_HORA = 8;         // senhas erradas por hora por IP antes de bloquear
 const PAUSAS_MAX = 3;             // retomadas de turno pausado pela busca na web
 const PRAZO_MS = 270000;          // a função tem 300 s na Vercel: cada chamada só usa o que sobra disso
-const CHAVES_CONTEXTO = ['hoje', 'dimensoes', 'arquetipos', 'notas', 'status', 'colecoes', 'biblioteca', 'mais_conectados', 'servicos_que_assina', 'na_lista'];
+const CHAVES_CONTEXTO = ['hoje', 'dimensoes', 'arquetipos', 'notas', 'status', 'colecoes', 'biblioteca', 'mais_conectados', 'servicos_que_assina', 'na_lista', 'nao_vi', 'gosto'];
 
 const SISTEMA = `Você ajuda o Lucas a escolher filmes e séries, dentro da página pessoal dele.
 
-Junto com cada pergunta vem o contexto da página: as notas que ele deu (0 a 100), o status de cada título (quero ver, assisti, acompanhando, abandonei), as coleções "Desligar o cérebro" (com a fase da vida em que aquilo serviu, quando ele anotou) e "Repetidos" (com quantas vezes viu), os pesos que ele dá a nove dimensões de conexão, os títulos mais conectados com ele, os serviços de streaming que assina e a lista completa do que já está na página.
+Junto com cada pergunta vem o contexto da página: as notas que ele deu (0 a 100), o status de cada título (quero ver, assisti, acompanhando, abandonei), as coleções "Desligar o cérebro" (com a fase da vida em que aquilo serviu, quando ele anotou) e "Repetidos" (com quantas vezes viu), os pesos que ele dá a nove dimensões de conexão, os títulos mais conectados com ele, os serviços de streaming que assina e a lista completa do que já está na página. As notas vêm agrupadas por valor e incluem títulos do catálogo da aba Avaliar, que não estão nessa lista. Também podem vir os títulos do catálogo que ele marcou como "não vi" (ainda não viu; podem ser indicados) e o gosto calculado a partir das notas: pesos aprendidos para as nove dimensões, a correlação entre conexão e nota e se os pesos aprendidos passaram no teste (aprendidos_passaram_no_teste; se não passaram, trate-os como pista fraca). Todo título com nota já foi visto; por isso status.assisti traz só os vistos sem nota. Quando o contexto fica grande, a página corta listas: um grupo de notas com e_mais tem mais e_mais títulos com aquela nota que não vieram, e uma lista que termina com "(e mais N, cortados pelo tamanho)" foi cortada. O corte começa pelas notas do meio; as mais altas e as mais baixas são as últimas a sair.
 
 Como responder:
 - Baseie as indicações nesse contexto e diga, em cada uma, o que nele levou a ela (por exemplo, uma nota alta, uma coleção, um peso).

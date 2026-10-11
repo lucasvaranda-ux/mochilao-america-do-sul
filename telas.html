@@ -10,9 +10,9 @@
 <style>
 :root{
   --bg:#f4f6f8; --card:#ffffff; --raise:#eef2f5; --line:#e2e8ee;
-  --tx:#1c2530; --muted:#5f7286; --faint:#8a99a8;
-  --accent:#b8661a; --accent-soft:rgba(204,120,27,.12); --on-accent:#ffffff;
-  --ok:#1f8f57; --ok-soft:rgba(31,143,87,.12);
+  --tx:#1c2530; --muted:#586b7e; --faint:#617183; --edge:#848f9b;
+  --accent:#a3570f; --accent-soft:rgba(204,120,27,.12); --on-accent:#ffffff;
+  --ok:#17784a; --ok-soft:rgba(31,143,87,.12);
   --live:#2563c9; --live-soft:rgba(37,99,201,.12);
   --off:#7c8794; --off-soft:rgba(124,135,148,.14);
   --track:#e6ebf0;
@@ -21,7 +21,7 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#0d1117; --card:#151b23; --raise:#1b222c; --line:#29313c;
-    --tx:#e6edf3; --muted:#9aa7b5; --faint:#6e7b89;
+    --tx:#e6edf3; --muted:#9aa7b5; --faint:#7f8c99; --edge:#616e7c;
     --accent:#e39a52; --accent-soft:rgba(227,154,82,.14); --on-accent:#15100a;
     --ok:#4cc38a; --ok-soft:rgba(76,195,138,.14);
     --live:#6ea4ff; --live-soft:rgba(110,164,255,.14);
@@ -31,7 +31,7 @@
 }
 :root[data-theme="dark"]{
   --bg:#0d1117; --card:#151b23; --raise:#1b222c; --line:#29313c;
-  --tx:#e6edf3; --muted:#9aa7b5; --faint:#6e7b89;
+  --tx:#e6edf3; --muted:#9aa7b5; --faint:#7f8c99; --edge:#616e7c;
   --accent:#e39a52; --accent-soft:rgba(227,154,82,.14); --on-accent:#15100a;
   --ok:#4cc38a; --ok-soft:rgba(76,195,138,.14);
   --live:#6ea4ff; --live-soft:rgba(110,164,255,.14);
@@ -245,6 +245,138 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 .mysvc[open] summary::before{content:"▾ "}
 .mysvc .chips{flex-wrap:wrap;overflow:visible;margin-top:8px}
 .mysvc p{color:var(--faint);font-size:.74rem;margin:6px 0 0}
+
+/* ---------- avaliar ---------- */
+.t44{min-height:44px}
+.chip.t44{display:inline-flex;align-items:center;gap:6px;padding:0 14px}
+.av-filtros{border-top:0;padding-top:0;margin:8px 0 4px}
+.av-filtros summary{display:flex;align-items:center;flex-wrap:wrap;gap:2px 8px;min-height:44px;font-size:.84rem}
+.av-filtros summary .av-fres{color:var(--faint);font-weight:500}
+.btn.t44{display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.2}
+.lnk{border:0;background:none;color:var(--live);cursor:pointer;text-align:left;font-size:inherit;padding:10px 0;min-height:44px;text-decoration:underline;text-underline-offset:2px}
+.av-cont{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;font-size:.84rem;color:var(--muted);margin:0 0 6px}
+.av-cont b{color:var(--tx);font-size:1.05rem;font-weight:700}
+.av-prog{height:6px;background:var(--track);border-radius:3px;overflow:hidden;display:flex;gap:2px;margin:0 0 14px}
+.av-prog i{display:block;height:100%}
+.av-prog .a{background:var(--ok)}
+.av-prog .v{background:var(--off)}
+.av-modo{margin-bottom:4px}
+.av-f{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.av-f .sel{flex:1 1 150px;min-width:0}
+.av-teclas{display:none}
+@media (hover:hover) and (pointer:fine){.av-teclas{display:block}}
+.av-teclas kbd{font-family:inherit;font-size:.74rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 5px;background:var(--card);color:var(--tx)}
+.avl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.avr{background:var(--card);border:1px solid var(--line);border-left:3px solid transparent;border-radius:14px;padding:12px;
+  display:flex;flex-direction:column;gap:10px;outline:none;scroll-margin:60px 0 90px}
+#av-pag1{scroll-margin-top:56px}
+.avr.feita{border-left-color:var(--ok)}
+.avr.naovi{border-left-color:var(--off)}
+.avr.naovi h3{color:var(--muted)}
+.avr.quero{border-left-color:var(--accent)}
+@media (hover:hover) and (pointer:fine){.avr.foco{box-shadow:0 0 0 2px var(--accent)}}
+.avr-t{min-width:0}
+.avr-t h3{margin:0;font-size:1rem;line-height:1.3;font-weight:700;letter-spacing:-.01em;overflow-wrap:anywhere}
+.avr-t .meta{color:var(--muted);font-size:.8rem;margin-top:2px;line-height:1.4;overflow-wrap:anywhere}
+.avr-t .sub{color:var(--faint);font-size:.76rem;margin-top:1px;overflow-wrap:anywhere}
+.av-est{display:inline-block;margin-top:6px;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;background:var(--raise);color:var(--muted)}
+.av-est.ok{background:var(--ok-soft);color:var(--ok)}
+.av-est.q{background:var(--accent-soft);color:var(--accent)}
+.notas{display:grid;grid-template-columns:repeat(5,minmax(44px,1fr)) minmax(74px,1.4fr);gap:9px 5px;max-width:470px}
+.notas.so10{grid-template-columns:repeat(5,minmax(44px,1fr))}
+.nb,.nv{min-height:44px;border:1px solid var(--edge);background:var(--bg);color:var(--tx);border-radius:10px;cursor:pointer;
+  padding:0 6px;font-size:.95rem;font-weight:700;font-variant-numeric:tabular-nums;touch-action:manipulation;line-height:1.15}
+.nv{font-size:.8rem;font-weight:600;color:var(--tx)}
+.notas .nv[data-nv]{grid-column:6;grid-row:1;margin-left:5px}
+.notas .nv[data-qv]{grid-column:6;grid-row:2;margin-left:5px}
+.nv.conf{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.nb[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.nv[aria-pressed="true"]{background:var(--raise);color:var(--tx);border-color:var(--muted)}
+.nv[data-qv][aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+@media (hover:hover){.nb:hover,.nv:hover{border-color:var(--accent)}}
+@media (min-width:1000px){
+  .avr{flex-direction:row;align-items:center;gap:16px}
+  .avr-t{flex:1}
+  .avl .notas{grid-template-columns:repeat(10,44px) auto auto;gap:4px;max-width:none}
+  .avl .notas .nv{padding:0 10px;margin-left:0}
+  .avl .notas .nv[data-nv]{grid-column:11;grid-row:1}
+  .avl .notas .nv[data-qv]{grid-column:12;grid-row:1}
+}
+.pag{display:flex;align-items:center;gap:8px;justify-content:space-between;margin:10px 0}
+.pag span{font-size:.82rem;color:var(--muted);text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:80;
+  background:var(--tx);color:var(--bg);border-radius:12px;padding:4px 4px 4px 14px;display:flex;align-items:center;gap:6px;
+  font-size:.86rem;line-height:1.35;width:max-content;max-width:calc(100vw - 32px);box-shadow:0 8px 28px rgba(0,0,0,.28);
+  pointer-events:none}
+.toast span{min-width:0;overflow-wrap:anywhere}
+.toast form{display:flex;align-items:center;gap:4px;pointer-events:auto}
+.toast form[hidden]{display:none}
+.toast input{width:4.2em;min-height:40px;font-size:16px;border:0;border-radius:8px;padding:0 8px;background:var(--bg);color:var(--tx);font-variant-numeric:tabular-nums}
+.toast button{flex:0 0 auto;min-height:44px;border:0;background:none;color:var(--bg);font-weight:700;text-decoration:underline;
+  text-underline-offset:2px;cursor:pointer;padding:0 12px;font-size:.86rem;pointer-events:auto}
+/* no celular, o aviso fica no alto, logo abaixo das abas: longe do dedo que dá a próxima nota */
+@media (max-width:759px){
+  .toast{top:calc(52px + env(safe-area-inset-top));bottom:auto}
+  .avr{scroll-margin:112px 0 16px}
+  .avr-t .meta,.avr-t .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+
+/* seu gosto */
+.gsec{margin-top:4px}
+.gstat{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0 14px}
+.gstat div{background:var(--raise);border-radius:10px;padding:9px 11px;font-size:.76rem;color:var(--tx);line-height:1.35}
+.gstat b{display:block;font-size:1.25rem;color:var(--tx);font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.leg{display:flex;gap:16px;flex-wrap:wrap;font-size:.76rem;color:var(--muted);margin:0 0 8px}
+.leg i{display:inline-block;width:14px;height:8px;border-radius:0 3px 3px 0;margin-right:6px;vertical-align:0}
+.k-at{background:var(--off)}
+.k-ap{background:var(--accent)}
+.gw{display:grid;grid-template-columns:minmax(88px,min(36%,220px)) minmax(0,1fr) auto;gap:8px 10px;align-items:center;font-size:.8rem}
+.gw .dn b{display:block;font-weight:700;color:var(--tx)}
+.gw .dn small{display:block;color:var(--muted);font-size:.7rem;line-height:1.3}
+.gfrase{color:var(--tx)!important;font-size:.92rem!important;line-height:1.5}
+.gstat .q{display:block;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:1px}
+.gaviso{border-left:3px solid var(--accent);padding:2px 0 2px 10px}
+.gw .bars{display:flex;flex-direction:column;gap:2px;min-width:0}
+.gw .bars i{display:block;height:8px;border-radius:0 4px 4px 0;min-width:2px}
+.gw .bars i.at{background:var(--off)}
+.gw .bars i.ap{background:var(--accent)}
+.gw .v{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap;text-align:right}
+.gw .v b{color:var(--tx)}
+.gm{display:grid;grid-template-columns:minmax(70px,auto) minmax(0,1fr) auto;gap:8px 10px;align-items:center;font-size:.8rem}
+.gm .bar{height:8px;background:var(--track);border-radius:0 4px 4px 0;overflow:hidden}
+.gm .bar i{display:block;height:100%;background:var(--accent);border-radius:0 4px 4px 0}
+.gm .v{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap;text-align:right}
+.gm .v b{color:var(--tx)}
+.gcols{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:760px){.gcols{grid-template-columns:1fr 1fr}}
+.gcols h4,.box h4{margin:0 0 8px;font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);font-weight:700}
+.surp{list-style:none;margin:0;padding:0;font-size:.84rem;line-height:1.45}
+.surp li{padding:6px 0;border-top:1px solid var(--line)}
+.surp li:first-child{border-top:0}
+.surp .meta{color:var(--muted);font-size:.78rem}
+
+/* sugestões e cartões compactos */
+.sugs{margin-top:22px;scroll-margin-top:56px}
+.sugjump{margin:-4px 0 10px}
+.sugjump .lnk{padding:0;min-height:44px;font-weight:600}
+h2.sec{margin:0 0 4px;font-size:1.05rem;letter-spacing:-.01em}
+.mini{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.mini h3{margin:0;font-size:.98rem;line-height:1.3;overflow-wrap:anywhere}
+.mini .meta{color:var(--muted);font-size:.78rem;line-height:1.4;margin-top:2px;overflow-wrap:anywhere}
+.mini .why{margin:0;font-size:.84rem;color:var(--tx);line-height:1.5}
+.bdg.calc{background:var(--live-soft);color:var(--live)}
+.macts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.macts.dois{grid-template-columns:repeat(2,minmax(0,1fr))}
+.macts .btn{min-height:44px;padding:6px 8px;font-size:.8rem;white-space:normal}
+.macts .btn[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.macts .btn[aria-expanded="true"]{border-color:var(--accent)}
+.sgrid{align-items:start}
+@media (min-width:860px){.sgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.impl{list-style:none;margin:10px 0 0;padding:0;font-size:.84rem}
+.impl li{border-top:1px solid var(--line)}
+.impl label{display:flex;gap:10px;align-items:flex-start;padding:9px 0;min-height:44px;cursor:pointer;line-height:1.4}
+.impl input{width:20px;height:20px;margin:1px 0 0;flex:0 0 auto;accent-color:var(--accent)}
+.impl .meta{color:var(--muted);font-size:.78rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -266,6 +398,7 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
     <button class="tab" role="tab" aria-selected="false" data-tab="series">Séries<span class="ct num" id="ct-series"></span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="desligar" title="Desligar o cérebro">Desligar<span class="ct num" id="ct-desligar"></span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="repetidos">Repetidos<span class="ct num" id="ct-repetidos"></span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="avaliar">Avaliar<span class="ct num" id="ct-avaliar"></span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="perguntar">Perguntar</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="cal">Calendário</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="pesos">Conexão</button>
@@ -320,7 +453,9 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 
   <section class="panel" id="p-desligar" aria-label="Desligar o cérebro">
     <p class="colnote"><b>Desligar o cérebro.</b> O que serve pra descansar a cabeça, cada um numa fase da vida.</p>
+    <p class="sugjump" id="sj-desligar" hidden></p>
     <div class="grid" id="list-desligar"></div>
+    <div class="sugs" id="sug-desligar"></div>
     <div class="box addbox">
       <h3>Adicionar</h3>
       <div class="row"><input class="search" type="text" list="todos-titulos" data-add="desligar" placeholder="Ex.: Seinfeld" aria-label="Título para adicionar em Desligar o cérebro" autocomplete="off"><button class="btn pri" data-addbtn="desligar">Adicionar</button></div>
@@ -330,11 +465,54 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 
   <section class="panel" id="p-repetidos" aria-label="Repetidos">
     <p class="colnote"><b>Repetidos.</b> O que você vê dezenas de vezes.</p>
+    <p class="sugjump" id="sj-repetidos" hidden></p>
     <div class="grid" id="list-repetidos"></div>
+    <div class="sugs" id="sug-repetidos"></div>
     <div class="box addbox">
       <h3>Adicionar</h3>
       <div class="row"><input class="search" type="text" list="todos-titulos" data-add="repetidos" placeholder="Ex.: De Volta para o Futuro" aria-label="Título para adicionar em Repetidos" autocomplete="off"><button class="btn pri" data-addbtn="repetidos">Adicionar</button></div>
       <p class="addmsg" data-addmsg="repetidos" style="margin-top:8px">Escolha da lista ou escreva qualquer título. O que não estiver na lista entra só com o nome e a busca no JustWatch; me conta no chat que eu completo os dados.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="p-avaliar" aria-label="Avaliar">
+    <p class="colnote"><b>Avaliar.</b> Dê nota só ao que você viu: um toque grava, sem confirmar. Com 15 notas, o cálculo aprende com elas quanto pesa cada dimensão no seu gosto.</p>
+    <div class="av-cont" id="av-cont"></div>
+    <div class="chips av-modo" id="av-modo" role="group" aria-label="Parte da aba Avaliar">
+      <button class="chip t44" data-modo="notas" aria-pressed="true">Dar notas</button>
+      <button class="chip t44" data-modo="gosto" aria-pressed="false">Seu gosto</button>
+      <button class="chip t44" data-modo="importar" aria-pressed="false">Importar notas</button>
+    </div>
+    <div id="av-v-notas">
+      <div class="ctrl" style="margin:12px 0 8px">
+        <input class="search t44" type="search" id="av-q" placeholder="Buscar título, direção, país…" aria-label="Buscar entre os títulos para avaliar" autocomplete="off">
+      </div>
+      <div class="chips" id="av-vis" role="group" aria-label="Quais títulos mostrar"></div>
+      <details class="av-filtros" id="av-filtros">
+        <summary><span>Filtros e ordem</span> <span class="av-fres" id="av-fres"></span></summary>
+        <div class="chips" id="av-tipo" role="group" aria-label="Filmes ou séries" style="margin-top:10px"></div>
+        <div class="av-f">
+          <select class="sel t44" id="av-dec" aria-label="Década"></select>
+          <select class="sel t44" id="av-ori" aria-label="Origem"></select>
+          <select class="sel t44" id="av-ord" aria-label="Ordenar"></select>
+          <select class="sel t44" id="av-por" aria-label="Títulos por página"></select>
+        </div>
+      </details>
+      <p class="note av-teclas">Teclado: <kbd>1</kbd> a <kbd>9</kbd> dão nota de 10 a 90 e <kbd>0</kbd> dá 100 à linha destacada · <kbd>A</kbd> ajusta a nota exata · <kbd>N</kbd> não vi · <kbd>Q</kbd> quero ver · <kbd>↑</kbd><kbd>↓</kbd> ou <kbd>K</kbd><kbd>J</kbd> mudam de linha · <kbd>←</kbd><kbd>→</kbd> mudam de página · <kbd>U</kbd> desfaz.</p>
+      <div class="pag" id="av-pag1"></div>
+      <ol class="avl" id="av-lista" aria-label="Títulos para avaliar"></ol>
+      <div class="pag" id="av-pag2"></div>
+    </div>
+    <div id="av-v-gosto" hidden></div>
+    <div id="av-v-importar" hidden>
+      <div class="box" style="margin-top:12px">
+        <h3>Trazer notas de outro lugar</h3>
+        <p><b>Letterboxd:</b> em Settings, na parte Data, use Export your data. No arquivo .zip que chega, pegue o <code>ratings.csv</code>. As estrelas (0,5 a 5) viram notas de 10 a 100.</p>
+        <p><b>IMDb:</b> na página Your ratings, use Export. O CSV traz as colunas Const, Your Rating, Title e Year.</p>
+        <p>Os títulos são casados pelo nome e pelo ano (no IMDb, também pelo título original e pelo código do título). Nada é gravado antes de você revisar.</p>
+        <div class="row"><label class="btn pri t44" for="av-csv">Escolher arquivo CSV</label><input id="av-csv" type="file" accept=".csv,text/csv" hidden></div>
+      </div>
+      <div id="av-imp" aria-live="polite"></div>
     </div>
   </section>
 
@@ -398,6 +576,7 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
     <p class="note">A porcentagem de conexão de cada título é a média das nove dimensões abaixo, ponderada por estes pesos. Os pesos iniciais saíram do seu acervo; mexa à vontade — as listas se reordenam na hora.</p>
     <div class="weights" id="weights"></div>
     <div class="row" style="margin-top:16px"><button class="btn" id="w-reset">Voltar aos pesos iniciais</button></div>
+    <div class="box" id="gosto-resumo" style="margin-top:24px;max-width:640px"></div>
     <div class="box" style="margin-top:24px;max-width:640px">
       <h3>Seus arquétipos</h3>
       <p id="arq-dele"></p>
@@ -408,7 +587,7 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
   <section class="panel" id="p-dados" aria-label="Backup">
     <div class="box">
       <h3>Onde ficam suas notas</h3>
-      <p>Notas, status e pesos ficam guardados neste navegador, neste aparelho. Se trocar de celular ou limpar o navegador, eles somem — por isso o backup.</p>
+      <p>Notas, status, "não vi", sugestões escondidas e pesos ficam guardados neste navegador, neste aparelho. Se trocar de celular ou limpar o navegador, eles somem — por isso o backup.</p>
       <div class="row"><button class="btn pri" id="exp">Baixar backup</button><label class="btn" for="imp">Restaurar backup</label><input id="imp" type="file" accept="application/json" hidden></div>
       <p id="impmsg" style="margin-top:10px"></p>
     </div>
@@ -421,15 +600,37 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
 
   <p class="foot" id="foot"></p>
 </main>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden><span id="toast-msg"></span><button type="button" id="toast-aj" hidden>Ajustar</button><button type="button" id="toast-undo">Desfazer</button><form id="toast-form" novalidate hidden><input id="toast-num" type="number" inputmode="numeric" min="0" max="100" step="1" aria-label="Nota exata, de 0 a 100"><button type="submit">Salvar</button></form></div>
 
 <script>
 // ---------- ESTADO ----------
 var KEY='telas_v1';
-var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},ia:[]};
+var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},ia:[],naovi:{},sugOcultas:{},pesosAntes:null,av:{}};
 var STORE=true;
 function obj(x){return x&&typeof x==='object'&&!Array.isArray(x)?x:{}}
-function restauraCol(p){ST.col=obj(p.col);ST.livres=obj(p.livres);ST.vezes=obj(p.vezes);ST.fase=obj(p.fase);ST.ia=Array.isArray(p.ia)?p.ia.slice(0,20):[]}
-try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'){ST.notas=p.notas||{};ST.status=p.status||{};ST.pesos=p.pesos||null;ST.servicos=Array.isArray(p.servicos)?p.servicos:[];restauraCol(p);}}}
+function strs(a){return Array.isArray(a)?a.filter(function(x){return typeof x==='string'}):[]}
+// O estado vem do localStorage ou de um backup (arquivo que alguém pode ter editado): só entra o que tem o formato
+// esperado. Notas: números de 0 a 100; status: os quatro conhecidos; pesos: 9 números de 0 a 30.
+var STATUS_OK={quero:1,assisti:1,acompanhando:1,abandonei:1,nenhum:1};
+function limpaNotas(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var v=o[k];if(typeof v==='string'&&v.trim()!=='')v=+v;if(typeof v==='number'&&isFinite(v))r[k]=Math.max(0,Math.min(100,Math.round(v)))});return r}
+function limpaStatus(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){if(STATUS_OK[o[k]])r[k]=o[k]});return r}
+function limpaPesos(p){if(!Array.isArray(p)||p.length!==9)return null;var r=[];for(var i=0;i<9;i++){var v=p[i];if(typeof v!=='number'||!isFinite(v))return null;r.push(Math.max(0,Math.min(30,Math.round(v))))}return r}
+function limpaVezes(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var v=+o[k];if(isFinite(v)&&v>0)r[k]=Math.min(9999,Math.round(v))});return r}
+function limpaFase(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){if(typeof o[k]==='string')r[k]=o[k].slice(0,120)});return r}
+function limpaLivres(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var v=o[k];if(v&&typeof v.titulo==='string'&&v.titulo.trim())r[k]={titulo:v.titulo.slice(0,200)}});return r}
+function limpaColEst(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var c=obj(o[k]);r[k]={add:strs(c.add),rem:strs(c.rem)}});return r}
+function restauraTudo(p){
+  ST.notas=limpaNotas(p.notas);ST.status=limpaStatus(p.status);ST.pesos=limpaPesos(p.pesos);ST.servicos=strs(p.servicos);restauraCol(p);
+}
+function restauraCol(p){ST.col=limpaColEst(p.col);ST.livres=limpaLivres(p.livres);ST.vezes=limpaVezes(p.vezes);ST.fase=limpaFase(p.fase);ST.ia=Array.isArray(p.ia)?p.ia.filter(function(r){return r&&typeof r==='object'}).slice(0,20):[];restauraAval(p)}
+// aba Avaliar: "não vi", sugestões escondidas por coleção, pesos de antes dos aprendidos, filtros da aba
+function restauraAval(p){
+  ST.naovi={};var nv=obj(p.naovi);Object.keys(nv).forEach(function(k){if(nv[k])ST.naovi[k]=1});
+  ST.sugOcultas={};var so=obj(p.sugOcultas);Object.keys(so).forEach(function(k){if(Array.isArray(so[k]))ST.sugOcultas[k]=strs(so[k])});
+  var pa=p.pesosAntes;ST.pesosAntes=pa&&typeof pa==='object'&&(pa.p===null||limpaPesos(pa.p))?{p:pa.p===null?null:limpaPesos(pa.p)}:null;
+  ST.av=obj(p.av);
+}
+try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'&&!Array.isArray(p))restauraTudo(p)}}
 catch(e){STORE=false}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){STORE=false}}
 
@@ -437,6 +638,7 @@ var D=null, EP=null, SV=null;
 var DIMS=[], PESOS0=[];
 var VIEW={filmes:{q:'',sort:'conn',f:'todos',w:'todos',n:30},series:{q:'',sort:'conn',f:'todos',w:'todos',n:30}};
 var CAL={v:'semana',scope:'acomp',m:null,sel:null};
+var SUJO={}; // abas que precisam redesenhar quando abrirem (algo mudou em outra aba)
 
 function el(id){return document.getElementById(id)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -452,9 +654,14 @@ function conexao(it){
 
 // ---------- CARREGAMENTO ----------
 function load(){
+  // o catálogo da aba Avaliar vem junto; se falhar, a página segue só com os títulos de dados.json
+  var pc=fetch('/telas/catalogo.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
   fetch('/telas/dados.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
-  .then(function(j){
+  .then(function(j){return pc.then(function(c){return [j,c]})})
+  .then(function(jc){
+    var j=jc[0];
     D=j;DIMS=j.dimensoes||[];PESOS0=DIMS.map(function(d){return d.peso});
+    try{CAT=jc[1]&&Array.isArray(jc[1].itens)?jc[1]:null;montarAvaliaveis()}catch(e){console.error(e);CAT=null;CATPOR={}}
     migrarLivres();
     try{renderAll()}catch(e){console.error(e)}
     fetch('/telas/streaming.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})
@@ -611,8 +818,8 @@ function card(it,kind){
     (badges.length?'<div class="badges">'+badges.join('')+'</div>':'')+
     (it.dims&&it.dims.length?dimsHtml(it):'')+rateChips(it.notas,kind)+watchHtml(it)+
     '<div class="act"><div class="seg" role="group" aria-label="Status">'+segOpts.map(function(s){return '<button data-s="'+s+'" aria-pressed="'+(st===s)+'">'+SLAB[s]+'</button>'}).join('')+'</div>'+
-      '<div class="score'+(nota==null?' vazio':'')+'"><label for="sc-'+esc(it.id)+'">Sua nota</label><input id="sc-'+esc(it.id)+'" type="range" min="0" max="100" step="1" value="'+(nota==null?50:nota)+'">'+
-      '<output class="num'+(nota==null?' none':'')+'">'+(nota==null?'—':nota)+'</output>'+(nota!=null?'<button class="clr" data-clr="1" aria-label="Apagar nota">limpar</button>':'')+'</div></div>'+
+      '<div class="score'+(nota==null?' vazio':'')+'"><label for="sc-'+esc(it.id)+'">Sua nota</label><input id="sc-'+esc(it.id)+'" type="range" min="0" max="100" step="1" value="'+(nota==null?50:esc(nota))+'">'+
+      '<output class="num'+(nota==null?' none':'')+'">'+(nota==null?'—':esc(nota))+'</output>'+(nota!=null?'<button class="clr" data-clr="1" aria-label="Apagar nota">limpar</button>':'')+'</div></div>'+
     '<details><summary>Críticos, diretor, arquétipos</summary><div class="more">'+more.join('')+'</div></details>'+
   '</article>';
 }
@@ -628,6 +835,7 @@ function renderList(kind){
 }
 function renderAll(){
   renderWatchCtl();renderList('filmes');renderList('series');renderCol('desligar');renderCol('repetidos');renderPesos();renderDados();
+  renderSug('desligar');renderSug('repetidos');renderGostoResumo();renderAvaliar();
   try{if(!IA_OCUPADA){el('ia-out').innerHTML=(ST.ia||[]).length?blocoResposta(ST.ia[0]):'';renderHist()}}catch(e){console.error(e)}
   el('foot').textContent=(D.gerado_em?'Lista gerada em '+D.gerado_em+'. ':'')+'Notas dos agregadores mudam com o tempo — confira na fonte antes de citar.'+(STORE?'':' Este navegador não está guardando suas notas: faça backup.');
 }
@@ -654,11 +862,11 @@ function renderAll(){
         var it=(D[kind]||[]).filter(function(x){return x.id===id})[0]||{id:id};
         var atual=stOf(it),novo=(atual===t.dataset.s)?'':t.dataset.s;
         if(novo)ST.status[id]=novo;else if(it.biblioteca)ST.status[id]='nenhum';else delete ST.status[id];
-        save();
+        save();marcaSujo(kind);
         c.className='card'+(novo?' s-'+novo:'');
         c.querySelectorAll('.seg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.s===novo))});
         chips(kind);if(kind==='series')renderCal();return}
-      if(t.dataset.clr){delete ST.notas[id];save();var o=c.querySelector('output');o.textContent='—';o.classList.add('none');c.querySelector('.score').classList.add('vazio');t.remove();return}
+      if(t.dataset.clr){delete ST.notas[id];save();marcaSujo(kind);var o=c.querySelector('output');o.textContent='—';o.classList.add('none');c.querySelector('.score').classList.add('vazio');t.remove();return}
     });
     p.addEventListener('input',function(e){
       var t=e.target;if(t.type!=='range')return;var c=t.closest('.card');if(!c)return;
@@ -666,7 +874,7 @@ function renderAll(){
       var o=c.querySelector('output');o.textContent=v;o.classList.remove('none');c.querySelector('.score').classList.remove('vazio');
       if(!c.querySelector('.clr')){var b=document.createElement('button');b.className='clr';b.dataset.clr='1';b.textContent='limpar';b.setAttribute('aria-label','Apagar nota');o.after(b)}
     });
-    p.addEventListener('change',function(e){if(e.target.type==='range')save()});
+    p.addEventListener('change',function(e){if(e.target.type==='range'){save();marcaSujo(kind)}});
   }catch(e){console.error(e)}
 });
 
@@ -674,9 +882,13 @@ function renderAll(){
 document.querySelectorAll('.tab').forEach(function(b){
   b.addEventListener('click',function(){
     document.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected',String(x===b))});
+    try{var bar=b.parentNode,l=b.offsetLeft-bar.offsetLeft;if(l<bar.scrollLeft||l+b.offsetWidth>bar.scrollLeft+bar.clientWidth)bar.scrollLeft=Math.max(0,l-16)}catch(e){}
     document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='p-'+b.dataset.tab)});
     try{history.replaceState(null,'','#'+b.dataset.tab)}catch(e){}
+    fechaAviso(); // o "Desfazer" de uma aba não vale na outra
     if(b.dataset.tab==='cal')renderCal();
+    atualizaSujo(b.dataset.tab);
+    if(b.dataset.tab==='avaliar')renderAvaliar(true);
   });
 });
 (function(){var h=(location.hash||'').slice(1);var b=document.querySelector('.tab[data-tab="'+h+'"]');if(b)b.click()})();
@@ -686,8 +898,8 @@ function renderPesos(){
   try{
     var w=pesos();
     el('weights').innerHTML=DIMS.map(function(d,i){
-      return '<div class="w"><span class="n">'+esc(d.nome)+'</span><output class="num" id="wo-'+i+'">'+w[i]+'</output>'+
-        '<span class="d">'+esc(d.desc||'')+'</span><input type="range" min="0" max="30" step="1" value="'+w[i]+'" data-w="'+i+'" aria-label="Peso de '+esc(d.nome)+'"></div>';
+      return '<div class="w"><span class="n">'+esc(d.nome)+'</span><output class="num" id="wo-'+i+'">'+esc(w[i])+'</output>'+
+        '<span class="d">'+esc(d.desc||'')+'</span><input type="range" min="0" max="30" step="1" value="'+esc(w[i])+'" data-w="'+i+'" aria-label="Peso de '+esc(d.nome)+'"></div>';
     }).join('');
     el('arq-dele').textContent=(D.arquetipos_dele||[]).join(' · ');
   }catch(e){console.error(e)}
@@ -696,8 +908,8 @@ el('weights').addEventListener('input',function(e){
   var i=e.target.dataset.w;if(i==null)return;
   var w=pesos().slice();w[+i]=+e.target.value;ST.pesos=w;el('wo-'+i).textContent=w[+i];
 });
-el('weights').addEventListener('change',function(){save();renderList('filmes');renderList('series')});
-el('w-reset').addEventListener('click',function(){ST.pesos=null;save();renderPesos();renderList('filmes');renderList('series')});
+el('weights').addEventListener('change',function(){save();renderList('filmes');renderList('series');renderGostoResumo();marcaSujo('pesos')});
+el('w-reset').addEventListener('click',function(){ST.pesos=null;save();renderPesos();renderList('filmes');renderList('series');renderGostoResumo();marcaSujo('pesos')});
 
 // ---------- COLEÇÕES ----------
 // Base em dados.json (colecoes + extras); o que ele acrescenta ou tira fica neste aparelho (ST.col),
@@ -709,6 +921,8 @@ function achar(id){
   var fontes=[['filmes','filme'],['series','serie']];
   for(k=0;k<fontes.length;k++){l=(D&&D[fontes[k][0]])||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:fontes[k][1]}}
   l=(D&&D.extras)||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:l[i].tipo==='saga'||l[i].tipo==='filme'?l[i].tipo:'serie'};
+  if(Object.prototype.hasOwnProperty.call(SAGAF,id))return {it:SAGAF[id],tipo:'filme'};
+  if(Object.prototype.hasOwnProperty.call(CATPOR,id))return {it:CATPOR[id],tipo:CATPOR[id].tipo==='serie'?'serie':'filme'};
   if(ST.livres[id])return {it:{id:id,titulo:ST.livres[id].titulo},tipo:'livre'};
   return null;
 }
@@ -733,11 +947,18 @@ function migrarLivres(){
   }catch(e){console.error(e)}
 }
 function colEstado(col){var c=ST.col[col];if(!c||typeof c!=='object')c=ST.col[col]={add:[],rem:[]};c.add=Array.isArray(c.add)?c.add:[];c.rem=Array.isArray(c.rem)?c.rem:[];return c}
+// Ids que ninguém reconhece (o catálogo não carregou, ou saiu dele) continuam na coleção, num cartão provisório.
 function colItens(col){
   var base=((D&&D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[]).slice(),c=colEstado(col),out=[];
-  base.concat(c.add).forEach(function(id){if(out.indexOf(id)<0&&c.rem.indexOf(id)<0&&achar(id))out.push(id)});
+  base.concat(c.add).forEach(function(id){if(typeof id==='string'&&id&&out.indexOf(id)<0&&c.rem.indexOf(id)<0)out.push(id)});
   return out;
 }
+// "young-sheldon-2017" -> "Young sheldon (2017)": nome provisório quando o título não está nos dados carregados
+function tituloDeId(id){
+  var m=String(id).match(/^(.*?)-(\d{4})$/),t=(m?m[1]:String(id)).replace(/^livre-/,'').replace(/-/g,' ').trim();
+  return (t.charAt(0).toUpperCase()+t.slice(1))+(m?' ('+m[2]+')':'');
+}
+function acharOuProv(id){return achar(id)||{it:{id:id,titulo:tituloDeId(id)},tipo:'prov'}}
 function sagaWatch(it){
   var fs=it.filmes||[],cont={},comDado=0;
   fs.forEach(function(f){var w=oferta(f);if(!w)return;comDado++;emStreaming(f).forEach(function(n){cont[n]=(cont[n]||0)+1})});
@@ -749,14 +970,15 @@ function sagaWatch(it){
   return '<div class="watch">'+lab+out.join('')+busca+'</div>';
 }
 function cardCol(id,col){
-  var a=achar(id);if(!a)return '';var it=a.it,t=a.tipo;
+  var a=acharOuProv(id),it=a.it,t=a.tipo;
   var meta=[];
   if(t==='saga')meta.push((it.filmes||[]).length+' filmes',it.anos||it.ano);
   else if(t==='serie')meta.push(it.anos||it.ano,it.temporadas?it.temporadas+(/^\d+$/.test(String(it.temporadas))?' temporadas':''):'',it.episodios?it.episodios+(/^\d+$/.test(String(it.episodios))?' episódios':''):'',it.criadores||it.autor||'');
-  else if(t==='filme')meta.push(it.ano,it.autor,it.duracao);
+  else if(t==='filme')meta.push(it.ano,it.autor||it.diretor,it.duracao);
+  else if(t==='prov')meta.push('os dados deste título não carregaram agora; recarregue a página');
   else meta.push('adicionado por você');
   meta=meta.filter(Boolean).map(esc).join(' · ');
-  var watch=t==='saga'?sagaWatch(it):(t==='livre'?'<div class="watch"><span class="wl">Onde assistir</span><a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a></div>':watchHtml(it));
+  var watch=t==='saga'?sagaWatch(it):(t==='livre'||t==='prov'?'<div class="watch"><span class="wl">Onde assistir</span><a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a></div>':watchHtml(it));
   var lista=t==='saga'&&(it.filmes||[]).length?'<details class="filmes-saga"><summary>Os '+it.filmes.length+' filmes</summary><ol>'+it.filmes.map(function(f){
     var en=f.titulo_en&&f.titulo_en!==f.titulo?' <span class="lang">EN</span>'+esc(f.titulo_en):'';
     var sv=emStreaming(f);return '<li><b>'+esc(f.titulo)+'</b> ('+esc(f.ano)+')'+en+(sv.length?' · '+esc(sv.join(', ')):'')+'</li>'}).join('')+'</ol></details>':'';
@@ -782,6 +1004,7 @@ function todosItens(){
   (D.filmes||[]).forEach(function(it){out.push({it:it,tipo:'filme'})});
   (D.series||[]).forEach(function(it){out.push({it:it,tipo:'serie'})});
   (D.extras||[]).forEach(function(it){out.push({it:it,tipo:it.tipo==='saga'||it.tipo==='filme'?it.tipo:'serie'})});
+  ((CAT&&CAT.itens)||[]).forEach(function(it){if(it&&it.id)out.push({it:it,tipo:it.tipo==='serie'?'serie':'filme'})});
   return out;
 }
 function renderDatalist(){
@@ -802,10 +1025,16 @@ function renderDatalist(){
 function bateTitulo(it,q){return [it.titulo,it.titulo_en,it.titulo_original].some(function(v){return v&&String(v).trim().toLowerCase()===q})}
 function idPorNome(t){
   var q=String(t||'').trim().toLowerCase();if(!q)return null;
-  var todos=[].concat(D.filmes||[],D.series||[],D.extras||[]);
+  var todos=[].concat(D.filmes||[],D.series||[],D.extras||[],(CAT&&CAT.itens)||[]);
   for(var i=0;i<todos.length;i++){var x=todos[i];if([x.titulo,x.titulo_en,x.titulo_original].some(function(v){return v&&String(v).trim().toLowerCase()===q}))return x.id}
   for(var k in ST.livres)if(ST.livres[k]&&String(ST.livres[k].titulo).trim().toLowerCase()===q)return k;
   return null;
+}
+// põe um id (da página, de extras, do catálogo ou livre) na coleção; usado pelo campo e pelas sugestões
+function adicionarId(col,id){
+  var c=colEstado(col),ri=c.rem.indexOf(id);if(ri>-1)c.rem.splice(ri,1);
+  var base=(D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[];
+  if(base.indexOf(id)<0&&c.add.indexOf(id)<0)c.add.push(id);
 }
 function adicionar(col){
   try{
@@ -817,10 +1046,8 @@ function adicionar(col){
       var base0='livre-'+(slug(t)||('t'+Array.from(t).reduce(function(h,ch){return (h*31+ch.codePointAt(0))>>>0},7).toString(36)));
       id=base0;for(var n=2;ST.livres[id]&&String(ST.livres[id].titulo).trim().toLowerCase()!==q;n++)id=base0+'-'+n;
       if(!ST.livres[id])ST.livres[id]={titulo:t};novo=true}
-    var ri=c.rem.indexOf(id);if(ri>-1)c.rem.splice(ri,1);
-    var base=(D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[];
-    if(base.indexOf(id)<0&&c.add.indexOf(id)<0)c.add.push(id);
-    save();inp.value='';renderCol(col);
+    adicionarId(col,id);
+    save();inp.value='';renderCol(col);renderSug(col);
     if(msg)msg.textContent=novo?'"'+t+'" entrou só com o nome. Me conta no chat que eu completo os dados e o onde assistir.':'"'+t+'" adicionado.';
   }catch(e){console.error(e)}
 }
@@ -833,12 +1060,902 @@ function adicionar(col){
       var t=e.target.closest('[data-vz],[data-rm]');if(!t)return;var c=t.closest('.card');if(!c)return;var id=c.dataset.id;
       if(t.dataset.vz){var v=Math.max(0,(+ST.vezes[id]||0)+(+t.dataset.vz));if(v)ST.vezes[id]=v;else delete ST.vezes[id];save();
         c.querySelector('.vezes output').textContent=v;c.querySelector('.vezes span:last-of-type').textContent=v===1?'vez':'vezes';return}
-      if(t.dataset.rm){var s=colEstado(col),ai=s.add.indexOf(id);if(ai>-1)s.add.splice(ai,1);else if(s.rem.indexOf(id)<0)s.rem.push(id);save();renderCol(col);return}
+      if(t.dataset.rm){var s=colEstado(col),ai=s.add.indexOf(id);if(ai>-1)s.add.splice(ai,1);else if(s.rem.indexOf(id)<0)s.rem.push(id);save();renderCol(col);renderSug(col);return}
     });
     p.addEventListener('input',function(e){var t=e.target;if(!t.dataset||!t.dataset.fase)return;var c=t.closest('.card');if(!c)return;
       var v=t.value.trim();if(v)ST.fase[c.dataset.id]=t.value;else delete ST.fase[c.dataset.id];save()});
   }catch(e){console.error(e)}
 });
+
+// ---------- CATÁLOGO E AVALIAR ----------
+// telas/catalogo.json é público: só dados de obra (título, ano, direção, país, gêneros, as 9 dimensões, pop de 1 a 5).
+// A aba Avaliar junta o catálogo com os filmes e séries de dados.json, sem duplicar. O que ele marca fica em ST:
+// notas (0 a 100), status, naovi (não vi), sugOcultas (sugestões escondidas), pesosAntes e av (filtros da aba).
+var CAT=null,CATPOR={},AVI=[],AVPOR={},MU=null,IDX=null,IMDBIX=null,SAGAF={};
+var GOSTO_MIN=15;
+var AV={modo:'notas',q:'',tipo:'todos',dec:'',ori:'',ord:'pop',por:12,vis:'pendentes',seed:1,pag:0,foco:0,lista:null};
+var ORIGENS=[['br','Brasil'],['al','América Latina'],['euaru','EUA e Reino Unido'],['eur','Europa'],['asia','Ásia'],['outros','Outros']];
+var ORI_ROT={};ORIGENS.forEach(function(o){ORI_ROT[o[0]]=o[1]});
+var P_AL='Argentina|Bolívia|Chile|Colômbia|Costa Rica|Cuba|Equador|El Salvador|Guatemala|Honduras|México|Nicarágua|Panamá|Paraguai|Peru|Porto Rico|República Dominicana|Uruguai|Venezuela'.split('|');
+var P_EUR='Alemanha|Alemanha Ocidental|Alemanha Oriental|Áustria|Bélgica|Bósnia|Bulgária|Croácia|Dinamarca|Escócia|Eslováquia|Eslovênia|Espanha|Estônia|Finlândia|França|Grécia|Holanda|Hungria|Irlanda|Islândia|Itália|Iugoslávia|Letônia|Lituânia|Luxemburgo|Macedônia do Norte|Noruega|Países Baixos|Polônia|Portugal|República Tcheca|Romênia|Rússia|Sérvia|Suécia|Suíça|Tchecoslováquia|Ucrânia|União Soviética'.split('|');
+var P_ASIA='Afeganistão|Arábia Saudita|Bangladesh|Butão|Camboja|Cazaquistão|China|Coreia do Norte|Coreia do Sul|Filipinas|Hong Kong|Índia|Indonésia|Irã|Iraque|Israel|Japão|Jordânia|Líbano|Malásia|Mongólia|Nepal|Palestina|Paquistão|Singapura|Sri Lanka|Síria|Tailândia|Taiwan|Turquia|Vietnã'.split('|');
+function origem(pais){
+  var ps=String(pais||'').split(/\s*[\/,]\s*/).map(function(x){return x.replace(/\s*\(.*\)\s*$/,'').trim()}).filter(Boolean);
+  if(!ps.length)return 'outros';
+  if(ps.indexOf('Brasil')>-1)return 'br';
+  if(ps.some(function(x){return P_AL.indexOf(x)>-1}))return 'al';
+  var f=ps[0];
+  if(f==='EUA'||f==='Reino Unido')return 'euaru';
+  if(P_EUR.indexOf(f)>-1)return 'eur';
+  if(P_ASIA.indexOf(f)>-1)return 'asia';
+  if(ps.some(function(x){return x==='EUA'||x==='Reino Unido'}))return 'euaru';
+  return 'outros';
+}
+function anoN(a){var m=String(a||'').match(/\d{4}/);return m?+m[0]:0}
+function decRot(y){return y<1970?'Até 1969':'Anos '+Math.floor(y/10)*10}
+function normT(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim()}
+// tira o artigo inicial só da língua do campo: "Die Hard" não perde o "die", "La La Land" não perde o "la"
+var ARTIGOS={en:/^(the|a|an) /,pt:/^(o|a|os|as|um|uma) /};
+function semArtigo(k,lingua){return k.replace(ARTIGOS[lingua]||ARTIGOS.en,'')}
+function hashS(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function rng(seed){var a=seed>>>0;return function(){a=(a+0x6D2B79F5)>>>0;var t=a;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296}}
+function dimsOk(d){if(!Array.isArray(d)||d.length!==9)return null;for(var i=0;i<9;i++)if(typeof d[i]!=='number'||isNaN(d[i]))return null;return d}
+// pop de 1 a 5 para os títulos da página, pelos votos no IMDb ("2,1M", "~400K")
+function votosPop(v){var s=String(v||''),n=num(s);if(isNaN(n))return 2;if(/m/i.test(s))n*=1e6;else if(/k/i.test(s))n*=1e3;return n>=1e6?5:n>=3e5?4:n>=8e4?3:n>=1.5e4?2:1}
+// Os filmes das sagas de dados.json > extras (Harry Potter, Animais Fantásticos...) viram títulos avaliáveis.
+// Os que não estão na página nem no catálogo herdam da saga o país, os gêneros e as nove dimensões.
+function montarSagas(){
+  SAGAF={};
+  ((D&&D.extras)||[]).forEach(function(sg){
+    if(!sg||sg.tipo!=='saga')return;
+    (sg.filmes||[]).forEach(function(f){
+      if(!f||typeof f.id!=='string'||!f.titulo||SAGAF[f.id])return;
+      SAGAF[f.id]={id:f.id,titulo:f.titulo,titulo_original:f.titulo_original||'',titulo_en:f.titulo_en||'',ano:f.ano,autor:f.diretor||f.autor||'',
+        pais:f.pais||sg.pais||'',generos:Array.isArray(f.generos)?f.generos:(sg.generos||[]),dims:dimsOk(f.dims)||dimsOk(sg.dims),imdb_id:f.imdb_id,saga:sg.id};
+    });
+  });
+}
+// ids dos filmes das sagas que estão nas coleções (já vistos dezenas de vezes: não entram em indicações)
+function filmesDeSagas(cols){
+  var o={};(cols||['desligar','repetidos']).forEach(function(col){colItens(col).forEach(function(id){var a=achar(id);if(a&&a.tipo==='saga')(a.it.filmes||[]).forEach(function(f){if(f&&f.id)o[f.id]=1})})});
+  return o;
+}
+function montarAvaliaveis(){
+  CATPOR={};AVI=[];AVPOR={};IDX=null;IDXA=null;IMDBIX=null;
+  montarSagas();
+  ((CAT&&CAT.itens)||[]).forEach(function(it){if(it&&typeof it.id==='string'&&it.titulo&&!CATPOR[it.id])CATPOR[it.id]=it});
+  var vistos={};
+  function poe(it,tipo,fonte,pop){
+    if(!it||typeof it.id!=='string'||!it.titulo||Object.prototype.hasOwnProperty.call(AVPOR,it.id))return;
+    var k=normT(it.titulo)+'|'+anoN(it.ano)+'|'+tipo;if(vistos[k])return;vistos[k]=1;
+    var r={id:it.id,tipo:tipo,it:it,fonte:fonte,ano:anoN(it.ano),pop:pop||(fonte==='cat'?(Math.max(1,Math.min(5,+it.pop||1))):votosPop(it.notas&&it.notas.imdb_votos)),
+      ori:origem(it.pais),gen:Array.isArray(it.generos)?it.generos:[],dims:dimsOk(it.dims),h:hashS(it.id)};
+    r.busca=normT([it.titulo,it.titulo_original,it.titulo_en,it.autor,it.criadores,it.pais].join(' '));
+    AVI.push(r);AVPOR[it.id]=r;
+  }
+  (D.filmes||[]).forEach(function(it){poe(it,'filme','pag')});
+  (D.series||[]).forEach(function(it){poe(it,'serie','pag')});
+  // os títulos das coleções (Rick and Morty, Friends...) e os filmes das sagas: conhecidos por definição (pop 5)
+  (D.extras||[]).forEach(function(it){if(it&&it.tipo!=='saga')poe(it,it.tipo==='filme'?'filme':'serie','pag',5)});
+  Object.keys(SAGAF).forEach(function(id){poe(SAGAF[id],'filme','pag',5)});
+  Object.keys(CATPOR).forEach(function(id){var it=CATPOR[id];poe(it,it.tipo==='serie'?'serie':'filme','cat')});
+  var com=AVI.filter(function(r){return r.dims});MU=[0,0,0,0,0,0,0,0,0];
+  com.forEach(function(r){for(var i=0;i<9;i++)MU[i]+=r.dims[i]/com.length});
+  var a=ST.av||{};
+  if(['todos','filme','serie'].indexOf(a.tipo)>-1)AV.tipo=a.tipo;
+  // a década guardada só vale se existir na lista (um backup antigo podia trazer "1960", que não tem par)
+  var decs={'':1};AVI.forEach(function(r){if(r.ano)decs[r.ano<1970?'antigo':String(Math.floor(r.ano/10)*10)]=1});
+  AV.dec=typeof a.dec==='string'&&decs[a.dec]?a.dec:'';
+  if(typeof a.ori==='string'&&(a.ori===''||ORI_ROT[a.ori]))AV.ori=a.ori;
+  if(['pop','aleatorio','parecidos','nota'].indexOf(a.ord)>-1)AV.ord=a.ord;
+  if([10,12,20,50].indexOf(+a.por)>-1)AV.por=+a.por;
+  if(['pendentes','avaliados','naovi'].indexOf(a.vis)>-1)AV.vis=a.vis;
+  if(+a.seed)AV.seed=+a.seed;
+  AV.lista=null;
+}
+function guardaAv(){ST.av={tipo:AV.tipo,dec:AV.dec,ori:AV.ori,ord:AV.ord,por:AV.por,vis:AV.vis,seed:AV.seed};save()}
+function centra(d){var o=[];for(var i=0;i<9;i++)o.push(d[i]-(MU?MU[i]:50));return o}
+function cosV(a,b){var s=0,na=0,nb=0;for(var i=0;i<a.length;i++){s+=a[i]*b[i];na+=a[i]*a[i];nb+=b[i]*b[i]}return na&&nb?s/Math.sqrt(na*nb):0}
+function conexaoCom(w,d){if(!d)return null;var s=0,t=0;for(var i=0;i<w.length;i++){var v=+d[i];if(isNaN(v))continue;s+=w[i]*v;t+=w[i]}return t?s/t:null}
+function notaTxt(v){return String(Math.round(+v))}
+function dec1(x){return (Math.round(x*10)/10).toFixed(1).replace('.',',')}
+function milhar(n){try{return n.toLocaleString('pt-BR')}catch(e){return String(n)}}
+function cssId(id){try{return CSS.escape(id)}catch(e){return String(id).replace(/["\\]/g,'\\$&')}}
+function avEstado(id){if(ST.notas[id]!=null)return 'nota';if(ST.naovi[id])return 'naovi';if(ST.status[id]==='quero')return 'quero';return ''}
+function rotTipo(t){return t==='serie'?'Série':'Filme'}
+function rotulo(id){var a=achar(id);if(!a)return tituloDeId(id);var it=a.it,y=anoN(it.ano);return it.titulo+' ('+[y||'',a.tipo==='serie'?'série':a.tipo==='livre'?'':a.tipo].filter(Boolean).join(', ')+')'}
+
+// ---------- AÇÕES (nota, não vi, quero ver) COM DESFAZER ----------
+function marcaSujo(exceto){['filmes','series','desligar','repetidos','pesos','avaliar'].forEach(function(k){if(k!==exceto)SUJO[k]=1})}
+function atualizaSujo(tab){
+  if(!SUJO[tab]||!D)return;delete SUJO[tab];
+  try{
+    if(tab==='filmes'||tab==='series')renderList(tab);
+    else if(tab==='desligar'||tab==='repetidos'){renderCol(tab);renderSug(tab)}
+    else if(tab==='pesos'){renderPesos();renderGostoResumo()}
+  }catch(e){console.error(e)}
+}
+function darNota(id,v){
+  ST.notas[id]=Math.max(0,Math.min(100,Math.round(v)));delete ST.naovi[id];
+  var a=achar(id),st=a?stOf(a.it):(ST.status[id]||'');
+  if(st!=='acompanhando'&&st!=='abandonei')ST.status[id]='assisti';
+}
+function marcaNaoVi(id){ST.naovi[id]=1;delete ST.notas[id];if(ST.status[id]==='assisti')delete ST.status[id]}
+// O "Desfazer" volta só o que a ação mudou: nota, status e "não vi" dos ids dela e, quando houver, um passo
+// próprio (desf) que mexe só no título da ação (tirar da coleção o que entrou, devolver a sugestão escondida).
+// Nada de restaurar ST.col ou ST.sugOcultas inteiros: o que mudou depois, por outro caminho, fica como está.
+var UNDO=null,TOAST_T=null,TOAST_DESDE=0;
+function foto(ids){
+  var o={ids:{}};
+  ids.forEach(function(id){o.ids[id]={n:Object.prototype.hasOwnProperty.call(ST.notas,id)?ST.notas[id]:undefined,
+    s:Object.prototype.hasOwnProperty.call(ST.status,id)?ST.status[id]:undefined,v:!!ST.naovi[id]}});
+  return o;
+}
+function comDesfazer(ids,msg,fn,desf){
+  var f=foto(ids);f.desf=desf||null;fn();save();marcaSujo();UNDO=f;toast(msg,true);
+}
+function toast(msg,podeDesfazer){
+  try{
+    var t=el('toast'),agora=Date.now(),seguida=!t.hidden&&agora-TOAST_DESDE<7000;
+    el('toast-msg').textContent=msg;el('toast-undo').hidden=!podeDesfazer;el('toast-aj').hidden=true;el('toast-form').hidden=true;AJ=null;t.hidden=false;TOAST_DESDE=agora;
+    // em notas seguidas o aviso dura menos: fica menos tempo sobre a tela
+    clearTimeout(TOAST_T);TOAST_T=setTimeout(function(){t.hidden=true;UNDO=null},podeDesfazer?(seguida?4000:7000):3500);
+  }catch(e){}
+}
+function fechaAviso(){try{UNDO=null;AJ=null;clearTimeout(TOAST_T);el('toast').hidden=true;el('toast-form').hidden=true}catch(e){}}
+// Nota rápida (botões de 10 a 100) com "Ajustar" no aviso, para digitar a nota exata (por exemplo 95).
+var AJ=null;
+function notaRapida(id,t,v){
+  comDesfazer([id],'Nota '+v+' para '+t+'.',function(){darNota(id,v)});
+  AJ={id:id,t:t};try{el('toast-aj').hidden=false}catch(e){}
+}
+function abreAjuste(id,t){
+  try{
+    AJ={id:id,t:t};clearTimeout(TOAST_T);
+    var n=ST.notas[id],inp=el('toast-num');
+    el('toast-msg').textContent='Nota exata para '+t+':';el('toast-aj').hidden=true;el('toast-undo').hidden=true;
+    el('toast-form').hidden=false;el('toast').hidden=false;inp.value=n!=null&&!isNaN(+n)?String(Math.round(+n)):'';
+    inp.focus();try{inp.select()}catch(e){}
+  }catch(e){console.error(e)}
+}
+function salvaAjuste(){
+  if(!AJ)return;var inp=el('toast-num'),txt=String(inp.value||'').trim(),v=+txt;
+  if(!/^\d{1,3}$/.test(txt)||v<0||v>100){el('toast-msg').textContent='Use um número inteiro de 0 a 100.';inp.focus();return}
+  var id=AJ.id,t=AJ.t;
+  comDesfazer([id],'Nota '+v+' para '+t+'.',function(){darNota(id,v)});
+  try{atualizaVisiveis()}catch(e){console.error(e)}
+}
+function desfazer(){
+  if(!UNDO)return;var f=UNDO;UNDO=null;
+  try{
+    Object.keys(f.ids).forEach(function(id){var x=f.ids[id];
+      if(x.n===undefined)delete ST.notas[id];else ST.notas[id]=x.n;
+      if(x.s===undefined)delete ST.status[id];else ST.status[id]=x.s;
+      if(x.v)ST.naovi[id]=1;else delete ST.naovi[id]});
+    if(f.desf)f.desf();
+    save();marcaSujo();
+    el('toast').hidden=true;clearTimeout(TOAST_T);
+    atualizaVisiveis();
+  }catch(e){console.error(e)}
+}
+// redesenha o que está na tela depois de uma ação (o resto fica marcado para quando a aba abrir)
+function atualizaVisiveis(){
+  var on=document.querySelector('.panel.on'),tab=on?on.id.slice(2):'';
+  try{renderAvCont();renderAvTab()}catch(e){console.error(e)}
+  if(tab==='avaliar'){delete SUJO.avaliar;if(AV.modo==='notas')renderAvLista();else if(AV.modo==='gosto')renderGosto()}
+  else if(tab==='desligar'||tab==='repetidos'){delete SUJO[tab];renderCol(tab);renderSug(tab)}
+  else if(tab==='pesos'){delete SUJO.pesos;renderPesos();renderGostoResumo()}
+  else if(tab==='filmes'||tab==='series'){delete SUJO[tab];renderList(tab)}
+}
+el('toast-undo').addEventListener('click',desfazer);
+try{
+  el('toast-aj').addEventListener('click',function(){if(AJ)abreAjuste(AJ.id,AJ.t)});
+  el('toast-form').addEventListener('submit',function(e){e.preventDefault();salvaAjuste()});
+  el('toast-num').addEventListener('keydown',function(e){if(e.key==='Escape'){e.preventDefault();fechaAviso()}});
+}catch(e){console.error(e)}
+
+// ---------- AVALIAR: LISTA ----------
+function avPassa(r,q){
+  if(AV.tipo!=='todos'&&r.tipo!==AV.tipo)return false;
+  if(AV.dec){if(!r.ano)return false;if(AV.dec==='antigo'?r.ano>=1970:Math.floor(r.ano/10)*10!==+AV.dec)return false}
+  if(AV.ori&&r.ori!==AV.ori)return false;
+  if(q)return r.busca.indexOf(q)>-1; // a busca procura em tudo, avaliado ou não
+  var e=avEstado(r.id);
+  if(AV.vis==='pendentes')return e==='';
+  if(AV.vis==='avaliados')return e==='nota';
+  if(AV.vis==='naovi')return e==='naovi'||e==='quero';
+  return true;
+}
+function porHash(a,b){return a.h-b.h}
+function ordPop(l){
+  var niv={};l.forEach(function(r){var n=niv[r.pop]=niv[r.pop]||{filme:[],serie:[]};n[r.tipo].push(r)});
+  var out=[];
+  Object.keys(niv).map(Number).sort(function(a,b){return b-a}).forEach(function(p){
+    var f=niv[p].filme.sort(porHash),s=niv[p].serie.sort(porHash),i=0;
+    while(i<f.length||i<s.length){if(i<f.length)out.push(f[i]);if(i<s.length)out.push(s[i]);i++}
+  });
+  return out;
+}
+function amados(){
+  var com=AVI.filter(function(r){return r.dims&&ST.notas[r.id]!=null});
+  var a=com.filter(function(r){return +ST.notas[r.id]>=80});
+  if(!a.length)a=com.filter(function(r){return +ST.notas[r.id]>=70});
+  return a;
+}
+function avMontar(){
+  var q=normT(AV.q),l=AVI.filter(function(r){return avPassa(r,q)});
+  AV.semAmados=false;
+  if(AV.ord==='aleatorio'){var R=rng(AV.seed),x=l.slice().sort(porHash);for(var i=x.length-1;i>0;i--){var j=Math.floor(R()*(i+1)),t=x[i];x[i]=x[j];x[j]=t}l=x}
+  else if(AV.ord==='parecidos'){
+    var am=amados();
+    if(!am.length){AV.semAmados=true;l=ordPop(l)}
+    else{var vs=am.map(function(r){return centra(r.dims)}),pos={};ordPop(l).forEach(function(r,i){pos[r.id]=i});
+      var sc={};l.forEach(function(r){var m=-2;if(r.dims){var c=centra(r.dims);vs.forEach(function(v){var s=cosV(c,v);if(s>m)m=s})}sc[r.id]=m});
+      l.sort(function(a,b){return sc[b.id]-sc[a.id]||pos[a.id]-pos[b.id]})}
+  }
+  else if(AV.ord==='nota'){var pos2={};ordPop(l).forEach(function(r,i){pos2[r.id]=i});
+    l.sort(function(a,b){var na=ST.notas[a.id],nb=ST.notas[b.id];return (nb==null?-1:+nb)-(na==null?-1:+na)||pos2[a.id]-pos2[b.id]})}
+  else l=ordPop(l);
+  AV.lista=l.map(function(r){return r.id});
+  AV.pag=0;AV.foco=0;
+}
+function avPaginas(){return Math.max(1,Math.ceil((AV.lista||[]).length/AV.por))}
+function renderAvTab(){var n=AVI.filter(function(r){return ST.notas[r.id]!=null}).length;el('ct-avaliar').textContent=n?' '+milhar(n):''}
+function renderAvCont(){
+  var box=el('av-cont');if(!box)return;
+  var c={nota:0,naovi:0,quero:0,'':0};AVI.forEach(function(r){c[avEstado(r.id)]++});
+  var tot=AVI.length||1,comD=AVI.filter(function(r){return r.dims&&ST.notas[r.id]!=null}).length,falta=Math.max(0,GOSTO_MIN-comD);
+  box.innerHTML='<span><b class="num">'+milhar(c.nota)+'</b> avaliados</span><span><b class="num">'+milhar(c.naovi)+'</b> não vi</span><span><b class="num">'+milhar(c.quero)+'</b> quero ver</span><span><b class="num">'+milhar(c[''])+'</b> sem resposta</span>'+
+    (falta?'<span>· faltam '+falta+' nota'+(falta>1?'s':'')+' para o cálculo</span>':'');
+  var prog=box.nextElementSibling&&box.nextElementSibling.classList.contains('av-prog')?box.nextElementSibling:null;
+  if(!prog){prog=document.createElement('div');prog.className='av-prog';prog.setAttribute('aria-hidden','true');box.after(prog)}
+  prog.innerHTML='<i class="a" style="width:'+(100*c.nota/tot)+'%"></i><i class="v" style="width:'+(100*(c.naovi+c.quero)/tot)+'%"></i>';
+}
+function opcoes(sel,ops,v){sel.innerHTML=ops.map(function(o){return '<option value="'+esc(o[0])+'"'+(String(o[0])===String(v)?' selected':'')+'>'+esc(o[1])+'</option>'}).join('')}
+function renderAvCtl(){
+  var base=AVI.filter(function(r){return (AV.tipo==='todos'||r.tipo===AV.tipo)&&(!AV.dec||(r.ano&&(AV.dec==='antigo'?r.ano<1970:Math.floor(r.ano/10)*10===+AV.dec)))&&(!AV.ori||r.ori===AV.ori)});
+  var c={nota:0,naovi:0,quero:0,'':0};base.forEach(function(r){c[avEstado(r.id)]++});
+  el('av-vis').innerHTML=[['pendentes','Para avaliar',c['']],['avaliados','Com nota',c.nota],['naovi','Não vi / quero ver',c.naovi+c.quero]].map(function(o){
+    return '<button class="chip t44" data-vis="'+o[0]+'" aria-pressed="'+(AV.vis===o[0]&&!AV.q.trim())+'">'+o[1]+' <span class="num">'+milhar(o[2])+'</span></button>'}).join('');
+  el('av-tipo').innerHTML=[['todos','Tudo'],['filme','Filmes'],['serie','Séries']].map(function(o){return '<button class="chip t44" data-tipo="'+o[0]+'" aria-pressed="'+(AV.tipo===o[0])+'">'+o[1]+'</button>'}).join('');
+  var decs={};AVI.forEach(function(r){if(r.ano)decs[r.ano<1970?'antigo':String(Math.floor(r.ano/10)*10)]=1});
+  opcoes(el('av-dec'),[['','Todas as décadas']].concat(Object.keys(decs).sort(function(a,b){return a==='antigo'?-1:b==='antigo'?1:+a-+b}).map(function(d){return [d,d==='antigo'?'Até 1969':'Anos '+d]})),AV.dec);
+  opcoes(el('av-ori'),[['','Todas as origens']].concat(ORIGENS),AV.ori);
+  opcoes(el('av-ord'),[['pop','Mais conhecidos primeiro'],['aleatorio','Aleatório'],['parecidos','Parecidos com o que você amou'],['nota','Sua nota, maior primeiro']],AV.ord);
+  opcoes(el('av-por'),[[10,'10 por página'],[12,'12 por página'],[20,'20 por página'],[50,'50 por página']],AV.por);
+  var ordR={pop:'mais conhecidos',aleatorio:'aleatório',parecidos:'parecidos com o que você amou',nota:'sua nota'};
+  el('av-fres').textContent=[AV.tipo==='todos'?'filmes e séries':AV.tipo==='filme'?'só filmes':'só séries',AV.dec?(AV.dec==='antigo'?'até 1969':'anos '+AV.dec):'',AV.ori?ORI_ROT[AV.ori]:'',ordR[AV.ord],AV.por+' por página'].filter(Boolean).join(' · ');
+}
+function avRow(r,i){
+  var it=r.it,id=r.id,n=ST.notas[id],nv=!!ST.naovi[id],qv=ST.status[id]==='quero';
+  var pt=it.titulo||'',og=it.titulo_original||'',en=it.titulo_en||'',sub=og&&og!==pt?og:(en&&en!==pt?en:'');
+  // a nota exata só aparece quando não é múltiplo de 10 (veio do ajuste fino ou do controle deslizante): o botão
+  // aceso já mostra a nota, e uma etiqueta nova depois do toque empurraria as linhas de baixo
+  var exata=n!=null&&+n%10!==0?'sua nota '+notaTxt(n):'';
+  var metaL=[r.ano||'',it.autor||it.criadores||'',it.pais||'',rotTipo(r.tipo),exata].filter(Boolean),meta=metaL.map(esc).join(' · ');
+  var pr=n!=null&&+n>=5?Math.max(1,Math.min(10,Math.round(+n/10))):0,bt='';
+  for(var k=1;k<=10;k++)bt+='<button class="nb" data-n="'+k+'" aria-pressed="'+(pr===k)+'" aria-label="Nota '+(k*10)+' de 100">'+(k*10)+'</button>';
+  bt+='<button class="nv" data-nv="1" aria-pressed="'+nv+'">Não vi</button><button class="nv" data-qv="1" aria-pressed="'+qv+'">Quero ver</button>';
+  var cls='avr'+(n!=null?' feita':nv?' naovi':qv?' quero':'')+(i===AV.foco?' foco':'');
+  return '<li class="'+cls+'" data-id="'+esc(id)+'" data-i="'+i+'" tabindex="-1"><div class="avr-t"><h3>'+esc(pt)+'</h3>'+(sub?'<div class="sub" title="'+esc(sub)+'">'+esc(sub)+'</div>':'')+
+    '<div class="meta" title="'+esc(metaL.join(' · '))+'">'+meta+'</div></div><div class="notas" role="group" aria-label="'+esc('Nota para '+pt)+'">'+bt+'</div></li>';
+}
+function renderAvPag(){
+  var tot=(AV.lista||[]).length,np=avPaginas(),p=AV.pag;
+  var h=tot?'<button class="btn t44" data-pg="-1"'+(p<=0?' disabled':'')+' aria-label="Página anterior">‹ Anterior</button><span class="num">Página '+(p+1)+' de '+np+'<br>'+milhar(tot)+' títulos</span><button class="btn t44" data-pg="1"'+(p>=np-1?' disabled':'')+' aria-label="Próxima página">Próxima ›</button>':'';
+  el('av-pag1').innerHTML=h;el('av-pag2').innerHTML=h;
+}
+function renderAvLista(){
+  try{
+    if(!AV.lista)avMontar();
+    var np=avPaginas();if(AV.pag>np-1)AV.pag=np-1;if(AV.pag<0)AV.pag=0;
+    var ini=AV.pag*AV.por,ids=AV.lista.slice(ini,ini+AV.por),box=el('av-lista');
+    if(AV.foco>=ids.length)AV.foco=Math.max(0,ids.length-1);
+    if(!ids.length){
+      var msg=AV.q.trim()?'Nenhum título com essa busca.':AV.vis==='pendentes'?'Nada por avaliar com esses filtros.':AV.vis==='avaliados'?'Você ainda não deu nota a nenhum título com esses filtros.':'Nada marcado como "não vi" ou "quero ver" com esses filtros.';
+      box.innerHTML='<li class="empty">'+esc(msg)+'</li>';
+    }else box.innerHTML=ids.map(function(id,i){try{return avRow(AVPOR[id],i)}catch(e){console.error(e);return ''}}).join('');
+    renderAvPag();renderAvCtl();renderAvCont();renderAvTab();
+    var aviso=AV.ord==='parecidos'&&AV.semAmados?'Dê nota 70 ou mais a algum título para usar "Parecidos com o que você amou". Por enquanto, a ordem é a dos mais conhecidos.':'';
+    var av=el('av-aviso');if(!av){av=document.createElement('p');av.id='av-aviso';av.className='note';el('av-pag1').before(av)}
+    av.textContent=aviso;av.hidden=!aviso;
+  }catch(e){console.error(e)}
+}
+// visivel: chamada ao abrir a aba. Se a página atual já foi toda respondida, monta a fila de novo.
+function renderAvaliar(abrindo){
+  try{
+    if(!D)return;
+    var on=el('p-avaliar').classList.contains('on');
+    renderAvTab();
+    if(!on){SUJO.avaliar=1;return}
+    delete SUJO.avaliar;
+    if(abrindo&&AV.lista&&AV.vis==='pendentes'&&!AV.q.trim()){
+      var ini=AV.pag*AV.por,pg=AV.lista.slice(ini,ini+AV.por);
+      if(pg.length&&pg.every(function(id){return avEstado(id)!==''}))AV.lista=null;
+    }
+    ['notas','gosto','importar'].forEach(function(m){el('av-v-'+m).hidden=AV.modo!==m});
+    el('av-modo').querySelectorAll('[data-modo]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.modo===AV.modo))});
+    renderAvCont();
+    if(AV.modo==='notas')renderAvLista();
+    else if(AV.modo==='gosto')renderGosto();
+  }catch(e){console.error(e)}
+}
+function avLinha(i){return el('av-lista').querySelector('.avr[data-i="'+i+'"]')}
+function avFoco(i,rolar){
+  var rows=el('av-lista').querySelectorAll('.avr');if(!rows.length)return;
+  AV.foco=Math.max(0,Math.min(rows.length-1,i));
+  rows.forEach(function(r){r.classList.toggle('foco',+r.dataset.i===AV.foco)});
+  var li=avLinha(AV.foco);if(li&&rolar){try{li.focus({preventScroll:true})}catch(e){li.focus()}li.scrollIntoView({block:'nearest'})}
+}
+function avIrPag(d,focoNoFim,rolar){
+  var np=avPaginas(),p=AV.pag+d;if(p<0||p>np-1)return false;
+  AV.pag=p;AV.foco=0;renderAvLista();
+  if(focoNoFim)avFoco(el('av-lista').querySelectorAll('.avr').length-1,true);
+  else if(rolar){avFoco(0,true);var t=el('av-pag1');if(t)t.scrollIntoView({block:'start'})}
+  return true;
+}
+function avTroca(id){
+  var li=el('av-lista').querySelector('.avr[data-id="'+cssId(id)+'"]');if(!li)return;
+  var i=+li.dataset.i,foco=document.activeElement,qual=foco&&li.contains(foco)?(foco.dataset.n?'[data-n="'+foco.dataset.n+'"]':foco.dataset.nv?'[data-nv]':foco.dataset.qv?'[data-qv]':''):null;
+  var tmp=document.createElement('ol');tmp.innerHTML=avRow(AVPOR[id],i);var novo=tmp.firstChild;li.replaceWith(novo);
+  if(qual){var b=novo.querySelector(qual);if(b)b.focus({preventScroll:true})}
+  else if(foco===li){try{novo.focus({preventScroll:true})}catch(e){}}
+}
+function avAcao(id,ac,n,teclado){
+  var r=AVPOR[id];if(!r)return;var t=r.it.titulo;
+  if(ac==='nota')notaRapida(id,t,n*10);
+  else if(ac==='naovi'){var ja=!!ST.naovi[id];comDesfazer([id],ja?'"Não vi" desmarcado em '+t+'.':'Não vi: '+t+'.',function(){if(ja)delete ST.naovi[id];else marcaNaoVi(id)})}
+  else if(ac==='quero'){var q=ST.status[id]==='quero';comDesfazer([id],q?'"Quero ver" desmarcado em '+t+'.':'Quero ver: '+t+'.',function(){if(q)delete ST.status[id];else{ST.status[id]='quero';delete ST.naovi[id]}})}
+  delete SUJO.avaliar;
+  avTroca(id);renderAvCont();renderAvTab();renderAvCtl();
+  if(teclado){
+    var rows=el('av-lista').querySelectorAll('.avr').length;
+    if(AV.foco<rows-1)avFoco(AV.foco+1,true);
+    else{var tm=el('toast-msg');if(tm)tm.textContent+=' Fim da página: → passa para a próxima.'}
+  }else if(ac==='nota'){
+    // depois de uma nota pelo toque, a linha seguinte entra na tela sozinha (a tocada não se mexe se couber)
+    var prox=el('av-lista').querySelector('.avr[data-i="'+(AV.foco+1)+'"]');
+    if(prox){AV.foco++;avFoco(AV.foco,false);try{prox.scrollIntoView({block:'nearest',behavior:reduzMov()?'auto':'smooth'})}catch(e){prox.scrollIntoView(false)}}
+  }
+}
+function reduzMov(){try{return matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){return false}}
+// "Não vi" num título que já tem nota apaga a nota: no toque, pede um segundo toque antes
+var CONF_NV=null;
+function confirmaNaoVi(b,id){
+  if(ST.notas[id]==null||ST.naovi[id])return true;
+  if(CONF_NV&&CONF_NV.b===b&&CONF_NV.id===id){clearTimeout(CONF_NV.t);CONF_NV=null;return true}
+  if(CONF_NV){clearTimeout(CONF_NV.t);try{CONF_NV.b.textContent='Não vi';CONF_NV.b.classList.remove('conf')}catch(e){}}
+  b.textContent='Apagar a nota?';b.classList.add('conf');
+  CONF_NV={b:b,id:id,t:setTimeout(function(){try{b.textContent='Não vi';b.classList.remove('conf')}catch(e){}CONF_NV=null},3500)};
+  return false;
+}
+(function(){
+  try{
+    try{if(window.matchMedia&&matchMedia('(min-width:760px)').matches)el('av-filtros').open=true}catch(e){}
+    el('av-modo').addEventListener('click',function(e){var b=e.target.closest('[data-modo]');if(!b)return;AV.modo=b.dataset.modo;renderAvaliar()});
+    el('av-q').addEventListener('input',function(e){AV.q=e.target.value;avMontar();renderAvLista()});
+    el('av-vis').addEventListener('click',function(e){var b=e.target.closest('[data-vis]');if(!b)return;AV.vis=b.dataset.vis;if(AV.q){AV.q='';el('av-q').value=''}guardaAv();avMontar();renderAvLista()});
+    el('av-tipo').addEventListener('click',function(e){var b=e.target.closest('[data-tipo]');if(!b)return;AV.tipo=b.dataset.tipo;guardaAv();avMontar();renderAvLista()});
+    el('av-dec').addEventListener('change',function(e){AV.dec=e.target.value;guardaAv();avMontar();renderAvLista()});
+    el('av-ori').addEventListener('change',function(e){AV.ori=e.target.value;guardaAv();avMontar();renderAvLista()});
+    el('av-ord').addEventListener('change',function(e){AV.ord=e.target.value;if(AV.ord==='aleatorio')AV.seed=(Date.now()%2147483647)||7;guardaAv();avMontar();renderAvLista()});
+    el('av-por').addEventListener('change',function(e){var primeiro=AV.pag*AV.por;AV.por=+e.target.value||12;AV.pag=Math.floor(primeiro/AV.por);AV.foco=0;guardaAv();renderAvLista()});
+    el('av-lista').addEventListener('focusin',function(e){var li=e.target.closest('.avr');if(li&&+li.dataset.i!==AV.foco)avFoco(+li.dataset.i,false)});
+    el('av-v-notas').addEventListener('click',function(e){
+      var pg=e.target.closest('[data-pg]');if(pg){avIrPag(+pg.dataset.pg,false,true);return}
+      var b=e.target.closest('.nb,.nv');var li=e.target.closest('.avr');if(!li)return;
+      avFoco(+li.dataset.i,false);if(!b)return;
+      var id=li.dataset.id;
+      if(b.dataset.n)avAcao(id,'nota',+b.dataset.n);else if(b.dataset.nv){if(confirmaNaoVi(b,id))avAcao(id,'naovi')}else if(b.dataset.qv)avAcao(id,'quero');
+    });
+    document.addEventListener('keydown',function(e){
+      if(!el('p-avaliar').classList.contains('on')||AV.modo!=='notas')return;
+      var t=e.target,tag=t&&t.tagName,campo=tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA'||(t&&t.isContentEditable);
+      if(campo)return;
+      if(e.metaKey||e.ctrlKey||e.altKey){if((e.metaKey||e.ctrlKey)&&!e.altKey&&!e.shiftKey&&(e.key==='z'||e.key==='Z')&&UNDO){e.preventDefault();desfazer()}return}
+      var k=e.key,li=avLinha(AV.foco),id=li&&li.dataset.id;
+      if(/^[0-9]$/.test(k)){if(!id)return;e.preventDefault();avAcao(id,'nota',k==='0'?10:+k,true);return}
+      if(k==='n'||k==='N'){if(!id)return;e.preventDefault();avAcao(id,'naovi',0,true);return}
+      if(k==='q'||k==='Q'){if(!id)return;e.preventDefault();avAcao(id,'quero',0,true);return}
+      if(k==='u'||k==='U'){if(UNDO){e.preventDefault();desfazer()}return}
+      if(k==='a'||k==='A'){if(!id||!AVPOR[id])return;e.preventDefault();abreAjuste(id,AVPOR[id].it.titulo);return}
+      if(k==='ArrowDown'||k==='j'||k==='J'){e.preventDefault();var nr=el('av-lista').querySelectorAll('.avr').length;if(AV.foco<nr-1)avFoco(AV.foco+1,true);else avIrPag(1,false,true);return}
+      if(k==='ArrowUp'||k==='k'||k==='K'){e.preventDefault();if(AV.foco>0)avFoco(AV.foco-1,true);else avIrPag(-1,true);return}
+      if(k==='ArrowRight'){e.preventDefault();avIrPag(1,false,true);return}
+      if(k==='ArrowLeft'){e.preventDefault();avIrPag(-1,false,true);return}
+    });
+  }catch(e){console.error(e)}
+})();
+
+// ---------- SEU GOSTO ----------
+// Regressão linear das notas nas 9 dimensões padronizadas, com pesos não negativos e penalidade ridge
+// (descida por coordenadas com projeção em zero). O lambda sai de validação cruzada em 5 partes.
+// Os coeficientes voltam para a escala das dimensões (dividindo pelo desvio) e viram pesos de 0 a 30.
+function corr(a,b){var n=a.length;if(n<3)return null;var ma=0,mb=0,i;for(i=0;i<n;i++){ma+=a[i];mb+=b[i]}ma/=n;mb/=n;
+  var s=0,va=0,vb=0;for(i=0;i<n;i++){s+=(a[i]-ma)*(b[i]-mb);va+=(a[i]-ma)*(a[i]-ma);vb+=(b[i]-mb)*(b[i]-mb)}return va>0&&vb>0?s/Math.sqrt(va*vb):null}
+function gostoCalc(){
+  var rows=[];AVI.forEach(function(r){var v=ST.notas[r.id];if(r.dims&&v!=null&&!isNaN(+v))rows.push({r:r,y:+v})});
+  var n=rows.length,K=9,res={n:n,ok:false,rows:rows};
+  if(n<GOSTO_MIN||!DIMS.length)return res;
+  var mu=[],sd=[],i,j;
+  for(j=0;j<K;j++){var s=0;for(i=0;i<n;i++)s+=rows[i].r.dims[j];mu[j]=s/n;var q=0;for(i=0;i<n;i++)q+=Math.pow(rows[i].r.dims[j]-mu[j],2);sd[j]=Math.sqrt(q/n)}
+  var Z=rows.map(function(o){return o.r.dims.map(function(v,j){return sd[j]>1e-9?(v-mu[j])/sd[j]:0})}),Y=rows.map(function(o){return o.y});
+  function ajusta(idx,lam){
+    var m=idx.length,zm=[0,0,0,0,0,0,0,0,0],ym=0,G=[],b=[],a,c;
+    idx.forEach(function(i){for(var j=0;j<K;j++)zm[j]+=Z[i][j]/m;ym+=Y[i]/m});
+    for(a=0;a<K;a++){G.push([0,0,0,0,0,0,0,0,0]);b.push(0)}
+    idx.forEach(function(i){var z=Z[i],y=Y[i]-ym;for(var a=0;a<K;a++){var za=z[a]-zm[a];b[a]+=za*y;for(var c=a;c<K;c++)G[a][c]+=za*(z[c]-zm[c])}});
+    for(a=0;a<K;a++)for(c=0;c<a;c++)G[a][c]=G[c][a];
+    var w=[0,0,0,0,0,0,0,0,0];
+    for(var it=0;it<500;it++){var mx=0;
+      for(a=0;a<K;a++){var d=G[a][a]+lam;if(d<=1e-12){w[a]=0;continue}var s=b[a];for(c=0;c<K;c++)if(c!==a)s-=G[a][c]*w[c];var nw=Math.max(0,s/d);mx=Math.max(mx,Math.abs(nw-w[a]));w[a]=nw}
+      if(mx<1e-9)break}
+    return {w:w,zm:zm,ym:ym};
+  }
+  function prev(md,i){var p=md.ym;for(var j=0;j<K;j++)p+=md.w[j]*(Z[i][j]-md.zm[j]);return p}
+  var ordem=rows.map(function(o,i){return i}).sort(function(a,b){return rows[a].r.h-rows[b].r.h}),dobra={};ordem.forEach(function(i,k){dobra[i]=k%5});
+  var melhor=null;
+  // a grade vai até penalidades grandes: com notas sem relação com as dimensões, o ajuste quase zera
+  [0.02,0.1,0.3,1,3,10,30].forEach(function(f){
+    var lam=f*n,oof=new Array(n),err=0;
+    for(var d=0;d<5;d++){var tr=[],te=[];for(var i=0;i<n;i++)(dobra[i]===d?te:tr).push(i);if(!te.length||tr.length<3)continue;
+      var md=ajusta(tr,lam);te.forEach(function(i){oof[i]=prev(md,i);err+=Math.pow(oof[i]-Y[i],2)})}
+    if(!melhor||err<melhor.err)melhor={err:err,lam:lam,oof:oof};
+  });
+  // o mesmo teste para um palpite sem dimensão nenhuma (a média das notas de treino): se o ajuste não erra
+  // menos que isso fora da amostra, as nove dimensões não explicam as notas
+  var errNulo=0;
+  for(var d0=0;d0<5;d0++){var tr0=[],te0=[];for(var i0=0;i0<n;i0++)(dobra[i0]===d0?te0:tr0).push(i0);if(!te0.length||tr0.length<3)continue;
+    var ym0=0;tr0.forEach(function(i){ym0+=Y[i]/tr0.length});te0.forEach(function(i){errNulo+=Math.pow(ym0-Y[i],2)})}
+  res.semSinal=!(melhor.err<errNulo*0.97);
+  var todos=rows.map(function(o,i){return i}),md=ajusta(todos,melhor.lam);
+  var beta=md.w.map(function(w,j){return sd[j]>1e-9?w/sd[j]:0}),soma=beta.reduce(function(a,b){return a+b},0),mx=Math.max.apply(null,beta);
+  res.ok=true;res.vazio=!(soma>0);res.lam=melhor.lam;
+  var pAtual=pesos(),cAt=rows.map(function(o){return conexaoCom(pAtual,o.r.dims)});
+  res.rAntes=corr(cAt,Y)||0;
+  if(res.vazio){res.pesos=pAtual.slice();res.rDepois=res.rAntes;res.rCV=null}
+  else{
+    var esc2=Math.min(100/soma,30/mx);res.pesos=beta.map(function(b){return Math.max(0,Math.min(30,Math.round(b*esc2)))});
+    if(!res.pesos.some(function(x){return x>0}))res.pesos[beta.indexOf(mx)]=1;
+    res.rDepois=corr(rows.map(function(o){return conexaoCom(res.pesos,o.r.dims)}),Y)||0;
+    var oo=[],yy=[];melhor.oof.forEach(function(v,i){if(v!=null){oo.push(v);yy.push(Y[i])}});res.rCV=corr(oo,yy);
+  }
+  // Só recomenda os pesos aprendidos quando, em notas que ficaram fora do ajuste, eles acertam bem e acertam mais
+  // que os pesos em uso (que não foram ajustados a estas notas, então a correlação deles já é fora da amostra)
+  res.bom=!res.vazio&&!res.semSinal&&res.rCV!=null&&res.rCV>=0.3&&res.rCV>=res.rAntes+0.05;
+  res.prev=rows.map(function(o,i){return Math.max(0,Math.min(100,prev(md,i)))});
+  res.surpresas=rows.map(function(o,i){return {id:o.r.id,y:o.y,p:res.prev[i],d:o.y-res.prev[i]}});
+  // "Pode ser a sua cara": sem nota, sem status de visto, fora das coleções e dos filmes das sagas delas.
+  // Ordena pelos pesos aprendidos só quando eles passaram no teste; senão, pelos pesos em uso.
+  var vistoSt={assisti:1,acompanhando:1,abandonei:1},fora=filmesDeSagas(),recP=res.bom?res.pesos:pAtual;
+  colItens('desligar').concat(colItens('repetidos')).forEach(function(id){fora[id]=1});
+  res.recs=res.vazio?[]:AVI.filter(function(r){return r.dims&&ST.notas[r.id]==null&&!vistoSt[stOf(r.it)]&&!fora[r.id]})
+    .map(function(r){var p=md.ym,z;for(var j=0;j<K;j++){z=sd[j]>1e-9?(r.dims[j]-mu[j])/sd[j]:0;p+=md.w[j]*(z-md.zm[j])}return {r:r,c:conexaoCom(recP,r.dims),p:Math.max(0,Math.min(100,p))}})
+    .sort(function(a,b){return b.c-a.c||b.r.pop-a.r.pop}).slice(0,10);
+  res.igual=res.pesos.every(function(x,i){return x===pAtual[i]});
+  return res;
+}
+function medias(){
+  var g={tipo:{},dec:{},ori:{},gen:{}},tot=0;
+  function soma(o,k,v){var x=o[k]=o[k]||{s:0,n:0};x.s+=v;x.n++}
+  AVI.forEach(function(r){var v=ST.notas[r.id];if(v==null||isNaN(+v))return;v=+v;tot++;
+    soma(g.tipo,r.tipo==='serie'?'Séries':'Filmes',v);if(r.ano)soma(g.dec,decRot(r.ano),v);soma(g.ori,ORI_ROT[r.ori],v);
+    r.gen.forEach(function(x){soma(g.gen,x,v)})});
+  function lista(o,min){return Object.keys(o).filter(function(k){return o[k].n>=min}).map(function(k){return {k:k,m:o[k].s/o[k].n,n:o[k].n}}).sort(function(a,b){return b.m-a.m||b.n-a.n})}
+  return {tot:tot,tipo:lista(g.tipo,1),dec:lista(g.dec,2),ori:lista(g.ori,2),gen:lista(g.gen,3)};
+}
+// "Psique, Jung, crise, ..." -> "psique, Jung": só a primeira letra da frase vira minúscula (nomes próprios ficam)
+function minuscIni(t){t=String(t||'');return t.charAt(0).toLowerCase()+t.slice(1)}
+function descCurta(d){return minuscIni(String(d&&d.desc||'').replace(/\.\s*$/,'').split(',').slice(0,2).map(function(x){return x.trim()}).join(', '))}
+function acerto(r){return r==null?'—':r<0.05?'nenhum':r<0.2?'fraco':r<0.45?'médio':'bom'}
+// uma frase com a conclusão: as dimensões que mais pesam e as que quase não pesam, pelos pesos aprendidos
+function fraseGosto(g){
+  var p=g.pesos,mx=Math.max.apply(null,p),ix=DIMS.map(function(d,i){return i});
+  var altas=ix.filter(function(i){return p[i]>0}).sort(function(a,b){return p[b]-p[a]}).slice(0,2);
+  var baixas=ix.filter(function(i){return altas.indexOf(i)<0&&p[i]<=Math.max(2,mx*0.1)}).sort(function(a,b){return p[a]-p[b]}).slice(0,3);
+  if(!altas.length)return '';
+  var nm=function(i){return '<b>'+esc(DIMS[i].nome)+'</b> ('+esc(descCurta(DIMS[i]))+')'};
+  return (g.bom?'Suas':'Por enquanto, sem muita certeza: suas')+' notas sobem com '+listaPt(altas.map(nm))+
+    (baixas.length?'; '+listaPt(baixas.map(function(i){return '<b>'+esc(DIMS[i].nome)+'</b>'}))+(baixas.length>1?' quase não pesam':' quase não pesa'):'')+'.';
+}
+function pesosHtml(g){
+  var at=pesos(),mx=Math.max.apply(null,at.concat(g.pesos).concat([1]));
+  return '<div class="leg"><span><i class="k-at"></i>em uso</span><span><i class="k-ap"></i>aprendido</span><span>pesos de 0 a 30</span></div><div class="gw">'+DIMS.map(function(d,i){
+    return '<span class="dn"><b>'+esc(d.nome)+'</b><small>'+esc(descCurta(d))+'</small></span><span class="bars"><i class="at" style="width:'+(100*at[i]/mx)+'%" title="'+esc(d.nome)+' em uso: '+at[i]+'"></i><i class="ap" style="width:'+(100*g.pesos[i]/mx)+'%" title="'+esc(d.nome)+' aprendido: '+g.pesos[i]+'"></i></span><span class="v num">'+at[i]+' → <b>'+g.pesos[i]+'</b></span>'}).join('')+'</div>';
+}
+function rTxt(r){return r==null?'—':(r<0?'−':'')+Math.abs(r).toFixed(2).replace('.',',')}
+function botoesPesos(g){
+  // em destaque só quando os aprendidos passaram no teste; senão fica discreto ("mesmo assim")
+  return '<div class="row" style="margin-top:12px">'+(g&&g.ok&&!g.vazio?'<button class="btn'+(g.bom?' pri':'')+' t44" data-gusar="1"'+(g.igual?' disabled':'')+'>'+(g.igual?'Pesos aprendidos já em uso':g.bom?'Usar pesos aprendidos':'Usar mesmo assim')+'</button>':'')+
+    (ST.pesosAntes?'<button class="btn t44" data-gvoltar="1">Voltar aos anteriores</button>':'')+'</div>';
+}
+function gostoTopo(g,curto){
+  if(!g.ok){var f=GOSTO_MIN-g.n;
+    return '<p>Com '+GOSTO_MIN+' notas o cálculo começa a propor pesos. '+(g.n?'Você tem '+g.n+' nota'+(g.n>1?'s':'')+' em títulos com as nove dimensões; faltam '+f+'.':'Faltam '+f+'.')+'</p>'+
+      '<div class="av-prog" aria-hidden="true"><i class="a" style="width:'+(100*g.n/GOSTO_MIN)+'%"></i></div>'+(curto?'<div class="row"><button class="btn t44" data-gir="notas">Dar notas na aba Avaliar</button></div>':'')+botoesPesos(null);
+  }
+  if(g.vazio)return '<p>Com '+g.n+' notas, nenhuma dimensão explica suas notas para cima: o cálculo mantém os pesos atuais. Mais notas, de títulos variados, ajudam.</p>'+botoesPesos(null);
+  var fr=fraseGosto(g),aviso=g.bom?'':'<p class="gaviso">'+(g.semSinal?'As nove dimensões ainda não explicam as suas notas: o palpite pela média erra tanto quanto o cálculo.':'Com essas notas, os pesos aprendidos ainda não acertam melhor que os pesos em uso.')+
+    ' Vale dar mais notas, de títulos variados (inclusive os de que não gostou), antes de trocar.</p>';
+  return (fr?'<p class="gfrase">'+fr+'</p>':'')+
+    '<div class="gstat"><div><b>'+g.n+'</b>notas usadas</div><div><b>'+acerto(g.rAntes)+'</b>acerto dos pesos em uso<span class="q">correlação '+rTxt(g.rAntes)+'</span></div>'+
+    '<div><b>'+acerto(g.rCV)+'</b>acerto dos aprendidos, em notas fora do ajuste<span class="q">correlação '+rTxt(g.rCV)+'</span></div></div>'+
+    aviso+pesosHtml(g)+botoesPesos(g)+
+    '<p class="note" style="margin:10px 0 0">O acerto compara a conexão de cada título com a nota que você deu (correlação de −1 a 1): abaixo de 0,2 é fraco, até 0,45 é médio, acima disso é bom.'+(curto?'':' O dos aprendidos é medido em notas que ficaram fora do ajuste, para o cálculo não se enganar com as próprias contas.')+'</p>';
+}
+function mediaBloco(tit,l){
+  if(!l.length)return '';
+  return '<div><h4>'+esc(tit)+'</h4><div class="gm">'+l.slice(0,10).map(function(x){return '<span>'+esc(x.k)+'</span><span class="bar" title="'+esc(x.k+': média '+Math.round(x.m)+' em '+x.n+' notas')+'"><i style="width:'+Math.max(2,x.m)+'%"></i></span><span class="v num"><b>'+dec1(x.m/10)+'</b> · '+x.n+'</span>'}).join('')+'</div></div>';
+}
+function miniCard(id,o){
+  // cartão compacto: sugestões das coleções e "pode ser a sua cara"
+  var a=achar(id);if(!a)return '';var it=a.it,r=AVPOR[id],n=ST.notas[id];
+  var meta=[anoN(it.ano)||'',it.criadores||it.autor||'',a.tipo==='serie'?'Série':a.tipo==='saga'?'Saga':'Filme'].filter(Boolean).map(esc).join(' · ');
+  var aberto=o.aberto&&n==null,acts=[];
+  if(o.col)acts.push('<button class="btn pri" data-sput="1">Pôr em '+(o.col==='desligar'?'Desligar':'Repetidos')+'</button>');
+  acts.push('<button class="btn" data-sjv="1" aria-expanded="'+!!o.aberto+'">'+(n!=null?'Mudar nota':o.acomp?'Dar nota':'Já vi')+'</button>');
+  if(o.col)acts.push('<button class="btn" data-snp="1">Não é pra mim</button>');
+  else acts.push('<button class="btn" data-sqv="1" aria-pressed="'+(ST.status[id]==='quero')+'">Quero ver</button>');
+  var pr=n!=null&&+n>=5?Math.max(1,Math.min(10,Math.round(+n/10))):0,nb='';
+  for(var k=1;k<=10;k++)nb+='<button class="nb" data-sn="'+k+'" aria-pressed="'+(pr===k)+'" aria-label="Nota '+(k*10)+' de 100">'+(k*10)+'</button>';
+  return '<article class="mini" data-id="'+esc(id)+'"'+(o.col?' data-col="'+o.col+'"':'')+'><div><h3>'+esc(it.titulo)+'</h3><div class="meta">'+meta+'</div></div>'+
+    (o.badge?'<div class="badges">'+o.badge+'</div>':'')+(o.por?'<p class="why">'+esc(o.por)+'</p>':'')+(oferta(it)?watchHtml(it):'')+
+    (n!=null&&!o.semNota?'<div><span class="av-est ok">Sua nota: '+notaTxt(n)+'</span></div>':'')+
+    '<div class="macts'+(acts.length===2?' dois':'')+'">'+acts.join('')+'</div>'+
+    '<div class="notas so10" role="group" aria-label="'+esc('Sua nota para '+it.titulo)+'"'+(o.aberto?'':' hidden')+'>'+nb+'</div></article>';
+}
+var GABERTO={};
+function renderGosto(){
+  var box=el('av-v-gosto');if(!box)return;
+  try{
+    var g=gostoCalc(),m=medias(),h='';
+    h+='<div class="box" style="margin-top:12px"><h3>Seu gosto pelo cálculo</h3>'+gostoTopo(g,false)+'</div>';
+    if(m.tot>=3)h+='<div class="box"><h3>Médias das suas notas</h3><p>De 0 a 10, com o número de notas ao lado. Gêneros com 3 notas ou mais.</p><div class="gcols">'+
+      mediaBloco('Tipo',m.tipo)+mediaBloco('Década',m.dec)+mediaBloco('Origem',m.ori)+mediaBloco('Gênero',m.gen)+'</div></div>';
+    if(g.ok&&!g.vazio){
+      var ac=g.surpresas.filter(function(x){return x.d>=10}).sort(function(a,b){return b.d-a.d}).slice(0,5);
+      var ab=g.surpresas.filter(function(x){return x.d<=-10}).sort(function(a,b){return a.d-b.d}).slice(0,5);
+      var li=function(x){return '<li><b>'+esc(rotulo(x.id))+'</b><div class="meta">sua nota '+notaTxt(x.y)+' · o cálculo previa '+Math.round(x.p)+'</div></li>'};
+      h+='<div class="box"><h3>Surpresas</h3><p>Onde sua nota ficou longe do que as nove dimensões previam. Pistas do que o cálculo ainda não enxerga.</p><div class="gcols">'+
+        '<div><h4>Gostou mais do que o previsto</h4>'+(ac.length?'<ul class="surp">'+ac.map(li).join('')+'</ul>':'<p>Nenhuma por enquanto.</p>')+'</div>'+
+        '<div><h4>Gostou menos do que o previsto</h4>'+(ab.length?'<ul class="surp">'+ab.map(li).join('')+'</ul>':'<p>Nenhuma por enquanto.</p>')+'</div></div></div>';
+      h+='<div class="box"><h3>Pode ser a sua cara</h3><p>Os dez títulos sem nota (inclusive os marcados "não vi"), fora das suas coleções, de maior conexão com os pesos '+(g.bom?'aprendidos':'em uso (os aprendidos ainda não passaram no teste)')+'.</p>'+
+        (g.recs.length?'<div class="grid sgrid" id="g-recs">'+g.recs.map(function(x){return miniCard(x.r.id,{por:'Conexão prevista '+Math.round(x.c)+'%'+(g.bom?' · nota prevista '+Math.round(x.p):''),aberto:!!GABERTO[x.r.id]})}).join('')+'</div>':'<p>Nada por indicar com esses filtros.</p>')+'</div>';
+    }
+    h+='<div class="box"><h3>Para o Claude</h3><p>Um resumo curto das suas notas e do seu gosto, para colar no chat.</p><div class="row"><button class="btn pri t44" id="av-copiar">Copiar resumo para o Claude</button></div><textarea class="out" id="av-resumo" readonly hidden aria-label="Resumo para o Claude" style="margin-top:10px;min-height:180px"></textarea></div>';
+    box.innerHTML=h;
+  }catch(e){console.error(e);box.innerHTML='<p class="err">Não consegui calcular agora.</p>'}
+}
+function renderGostoResumo(){
+  var box=el('gosto-resumo');if(!box||!D)return;
+  try{var g=gostoCalc();
+    box.innerHTML='<h3>Seu gosto, pelas suas notas</h3>'+gostoTopo(g,true)+(g.ok?'<div class="row" style="margin-top:8px"><button class="lnk" data-gir="gosto">Ver médias, surpresas e indicações na aba Avaliar</button></div>':'');
+  }catch(e){console.error(e)}
+}
+function usarPesos(){
+  var g=gostoCalc();if(!g.ok||g.vazio)return;
+  ST.pesosAntes={p:ST.pesos?ST.pesos.slice():null};ST.pesos=g.pesos.slice();save();
+  depoisDePesos('Pesos aprendidos em uso. As listas já se reordenaram.');
+}
+function voltarPesos(){
+  if(!ST.pesosAntes)return;ST.pesos=ST.pesosAntes.p?ST.pesosAntes.p.slice():null;ST.pesosAntes=null;save();
+  depoisDePesos('Pesos anteriores de volta.');
+}
+function depoisDePesos(msg){
+  marcaSujo();renderPesos();renderGostoResumo();renderList('filmes');renderList('series');
+  if(el('p-avaliar').classList.contains('on')&&AV.modo==='gosto')renderGosto();
+  delete SUJO.filmes;delete SUJO.series;delete SUJO.pesos;toast(msg,false);
+}
+function irAvaliar(modo){AV.modo=modo||'notas';var t=document.querySelector('.tab[data-tab="avaliar"]');if(t)t.click();window.scrollTo(0,0)}
+document.querySelector('main').addEventListener('click',function(e){
+  var b=e.target.closest('[data-gusar],[data-gvoltar],[data-gir],#av-copiar');if(!b)return;
+  if(b.dataset.gusar)usarPesos();else if(b.dataset.gvoltar)voltarPesos();else if(b.dataset.gir)irAvaliar(b.dataset.gir);
+  else if(b.id==='av-copiar'){var tx=textoResumo(),ta=el('av-resumo');if(ta){ta.value=tx;ta.hidden=false}copiar(tx,b)}
+});
+
+// ---------- RESUMO PARA O CLAUDE ----------
+function textoResumo(){
+  var L=[],hoje=new Date();
+  L.push('Resumo do Telas (filmes e séries), '+hoje.toLocaleDateString('pt-BR')+'.');
+  L.push('');L.push('A página mede a conexão de cada título por nove dimensões, de 0 a 100 cada: '+DIMS.map(function(d){return d.nome+' ('+minuscIni(String(d.desc||'').replace(/\.\s*$/,''))+')'}).join('; ')+'.');
+  var grupos={},n=0;
+  Object.keys(ST.notas).forEach(function(id){var v=+ST.notas[id];if(isNaN(v)||!achar(id))return;n++;(grupos[v]=grupos[v]||[]).push(rotulo(id))});
+  var vals=Object.keys(grupos).map(Number).sort(function(a,b){return b-a}),ordena=function(l){return l.sort(function(a,b){return a.localeCompare(b,'pt-BR')})};
+  L.push('');
+  if(n>150){
+    // muitas notas: lista só as pontas (9 e 10; 1 a 4) e resume o meio, para o texto caber num chat
+    L.push('Minhas notas, de 0 a 10 ('+n+' títulos; abaixo, só as mais altas e as mais baixas):');
+    var meio=0;vals.forEach(function(v){if(v>=90||v<=40)L.push(notaTxt(v)+': '+ordena(grupos[v]).join('; '));else meio+=grupos[v].length});
+    if(meio)L.push('Notas entre 4,1 e 8,9: '+meio+' títulos (não listados).');
+  }else{
+    L.push('Minhas notas, de 0 a 10 ('+n+' títulos):');
+    vals.forEach(function(v){L.push(notaTxt(v)+': '+ordena(grupos[v]).join('; '))});
+  }
+  var nv=AVI.filter(function(r){return ST.naovi[r.id]&&ST.notas[r.id]==null}).map(function(r){return rotulo(r.id)}),qv=AVI.filter(function(r){return ST.status[r.id]==='quero'}).map(function(r){return rotulo(r.id)});
+  if(nv.length)L.push('Ainda não vi (marquei "não vi"): '+nv.slice(0,60).join('; ')+(nv.length>60?' e mais '+(nv.length-60):'')+'.');
+  if(qv.length)L.push('Quero ver: '+qv.slice(0,40).join('; ')+(qv.length>40?' e mais '+(qv.length-40):'')+'.');
+  var g=gostoCalc();
+  L.push('');
+  if(g.ok&&!g.vazio){
+    L.push('Meu gosto pelo cálculo ('+g.n+' notas em títulos com as nove dimensões):');
+    L.push('Pesos aprendidos: '+DIMS.map(function(d,i){return d.nome+' '+g.pesos[i]}).join(', ')+' (de 0 a 30).');
+    L.push('Pesos em uso na página: '+DIMS.map(function(d,i){return d.nome+' '+pesos()[i]}).join(', ')+'.');
+    L.push('Acerto (correlação entre conexão e nota): '+acerto(g.rAntes)+' com os pesos em uso ('+rTxt(g.rAntes)+'); '+acerto(g.rCV)+' com os aprendidos, em notas fora do ajuste ('+rTxt(g.rCV)+'). '+(g.bom?'Os aprendidos passaram no teste.':'Os aprendidos ainda não passaram no teste.'));
+  }else L.push('Ainda sem pesos aprendidos (o cálculo começa com '+GOSTO_MIN+' notas; tenho '+g.n+').');
+  var m=medias(),fm=function(l){return l.map(function(x){return x.k+' '+Math.round(x.m)+' ('+x.n+')'}).join(', ')};
+  if(m.tot){
+    L.push('');L.push('Médias das minhas notas (de 0 a 10, com o número de notas):');
+    if(m.tipo.length)L.push('Por tipo: '+fm(m.tipo)+'.');
+    if(m.dec.length)L.push('Por década: '+fm(m.dec)+'.');
+    if(m.ori.length)L.push('Por origem: '+fm(m.ori)+'.');
+    if(m.gen.length)L.push('Por gênero (3 notas ou mais): '+fm(m.gen.slice(0,8))+(m.gen.length>8?'; os de média mais baixa: '+fm(m.gen.slice(-3)):'')+'.');
+  }
+  if(g.ok&&!g.vazio){
+    var s=g.surpresas.slice().sort(function(a,b){return b.d-a.d}),fs=function(x){return rotulo(x.id)+', nota '+notaTxt(x.y)+', previsto '+Math.round(x.p)};
+    var ac=s.filter(function(x){return x.d>=10}).slice(0,5),ab=s.filter(function(x){return x.d<=-10}).reverse().slice(0,5);
+    if(ac.length||ab.length){L.push('');L.push('Surpresas (nota longe do que o cálculo previa):');
+      if(ac.length)L.push('Acima: '+ac.map(fs).join('; ')+'.');if(ab.length)L.push('Abaixo: '+ab.map(fs).join('; ')+'.')}
+    if(g.recs.length)L.push('Pode ser a minha cara, pelo cálculo: '+g.recs.map(function(x){return rotulo(x.r.id)}).join('; ')+'.');
+  }
+  var comNota=function(id){var v=ST.notas[id];return v!=null&&!isNaN(+v)?', nota '+notaTxt(v):''};
+  var cd=colItens('desligar').map(function(id){return rotulo(id)+comNota(id)+(ST.fase[id]?', fase: '+ST.fase[id]:'')}),
+    cr=colItens('repetidos').map(function(id){return rotulo(id)+comNota(id)+(ST.vezes[id]?', vi '+ST.vezes[id]+' vezes':'')});
+  L.push('');L.push('Desligar o cérebro: '+(cd.join('; ')||'nada')+'.');L.push('Repetidos: '+(cr.join('; ')||'nada')+'.');
+  ['desligar','repetidos'].forEach(function(col){var o=ocultas(col);if(o.length)L.push('Não é pra mim (sugestões que escondi em '+(col==='desligar'?'Desligar':'Repetidos')+'): '+o.map(rotulo).join('; ')+'.')});
+  return L.join('\n');
+}
+
+// ---------- SUGESTÕES NAS COLEÇÕES ----------
+// Ordem: (1) até 6 títulos que ele já viu e a que deu 7 ou mais (os candidatos mais óbvios a "Pôr em"), com o selo
+// da nota; (2) as fixas de catalogo.json > sugestoes, em rodízio pelo título da coleção a que cada uma se liga
+// (campo membro), para que cada um gere a sua; (3) até 12 automáticas, também em rodízio: para cada título da
+// coleção, o candidato mais perto dele. Em Desligar pesam mais o gênero e o formato (animação ou não, série ou
+// filme); em Repetidos, as nove dimensões. Ficam de fora o que já está na coleção, o que ele escondeu, o que viu e
+// não gostou (nota abaixo de 6 ou "abandonei") e os filmes das sagas da coleção. Em Desligar, só comédia.
+var SUGN={desligar:6,repetidos:6},SUGKEEP={desligar:{},repetidos:{}},SUGAB={desligar:{},repetidos:{}};
+var RE_LEVE=/com[eé]dia|sitcom|s[aá]tira|par[oó]dia/i,RE_ANIM=/anima[cç][aã]o|anime/i,RE_FAM=/fam[ií]lia|infantil/i,
+  RE_PESADO=/^(drama|suspense|terror|guerra|policial|crime real|mistério|psicológico)$/i;
+function ocultas(col){var o=ST.sugOcultas[col];return Array.isArray(o)?o:[]}
+function vetor(id){
+  var a=achar(id);if(!a)return null;var d=dimsOk(a.it.dims);if(d)return d;
+  if(a.tipo==='saga'){var fs=(a.it.filmes||[]).map(function(f){var r=AVPOR[f.id];return r&&r.dims}).filter(Boolean);
+    if(fs.length){var m=[0,0,0,0,0,0,0,0,0];fs.forEach(function(v){for(var i=0;i<9;i++)m[i]+=v[i]/fs.length});return m}}
+  return null;
+}
+function stDe(id){var a=achar(id);return a?stOf(a.it):(ST.status[id]||'')}
+function ruim(id){var n=ST.notas[id];return (n!=null&&+n<60)||stDe(id)==='abandonei'}
+function amado(id){var n=ST.notas[id];return n!=null&&+n>=70}
+function minus(x){return String(x).toLowerCase()}
+function listaPt(l){return l.length<2?l.join(''):l.slice(0,-1).join(', ')+' e '+l[l.length-1]}
+// um de cada título da coleção por vez, na ordem da coleção; os que não se ligam a nenhum vão no fim
+function rodizio(l,membros){
+  var por={},sem=[],out=[],i,mais=true;
+  l.forEach(function(x){if(x.membro&&membros.indexOf(x.membro)>-1)(por[x.membro]=por[x.membro]||[]).push(x);else sem.push(x)});
+  for(i=0;mais;i++){mais=false;membros.forEach(function(m){var q=por[m];if(q&&i<q.length){out.push(q[i]);mais=true}})}
+  return out.concat(sem);
+}
+function sugAuto(col,usados){
+  var na=colItens(col),oc=ocultas(col),keep=SUGKEEP[col],excl=filmesDeSagas([col]),des=col==='desligar';
+  var membros=na.map(function(id){var a=achar(id);if(!a)return null;var v=vetor(id),g=(Array.isArray(a.it.generos)?a.it.generos:[]).map(minus);
+    if(!v&&!g.length)return null;
+    return {id:id,titulo:a.it.titulo,c:v&&MU?centra(v):null,g:g,anim:RE_ANIM.test(g.join(' ')),fam:RE_FAM.test(g.join(' ')),tipo:a.tipo==='serie'?'serie':'filme'}}).filter(Boolean);
+  if(!membros.length||!MU)return {lista:[],amados:[]};
+  var pool=AVI.filter(function(r){return r.dims&&!usados[r.id]&&na.indexOf(r.id)<0&&oc.indexOf(r.id)<0&&!excl[r.id]&&(keep[r.id]||!ruim(r.id))&&
+    (!des||r.gen.some(function(g){return RE_LEVE.test(g)}))});
+  function ponto(m,r,c){
+    var gr=r.gen.map(minus),sh=gr.filter(function(x){return m.g.indexOf(x)>-1}),G=sh.length/Math.max(m.g.length,gr.length,1);
+    var C=m.c?cosV(c,m.c):0,T=m.tipo===r.tipo?1:0,P=(r.pop-1)/4,gj=gr.join(' ');
+    var pesado=des?gr.filter(function(x){return RE_PESADO.test(x)&&m.g.indexOf(x)<0}).length:0;
+    var s=des?2.2*G+(RE_ANIM.test(gj)===m.anim?1:0)+1.5*T+0.8*C+0.7*P-(RE_FAM.test(gj)&&!m.fam?0.8:0)-0.7*pesado:G+0.4*T+2*C+0.5*P;
+    return {s:s,sh:sh};
+  }
+  function motivo(m,sh){
+    if(!des)return 'Perto de '+m.titulo+' pelas nove dimensões'+(sh.length?' e no gênero ('+listaPt(sh)+')':'')+'.';
+    if(sh.length>1)return 'Mesmos gêneros de '+m.titulo+': '+listaPt(sh)+'.';
+    if(sh.length)return 'Também é '+sh[0]+', como '+m.titulo+', e fica perto dele pelas nove dimensões.';
+    return 'Perto de '+m.titulo+' pelas nove dimensões.';
+  }
+  var filas=membros.map(function(){return []}),melhor={};
+  pool.forEach(function(r){var c=centra(r.dims);membros.forEach(function(m,i){var x=ponto(m,r,c);filas[i].push({r:r,s:x.s,sh:x.sh});
+    if(!melhor[r.id]||x.s>melhor[r.id].s)melhor[r.id]={s:x.s,sh:x.sh,m:m}})});
+  filas.forEach(function(f){f.sort(function(a,b){return b.s-a.s||b.r.pop-a.r.pop})});
+  var rk={};filas.forEach(function(f){f.forEach(function(x,i){if(rk[x.r.id]==null||i<rk[x.r.id])rk[x.r.id]=i})});
+  var lista=[],usou={},pos=membros.map(function(){return 0}),algum=true;
+  while(lista.length<12&&algum){algum=false;
+    membros.forEach(function(m,i){
+      if(lista.length>=12)return;var f=filas[i];while(pos[i]<f.length&&usou[f[pos[i]].r.id])pos[i]++;
+      if(pos[i]<f.length){var x=f[pos[i]++];usou[x.r.id]=1;lista.push({id:x.r.id,auto:true,membro:m.id,por:motivo(m,x.sh)});algum=true}
+    })}
+  // os já vistos e bem avaliados sobem para o alto, mas só os que estão perto de algum título da coleção
+  // (entre os 40 primeiros da fila de algum deles): uma comédia amarga com nota 9 não vira sugestão de Desligar
+  var amados=pool.filter(function(r){return amado(r.id)&&!keep[r.id]&&rk[r.id]<40}).map(function(r){var b=melhor[r.id];return {id:r.id,auto:true,membro:b.m.id,por:motivo(b.m,b.sh)}});
+  return {lista:lista,amados:amados};
+}
+function sugLista(col){
+  var na=colItens(col),oc=ocultas(col),keep=SUGKEEP[col],usados={},fixas=[];
+  ((CAT&&CAT.sugestoes&&CAT.sugestoes[col])||[]).forEach(function(s){
+    if(!s||typeof s.id!=='string'||usados[s.id]||!achar(s.id))return;usados[s.id]=1;
+    if(na.indexOf(s.id)>-1||oc.indexOf(s.id)>-1)return;
+    if(!keep[s.id]&&ruim(s.id))return; // viu e não gostou: não volta a sugerir
+    fixas.push({id:s.id,auto:false,membro:typeof s.membro==='string'?s.membro:'',por:typeof s.por_que==='string'?s.por_que:''});
+  });
+  fixas=rodizio(fixas,na);
+  var au={lista:[],amados:[]};try{au=sugAuto(col,usados)}catch(e){console.error(e)}
+  var topo=fixas.filter(function(x){return amado(x.id)&&!keep[x.id]}).concat(au.amados)
+    .sort(function(a,b){return (+ST.notas[b.id])-(+ST.notas[a.id])}).slice(0,6),noTopo={};
+  topo.forEach(function(x){x.topo=true;noTopo[x.id]=1});
+  return topo.concat(fixas.filter(function(x){return !noTopo[x.id]}),au.lista.filter(function(x){return !noTopo[x.id]}));
+}
+function selos(x,col){
+  var b=[],n=ST.notas[x.id];
+  if(amado(x.id)&&!SUGKEEP[col][x.id])b.push('<span class="bdg radar">você deu '+notaTxt(n)+'</span>');
+  else if(n==null&&stDe(x.id)==='acompanhando')b.push('<span class="bdg live">você acompanha</span>');
+  if(x.auto)b.push('<span class="bdg calc">parecido pelo cálculo</span>');
+  return b.join('');
+}
+function renderSug(col){
+  var box=el('sug-'+col);if(!box||!D)return;
+  try{
+    var l=sugLista(col),n=SUGN[col],oc=ocultas(col).length,nome=col==='desligar'?'Desligar':'Repetidos';
+    var aviso=!CAT?'<p class="note gaviso">O catálogo de sugestões não carregou agora. Recarregue a página para ver todas.</p>':'';
+    box.innerHTML='<h2 class="sec">Sugestões <span class="num" style="color:var(--muted);font-weight:500">('+l.length+')</span></h2><p class="colnote">'+(l.some(function(x){return x.topo})?'No alto, o que você já viu e avaliou com 70 ou mais. Depois, t':'T')+'ítulos do mesmo criador ou no mesmo formato dos seus, um para cada título da coleção. Por fim, os que o cálculo achou parecidos.</p>'+aviso+
+      (l.length?'<div class="grid sgrid">'+l.slice(0,n).map(function(x){try{var am=amado(x.id)&&!SUGKEEP[col][x.id];
+        return miniCard(x.id,{col:col,por:x.por,aberto:!!SUGAB[col][x.id],badge:selos(x,col),semNota:am,acomp:stDe(x.id)==='acompanhando'})}catch(e){console.error(e);return ''}}).join('')+'</div>':'<p class="empty">Sem sugestões novas por aqui.</p>')+
+      (l.length>n?'<button class="loadmore t44" data-smais="1">Mais sugestões ('+(l.length-n)+')</button>':'')+
+      (oc?'<p class="note" style="margin:10px 0 0"><button class="lnk" data-sreset="1">Voltar a mostrar '+(oc===1?'a sugestão escondida':'as '+oc+' sugestões escondidas')+' em '+nome+'</button></p>':'');
+    // atalho logo abaixo da abertura da aba: no celular, as sugestões ficam depois da primeira tela
+    var sj=el('sj-'+col);if(sj){sj.hidden=!l.length;sj.innerHTML=l.length?'<button class="lnk" data-sjump="1">'+(l.length===1?'Ver a sugestão':'Ver as '+l.length+' sugestões')+' ↓</button>':''}
+  }catch(e){console.error(e)}
+}
+// cliques dos cartões compactos (sugestões e "pode ser a sua cara")
+function cliqueMini(e,col){
+  var b=e.target.closest('[data-sput],[data-sjv],[data-snp],[data-sqv],[data-sn]');if(!b)return false;
+  var c=b.closest('.mini');if(!c)return false;var id=c.dataset.id,a=achar(id);if(!a)return true;var t=a.it.titulo;
+  var redesenha=function(){if(col){renderCol(col);renderSug(col)}else renderGosto()};
+  if(b.dataset.sput){
+    var ce=colEstado(col),tinhaAdd=ce.add.indexOf(id)>-1,tinhaRem=ce.rem.indexOf(id)>-1;
+    comDesfazer([],t+' entrou em '+(col==='desligar'?'Desligar':'Repetidos')+'.',function(){adicionarId(col,id)},
+      function(){var c2=colEstado(col),i=c2.add.indexOf(id);if(!tinhaAdd&&i>-1)c2.add.splice(i,1);if(tinhaRem&&c2.rem.indexOf(id)<0)c2.rem.push(id)});
+    renderAvTab();redesenha();return true}
+  if(b.dataset.snp){
+    var jaOc=ocultas(col).indexOf(id)>-1;
+    comDesfazer([],t+' saiu das sugestões.',function(){var o=ocultas(col).slice();if(o.indexOf(id)<0)o.push(id);ST.sugOcultas[col]=o},
+      function(){if(jaOc)return;var o=ocultas(col).slice(),i=o.indexOf(id);if(i>-1){o.splice(i,1);ST.sugOcultas[col]=o}});
+    redesenha();return true}
+  if(b.dataset.sjv){var ab=col?SUGAB[col]:GABERTO;ab[id]=!ab[id];var nr=c.querySelector('.notas');nr.hidden=!ab[id];b.setAttribute('aria-expanded',String(!!ab[id]));if(ab[id]){var f=nr.querySelector('.nb');if(f)f.focus()}return true}
+  if(b.dataset.sqv){var q=ST.status[id]==='quero';comDesfazer([id],q?'"Quero ver" desmarcado em '+t+'.':'Quero ver: '+t+'.',function(){if(q)delete ST.status[id];else{ST.status[id]='quero';delete ST.naovi[id]}});
+    b.setAttribute('aria-pressed',String(!q));renderAvCont();renderAvTab();return true}
+  if(b.dataset.sn){var n=+b.dataset.sn;notaRapida(id,t,n*10);
+    if(col){SUGKEEP[col][id]=1;SUGAB[col][id]=false}else GABERTO[id]=false;renderAvTab();redesenha();return true}
+  return false;
+}
+['desligar','repetidos'].forEach(function(col){
+  try{
+    el('sug-'+col).addEventListener('click',function(e){
+      if(e.target.closest('[data-smais]')){SUGN[col]+=6;renderSug(col);return}
+      if(e.target.closest('[data-sreset]')){var antes=ocultas(col).slice();
+        comDesfazer([],'Sugestões escondidas de volta.',function(){ST.sugOcultas[col]=[]},
+          function(){var o=ocultas(col).slice();antes.forEach(function(x){if(o.indexOf(x)<0)o.push(x)});ST.sugOcultas[col]=o});
+        renderSug(col);return}
+      cliqueMini(e,col);
+    });
+    el('sj-'+col).addEventListener('click',function(e){
+      if(!e.target.closest('[data-sjump]'))return;var bx=el('sug-'+col);
+      try{bx.scrollIntoView({block:'start',behavior:reduzMov()?'auto':'smooth'})}catch(err){bx.scrollIntoView()}
+      var f=bx.querySelector('.mini .btn');if(f)try{f.focus({preventScroll:true})}catch(err){}
+    });
+  }catch(e){console.error(e)}
+});
+el('av-v-gosto').addEventListener('click',function(e){cliqueMini(e,null)});
+
+// ---------- IMPORTAR NOTAS (Letterboxd e IMDb) ----------
+var IMP=null;
+function csvLer(txt){
+  txt=String(txt).replace(/^\uFEFF/,'');var rows=[],row=[],f='',q=false;
+  for(var i=0;i<txt.length;i++){var c=txt[i];
+    if(q){if(c==='"'){if(txt[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+    else if(c==='"')q=true;
+    else if(c===','){row.push(f);f=''}
+    else if(c==='\n'||c==='\r'){if(c==='\r'&&txt[i+1]==='\n')i++;row.push(f);rows.push(row);row=[];f=''}
+    else f+=c}
+  if(f!==''||row.length){row.push(f);rows.push(row)}
+  var out=rows.filter(function(r){return r.length>1||(r[0]||'').trim()!==''});
+  out.aberta=q; // terminou dentro de aspas: alguma aspa ficou sem fechar
+  return out;
+}
+// Dois índices: IDX pelo título inteiro (normalizado) e IDXA pelo título sem o artigo inicial da língua do campo
+// (titulo em português; titulo_en e titulo_original pelo inglês).
+var IDXA=null;
+function indexa(){
+  if(IDX)return;IDX={};IDXA={};IMDBIX={};
+  var poe=function(ix,x,r){if(!x)return;var l=ix[x]=ix[x]||[];if(l.indexOf(r)<0)l.push(r)};
+  AVI.forEach(function(r){
+    var it=r.it;
+    [[it.titulo,'pt'],[it.titulo_original,'en'],[it.titulo_en,'en']].forEach(function(p){if(!p[0])return;var k=normT(p[0]);poe(IDX,k,r);var sa=semArtigo(k,p[1]);if(sa!==k)poe(IDXA,sa,r)});
+    if(it.imdb_id)IMDBIX[it.imdb_id]=r;
+  });
+}
+// titulos: [[texto, línguas dos artigos]]. Primeiro pelo título inteiro; sem par, pelo título sem artigo, e aí
+// só com o ano exato (um casamento só pela chave sem artigo, sem ano, é arriscado demais).
+function casar(titulos,ano,tipo,cod){
+  if(cod&&IMDBIX[cod])return IMDBIX[cod];
+  var y=anoN(ano);
+  function junta(fn){var cs=[];titulos.forEach(function(p){if(!p[0])return;fn(normT(p[0]),p[1]).forEach(function(r){if(cs.indexOf(r)<0)cs.push(r)})});return cs}
+  var cs=junta(function(k){return IDX[k]||[]});
+  if(cs.length){
+    if(y){var ex=cs.filter(function(r){return r.ano===y});if(!ex.length)ex=cs.filter(function(r){return r.ano&&Math.abs(r.ano-y)<=1});cs=ex}
+    else if(cs.length>1)return null;
+  }
+  if(!cs.length&&y){
+    cs=junta(function(k,ls){var o=(IDXA[k]||[]).slice();ls.forEach(function(lg){var sa=semArtigo(k,lg);if(sa===k)return;(IDX[sa]||[]).concat(IDXA[sa]||[]).forEach(function(r){if(o.indexOf(r)<0)o.push(r)})});return o})
+      .filter(function(r){return r.ano===y});
+  }
+  if(cs.length>1&&tipo){var tt=cs.filter(function(r){return r.tipo===tipo});if(tt.length)cs=tt}
+  return cs[0]||null;
+}
+function impAnalisa(txt){
+  indexa();
+  var rows=csvLer(txt);
+  if(rows.aberta)return {erro:'O arquivo tem uma aspa sem fechar e não dá para saber onde cada linha termina. Exporte de novo ou corrija o arquivo.'};
+  if(rows.length<2)return {erro:'O arquivo está vazio.'};
+  var h=rows[0].map(function(x){return String(x).trim().toLowerCase()}),ix=function(n){return h.indexOf(n)};
+  var fonte=ix('const')>-1&&ix('your rating')>-1?'imdb':(ix('name')>-1&&ix('rating')>-1?'letterboxd':null);
+  if(!fonte)return {erro:'Não reconheci o arquivo. Use o ratings.csv do Letterboxd ou o CSV de notas do IMDb (com as colunas Const e Your Rating).'};
+  var porId={},sem=[],linhas=0;
+  rows.slice(1).forEach(function(c){
+    var t,og='',ano,v,nota,tipo=null,cod='';
+    if(fonte==='letterboxd'){t=c[ix('name')];ano=c[ix('year')];v=num(c[ix('rating')]);if(!(v>0))return;nota=Math.round(Math.min(5,v)*20);tipo='filme'}
+    else{var tt=ix('title type')>-1?String(c[ix('title type')]||''):'';if(/episode|game|podcast|music/i.test(tt))return;
+      t=c[ix('title')];og=ix('original title')>-1?c[ix('original title')]:'';ano=c[ix('year')];v=num(c[ix('your rating')]);if(!(v>0))return;
+      nota=Math.round(Math.min(10,v)*10);tipo=/series|tv mini|minissérie|série/i.test(tt)?'serie':(tt?'filme':null);cod=String(c[ix('const')]||'').trim()}
+    if(!t)return;linhas++;
+    var r=fonte==='letterboxd'?casar([[t,['en']]],ano,tipo,cod):casar([[t,['en','pt']],[og,['en']]],ano,tipo,cod);
+    if(!r){sem.push(String(t)+(anoN(ano)?' ('+anoN(ano)+')':''));return}
+    var ja=ST.notas[r.id];
+    porId[r.id]={id:r.id,arq:String(t)+(anoN(ano)?' ('+anoN(ano)+')':''),nota:nota,ja:ja==null?null:+ja,marcado:ja==null};
+  });
+  var casados=Object.keys(porId).map(function(k){return porId[k]});
+  return {fonte:fonte,linhas:linhas,casados:casados,sem:sem};
+}
+function renderImp(){
+  var box=el('av-imp');if(!box)return;
+  if(!IMP){box.innerHTML='';return}
+  if(IMP.erro){box.innerHTML='<p class="err">'+esc(IMP.erro)+'</p>';return}
+  if(IMP.feito){box.innerHTML='<div class="box"><h3>'+esc(IMP.feito)+'</h3><p>Elas já entram nas listas e no cálculo do seu gosto.</p><div class="row"><button class="btn t44" data-gir="gosto">Ver seu gosto</button></div></div>';return}
+  var n=IMP.casados.filter(function(x){return x.marcado}).length,nome=IMP.fonte==='imdb'?'IMDb':'Letterboxd';
+  box.innerHTML='<div class="box"><h3>'+nome+': '+IMP.casados.length+' de '+IMP.linhas+' títulos casaram</h3>'+
+    '<p>Revise antes de gravar. Títulos em que você já tinha nota aqui vêm desmarcados.</p>'+
+    '<div class="row"><button class="btn pri t44" data-impok="1"'+(n?'':' disabled')+'>Gravar '+n+' nota'+(n===1?'':'s')+'</button><button class="btn t44" data-imptodas="1">'+(n===IMP.casados.length?'Desmarcar todas':'Marcar todas')+'</button><button class="btn t44" data-impcancel="1">Cancelar</button></div>'+
+    (IMP.casados.length?'<ul class="impl">'+IMP.casados.map(function(x,i){var a=AVPOR[x.id];
+      return '<li><label><input type="checkbox" data-impi="'+i+'"'+(x.marcado?' checked':'')+'><span><b>'+esc(a?a.it.titulo:x.id)+'</b> ('+esc([a&&a.ano||'',a?(a.tipo==='serie'?'série':'filme'):''].filter(Boolean).join(', '))+') · nota <b class="num">'+notaTxt(x.nota)+'</b>'+
+        (x.ja!=null?' <span class="bdg">'+(x.ja===x.nota?'igual à de agora':'aqui está '+notaTxt(x.ja))+'</span>':'')+'<br><span class="meta">no arquivo: '+esc(x.arq)+'</span></span></label></li>'}).join('')+'</ul>':'')+
+    (IMP.sem.length?'<details style="margin-top:10px"><summary>'+IMP.sem.length+' sem par aqui</summary><p class="note" style="margin-top:8px">'+esc(IMP.sem.slice(0,300).join('; '))+(IMP.sem.length>300?'…':'')+'</p></details>':'')+'</div>';
+}
+(function(){
+  try{
+    el('av-csv').addEventListener('change',function(e){
+      var f=e.target.files&&e.target.files[0];if(!f)return;
+      if(f.size>5e6){IMP={erro:'Arquivo grande demais (mais de 5 MB).'};renderImp();return}
+      var rd=new FileReader();
+      rd.onload=function(){try{IMP=impAnalisa(rd.result)}catch(err){console.error(err);IMP={erro:'Não consegui ler esse arquivo.'}}renderImp();e.target.value=''};
+      rd.readAsText(f);
+    });
+    el('av-imp').addEventListener('change',function(e){var c=e.target.closest('[data-impi]');if(!c||!IMP||!IMP.casados)return;IMP.casados[+c.dataset.impi].marcado=c.checked;
+      var n=IMP.casados.filter(function(x){return x.marcado}).length,ok=el('av-imp').querySelector('[data-impok]');if(ok){ok.textContent='Gravar '+n+' nota'+(n===1?'':'s');ok.disabled=!n}
+      var td=el('av-imp').querySelector('[data-imptodas]');if(td)td.textContent=n===IMP.casados.length?'Desmarcar todas':'Marcar todas'});
+    el('av-imp').addEventListener('click',function(e){
+      if(!IMP)return;
+      if(e.target.closest('[data-impcancel]')){IMP=null;renderImp();return}
+      if(e.target.closest('[data-imptodas]')){var tudo=IMP.casados.every(function(x){return x.marcado});IMP.casados.forEach(function(x){x.marcado=!tudo});renderImp();return}
+      if(e.target.closest('[data-impok]')){
+        var sel=IMP.casados.filter(function(x){return x.marcado});if(!sel.length)return;
+        comDesfazer(sel.map(function(x){return x.id}),sel.length+' nota'+(sel.length>1?'s':'')+' importada'+(sel.length>1?'s':'')+'.',function(){sel.forEach(function(x){darNota(x.id,x.nota)})});
+        IMP={feito:sel.length+' nota'+(sel.length>1?'s':'')+' do '+(IMP.fonte==='imdb'?'IMDb':'Letterboxd')+' gravada'+(sel.length>1?'s':'')+'.'};
+        AV.lista=null;renderImp();renderAvCont();renderAvTab();
+      }
+    });
+  }catch(e){console.error(e)}
+})();
 
 // ---------- PERGUNTAR À IA ----------
 // O contexto sai do que está neste aparelho e vai, com a pergunta, para /api/telas-perguntar,
@@ -849,18 +1966,27 @@ var IA_SENHA='telas_ia_senha';
 try{localStorage.removeItem(IA_SENHA)}catch(e){}
 function iaSenha(){try{return sessionStorage.getItem(IA_SENHA)||''}catch(e){return ''}}
 function guardaSenha(v){try{if(v)sessionStorage.setItem(IA_SENHA,v);else sessionStorage.removeItem(IA_SENHA)}catch(e){}}
+var LIM_CTX=56000; // a função recusa contexto acima de 60 mil caracteres; a página fica abaixo disso com folga
 function contextoIA(){
   var c={hoje:new Date().toISOString().slice(0,10)};
   try{
     var p=pesos();c.dimensoes=DIMS.map(function(d,i){return {nome:d.nome,peso:p[i]}});
     c.arquetipos=D.arquetipos_dele||[];
-    var porId={};[].concat(D.filmes||[],D.series||[],D.extras||[]).forEach(function(it){if(it&&it.id)porId[it.id]=it});
-    var tipoDe=function(id){return (D.filmes||[]).some(function(x){return x.id===id})?'filme':((D.extras||[]).some(function(x){return x.id===id&&x.tipo==='saga'})?'saga':'série')};
-    var nome=function(id){var it=porId[id]||(ST.livres[id]?{titulo:ST.livres[id].titulo}:null);return it?it.titulo+(it.ano?' ('+it.ano+')':''):id};
-    c.notas=Object.keys(ST.notas).map(function(id){return {titulo:nome(id),tipo:tipoDe(id),nota:ST.notas[id]}}).sort(function(a,b){return b.nota-a.nota});
+    var porId={};[].concat(D.filmes||[],D.series||[],D.extras||[],Object.keys(SAGAF).map(function(k){return SAGAF[k]}),(CAT&&CAT.itens)||[]).forEach(function(it){if(it&&it.id&&!porId[it.id])porId[it.id]=it});
+    var tipoDe=function(id){var a=achar(id);return !a?'':a.tipo==='serie'?'série':a.tipo==='livre'?'título livre':a.tipo};
+    var nome=function(id){var it=porId[id]||(ST.livres[id]?{titulo:ST.livres[id].titulo}:null);return it?it.titulo+(it.ano?' ('+it.ano+')':''):tituloDeId(id)};
+    // notas agrupadas por valor (0 a 100), com o tipo junto do título: cabe bem mais título no limite do contexto
+    var grupos={};Object.keys(ST.notas).forEach(function(id){var v=+ST.notas[id];if(isNaN(v))return;var tp=tipoDe(id);(grupos[v]=grupos[v]||[]).push(nome(id)+(tp?' · '+tp:''))});
+    c.notas=Object.keys(grupos).map(Number).sort(function(a,b){return b-a}).map(function(v){return {nota:v,titulos:grupos[v]}});
+    // status: quem tem nota já foi visto (a nota implica "assisti"), então "assisti" lista só os vistos sem nota
     var st={quero:[],assisti:[],acompanhando:[],abandonei:[]};
-    [].concat(D.filmes||[],D.series||[]).forEach(function(it){var s=stOf(it);if(st[s])st[s].push(nome(it.id))});
+    (AVI.length?AVI.map(function(r){return r.it}):[].concat(D.filmes||[],D.series||[])).forEach(function(it){var s=stOf(it);if(!st[s])return;if(s==='assisti'&&ST.notas[it.id]!=null)return;st[s].push(nome(it.id))});
     c.status=st;
+    c.nao_vi=AVI.filter(function(r){return ST.naovi[r.id]&&ST.notas[r.id]==null}).map(function(r){return nome(r.id)}).slice(0,150);
+    var g=gostoCalc();
+    if(g.ok)c.gosto={notas_usadas:g.n,pesos_aprendidos:DIMS.reduce(function(o,d,i){o[d.nome]=g.pesos[i];return o},{}),
+      correlacao_com_pesos_em_uso:+g.rAntes.toFixed(2),correlacao_com_aprendidos:+g.rDepois.toFixed(2),correlacao_validacao_cruzada:g.rCV==null?null:+g.rCV.toFixed(2),
+      aprendidos_passaram_no_teste:!!g.bom};
     c.colecoes={
       desligar:colItens('desligar').map(function(id){var o={titulo:nome(id)};if(ST.fase[id])o.fase=ST.fase[id];return o}),
       repetidos:colItens('repetidos').map(function(id){var o={titulo:nome(id)};if(ST.vezes[id])o.vezes=ST.vezes[id];return o})
@@ -870,8 +1996,41 @@ function contextoIA(){
     c.mais_conectados={filmes:top(D.filmes),series:top(D.series)};
     c.servicos_que_assina=meus();
     c.na_lista=[].concat(D.filmes||[],D.series||[],D.extras||[]).map(function(it){return it.id+' | '+it.titulo+(it.ano?' ('+it.ano+')':'')});
+    cortaContexto(c,LIM_CTX);
   }catch(e){console.error(e)}
   return c;
+}
+// Se o contexto passar do limite, corta listas em camadas, do que menos diz para o que mais diz:
+// 1) o "não vi" além dos 30 primeiros; 2) as notas do meio (40 a 70); 3) as listas de status e a biblioteca;
+// 4) as notas de 71 a 79 e de 20 a 39; 5) o resto do "não vi"; 6) as notas de 80 para cima e abaixo de 20;
+// 7) a lista de ids da página. Em cada camada sai primeiro do maior array. Grupo de notas cortado ganha e_mais
+// (quantos títulos saíram); lista de texto cortada termina com "(e mais N, cortados pelo tamanho)". As marcas
+// também ocupam espaço: se ainda passar, faz outra volta com mais folga.
+var MARCA_CORTE=/^\(e mais (\d+), cortados pelo tamanho\)$/;
+function cortaContexto(c,lim){
+  for(var volta=0;volta<4;volta++){
+    var tam=JSON.stringify(c).length;if(tam<=lim)return;
+    var meta=lim-volta*1500,regs=[],st=c.status||{};
+    var faixa=function(a,b){return (c.notas||[]).filter(function(g){return g.nota>=a&&g.nota<=b}).map(function(g){return {o:g,k:'titulos',grupo:true,min:0}})};
+    var arr=function(o,k,min){return o&&Array.isArray(o[k])?[{o:o,k:k,min:min||0}]:[]};
+    var camadas=[arr(c,'nao_vi',30),faixa(40,70),[].concat(arr(st,'quero'),arr(st,'assisti'),arr(st,'acompanhando'),arr(st,'abandonei'),arr(c,'biblioteca')),
+      faixa(71,79).concat(faixa(20,39)),arr(c,'nao_vi'),faixa(80,100).concat(faixa(0,19)),arr(c,'na_lista')];
+    var reg=function(x){
+      for(var i=0;i<regs.length;i++)if(regs[i].o===x.o&&regs[i].k===x.k)return regs[i];
+      var r={o:x.o,k:x.k,grupo:!!x.grupo,n:0},l=x.o[x.k];
+      if(!r.grupo&&l.length&&MARCA_CORTE.test(l[l.length-1]))r.n=+MARCA_CORTE.exec(l.pop())[1]; // marca de uma volta anterior
+      regs.push(r);return r;
+    };
+    camadas.forEach(function(cam){
+      while(tam>meta){
+        var maior=null,lm=0;cam.forEach(function(x){var l=x.o[x.k].length-x.min;if(l>lm){lm=l;maior=x}});
+        if(!maior)break;
+        var r=reg(maior);if(maior.o[maior.k].length-maior.min<=0)continue;
+        var it=maior.o[maior.k].pop();tam-=JSON.stringify(it).length+1;r.n++;
+      }
+    });
+    regs.forEach(function(r){if(!r.n)return;if(r.grupo)r.o.e_mais=(r.o.e_mais||0)+r.n;else r.o[r.k].push('(e mais '+r.n+', cortados pelo tamanho)')});
+  }
 }
 function paragrafos(t){return String(t||'').split(/\n{2,}|\n(?=[-•])/).map(function(x){return x.trim()}).filter(Boolean).map(function(x){return '<p>'+esc(x)+'</p>'}).join('')}
 function naLista(id){return [].concat(D&&D.filmes||[],D&&D.series||[]).some(function(it){return it.id===id})}
@@ -961,7 +2120,7 @@ function renderDados(){
 }
 el('exp').addEventListener('click',function(){
   try{
-    var blob=new Blob([JSON.stringify({app:'telas',versao:1,em:new Date().toISOString(),estado:ST},null,2)],{type:'application/json'});
+    var blob=new Blob([JSON.stringify({app:'telas',versao:2,em:new Date().toISOString(),estado:ST},null,2)],{type:'application/json'});
     var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='telas-backup-'+new Date().toISOString().slice(0,10)+'.json';
     document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
   }catch(e){el('impmsg').textContent='Não consegui gerar o arquivo neste navegador.'}
@@ -970,9 +2129,12 @@ el('imp').addEventListener('change',function(e){
   var f=e.target.files&&e.target.files[0];if(!f)return;
   var r=new FileReader();
   r.onload=function(){
-    try{var j=JSON.parse(r.result);var s=j.estado||j;
-      ST.notas=s.notas||{};ST.status=s.status||{};ST.pesos=s.pesos||null;ST.servicos=Array.isArray(s.servicos)?s.servicos:[];restauraCol(s);save();renderAll();renderCal();
-      el('impmsg').textContent='Backup restaurado: '+Object.keys(ST.notas).length+' notas, '+Object.keys(ST.status).length+' status.';
+    try{var j=JSON.parse(r.result);var s=j.estado||j;if(!s||typeof s!=='object'||Array.isArray(s))throw new Error('formato');
+      restauraTudo(s);save();
+      try{montarAvaliaveis()}catch(e2){console.error(e2)}
+      marcaSujo();renderAll();renderCal();
+      var nOc=Object.keys(ST.sugOcultas).reduce(function(a,k){return a+ST.sugOcultas[k].length},0);
+      el('impmsg').textContent='Backup restaurado: '+Object.keys(ST.notas).length+' notas, '+Object.keys(ST.status).length+' status, '+Object.keys(ST.naovi).length+' "não vi" e '+nOc+' sugestões escondidas.';
     }catch(err){el('impmsg').textContent='Esse arquivo não é um backup do Telas.'}
   };
   r.readAsText(f);
