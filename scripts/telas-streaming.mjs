@@ -130,6 +130,18 @@ for (const ex of dados.extras || []) {
   if (ex?.tipo === 'saga') for (const f of ex.filmes || []) poe(f, 'movie');
   else poe(ex, ex?.tipo === 'filme' ? 'movie' : 'tv');
 }
+// as sugestões fixas das coleções (telas/catalogo.json > sugestoes), que aparecem como cartões em Desligar e
+// Repetidos; o resto do catálogo fica de fora para não multiplicar as consultas. Sem catálogo, segue sem elas.
+try {
+  const cat = JSON.parse(await readFile('telas/catalogo.json', 'utf8'));
+  const porId = new Map((cat.itens || []).filter(it => it?.id).map(it => [it.id, it]));
+  for (const lista of Object.values(cat.sugestoes || {})) {
+    for (const s of Array.isArray(lista) ? lista : []) {
+      const it = porId.get(s?.id);
+      if (it) poe(it, it.tipo === 'serie' ? 'tv' : 'movie');
+    }
+  }
+} catch (e) { console.log(`sem as sugestões do catálogo (${e.message})`); }
 
 const titulos = {};
 let falhas = 0, seguidas = 0, total = 0;
