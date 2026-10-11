@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '17 10 * * *'   # 07h17 em Brasília, todo dia
   workflow_dispatch:
+    inputs:
+      somente_posteres:
+        description: 'Só os pôsteres (sem buscar episódios nem mandar e-mail)'
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths:
@@ -11,6 +16,8 @@ on:
       - 'telas/dados.json'
       - 'scripts/telas-episodios.mjs'
       - 'scripts/telas-streaming.mjs'
+      - 'scripts/telas-posteres.mjs'
+      - 'telas/catalogo.json'
 
 permissions:
   contents: write
@@ -22,19 +29,21 @@ concurrency:
 jobs:
   atualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
       - name: Buscar episódios, gerar calendário e avisar
+        if: ${{ !inputs.somente_posteres }}
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
         run: node scripts/telas-episodios.mjs
       - name: Onde assistir no Brasil (JustWatch via TMDB)
         id: streaming
+        if: ${{ !inputs.somente_posteres }}
         # se o TMDB falhar ou travar, os episódios do dia ainda são salvos;
         # o último passo deixa a execução vermelha para o GitHub avisar por e-mail
         continue-on-error: true
@@ -42,6 +51,15 @@ jobs:
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: node scripts/telas-streaming.mjs
+      - name: Pôsteres (TMDB; Wikipedia via Wikidata para o que faltar)
+        id: posteres
+        # mesma regra do onde assistir: se o TMDB e a Wikimedia falharem, o resto do dia ainda é
+        # salvo e o último passo deixa a execução vermelha. Sem o segredo, só a Wikipedia.
+        continue-on-error: true
+        timeout-minutes: 6
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node scripts/telas-posteres.mjs
       - name: Salvar se mudou
         run: |
           if [ -n "$(git status --porcelain telas/)" ]; then
@@ -49,7 +67,8 @@ jobs:
             git config user.email "telas-robo@users.noreply.github.com"
             git add telas/episodios.json telas/lancamentos.ics
             if [ -f telas/streaming.json ]; then git add telas/streaming.json; fi
-            git commit -m "telas: robô atualizou episódios e onde assistir"
+            if [ -f telas/posteres.json ]; then git add telas/posteres.json; fi
+            git commit -m "telas: robô atualizou episódios, onde assistir e pôsteres"
             git push
           else
             echo "sem mudanças"
@@ -58,4 +77,9 @@ jobs:
         if: steps.streaming.outcome == 'failure'
         run: |
           echo "::error::Onde assistir não foi atualizado — veja o passo do TMDB (chave TMDB_API_KEY ou TMDB fora do ar)"
+          exit 1
+      - name: Avisar se os pôsteres falharam
+        if: ${{ !cancelled() && steps.posteres.outcome == 'failure' }}
+        run: |
+          echo "::error::Pôsteres não foram atualizados — veja o passo dos pôsteres (TMDB ou Wikipedia/Wikidata fora do ar, ou resposta mudou)"
           exit 1
