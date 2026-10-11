@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-11T19:31:50.657Z",
+ "gerado_em": "2026-10-11T19:33:27.657Z",
  "fonte": "Wikipedia (via Wikidata)",
  "itens": {
   "a-amiga-genial-2018": {
@@ -207,7 +207,8 @@
    "w": 348,
    "h": 176,
    "pagina": "https://en.wikipedia.org/wiki/Arrested_Development",
-   "wiki": "en"
+   "wiki": "en",
+   "local": "/telas/cartazes/192bd1c3fc2e1b1e.webp"
   },
   "as-aventuras-de-pi-2012": {
    "img": "https://upload.wikimedia.org/wikipedia/pt/5/57/Life_of_Pi_2012_Poster.jpg",
@@ -230,7 +231,8 @@
    "w": 300,
    "h": 128,
    "pagina": "https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender",
-   "wiki": "en"
+   "wiki": "en",
+   "local": "/telas/cartazes/eaaf079c25d22a9b.webp"
   },
   "avatar-o-ultimo-mestre-do-ar-2024": {
    "img": "https://upload.wikimedia.org/wikipedia/pt/b/b6/Avatar_The_Last_Airbender_2024_series_poster.jpg",
@@ -253,7 +255,8 @@
    "w": 496,
    "h": 613,
    "pagina": "https://en.wikipedia.org/wiki/The_Big_Bang_Theory",
-   "wiki": "en"
+   "wiki": "en",
+   "local": "/telas/cartazes/ec22087d2632d70b.webp"
   },
   "bye-bye-brasil-1979": {
    "img": "https://upload.wikimedia.org/wikipedia/pt/9/9a/Cartaz_Bye_Bye_Brasil.png",
@@ -524,7 +527,8 @@
    "w": 212,
    "h": 82,
    "pagina": "https://en.wikipedia.org/wiki/Frasier",
-   "wiki": "en"
+   "wiki": "en",
+   "local": "/telas/cartazes/6f8eecf419855249.webp"
   },
   "frieren-2023": {
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/S%C5%8Ds%C5%8D_no_Frieren_logo.png/500px-S%C5%8Ds%C5%8D_no_Frieren_logo.png",
@@ -755,7 +759,8 @@
    "w": 400,
    "h": 212,
    "pagina": "https://en.wikipedia.org/wiki/Lost_(TV_series)",
-   "wiki": "en"
+   "wiki": "en",
+   "local": "/telas/cartazes/1f28364b54ffbe1e.webp"
   },
   "mad-men-2007": {
    "img": "https://upload.wikimedia.org/wikipedia/en/3/33/Mad-men-title-card.jpg",
@@ -770,7 +775,8 @@
    "w": 413,
    "h": 162,
    "pagina": "https://en.wikipedia.org/wiki/Dark_Matter_(2024_TV_series)",
-   "wiki": "en"
+   "wiki": "en",
+   "local": "/telas/cartazes/c98154739e79105a.webp"
   },
   "matrix-1999": {
    "img": "https://upload.wikimedia.org/wikipedia/pt/c/c1/The_Matrix_Poster.jpg",
