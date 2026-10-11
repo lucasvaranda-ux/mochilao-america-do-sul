@@ -1,6 +1,8 @@
 name: Diagnóstico temporário · cartazes da Wikipedia
 on:
-  workflow_dispatch:
+  push:
+    branches: ['claude/personal-life-page-planning-8a54fw']
+    paths: ['.github/workflows/diag-cartazes.yml']
 permissions:
   contents: read
 jobs:
