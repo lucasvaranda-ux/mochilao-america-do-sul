@@ -10,9 +10,12 @@
 // Node 20+, sem dependências. Política da Wikimedia: User-Agent descritivo (sem e-mail),
 // chamadas em série com pausa curta, e respeito ao 429/Retry-After.
 
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, unlink, stat } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
 
 export const UA = 'TelasBot/1.0 (https://mochilao.madeinbr.app/telas)';
 export const FONTE = 'Wikipedia (via Wikidata)';
@@ -37,6 +40,15 @@ const TEMPO_SPARQL_MS = 30000; // a consulta é simples (uns poucos segundos); o
 const TEMPO_WIKI_MS = 20000;
 const TENTATIVAS = 3;
 const PRAZO_MS = 4 * 60000; // depois disso não começa chamada nova: grava o que tem (o passo do workflow tem 6 min)
+// Cópias locais (telas/cartazes/): o celular não pede nada à Wikimedia, que às vezes responde 429 a
+// navegadores que buscam muitas imagens seguidas. O arquivo leva o hash da URL de origem no nome, então
+// trocar de cartaz gera um arquivo novo, e o que ninguém usa mais é apagado.
+const PASTA_COPIAS = 'telas/cartazes';
+const LARGURA_COPIA = 360;          // o maior uso é a página do título (150 px, 300 no retina)
+const PAUSA_COPIA_MS = 150;
+const TEMPO_COPIA_MS = 20000;
+const COPIA_MAX = 5 * 1024 * 1024;
+export const LOCAL_OK = /^\/telas\/cartazes\/[0-9a-f]{16}\.(webp|jpg|png|gif)$/;
 // Larguras de miniatura aceitas em hotlink pela Wikimedia (as outras são recusadas desde 2026).
 const LARGURA = 500;
 const PADRAO = [20, 40, 60, 120, 250, 330, 500, 960, 1280, 1920, 3840];
@@ -339,6 +351,77 @@ function lotesDeTitulos(titulos) {
   return out;
 }
 
+// ---------- CÓPIAS LOCAIS ----------
+const EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/gif': 'gif' };
+export function nomeCopia(url) { return createHash('sha1').update(String(url)).digest('hex').slice(0, 16); }
+// cwebp (pacote "webp" do Ubuntu) reduz para 360 px de largura em WebP, que guarda a transparência dos logos.
+// Sem ele, a cópia vai como veio (a Wikimedia já entrega 500 px ou menos).
+export function cwebpDisponivel() {
+  try { return spawnSync('cwebp', ['-version'], { stdio: 'ignore' }).status === 0; } catch { return false; }
+}
+function paraWebp(bytes, largura) {
+  const base = join(tmpdir(), 'cartaz-' + process.pid + '-' + Math.random().toString(36).slice(2));
+  const ent = base + '.in', sai = base + '.webp';
+  return writeFile(ent, bytes).then(async () => {
+    const args = ['-quiet', '-q', '78', '-metadata', 'none'];
+    if (largura > LARGURA_COPIA) args.push('-resize', String(LARGURA_COPIA), '0');
+    const r = spawnSync('cwebp', [...args, ent, '-o', sai], { stdio: 'ignore', timeout: 20000 });
+    try { if (r.status !== 0) return null; return await readFile(sai); }
+    finally { await unlink(ent).catch(() => {}); await unlink(sai).catch(() => {}); }
+  });
+}
+export async function copiasLocais({ raiz, itens, fetchFn, dormir, log, prazo, converter = cwebpDisponivel() }) {
+  const dir = join(raiz, PASTA_COPIAS);
+  await mkdir(dir, { recursive: true });
+  let existentes = new Set();
+  try { existentes = new Set(await readdir(dir)); } catch {}
+  const usados = new Set();
+  let baixadas = 0, falhas = 0, reaproveitadas = 0, primeiraBaixa = true;
+  const porUrl = new Map(); // a saga usa o mesmo cartaz do 1º filme: uma cópia só
+  for (const id of Object.keys(itens)) {
+    const e = itens[id];
+    const url = String(e?.img || '');
+    if (!url) continue;
+    const nome = nomeCopia(url);
+    if (porUrl.has(url)) { const l = porUrl.get(url); if (l) { e.local = l; } continue; }
+    const pronto = [...existentes].find(f => f.startsWith(nome + '.'));
+    if (pronto) { e.local = '/' + PASTA_COPIAS + '/' + pronto; usados.add(pronto); porUrl.set(url, e.local); reaproveitadas++; continue; }
+    if (Date.now() > prazo) { porUrl.set(url, null); continue; }
+    let ok = false;
+    for (let t = 1; t <= TENTATIVAS && !ok; t++) {
+      if (!primeiraBaixa) await dormir(PAUSA_COPIA_MS);
+      primeiraBaixa = false;
+      try {
+        const r = await fetchFn(url, { headers: { 'User-Agent': UA, Accept: 'image/webp,image/*' }, signal: AbortSignal.timeout(TEMPO_COPIA_MS) });
+        if (r.status === 429 || r.status >= 500) {
+          const ra = Math.min(30, Number(r.headers?.get?.('retry-after')) || 5 * t);
+          await r.arrayBuffer().catch(() => {});
+          if (t < TENTATIVAS) await dormir(ra * 1000);
+          continue;
+        }
+        const tipo = String(r.headers?.get?.('content-type') || '').split(';')[0].trim().toLowerCase();
+        if (!r.ok || !EXT[tipo]) { await r.arrayBuffer().catch(() => {}); break; }
+        let bytes = Buffer.from(await r.arrayBuffer());
+        if (!bytes.length || bytes.length > COPIA_MAX) break;
+        let ext = EXT[tipo];
+        if (converter && ext !== 'gif') {
+          const w = await paraWebp(bytes, Number(e.w) || 500).catch(() => null);
+          if (w && w.length) { bytes = w; ext = 'webp'; }
+        }
+        const arq = nome + '.' + ext;
+        await writeFile(join(dir, arq), bytes);
+        e.local = '/' + PASTA_COPIAS + '/' + arq; usados.add(arq); porUrl.set(url, e.local); baixadas++; ok = true;
+      } catch { /* rede: tenta de novo */ }
+    }
+    if (!ok) { falhas++; porUrl.set(url, null); }
+  }
+  // apaga as cópias que nenhum título usa mais
+  let apagadas = 0;
+  for (const f of existentes) if (!usados.has(f) && /^[0-9a-f]{16}\.(webp|jpg|png|gif)$/.test(f)) { await unlink(join(dir, f)).catch(() => {}); apagadas++; }
+  log(`cópias locais: ${baixadas} baixadas, ${reaproveitadas} já existiam, ${falhas} falharam, ${apagadas} apagadas${converter ? '' : ' (sem cwebp: cópias no formato original)'}`);
+  return { baixadas, reaproveitadas, falhas, apagadas };
+}
+
 // ---------- EXECUÇÃO ----------
 export async function executar({
   raiz = process.cwd(),
@@ -349,6 +432,8 @@ export async function executar({
   prazoMs = PRAZO_MS,
   tmdbChave = process.env.TMDB_API_KEY,
   tmdbBase = process.env.TMDB_BASE || TMDB_API, // TMDB_BASE: só para teste local
+  copias = process.env.TELAS_SEM_COPIAS !== '1',
+  converter,
 } = {}) {
   const ARQ = join(raiz, 'telas/posteres.json');
   const fim = (codigo, gravou, extra = {}) => ({ codigo, gravou, ...extra });
@@ -494,6 +579,11 @@ export async function executar({
   }
   const novo = ordenar(itens);
   const n = Object.keys(novo).length;
+  // cópia de cada cartaz no próprio site (o celular não depende da Wikimedia nem do TMDB)
+  if (copias && n) {
+    try { await copiasLocais({ raiz, itens: novo, fetchFn, dormir, log, prazo: prazo + 60000, ...(converter === undefined ? {} : { converter }) }); }
+    catch (e) { log(`cópias locais falharam (${e.message}) — a página usa o endereço original`); }
+  }
   const contar = w => Object.values(novo).filter(e => e.wiki === w).length;
   const nTmdb = Object.values(novo).filter(e => e.fonte === 'tmdb').length;
   log(`pôsteres: ${n} (TMDB: ${nTmdb}, pt: ${contar('pt')}, en: ${contar('en')}); imagem pt recusada por não parecer cartaz: ${rejeitadasPt}; lotes com falha: Wikidata ${sparqlFalhas}, Wikipedia ${wikiFalhas}`);
