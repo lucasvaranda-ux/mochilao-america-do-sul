@@ -1,1122 +1,1269 @@
 {
- "gerado_em": "2026-10-11T07:30:41.796Z",
+ "gerado_em": "2026-10-11T07:32:31.515Z",
  "fonte": "Wikipedia (via Wikidata)",
  "itens": {
   "a-amiga-genial-2018": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/d/d1/My_Brilliant_Friend_title_card.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/d/d1/My_Brilliant_Friend_title_card.png",
    "w": 420,
    "h": 238,
    "pagina": "https://en.wikipedia.org/wiki/My_Brilliant_Friend_(TV_series)",
    "wiki": "en"
   },
   "a-arvore-da-vida-2011": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/4/4e/Thetreeoflifeposter.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/4/4e/Thetreeoflifeposter.jpg",
    "w": 252,
    "h": 395,
    "pagina": "https://en.wikipedia.org/wiki/The_Tree_of_Life_(film)",
    "wiki": "en"
   },
+  "a-casa-do-dragao-2022": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/House_of_the_dragon_logo.png/500px-House_of_the_dragon_logo.png",
+   "w": 500,
+   "h": 262,
+   "pagina": "https://en.wikipedia.org/wiki/House_of_the_Dragon",
+   "wiki": "en"
+  },
   "a-danca-da-realidade-2013": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/ad/Before_Midnight_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/ad/Before_Midnight_poster.jpg",
    "w": 220,
    "h": 326,
    "pagina": "https://en.wikipedia.org/wiki/Before_Midnight",
    "wiki": "en"
   },
+  "a-felicidade-nao-se-compra-1946": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/It%27s_a_Wonderful_Life_%281946_poster%29.jpeg/500px-It%27s_a_Wonderful_Life_%281946_poster%29.jpeg",
+   "w": 500,
+   "h": 753,
+   "pagina": "https://pt.wikipedia.org/wiki/It's_a_Wonderful_Life",
+   "wiki": "pt"
+  },
   "a-fonte-da-vida-2006": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/e/ee/Fountain_poster_1.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/e/ee/Fountain_poster_1.jpg",
    "w": 297,
    "h": 440,
    "pagina": "https://pt.wikipedia.org/wiki/The_Fountain",
    "wiki": "pt"
   },
   "a-lenda-de-korra-2012": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/8/85/Legend_of_Korra_logo.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/8/85/Legend_of_Korra_logo.png",
    "w": 360,
    "h": 171,
    "pagina": "https://en.wikipedia.org/wiki/The_Legend_of_Korra",
    "wiki": "en"
   },
   "a-missao-1986": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/2/2e/A_Miss%C3%A3o.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/2/2e/A_Miss%C3%A3o.jpg",
    "w": 220,
    "h": 340,
    "pagina": "https://pt.wikipedia.org/wiki/A_Miss%C3%A3o",
    "wiki": "pt"
   },
   "a-odisseia-2026": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/6/6d/A_Odisseia.webp?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/6/6d/A_Odisseia.webp",
    "w": 316,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/A_Odisseia",
    "wiki": "pt"
   },
   "a-place-further-than-the-universe-2018": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/f3/A_Place_Further_Than_the_Universe_key_visual.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/f3/A_Place_Further_Than_the_Universe_key_visual.png",
    "w": 250,
    "h": 375,
    "pagina": "https://en.wikipedia.org/wiki/A_Place_Further_than_the_Universe",
    "wiki": "en"
   },
   "a-procura-da-felicidade-2006": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/1/1e/The_Pursuit_of_Happyness.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/1/1e/The_Pursuit_of_Happyness.jpg",
    "w": 336,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/The_Pursuit_of_Happyness",
    "wiki": "pt"
   },
   "a-sete-palmos-2001": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/2/23/Sixfeetunderlogo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/2/23/Sixfeetunderlogo.jpg",
    "w": 250,
    "h": 145,
    "pagina": "https://en.wikipedia.org/wiki/Six_Feet_Under_(TV_series)",
    "wiki": "en"
   },
   "a-ultima-floresta-2021": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/c/c4/A_%C3%9Altima_Floresta.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/c/c4/A_%C3%9Altima_Floresta.jpg",
    "w": 321,
    "h": 471,
    "pagina": "https://pt.wikipedia.org/wiki/A_%C3%9Altima_Floresta",
    "wiki": "pt"
   },
   "a-viagem-2012": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/7/7d/Cloud_Atlas.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/7/7d/Cloud_Atlas.jpg",
    "w": 352,
    "h": 498,
    "pagina": "https://pt.wikipedia.org/wiki/Cloud_Atlas_(filme)",
    "wiki": "pt"
   },
   "a-viagem-de-chihiro-2001": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3b/A_Viagem_de_Chihiro.JPG?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3b/A_Viagem_de_Chihiro.JPG",
    "w": 265,
    "h": 376,
    "pagina": "https://pt.wikipedia.org/wiki/A_Viagem_de_Chihiro",
    "wiki": "pt"
   },
   "a-vida-secreta-de-walter-mitty-2013": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/f2/The_Secret_Life_of_Walter_Mitty_2013_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/f2/The_Secret_Life_of_Walter_Mitty_2013_poster.jpg",
    "w": 250,
    "h": 370,
    "pagina": "https://en.wikipedia.org/wiki/The_Secret_Life_of_Walter_Mitty_(2013_film)",
    "wiki": "en"
   },
   "amazon-bruce-parry-2008": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/36/Bruce_Parry_Amazon_DVD.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/36/Bruce_Parry_Amazon_DVD.png",
    "w": 265,
    "h": 376,
    "pagina": "https://en.wikipedia.org/wiki/Amazon_(2008_TV_series)",
    "wiki": "en"
   },
+  "american-dad-2005": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/American_dad_logo.svg/500px-American_dad_logo.svg.png",
+   "w": 500,
+   "h": 336,
+   "pagina": "https://en.wikipedia.org/wiki/American_Dad!",
+   "wiki": "en"
+  },
+  "andor-2022": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Andor.svg/500px-Andor.svg.png",
+   "w": 500,
+   "h": 224,
+   "pagina": "https://en.wikipedia.org/wiki/Andor",
+   "wiki": "en"
+  },
   "andrei-rublev-1966": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/ae/Andrei_Rublev_Russian_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/ae/Andrei_Rublev_Russian_poster.jpg",
    "w": 243,
    "h": 411,
    "pagina": "https://en.wikipedia.org/wiki/Andrei_Rublev_(film)",
    "wiki": "en"
   },
   "animais-fantasticos-e-onde-habitam-2016": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/0/0b/FBAWTFT-poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/0/0b/FBAWTFT-poster.jpg",
    "w": 259,
    "h": 384,
    "pagina": "https://en.wikipedia.org/wiki/Fantastic_Beasts_and_Where_to_Find_Them_(film)",
    "wiki": "en"
   },
   "animais-fantasticos-os-crimes-de-grindelwald-2018": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/2/25/Fantastic_Beasts_The_Crimes_of_Grindelwald.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/2/25/Fantastic_Beasts_The_Crimes_of_Grindelwald.jpg",
    "w": 310,
    "h": 459,
    "pagina": "https://pt.wikipedia.org/wiki/Fantastic_Beasts:_The_Crimes_of_Grindelwald",
    "wiki": "pt"
   },
   "animais-fantasticos-os-segredos-de-dumbledore-2022": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b7/Fantastic_Beasts_The_Secrets_of_Dumbledore_poster_IMP.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b7/Fantastic_Beasts_The_Secrets_of_Dumbledore_poster_IMP.jpg",
    "w": 337,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/Fantastic_Beasts:_The_Secrets_of_Dumbledore",
    "wiki": "pt"
   },
   "anne-with-an-e-2017": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/7/79/Anne_TV_series_intertitle.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/7/79/Anne_TV_series_intertitle.png",
    "w": 300,
    "h": 168,
    "pagina": "https://en.wikipedia.org/wiki/Anne_with_an_E",
    "wiki": "en"
   },
   "anthony-bourdain-parts-unknown-2013": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/a1/Logo_for_Anthony_Bourdain_Parts_Unknown.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/a1/Logo_for_Anthony_Bourdain_Parts_Unknown.png",
    "w": 272,
    "h": 132,
    "pagina": "https://en.wikipedia.org/wiki/Anthony_Bourdain:_Parts_Unknown",
    "wiki": "en"
   },
   "arrested-development-2003": {
-   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Arrested_Development.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Arrested_Development.svg",
    "w": 348,
    "h": 176,
    "pagina": "https://en.wikipedia.org/wiki/Arrested_Development",
    "wiki": "en"
   },
   "as-aventuras-de-pi-2012": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/5/57/Life_of_Pi_2012_Poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/5/57/Life_of_Pi_2012_Poster.jpg",
    "w": 215,
    "h": 319,
    "pagina": "https://pt.wikipedia.org/wiki/Life_of_Pi_(filme)",
    "wiki": "pt"
   },
   "avatar-2009": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b0/Avatar-Teaser-Poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b0/Avatar-Teaser-Poster.jpg",
    "w": 298,
    "h": 442,
    "pagina": "https://pt.wikipedia.org/wiki/Avatar_(filme)",
    "wiki": "pt"
   },
   "avatar-a-lenda-de-aang-2005": {
-   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Avatar_The_Last_Airbender_logo.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Avatar_The_Last_Airbender_logo.svg",
    "w": 300,
    "h": 128,
    "pagina": "https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender",
    "wiki": "en"
   },
   "avatar-o-ultimo-mestre-do-ar-2024": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b6/Avatar_The_Last_Airbender_2024_series_poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b6/Avatar_The_Last_Airbender_2024_series_poster.jpg",
    "w": 260,
    "h": 385,
    "pagina": "https://pt.wikipedia.org/wiki/Avatar:_The_Last_Airbender_(s%C3%A9rie_de_televis%C3%A3o)",
    "wiki": "pt"
   },
+  "avatar-seven-havens-2026": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Avatar_Seven_Havens_logo.svg/500px-Avatar_Seven_Havens_logo.svg.png",
+   "w": 500,
+   "h": 254,
+   "pagina": "https://en.wikipedia.org/wiki/Avatar:_Seven_Havens",
+   "wiki": "en"
+  },
   "big-bang-a-teoria-2007": {
-   "img": "https://upload.wikimedia.org/wikipedia/commons/1/13/TBBT_logo.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/13/TBBT_logo.svg",
    "w": 496,
    "h": 613,
    "pagina": "https://en.wikipedia.org/wiki/The_Big_Bang_Theory",
    "wiki": "en"
   },
   "capitao-fantastico-2016": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/c/c2/Captain_Fantastic_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/c/c2/Captain_Fantastic_poster.jpg",
    "w": 254,
    "h": 392,
    "pagina": "https://en.wikipedia.org/wiki/Captain_Fantastic_(film)",
    "wiki": "en"
   },
   "carnivale-2003": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/b/bc/Carnivale_title.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/b/bc/Carnivale_title.jpg",
    "w": 250,
    "h": 137,
    "pagina": "https://en.wikipedia.org/wiki/Carniv%C3%A0le",
    "wiki": "en"
   },
   "cem-anos-de-solidao-2024": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/fa/One_Hundred_Years_of_Solitude_Netflix.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/fa/One_Hundred_Years_of_Solitude_Netflix.jpg",
    "w": 259,
    "h": 384,
    "pagina": "https://en.wikipedia.org/wiki/One_Hundred_Years_of_Solitude_(TV_series)",
    "wiki": "en"
   },
   "central-do-brasil-1998": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/2/29/Central_do_Brasil_poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/2/29/Central_do_Brasil_poster.jpg",
    "w": 247,
    "h": 381,
    "pagina": "https://pt.wikipedia.org/wiki/Central_do_Brasil_(filme)",
    "wiki": "pt"
   },
   "chefs-table-2015": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/1/11/Chef%27s_Table.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/1/11/Chef%27s_Table.jpg",
    "w": 197,
    "h": 276,
    "pagina": "https://en.wikipedia.org/wiki/Chef's_Table",
    "wiki": "en"
   },
   "chernobyl-2019": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/a7/Chernobyl_2019_Miniseries.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/a7/Chernobyl_2019_Miniseries.jpg",
    "w": 250,
    "h": 370,
    "pagina": "https://en.wikipedia.org/wiki/Chernobyl_(miniseries)",
    "wiki": "en"
   },
   "cidade-invisivel-2021": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/7/7a/Cidade_Invis%C3%ADvel%2C_cartaz.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/7/7a/Cidade_Invis%C3%ADvel%2C_cartaz.png",
    "w": 247,
    "h": 346,
    "pagina": "https://pt.wikipedia.org/wiki/Cidade_Invis%C3%ADvel",
    "wiki": "pt"
   },
   "coisa-mais-linda-2019": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/2/22/Girls_from_Ipanema.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/2/22/Girls_from_Ipanema.jpg",
    "w": 235,
    "h": 353,
    "pagina": "https://en.wikipedia.org/wiki/Girls_from_Ipanema",
    "wiki": "en"
   },
   "com-amor-van-gogh-2017": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/4/4b/Loving_Vincent.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/4/4b/Loving_Vincent.png",
    "w": 220,
    "h": 325,
    "pagina": "https://pt.wikipedia.org/wiki/Loving_Vincent",
    "wiki": "pt"
   },
   "comer-rezar-amar-2010": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3d/Eat_Pray_Love_Capa.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3d/Eat_Pray_Love_Capa.jpg",
    "w": 300,
    "h": 444,
    "pagina": "https://pt.wikipedia.org/wiki/Eat_Pray_Love",
    "wiki": "pt"
   },
   "contato-1997": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/9/9d/Contact-P%C3%B4ster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/9/9d/Contact-P%C3%B4ster.jpg",
    "w": 328,
    "h": 487,
    "pagina": "https://pt.wikipedia.org/wiki/Contact",
    "wiki": "pt"
   },
   "cosmos-1980": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/e/ec/Cosmos_-_A_Personal_Voyage_%28title_card%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/e/ec/Cosmos_-_A_Personal_Voyage_%28title_card%29.jpg",
    "w": 359,
    "h": 277,
    "pagina": "https://en.wikipedia.org/wiki/Cosmos:_A_Personal_Voyage",
    "wiki": "en"
   },
   "cosmos-uma-odisseia-do-espaco-tempo-2014": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/8/8e/Cosmos_spacetime_odyssey_titlecard.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/8/8e/Cosmos_spacetime_odyssey_titlecard.jpg",
    "w": 400,
    "h": 220,
    "pagina": "https://en.wikipedia.org/wiki/Cosmos:_A_Spacetime_Odyssey",
    "wiki": "en"
   },
   "dark-2017": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/f/f6/Dark_%28s%C3%A9rie%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/f/f6/Dark_%28s%C3%A9rie%29.jpg",
    "w": 338,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/Dark",
    "wiki": "pt"
   },
   "dark-winds-2022": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/a5/Dark_Winds_title_card.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/a5/Dark_Winds_title_card.jpg",
    "w": 400,
    "h": 250,
    "pagina": "https://en.wikipedia.org/wiki/Dark_Winds",
    "wiki": "en"
   },
   "dersu-uzala-1975": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/0/06/Dersu_Uzala.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/0/06/Dersu_Uzala.jpg",
    "w": 211,
    "h": 300,
    "pagina": "https://pt.wikipedia.org/wiki/Dersu_Uzala",
    "wiki": "pt"
   },
   "deus-e-o-diabo-na-terra-do-sol-1964": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/5/51/Cartaz_Deus_e_o_Diabo_na_Terra_do_Sol.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/5/51/Cartaz_Deus_e_o_Diabo_na_Terra_do_Sol.png",
    "w": 320,
    "h": 481,
    "pagina": "https://pt.wikipedia.org/wiki/Deus_e_o_Diabo_na_Terra_do_Sol",
    "wiki": "pt"
   },
   "devs-2020": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/8/8f/Devs_Title_Card.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/8/8f/Devs_Title_Card.png",
    "w": 446,
    "h": 223,
    "pagina": "https://en.wikipedia.org/wiki/Devs_(TV_series)",
    "wiki": "en"
   },
   "diarios-de-motocicleta-2004": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/7/76/Di%C3%A1rios_de_Motocicleta.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/7/76/Di%C3%A1rios_de_Motocicleta.jpg",
    "w": 267,
    "h": 400,
    "pagina": "https://pt.wikipedia.org/wiki/Di%C3%A1rios_de_Motocicleta",
    "wiki": "pt"
   },
   "dickinson-2019": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/9/97/Dickinson_Title_Card.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/9/97/Dickinson_Title_Card.jpg",
    "w": 350,
    "h": 197,
    "pagina": "https://en.wikipedia.org/wiki/Dickinson_(TV_series)",
    "wiki": "en"
   },
   "drive-my-car-2021": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/c/ca/Doraibu_mai_k%C4%81_2021.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/c/ca/Doraibu_mai_k%C4%81_2021.jpg",
    "w": 230,
    "h": 338,
    "pagina": "https://pt.wikipedia.org/wiki/Doraibu_mai_k%C4%81",
    "wiki": "pt"
   },
   "duna-a-profecia-2024": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/4/47/Dune_Prophecy_%282024%29_title_card.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/4/47/Dune_Prophecy_%282024%29_title_card.png",
    "w": 432,
    "h": 232,
    "pagina": "https://en.wikipedia.org/wiki/Dune:_Prophecy",
    "wiki": "en"
   },
   "duna-parte-dois-2024": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/5/52/Dune_Part_Two_poster.jpeg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/5/52/Dune_Part_Two_poster.jpeg",
    "w": 259,
    "h": 384,
    "pagina": "https://pt.wikipedia.org/wiki/Dune:_Part_Two",
    "wiki": "pt"
   },
   "e-ai-meu-irmao-cade-voce-2000": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b1/O_Brother%2C_Where_Art_Thou%3F.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b1/O_Brother%2C_Where_Art_Thou%3F.jpg",
    "w": 325,
    "h": 479,
    "pagina": "https://pt.wikipedia.org/wiki/O_Brother,_Where_Art_Thou%3F",
    "wiki": "pt"
   },
   "encontros-no-fim-do-mundo-2007": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/3/32/Encounters_at_the_End_of_the_World.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/3/32/Encounters_at_the_End_of_the_World.jpg",
    "w": 220,
    "h": 326,
    "pagina": "https://pt.wikipedia.org/wiki/Encounters_at_the_End_of_the_World",
    "wiki": "pt"
   },
   "enlightened-2011": {
-   "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Enlightened_intertitle.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/5/55/Enlightened_intertitle.png",
    "w": 421,
    "h": 237,
    "pagina": "https://en.wikipedia.org/wiki/Enlightened_(TV_series)",
    "wiki": "en"
   },
   "estou-pensando-em-acabar-com-tudo-2020": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b2/I%27m_Thinking_of_Ending_Things.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b2/I%27m_Thinking_of_Ending_Things.jpg",
    "w": 320,
    "h": 484,
    "pagina": "https://pt.wikipedia.org/wiki/I'm_Thinking_of_Ending_Things",
    "wiki": "pt"
   },
   "filhos-da-esperanca-2006": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/fc/Children_of_men_ver4.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/fc/Children_of_men_ver4.jpg",
    "w": 365,
    "h": 273,
    "pagina": "https://en.wikipedia.org/wiki/Children_of_Men",
    "wiki": "en"
   },
   "fitzcarraldo-1982": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/ae/Fitzcarraldo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/ae/Fitzcarraldo.jpg",
    "w": 263,
    "h": 379,
    "pagina": "https://en.wikipedia.org/wiki/Fitzcarraldo",
    "wiki": "en"
   },
   "frasier-1993": {
-   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Frasier_title_logo.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Frasier_title_logo.svg",
    "w": 212,
    "h": 82,
    "pagina": "https://en.wikipedia.org/wiki/Frasier",
    "wiki": "en"
   },
+  "frieren-2023": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/S%C5%8Ds%C5%8D_no_Frieren_logo.png/500px-S%C5%8Ds%C5%8D_no_Frieren_logo.png",
+   "w": 500,
+   "h": 213,
+   "pagina": "https://en.wikipedia.org/wiki/Frieren_(TV_series)",
+   "wiki": "en"
+  },
   "frontera-verde-2019": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/7/7a/Poster_for_Green_Frontier_%28Frontera_Verde%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/7/7a/Poster_for_Green_Frontier_%28Frontera_Verde%29.png",
    "w": 250,
    "h": 370,
    "pagina": "https://en.wikipedia.org/wiki/Green_Frontier",
    "wiki": "en"
   },
   "game-of-thrones-2011": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/d/d8/Game_of_Thrones_title_card.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/d/d8/Game_of_Thrones_title_card.jpg",
    "w": 350,
    "h": 197,
    "pagina": "https://en.wikipedia.org/wiki/Game_of_Thrones",
    "wiki": "en"
   },
   "genio-indomavel-1997": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/e/e7/Good_Will_Hunting.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/e/e7/Good_Will_Hunting.jpg",
    "w": 220,
    "h": 322,
    "pagina": "https://pt.wikipedia.org/wiki/Good_Will_Hunting",
    "wiki": "pt"
   },
   "godland-2022": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/2/2d/Vola%C3%B0a_land_%28p%C3%B4ster_em_ingl%C3%AAs%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/2/2d/Vola%C3%B0a_land_%28p%C3%B4ster_em_ingl%C3%AAs%29.jpg",
    "w": 220,
    "h": 317,
    "pagina": "https://pt.wikipedia.org/wiki/Vola%C3%B0a_land",
    "wiki": "pt"
   },
   "guerra-civil-2024": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/d/dd/Civil_War_2024_poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/d/dd/Civil_War_2024_poster.jpg",
    "w": 338,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/Guerra_Civil_(filme)",
    "wiki": "pt"
   },
   "haibane-renmei-2002": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/9/97/Haibane_Renmei_Logo.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/9/97/Haibane_Renmei_Logo.png",
    "w": 438,
    "h": 164,
    "pagina": "https://en.wikipedia.org/wiki/Haibane_Renmei",
    "wiki": "en"
   },
+  "harry-potter-2026": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Harry_Potter_TV_series_logo.png/500px-Harry_Potter_TV_series_logo.png",
+   "w": 500,
+   "h": 240,
+   "pagina": "https://en.wikipedia.org/wiki/Harry_Potter_(TV_series)",
+   "wiki": "en"
+  },
   "harry-potter-e-a-camara-secreta-2002": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/c/c0/Harry_Potter_and_the_Chamber_of_Secrets_movie.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/c/c0/Harry_Potter_and_the_Chamber_of_Secrets_movie.jpg",
    "w": 368,
    "h": 270,
    "pagina": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Chamber_of_Secrets_(film)",
    "wiki": "en"
   },
   "harry-potter-e-a-ordem-da-fenix-2007": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/e/e7/Harry_Potter_and_the_Order_of_the_Phoenix_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/e/e7/Harry_Potter_and_the_Order_of_the_Phoenix_poster.jpg",
    "w": 365,
    "h": 273,
    "pagina": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Order_of_the_Phoenix_(film)",
    "wiki": "en"
   },
   "harry-potter-e-a-pedra-filosofal-2001": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/7/7a/Harry_Potter_and_the_Philosopher%27s_Stone_banner.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/7/7a/Harry_Potter_and_the_Philosopher%27s_Stone_banner.jpg",
    "w": 365,
    "h": 273,
    "pagina": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher's_Stone_(film)",
    "wiki": "en"
   },
   "harry-potter-e-as-reliquias-da-morte-parte-1-2010": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/2/2d/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/2/2d/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_1.jpg",
    "w": 365,
    "h": 273,
    "pagina": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_1",
    "wiki": "en"
   },
   "harry-potter-e-as-reliquias-da-morte-parte-2-2011": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3a/Harry_Potter_and_the_Deathly_Hallows_-_Part_2.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3a/Harry_Potter_and_the_Deathly_Hallows_-_Part_2.jpg",
    "w": 312,
    "h": 464,
    "pagina": "https://pt.wikipedia.org/wiki/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_2",
    "wiki": "pt"
   },
   "harry-potter-e-o-calice-de-fogo-2005": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/c/c9/Harry_Potter_and_the_Goblet_of_Fire_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/c/c9/Harry_Potter_and_the_Goblet_of_Fire_Poster.jpg",
    "w": 365,
    "h": 273,
    "pagina": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Goblet_of_Fire_(film)",
    "wiki": "en"
   },
   "harry-potter-e-o-enigma-do-principe-2009": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/3f/Harry_Potter_and_the_Half-Blood_Prince_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/3f/Harry_Potter_and_the_Half-Blood_Prince_poster.jpg",
    "w": 365,
    "h": 273,
    "pagina": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Half-Blood_Prince_(film)",
    "wiki": "en"
   },
   "harry-potter-e-o-prisioneiro-de-azkaban-2004": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/1/18/Harry_Potter_and_the_Prisoner_of_Azkaban_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/1/18/Harry_Potter_and_the_Prisoner_of_Azkaban_film_poster.jpg",
    "w": 300,
    "h": 225,
    "pagina": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Prisoner_of_Azkaban_(film)",
    "wiki": "en"
   },
   "his-dark-materials-2019": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/4/4f/His_Dark_Materials_TV_Title_Card.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/4/4f/His_Dark_Materials_TV_Title_Card.png",
    "w": 420,
    "h": 236,
    "pagina": "https://en.wikipedia.org/wiki/His_Dark_Materials_(TV_series)",
    "wiki": "en"
   },
+  "hoje-e-dia-de-maria-2005": {
+   "img": "https://upload.wikimedia.org/wikipedia/pt/thumb/1/15/Hoje_%C3%A9_Dia_de_Maria_poster.JPG/500px-Hoje_%C3%A9_Dia_de_Maria_poster.JPG",
+   "w": 500,
+   "h": 287,
+   "pagina": "https://pt.wikipedia.org/wiki/Hoje_%C3%89_Dia_de_Maria",
+   "wiki": "pt"
+  },
   "hora-de-aventura-2010": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/37/Adventure_Time_-_Title_card.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/37/Adventure_Time_-_Title_card.png",
    "w": 398,
    "h": 226,
    "pagina": "https://en.wikipedia.org/wiki/Adventure_Time",
    "wiki": "en"
   },
   "human-2015": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/fc/Human_2015_film_Official_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/fc/Human_2015_film_Official_Poster.jpg",
    "w": 220,
    "h": 314,
    "pagina": "https://en.wikipedia.org/wiki/Human_(2015_film)",
    "wiki": "en"
   },
   "interestelar-2014": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3a/Interstellar_Filme.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3a/Interstellar_Filme.png",
    "w": 320,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/Interstellar",
    "wiki": "pt"
   },
+  "it-s-always-sunny-in-philadelphia-2005": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/IASIPTC.svg/500px-IASIPTC.svg.png",
+   "w": 500,
+   "h": 282,
+   "pagina": "https://en.wikipedia.org/wiki/It's_Always_Sunny_in_Philadelphia",
+   "wiki": "en"
+  },
+  "kung-fu-1972": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/David_carradine_sondra_locke_kung_fu_1974.JPG/500px-David_carradine_sondra_locke_kung_fu_1974.JPG",
+   "w": 500,
+   "h": 645,
+   "pagina": "https://pt.wikipedia.org/wiki/Kung_Fu_(teless%C3%A9rie)",
+   "wiki": "pt"
+  },
   "kung-fu-panda-2008": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/7/76/Kungfupanda.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/7/76/Kungfupanda.jpg",
    "w": 259,
    "h": 385,
    "pagina": "https://en.wikipedia.org/wiki/Kung_Fu_Panda_(film)",
    "wiki": "en"
   },
+  "lawrence-da-arabia-1962": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Lawrence_of_arabia_ver3_xxlg.jpg/500px-Lawrence_of_arabia_ver3_xxlg.jpg",
+   "w": 500,
+   "h": 761,
+   "pagina": "https://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)",
+   "wiki": "en"
+  },
   "livre-2014": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/37/Wild2014Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/37/Wild2014Poster.jpg",
    "w": 250,
    "h": 370,
    "pagina": "https://en.wikipedia.org/wiki/Wild_(2014_film)",
    "wiki": "en"
   },
   "los-silencios-2018": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/5/51/Los_Silencios.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/5/51/Los_Silencios.png",
    "w": 220,
    "h": 322,
    "pagina": "https://en.wikipedia.org/wiki/Los_silencios",
    "wiki": "en"
   },
   "los-viajes-del-viento-2009": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/f6/Los_Viajes_del_Viento_Official_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/f6/Los_Viajes_del_Viento_Official_Poster.jpg",
    "w": 264,
    "h": 376,
    "pagina": "https://en.wikipedia.org/wiki/The_Wind_Journeys",
    "wiki": "en"
   },
   "lost-2004": {
-   "img": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Lost_main_title.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Lost_main_title.svg",
    "w": 400,
    "h": 212,
    "pagina": "https://en.wikipedia.org/wiki/Lost_(TV_series)",
    "wiki": "en"
   },
   "mad-men-2007": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/33/Mad-men-title-card.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/33/Mad-men-title-card.jpg",
    "w": 250,
    "h": 141,
    "pagina": "https://en.wikipedia.org/wiki/Mad_Men",
    "wiki": "en"
   },
   "materia-escura-2024": {
-   "img": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Dark_Matter_%282024_TV_series%29_logo.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Dark_Matter_%282024_TV_series%29_logo.svg",
    "w": 413,
    "h": 162,
    "pagina": "https://en.wikipedia.org/wiki/Dark_Matter_(2024_TV_series)",
    "wiki": "en"
   },
   "matrix-1999": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/c/c1/The_Matrix_Poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/c/c1/The_Matrix_Poster.jpg",
    "w": 218,
    "h": 301,
    "pagina": "https://pt.wikipedia.org/wiki/Matrix",
    "wiki": "pt"
   },
   "memoria-2021": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/b/b1/Memoria_%282021_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/b/b1/Memoria_%282021_film%29_poster.jpg",
    "w": 264,
    "h": 377,
    "pagina": "https://en.wikipedia.org/wiki/Memoria_(2021_film)",
    "wiki": "en"
   },
   "mike-molly-2010": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/fc/Mike_%26_Molly_intertitle.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/fc/Mike_%26_Molly_intertitle.png",
    "w": 420,
    "h": 237,
    "pagina": "https://en.wikipedia.org/wiki/Mike_%26_Molly",
    "wiki": "en"
   },
   "moana-2016": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/4/46/Moana_movie_poster_p_2016.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/4/46/Moana_movie_poster_p_2016.jpg",
    "w": 220,
    "h": 326,
    "pagina": "https://pt.wikipedia.org/wiki/Moana",
    "wiki": "pt"
   },
   "morangos-silvestres-1957": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/4/48/Wildstrawberriesposter.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/4/48/Wildstrawberriesposter.jpg",
    "w": 247,
    "h": 350,
    "pagina": "https://en.wikipedia.org/wiki/Wild_Strawberries_(film)",
    "wiki": "en"
   },
   "mrs-davis-2023": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/8/8e/Mrs_Davis_-_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/8/8e/Mrs_Davis_-_Poster.jpg",
    "w": 259,
    "h": 384,
    "pagina": "https://en.wikipedia.org/wiki/Mrs._Davis",
    "wiki": "en"
   },
   "na-natureza-selvagem-2007": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/8/8a/Into-the-wild.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/8/8a/Into-the-wild.jpg",
    "w": 339,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/Into_the_Wild_(filme)",
    "wiki": "pt"
   },
   "nausicaa-1984": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/1/19/Kaze_no_Tani_no_Naushika_p%C3%B4ster.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/1/19/Kaze_no_Tani_no_Naushika_p%C3%B4ster.png",
    "w": 357,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/Nausica%C3%A4_do_Vale_do_Vento",
    "wiki": "pt"
   },
   "nomadland-2020": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/9/94/Nomadland_%28cartaz%29.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/9/94/Nomadland_%28cartaz%29.png",
    "w": 310,
    "h": 463,
    "pagina": "https://pt.wikipedia.org/wiki/Nomadland",
    "wiki": "pt"
   },
   "north-of-north-2025": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/2/26/North_of_North_Logo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/2/26/North_of_North_Logo.jpg",
    "w": 460,
    "h": 217,
    "pagina": "https://en.wikipedia.org/wiki/North_of_North",
    "wiki": "en"
   },
   "northern-exposure-1990": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/c/c9/Northern_Exposure-Intertitle.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/c/c9/Northern_Exposure-Intertitle.jpg",
    "w": 304,
    "h": 233,
    "pagina": "https://en.wikipedia.org/wiki/Northern_Exposure",
    "wiki": "en"
   },
   "nostalgia-1983": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/1/1a/Nostalgia_%28filme%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/1/1a/Nostalgia_%28filme%29.jpg",
    "w": 290,
    "h": 456,
    "pagina": "https://pt.wikipedia.org/wiki/Nostalgia_(filme)",
    "wiki": "pt"
   },
   "nostalgia-da-luz-2010": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/6/66/Nostalgia_for_the_Light_%28film_poster%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/6/66/Nostalgia_for_the_Light_%28film_poster%29.jpg",
    "w": 225,
    "h": 300,
    "pagina": "https://en.wikipedia.org/wiki/Nostalgia_for_the_Light",
    "wiki": "en"
   },
   "o-abraco-da-serpente-2015": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/1/11/Embrace_of_the_Serpent_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/1/11/Embrace_of_the_Serpent_poster.jpg",
    "w": 270,
    "h": 386,
    "pagina": "https://en.wikipedia.org/wiki/Embrace_of_the_Serpent",
    "wiki": "en"
   },
   "o-auto-da-compadecida-2000": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/b/bf/O_auto_da_compadecida.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/b/bf/O_auto_da_compadecida.jpg",
    "w": 336,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/O_Auto_da_Compadecida_(filme)",
    "wiki": "pt"
   },
   "o-botao-de-perola-2015": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/aa/El_bot%C3%B3n_de_n%C3%A1car_%28poster%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/aa/El_bot%C3%B3n_de_n%C3%A1car_%28poster%29.jpg",
    "w": 260,
    "h": 372,
    "pagina": "https://en.wikipedia.org/wiki/The_Pearl_Button",
    "wiki": "en"
   },
   "o-caminho-2010": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/e/e6/The_Way_cartaz.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/e/e6/The_Way_cartaz.jpg",
    "w": 336,
    "h": 499,
    "pagina": "https://pt.wikipedia.org/wiki/The_Way_(filme)",
    "wiki": "pt"
   },
   "o-espelho-1975": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/6/63/O_Espelho_%28filme%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/6/63/O_Espelho_%28filme%29.jpg",
    "w": 290,
    "h": 411,
    "pagina": "https://pt.wikipedia.org/wiki/O_Espelho_(1975)",
    "wiki": "pt"
   },
+  "o-eternauta-2025": {
+   "img": "https://upload.wikimedia.org/wikipedia/en/thumb/8/89/The_Eternaut_%28TV_series%29_logo.png/500px-The_Eternaut_%28TV_series%29_logo.png",
+   "w": 500,
+   "h": 193,
+   "pagina": "https://en.wikipedia.org/wiki/The_Eternaut_(TV_series)",
+   "wiki": "en"
+  },
   "o-mahabharata-1989": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/7/70/TheMahabarata1989.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/7/70/TheMahabarata1989.jpg",
    "w": 200,
    "h": 280,
    "pagina": "https://en.wikipedia.org/wiki/The_Mahabharata_(1989_film)",
    "wiki": "en"
   },
   "o-menino-e-a-garca-2023": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/6/63/Kimitachi_wa_D%C5%8D_Ikiru_ka_-_poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/6/63/Kimitachi_wa_D%C5%8D_Ikiru_ka_-_poster.jpg",
    "w": 220,
    "h": 311,
    "pagina": "https://pt.wikipedia.org/wiki/Kimitachi_wa_D%C5%8D_Ikiru_ka",
    "wiki": "pt"
   },
   "o-novo-mundo-2005": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/e/ed/The_New_World_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/e/ed/The_New_World_poster.jpg",
    "w": 259,
    "h": 383,
    "pagina": "https://en.wikipedia.org/wiki/The_New_World_(2005_film)",
    "wiki": "en"
   },
   "o-pequeno-principe-2015": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/f/f7/Le_Petit_Prince_2015.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/f/f7/Le_Petit_Prince_2015.jpg",
    "w": 368,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/Le_Petit_Prince_(2015)",
    "wiki": "pt"
   },
+  "o-problema-dos-3-corpos-2024": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/3_Body_Problem_title_card.png/500px-3_Body_Problem_title_card.png",
+   "w": 500,
+   "h": 281,
+   "pagina": "https://en.wikipedia.org/wiki/3_Body_Problem_(TV_series)",
+   "wiki": "en"
+  },
   "o-rei-leao-1994": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/3d/The_Lion_King_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/3d/The_Lion_King_poster.jpg",
    "w": 248,
    "h": 368,
    "pagina": "https://en.wikipedia.org/wiki/The_Lion_King",
    "wiki": "en"
   },
   "o-sal-da-terra-2014": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/3/36/O_Sal_da_Terra.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/3/36/O_Sal_da_Terra.jpg",
    "w": 290,
    "h": 424,
    "pagina": "https://pt.wikipedia.org/wiki/O_Sal_da_Terra",
    "wiki": "pt"
   },
   "o-segredo-alem-do-jardim-2014": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/3/39/Over_the_Garden_Wall_%28miniss%C3%A9rie%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/3/39/Over_the_Garden_Wall_%28miniss%C3%A9rie%29.jpg",
    "w": 332,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/Over_the_Garden_Wall_(miniss%C3%A9rie)",
    "wiki": "pt"
   },
   "o-segredo-de-brokeback-mountain-2005": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/a1/Brokeback_mountain.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/a1/Brokeback_mountain.jpg",
    "w": 250,
    "h": 371,
    "pagina": "https://en.wikipedia.org/wiki/Brokeback_Mountain",
    "wiki": "en"
   },
   "o-senhor-dos-aneis-a-sociedade-do-anel-2001": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lord_Rings_Fellowship_Ring.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lord_Rings_Fellowship_Ring.jpg",
    "w": 218,
    "h": 326,
    "pagina": "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring",
    "wiki": "en"
   },
   "o-senhor-dos-aneis-as-duas-torres-2002": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/a1/Lord_Rings_Two_Towers.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/a1/Lord_Rings_Two_Towers.jpg",
    "w": 220,
    "h": 326,
    "pagina": "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Two_Towers",
    "wiki": "en"
   },
   "o-senhor-dos-aneis-o-retorno-do-rei-2003": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/4/48/Lord_Rings_Return_King.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/4/48/Lord_Rings_Return_King.jpg",
    "w": 220,
    "h": 326,
    "pagina": "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Return_of_the_King",
    "wiki": "en"
   },
   "o-setimo-selo-1957": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/1/18/O_S%C3%A9timo_Selo_%28filme%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/1/18/O_S%C3%A9timo_Selo_%28filme%29.jpg",
    "w": 290,
    "h": 410,
    "pagina": "https://pt.wikipedia.org/wiki/O_S%C3%A9timo_Selo",
    "wiki": "pt"
   },
   "o-ultimo-azul-2025": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/6/62/Poster_de_O_%C3%9Altimo_Azul_%282025%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/6/62/Poster_de_O_%C3%9Altimo_Azul_%282025%29.jpg",
    "w": 350,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/O_%C3%9Altimo_Azul",
    "wiki": "pt"
   },
   "oppenheimer-2023": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/5/5b/Oppenheimer_poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/5/5b/Oppenheimer_poster.jpg",
    "w": 251,
    "h": 397,
    "pagina": "https://pt.wikipedia.org/wiki/Oppenheimer_(filme)",
    "wiki": "pt"
   },
   "os-aneis-de-poder-2022": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/1/1d/LOTR_The_Rings_of_Power_logo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/1/1d/LOTR_The_Rings_of_Power_logo.jpg",
    "w": 421,
    "h": 236,
    "pagina": "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Rings_of_Power",
    "wiki": "en"
   },
+  "os-simpsons-1989": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/The_Simpsons_yellow_logo.svg/500px-The_Simpsons_yellow_logo.svg.png",
+   "w": 500,
+   "h": 281,
+   "pagina": "https://en.wikipedia.org/wiki/The_Simpsons",
+   "wiki": "en"
+  },
   "outlander-2014": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/31/Outlander_title_card.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/31/Outlander_title_card.jpg",
    "w": 300,
    "h": 169,
    "pagina": "https://en.wikipedia.org/wiki/Outlander_(TV_series)",
    "wiki": "en"
   },
   "pachinko-2022": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/2/20/Pachinko_%28TV_series%29.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/2/20/Pachinko_%28TV_series%29.jpeg",
    "w": 252,
    "h": 378,
    "pagina": "https://en.wikipedia.org/wiki/Pachinko_(TV_series)",
    "wiki": "en"
   },
   "pantanal-2022": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/9/92/Pantanal_2022_series_title_card.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/9/92/Pantanal_2022_series_title_card.jpg",
    "w": 401,
    "h": 225,
    "pagina": "https://en.wikipedia.org/wiki/Pantanal_(2022_TV_series)",
    "wiki": "en"
   },
   "pantheon-2022": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/2/2f/Pantheon_%28TV_series%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/2/2f/Pantheon_%28TV_series%29.jpg",
    "w": 235,
    "h": 352,
    "pagina": "https://en.wikipedia.org/wiki/Pantheon_(TV_series)",
    "wiki": "en"
   },
   "patch-adams-1998": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/5/5c/Patch_Adams_%28filme%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/5/5c/Patch_Adams_%28filme%29.jpg",
    "w": 220,
    "h": 296,
    "pagina": "https://pt.wikipedia.org/wiki/Patch_Adams_(filme)",
    "wiki": "pt"
   },
   "princesa-mononoke-1997": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/e/ec/Mononoke_Hime_p%C3%B4ster.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/e/ec/Mononoke_Hime_p%C3%B4ster.png",
    "w": 317,
    "h": 450,
    "pagina": "https://pt.wikipedia.org/wiki/Mononoke_Hime",
    "wiki": "pt"
   },
   "questao-de-tempo-2013": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3a/About_Time.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/3/3a/About_Time.jpg",
    "w": 290,
    "h": 459,
    "pagina": "https://pt.wikipedia.org/wiki/About_Time_(filme)",
    "wiki": "pt"
   },
+  "rectify-2013": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Rectify_series_logo.svg/500px-Rectify_series_logo.svg.png",
+   "w": 500,
+   "h": 281,
+   "pagina": "https://en.wikipedia.org/wiki/Rectify",
+   "wiki": "en"
+  },
+  "reservation-dogs-2021": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Reservation_Dogs_Logo.jpg/500px-Reservation_Dogs_Logo.jpg",
+   "w": 500,
+   "h": 239,
+   "pagina": "https://en.wikipedia.org/wiki/Reservation_Dogs",
+   "wiki": "en"
+  },
   "robo-selvagem-2024": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/7/70/The_Wild_Robot_poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/7/70/The_Wild_Robot_poster.jpg",
    "w": 251,
    "h": 397,
    "pagina": "https://pt.wikipedia.org/wiki/The_Wild_Robot",
    "wiki": "pt"
   },
   "saga-animais-fantasticos": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/0/0b/FBAWTFT-poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/0/0b/FBAWTFT-poster.jpg",
    "w": 259,
    "h": 384,
    "pagina": "https://en.wikipedia.org/wiki/Fantastic_Beasts_and_Where_to_Find_Them_(film)",
    "wiki": "en"
   },
   "saga-harry-potter": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/7/7a/Harry_Potter_and_the_Philosopher%27s_Stone_banner.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/7/7a/Harry_Potter_and_the_Philosopher%27s_Stone_banner.jpg",
    "w": 365,
    "h": 273,
    "pagina": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher's_Stone_(film)",
    "wiki": "en"
   },
   "saga-o-senhor-dos-aneis": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lord_Rings_Fellowship_Ring.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lord_Rings_Fellowship_Ring.jpg",
    "w": 218,
    "h": 326,
    "pagina": "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring",
    "wiki": "en"
   },
   "samsara-2011": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/7/78/Samsara_Film_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/7/78/Samsara_Film_Poster.jpg",
    "w": 261,
    "h": 381,
    "pagina": "https://en.wikipedia.org/wiki/Samsara_(2011_film)",
    "wiki": "en"
   },
   "sandman-2022": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/e/ed/The_Sandman_Netflix.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/e/ed/The_Sandman_Netflix.jpg",
    "w": 488,
    "h": 203,
    "pagina": "https://en.wikipedia.org/wiki/The_Sandman_(TV_series)",
    "wiki": "en"
   },
   "scavengers-reign-2023": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/0/0c/Scavengers_Reign.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/0/0c/Scavengers_Reign.png",
    "w": 250,
    "h": 141,
    "pagina": "https://en.wikipedia.org/wiki/Scavengers_Reign",
    "wiki": "en"
   },
   "se-a-vida-te-der-tangerinas-2025": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/e/e8/When_Life_Gives_You_Tangerines_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/e/e8/When_Life_Gives_You_Tangerines_poster.png",
    "w": 260,
    "h": 384,
    "pagina": "https://en.wikipedia.org/wiki/When_Life_Gives_You_Tangerines",
    "wiki": "en"
   },
+  "sense8-2015": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Sense8_Title.png/500px-Sense8_Title.png",
+   "w": 500,
+   "h": 281,
+   "pagina": "https://en.wikipedia.org/wiki/Sense8",
+   "wiki": "en"
+  },
   "sete-anos-no-tibet-1997": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/6/68/Seven_Years_in_Tibet_poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/6/68/Seven_Years_in_Tibet_poster.jpg",
    "w": 263,
    "h": 378,
    "pagina": "https://pt.wikipedia.org/wiki/Seven_Years_in_Tibet",
    "wiki": "pt"
   },
   "silencio-2016": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/36/Silence_%282016_film%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/36/Silence_%282016_film%29.png",
    "w": 220,
    "h": 343,
    "pagina": "https://en.wikipedia.org/wiki/Silence_(2016_film)",
    "wiki": "en"
   },
   "sirat-2025": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/9/91/Sirat_2025.jpeg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/9/91/Sirat_2025.jpeg",
    "w": 264,
    "h": 378,
    "pagina": "https://pt.wikipedia.org/wiki/Sir%C4%81t",
    "wiki": "pt"
   },
   "sociedade-dos-poetas-mortos-1989": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/0/04/Dead_Poets_Society.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/0/04/Dead_Poets_Society.jpg",
    "w": 220,
    "h": 329,
    "pagina": "https://pt.wikipedia.org/wiki/Dead_Poets_Society",
    "wiki": "pt"
   },
   "sonhos-1990": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/c/c8/Yume_%28filme%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/c/c8/Yume_%28filme%29.jpg",
    "w": 220,
    "h": 327,
    "pagina": "https://pt.wikipedia.org/wiki/Yume",
    "wiki": "pt"
   },
   "soul-2020": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/1/17/Soul_ver5.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/1/17/Soul_ver5.jpg",
    "w": 220,
    "h": 326,
    "pagina": "https://pt.wikipedia.org/wiki/Soul_(filme)",
    "wiki": "pt"
   },
   "spice-and-wolf-2024": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/c/cc/Ookamitokoshinryo01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/c/cc/Ookamitokoshinryo01.jpg",
    "w": 261,
    "h": 382,
    "pagina": "https://en.wikipedia.org/wiki/Spice_and_Wolf",
    "wiki": "en"
   },
   "stalker-1979": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/f/fc/Stalker_%28filme%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/f/fc/Stalker_%28filme%29.jpg",
    "w": 290,
    "h": 396,
    "pagina": "https://pt.wikipedia.org/wiki/Stalker_(filme)",
    "wiki": "pt"
   },
   "star-wars-o-imperio-contra-ataca-1980": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg",
    "w": 254,
    "h": 396,
    "pagina": "https://en.wikipedia.org/wiki/The_Empire_Strikes_Back",
    "wiki": "en"
   },
   "station-eleven-2021": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/e/e8/Station_Eleven.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/e/e8/Station_Eleven.png",
    "w": 275,
    "h": 155,
    "pagina": "https://en.wikipedia.org/wiki/Station_Eleven_(miniseries)",
    "wiki": "en"
   },
+  "stremio-tt0388629": {
+   "img": "https://upload.wikimedia.org/wikipedia/en/thumb/1/13/One_Piece_Anime_Logo_International.png/500px-One_Piece_Anime_Logo_International.png",
+   "w": 500,
+   "h": 177,
+   "pagina": "https://en.wikipedia.org/wiki/One_Piece_(1999_TV_series)",
+   "wiki": "en"
+  },
   "stremio-tt26545992": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/7/71/Lanterns_%282026_serie%29poster.jpeg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/7/71/Lanterns_%282026_serie%29poster.jpeg",
    "w": 190,
    "h": 281,
    "pagina": "https://pt.wikipedia.org/wiki/Lanterns_(s%C3%A9rie_de_televis%C3%A3o)",
    "wiki": "pt"
   },
   "stremio-tt27497393": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/1/17/Stuart_Fails_to_Save_the_Universe.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/1/17/Stuart_Fails_to_Save_the_Universe.jpg",
    "w": 333,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/Stuart_Fails_to_Save_the_Universe",
    "wiki": "pt"
   },
   "stremio-tt31510819": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/2/23/MobLand_%282025%29_title_card.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/2/23/MobLand_%282025%29_title_card.jpg",
    "w": 421,
    "h": 237,
    "pagina": "https://en.wikipedia.org/wiki/MobLand",
    "wiki": "en"
   },
   "ted-lasso-2020": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/7/73/Tedlassotitlecard.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/7/73/Tedlassotitlecard.jpg",
    "w": 447,
    "h": 223,
    "pagina": "https://en.wikipedia.org/wiki/Ted_Lasso",
    "wiki": "en"
   },
+  "the-chosen-2017": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/The_Chosen_-_logo.jpg/500px-The_Chosen_-_logo.jpg",
+   "w": 500,
+   "h": 164,
+   "pagina": "https://en.wikipedia.org/wiki/The_Chosen_(TV_series)",
+   "wiki": "en"
+  },
+  "the-good-place-2016": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/The_Good_Place_title_card.svg/500px-The_Good_Place_title_card.svg.png",
+   "w": 500,
+   "h": 281,
+   "pagina": "https://en.wikipedia.org/wiki/The_Good_Place",
+   "wiki": "en"
+  },
+  "the-last-of-us-2023": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/The_Last_of_Us_vertical_logo.svg/500px-The_Last_of_Us_vertical_logo.svg.png",
+   "w": 500,
+   "h": 932,
+   "pagina": "https://pt.wikipedia.org/wiki/The_Last_of_Us_(s%C3%A9rie_de_televis%C3%A3o)",
+   "wiki": "pt"
+  },
   "the-leftovers-2014": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/3/39/LeftoversS2Logo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/3/39/LeftoversS2Logo.jpg",
    "w": 456,
    "h": 218,
    "pagina": "https://en.wikipedia.org/wiki/The_Leftovers_(TV_series)",
    "wiki": "en"
   },
   "the-midnight-gospel-2020": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/f/f0/The_Midnight_Gospel.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/f/f0/The_Midnight_Gospel.jpg",
    "w": 259,
    "h": 383,
    "pagina": "https://pt.wikipedia.org/wiki/The_Midnight_Gospel",
    "wiki": "pt"
   },
   "the-oa-2016": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b0/The_OA_poster.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/b/b0/The_OA_poster.png",
    "w": 250,
    "h": 370,
    "pagina": "https://pt.wikipedia.org/wiki/The_OA",
    "wiki": "pt"
   },
   "treme-2010": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/7/72/Treme-intertitle.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/7/72/Treme-intertitle.jpg",
    "w": 250,
    "h": 140,
    "pagina": "https://en.wikipedia.org/wiki/Treme_(TV_series)",
    "wiki": "en"
   },
   "tribe-bruce-parry-2005": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/a3/Bruce_Parry_Tribe_DVD.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/a3/Bruce_Parry_Tribe_DVD.png",
    "w": 246,
    "h": 350,
    "pagina": "https://en.wikipedia.org/wiki/Tribe_(British_TV_series)",
    "wiki": "en"
   },
   "true-detective-2014": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/5/5a/True_Detective_2014_Intertitle.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/5/5a/True_Detective_2014_Intertitle.jpg",
    "w": 250,
    "h": 142,
    "pagina": "https://en.wikipedia.org/wiki/True_Detective",
    "wiki": "en"
   },
   "tudo-em-todo-o-lugar-ao-mesmo-tempo-2022": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/0/06/Everything_Everywhere_All_at_Once_2022.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/0/06/Everything_Everywhere_All_at_Once_2022.jpg",
    "w": 259,
    "h": 384,
    "pagina": "https://pt.wikipedia.org/wiki/Everything_Everywhere_All_at_Once",
    "wiki": "pt"
   },
   "uma-vida-oculta-2019": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/1/1e/A_Hidden_Life_%282019%29_Film_Poster.jpg?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/1/1e/A_Hidden_Life_%282019%29_Film_Poster.jpg",
    "w": 334,
    "h": 500,
    "pagina": "https://pt.wikipedia.org/wiki/A_Hidden_Life",
    "wiki": "pt"
   },
   "undone-2019": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/f/fd/Undone_%28TV_series%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/f/fd/Undone_%28TV_series%29_poster.jpg",
    "w": 220,
    "h": 324,
    "pagina": "https://en.wikipedia.org/wiki/Undone_(TV_series)",
    "wiki": "en"
   },
   "velho-chico-2016": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/9/99/Velho_Chico_logo.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/9/99/Velho_Chico_logo.png",
    "w": 421,
    "h": 236,
    "pagina": "https://en.wikipedia.org/wiki/Velho_Chico",
    "wiki": "en"
   },
   "vinland-saga-2019": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/8/8c/Vinland_Saga_key_visual.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/8/8c/Vinland_Saga_key_visual.png",
    "w": 252,
    "h": 355,
    "pagina": "https://en.wikipedia.org/wiki/Vinland_Saga_(TV_series)",
    "wiki": "en"
   },
   "viva-a-vida-e-uma-festa-2017": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/9/98/Coco_%282017_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/9/98/Coco_%282017_film%29_poster.jpg",
    "w": 259,
    "h": 384,
    "pagina": "https://en.wikipedia.org/wiki/Coco_(2017_film)",
    "wiki": "en"
   },
   "wild-wild-country-2018": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/a/a8/Wild_Wild_Country.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/a/a8/Wild_Wild_Country.png",
    "w": 250,
    "h": 369,
    "pagina": "https://en.wikipedia.org/wiki/Wild_Wild_Country",
    "wiki": "en"
   },
   "x-men-apocalipse-2016": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/0/04/X-Men_-_Apocalypse.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/0/04/X-Men_-_Apocalypse.jpg",
    "w": 259,
    "h": 384,
    "pagina": "https://en.wikipedia.org/wiki/X-Men:_Apocalypse",
    "wiki": "en"
   },
   "xogum-2024": {
-   "img": "https://upload.wikimedia.org/wikipedia/pt/8/8a/Poster_-_Sh%C5%8Dgun_%282024%29.png?utm_source=pt.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/pt/8/8a/Poster_-_Sh%C5%8Dgun_%282024%29.png",
    "w": 400,
    "h": 494,
    "pagina": "https://pt.wikipedia.org/wiki/Sh%C5%8Dgun_(s%C3%A9rie_de_televis%C3%A3o)",
    "wiki": "pt"
   },
   "z-a-cidade-perdida-2016": {
-   "img": "https://upload.wikimedia.org/wikipedia/en/6/61/The_Lost_City_of_Z_%28film%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+   "img": "https://upload.wikimedia.org/wikipedia/en/6/61/The_Lost_City_of_Z_%28film%29.png",
    "w": 220,
    "h": 326,
    "pagina": "https://en.wikipedia.org/wiki/The_Lost_City_of_Z_(film)",
