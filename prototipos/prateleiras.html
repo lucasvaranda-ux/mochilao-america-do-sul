@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)">
+<title>Telas · Filmes e séries</title>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='p' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f4b65f'/%3E%3Cstop offset='1' stop-color='%23c9683b'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231b2733'/%3E%3Cstop offset='1' stop-color='%230c1015'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23b)'/%3E%3Cpath d='M27 17 q5 -6 10 0' fill='none' stroke='%235a6e80' stroke-width='3.5' stroke-linecap='round'/%3E%3Crect x='16' y='20' width='32' height='36' rx='12' fill='url(%23p)'/%3E%3Crect x='25.6' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Crect x='35' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Cpath d='M16 33 v-1 a12 12 0 0 1 12 -12 h8 a12 12 0 0 1 12 12 v1 a3 3 0 0 1 -3 3 H19 a3 3 0 0 1 -3 -3 Z' fill='%23f0a64e'/%3E%3Cpath d='M23 39 h18 a3 3 0 0 1 3 3 v7 a5 5 0 0 1 -5 5 H25 a5 5 0 0 1 -5 -5 v-7 a3 3 0 0 1 3 -3 Z' fill='%23b9572f'/%3E%3Ccircle cx='37.6' cy='45.5' r='2.3' fill='%23ffd27a'/%3E%3Cpath d='M23 53 L28 46 L32 50.5 L36.6 45 L41 53 Z' fill='%235fc9a0'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<style>
+/* =========================================================================
+   Telas — direção "Prateleiras": a casa do Stremio com o gosto dele dentro.
+   Pôster 2:3 como unidade, prateleiras com encaixe na rolagem, status no canto
+   do pôster, conexão como texto verde na linha de metadados (no jeito do
+   "% Match"), folha que sobe de baixo no celular e painel à direita no computador.
+   ========================================================================= */
+:root{
+  --bg:#f5f5f7; --s1:#ffffff; --s2:#ececf1; --line:#e2e2e8; --track:#dcdce3;
+  --tx:#111116; --tx2:#5d5d69; --tx3:#6b6b77;
+  --acc:#0b7d53; --acc-soft:rgba(11,125,83,.11); --on-acc:#ffffff;
+  --new:#c2410c; --on-new:#ffffff;
+  --stroke:#b9bcc6;
+  --po:#e3e3e9; --po-tx:#2b2b33;
+  --scrim:rgba(17,17,22,.38);
+  --sheet:#f5f5f7;
+  --barbg:#fbfbfd;
+  --hero-sh:0 6px 16px rgba(0,0,0,.16);
+  --lift:0 1px 2px rgba(17,17,22,.06),0 6px 18px rgba(17,17,22,.07);
+  --seg-on:#ffffff;
+  --ring:inset 0 0 0 1px rgba(0,0,0,.07);
+  --font:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",Roboto,sans-serif;
+  --ease:cubic-bezier(.22,.9,.3,1);
+  --gut:16px;
+  /* larguras de pôster por prateleira (celular) */
+  --tw:111px; --tw-top:104px; --tw-cont:84px; --tw-duo:150px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b0b0f; --s1:#16161c; --s2:#1f1f27; --line:#2a2a33; --track:#33333d;
+    --tx:#ececf0; --tx2:#a0a0ab; --tx3:#7f7f8b;
+    --acc:#3ddc97; --acc-soft:rgba(61,220,151,.13); --on-acc:#04140c;
+    --new:#ff7a59; --on-new:#1d0800;
+    --stroke:#5a5e6b;
+    --po:#16161c; --po-tx:#d2d2da;
+    --scrim:rgba(0,0,0,.62);
+    --sheet:#111116;
+    --barbg:#111116;
+    --hero-sh:0 10px 28px rgba(0,0,0,.4);
+    --lift:none;
+    --ring:inset 0 0 0 1px rgba(255,255,255,.07);
+    --seg-on:#3a3a46;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b0b0f; --s1:#16161c; --s2:#1f1f27; --line:#2a2a33; --track:#33333d;
+  --tx:#ececf0; --tx2:#a0a0ab; --tx3:#7f7f8b;
+  --acc:#3ddc97; --acc-soft:rgba(61,220,151,.13); --on-acc:#04140c;
+  --new:#ff7a59; --on-new:#1d0800;
+  --stroke:#5a5e6b;
+  --po:#16161c; --po-tx:#d2d2da;
+  --scrim:rgba(0,0,0,.62);
+  --sheet:#111116;
+  --barbg:#111116;
+  --hero-sh:0 10px 28px rgba(0,0,0,.4);
+  --lift:none;
+  --ring:inset 0 0 0 1px rgba(255,255,255,.07);
+  --seg-on:#3a3a46;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--tx);font:500 16px/1.45 var(--font);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;left:0;right:0;top:0;height:env(safe-area-inset-top);background:var(--bg);z-index:70}
+button,input,select,textarea{font:inherit;color:inherit}
+button{-webkit-tap-highlight-color:transparent}
+a{color:var(--acc)}
+h1,h2,h3,h4,p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+[hidden]{display:none!important}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+
+/* ---------- cabeçalho ---------- */
+.top{display:flex;align-items:center;gap:0;min-height:52px;padding:calc(4px + env(safe-area-inset-top)) 6px 0 var(--gut)}
+.brand{flex:1;font-size:22px;font-weight:800;letter-spacing:-.025em;line-height:1}
+.ib{width:44px;height:44px;display:grid;place-items:center;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--tx);padding:0}
+.ib svg.i{width:22px;height:22px}
+
+/* ---------- navegação: barra inferior opaca com os destinos (Stremio e app TV no celular);
+   no computador, a mesma barra vira a lateral de 80 px ---------- */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:stretch;justify-content:center;
+  height:calc(49px + env(safe-area-inset-bottom));padding:0 max(4px,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(4px,env(safe-area-inset-left));
+  background:var(--barbg);box-shadow:0 -1px 0 var(--line)}
+.tabbar-brand{display:none}
+.nb{position:relative;flex:1 1 0;min-width:0;max-width:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  border:0;background:none;padding:5px 0 3px;cursor:pointer;color:var(--tx3);font-size:10px;font-weight:700;letter-spacing:.01em;line-height:1.1;
+  -webkit-tap-highlight-color:transparent}
+.nb svg.i{width:24px;height:24px}
+.nb .nbl{white-space:nowrap}
+.nb[aria-current="page"]{color:var(--tx)}
+.nb[aria-current="page"] svg.i{color:var(--acc)}
+.nb:focus-visible{outline:none}
+.nb:focus-visible svg.i{outline:2px solid var(--acc);outline-offset:4px;border-radius:6px}
+.newb{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--new);color:var(--on-new);font-size:11px;font-weight:800;line-height:1}
+.nb .newb{position:absolute;top:3px;left:calc(50% + 5px)}
+
+/* Lista: segmentado Filmes | Séries | Desligar | Repetidos, preso no topo ao rolar */
+.lnav{position:sticky;top:env(safe-area-inset-top);z-index:40;background:var(--bg);padding:4px var(--gut) 8px}
+.lseg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:var(--s2);border-radius:12px;padding:3px;max-width:560px}
+.lseg .tab{position:relative;height:38px;min-width:0;border:0;border-radius:9px;background:none;color:var(--tx2);font-size:14px;font-weight:700;cursor:pointer;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 2px;transition:background .15s,color .15s}
+.lseg .tab::before{content:"";position:absolute;inset:-3px 0}
+.lseg .tab[aria-current="page"]{background:var(--seg-on);color:var(--tx);box-shadow:0 1px 3px rgba(0,0,0,.14),var(--ring)}
+.lseg .tab:focus-visible{outline-offset:-2px}
+.ct{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Mais: Perguntar, Conexão e Backup em linhas, como os Ajustes do iPhone */
+.mgroup{background:var(--s1);border-radius:16px;box-shadow:var(--ring);overflow:hidden;max-width:640px}
+.mrow{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:10px 14px;border:0;background:none;color:var(--tx);text-align:left;cursor:pointer;font:inherit}
+.mrow{position:relative}
+.mrow+.mrow::before{content:"";position:absolute;left:64px;right:0;top:0;height:1px;background:var(--line)}
+.mrow .mi{flex:0 0 36px;width:36px;height:36px;border-radius:10px;background:var(--s2);display:grid;place-items:center;color:var(--acc)}
+.mrow .mi svg.i{width:21px;height:21px}
+.mrow .mt{flex:1;min-width:0}
+.mrow b{display:block;font-size:16px;font-weight:700;line-height:1.25}
+.mrow small{display:block;font-size:13px;color:var(--tx2);line-height:1.35;margin-top:1px}
+.mrow .chev{flex:0 0 auto;color:var(--tx3);font-size:22px;line-height:1}
+.mrow:focus-visible{outline-offset:-3px;border-radius:16px}
+.back{display:inline-flex;align-items:center;gap:2px;min-height:44px;margin:0 0 -6px -6px;padding:0 6px;border:0;background:none;color:var(--acc);font-size:16px;font-weight:600;cursor:pointer}
+.back span{font-size:24px;line-height:1;margin-top:-2px}
+
+/* Organizar o Início (como no Infuse): mostrar ou esconder e mudar a ordem */
+.org{list-style:none;margin:0;padding:0;background:var(--s1);border-radius:16px;box-shadow:var(--ring);max-width:640px;overflow:hidden}
+.org li{display:flex;align-items:center;gap:6px;min-height:60px;padding:4px 6px 4px 14px;border-top:1px solid var(--line)}
+.org li:first-child{border-top:0}
+.org label{flex:1;min-width:0;display:flex;align-items:center;gap:12px;min-height:52px;cursor:pointer;font-size:16px;font-weight:600}
+.org input{width:22px;height:22px;accent-color:var(--acc);flex:0 0 auto;margin:0}
+.org li.off label{color:var(--tx3)}
+.org .ib{width:44px;height:44px;font-size:20px;color:var(--tx2)}
+.org .ib[disabled]{opacity:.3;cursor:default}
+
+/* Início: Tudo · Filmes · Séries só como filtro */
+.ini-f{display:flex;gap:8px;padding:0 var(--gut);margin:2px 0 6px}
+.ini-f .pill>span{height:36px;padding:0 15px;font-size:14px;background:none;box-shadow:inset 0 0 0 1px var(--line)}
+.ini-f .pill[aria-pressed="true"]>span{background:var(--tx);color:var(--bg);box-shadow:none}
+
+/* ---------- painéis ---------- */
+.main{padding-bottom:calc(49px + 28px + env(safe-area-inset-bottom))}
+.panel{display:none;padding:6px 0 48px}
+.panel.on{display:block}
+.pad{padding:0 var(--gut)}
+.pghead{padding:14px 0 16px}
+.pghead h2{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.1}
+.pghead p{margin-top:6px;color:var(--tx2);font-size:15px;line-height:1.5;max-width:62ch}
+.eyebrow{display:block;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+
+/* ---------- prateleiras ---------- */
+.shelf{margin:16px 0 28px}
+.sh-head{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;padding:0 var(--gut);margin-bottom:10px}
+.sh-head h2{grid-column:1;grid-row:1;font-size:20px;font-weight:700;letter-spacing:-.015em;line-height:1.2;min-height:24px}
+.sh-head .pill{grid-column:2;grid-row:1;margin:-10px 0}
+.sh-head p{grid-column:1/-1;margin-top:2px;font-size:13px;color:var(--tx2);line-height:1.4}
+.pill{flex:0 0 auto;height:44px;display:inline-flex;align-items:center;padding:0;border:0;background:none;cursor:pointer;color:var(--tx)}
+.pill>span{display:inline-flex;align-items:center;height:32px;padding:0 13px;border-radius:999px;background:var(--s2);font-size:13px;font-weight:700;white-space:nowrap}
+/* foco do teclado no desenho da pílula, não na área de toque de 44 px */
+.pill:focus-visible{outline:none}
+.pill:focus-visible>span{outline:2px solid var(--acc);outline-offset:2px}
+.sh-wrap{position:relative}
+.sh-row{display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);
+  padding:2px var(--gut) 4px;margin:0;list-style:none;scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.sh-row::-webkit-scrollbar{display:none}
+.sh-row>li{flex:0 0 auto;scroll-snap-align:start}
+.sh-arr{display:none}
+@media (hover:hover) and (pointer:fine){
+  .sh-arr{display:grid;place-items:center;position:absolute;top:0;bottom:44px;width:44px;border:0;cursor:pointer;z-index:3;
+    background:linear-gradient(90deg,var(--bg),transparent);color:var(--tx);font-size:32px;font-weight:500;opacity:0;transition:opacity .18s}
+  .sh-arr.l{left:0}
+  .sh-arr.r{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+  .sh-wrap:hover .sh-arr{opacity:1}
+  .sh-arr[disabled]{visibility:hidden}
+}
+.sh-empty{margin:0 var(--gut);padding:18px;border-radius:14px;background:var(--s1);color:var(--tx2);font-size:14px;line-height:1.5;box-shadow:var(--ring)}
+
+/* pôster */
+.ti{width:var(--tw)}
+.ti-b{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;text-align:left;color:inherit;border-radius:10px;
+  transition:transform .16s var(--ease)}
+.ti-b:active{transform:scale(.95)}
+.po{position:relative;display:block;aspect-ratio:2/3;border-radius:8px;overflow:hidden;background:var(--pc,var(--po));isolation:isolate;container-type:inline-size}
+.po::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:var(--ring);pointer-events:none;z-index:3}
+.po img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}
+/* Substituto: quando falta o cartaz (ou ele não carrega), um bloco escuro fixo nos dois temas
+   (ou a cor média do pôster, se o posteres.json trouxer), com o título e "ano · diretor" no terço de baixo.
+   Só tipografia: nada desenhado. */
+.po-sub{position:absolute;left:0;right:0;bottom:0;max-height:70%;padding:0 9% 10%;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;
+  color:#ececf0;overflow:hidden;visibility:hidden}
+.po-sub b{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;
+  font-size:15px;font-size:clamp(9px,13.6cqi,15px);font-weight:800;line-height:1.14;letter-spacing:-.012em}
+.po-sub small{display:block;font-size:11px;font-weight:600;line-height:1.3;color:#a0a0ab;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.po.sem{background:var(--pc,#1f1f27)}
+.po.sem:not([style])::after{box-shadow:inset 0 0 0 1px #2a2a33}
+.po.sem .po-sub{visibility:visible}
+.po.sem.pc-light .po-sub{color:#15151a}
+.po.sem.pc-light .po-sub small{color:rgba(21,21,26,.72)}
+.po.sem.pc-dark .po-sub small{color:rgba(255,255,255,.72)}
+/* chip de nota ou de vezes no pé: o título sobe para não ficar por baixo */
+.po.sem:has(.mk-n) .po-sub,.po.sem:has(.mk-x) .po-sub{padding-bottom:34px}
+@container (max-width:96px){.po-sub small{display:none}.po-sub{padding:0 8% 9%}}
+@container (max-width:60px){.po-sub{display:none}}
+.po.ab img,.po.ab .po-sub{filter:grayscale(1);opacity:.4}
+.mk{position:absolute;z-index:4;display:grid;place-items:center;pointer-events:none}
+.mk-ok{top:6px;left:6px;width:22px;height:22px;border-radius:50%;background:#fff;color:#0b0b0f;box-shadow:0 1px 4px rgba(0,0,0,.45)}
+.mk-ok svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.mk-q{top:0;right:8px;width:15px;height:21px;color:#fff;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
+.mk-q svg{width:15px;height:21px;fill:currentColor}
+.mk-new{top:6px;right:6px;min-width:24px;height:20px;padding:0 6px;border-radius:999px;background:var(--new);color:var(--on-new);
+  font-size:11px;font-weight:800;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.mk-q~.mk-new{top:26px}
+.mk-n{left:6px;bottom:7px;height:21px;padding:0 6px;border-radius:6px;background:rgba(0,0,0,.72);color:#fff;font-size:12px;font-weight:700}
+.mk-x{right:6px;bottom:7px;height:21px;padding:0 6px;border-radius:6px;background:rgba(0,0,0,.72);color:#fff;font-size:12px;font-weight:800}
+.mk-rk{top:6px;left:6px;height:22px;min-width:22px;padding:0 7px;border-radius:11px;background:rgba(0,0,0,.72);color:#fff;font-size:12px;font-weight:800;
+  display:flex;align-items:center;gap:3px;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.mk-rk.ok{background:#fff;color:#0b0b0f;padding-left:4px}
+.mk-rk.ok svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.mk-dot{top:7px;right:7px;width:10px;height:10px;border-radius:50%;background:var(--new);box-shadow:0 0 0 2px rgba(0,0,0,.35)}
+.pbar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.28);z-index:4}
+.pbar i{display:block;height:100%;background:var(--acc)}
+.ti-t{display:block;margin-top:7px;font-size:13px;font-weight:600;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ti-m{display:block;margin-top:1px;font-size:12px;font-weight:500;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ti-m b{color:var(--acc);font-weight:700}
+.ti-m .te{color:var(--acc);font-weight:700}
+
+/* Top 10: numeral enorme em contorno, meio coberto pelo pôster */
+.sh-top .sh-row{gap:4px}
+.t10{position:relative;display:flex;align-items:flex-start;padding-left:52px}
+.t10.d2{padding-left:116px}
+.t10-n{position:absolute;right:calc(var(--tw-top) - 20px);top:calc(var(--tw-top) * 1.5 - 108px);font-size:120px;font-weight:800;line-height:1;letter-spacing:0;
+  color:transparent;-webkit-text-stroke:2px var(--stroke);user-select:none;-webkit-user-select:none;z-index:0;font-variant-numeric:lining-nums}
+.t10.d1{padding-left:44px}
+.t10.d1 .t10-n{right:calc(var(--tw-top) - 18px)}
+.t10 .ti{--tw:var(--tw-top);position:relative;z-index:1}
+.ti-cont{--tw:var(--tw-cont)}
+.sh-cont .sh-row{gap:8px}
+
+/* Sessão dupla */
+.duo{margin:0 var(--gut);padding:14px;border-radius:18px;background:var(--s1);box-shadow:var(--ring);display:grid;
+  grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);align-items:start;gap:0}
+.duo-i{min-width:0;display:flex;flex-direction:column;align-items:stretch}
+.duo-i .ti{width:100%;max-width:var(--tw-duo);margin:0 auto}
+.duo-l{display:block;font-size:12px;font-weight:700;color:var(--tx2);margin-bottom:7px;text-align:center}
+.duo-x{align-self:center;justify-self:center;font-size:22px;font-weight:800;color:var(--tx3);margin-top:-30px}
+.duo-elo{grid-column:1/-1;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:14px;line-height:1.5;color:var(--tx2);text-align:center}
+.duo-elo b{color:var(--tx);font-weight:700}
+
+/* Coleções como cartões (Criterion Channel) */
+.colcards{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 var(--gut)}
+.colcard{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px;border:0;border-radius:18px;background:var(--s1);
+  box-shadow:var(--ring);cursor:pointer;text-align:left;color:inherit;transition:transform .16s var(--ease)}
+.colcard:active{transform:scale(.97)}
+.fan{position:relative;display:block;width:100%;height:96px;margin-bottom:10px}
+.fan .po{position:absolute;bottom:0;width:58px;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.28)}
+.fan .po:nth-child(1){left:0;transform:rotate(-6deg);z-index:1}
+.fan .po:nth-child(2){left:calc(50% - 29px);z-index:3;width:62px}
+.fan .po:nth-child(3){right:0;transform:rotate(6deg);z-index:2}
+.cc-t{font-size:15px;font-weight:700;line-height:1.25}
+.cc-m{font-size:13px;color:var(--tx2)}
+
+/* ---------- Lista: o ranking completo em grade de pôsteres ---------- */
+.lista{padding:0 var(--gut);scroll-margin-top:64px}
+.rk-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:10px 0 10px;scroll-margin-top:70px}
+.rk-head h2{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.rk-head p{color:var(--tx2);font-size:14px}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px;margin-top:12px;align-items:start}
+.pgrid>.lm{grid-column:1/-1;padding-top:4px}
+.pgrid>.empty{grid-column:1/-1}
+.card.tile{display:block;background:none;box-shadow:none;padding:0;border-radius:10px;min-width:0}
+.tile .ti-b{border-radius:10px}
+.tile .ti-t{margin-top:7px}
+.tile .ti-m{font-size:12px}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.srch{flex:1 1 150px;min-width:0;position:relative;display:block}
+.ctrl .sel{flex:0 0 auto}
+.srch svg.i{position:absolute;left:12px;top:50%;width:19px;height:19px;transform:translateY(-50%);color:var(--tx3);pointer-events:none}
+.search{width:100%;min-width:0;height:44px;border:1px solid transparent;background:var(--s2);color:var(--tx);border-radius:12px;padding:0 14px;font-size:16px;font-weight:500}
+.srch .search{padding-left:38px}
+.search::placeholder{color:var(--tx3)}
+.search:focus{outline:none;border-color:var(--acc);background:var(--s1)}
+.sel{height:44px;border:0;background:var(--s2);color:var(--tx);border-radius:12px;padding:0 34px 0 14px;font-size:15px;font-weight:600;max-width:100%;
+  -webkit-appearance:none;appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--tx2) 50%),linear-gradient(135deg,var(--tx2) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:4px 0}
+.chips::-webkit-scrollbar{display:none}
+.chip{position:relative;flex:0 0 auto;height:36px;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:none;color:var(--tx);
+  border-radius:999px;padding:0 13px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+/* área de toque de 44 px em volta do desenho de 36 px */
+.chip::before{content:"";position:absolute;left:-3px;right:-3px;top:-5px;bottom:-5px}
+.chip .num{color:var(--tx3);font-weight:600;font-size:13px}
+.chip[aria-pressed="true"]{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.chip[aria-pressed="true"] .num{color:inherit;opacity:.65}
+.note{color:var(--tx2);font-size:14px;line-height:1.55;margin:0 0 12px}
+.legend{font-size:12px;color:var(--tx3);margin:14px 0 0;line-height:1.5}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-top:10px}
+.card{position:relative;background:var(--s1);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--ring),var(--lift);min-width:0}
+.cr{display:flex;gap:13px;align-items:flex-start;min-width:0}
+.cr-po{flex:0 0 96px;width:96px;padding:0;border:0;background:none;cursor:pointer;border-radius:8px;transition:transform .16s var(--ease)}
+.cr-po:active{transform:scale(.95)}
+.ttl{flex:1;min-width:0;padding-top:1px}
+.rank{display:block;font-size:12px;font-weight:800;color:var(--tx3);margin-bottom:1px}
+.ttl h3{font-size:17px;font-weight:700;line-height:1.25;letter-spacing:-.01em}
+.tbtn{display:inline-block;border:0;background:none;padding:10px 0;margin:-10px 0;font:inherit;color:inherit;text-align:left;cursor:pointer;line-height:inherit}
+.en{font-size:13px;color:var(--tx2);margin-top:2px;line-height:1.35;overflow-wrap:anywhere}
+.lang{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.04em;border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-right:5px;color:var(--tx3);vertical-align:1px;line-height:15px}
+.meta{font-size:13px;color:var(--tx2);margin-top:6px;line-height:1.4}
+.cx{color:var(--acc);font-weight:700}
+.cx.low{color:var(--tx3)}
+.sub{font-size:13px;color:var(--tx2);line-height:1.4;margin-top:1px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.mot{font-size:13px;color:var(--tx);font-weight:600;margin-top:5px;line-height:1.35}
+.badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+.bdg{display:inline-flex;align-items:center;font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 8px;background:var(--s2);color:var(--tx2);white-space:nowrap}
+.bdg.live{background:var(--acc-soft);color:var(--acc)}
+.rates{display:flex;gap:4px 10px;flex-wrap:wrap;align-items:center;margin-top:7px;font-size:12px;color:var(--tx2)}
+.rate{white-space:nowrap}
+.rate b{color:var(--tx);font-weight:700}
+.rate.mem b{color:var(--tx2);font-weight:600}
+.imdb{display:inline-block;background:#f5c518;color:#000;font-weight:800;font-size:11px;border-radius:4px;padding:1px 4px;margin-right:3px;letter-spacing:-.01em;line-height:15px}
+.rate.mem .imdb{background:none;color:var(--tx2);box-shadow:inset 0 0 0 1px #c9a200}
+
+/* status + nota */
+.act{display:flex;flex-direction:column;gap:6px}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;background:var(--s2);border-radius:13px;padding:3px}
+.seg.s4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.seg button{position:relative;height:38px;border:0;border-radius:10px;background:none;color:var(--tx2);font-size:13px;font-weight:700;cursor:pointer;padding:0 4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s,color .15s}
+.seg button::before{content:"";position:absolute;inset:-3px 0}
+.seg button[aria-pressed="true"]{background:var(--seg-on);color:var(--tx);box-shadow:0 1px 3px rgba(0,0,0,.14),var(--ring)}
+.seg button[aria-pressed="true"][data-s="assisti"],.seg button[aria-pressed="true"][data-ss="assisti"]{color:var(--acc)}
+.seg button[aria-pressed="true"][data-s="acompanhando"],.seg button[aria-pressed="true"][data-ss="acompanhando"]{color:var(--acc)}
+.score{display:flex;align-items:center;gap:12px;min-height:44px}
+.score label{font-size:13px;font-weight:700;color:var(--tx2);white-space:nowrap}
+.score output{min-width:30px;text-align:right;font-weight:800;font-size:18px;letter-spacing:-.01em}
+.score output.none{color:var(--tx3);font-weight:600;font-size:15px}
+.clr{border:0;background:none;color:var(--tx2);font-size:13px;font-weight:600;cursor:pointer;padding:0 2px;min-height:44px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+input[type=range]{-webkit-appearance:none;appearance:none;flex:1;min-width:60px;height:44px;margin:0;background:transparent;cursor:pointer;--v:50%;touch-action:pan-y}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--acc) var(--v),var(--track) var(--v))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-10px;border-radius:50%;background:#fff;border:0;
+  box-shadow:0 1px 4px rgba(0,0,0,.32),0 0 0 .5px rgba(0,0,0,.12)}
+input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:var(--track)}
+input[type=range]::-moz-range-progress{height:6px;border-radius:3px;background:var(--acc)}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border:0;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.32)}
+.vazio input[type=range]::-webkit-slider-runnable-track{background:var(--track)}
+.vazio input[type=range]::-moz-range-progress{background:transparent}
+.vazio input[type=range]::-webkit-slider-thumb{background:var(--s1);box-shadow:0 0 0 2px var(--track)}
+
+details{border-top:1px solid var(--line);margin:0 -12px -12px;padding:0 12px}
+summary{display:flex;align-items:center;gap:8px;min-height:46px;cursor:pointer;font-size:14px;font-weight:700;color:var(--tx2);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:8px;height:8px;margin-left:auto;margin-right:4px;border-right:2px solid var(--tx3);border-bottom:2px solid var(--tx3);transform:rotate(45deg) translateY(-2px);transition:transform .18s}
+details[open]>summary::after{transform:rotate(225deg) translate(-2px,0)}
+.more{display:flex;flex-direction:column;gap:14px;padding:4px 0 16px;font-size:15px;line-height:1.55}
+.more h4{margin:0 0 4px;font-size:13px;font-weight:800;color:var(--tx2)}
+.more p{margin:0}
+.src{color:var(--tx3);font-size:12.5px;line-height:1.45}
+.crit{border-left:2px solid var(--line);padding-left:11px}
+.crit .who{font-weight:700}
+.crit+.crit{margin-top:10px}
+.dimtable{display:grid;grid-template-columns:auto minmax(0,1fr) 28px;gap:7px 10px;align-items:center;font-size:14px}
+.dimtable .bar{height:8px;background:var(--track);border-radius:4px;overflow:hidden}
+.dimtable .bar i{display:block;height:100%;background:var(--tx3);border-radius:4px}
+.dimtable .bar.hi i{background:var(--acc)}
+.dimtable .v{text-align:right;color:var(--tx2);font-weight:600}
+.dimtable .n{white-space:nowrap}
+.dimtable .n.hi{font-weight:700;color:var(--tx)}
+
+.watch{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--tx2)}
+.watch .wl{font-size:12px;font-weight:800;color:var(--tx3);margin-right:2px}
+.svc{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;background:var(--s2);color:var(--tx);white-space:nowrap;font-weight:600;font-size:13px}
+.svc.mine{background:var(--acc-soft);color:var(--acc);font-weight:700}
+.svc small{font-size:11px;font-weight:600;opacity:.85}
+.watch a{color:var(--acc);text-decoration:none;white-space:nowrap;font-weight:600}
+.watch .alt,.mysvc .alt{color:var(--tx3);font-weight:500}
+.mysvc{margin:4px 0 0;font-size:14px;border:0;padding:0}
+.mysvc summary{min-height:44px;font-size:14px}
+.mysvc .chips{flex-wrap:wrap;overflow:visible;margin-top:4px}
+.mysvc p{color:var(--tx3);font-size:13px;margin:8px 0 6px}
+
+.empty{color:var(--tx2);text-align:center;padding:36px 12px;font-size:15px;line-height:1.6}
+.loadmore{display:flex;align-items:center;justify-content:center;width:100%;max-width:360px;min-height:48px;margin:6px auto 0;border:0;
+  background:var(--s2);color:var(--tx);border-radius:999px;font-size:15px;font-weight:700;cursor:pointer}
+
+/* ---------- botões e caixas ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 18px;border:0;border-radius:999px;
+  background:var(--s2);color:var(--tx);font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;line-height:1.2}
+.btn.pri{background:var(--acc);color:var(--on-acc)}
+.btn[disabled]{opacity:.55;cursor:default}
+a.btn{display:inline-flex}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.box{background:var(--s1);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:var(--ring)}
+.box h3{margin:0 0 6px;font-size:17px;font-weight:700}
+.box p{margin:0 0 12px;color:var(--tx2);font-size:15px;line-height:1.55}
+.box p:last-child{margin-bottom:0}
+code{font-size:13px;background:var(--s2);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
+textarea.out{width:100%;min-height:110px;border:0;background:var(--s2);color:var(--tx);border-radius:12px;padding:12px;font-size:13px;font-family:ui-monospace,Menlo,monospace}
+
+/* ---------- coleções ---------- */
+.colhead{padding:14px 0 18px}
+.colhead h2{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.1}
+.colhead p{margin-top:8px;color:var(--tx2);font-size:15px;line-height:1.55;max-width:60ch}
+.colhead .cnt{margin-top:10px;font-size:13px;font-weight:700;color:var(--tx3)}
+.colnote{color:var(--tx2);font-size:15px;line-height:1.55;margin:0 0 12px;max-width:62ch}
+.colnote b{color:var(--tx)}
+.ctl2{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px;color:var(--tx2)}
+.vezes button[data-vz]{width:44px;height:44px;border-radius:50%;border:0;background:var(--s2);color:var(--tx);font-size:20px;line-height:1;cursor:pointer;font-weight:600}
+.vezes output{min-width:28px;text-align:center;font-weight:800;font-size:18px;color:var(--tx)}
+.fase{flex:1 1 200px;min-width:0;height:44px;border:1px solid transparent;background:var(--s2);color:var(--tx);border-radius:12px;padding:0 12px;font-size:16px}
+.fase:focus{outline:none;border-color:var(--acc);background:var(--s1)}
+.rm{border:0;background:none;color:var(--tx2);font-size:13px;font-weight:600;cursor:pointer;padding:0 4px;min-height:44px;margin-left:auto;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+/* coleções (Criterion Channel): grade de pôsteres de 2 colunas, com o contador de vezes ou a nota de fase embaixo */
+.cgrid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px;align-items:start}
+.cgrid2>.empty{grid-column:1/-1}
+.card.ctile{display:flex;flex-direction:column;gap:8px;background:none;box-shadow:none;padding:0;border-radius:0}
+.ctile .ti-b{display:block}
+.ctile .ti-t{margin-top:8px;font-size:15px}
+.ctile .vezes{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:0;height:44px;border-radius:12px;background:var(--s2)}
+.ctile .vezes button[data-vz]{width:44px;height:44px;border-radius:12px;background:none;font-size:22px}
+.ctile .vz{text-align:center;font-size:13px;color:var(--tx2);white-space:nowrap}
+.ctile .vz output{min-width:0;font-size:17px}
+.ctile .fase{flex:none;width:100%;font-size:16px;padding:0 12px}
+.ct-f{display:flex;align-items:center;gap:8px;margin-top:-6px}
+.ct-f .jw{font-size:13px;font-weight:600;color:var(--acc);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.filmes-saga{margin:0;border-top:1px solid var(--line);padding:0}
+.card>.filmes-saga{margin:0 -12px;padding:0 12px}
+.filmes-saga ol{margin:0 0 12px;padding-left:22px;font-size:14px;color:var(--tx2);line-height:1.6}
+.filmes-saga li b{color:var(--tx);font-weight:600}
+.addbox{margin-top:16px}
+.addbox .row input{flex:1 1 220px;min-width:0}
+.addmsg{font-size:14px!important}
+
+/* ---------- perguntar ---------- */
+.ask textarea{width:100%;min-height:96px;border:1px solid transparent;background:var(--s1);color:var(--tx);border-radius:16px;padding:14px;font-size:16px;line-height:1.5;resize:vertical;box-shadow:var(--ring)}
+.ask textarea:focus{outline:none;border-color:var(--acc)}
+.ask .row{margin-top:10px}
+.ask .opt{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--tx2);min-height:44px}
+.ask .opt input{width:20px;height:20px;accent-color:var(--acc)}
+.ask .sug{margin-top:12px;flex-wrap:wrap;overflow:visible}
+.ask .sug .chip{font-weight:600}
+.ans{margin-top:20px}
+.ans .q{font-weight:800;font-size:18px;margin:0 0 8px;letter-spacing:-.01em}
+.ans .txt p{margin:0 0 10px;color:var(--tx);font-size:16px;line-height:1.62}
+.ans .meta2{font-size:13px;color:var(--tx3);margin:2px 0 12px}
+.ans .grid{margin-top:4px}
+.ind .why{font-size:15px;color:var(--tx2);margin:0;line-height:1.5}
+.ind .acts{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
+.ind .acts a,.ind .acts button{color:var(--acc);background:none;border:0;padding:0;cursor:pointer;text-decoration:none;font-size:14px;font-weight:700;min-height:44px;display:inline-flex;align-items:center}
+.wait{color:var(--tx2);font-size:15px}
+.err{color:var(--new);font-size:15px}
+.hist{border:0;margin:18px 0 0;padding:0}
+.hist summary{font-size:15px}
+
+/* ---------- pesos ---------- */
+.weights{display:flex;flex-direction:column;gap:6px;max-width:640px}
+.w{display:grid;grid-template-columns:1fr auto;gap:0 12px;background:var(--s1);border-radius:16px;padding:12px 14px 4px;box-shadow:var(--ring)}
+.w .n{font-weight:700;font-size:16px}
+.w .d{grid-column:1/-1;color:var(--tx2);font-size:13px;line-height:1.45}
+.w input{grid-column:1/-1;width:100%}
+.w output{font-weight:800;font-size:16px}
+
+/* ---------- agenda ---------- */
+.calctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:4px 0 12px}
+.calctl .chips{padding:0}
+.agenda{display:flex;flex-direction:column;gap:18px}
+.day h4{margin:0 0 4px;font-size:15px;font-weight:800;letter-spacing:-.005em;text-transform:none}
+.day h4 .hj{color:var(--acc)}
+.ep{display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.ep:last-child{border-bottom:0}
+.ep-pb{flex:0 0 48px;width:48px;padding:0;border:0;background:none;cursor:pointer;border-radius:6px}
+.ep-pb .po,.ep>.po{border-radius:6px}
+.ep>.po{flex:0 0 48px;width:48px}
+.ep-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.ep-t .te{font-size:13px;font-weight:800;color:var(--acc)}
+.ep-t .sn{font-size:16px;font-weight:600;line-height:1.3}
+.ep-t .et{font-size:14px;color:var(--tx2);line-height:1.35}
+.ep-r{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:12.5px;color:var(--tx2);text-align:right;max-width:34%}
+.ep-r .num{font-weight:700;color:var(--tx)}
+.month{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px}
+.month .dow{font-size:11px;color:var(--tx3);text-align:center;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:2px 0 6px}
+.month .cell{height:48px;border:0;background:none;border-radius:12px;padding:4px 0 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--tx);min-width:0}
+.month .cell.pad{visibility:hidden}
+.month .cell .dn{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:600}
+.month .cell.today .dn{background:var(--acc);color:var(--on-acc);font-weight:800}
+.month .cell.sel{background:var(--s2)}
+.month .cell.sel:not(.today) .dn{box-shadow:inset 0 0 0 2px var(--tx)}
+.month .cell .dots{display:flex;gap:3px;height:6px}
+.month .cell .dot{display:block;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.month .cell .minis{display:none}
+.mhead{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.mhead b{font-size:20px;font-weight:800;flex:1;text-transform:capitalize;letter-spacing:-.01em}
+.mhead .btn{width:44px;padding:0;font-size:18px}
+.mlist{margin-top:14px}
+.ann{font-size:15px;line-height:1.55;padding-left:20px;margin:6px 0 0}
+.ann li{margin-bottom:6px}
+.calwrap{display:block}
+.foot{color:var(--tx3);font-size:13px;line-height:1.55;padding:20px var(--gut) 0;border-top:1px solid var(--line);margin-top:8px}
+.foot a{display:inline-flex;align-items:center;min-height:44px;color:var(--tx2);font-weight:600;text-decoration:none}
+
+/* ---------- folha do título (celular) / painel (computador) ---------- */
+html.lock,html.lock body{overflow:hidden}
+.scrim{position:fixed;inset:0;z-index:80;background:var(--scrim);opacity:0;transition:opacity .28s;touch-action:none}
+.scrim.on{opacity:1}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;height:calc(100vh - 40px);height:calc(100dvh - 40px - env(safe-area-inset-top));
+  background:var(--sheet);border-radius:18px 18px 0 0;transform:translateY(102%);transition:transform .34s var(--ease);
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+.sheet.peek{transform:translateY(var(--peek,38%))}
+.sheet.full{transform:translateY(0)}
+.sh-body{flex:1;overflow:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+.sheet.full .sh-body{overflow-y:auto}
+.sh-bar{position:absolute;left:0;right:0;top:0;height:56px;z-index:6;display:flex;align-items:center;justify-content:center;padding:6px 64px 0;
+  transition:background .2s,box-shadow .2s;pointer-events:none}
+.sh-bar>*{pointer-events:auto}
+.sheet.rolou .sh-bar{background:var(--sheet);box-shadow:0 1px 0 var(--line)}
+.sh-bt{font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transition:opacity .2s;pointer-events:none}
+.sheet.rolou .sh-bt{opacity:1}
+.grab{position:absolute;left:50%;top:0;width:120px;height:44px;transform:translateX(-50%);z-index:6;border:0;background:none;cursor:grab;padding:0}
+.grab::before{content:"";position:absolute;left:42px;top:7px;width:36px;height:5px;border-radius:3px;background:rgba(255,255,255,.62);box-shadow:0 0 0 .5px rgba(0,0,0,.18)}
+.sheet.rolou .grab::before{background:var(--track);box-shadow:none}
+.sh-x{position:absolute;top:10px;right:12px;z-index:6;width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(0,0,0,.42);color:#fff;display:grid;place-items:center;padding:0;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.sh-x::before{content:"";position:absolute;inset:-4px}
+.sh-x svg.i{width:18px;height:18px;stroke-width:2.4}
+.hero{position:relative;display:flex;gap:14px;align-items:flex-end;padding:50px var(--gut) 14px;min-height:236px;isolation:isolate}
+.hero-bgw{position:absolute;inset:0;overflow:hidden;z-index:-2;pointer-events:none}
+.hero-bg{position:absolute;left:-40px;right:-40px;top:-40px;height:330px;width:calc(100% + 80px);object-fit:cover;filter:blur(30px) saturate(1.25);opacity:.62;transform:scale(1.05)}
+.hero-bg.cor{background:var(--pc,var(--s2));opacity:1;filter:none}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,transparent 30%,var(--sheet) 96%)}
+.hero-po{flex:0 0 112px;width:112px}
+.hero-po .po{box-shadow:var(--hero-sh)}
+.hero-t{flex:1;min-width:0;padding-bottom:2px}
+.hero-t h2{font-size:24px;font-weight:800;line-height:1.12;letter-spacing:-.025em;overflow-wrap:anywhere}
+.hero-t .en{margin-top:4px}
+.hero-t .meta{margin-top:7px;color:var(--tx2);font-size:13.5px}
+.hero-t .ha{font-size:13px;color:var(--tx2);margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hero-t .mot{margin-top:6px}
+.sx{padding:16px var(--gut);border-top:1px solid var(--line)}
+.sx>h3{font-size:18px;font-weight:800;letter-spacing:-.015em;margin:0 0 10px}
+.sx-act{border-top:0;padding-top:4px;display:flex;flex-direction:column;gap:10px}
+.thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.thumbs button{min-height:48px;border:1px solid var(--line);background:none;border-radius:14px;cursor:pointer;display:flex;flex-direction:row;
+  align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:700;color:var(--tx2);padding:4px 6px;white-space:nowrap}
+.thumbs button svg.i{width:22px;height:22px}
+.thumbs button[aria-pressed="true"]{background:var(--tx);border-color:var(--tx);color:var(--bg)}
+.sscore{min-height:40px}
+.prev{font-size:14px;color:var(--tx2);font-weight:600}
+.prev b{color:var(--tx)}
+.prev .up{color:var(--acc)}
+.lead{margin:0 var(--gut) 14px;padding:0;font-size:15px;line-height:1.55;color:var(--tx)}
+.sheet:not(.full) .lead{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.xp-w{padding:0 var(--gut) 16px}
+.xp{width:100%}
+.sheet.full .xp-w{display:none}
+.wg{display:flex;gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}
+.wg:last-of-type{border-bottom:0}
+.wg .wl{flex:0 0 88px;font-size:13px;font-weight:800;color:var(--tx2)}
+.wg .svcs{display:flex;gap:6px;flex-wrap:wrap}
+.sx .muted{color:var(--tx2);font-size:15px;line-height:1.5;margin-bottom:10px}
+.sx .watch{margin-top:2px}
+.sum{font-size:15px;line-height:1.5;margin-bottom:10px;color:var(--tx2)}
+.sum b{color:var(--tx)}
+.esp{font-size:15px;line-height:1.55;margin-bottom:14px}
+.ext{display:flex;gap:8px;flex-wrap:wrap}
+.ext .x{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:10px;background:var(--s1);box-shadow:var(--ring);font-size:14px;font-weight:600;color:var(--tx2)}
+.ext .x b{color:var(--tx);font-weight:800}
+.ext .x.mem{box-shadow:inset 0 0 0 1px var(--line);background:none}
+.ext .x.mem b{color:var(--tx2)}
+.ext-n{font-size:12.5px;color:var(--tx3);margin-top:8px;line-height:1.45}
+.sx-d{border-top:1px solid var(--line);margin:0;padding:0 var(--gut)}
+.sx-d>summary{min-height:52px;font-size:16px;color:var(--tx)}
+.sx-d .more{padding-top:0}
+.eps{list-style:none;margin:0;padding:0}
+.eps li{display:flex;gap:10px;align-items:center;min-height:52px;padding:6px 0;border-bottom:1px solid var(--line);font-size:15px}
+.eps li:last-child{border-bottom:0}
+.eps .te{flex:0 0 auto;font-weight:800;color:var(--acc);font-size:13px;min-width:32px}
+.eps .et{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;line-height:1.3}
+.eps .et .ed{font-size:13px;color:var(--tx2)}
+.eps-n{font-size:13px;color:var(--tx3);margin-top:8px;line-height:1.45}
+/* episódio visto: círculo com check, como no Stremio (vazio = ainda não viu) */
+.vb{flex:0 0 44px;width:44px;height:44px;margin:-4px -8px -4px 0;border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center;color:var(--tx3);border-radius:50%}
+.vb svg{width:28px;height:28px;padding:6px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--track);fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;box-sizing:border-box}
+.vb[aria-pressed="true"]{color:var(--on-acc)}
+.vb[aria-pressed="true"] svg{background:var(--acc);box-shadow:none}
+.colinfo{margin:0 var(--gut) 12px;font-size:14px;line-height:1.5;color:var(--tx2)}
+.colinfo b{color:var(--tx);font-weight:700}
+.eps .ed{flex:0 0 auto;color:var(--tx2);font-size:13px}
+.eps .bd{flex:0 0 auto;font-size:11.5px;font-weight:800;border-radius:999px;padding:2px 8px;background:var(--s2);color:var(--tx2)}
+.eps .bd.on{background:var(--acc-soft);color:var(--acc)}
+.tbar{display:flex;align-items:center;justify-content:space-between;margin:-4px 0 4px}
+.tbar b{font-size:15px;font-weight:800}
+.tbar .ib{width:40px;height:40px;font-size:22px}
+.tbar .ib[disabled]{opacity:.3;cursor:default}
+.links{display:flex;gap:8px;flex-wrap:wrap}
+.links a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:999px;background:var(--s2);color:var(--tx);font-size:14px;font-weight:700;text-decoration:none}
+.credit{font-size:12.5px;color:var(--tx3);margin-top:10px}
+
+/* ---------- celular estreito ---------- */
+@media (max-width:359px){
+  :root{--tw:100px;--tw-top:96px;--tw-cont:80px;--tw-duo:118px}
+  .cr-po{flex-basis:84px;width:84px}
+  .seg button{font-size:12px;padding:0 2px}
+  .lseg .tab{font-size:12.5px;padding:0 1px}
+  .t10{padding-left:52px}
+  .t10.d2{padding-left:112px}
+  .wg .wl{flex-basis:76px}
+  .hero-po{flex-basis:96px;width:96px}
+  .thumbs button{flex-direction:column;gap:2px;font-size:12.5px;min-height:54px}
+  .hero-t h2{font-size:21px}
+}
+@media (min-width:560px){
+  .act{flex-direction:row;align-items:center;gap:14px}
+  .act .seg{flex:0 0 auto;min-width:300px}
+  .act .seg.s4{min-width:380px}
+  .act .score{flex:1}
+}
+@media (min-width:560px){
+  .pgrid{grid-template-columns:repeat(auto-fill,minmax(124px,1fr))}
+  .cgrid2{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+}
+@media (min-width:700px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .act{flex-direction:column;align-items:stretch;gap:6px}
+  .act .seg,.act .seg.s4{min-width:0}
+}
+
+/* ---------- computador: barra lateral de 80 px e pôsteres de 150 ---------- */
+@media (min-width:900px){
+  :root{--gut:32px;--tw:150px;--tw-top:150px;--tw-cont:120px;--tw-duo:170px}
+  .top{margin-left:80px;min-height:64px;padding-top:calc(10px + env(safe-area-inset-top))}
+  .brand{font-size:24px}
+  .main{margin-left:80px}
+  .main{padding-bottom:48px}
+  .tabbar{top:0;bottom:0;right:auto;width:80px;height:auto;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:4px;
+    padding:calc(14px + env(safe-area-inset-top)) 6px 14px;background:var(--bg);box-shadow:1px 0 0 var(--line)}
+  .tabbar-brand{display:block;width:40px;height:40px;margin:0 auto 16px;border-radius:11px}
+  .nb{flex:0 0 auto;max-width:none;height:64px;border-radius:14px;font-size:11px;gap:5px;color:var(--tx2)}
+  .nb[aria-current="page"]{background:var(--s2)}
+  .nb .newb{top:7px;left:calc(50% + 6px)}
+  .lnav{position:static;padding:6px var(--gut) 4px}
+  .panel{padding-top:0}
+  .shelf{margin:10px 0 34px}
+  .sh-head h2{font-size:22px}
+  .t10{padding-left:80px}
+  .t10.d2{padding-left:166px}
+  .t10.d1{padding-left:64px}
+  .t10.d1 .t10-n{right:calc(var(--tw-top) - 26px)}
+  .t10-n{font-size:168px;right:calc(var(--tw-top) - 24px);top:calc(var(--tw-top) * 1.5 - 151px);-webkit-text-stroke-width:2.5px}
+  .duo{max-width:560px;margin-left:var(--gut)}
+  .colcards{max-width:560px}
+  .fan{height:120px}
+  .fan .po{width:72px}.fan .po:nth-child(2){width:78px;left:calc(50% - 39px)}
+  .cr-po{flex-basis:112px;width:112px}
+  .cgrid2{grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:28px 16px}
+  .grid{gap:14px}
+  .rk-head h2{font-size:28px}
+  .pgrid{grid-template-columns:repeat(auto-fill,minmax(136px,1fr));gap:24px 14px}
+  .calwrap.mes{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:32px;align-items:start}
+  .calwrap.mes .mlist{margin-top:40px}
+  .month{gap:4px}
+  .month .cell{height:112px;align-items:stretch;padding:6px;gap:5px;background:var(--s1);box-shadow:var(--ring);border-radius:12px}
+  .month .cell .dn{width:28px;height:28px;font-size:14px}
+  .month .cell .dots{display:none}
+  .month .cell .minis{display:flex;gap:4px}
+  .month .cell .minis .po{width:calc(50% - 2px);max-width:44px;border-radius:5px}
+  .month .cell .minis .po-sub{display:none}
+  .month .cell .minis .mini-i b{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;font-weight:800;color:var(--tx2)}
+  .month .cell .minis .mk{display:none}
+  .month .cell.sel{box-shadow:inset 0 0 0 2px var(--tx)}
+  .month .cell.sel:not(.today) .dn{box-shadow:none}
+  .agenda{max-width:760px}
+  .sheet{--gut:24px;left:auto;top:0;right:0;bottom:0;width:420px;height:100%;border-radius:0;transform:translateX(104%);box-shadow:-12px 0 40px rgba(0,0,0,.22);border-left:1px solid var(--line)}
+  .sheet.peek,.sheet.full{transform:none}
+  .sheet .sh-body{overflow-y:auto}
+  .grab,.xp-w{display:none}
+  .sheet:not(.full) .lead,.sheet .lead{display:block;-webkit-line-clamp:unset}
+  .sh-bar{padding-top:0}
+  .scrim{background:rgba(0,0,0,.18)}
+}
+@media (min-width:1360px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+/* estados de passar o mouse só onde há mouse (no toque, o :hover gruda depois do toque) */
+@media (hover:hover) and (pointer:fine){
+  .ib:hover{background:var(--s2)}
+  .nb:hover{color:var(--tx)}
+  .lseg .tab:hover{color:var(--tx)}
+  .mrow:hover{background:var(--s2)}
+  .back:hover{text-decoration:underline;text-underline-offset:3px}
+  .pill:hover>span{background:var(--line)}
+  .tbtn:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+  .seg button:hover{color:var(--tx)}
+  summary:hover{color:var(--tx)}
+  .loadmore:hover,.btn:hover,.vezes button[data-vz]:hover,.links a:hover{background:var(--line)}
+  .btn.pri:hover{filter:brightness(1.06);background:var(--acc)}
+  .month .cell:hover{background:var(--s2)}
+  .thumbs button:hover{border-color:var(--tx3);color:var(--tx)}
+  .foot a:hover{color:var(--tx)}
+  .watch a:hover{text-decoration:underline}
+  .ti-b:hover .po img{filter:brightness(1.08)}
+}
+@media (hover:hover) and (pointer:fine) and (min-width:900px){
+  .nb:hover{background:var(--s2)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1 class="brand">Telas</h1>
+  <button class="ib" id="go-busca" type="button" aria-label="Buscar na lista"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4.2-4.2"/></svg></button>
+  <button class="ib" id="go-ia" type="button" aria-label="Perguntar à IA"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.3l1.3-4.4A8.4 8.4 0 1 1 20.5 11.6z"/><path d="M12 8.2v6.4M8.8 11.4h6.4"/></svg></button>
+</header>
+
+<nav class="tabbar" aria-label="Seções">
+  <img class="tabbar-brand" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='p' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f4b65f'/%3E%3Cstop offset='1' stop-color='%23c9683b'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231b2733'/%3E%3Cstop offset='1' stop-color='%230c1015'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23b)'/%3E%3Cpath d='M27 17 q5 -6 10 0' fill='none' stroke='%235a6e80' stroke-width='3.5' stroke-linecap='round'/%3E%3Crect x='16' y='20' width='32' height='36' rx='12' fill='url(%23p)'/%3E%3Crect x='25.6' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Crect x='35' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Cpath d='M16 33 v-1 a12 12 0 0 1 12 -12 h8 a12 12 0 0 1 12 12 v1 a3 3 0 0 1 -3 3 H19 a3 3 0 0 1 -3 -3 Z' fill='%23f0a64e'/%3E%3Cpath d='M23 39 h18 a3 3 0 0 1 3 3 v7 a5 5 0 0 1 -5 5 H25 a5 5 0 0 1 -5 -5 v-7 a3 3 0 0 1 3 -3 Z' fill='%23b9572f'/%3E%3Ccircle cx='37.6' cy='45.5' r='2.3' fill='%23ffd27a'/%3E%3Cpath d='M23 53 L28 46 L32 50.5 L36.6 45 L41 53 Z' fill='%235fc9a0'/%3E%3C/svg%3E" alt="" width="40" height="40">
+  <button class="nb" type="button" data-dest="inicio" aria-current="page"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.4L12 4l8 6.4V19a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H5.5A1.5 1.5 0 0 1 4 19z"/></svg><span class="nbl">Início</span></button>
+  <button class="nb" type="button" data-dest="lista"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7.5" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7.5" rx="1.6"/><rect x="3.5" y="13" width="7" height="7.5" rx="1.6"/><rect x="13.5" y="13" width="7" height="7.5" rx="1.6"/></svg><span class="nbl">Lista</span></button>
+  <!-- 5º destino: "Avaliar" entra aqui, entre Lista e Agenda, como
+       <button class="nb tab" type="button" data-dest="avaliar" data-tab="avaliar"> com o ícone de polegar.
+       A barra divide a largura em partes iguais (flex 1), então cabe sem mexer no CSS. -->
+  <button class="nb tab" type="button" data-dest="agenda" data-tab="cal"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/></svg><span class="nbl">Agenda</span><span class="newb num" id="nb-series" hidden></span></button>
+  <button class="nb" type="button" data-dest="mais"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.7" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/><circle cx="18.5" cy="12" r="1.7" fill="currentColor" stroke="none"/></svg><span class="nbl">Mais</span></button>
+</nav>
+
+<main class="main" id="conteudo">
+
+  <div class="lnav" id="lnav" hidden>
+    <div class="lseg" role="group" aria-label="O que mostrar na lista">
+      <button class="tab" type="button" data-tab="filmes" data-via='.tabbar [data-dest="lista"]'>Filmes<span class="ct num" id="ct-filmes"></span></button>
+      <button class="tab" type="button" data-tab="series" data-via='.tabbar [data-dest="lista"]'>Séries<span class="ct num" id="ct-series"></span></button>
+      <button class="tab" type="button" data-tab="desligar" data-via='.tabbar [data-dest="lista"]' title="Desligar o cérebro">Desligar<span class="ct num" id="ct-desligar"></span></button>
+      <button class="tab" type="button" data-tab="repetidos" data-via='.tabbar [data-dest="lista"]'>Repetidos<span class="ct num" id="ct-repetidos"></span></button>
+    </div>
+  </div>
+
+  <section class="panel on" id="p-inicio" aria-label="Início">
+    <div class="ini-f" role="group" aria-label="Mostrar no Início">
+      <button class="pill" type="button" data-ini="tudo" aria-pressed="true"><span>Tudo</span></button>
+      <button class="pill" type="button" data-ini="filmes" aria-pressed="false"><span>Filmes</span></button>
+      <button class="pill" type="button" data-ini="series" aria-pressed="false"><span>Séries</span></button>
+    </div>
+    <div class="shelves" id="sh-inicio"></div>
+  </section>
+
+  <section class="panel" id="p-filmes" aria-label="Filmes">
+    <div class="lista">
+      <div class="rk-head" id="rk-filmes"><h2><span id="rkn-filmes">100</span> filmes</h2><p id="rks-filmes">na ordem da conexão</p></div>
+      <div class="ctrl">
+        <label class="srch"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4.2-4.2"/></svg><input class="search" type="search" placeholder="Título ou diretor" data-q="filmes" aria-label="Buscar filmes"></label>
+        <select class="sel" data-sort="filmes" aria-label="Ordenar filmes">
+          <option value="conn">Conexão</option>
+          <option value="nota">Minha nota</option>
+          <option value="ano">Ano</option>
+          <option value="imdb">IMDb</option>
+          <option value="rt">Rotten (crítica)</option>
+          <option value="mc">Metacritic</option>
+          <option value="lb">Letterboxd</option>
+        </select>
+      </div>
+      <div class="chips" data-filter="filmes" role="group" aria-label="Filtrar por status"></div>
+      <div class="ctrl" data-watchbox="filmes" hidden style="margin:6px 0 0">
+        <select class="sel" data-watch="filmes" aria-label="Onde assistir os filmes"></select>
+      </div>
+      <details class="mysvc" data-mysvc="filmes" hidden><summary></summary><div class="chips" role="group" aria-label="Seus serviços de streaming"></div><p>Marque os serviços que você assina: eles ficam em verde e montam a prateleira "No que você assina". Fica guardado neste aparelho, junto com suas notas.</p></details>
+      <div class="pgrid" id="list-filmes"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-series" aria-label="Séries">
+    <div class="lista">
+      <div class="rk-head" id="rk-series"><h2><span id="rkn-series">100</span> séries</h2><p id="rks-series">na ordem da conexão</p></div>
+      <div class="ctrl">
+        <label class="srch"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4.2-4.2"/></svg><input class="search" type="search" placeholder="Título ou criador" data-q="series" aria-label="Buscar séries"></label>
+        <select class="sel" data-sort="series" aria-label="Ordenar séries">
+          <option value="conn">Conexão</option>
+          <option value="nota">Minha nota</option>
+          <option value="ano">Ano</option>
+          <option value="imdb">IMDb</option>
+          <option value="rt">Rotten (crítica)</option>
+          <option value="mc">Metacritic</option>
+        </select>
+      </div>
+      <div class="chips" data-filter="series" role="group" aria-label="Filtrar por status"></div>
+      <div class="ctrl" data-watchbox="series" hidden style="margin:6px 0 0">
+        <select class="sel" data-watch="series" aria-label="Onde assistir as séries"></select>
+      </div>
+      <details class="mysvc" data-mysvc="series" hidden><summary></summary><div class="chips" role="group" aria-label="Seus serviços de streaming"></div><p>Marque os serviços que você assina: eles ficam em verde e montam a prateleira "No que você assina". Fica guardado neste aparelho, junto com suas notas.</p></details>
+      <div class="pgrid" id="list-series"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-desligar" aria-label="Desligar o cérebro">
+    <div class="pad">
+      <header class="colhead"><span class="eyebrow">Coleção</span><h2>Desligar o cérebro</h2><p>O que serve pra descansar a cabeça, cada um numa fase da vida. Anote ao lado de cada um em que fase ele te serviu.</p><p class="cnt num" id="cnt-desligar"></p></header>
+      <div class="cgrid2" id="list-desligar"></div>
+      <div class="box addbox">
+        <h3>Adicionar</h3>
+        <div class="row"><input class="search" type="text" list="todos-titulos" data-add="desligar" placeholder="Ex.: Seinfeld" aria-label="Título para adicionar em Desligar o cérebro" autocomplete="off"><button class="btn pri" data-addbtn="desligar">Adicionar</button></div>
+        <p class="addmsg" data-addmsg="desligar" style="margin-top:10px">Escolha da lista ou escreva qualquer título. O que não estiver na lista entra só com o nome e a busca no JustWatch; me conta no chat que eu completo os dados.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-repetidos" aria-label="Repetidos">
+    <div class="pad">
+      <header class="colhead"><span class="eyebrow">Coleção</span><h2>Repetidos</h2><p>O que você vê dezenas de vezes. Conte cada volta: o número aparece no canto do pôster.</p><p class="cnt num" id="cnt-repetidos"></p></header>
+      <div class="cgrid2" id="list-repetidos"></div>
+      <div class="box addbox">
+        <h3>Adicionar</h3>
+        <div class="row"><input class="search" type="text" list="todos-titulos" data-add="repetidos" placeholder="Ex.: De Volta para o Futuro" aria-label="Título para adicionar em Repetidos" autocomplete="off"><button class="btn pri" data-addbtn="repetidos">Adicionar</button></div>
+        <p class="addmsg" data-addmsg="repetidos" style="margin-top:10px">Escolha da lista ou escreva qualquer título. O que não estiver na lista entra só com o nome e a busca no JustWatch; me conta no chat que eu completo os dados.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-perguntar" aria-label="Perguntar à IA">
+    <div class="pad">
+      <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
+      <header class="pghead"><h2>Perguntar</h2><p>A IA responde olhando o que você marcou aqui: suas notas, status, coleções, pesos e o que já está na lista. As indicações chegam como cartões.</p></header>
+      <div class="ask">
+        <label for="ia-q" class="sr">Sua pergunta</label>
+        <textarea id="ia-q" maxlength="800" placeholder="Ex.: quais séries de época eu poderia gostar?"></textarea>
+        <div class="row">
+          <button class="btn pri" id="ia-go">Perguntar</button>
+          <label class="opt"><input type="checkbox" id="ia-web"> procurar na web também (mais lento, mais atual)</label>
+        </div>
+        <div class="chips sug" id="ia-sug" role="group" aria-label="Perguntas prontas">
+          <button class="chip" data-sug="Quais séries de época eu poderia gostar?">Séries de época</button>
+          <button class="chip" data-sug="Um filme pra desligar o cérebro hoje à noite.">Pra desligar hoje</button>
+          <button class="chip" data-sug="O que se parece com o que eu revejo dezenas de vezes?">Parecido com os Repetidos</button>
+          <button class="chip" data-sug="Uma série curta, de uma temporada, pra ver num fim de semana.">Série curta</button>
+          <button class="chip" data-sug="Dos títulos que estão como Quero ver, por qual eu começo e por quê?">Por onde começo</button>
+        </div>
+        <form class="row" id="ia-senha-box" hidden style="margin-top:12px" autocomplete="on">
+          <input type="text" name="username" value="telas" autocomplete="username" hidden>
+          <input class="search" id="ia-senha" name="password" type="password" autocomplete="current-password" placeholder="Senha da caixa" aria-label="Senha da caixa de perguntas" style="flex:0 1 260px">
+          <span class="opt">Vale até fechar o navegador; o chaveiro do aparelho pode guardar.</span>
+        </form>
+      </div>
+      <div id="ia-out" class="ans" aria-live="polite"></div>
+      <details class="hist" id="ia-hist" hidden><summary>Perguntas anteriores</summary><div id="ia-hist-list" style="margin-top:10px"></div></details>
+    </div>
+  </section>
+
+  <datalist id="todos-titulos"></datalist>
+
+  <section class="panel" id="p-cal" aria-label="Agenda de episódios">
+    <div class="pad"><header class="pghead"><h2>Agenda</h2><p>Os episódios das séries que você acompanha. Marque o que já viu e o número no Início some.</p></header></div>
+    <div class="shelves" id="sh-cal"></div>
+    <div class="pad">
+      <div class="calctl">
+        <div class="chips" role="group" aria-label="Período" id="calview">
+          <button class="chip" aria-pressed="true" data-v="mes">Mês</button>
+          <button class="chip" aria-pressed="false" data-v="semana">7 dias</button>
+          <button class="chip" aria-pressed="false" data-v="proximos">Próximos meses</button>
+        </div>
+        <select class="sel" id="calscope" aria-label="Quais séries">
+          <option value="acomp">Só o que acompanho</option>
+          <option value="todas">Todas da lista</option>
+        </select>
+      </div>
+      <div id="calbody"></div>
+
+      <div class="box" style="margin-top:24px">
+        <h3>Assinar no calendário</h3>
+        <p>Os episódios aparecem no app Calendário do iPhone, com alerta na véspera. Ele se atualiza sozinho todo dia.</p>
+        <div class="row"><a class="btn pri" id="ics-link" href="#">Assinar no calendário</a><button class="btn" id="ics-copy">Copiar endereço</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-pesos" aria-label="Pesos da conexão">
+    <div class="pad">
+      <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
+      <header class="pghead"><h2>Conexão</h2><p>A porcentagem de conexão de cada título é a média das nove dimensões abaixo, ponderada por estes pesos. Os pesos iniciais saíram do seu acervo; mexa à vontade — o Top 10 e as listas se reordenam na hora.</p></header>
+      <div class="weights" id="weights"></div>
+      <div class="row" style="margin-top:16px"><button class="btn" id="w-reset">Voltar aos pesos iniciais</button></div>
+      <div class="box" style="margin-top:24px;max-width:640px">
+        <h3>Seus arquétipos</h3>
+        <p id="arq-dele"></p>
+        <p>Cada título traz o arquétipo do protagonista (os doze de Pearson e Mark), a etapa da jornada do herói que ele mais encena e quais dos seus arquétipos a obra ativa.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-dados" aria-label="Backup e ajustes">
+    <div class="pad">
+      <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
+      <header class="pghead"><h2>Backup e ajustes</h2><p>Suas notas, status, coleções e pesos moram neste aparelho.</p></header>
+      <div class="box">
+        <h3>Onde ficam suas notas</h3>
+        <p>Notas, status e pesos ficam guardados neste navegador, neste aparelho. Se trocar de celular ou limpar o navegador, eles somem — por isso o backup.</p>
+        <div class="row"><button class="btn pri" id="exp">Baixar backup</button><label class="btn" for="imp">Restaurar backup</label><input id="imp" type="file" accept="application/json" hidden></div>
+        <p id="impmsg" style="margin-top:10px"></p>
+      </div>
+      <div class="box">
+        <h3>Alertas por e-mail</h3>
+        <p>Um robô roda todo dia de manhã no GitHub, olha os próximos episódios das séries que você acompanha e te manda e-mail na véspera — e um resumo da semana às segundas.</p>
+        <p>Ele só conhece as séries que estão no arquivo <code>telas/acompanhando.json</code> do repositório. Quando mudar o que você acompanha, copie a lista abaixo e cole lá.</p>
+        <textarea class="out" id="acomp-json" readonly aria-label="Lista de séries acompanhadas"></textarea>
+        <div class="row" style="margin-top:8px"><button class="btn" id="acomp-copy">Copiar lista</button><a class="btn" id="acomp-edit" target="_blank" rel="noopener">Abrir o arquivo no GitHub</a></div>
+      </div>
+      <div class="box">
+        <h3>De onde vêm os dados</h3>
+        <p id="fonte"></p>
+        <p id="fonte-streaming"></p>
+        <p id="fonte-posteres"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-organizar" aria-label="Organizar o Início">
+    <div class="pad">
+      <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
+      <header class="pghead"><h2>Organizar o Início</h2><p>Esconda as prateleiras que não usa e mude a ordem das outras. Fica guardado só neste aparelho.</p></header>
+      <ul class="org" id="org"></ul>
+      <div class="row" style="margin-top:16px"><button class="btn" type="button" id="org-reset">Voltar ao padrão</button></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-mais" aria-label="Mais">
+    <div class="pad">
+      <header class="pghead"><h2>Mais</h2></header>
+      <div class="mgroup">
+        <button class="tab mrow" type="button" data-tab="perguntar" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.3l1.3-4.4A8.4 8.4 0 1 1 20.5 11.6z"/><path d="M12 8.2v6.4M8.8 11.4h6.4"/></svg></span><span class="mt"><b>Perguntar</b><small>A IA responde olhando suas notas, status e coleções.</small></span><span class="chev" aria-hidden="true">›</span></button>
+        <button class="tab mrow" type="button" data-tab="pesos" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M17 7h3M4 12h3M11 12h9M4 17h11M19 17h1"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17" r="2"/></svg></span><span class="mt"><b>Conexão</b><small>Os pesos das nove dimensões que ordenam tudo.</small></span><span class="chev" aria-hidden="true">›</span></button>
+        <button class="tab mrow" type="button" data-tab="dados" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11M7.5 10l4.5 4.5 4.5-4.5"/><path d="M4 15.5v2.5a2.5 2.5 0 0 0 2.5 2.5h11a2.5 2.5 0 0 0 2.5-2.5v-2.5"/></svg></span><span class="mt"><b>Backup e ajustes</b><small>Notas guardadas neste aparelho, alertas por e-mail e de onde vêm os dados.</small></span><span class="chev" aria-hidden="true">›</span></button>
+        <button class="tab mrow" type="button" data-tab="organizar" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h16M4 17.5h10"/></svg></span><span class="mt"><b>Organizar o Início</b><small>Escolha quais prateleiras aparecem e em que ordem.</small></span><span class="chev" aria-hidden="true">›</span></button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot" hidden><p id="foot"></p><a href="/">← Voltar ao roteiro do mochilão</a></footer>
+</main>
+
+<div class="scrim" id="scrim" hidden></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title" hidden>
+  <div class="sh-bar">
+    <button class="grab" id="sh-grab" type="button" aria-label="Abrir a página inteira"></button>
+    <span class="sh-bt" id="sh-bt" aria-hidden="true"></span>
+    <button class="sh-x" id="sh-x" type="button" aria-label="Fechar"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sh-body" id="sh-body"></div>
+</section>
+
+<script>
+// ---------- ESTADO ----------
+var KEY='telas_v1';
+var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},vistos:{},ia:[]};
+var STORE=true;
+function obj(x){return x&&typeof x==='object'&&!Array.isArray(x)?x:{}}
+function restauraCol(p){ST.col=obj(p.col);ST.livres=obj(p.livres);ST.vezes=obj(p.vezes);ST.fase=obj(p.fase);ST.vistos=limpaVistos(p.vistos);ST.ia=Array.isArray(p.ia)?p.ia.slice(0,20):[]}
+// último episódio visto de cada série (por IMDb ID): tudo até ele conta como visto
+function limpaVistos(v){var o={};v=obj(v);Object.keys(v).forEach(function(k){var x=v[k];if(/^tt\d{5,10}$/.test(k)&&x&&isFinite(+x.t)&&isFinite(+x.e)&&+x.t>=0&&+x.e>=0)o[k]={t:Math.floor(+x.t),e:Math.floor(+x.e)}});return o}
+try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'){ST.notas=p.notas||{};ST.status=p.status||{};ST.pesos=p.pesos||null;ST.servicos=Array.isArray(p.servicos)?p.servicos:[];restauraCol(p);}}}
+catch(e){STORE=false}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){STORE=false}}
+
+var D=null, EP=null, SV=null;
+var PO={};          // pôsteres: telas/posteres.json -> itens
+var CAT=null,CATPOR={}; // catálogo grande (telas/catalogo.json), usado ao adicionar nas coleções
+var EPI={},IMDB={}; // episódios por imdb_id e série por imdb_id
+var DIMS=[], PESOS0=[];
+var VIEW={filmes:{q:'',sort:'conn',f:'todos',w:'todos',n:30},series:{q:'',sort:'conn',f:'todos',w:'todos',n:30}};
+var CAL={v:'mes',scope:'acomp',m:null,sel:null};
+var RANKS={filmes:{},series:{}}; // posição de cada título no ranking da conexão
+// Início: Tudo · Filmes · Séries (preferência só deste aparelho)
+var INI={f:'tudo',ordem:null,ocultas:[]};
+var PRAT=[['cont','Continuar'],['top','Top 10 de conexão'],['hoje','No que você assina ou ainda não viu'],['duo','Sessão dupla'],['col','Suas coleções'],['dim','Uma dimensão forte']];
+try{var ui0=JSON.parse(localStorage.getItem('telas_ui')||'{}');if(ui0&&typeof ui0==='object'){
+  if(/^(tudo|filmes|series)$/.test(ui0.ini))INI.f=ui0.ini;
+  var ks=PRAT.map(function(x){return x[0]});
+  if(Array.isArray(ui0.ordem)){var o=ui0.ordem.filter(function(k,i,a){return ks.indexOf(k)>-1&&a.indexOf(k)===i});ks.forEach(function(k){if(o.indexOf(k)<0)o.push(k)});INI.ordem=o}
+  if(Array.isArray(ui0.ocultas))INI.ocultas=ui0.ocultas.filter(function(k){return ks.indexOf(k)>-1})}}catch(e){}
+function salvaUI(){try{localStorage.setItem('telas_ui',JSON.stringify({ini:INI.f,ordem:INI.ordem,ocultas:INI.ocultas}))}catch(e){}}
+function ordemPrat(){return INI.ordem||PRAT.map(function(x){return x[0]})}
+
+function el(id){return document.getElementById(id)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function num(s){if(s==null)return NaN;var m=String(s).replace(',','.').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN}
+function stOf(it){var v=ST.status[it.id];if(v==='nenhum')return '';return v||(it.biblioteca?'acompanhando':'')}
+function pesos(){return (ST.pesos&&ST.pesos.length===DIMS.length)?ST.pesos:PESOS0}
+function conexao(it){
+  var w=pesos(),d=it.dims,s=0,t=0;
+  if(!d||!d.length)return null;
+  for(var i=0;i<w.length;i++){var v=+d[i];if(isNaN(v))continue;s+=w[i]*v;t+=w[i]}
+  return t?Math.round(s/t):null;
+}
+function cssId(id){try{return window.CSS&&CSS.escape?CSS.escape(id):String(id).replace(/["\\\]\[]/g,'\\$&')}catch(e){return String(id)}}
+function kindOf(id){
+  if((D&&D.filmes||[]).some(function(x){return x.id===id}))return 'filmes';
+  if((D&&D.series||[]).some(function(x){return x.id===id}))return 'series';
+  return null;
+}
+
+// ---------- ÍCONES ----------
+var IC={
+  ok:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12.5l4 4L18.5 7.5"/></svg>',
+  bm:'<svg viewBox="0 0 15 21" aria-hidden="true"><path d="M0 0h15v21l-7.5-5.2L0 21z"/></svg>',
+  down:'<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 14V3.5h2.5a1 1 0 0 1 1 1V13a1 1 0 0 1-1 1H17zm0 0l-4 7a2 2 0 0 1-2.9-2.2L11 15H5.2a2 2 0 0 1-2-2.3l1.2-7.2A2.4 2.4 0 0 1 6.8 3.5H17"/></svg>',
+  up:'<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v10.5H4.5a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1H7zm0 0l4-7a2 2 0 0 1 2.9 2.2L13 9h5.8a2 2 0 0 1 2 2.3l-1.2 7.2a2.4 2.4 0 0 1-2.4 2H7"/></svg>',
+  dup:'<svg class="i" viewBox="0 0 30 24" aria-hidden="true"><path d="M6 11v9H3.8a.8.8 0 0 1-.8-.8v-7.4a.8.8 0 0 1 .8-.8H6zm0 0l3.4-6a1.7 1.7 0 0 1 2.5 1.9L11 10.4h5a1.7 1.7 0 0 1 1.7 2l-1 6.1a2 2 0 0 1-2 1.6H6"/><path d="M15.6 7.7l2.2-3.9a1.7 1.7 0 0 1 2.5 1.9l-.9 3.5h5a1.7 1.7 0 0 1 1.7 2l-1 6.1a2 2 0 0 1-2 1.6h-3.2"/></svg>'
+};
+
+// ---------- PÔSTERES ----------
+// Só aceita pôster de upload.wikimedia.org ou image.tmdb.org; o resto vira o substituto (título sobre cor neutra).
+function posterOk(u){
+  if(/^https:\/\/(upload\.wikimedia\.org|image\.tmdb\.org)\/[^\s"'<>()\\]+$/.test(u))return true;
+  return false;
+}
+function lum(hex){var n=parseInt(hex.slice(1),16),r=(n>>16&255)/255,g=(n>>8&255)/255,b=(n&255)/255;return .2126*r+.7152*g+.0722*b}
+function posterInfo(id){
+  var p=PO[id];if(!p||typeof p!=='object')return null;
+  var u=String(p.img||'');if(!posterOk(u))return null;
+  var w=Math.round(+p.w)||500,h=Math.round(+p.h)||750;if(w<10||h<10||w>6000||h>9000){w=500;h=750}
+  return {src:u,w:w,h:h,cor:corDe(id)};
+}
+// cor média do pôster (opcional em posteres.json): pinta o substituto e o fundo da folha quando não há imagem
+function corDe(id){var p=PO[id];var c=p&&typeof p==='object'?String(p.cor||''):'';return /^#[0-9a-f]{6}$/i.test(c)?c:null}
+function posterPagina(id){var p=PO[id];var u=p&&String(p.pagina||'');return /^https:\/\/[a-z-]+\.(m\.)?wikipedia\.org\/[^\s"'<>]+$/.test(u)?u:''}
+// marcas no canto do pôster, como no Stremio: check (assisti), marcador (quero ver), +N (episódio novo), nota, vezes, progresso
+function marcas(it,o){
+  var st=stOf(it),n=ST.notas[it.id],h='';
+  // na Lista, o número do ranking fica no canto; "assisti" vira o mesmo chip, branco e com o check
+  if(o.rank)h+='<span class="mk mk-rk num'+(st==='assisti'?' ok':'')+'">'+(st==='assisti'?IC.ok:'')+esc(o.rank)+'</span>';
+  else if(st==='assisti')h+='<span class="mk mk-ok">'+IC.ok+'</span>';
+  if(st==='quero')h+='<span class="mk mk-q">'+IC.bm+'</span>';
+  if(o.novos)h+='<span class="mk mk-new num">+'+o.novos+'</span>';
+  if(n!=null&&!o.semNota)h+='<span class="mk mk-n num">'+esc(n)+'</span>';
+  if(o.vezes)h+='<span class="mk mk-x num">'+esc(o.vezes)+'×</span>';
+  if(o.prog!=null)h+='<span class="pbar"><i style="width:'+Math.max(4,Math.min(100,Math.round(o.prog*100)))+'%"></i></span>';
+  return h;
+}
+function subPoster(it){
+  var a=String(it.anos||it.ano||'').trim(),d=String(it.autor||it.diretor||it.criadores||'').split(/ e |,|;|\(/)[0].trim();
+  return [a,d].filter(Boolean).join(' · ');
+}
+function posterHtml(it,o){
+  o=o||{};var p=posterInfo(it.id),st=stOf(it),sub=subPoster(it);
+  var cor=corDe(it.id),cls='po'+(st==='abandonei'?' ab':'')+(p?'':' sem')+(cor?(lum(cor)>.5?' pc-light':' pc-dark'):'');
+  return '<span class="'+cls+'"'+(cor?' style="--pc:'+cor+'"':'')+'><span class="po-sub" aria-hidden="true"><b>'+esc(it.titulo||'')+'</b>'+(sub?'<small>'+esc(sub)+'</small>':'')+'</span>'+
+    (p?'<img src="'+esc(p.src)+'" alt="" loading="lazy" decoding="async" width="'+p.w+'" height="'+p.h+'">':'')+(o.nada?'':marcas(it,o))+'</span>';
+}
+// pôster que não carrega: some a imagem e fica o substituto (título sobre a cor neutra)
+document.addEventListener('error',function(e){
+  var t=e.target;if(!t||t.tagName!=='IMG')return;
+  try{if(t.classList.contains('hero-bg')){t.remove();return}var po=t.parentNode;if(po&&po.classList&&po.classList.contains('po')){po.classList.add('sem');t.remove()}}catch(err){}
+},true);
+
+// ---------- CARREGAMENTO ----------
+function getJson(u){return fetch(u,{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}
+function load(){
+  var pp=getJson('/telas/posteres.json');
+  fetch('/telas/dados.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+  .then(function(j){return pp.then(function(pj){return [j,pj]})})
+  .then(function(jp){
+    var j=jp[0];
+    D=j;DIMS=j.dimensoes||[];PESOS0=DIMS.map(function(d){return d.peso});
+    try{PO=obj(jp[1]&&jp[1].itens)}catch(e){PO={}}
+    migrarLivres();
+    try{renderAll()}catch(e){console.error(e)}
+    fetch('/telas/streaming.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})
+      .then(function(sj){if(sj&&sj.titulos){SV=sj;try{renderAll()}catch(e){console.error(e)}}});
+    // o catálogo grande chega depois; se falhar, a página segue só com os títulos de dados.json
+    getJson('/telas/catalogo.json').then(function(cj){
+      try{
+        if(!cj||!Array.isArray(cj.itens))return;
+        CAT=cj;CATPOR={};
+        cj.itens.forEach(function(it){if(it&&typeof it.id==='string'&&it.titulo&&!Object.prototype.hasOwnProperty.call(CATPOR,it.id))CATPOR[it.id]=it});
+        migrarLivres();var dl=el('todos-titulos');if(dl){dl.dataset.ok='';ROTULOS={}}
+        renderCol('desligar');renderCol('repetidos');
+      }catch(e){console.error(e)}
+    });
+    return fetch('/telas/episodios.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  })
+  .then(function(ej){EP=ej;try{indexarEp()}catch(e){console.error(e)}try{renderCal()}catch(e){console.error(e)}try{renderShelves('series');renderNavBadges();renderCol('desligar');renderCol('repetidos')}catch(e){console.error(e)}})
+  .catch(function(e){
+    el('list-filmes').innerHTML='<p class="empty">Não consegui carregar a lista agora. Tente de novo em instantes.</p>';
+  });
+}
+
+// ---------- LISTAS ----------
+var SLAB={todos:'Todos',naovi:'Não vistos',sem:'Sem status',quero:'Quero ver',assisti:'Assisti',acompanhando:'Acompanhando',abandonei:'Abandonei'};
+// "Não vistos" = sem status ou Quero ver, e sem nota (quem deu nota já viu): o mesmo critério das prateleiras
+function naoViu(it){var s=stOf(it);return (s===''||s==='quero')&&ST.notas[it.id]==null}
+function passaStatus(it,f){var s=stOf(it)||'sem';if(f==='todos')return true;if(f==='naovi')return naoViu(it);return s===f}
+var SEGL={quero:'Quero ver',assisti:'Assisti',acompanhando:'Acompanho',abandonei:'Abandonei'};
+function chips(kind){
+  var box=document.querySelector('[data-filter="'+kind+'"]');if(!box)return;
+  var opts=kind==='filmes'?['todos','naovi','quero','assisti','abandonei']:['todos','naovi','quero','acompanhando','assisti','abandonei'];
+  var list=D[kind]||[];
+  if(opts.indexOf(VIEW[kind].f)<0&&VIEW[kind].f!=='sem')VIEW[kind].f='todos';
+  box.innerHTML=opts.map(function(o){
+    var n=list.filter(function(it){return passaStatus(it,o)}).length;
+    return '<button class="chip" aria-pressed="'+(VIEW[kind].f===o)+'" data-f="'+o+'">'+SLAB[o]+' <span class="num">'+n+'</span></button>';
+  }).join('');
+}
+function sortKey(kind,it){
+  var s=VIEW[kind].sort,n=it.notas||{};
+  if(s==='conn'){var c=conexao(it);return c==null?-1:c}
+  if(s==='nota'){var v=ST.notas[it.id];return v==null?-1:v}
+  if(s==='imdb')return num(n.imdb)||-1;
+  if(s==='rt')return num(n.rt_critica)||-1;
+  if(s==='mc')return num(n.metacritic)||-1;
+  if(s==='lb')return num(n.letterboxd)||-1;
+  if(s==='ano')return num(it.ano)||-1;
+  return 0;
+}
+function visiveis(kind){
+  var V=VIEW[kind],q=V.q.trim().toLowerCase();
+  return (D[kind]||[]).filter(function(it){
+    if(!passaStatus(it,V.f))return false;
+    if(V.w&&V.w!=='todos'&&!passaWatch(it,V.w))return false;
+    if(!q)return true;
+    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,it.arquetipo,emStreaming(it).join(' ')].join(' ').toLowerCase().indexOf(q)>-1;
+  }).sort(function(a,b){return sortKey(kind,b)-sortKey(kind,a)});
+}
+// notas de fora: IMDb na pílula amarela; as de memória ficam vazadas e com ≈
+function rateChips(n,kind){
+  n=n||{};var out=[],m=n.origem==='memoria',cls='rate'+(m?' mem':''),t=m?' title="De memória, ainda não conferida"':'',ap=m?'≈':'';
+  if(n.imdb)out.push('<span class="'+cls+'"'+t+'><span class="imdb">IMDb</span><b class="num">'+ap+esc(n.imdb)+'</b></span>');
+  if(n.rt_critica)out.push('<span class="'+cls+'"'+t+'>Rotten <b class="num">'+ap+esc(n.rt_critica)+'</b></span>');
+  if(n.metacritic)out.push('<span class="'+cls+'"'+t+'>Metacritic <b class="num">'+ap+esc(n.metacritic)+'</b></span>');
+  if(kind==='filmes'&&n.letterboxd)out.push('<span class="'+cls+'"'+t+'>Letterboxd <b class="num">'+ap+esc(n.letterboxd)+'</b></span>');
+  return out.length?'<div class="rates">'+out.join('')+'</div>':'';
+}
+// as 9 dimensões em barras horizontais, da mais forte para a mais fraca (o único gráfico da página)
+function dimTable(it){
+  var d=it.dims||[],w=pesos();
+  var l=DIMS.map(function(x,i){return {n:x.nome,v:Math.max(0,Math.min(100,+d[i]||0)),w:w[i]||0}}).sort(function(a,b){return b.v-a.v||b.w-a.w});
+  return '<div class="dimtable">'+l.map(function(x,i){var top=i<3?' hi':'';
+    return '<span class="n'+top+'">'+esc(x.n)+'</span><span class="bar'+top+'"><i style="width:'+x.v+'%"></i></span><span class="v num">'+x.v+'</span>'}).join('')+'</div>';
+}
+function motivos(it,n){
+  var d=it.dims||[];if(!d.length||!DIMS.length)return [];var w=pesos();
+  return DIMS.map(function(x,i){return {n:x.nome,v:+d[i]||0,w:w[i]||0}}).sort(function(a,b){return b.v-a.v||b.w-a.w}).slice(0,n||3).map(function(x){return x.n});
+}
+function critico(c){
+  if(!c||!c.nome)return '';
+  return '<div class="crit"><div><span class="who">'+esc(c.nome)+'</span>'+(c.veiculo?' · '+esc(c.veiculo):'')+(c.nota?' · <b class="num">'+esc(c.nota)+'</b>':'')+'</div>'+
+    (c.posicao?'<p>'+esc(c.posicao)+'</p>':'')+(c.fonte?'<div class="src">'+(c.origem==='memoria'?'≈ de memória, a conferir · ':'')+linkOrText(c.fonte)+'</div>':'')+'</div>';
+}
+function linkOrText(s){s=String(s||'');var m=s.match(/https?:\/\/\S+/);if(!m)return esc(s);var u=m[0].replace(/[).,;]+$/,'');return esc(s.replace(m[0],'').trim())+' <a href="'+esc(u)+'" target="_blank" rel="noopener">fonte</a>'}
+// ---------- ONDE ASSISTIR ----------
+function uniq(a){var o=[];a.forEach(function(x){if(x&&o.indexOf(x)<0)o.push(x)});return o}
+function oferta(it){var w=SV&&SV.titulos&&SV.titulos[it.id];return w&&!w.nao_encontrado?w:null}
+function emStreaming(it){var w=oferta(it);return w?uniq([].concat(w.assinatura||[],w.gratis||[],w.anuncios||[])):[]}
+function meus(){return ST.servicos||[]}
+function passaWatch(it,v){
+  var o=emStreaming(it);
+  if(v==='meus')return o.some(function(x){return meus().indexOf(x)>-1});
+  if(v==='assin')return o.length>0;
+  if(v.indexOf('p:')===0)return o.indexOf(v.slice(2))>-1;
+  return true;
+}
+function linkSeguro(u){u=String(u||'');return /^https:\/\/[^\s"'<>]+$/.test(u)?u:''}
+function jwBusca(it){return 'https://www.justwatch.com/br/busca?q='+encodeURIComponent(it.titulo||it.titulo_original||'')}
+function watchHtml(it){
+  var lab='<span class="wl">Onde assistir</span>',busca='<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a>';
+  var w=oferta(it);
+  if(!w)return '<div class="watch">'+lab+busca+'</div>';
+  var m=meus(),out=[];
+  function chip(n,extra){return '<span class="svc'+(m.indexOf(n)>-1?' mine':'')+'"'+(m.indexOf(n)>-1?' title="Você assina"':'')+'>'+esc(n)+(extra?' <span class="alt">'+extra+'</span>':'')+'</span>'}
+  (w.assinatura||[]).forEach(function(n){out.push(chip(n,''))});
+  (w.gratis||[]).forEach(function(n){out.push(chip(n,'grátis'))});
+  (w.anuncios||[]).forEach(function(n){if((w.gratis||[]).indexOf(n)<0)out.push(chip(n,'com anúncios'))});
+  var loja=uniq([].concat(w.aluguel||[],w.compra||[]));
+  if(!out.length)out.push('<span class="alt">fora das assinaturas no Brasil</span>');
+  if(loja.length)out.push('<span class="alt">alugar ou comprar: '+esc(loja.slice(0,3).join(', '))+(loja.length>3?' e mais '+(loja.length-3):'')+'</span>');
+  var lk=linkSeguro(w.link),link=lk?'<a href="'+esc(lk)+'" target="_blank" rel="noopener">ver ofertas ↗</a>':busca;
+  return '<div class="watch">'+lab+out.join('')+link+'</div>';
+}
+function contaServicos(){
+  var c={};['filmes','series'].forEach(function(k){(D[k]||[]).forEach(function(it){emStreaming(it).forEach(function(n){c[n]=(c[n]||0)+1})})});
+  return Object.keys(c).sort(function(a,b){return c[b]-c[a]||a.localeCompare(b,'pt-BR')}).map(function(n){return {n:n,c:c[n]}});
+}
+function renderWatchCtl(){
+  try{
+    var tem=!!(SV&&SV.titulos);
+    ['filmes','series'].forEach(function(kind){
+      var box=document.querySelector('[data-watchbox="'+kind+'"]'),det=document.querySelector('[data-mysvc="'+kind+'"]');
+      if(!box||!det)return;
+      box.hidden=!tem;det.hidden=!tem;if(!tem)return;
+      var list=D[kind]||[],V=VIEW[kind];
+      var porServ={};list.forEach(function(it){emStreaming(it).forEach(function(n){porServ[n]=(porServ[n]||0)+1})});
+      var nMeus=list.filter(function(it){return passaWatch(it,'meus')}).length,nAss=list.filter(function(it){return emStreaming(it).length>0}).length;
+      var opts=[['todos','Onde assistir: qualquer lugar'],['meus','Nos meus serviços ('+nMeus+')'],['assin','Em algum streaming ('+nAss+')']];
+      Object.keys(porServ).sort(function(a,b){return porServ[b]-porServ[a]||a.localeCompare(b,'pt-BR')}).forEach(function(n){opts.push(['p:'+n,n+' ('+porServ[n]+')'])});
+      if(!opts.some(function(o){return o[0]===V.w}))V.w='todos';
+      box.querySelector('select').innerHTML=opts.map(function(o){return '<option value="'+esc(o[0])+'"'+(o[0]===V.w?' selected':'')+'>'+esc(o[1])+'</option>'}).join('');
+      var todos=contaServicos(),vistos=todos.map(function(s){return s.n});
+      meus().forEach(function(n){if(vistos.indexOf(n)<0)todos.push({n:n,c:0})});
+      det.querySelector('summary').textContent='Seus serviços de streaming'+(meus().length?' ('+meus().length+')':'');
+      det.querySelector('.chips').innerHTML=todos.map(function(s){return '<button class="chip" data-svc="'+esc(s.n)+'" aria-pressed="'+(meus().indexOf(s.n)>-1)+'">'+esc(s.n)+(s.c?'':' <span class="alt">(sem títulos agora)</span>')+'</button>'}).join('');
+    });
+  }catch(e){console.error(e)}
+}
+// título original e título em inglês, sem repetir o que já está escrito
+function titulosExtras(it){
+  var pt=it.titulo||'',og=it.titulo_original||'',en=it.titulo_en||'',out='',tag='<span class="lang" title="Título em inglês">EN</span>';
+  if(og&&og!==pt)out+='<p class="en">'+(en&&en===og?tag:'')+esc(og)+'</p>';
+  if(en&&en!==og&&en!==pt)out+='<p class="en">'+tag+esc(en)+'</p>';
+  return out;
+}
+function setV(r){try{r.style.setProperty('--v',(+r.value||0)+'%')}catch(e){}}
+// Lista em grade de pôsteres (Stremio, app TV, Letterboxd): o número do ranking no canto, a conexão embaixo.
+// Status e nota ficam na folha do título, que abre ao tocar no pôster.
+function tileOpts(it,kind){
+  var c=conexao(it),V=VIEW[kind]||{},rk=V.sort==='conn'&&RANKS[kind]?RANKS[kind][it.id]:null,ano=String(it.ano||'').slice(0,4);
+  var linha=[];if(c!=null&&c>=50)linha.push('<b class="num">'+c+'%</b>');if(ano)linha.push('<span class="num">'+esc(ano)+'</span>');
+  return {rank:rk||null,pre:rk?rk+'º:':'',cap:'<span class="ti-t">'+esc(it.titulo)+'</span>'+(linha.length?'<span class="ti-m">'+linha.join(' · ')+'</span>':'')};
+}
+function card(it,kind){
+  var st=stOf(it);
+  return '<article class="card tile'+(st?' s-'+st:'')+'" data-id="'+esc(it.id)+'">'+tileBtn(it,tileOpts(it,kind))+'</article>';
+}
+var SORTXT={conn:'na ordem da conexão',nota:'na ordem da sua nota',imdb:'na ordem do IMDb',rt:'na ordem do Rotten Tomatoes',mc:'na ordem do Metacritic',lb:'na ordem do Letterboxd',ano:'dos mais recentes aos mais antigos'};
+function calcRanks(kind){var r={};topLista(kind).forEach(function(it,i){r[it.id]=i+1});RANKS[kind]=r}
+function renderList(kind){
+  try{
+    var box=el('list-'+kind),V=VIEW[kind];calcRanks(kind);var all=visiveis(kind);
+    try{el('rkn-'+kind).textContent=(D[kind]||[]).length;el('rks-'+kind).textContent=(SORTXT[V.sort]||'')}catch(e){}
+    if(!all.length){box.innerHTML='<p class="empty">'+(V.w==='meus'&&!meus().length?'Você ainda não marcou seus serviços. Abra "Seus serviços de streaming", logo acima, e marque os que assina.':'Nada aqui com esse filtro.')+'</p>';el('ct-'+kind).textContent=' '+(D[kind]||[]).length;chips(kind);return}
+    box.innerHTML=all.slice(0,V.n).map(function(it){try{return card(it,kind)}catch(e){return ''}}).join('')+
+      (all.length>V.n?'<div class="lm"><button class="loadmore" data-more="'+kind+'">Mostrar mais ('+(all.length-V.n)+')</button></div>':'');
+    el('ct-'+kind).textContent=' '+(D[kind]||[]).length;
+    chips(kind);
+  }catch(e){console.error(e)}
+}
+function renderAll(){
+  renderWatchCtl();renderList('filmes');renderList('series');renderShelves('filmes');renderShelves('series');renderCol('desligar');renderCol('repetidos');renderPesos();renderDados();renderNavBadges();
+  try{if(!IA_OCUPADA){el('ia-out').innerHTML=(ST.ia||[]).length?blocoResposta(ST.ia[0]):'';renderHist()}}catch(e){console.error(e)}
+  try{document.querySelector('.foot').hidden=false}catch(e){} // só depois dos dados: senão o rodapé pula para baixo quando a lista chega
+  el('foot').textContent=(D.gerado_em?'Lista gerada em '+D.gerado_em+'. ':'')+'Notas dos agregadores mudam com o tempo — confira na fonte antes de citar.'+(STORE?'':' Este navegador não está guardando suas notas: faça backup.');
+  try{if(SH.id&&!el('sheet').hidden)syncSheet()}catch(e){}
+}
+
+// ---------- MUDANÇAS DE STATUS E NOTA (valem para a lista, as prateleiras e a folha) ----------
+function aplicaStatus(id,novo){
+  var a=achar(id),it=a?a.it:{id:id};
+  if(novo)ST.status[id]=novo;else if(it.biblioteca)ST.status[id]='nenhum';else delete ST.status[id];
+  save();
+  var k=kindOf(id);
+  syncRow(id);
+  if(k){chips(k);renderShelves(k)}
+  if(k==='series'){renderCal();renderNavBadges()}
+  syncSheet();
+}
+function aplicaNota(id,v){
+  if(v==null)delete ST.notas[id];else ST.notas[id]=Math.max(0,Math.min(100,Math.round(v)));
+  save();syncRow(id);var k=kindOf(id);if(k){chips(k);renderShelves(k)}syncSheet();
+}
+// atualiza o pôster da grade no lugar, sem redesenhar a lista (o botão continua o mesmo e a folha devolve o foco a ele)
+function syncRow(id){
+  ['filmes','series'].forEach(function(k){
+    try{
+      var c=document.querySelector('#list-'+k+' .card[data-id="'+cssId(id)+'"]');if(!c)return;
+      var a=achar(id);if(!a)return;var it=a.it,st=stOf(it);
+      c.className='card tile'+(st?' s-'+st:'');
+      var b=c.querySelector('.ti-b');if(!b)return;var tp=tileParts(it,tileOpts(it,k));
+      b.innerHTML=tp.inner;b.setAttribute('aria-label',tp.label);
+    }catch(e){console.error(e)}
+  });
+}
+
+// ---------- INTERAÇÕES DAS LISTAS ----------
+['filmes','series'].forEach(function(kind){
+  try{
+    var p=el('p-'+kind);
+    p.querySelector('[data-q]').addEventListener('input',function(e){VIEW[kind].q=e.target.value;VIEW[kind].n=30;renderList(kind)});
+    p.querySelector('[data-sort]').addEventListener('change',function(e){VIEW[kind].sort=e.target.value;renderList(kind)});
+    p.querySelector('[data-watch]').addEventListener('change',function(e){VIEW[kind].w=e.target.value;VIEW[kind].n=30;renderList(kind)});
+    p.addEventListener('click',function(e){
+      var t=e.target.closest('[data-f],[data-more],[data-svc]');if(!t)return;
+      if(t.dataset.svc){
+        var n=t.dataset.svc,i=meus().indexOf(n);ST.servicos=meus().slice();if(i>-1)ST.servicos.splice(i,1);else ST.servicos.push(n);save();
+        renderWatchCtl();renderList('filmes');renderList('series');renderShelves('filmes');renderCol('desligar');renderCol('repetidos');
+        var d=document.querySelector('[data-mysvc="'+kind+'"]');
+        if(d){d.open=true;var b=[].filter.call(d.querySelectorAll('[data-svc]'),function(x){return x.dataset.svc===n})[0];if(b)b.focus()}
+        return}
+      if(t.dataset.f){VIEW[kind].f=t.dataset.f;VIEW[kind].n=30;renderList(kind);return}
+      if(t.dataset.more){VIEW[kind].n+=30;renderList(kind);return}
+    });
+  }catch(e){console.error(e)}
+});
+
+// ---------- PRATELEIRAS (INÍCIO) ----------
+// O Início é feito de prateleiras, cada uma com um formato próprio (a crítica ao Criterion Channel é a das
+// fileiras todas iguais): Continuar pequena e com progresso, Top 10 com numeral, "No que você assina" com o
+// serviço, Sessão dupla com dois títulos e as coleções em cartões. No máximo 7, sem repetir título entre elas.
+var DIASEM=['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+var MESC=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+function hojeN(){return Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5)}
+function porConexao(a,b){return (conexao(b)||0)-(conexao(a)||0)}
+function itensDe(kind){return kind==='tudo'?[].concat(D.filmes||[],D.series||[]):(D[kind]||[])}
+function tileParts(it,o){
+  o=o||{};var c=conexao(it),st=stOf(it),n=ST.notas[it.id];
+  var lab=[(o.pre?o.pre+' ':'')+it.titulo];
+  if(c!=null&&c>=50)lab.push(c+'% de conexão');
+  if(st)lab.push(SLAB[st].toLowerCase());
+  if(n!=null)lab.push('sua nota '+n);
+  if(o.novos)lab.push(o.novos+(o.novos>1?' episódios novos':' episódio novo'));
+  if(o.vezes)lab.push('visto '+o.vezes+' vezes');
+  if(o.capTxt)lab.push(o.capTxt);
+  var cap;
+  if(o.cap!=null)cap=o.cap;
+  else{
+    var linha=[];if(c!=null&&c>=50)linha.push('<b class="num">'+c+'%</b>');if(o.sv)linha.push(esc(o.sv));
+    cap='<span class="ti-t">'+esc(it.titulo)+'</span>'+(linha.length?'<span class="ti-m">'+linha.join(' · ')+'</span>':'');
+  }
+  return {label:lab.join(', '),inner:posterHtml(it,o)+cap};
+}
+function tileBtn(it,o){var t=tileParts(it,o);return '<button class="ti-b" type="button" data-open="'+esc(it.id)+'" aria-label="'+esc(t.label)+'">'+t.inner+'</button>'}
+function tile(it,o){o=o||{};return '<li class="ti'+(o.cls?' '+o.cls:'')+'">'+tileBtn(it,o)+'</li>'}
+function shelfHtml(o){
+  return '<section class="shelf'+(o.cls?' '+o.cls:'')+'" aria-label="'+esc(o.title)+'">'+
+    '<div class="sh-head"><h2>'+esc(o.title)+'</h2>'+
+    (o.more?'<button class="pill" type="button" data-vt="'+esc(o.more)+'"><span>'+esc(o.moreLab||'Ver tudo')+'</span></button>':'')+(o.sub?'<p>'+o.sub+'</p>':'')+'</div>'+
+    (o.row!=null?'<div class="sh-wrap"><button class="sh-arr l" type="button" data-scroll="-1" tabindex="-1" aria-hidden="true">‹</button><ol class="sh-row" data-sh="'+esc(o.key)+'">'+o.row+'</ol><button class="sh-arr r" type="button" data-scroll="1" tabindex="-1" aria-hidden="true">›</button></div>':'')+
+    (o.body||'')+'</section>';
+}
+// ranking da conexão; em "Tudo", filmes e séries se intercalam
+function topLista(kind){
+  if(kind==='tudo'){
+    var f=topLista('filmes'),s=topLista('series'),out=[];
+    for(var i=0;i<Math.max(f.length,s.length);i++){if(f[i])out.push(f[i]);if(s[i])out.push(s[i])}
+    return out;
+  }
+  return (D[kind]||[]).filter(function(it){return conexao(it)!=null}).sort(porConexao);
+}
+function listaDe(kind){return kind==='series'?'series':'filmes'}
+function shTop10(kind,usados){
+  var l=topLista(kind).slice(0,10);if(!l.length)return '';
+  var row=l.map(function(it,i){usados[it.id]=1;var n=i+1;
+    return '<li class="t10'+(n>9?' d2':(n===1?' d1':''))+'"><span class="t10-n num" aria-hidden="true">'+n+'</span><div class="ti">'+tileBtn(it,{pre:n+'º:'})+'</div></li>'}).join('');
+  return shelfHtml({key:'top-'+kind,cls:'sh-top',title:'Top 10 de conexão',more:'lista:'+listaDe(kind),row:row});
+}
+function plataformaCurta(it){var p=String(it.plataforma||'').split(/\s*[\/(;,]\s*/)[0].trim();return p.length>2&&p.length<22&&!/sem streaming/i.test(p)?p:''}
+function servicoMeu(it){var m=meus(),o=emStreaming(it);for(var i=0;i<o.length;i++)if(m.indexOf(o[i])>-1)return o[i];return o[0]||''}
+function shHoje(kind,usados){
+  var l=itensDe(kind),temSV=!!(SV&&SV.titulos),m=meus();
+  if(temSV&&m.length){
+    var hj=l.filter(function(it){return naoViu(it)&&!usados[it.id]&&(conexao(it)||0)>=70&&passaWatch(it,'meus')}).sort(porConexao).slice(0,16);
+    if(!hj.length)return shelfHtml({key:'hoje-'+kind,title:'No que você assina',body:'<p class="sh-empty">Nada com 70% ou mais de conexão nos seus serviços agora, fora o que já está no Top 10. Quando entrar, aparece aqui.</p>'});
+    hj.forEach(function(it){usados[it.id]=1});
+    return shelfHtml({key:'hoje-'+kind,title:'No que você assina',more:'hoje:'+listaDe(kind),
+      row:hj.map(function(it){return tile(it,{sv:servicoMeu(it)})}).join('')});
+  }
+  var nv=l.filter(function(it){return naoViu(it)&&!usados[it.id]&&conexao(it)!=null}).sort(porConexao).slice(0,16);
+  if(!nv.length)return '';
+  nv.forEach(function(it){usados[it.id]=1});
+  return shelfHtml({key:'hoje-'+kind,title:'Que você ainda não viu',more:'naovi:'+listaDe(kind),
+    row:nv.map(function(it){return tile(it,{sv:kindOf(it.id)==='series'?plataformaCurta(it):(it.autor?String(it.autor).split(/ e |,/)[0]:'')})}).join('')});
+}
+function cos(a,b){var s=0,x=0,y=0;for(var i=0;i<Math.min(a.length,b.length);i++){var p=+a[i]||0,q=+b[i]||0;s+=p*q;x+=p*p;y+=q*q}return x&&y?s/Math.sqrt(x*y):0}
+// Sessão dupla (Criterion Channel): um que ele já conhece e um que não viu, com o elo entre os dois.
+// O conhecido sai, nesta ordem, do que ele deu 80 ou mais fora do Top 10, do que marcou como assistido,
+// do que acompanha e, por último, do topo da lista. O outro nunca repete as prateleiras de cima.
+function shDuo(kind,usados){
+  usados=usados||{};
+  var l=itensDe(kind).filter(function(it){return it.dims&&it.dims.length});if(l.length<2)return '';
+  var top={};topLista(kind).slice(0,10).forEach(function(it){top[it.id]=1});
+  var fora=function(x){return x.filter(function(it){return !top[it.id]&&!usados[it.id]})};
+  var porNota=function(a,b){return ST.notas[b.id]-ST.notas[a.id]};
+  var niveis=[['ama',l.filter(function(it){return ST.notas[it.id]!=null&&ST.notas[it.id]>=80}).sort(porNota)],
+    ['viu',l.filter(function(it){return stOf(it)==='assisti'}).sort(porConexao)],
+    ['acomp',l.filter(function(it){return stOf(it)==='acompanhando'}).sort(porConexao)]];
+  // primeiro o que está fora das prateleiras de cima; só se não houver nada, repete um do Top 10
+  var amados=[],tipo='topo',i;
+  for(i=0;i<niveis.length&&!amados.length;i++)if(fora(niveis[i][1]).length){amados=fora(niveis[i][1]);tipo=niveis[i][0]}
+  for(i=0;i<niveis.length&&!amados.length;i++)if(niveis[i][1].length){amados=niveis[i][1];tipo=niveis[i][0]}
+  if(!amados.length)amados=topLista(kind).slice(0,5);
+  var a=amados[hojeN()%Math.min(amados.length,5)];
+  var cand=l.filter(function(it){return it.id!==a.id&&!usados[it.id]&&naoViu(it)}),best=null,bs=-1;
+  cand.forEach(function(it){var s=cos(a.dims,it.dims)*.65+((conexao(it)||0)/100)*.35;if(s>bs){bs=s;best=it}});
+  if(!best)return '';
+  usados[a.id]=1;usados[best.id]=1;
+  var w=pesos(),comum=DIMS.map(function(d,i){return {n:d.nome,v:Math.min(+a.dims[i]||0,+best.dims[i]||0),w:w[i]||0}}).sort(function(x,y){return y.v-x.v||y.w-x.w}).slice(0,2).map(function(x){return '<b>'+esc(x.n)+'</b>'});
+  var la=tipo==='ama'?'Você deu '+ST.notas[a.id]:tipo==='viu'?'Você já viu':tipo==='acomp'?'Você acompanha':'Do seu Top 10';
+  var body='<div class="duo"><div class="duo-i"><span class="duo-l">'+esc(la)+'</span><div class="ti">'+tileBtn(a)+'</div></div><span class="duo-x" aria-hidden="true">+</span>'+
+    '<div class="duo-i"><span class="duo-l">Ainda não viu</span><div class="ti">'+tileBtn(best)+'</div></div>'+
+    '<p class="duo-elo">Os dois se encontram em '+comum.join(' e ')+'.</p></div>';
+  return shelfHtml({key:'duo-'+kind,cls:'sh-duo',title:'Sessão dupla',sub:'Um que você já conhece e um que conversa com ele.',body:body});
+}
+function shDim(kind,usados){
+  if(!DIMS.length)return '';
+  var w=pesos(),ordem=DIMS.map(function(d,i){return {i:i,w:w[i]||0}}).sort(function(a,b){return b.w-a.w}).slice(0,4);
+  var di=ordem[hojeN()%ordem.length].i,d=DIMS[di];
+  var l=itensDe(kind).filter(function(it){return !usados[it.id]&&it.dims&&(+it.dims[di]||0)>=70&&stOf(it)!=='abandonei'})
+    .sort(function(a,b){return ((+b.dims[di]||0)-(+a.dims[di]||0))||porConexao(a,b)}).slice(0,14);
+  if(l.length<3)return '';
+  return shelfHtml({key:'dim-'+kind,title:'Mais '+d.nome,row:l.map(function(it){return tile(it)}).join('')});
+}
+function shColecoes(){
+  var cards=['desligar','repetidos'].map(function(col){
+    var ids=colItens(col),nome=col==='desligar'?'Desligar o cérebro':'Repetidos';
+    var fan=ids.slice(0,3).map(function(id){return posterHtml(acharOuProv(id).it,{nada:true})}).join('');
+    return '<button class="colcard" type="button" data-go="'+col+'"><span class="fan" aria-hidden="true">'+fan+'</span><span class="cc-t">'+nome+'</span><span class="cc-m num">'+ids.length+(ids.length===1?' título':' títulos')+'</span></button>';
+  }).join('');
+  return shelfHtml({key:'col',title:'Suas coleções',sub:'Para descansar a cabeça, ou rever pela décima vez.',body:'<div class="colcards">'+cards+'</div>'});
+}
+function quando(d){
+  var h=new Date(),a=new Date(h.getFullYear(),h.getMonth(),h.getDate()),b=new Date(d.getFullYear(),d.getMonth(),d.getDate()),n=Math.round((b-a)/864e5);
+  if(n===0)return 'hoje';if(n===1)return 'amanhã';if(n===-1)return 'ontem';if(n>1&&n<7)return DIASEM[d.getDay()];
+  return d.getDate()+' '+MESC[d.getMonth()];
+}
+// ---------- EPISÓDIOS VISTOS ----------
+// Guarda o último episódio visto de cada série (ST.vistos[imdb] = {t, e}). Marcar um episódio marca os
+// anteriores; tocar de novo num visto desmarca ele e os seguintes. Daí saem a barra do Continuar
+// (vistos sobre lançados) e o "+N" (lançados e não vistos).
+function vistoDe(imdb){var v=imdb&&ST.vistos[imdb];return v?{t:+v.t,e:+v.e}:null}
+function jaVisto(e,v){return !!v&&((+e.temporada<v.t)||(+e.temporada===v.t&&+e.episodio<=v.e))}
+function marcaVisto(imdb,t,e){
+  if(!/^tt\d{5,10}$/.test(imdb)||!isFinite(t)||!isFinite(e))return;
+  var v=vistoDe(imdb);
+  if(jaVisto({temporada:t,episodio:e},v)){
+    if(e>1)ST.vistos[imdb]={t:t,e:e-1};else if(t>1)ST.vistos[imdb]={t:t-1,e:9999};else delete ST.vistos[imdb];
+  }else ST.vistos[imdb]={t:t,e:e};
+  save();
+  try{renderShelves('series');renderNavBadges()}catch(err){console.error(err)}
+}
+function botaoVisto(imdb,e,v){
+  var on=jaVisto(e,v),rot='T'+e.temporada+' · E'+e.episodio;
+  return '<button class="vb" type="button" data-visto="'+esc(imdb)+'|'+esc(e.temporada)+'|'+esc(e.episodio)+'" aria-pressed="'+on+'" aria-label="'+(on?'Visto: '+esc(rot)+'. Tocar para desmarcar':'Marcar '+esc(rot)+' e os anteriores como vistos')+'">'+IC.ok+'</button>';
+}
+function infoSerie(it){
+  var l=(it&&it.imdb_id&&EPI[it.imdb_id])||[],now=new Date(),d7=new Date(now.getTime()-7*864e5),v=vistoDe(it&&it.imdb_id);
+  var ja=l.filter(function(x){return x.d<=now}),fut=l.filter(function(x){return x.d>now});
+  var novos=ja.filter(function(x){return x.d>=d7&&!jaVisto(x.e,v)}).length,prox=fut[0]||null,ult=ja.length?ja[ja.length-1]:null;
+  var ref=prox||ult,prog=null;
+  if(ref&&v){
+    var tp=+ref.e.temporada,naT=l.filter(function(x){return +x.e.temporada===tp});
+    var noAr=Math.max.apply(null,[0].concat(naT.filter(function(x){return x.d<=now}).map(function(x){return +x.e.episodio||0})));
+    if(!noAr&&prox&&+prox.e.temporada===tp)noAr=Math.max(0,(+prox.e.episodio||1)-1);
+    var vis=v.t>tp?noAr:(v.t===tp?Math.min(v.e,noAr):0);
+    if(noAr>0&&vis>0)prog=vis/noAr;
+  }
+  return {novos:novos,prox:prox,ult:ult,prog:prog};
+}
+function epCap(inf){
+  if(inf.prox)return 'T'+inf.prox.e.temporada+' · E'+inf.prox.e.episodio+' · '+quando(inf.prox.d);
+  if(inf.ult)return 'T'+inf.ult.e.temporada+' · E'+inf.ult.e.episodio+' · no ar';
+  return 'sem data nova';
+}
+function seriesAcompanhadas(){return [].concat(D.series||[],(D.extras||[]).filter(function(x){return x.tipo==='serie'})).filter(function(it){return stOf(it)==='acompanhando'})}
+function shContinuar(){
+  var l=seriesAcompanhadas();if(!l.length)return '';
+  var rows=l.map(function(it){return {it:it,inf:infoSerie(it)}}).sort(function(a,b){
+    return (b.inf.novos-a.inf.novos)||((a.inf.prox?a.inf.prox.d:9e15)-(b.inf.prox?b.inf.prox.d:9e15))||((b.inf.ult?b.inf.ult.d:0)-(a.inf.ult?a.inf.ult.d:0))});
+  var row=rows.map(function(x){var cap=epCap(x.inf);
+    return tile(x.it,{cls:'ti-cont',novos:x.inf.novos,prog:x.inf.prog,capTxt:cap,cap:'<span class="ti-t">'+esc(x.it.titulo)+'</span><span class="ti-m num">'+esc(cap)+'</span>'})}).join('');
+  return shelfHtml({key:'cont',cls:'sh-cont',title:'Continuar',more:'agenda',moreLab:'Agenda',row:row});
+}
+function renderInicio(){
+  try{
+    var box=el('sh-inicio');if(!box||!D)return;
+    var pos={};box.querySelectorAll('.sh-row[data-sh]').forEach(function(r){pos[r.dataset.sh]=r.scrollLeft});
+    var out={},usados={},k=INI.f,esc0=INI.ocultas;
+    // monta na ordem de sempre (é ela que evita repetir título entre prateleiras) e mostra na ordem que ele escolheu
+    function poe(id,f){if(esc0.indexOf(id)>-1)return;try{out[id]=f()}catch(e){console.error(e)}}
+    if(k!=='filmes')poe('cont',shContinuar);
+    poe('top',function(){return shTop10(k,usados)});
+    poe('hoje',function(){return shHoje(k,usados)});
+    poe('duo',function(){return shDuo(k,usados)});
+    poe('col',shColecoes);
+    poe('dim',function(){return shDim(k,usados)});
+    var html=ordemPrat().map(function(id){return out[id]||''}).join('');
+    box.innerHTML=html||'<p class="sh-empty" style="margin-top:12px">Todas as prateleiras estão escondidas. Volte a mostrar em Mais › Organizar o Início.</p>';
+    box.querySelectorAll('.sh-row[data-sh]').forEach(function(r){if(pos[r.dataset.sh])r.scrollLeft=pos[r.dataset.sh];setaArr(r)});
+    document.querySelectorAll('[data-ini]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.ini===k))});
+  }catch(e){console.error(e)}
+}
+// as prateleiras moram no Início; vários pontos pedem para redesenhar ao mesmo tempo, então junta num só
+var SHQ=false;
+function renderShelves(kind){if(SHQ)return;SHQ=true;Promise.resolve().then(function(){SHQ=false;renderInicio()})}
+function setaArr(r){try{var w=r.parentNode,l=w.querySelector('.sh-arr.l'),d=w.querySelector('.sh-arr.r');if(l)l.disabled=r.scrollLeft<8;if(d)d.disabled=r.scrollLeft+r.clientWidth>=r.scrollWidth-8}catch(e){}}
+document.addEventListener('scroll',function(e){var t=e.target;if(t&&t.classList&&t.classList.contains('sh-row'))setaArr(t)},true);
+// selo da Agenda: episódios lançados nos últimos 7 dias que ele ainda não marcou como vistos
+function renderNavBadges(){
+  try{
+    var b=el('nb-series');if(!b||!D)return;
+    var n=seriesAcompanhadas().reduce(function(s,it){return s+infoSerie(it).novos},0);
+    b.hidden=!n;b.textContent=n?'+'+n:'';
+    var nb=b.closest('.nb');if(nb)nb.setAttribute('aria-label','Agenda'+(n?', '+n+(n>1?' episódios novos':' episódio novo'):''));
+  }catch(e){console.error(e)}
+}
+// "Ver tudo": leva à grade completa com o filtro certo
+function irLista(kind,cfg){
+  var V=VIEW[kind];V.q='';V.f=cfg.f||'todos';V.w=cfg.w||'todos';V.sort=cfg.sort||'conn';V.n=30;
+  try{var p=el('p-'+kind);p.querySelector('[data-q]').value='';p.querySelector('[data-sort]').value=V.sort;var sw=p.querySelector('[data-watch]');if(sw)sw.value=V.w}catch(e){}
+  renderWatchCtl();renderList(kind);
+  ir(kind);
+  try{window.scrollTo(0,0)}catch(e){}
+}
+document.addEventListener('click',function(e){
+  try{
+    var t=e.target.closest('[data-open],[data-vt],[data-go],[data-scroll],[data-ini]');if(!t)return;
+    if(t.dataset.open){e.preventDefault();abrirFolha(t.dataset.open,t);return}
+    if(t.dataset.scroll){var r=t.parentNode.querySelector('.sh-row');if(r)r.scrollBy({left:(+t.dataset.scroll)*r.clientWidth*.85,behavior:'smooth'});return}
+    if(t.dataset.go){ir(t.dataset.go);return}
+    if(t.dataset.ini){INI.f=t.dataset.ini;salvaUI();renderInicio();return}
+    var v=String(t.dataset.vt||''),k=v.split(':')[1];
+    if(v==='agenda'){ir('cal');return}
+    if(k!=='filmes'&&k!=='series')return;
+    if(v.indexOf('lista:')===0)irLista(k,{});
+    else if(v.indexOf('hoje:')===0)irLista(k,{w:'meus'});
+    else if(v.indexOf('naovi:')===0)irLista(k,{f:'naovi'});
+  }catch(err){console.error(err)}
+});
+
+// ---------- ORGANIZAR O INÍCIO ----------
+function renderOrg(){
+  try{
+    var o=ordemPrat(),nome={};PRAT.forEach(function(x){nome[x[0]]=x[1]});
+    el('org').innerHTML=o.map(function(k,i){var on=INI.ocultas.indexOf(k)<0;
+      return '<li class="'+(on?'':'off')+'"><label><input type="checkbox" data-org-vis="'+k+'"'+(on?' checked':'')+'>'+esc(nome[k])+'</label>'+
+        '<button class="ib" type="button" data-org-mv="'+k+'|-1" aria-label="Subir '+esc(nome[k])+'"'+(i?'':' disabled')+'>↑</button>'+
+        '<button class="ib" type="button" data-org-mv="'+k+'|1" aria-label="Descer '+esc(nome[k])+'"'+(i<o.length-1?'':' disabled')+'>↓</button></li>'}).join('');
+  }catch(e){console.error(e)}
+}
+(function(){
+  try{
+    el('org').addEventListener('change',function(e){var k=e.target.dataset&&e.target.dataset.orgVis;if(!k)return;
+      var i=INI.ocultas.indexOf(k);if(e.target.checked){if(i>-1)INI.ocultas.splice(i,1)}else if(i<0)INI.ocultas.push(k);
+      salvaUI();renderOrg();renderInicio();var x=el('org').querySelector('[data-org-vis="'+k+'"]');if(x)x.focus()});
+    el('org').addEventListener('click',function(e){var b=e.target.closest('[data-org-mv]');if(!b||b.disabled)return;
+      var pv=b.dataset.orgMv.split('|'),o=ordemPrat().slice(),i=o.indexOf(pv[0]),j=i+(+pv[1]);if(i<0||j<0||j>=o.length)return;
+      o.splice(i,1);o.splice(j,0,pv[0]);INI.ordem=o;salvaUI();renderOrg();renderInicio();
+      var nb=el('org').querySelector('[data-org-mv="'+pv[0]+'|'+pv[1]+'"]');if(nb&&!nb.disabled)nb.focus();else{nb=el('org').querySelector('[data-org-vis="'+pv[0]+'"]');if(nb)nb.focus()}});
+    el('org-reset').addEventListener('click',function(){INI.ordem=null;INI.ocultas=[];salvaUI();renderOrg();renderInicio()});
+    renderOrg();
+  }catch(e){console.error(e)}
+})();
+
+// ---------- NAVEGAÇÃO ----------
+// Cinco destinos na barra (Início, Lista, Avaliar — que entra depois —, Agenda e Mais). Filmes, Séries,
+// Desligar e Repetidos moram na Lista; Perguntar, Conexão e Backup moram no Mais.
+var GRUPO={inicio:'inicio',filmes:'lista',series:'lista',desligar:'lista',repetidos:'lista',cal:'agenda',mais:'mais',perguntar:'mais',pesos:'mais',dados:'mais',organizar:'mais'};
+var DEST0={inicio:'inicio',lista:'filmes',agenda:'cal',mais:'mais'};
+var ABA=null,ABA0=true;
+function ir(t){
+  try{
+    if(!GRUPO[t])t='inicio';
+    var mudou=ABA!==t,g=GRUPO[t];ABA=t;
+    if(g==='lista')DEST0.lista=t;
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='p-'+t)});
+    document.querySelectorAll('.nb[data-dest]').forEach(function(b){if(b.dataset.dest===g)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+    document.querySelectorAll('.lseg .tab').forEach(function(b){if(b.dataset.tab===t)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+    el('lnav').hidden=g!=='lista';
+    try{history.replaceState(null,'','#'+t)}catch(e){}
+    if(t==='cal')renderCal();
+    if(mudou&&!ABA0)try{window.scrollTo(0,0)}catch(e){}
+  }catch(e){console.error(e)}
+}
+document.addEventListener('click',function(e){
+  try{
+    var b=e.target.closest('.tab[data-tab],[data-dest]');if(!b)return;
+    var nb=b.classList.contains('nb'),g=b.dataset.dest||GRUPO[b.dataset.tab];
+    // tocar de novo no destino aberto volta ao topo (e, no Mais, à lista do Mais), como no iPhone
+    if(nb&&GRUPO[ABA]===g){if(g==='mais'&&ABA!=='mais')ir('mais');else try{window.scrollTo({top:0,behavior:'smooth'})}catch(err){}return}
+    ir(b.dataset.tab||DEST0[b.dataset.dest]);
+  }catch(err){console.error(err)}
+});
+(function(){var h=(location.hash||'').slice(1);ir(GRUPO[h]?h:'inicio');ABA0=false})();
+(function(){
+  try{
+    el('go-ia').addEventListener('click',function(){ir('perguntar');setTimeout(function(){try{el('ia-q').focus()}catch(e){}},30)});
+    el('go-busca').addEventListener('click',function(){
+      var k=ABA==='series'?'series':'filmes';ir(k);
+      var inp=document.querySelector('[data-q="'+k+'"]');if(!inp)return;
+      try{window.scrollTo(0,0)}catch(e){}
+      inp.focus({preventScroll:true});
+    });
+  }catch(e){console.error(e)}
+})();
+
+// ---------- PESOS ----------
+function renderPesos(){
+  try{
+    var w=pesos();
+    el('weights').innerHTML=DIMS.map(function(d,i){
+      return '<div class="w"><span class="n">'+esc(d.nome)+'</span><output class="num" id="wo-'+i+'">'+w[i]+'</output>'+
+        '<span class="d">'+esc(d.desc||'')+'</span><input type="range" min="0" max="30" step="1" value="'+w[i]+'" data-w="'+i+'" style="--v:'+Math.round(w[i]/30*100)+'%" aria-label="Peso de '+esc(d.nome)+'"></div>';
+    }).join('');
+    el('arq-dele').textContent=(D.arquetipos_dele||[]).join(' · ');
+  }catch(e){console.error(e)}
+}
+el('weights').addEventListener('input',function(e){
+  var i=e.target.dataset.w;if(i==null)return;
+  var w=pesos().slice();w[+i]=+e.target.value;ST.pesos=w;el('wo-'+i).textContent=w[+i];
+  try{e.target.style.setProperty('--v',Math.round(w[+i]/30*100)+'%')}catch(err){}
+});
+el('weights').addEventListener('change',function(){save();renderList('filmes');renderList('series');renderShelves('filmes');renderShelves('series')});
+el('w-reset').addEventListener('click',function(){ST.pesos=null;save();renderPesos();renderList('filmes');renderList('series');renderShelves('filmes');renderShelves('series')});
+
+// ---------- COLEÇÕES ----------
+// Base em dados.json (colecoes + extras); o que ele acrescenta ou tira fica neste aparelho (ST.col),
+// junto com o contador de vezes (ST.vezes), a nota de fase (ST.fase) e os títulos livres (ST.livres).
+var CTIPO={filme:'Filme',serie:'Série',saga:'Saga'};
+function slug(t){return String(t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60)}
+function achar(id){
+  var k,i,l;
+  var fontes=[['filmes','filme'],['series','serie']];
+  for(k=0;k<fontes.length;k++){l=(D&&D[fontes[k][0]])||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:fontes[k][1]}}
+  l=(D&&D.extras)||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:l[i].tipo==='saga'||l[i].tipo==='filme'?l[i].tipo:'serie'};
+  if(Object.prototype.hasOwnProperty.call(CATPOR,id))return {it:CATPOR[id],tipo:CATPOR[id].tipo==='serie'?'serie':'filme'};
+  if(ST.livres[id])return {it:{id:id,titulo:ST.livres[id].titulo},tipo:'livre'};
+  return null;
+}
+// "young-sheldon-2017" -> "Young sheldon (2017)": nome provisório quando o título não está nos dados carregados
+function tituloDeId(id){
+  var m=String(id).match(/^(.*?)-(\d{4})$/),t=(m?m[1]:String(id)).replace(/^livre-/,'').replace(/-/g,' ').trim();
+  return (t.charAt(0).toUpperCase()+t.slice(1))+(m?' ('+m[2]+')':'');
+}
+function acharOuProv(id){return achar(id)||{it:{id:id,titulo:tituloDeId(id)},tipo:'prov'}}
+function migrarLivres(){
+  try{
+    var mudou=false;
+    Object.keys(ST.livres).forEach(function(k){
+      var lv=ST.livres[k];if(!lv||!lv.titulo)return;
+      var q=String(lv.titulo).trim().toLowerCase(),n=null;
+      todosItens().some(function(x){if(x.it&&bateTitulo(x.it,q)){n=x.it.id;return true}return false});
+      if(!n)return;
+      if(ST.vezes[k]!=null&&ST.vezes[n]==null)ST.vezes[n]=ST.vezes[k];delete ST.vezes[k];
+      if(ST.fase[k]!=null&&ST.fase[n]==null)ST.fase[n]=ST.fase[k];delete ST.fase[k];
+      Object.keys(ST.col).forEach(function(col){
+        var c=colEstado(col),base=(D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[];
+        var ai=c.add.indexOf(k);if(ai>-1){c.add.splice(ai,1);if(base.indexOf(n)<0&&c.add.indexOf(n)<0)c.add.push(n)}
+        var ri=c.rem.indexOf(k);if(ri>-1){c.rem.splice(ri,1);if(c.rem.indexOf(n)<0)c.rem.push(n)}
+      });
+      delete ST.livres[k];mudou=true;
+    });
+    if(mudou)save();
+  }catch(e){console.error(e)}
+}
+function colEstado(col){var c=ST.col[col];if(!c||typeof c!=='object')c=ST.col[col]={add:[],rem:[]};c.add=Array.isArray(c.add)?c.add:[];c.rem=Array.isArray(c.rem)?c.rem:[];return c}
+// Ids que ninguém reconhece (o catálogo ainda não carregou, ou saiu dele) continuam na coleção, num cartão provisório.
+function colItens(col){
+  var base=((D&&D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[]).slice(),c=colEstado(col),out=[];
+  base.concat(c.add).forEach(function(id){if(typeof id==='string'&&id&&out.indexOf(id)<0&&c.rem.indexOf(id)<0)out.push(id)});
+  return out;
+}
+function sagaWatch(it){
+  var fs=it.filmes||[],cont={},comDado=0;
+  fs.forEach(function(f){var w=oferta(f);if(!w)return;comDado++;emStreaming(f).forEach(function(n){cont[n]=(cont[n]||0)+1})});
+  var lab='<span class="wl">Onde assistir</span>',busca='<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a>';
+  if(!comDado)return '<div class="watch">'+lab+busca+'</div>';
+  var m=meus(),nomes=Object.keys(cont).sort(function(a,b){return cont[b]-cont[a]||a.localeCompare(b,'pt-BR')});
+  var out=nomes.map(function(n){var mi=m.indexOf(n)>-1;return '<span class="svc'+(mi?' mine':'')+'">'+esc(n)+' <span class="alt">'+cont[n]+' de '+fs.length+'</span></span>'});
+  if(!out.length)out.push('<span class="alt">fora das assinaturas no Brasil</span>');
+  return '<div class="watch">'+lab+out.join('')+busca+'</div>';
+}
+function cardCol(id,col){
+  var a=acharOuProv(id),it=a.it,t=a.tipo;
+  var meta=[CTIPO[t]||(t==='prov'?'os dados não carregaram':'adicionado por você')];
+  if(t==='saga')meta=[(it.filmes||[]).length+' filmes'];
+  var ano=t==='saga'||t==='serie'?(it.anos||it.ano):it.ano;if(ano&&CTIPO[t])meta.push(ano);
+  var podeAbrir=t!=='livre'&&t!=='prov';
+  var vz=col==='repetidos'?(+ST.vezes[id]||0):0;
+  var c=t==='filme'||t==='serie'?conexao(it):null;
+  var cap='<span class="ti-t">'+esc(it.titulo)+'</span><span class="ti-m">'+(c!=null&&c>=50?'<b class="num">'+c+'%</b> · ':'')+esc(meta.filter(Boolean).join(' · '))+'</span>';
+  var po=posterHtml(it,{vezes:vz>1?vz:0});
+  var head=podeAbrir?'<button class="ti-b" type="button" data-open="'+esc(id)+'" aria-label="'+esc(tileParts(it,{vezes:vz>1?vz:0}).label)+'">'+po+cap+'</button>':'<div class="ti-b">'+po+cap+'</div>';
+  var ctl;
+  if(col==='repetidos')ctl='<div class="ctl2 vezes" role="group" aria-label="Quantas vezes você viu '+esc(it.titulo)+'"><button type="button" data-vz="-1" aria-label="Uma vez a menos">−</button>'+
+    '<span class="vz"><output class="num">'+vz+'</output> <span class="vzl">'+(vz===1?'vez':'vezes')+'</span></span><button type="button" data-vz="1" aria-label="Mais uma vez">+</button></div>';
+  else ctl='<input class="fase" data-fase="1" type="text" maxlength="120" placeholder="Em que fase da vida?" aria-label="Em que fase da vida '+esc(it.titulo)+' te serviu" value="'+esc(ST.fase[id]||'')+'">';
+  var jw=podeAbrir?'':'<a class="jw" href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">onde assistir ↗</a>';
+  return '<article class="card ctile" data-id="'+esc(id)+'" data-col="'+col+'">'+head+ctl+'<div class="ct-f">'+jw+'<button class="rm" type="button" data-rm="1" aria-label="Tirar '+esc(it.titulo)+' daqui">tirar daqui</button></div></article>';
+}
+function renderCol(col){
+  try{
+    var ids=colItens(col),box=el('list-'+col);if(!box)return;
+    box.innerHTML=ids.length?ids.map(function(id){try{return cardCol(id,col)}catch(e){console.error(e);return ''}}).join(''):'<p class="empty">Nada aqui ainda. Adicione logo abaixo.</p>';
+    el('ct-'+col).textContent=' '+ids.length;
+    try{el('cnt-'+col).textContent=ids.length+(ids.length===1?' título':' títulos')}catch(e){}
+    renderDatalist();
+  }catch(e){console.error(e)}
+}
+var ROTULOS={}; // rótulo do datalist (minúsculo) -> id
+function todosItens(){
+  var out=[];
+  (D.filmes||[]).forEach(function(it){out.push({it:it,tipo:'filme'})});
+  (D.series||[]).forEach(function(it){out.push({it:it,tipo:'serie'})});
+  (D.extras||[]).forEach(function(it){out.push({it:it,tipo:it.tipo==='saga'||it.tipo==='filme'?it.tipo:'serie'})});
+  ((CAT&&CAT.itens)||[]).forEach(function(it){if(it&&it.id)out.push({it:it,tipo:it.tipo==='serie'?'serie':'filme'})});
+  return out;
+}
+function renderDatalist(){
+  try{
+    var dl=el('todos-titulos');if(!dl||dl.dataset.ok)return;
+    var todos=todosItens(),conta={},op=[];
+    todos.forEach(function(x){var t=x.it&&x.it.titulo;if(t)conta[t.toLowerCase()]=(conta[t.toLowerCase()]||0)+1});
+    todos.forEach(function(x){
+      var it=x.it;if(!it||!it.titulo)return;
+      var rot=conta[it.titulo.toLowerCase()]>1?it.titulo+' ('+(x.tipo==='saga'?'saga':x.tipo==='serie'?'série':'filme')+', '+(it.ano||'')+')':it.titulo;
+      if(ROTULOS[rot.toLowerCase()])return;
+      ROTULOS[rot.toLowerCase()]=it.id;
+      op.push('<option value="'+esc(rot)+'">'+(it.titulo_en&&it.titulo_en!==it.titulo?esc(it.titulo_en):'')+'</option>');
+    });
+    dl.innerHTML=op.join('');dl.dataset.ok='1';
+  }catch(e){console.error(e)}
+}
+function bateTitulo(it,q){return [it.titulo,it.titulo_en,it.titulo_original].some(function(v){return v&&String(v).trim().toLowerCase()===q})}
+function idPorNome(t){
+  var q=String(t||'').trim().toLowerCase();if(!q)return null;
+  var todos=[].concat(D.filmes||[],D.series||[],D.extras||[],(CAT&&CAT.itens)||[]);
+  for(var i=0;i<todos.length;i++){var x=todos[i];if(x&&[x.titulo,x.titulo_en,x.titulo_original].some(function(v){return v&&String(v).trim().toLowerCase()===q}))return x.id}
+  for(var k in ST.livres)if(ST.livres[k]&&String(ST.livres[k].titulo).trim().toLowerCase()===q)return k;
+  return null;
+}
+function adicionar(col){
+  try{
+    var inp=document.querySelector('[data-add="'+col+'"]'),msg=document.querySelector('[data-addmsg="'+col+'"]'),t=(inp.value||'').trim();if(!t)return;
+    var q=t.toLowerCase(),c=colEstado(col),novo=false,id=ROTULOS[q]||null;
+    if(!id)c.rem.some(function(r){var a=achar(r);if(a&&bateTitulo(a.it,q)){id=r;return true}return false});
+    if(!id)id=idPorNome(t);
+    if(!id){
+      var base0='livre-'+(slug(t)||('t'+Array.from(t).reduce(function(h,ch){return (h*31+ch.codePointAt(0))>>>0},7).toString(36)));
+      id=base0;for(var n=2;ST.livres[id]&&String(ST.livres[id].titulo).trim().toLowerCase()!==q;n++)id=base0+'-'+n;
+      if(!ST.livres[id])ST.livres[id]={titulo:t};novo=true}
+    var ri=c.rem.indexOf(id);if(ri>-1)c.rem.splice(ri,1);
+    var base=(D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[];
+    if(base.indexOf(id)<0&&c.add.indexOf(id)<0)c.add.push(id);
+    save();inp.value='';renderCol(col);renderShelves('series');
+    if(msg)msg.textContent=novo?'"'+t+'" entrou só com o nome. Me conta no chat que eu completo os dados e o onde assistir.':'"'+t+'" adicionado.';
+  }catch(e){console.error(e)}
+}
+['desligar','repetidos'].forEach(function(col){
+  try{
+    var p=el('p-'+col);if(!p)return;
+    p.querySelector('[data-addbtn]').addEventListener('click',function(){adicionar(col)});
+    p.querySelector('[data-add]').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();adicionar(col)}});
+    p.addEventListener('click',function(e){
+      var t=e.target.closest('[data-vz],[data-rm]');if(!t)return;var c=t.closest('.card');if(!c)return;var id=c.dataset.id;
+      if(t.dataset.vz){var v=Math.max(0,(+ST.vezes[id]||0)+(+t.dataset.vz));if(v)ST.vezes[id]=v;else delete ST.vezes[id];save();
+        c.querySelector('.vezes output').textContent=v;var vl=c.querySelector('.vezes .vzl');if(vl)vl.textContent=v===1?'vez':'vezes';
+        try{var a=acharOuProv(id),po=c.querySelector('.ti-b .po');if(po)po.outerHTML=posterHtml(a.it,{vezes:v>1?v:0});renderShelves('series')}catch(err){}
+        return}
+      if(t.dataset.rm){var s=colEstado(col),ai=s.add.indexOf(id);if(ai>-1)s.add.splice(ai,1);else if(s.rem.indexOf(id)<0)s.rem.push(id);save();renderCol(col);renderShelves('series');return}
+    });
+    p.addEventListener('input',function(e){var t=e.target;if(!t.dataset||!t.dataset.fase)return;var c=t.closest('.card');if(!c)return;
+      var v=t.value.trim();if(v)ST.fase[c.dataset.id]=t.value;else delete ST.fase[c.dataset.id];save()});
+  }catch(e){console.error(e)}
+});
+
+// ---------- FOLHA DO TÍTULO ----------
+// Celular: folha que sobe a 60% da tela (a prévia) e vai à tela inteira ao puxar ou em "Abrir página", como no Stremio.
+// Computador: painel de 420 px à direita, sem sair da página.
+var SH={id:null,from:null,temp:null};
+var TH=[{v:30,l:'Não curti',ic:IC.down},{v:70,l:'Gostei',ic:IC.up},{v:90,l:'Amei',ic:IC.dup}];
+function thumbDe(n){return n==null?null:(n<50?30:(n<80?70:90))}
+function largo(){try{return window.matchMedia('(min-width:900px)').matches}catch(e){return false}}
+function prevTxt(n,c){
+  if(c==null)return '';
+  if(n==null)return 'Previsto pela conexão: <b class="num">'+c+'</b>. Dê sua nota para comparar.';
+  var d=n-c;return 'Você deu <b class="num">'+n+'</b> · previsto <span class="num">'+c+'</span> · <b class="num'+(d>0?' up':'')+'">'+(d>0?'+':d<0?'−':'±')+Math.abs(d)+'</b>';
+}
+function secao(t,h){return h?'<section class="sx"><h3>'+esc(t)+'</h3>'+h+'</section>':''}
+function ondeAssistir(it,t){
+  if(t==='saga')return sagaWatch(it);
+  var w=oferta(it),m=meus(),jw='<a class="btn" href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">Procurar no JustWatch ↗</a>';
+  if(!w)return '<p class="muted">'+(SV&&SV.titulos?'Sem dados de streaming no Brasil para este título agora.':'O robô ainda não trouxe o onde assistir. A busca no JustWatch está sempre em dia.')+'</p>'+jw;
+  var gr=[['Assinatura',w.assinatura],['Grátis',uniq([].concat(w.gratis||[],w.anuncios||[]))],['Aluguel',w.aluguel],['Compra',w.compra]];
+  var h=gr.filter(function(g){return g[1]&&g[1].length}).map(function(g){
+    var l=uniq(g[1]).sort(function(a,b){return (m.indexOf(b)>-1)-(m.indexOf(a)>-1)});
+    return '<div class="wg"><span class="wl">'+g[0]+'</span><div class="svcs">'+l.map(function(n){var mi=m.indexOf(n)>-1;return '<span class="svc'+(mi?' mine':'')+'">'+esc(n)+(mi?' <small>você assina</small>':'')+'</span>'}).join('')+'</div></div>'}).join('');
+  var lk=linkSeguro(w.link);
+  return (h||'<p class="muted">Fora das assinaturas no Brasil agora.</p>')+'<div class="row" style="margin-top:12px">'+(lk?'<a class="btn" href="'+esc(lk)+'" target="_blank" rel="noopener">Ver ofertas no JustWatch ↗</a>':jw)+'</div>';
+}
+function notasFora(n,t){
+  n=n||{};var m=n.origem==='memoria',ap=m?'≈':'',x='x'+(m?' mem':''),out=[];
+  if(n.imdb)out.push('<span class="'+x+'"><span class="imdb">IMDb</span><b class="num">'+ap+esc(n.imdb)+'</b>'+(n.imdb_votos?'<span class="num">'+esc(n.imdb_votos)+'</span>':'')+'</span>');
+  if(n.rt_critica)out.push('<span class="'+x+'">Rotten <b class="num">'+ap+esc(n.rt_critica)+'</b></span>');
+  if(n.rt_publico)out.push('<span class="'+x+'">Público <b class="num">'+ap+esc(n.rt_publico)+'</b></span>');
+  if(n.metacritic)out.push('<span class="'+x+'">Metacritic <b class="num">'+ap+esc(n.metacritic)+'</b></span>');
+  if(n.letterboxd)out.push('<span class="'+x+'">Letterboxd <b class="num">'+ap+esc(n.letterboxd)+'</b></span>');
+  if(!out.length)return '';
+  return '<div class="ext">'+out.join('')+'</div>'+(m?'<p class="ext-n">≈ de memória, ainda não conferidas na fonte.</p>':'');
+}
+function episodiosFolha(it){
+  var l=(it.imdb_id&&EPI[it.imdb_id])||[];
+  var prox=it.proximo?'<p class="muted" style="margin-top:10px">'+esc(it.proximo)+'</p>':'';
+  if(!l.length)return prox?secao('Próxima temporada',prox):'';
+  var temps=uniq(l.map(function(x){return String(x.e.temporada)}));
+  var now=new Date(),tp=SH.temp&&temps.indexOf(SH.temp)>-1?SH.temp:String(((l.filter(function(x){return x.d>now})[0])||l[l.length-1]).e.temporada);
+  SH.temp=tp;var ti=temps.indexOf(tp);
+  var v=vistoDe(it.imdb_id),algum=false;
+  var lis=l.filter(function(x){return String(x.e.temporada)===tp}).map(function(x){var on=x.d<=now;if(on)algum=true;
+    return '<li><span class="te num">E'+esc(x.e.episodio)+'</span><span class="et">'+esc(x.e.titulo||'Episódio '+x.e.episodio)+'<span class="ed num">'+esc(quando(x.d))+'</span></span>'+
+      (on?botaoVisto(it.imdb_id,x.e,v):'<span class="bd">Em breve</span>')+'</li>'}).join('');
+  var bar='<div class="tbar"><button class="ib" type="button" data-tp="'+(ti>0?esc(temps[ti-1]):'')+'" aria-label="Temporada anterior"'+(ti>0?'':' disabled')+'>‹</button><b>Temporada '+esc(tp)+'</b><button class="ib" type="button" data-tp="'+(ti<temps.length-1?esc(temps[ti+1]):'')+'" aria-label="Próxima temporada"'+(ti<temps.length-1?'':' disabled')+'>›</button></div>';
+  return secao('Episódios',bar+'<ul class="eps">'+lis+'</ul>'+(algum?'<p class="eps-n">Marcar um episódio marca os anteriores como vistos.</p>':'')+prox);
+}
+function acoesFolha(it,k){
+  var st=stOf(it),n=ST.notas[it.id],c=conexao(it),out='';
+  if(k){var opts=k==='filmes'?['quero','assisti','abandonei']:['quero','acompanhando','assisti','abandonei'];
+    out+='<div class="seg'+(opts.length===4?' s4':'')+'" role="group" aria-label="Status">'+opts.map(function(s){return '<button type="button" data-ss="'+s+'" aria-pressed="'+(st===s)+'">'+SEGL[s]+'</button>'}).join('')+'</div>'}
+  out+='<div class="thumbs" role="group" aria-label="Sua nota rápida">'+TH.map(function(x){return '<button type="button" data-th="'+x.v+'" aria-pressed="'+(thumbDe(n)===x.v)+'">'+x.ic+'<span>'+x.l+'</span></button>'}).join('')+'</div>';
+  out+='<div class="score sscore'+(n==null?' vazio':'')+'"><label for="sh-r">Ajuste fino</label><input id="sh-r" type="range" min="0" max="100" step="1" value="'+(n==null?50:n)+'" style="--v:'+(n==null?50:n)+'%">'+
+    '<output class="num'+(n==null?' none':'')+'" id="sh-o">'+(n==null?'—':n)+'</output><button class="clr" type="button" data-shclr="1"'+(n==null?' hidden':'')+'>limpar</button></div>';
+  out+='<p class="prev" id="sh-prev">'+prevTxt(n,c)+'</p>';
+  return out;
+}
+function renderFolha(){
+  var a=achar(SH.id);if(!a)return false;var it=a.it,t=a.tipo,k=kindOf(it.id),c=conexao(it),p=posterInfo(it.id),h=[];
+  var meta=[];
+  if(c!=null)meta.push('<b class="cx'+(c<50?' low':'')+' num">'+c+'% conexão</b>');
+  [t==='saga'?(it.anos||it.ano):it.ano,t==='filme'?it.duracao:(t==='serie'?(it.temporadas||''):(t==='saga'?(it.filmes||[]).length+' filmes':''))].filter(Boolean).forEach(function(x){meta.push(esc(x))});
+  var autor=[t==='serie'?(it.autor||it.criadores):(it.autor||it.diretor),it.pais].filter(Boolean).join(' · ');
+  var mot=motivos(it,3);
+  h.push('<div class="hero"><span class="hero-bgw" aria-hidden="true">'+(p?'<img class="hero-bg" src="'+esc(p.src)+'" alt="" decoding="async">':'<span class="hero-bg cor"'+(corDe(it.id)?' style="--pc:'+corDe(it.id)+'"':'')+'></span>')+'</span>'+
+    '<div class="hero-po">'+posterHtml(it,{semNota:true})+'</div>'+
+    '<div class="hero-t"><h2 id="sh-title">'+esc(it.titulo)+'</h2>'+titulosExtras(it)+(meta.length?'<p class="meta">'+meta.join(' · ')+'</p>':'')+(autor?'<p class="ha">'+esc(autor)+'</p>':'')+
+    (mot.length?'<p class="mot">'+mot.map(esc).join(' · ')+'</p>':'')+'</div></div>');
+  h.push('<div class="sx sx-act" id="sh-act">'+acoesFolha(it,k)+'</div>');
+  var cols=[];
+  if(colItens('repetidos').indexOf(it.id)>-1)cols.push('Repetidos'+((+ST.vezes[it.id]||0)>0?': você viu <b class="num">'+(+ST.vezes[it.id])+(+ST.vezes[it.id]===1?' vez':' vezes')+'</b>':''));
+  if(colItens('desligar').indexOf(it.id)>-1)cols.push('Desligar o cérebro');
+  if(ST.fase[it.id])cols.push('fase: '+esc(ST.fase[it.id]));
+  if(cols.length)h.push('<p class="colinfo">'+cols.join(' · ')+'</p>');
+  var lead=it.ponte||it.espelho||'';
+  if(lead)h.push('<p class="lead">'+esc(lead)+'</p>');
+  h.push('<div class="xp-w"><button class="btn xp" type="button" data-expand="1">Abrir página</button></div>');
+  h.push(secao('Onde assistir',ondeAssistir(it,t)));
+  if(t==='serie')h.push(episodiosFolha(it));
+  if(t==='saga'&&(it.filmes||[]).length)h.push(secao('Os '+it.filmes.length+' filmes','<ol class="eps" style="list-style:none">'+it.filmes.map(function(f,i){return '<li><span class="te num">'+(i+1)+'</span><span class="et">'+esc(f.titulo)+'</span><span class="ed num">'+esc(f.ano||'')+'</span></li>'}).join('')+'</ol>'));
+  if(it.dims&&it.dims.length){
+    var esp=it.ponte&&it.espelho?'<p class="esp"><b>Em você:</b> '+esc(it.espelho)+'</p>':'';
+    h.push(secao('Por que conecta','<p class="sum">Mais forte em '+mot.map(function(x){return '<b>'+esc(x)+'</b>'}).join(', ').replace(/, ([^,]*)$/,' e $1')+'.</p>'+esp+dimTable(it)));
+  }
+  h.push(secao('Notas de fora',notasFora(it.notas,t)));
+  if(it.visao&&it.visao.texto)h.push('<details class="sx-d"><summary>Visão '+(t==='filme'?'do diretor':'de quem criou')+'</summary><div class="more"><p>'+esc(it.visao.texto)+'</p>'+(it.visao.fonte?'<div class="src">'+linkOrText(it.visao.fonte)+'</div>':'')+'</div></details>');
+  var cr=(it.criticos||[]).map(critico).join('');
+  if(cr)h.push('<details class="sx-d"><summary>Críticos ('+it.criticos.length+')</summary><div class="more">'+cr+'</div></details>');
+  if(it.leitura||it.jornada||it.arquetipo)h.push('<details class="sx-d"><summary>Leitura arquetípica'+(it.arquetipo?' · '+esc(it.arquetipo):'')+'</summary><div class="more">'+(it.leitura?'<p>'+esc(it.leitura)+'</p>':'')+(it.jornada?'<p class="src">Jornada: '+esc(it.jornada)+'</p>':'')+(it.espelho&&!it.ponte?'':'')+'</div></details>');
+  var links=[];
+  if(/^tt\d{5,10}$/.test(String(it.imdb_id||'')))links.push('<a href="https://www.imdb.com/title/'+esc(it.imdb_id)+'/" target="_blank" rel="noopener">IMDb ↗</a>');
+  links.push('<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">JustWatch ↗</a>');
+  var pg=posterPagina(it.id);if(pg)links.push('<a href="'+esc(pg)+'" target="_blank" rel="noopener">Wikipedia ↗</a>');
+  h.push('<section class="sx"><div class="links">'+links.join('')+'</div>'+(p&&pg?'<p class="credit">Pôster: Wikipedia.</p>':'')+'</section>');
+  el('sh-body').innerHTML=h.join('');
+  try{el('sh-bt').textContent=it.titulo||''}catch(e){}
+  return true;
+}
+function abrirFolha(id,de){
+  try{
+    var a=achar(id);if(!a||a.tipo==='livre'||a.tipo==='prov')return;
+    if(SH.id!==id)SH.temp=null;
+    SH.id=id;if(de)SH.from=de;
+    if(!renderFolha())return;
+    var s=el('sheet'),sc=el('scrim'),ja=!s.hidden;
+    s.hidden=false;sc.hidden=false;el('sh-body').scrollTop=0;s.classList.remove('rolou');
+    ajustaPeek();
+    if(!ja){void s.offsetHeight;s.classList.remove('full','peek');s.classList.add(largo()?'full':'peek');sc.classList.add('on')}
+    document.documentElement.classList.add('lock');inerte(true);
+    setTimeout(function(){try{el('sh-x').focus({preventScroll:true})}catch(e){}},40);
+  }catch(e){console.error(e)}
+}
+function inerte(on){
+  ['.top','.tabbar','#conteudo'].forEach(function(q){try{var x=document.querySelector(q);if(!x)return;if(on)x.setAttribute('inert','');else x.removeAttribute('inert')}catch(e){}});
+}
+function fecharFolha(){
+  var s=el('sheet'),sc=el('scrim');if(s.hidden)return;
+  s.classList.remove('full','peek');sc.classList.remove('on');document.documentElement.classList.remove('lock');inerte(false);
+  setTimeout(function(){if(!s.classList.contains('full')&&!s.classList.contains('peek')){s.hidden=true;sc.hidden=true}},320);
+  var f=SH.from,id=SH.id;SH.id=null;
+  // o pôster de origem pode ter sido redesenhado (a prateleira muda quando o status muda): procura o novo
+  try{if((!f||!document.contains(f))&&id)f=[].filter.call(document.querySelectorAll('[data-open="'+cssId(id)+'"]'),function(x){return x.offsetParent!==null})[0];
+    if(f&&document.contains(f))f.focus({preventScroll:true})}catch(e){}
+}
+// a prévia mostra do topo até o botão "Abrir página" (cerca de 60 a 70% da tela)
+function ajustaPeek(){
+  try{
+    var s=el('sheet');if(largo())return;var b=s.querySelector('.xp-w');if(!b)return;
+    var H=s.clientHeight||innerHeight,need=b.offsetTop+b.offsetHeight+4;
+    var vis=Math.min(H,Math.max(H*.5,need));s.style.setProperty('--peek',Math.max(0,Math.round(H-vis))+'px');
+  }catch(e){}
+}
+function expandeFolha(){var s=el('sheet');s.classList.remove('peek');s.classList.add('full')}
+// mantém a folha em dia quando algo muda na lista (sem redesenhar, para não perder o foco)
+function syncSheet(){
+  try{
+    var s=el('sheet');if(!SH.id||s.hidden)return;var a=achar(SH.id);if(!a)return;
+    var it=a.it,st=stOf(it),n=ST.notas[it.id],c=conexao(it);
+    s.querySelectorAll('[data-ss]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.ss===st))});
+    s.querySelectorAll('[data-th]').forEach(function(b){b.setAttribute('aria-pressed',String(thumbDe(n)===+b.dataset.th))});
+    var r=el('sh-r'),o=el('sh-o');
+    if(r&&document.activeElement!==r){r.value=n==null?50:n;setV(r)}
+    if(o){o.textContent=n==null?'—':n;o.classList.toggle('none',n==null)}
+    var sc=s.querySelector('.sscore');if(sc)sc.classList.toggle('vazio',n==null);
+    var cl=s.querySelector('[data-shclr]');if(cl)cl.hidden=n==null;
+    var pv=el('sh-prev');if(pv)pv.innerHTML=prevTxt(n,c);
+    var hp=s.querySelector('.hero-po');if(hp)hp.innerHTML=posterHtml(it,{semNota:true});
+  }catch(e){console.error(e)}
+}
+(function(){
+  try{
+    var s=el('sheet');
+    el('sh-x').addEventListener('click',fecharFolha);
+    el('scrim').addEventListener('click',fecharFolha);
+    el('sh-grab').addEventListener('click',function(){if(s.classList.contains('full')){s.classList.remove('full');s.classList.add('peek')}else expandeFolha()});
+    document.addEventListener('keydown',function(e){
+      if(s.hidden)return;
+      if(e.key==='Escape'){fecharFolha();return}
+      if(e.key!=='Tab')return;
+      var f=[].filter.call(s.querySelectorAll('button,a[href],input,select,textarea,summary,[tabindex]:not([tabindex="-1"])'),function(x){return !x.disabled&&!x.hidden&&x.offsetParent!==null&&!x.closest('[inert]')});
+      if(!f.length)return;var a=f[0],z=f[f.length-1];
+      if(!s.contains(document.activeElement)){e.preventDefault();a.focus();return}
+      if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+      else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
+    });
+    s.addEventListener('click',function(e){
+      var t=e.target.closest('[data-ss],[data-th],[data-shclr],[data-expand],[data-tp],[data-visto]');if(!t||!SH.id)return;
+      var id=SH.id;
+      if(t.dataset.expand){expandeFolha();return}
+      if(t.dataset.visto){var pv=t.dataset.visto.split('|'),y0=el('sh-body').scrollTop;marcaVisto(pv[0],+pv[1],+pv[2]);renderFolha();el('sh-body').scrollTop=y0;
+        try{var nb=s.querySelector('[data-visto="'+cssId(t.dataset.visto)+'"]');if(nb)nb.focus({preventScroll:true})}catch(err){}return}
+      if(t.dataset.tp!=null){if(t.dataset.tp){SH.temp=t.dataset.tp;var y=el('sh-body').scrollTop;renderFolha();el('sh-body').scrollTop=y}return}
+      if(t.dataset.ss){var a=achar(id);if(!a)return;var atual=stOf(a.it);aplicaStatus(id,atual===t.dataset.ss?'':t.dataset.ss);return}
+      if(t.dataset.th){aplicaNota(id,+t.dataset.th);return}
+      if(t.dataset.shclr){aplicaNota(id,null);return}
+    });
+    s.addEventListener('input',function(e){var t=e.target;if(t.id!=='sh-r')return;setV(t);var o=el('sh-o');o.textContent=t.value;o.classList.remove('none');var sc=s.querySelector('.sscore');if(sc)sc.classList.remove('vazio')});
+    s.addEventListener('change',function(e){var t=e.target;if(t.id!=='sh-r'||!SH.id)return;aplicaNota(SH.id,+t.value)});
+    // puxar a folha: para cima abre a página inteira; para baixo volta à prévia ou fecha
+    var g=null;
+    s.addEventListener('touchstart',function(e){if(largo())return;var b=el('sh-body');g={y:e.touches[0].clientY,top:b.scrollTop,full:s.classList.contains('full'),slider:!!(e.target.closest&&e.target.closest('input[type=range]'))}},{passive:true});
+    s.addEventListener('touchmove',function(e){
+      if(!g||g.slider)return;var dy=e.touches[0].clientY-g.y;
+      if(!g.full&&dy<-28){expandeFolha();g=null;return}
+      if(dy>90&&g.top<=0){if(g.full){s.classList.remove('full');s.classList.add('peek')}else fecharFolha();g=null}
+    },{passive:true});
+    s.addEventListener('touchend',function(){g=null},{passive:true});
+    el('sh-body').addEventListener('scroll',function(){s.classList.toggle('rolou',this.scrollTop>70)},{passive:true});
+    s.addEventListener('wheel',function(e){if(!largo()&&s.classList.contains('peek')&&e.deltaY>4)expandeFolha()},{passive:true});
+  }catch(e){console.error(e)}
+})();
+
+// ---------- PERGUNTAR À IA ----------
+// O contexto sai do que está neste aparelho e vai, com a pergunta, para /api/telas-perguntar,
+// que chama o Claude com a chave guardada na Vercel. A senha da caixa fica em outra chave do
+// localStorage, fora do backup.
+// A senha fica no sessionStorage: some ao fechar o navegador e não fica ao alcance de outra página do domínio depois.
+var IA_SENHA='telas_ia_senha';
+try{localStorage.removeItem(IA_SENHA)}catch(e){}
+function iaSenha(){try{return sessionStorage.getItem(IA_SENHA)||''}catch(e){return ''}}
+function guardaSenha(v){try{if(v)sessionStorage.setItem(IA_SENHA,v);else sessionStorage.removeItem(IA_SENHA)}catch(e){}}
+function contextoIA(){
+  var c={hoje:new Date().toISOString().slice(0,10)};
+  try{
+    var p=pesos();c.dimensoes=DIMS.map(function(d,i){return {nome:d.nome,peso:p[i]}});
+    c.arquetipos=D.arquetipos_dele||[];
+    var porId={};[].concat(D.filmes||[],D.series||[],D.extras||[]).forEach(function(it){if(it&&it.id)porId[it.id]=it});
+    var tipoDe=function(id){return (D.filmes||[]).some(function(x){return x.id===id})?'filme':((D.extras||[]).some(function(x){return x.id===id&&x.tipo==='saga'})?'saga':'série')};
+    var nome=function(id){var it=porId[id]||CATPOR[id]||(ST.livres[id]?{titulo:ST.livres[id].titulo}:null);return it?it.titulo+(it.ano?' ('+it.ano+')':''):id};
+    c.notas=Object.keys(ST.notas).map(function(id){return {titulo:nome(id),tipo:tipoDe(id),nota:ST.notas[id]}}).sort(function(a,b){return b.nota-a.nota});
+    var st={quero:[],assisti:[],acompanhando:[],abandonei:[]};
+    [].concat(D.filmes||[],D.series||[]).forEach(function(it){var s=stOf(it);if(st[s])st[s].push(nome(it.id))});
+    c.status=st;
+    c.colecoes={
+      desligar:colItens('desligar').map(function(id){var o={titulo:nome(id)};if(ST.fase[id])o.fase=ST.fase[id];return o}),
+      repetidos:colItens('repetidos').map(function(id){var o={titulo:nome(id)};if(ST.vezes[id])o.vezes=ST.vezes[id];return o})
+    };
+    c.biblioteca=[].concat(D.filmes||[],D.series||[]).filter(function(it){return it.biblioteca}).map(function(it){return nome(it.id)});
+    var top=function(l){return (l||[]).map(function(it){return {titulo:nome(it.id),conexao:conexao(it)}}).filter(function(x){return x.conexao!=null}).sort(function(a,b){return b.conexao-a.conexao}).slice(0,12)};
+    c.mais_conectados={filmes:top(D.filmes),series:top(D.series)};
+    c.servicos_que_assina=meus();
+    c.na_lista=[].concat(D.filmes||[],D.series||[],D.extras||[]).map(function(it){return it.id+' | '+it.titulo+(it.ano?' ('+it.ano+')':'')});
+  }catch(e){console.error(e)}
+  return c;
+}
+function paragrafos(t){return String(t||'').split(/\n{2,}|\n(?=[-•])/).map(function(x){return x.trim()}).filter(Boolean).map(function(x){return '<p>'+esc(x)+'</p>'}).join('')}
+function naLista(id){return [].concat(D&&D.filmes||[],D&&D.series||[]).some(function(it){return it.id===id})}
+function verBotao(id){
+  if(naLista(id))return '<button data-ver="'+esc(id)+'">ver na lista</button>';
+  var col=['desligar','repetidos'].filter(function(c){return colItens(c).indexOf(id)>-1})[0];
+  return col?'<button data-vercol="'+col+'">ver em '+(col==='desligar'?'Desligar':'Repetidos')+'</button>':'';
+}
+function cardIndicacao(x){
+  var tit=esc(x.titulo||'')+(x.titulo_original&&x.titulo_original!==x.titulo?'<span class="en" style="display:block">'+esc(x.titulo_original)+'</span>':'');
+  var na=x.ja_na_lista&&achar(x.ja_na_lista);
+  var jw='https://www.justwatch.com/br/busca?q='+encodeURIComponent(x.titulo||x.titulo_original||'');
+  var po=na?'<button class="cr-po" type="button" data-open="'+esc(na.it.id)+'" aria-label="Abrir '+esc(na.it.titulo)+'" style="flex-basis:72px;width:72px">'+posterHtml(na.it)+'</button>':'';
+  return '<article class="card ind"><div class="cr">'+po+'<div class="ttl"><h3>'+tit+'</h3><p class="meta">'+
+    '<span class="bdg">'+esc(x.tipo||'')+'</span> '+esc(x.ano||'')+(na?' · <span class="bdg live">já está na lista</span>':'')+'</p>'+
+    '<p class="why" style="margin-top:8px">'+esc(x.por_que||'')+'</p></div></div><div class="acts"><a href="'+esc(jw)+'" target="_blank" rel="noopener">onde assistir ↗</a>'+
+    (na?verBotao(x.ja_na_lista):'')+'</div></article>';
+}
+function blocoResposta(r){
+  return '<p class="q">'+esc(r.pergunta)+'</p><div class="txt">'+paragrafos(r.resposta)+'</div>'+
+    '<p class="meta2">'+esc(r.em||'')+(r.buscas?' · procurou na web':'')+(r.cortada?' · a resposta foi cortada no limite':'')+'</p>'+
+    ((r.indicacoes||[]).length?'<div class="grid">'+r.indicacoes.map(cardIndicacao).join('')+'</div>':'');
+}
+function renderHist(){
+  try{
+    var h=el('ia-hist'),l=el('ia-hist-list');if(!h)return;
+    var ant=(ST.ia||[]).slice(1);h.hidden=!ant.length;
+    l.innerHTML=ant.map(function(r,i){return '<div style="margin-bottom:18px">'+blocoResposta(r)+'</div>'}).join('');
+  }catch(e){console.error(e)}
+}
+var IA_OCUPADA=false;
+function perguntar(){
+  if(IA_OCUPADA)return;
+  var q=(el('ia-q').value||'').trim(),out=el('ia-out');if(!q){el('ia-q').focus();return}
+  if(!D){out.innerHTML='<p class="err">Sua lista ainda está carregando. Tente em instantes.</p>';return}
+  var senhaIn=el('ia-senha'),senha=(senhaIn&&senhaIn.value.trim())||iaSenha();
+  if(!senha){el('ia-senha-box').hidden=false;out.innerHTML='<p class="err">Digite a senha da caixa (a mesma que está em TELAS_SENHA na Vercel).</p>';senhaIn.focus();return}
+  IA_OCUPADA=true;el('ia-go').disabled=true;
+  var t0=Date.now(),tick=setInterval(function(){var w=out.querySelector('.secs');if(w)w.textContent=Math.round((Date.now()-t0)/1000)+' s'},1000);
+  out.setAttribute('aria-busy','true');
+  out.innerHTML='<p class="wait">Pensando… <span class="secs" aria-hidden="true"></span></p>';
+  fetch('/api/telas-perguntar',{method:'POST',headers:{'content-type':'application/json','x-telas-senha':senha},
+    body:JSON.stringify({pergunta:q,contexto:contextoIA(),buscar:!!el('ia-web').checked})})
+  .then(function(r){return r.json().catch(function(){return {erro:r.status===504?'Demorou demais. Tente de novo, talvez sem a busca na web.':'Resposta inesperada do servidor ('+r.status+').'}}).then(function(j){j._status=r.status;return j})})
+  .then(function(j){
+    if(j._status===401){guardaSenha('');el('ia-senha-box').hidden=false;if(senhaIn){senhaIn.value='';senhaIn.focus()}}
+    if(j.erro){out.innerHTML='<p class="err">'+esc(j.erro)+'</p>';return}
+    guardaSenha(senha);
+    el('ia-senha-box').hidden=true;
+    var r={pergunta:q,resposta:j.resposta,indicacoes:j.indicacoes||[],buscas:j.buscas||0,cortada:!!j.cortada,em:new Date().toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})};
+    ST.ia=[r].concat(ST.ia||[]).slice(0,20);save();
+    out.innerHTML=blocoResposta(r);renderHist();
+  })
+  .catch(function(){out.innerHTML='<p class="err">Não consegui falar com a caixa agora. Confira a internet e tente de novo.</p>'})
+  .then(function(){clearInterval(tick);out.removeAttribute('aria-busy');IA_OCUPADA=false;el('ia-go').disabled=false});
+}
+(function(){
+  try{
+    el('ia-go').addEventListener('click',perguntar);
+    el('ia-senha-box').addEventListener('submit',function(e){e.preventDefault();perguntar()});
+    // o formulário tem dois campos e nenhum botão: o Enter não envia sozinho
+    el('ia-senha').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();perguntar()}});
+    el('ia-q').addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();perguntar()}});
+    el('ia-sug').addEventListener('click',function(e){var b=e.target.closest('[data-sug]');if(!b)return;el('ia-q').value=b.dataset.sug;el('ia-q').focus()});
+    el('p-perguntar').addEventListener('click',function(e){
+      var bc=e.target.closest('[data-vercol]');if(bc){ir(bc.dataset.vercol);return}
+      var b=e.target.closest('[data-ver]');if(!b)return;var a=achar(b.dataset.ver);if(!a)return;
+      var kind=a.tipo==='filme'?'filmes':'series';VIEW[kind].q=a.it.titulo;VIEW[kind].f='todos';VIEW[kind].w='todos';
+      var inp=document.querySelector('[data-q="'+kind+'"]');if(inp)inp.value=a.it.titulo;
+      var sw=document.querySelector('[data-watch="'+kind+'"]');if(sw)sw.value='todos';renderList(kind);
+      ir(kind);
+    });
+    if(!iaSenha())el('ia-senha-box').hidden=false;
+    if((ST.ia||[]).length){el('ia-out').innerHTML=blocoResposta(ST.ia[0]);renderHist()}
+  }catch(e){console.error(e)}
+})();
+
+// ---------- BACKUP ----------
+function dataBR(s){var m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})/);return m?m[3]+'/'+m[2]+'/'+m[1]:''}
+function renderDados(){
+  try{el('fonte').textContent=D.fonte||''}catch(e){}
+  try{
+    var p=el('fonte-streaming');if(!p)return;
+    p.textContent=SV&&SV.titulos
+      ?'Onde assistir: disponibilidade no Brasil segundo o JustWatch, pela API do TMDB. Um robô confere todo dia; a última mudança foi em '+(dataBR(SV.atualizado_em)||'data desconhecida')+'. Este site usa a API do TMDB, mas não é endossado nem certificado pelo TMDB.'
+      :'Onde assistir: o robô ainda não trouxe os dados de streaming. Enquanto isso, cada título tem um link que procura no JustWatch, sempre atualizado.';
+  }catch(e){}
+  try{var n=Object.keys(PO).length;el('fonte-posteres').textContent=n?'Pôsteres: '+n+' títulos com o cartaz da Wikipedia; os outros aparecem com o nome sobre fundo neutro.':''}catch(e){}
+}
+el('exp').addEventListener('click',function(){
+  try{
+    var blob=new Blob([JSON.stringify({app:'telas',versao:1,em:new Date().toISOString(),estado:ST},null,2)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='telas-backup-'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+  }catch(e){el('impmsg').textContent='Não consegui gerar o arquivo neste navegador.'}
+});
+el('imp').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{var j=JSON.parse(r.result);var s=j.estado||j;
+      ST.notas=s.notas||{};ST.status=s.status||{};ST.pesos=s.pesos||null;ST.servicos=Array.isArray(s.servicos)?s.servicos:[];restauraCol(s);save();renderAll();renderCal();
+      el('impmsg').textContent='Backup restaurado: '+Object.keys(ST.notas).length+' notas, '+Object.keys(ST.status).length+' status.';
+    }catch(err){el('impmsg').textContent='Esse arquivo não é um backup do Telas.'}
+  };
+  r.readAsText(f);
+});
+
+// ---------- AGENDA ----------
+var DOW=['dom','seg','ter','qua','qui','sex','sáb'];
+var MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function ymd(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function parseYmd(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function localDate(e){if(e.airstamp){var d=new Date(e.airstamp);if(!isNaN(d))return d}return e.data&&/^\d{4}-\d{2}-\d{2}$/.test(e.data)?parseYmd(e.data):null}
+function hora(e){if(!e.airstamp)return '';var d=new Date(e.airstamp);if(isNaN(d))return '';var h=d.getHours(),m=d.getMinutes();return (h||m)?String(h).padStart(2,'0')+'h'+(m?String(m).padStart(2,'0'):''):''}
+function indexarEp(){
+  EPI={};IMDB={};
+  [].concat(D&&D.series||[],(D&&D.extras||[]).filter(function(x){return x.tipo==='serie'})).forEach(function(s){if(s.imdb_id&&!IMDB[s.imdb_id])IMDB[s.imdb_id]=s});
+  ((EP&&EP.episodios)||[]).forEach(function(e){if(!e||!e.imdb_id)return;var d=localDate(e);if(!d)return;(EPI[e.imdb_id]=EPI[e.imdb_id]||[]).push({e:e,d:d})});
+  Object.keys(EPI).forEach(function(k){EPI[k].sort(function(a,b){return a.d-b.d})});
+}
+function acompanhadas(){
+  var set={};
+  (D&&D.series||[]).forEach(function(s){if(stOf(s)==='acompanhando'&&s.imdb_id)set[s.imdb_id]=1});
+  return set;
+}
+function eventos(){
+  if(!EP||!EP.episodios)return [];
+  var set=acompanhadas();
+  return EP.episodios.filter(function(e){return CAL.scope==='todas'||set[e.imdb_id]}).map(function(e){var d=localDate(e);return d?{e:e,d:d,k:ymd(d)}:null}).filter(Boolean)
+    .sort(function(a,b){return a.d-b.d});
+}
+function serieDeEp(e){return IMDB[e.imdb_id]||null}
+function iniciais(t){var w=String(t||'').replace(/[^\p{L}\p{N} ]/gu,' ').split(/\s+/).filter(function(x){return x&&!/^(o|a|os|as|de|da|do|e|the|of)$/i.test(x)});return (w.slice(0,2).map(function(x){return x.charAt(0)}).join('')||'?').toUpperCase()}
+function miniPoster(it){return posterInfo(it.id)?posterHtml(it,{nada:true}):'<span class="po sem mini-i" title="'+esc(it.titulo)+'"><b>'+esc(iniciais(it.titulo))+'</b></span>'}
+function epRow(x){
+  var e=x.e,s=serieDeEp(e),it=s||{id:'',titulo:e.serie},nome=s?s.titulo:e.serie;
+  var po=posterHtml(it,{nada:true});
+  return '<div class="ep">'+(s?'<button class="ep-pb" type="button" data-open="'+esc(s.id)+'" aria-label="Abrir '+esc(nome)+'">'+po+'</button>':po)+
+    '<div class="ep-t"><span class="te num">T'+esc(e.temporada)+' · E'+esc(e.episodio)+'</span><b class="sn">'+esc(nome)+'</b>'+(e.titulo?'<span class="et">'+esc(e.titulo)+'</span>':'')+'</div>'+
+    '<div class="ep-r">'+(hora(e)?'<span class="num">'+hora(e)+'</span>':'')+(e.plataforma?'<span>'+esc(e.plataforma)+'</span>':'')+'</div>'+
+    (s&&/^tt\d{5,10}$/.test(String(e.imdb_id||''))&&x.d<=new Date()?botaoVisto(e.imdb_id,e,vistoDe(e.imdb_id)):'')+'</div>';
+}
+function agenda(list,hoje){
+  var by={};list.forEach(function(x){(by[x.k]=by[x.k]||[]).push(x)});
+  return '<div class="agenda">'+Object.keys(by).sort().map(function(k){var d=parseYmd(k);
+    return '<div class="day'+(k===hoje?' today':'')+'"><h4>'+(k===hoje?'<span class="hj">Hoje</span> · ':'')+DOW[d.getDay()]+', '+d.getDate()+' de '+MES[d.getMonth()]+'</h4>'+by[k].map(epRow).join('')+'</div>'}).join('')+'</div>';
+}
+function semEventos(msg){return '<p class="empty">'+msg+'</p>'}
+// quando o robô gerou os dados (ele roda todo dia; o GitHub às vezes atrasa algumas horas)
+function atualizadoEm(){
+  try{var g=EP&&EP.gerado_em?new Date(EP.gerado_em):null;if(!g||isNaN(g))return '';
+    var hh=('0'+g.getHours()).slice(-2)+'h'+('0'+g.getMinutes()).slice(-2);
+    return ' · atualizado pelo robô em '+g.getDate()+' de '+MES[g.getMonth()]+', '+hh}catch(e){return ''}
+}
+// "A seguir": o próximo episódio de cada série, os cinco que saem primeiro (ideia do app TV e do TV Forecast)
+function renderASeguir(){
+  try{
+    var box=el('sh-cal');if(!box)return;
+    if(!EP||!EP.episodios){box.innerHTML='';return}
+    var now=new Date(),vistos={},l=eventos().filter(function(x){if(x.d<now||vistos[x.e.imdb_id])return false;vistos[x.e.imdb_id]=1;return true}).slice(0,5);
+    if(!l.length){box.innerHTML='';return}
+    var row=l.map(function(x){var s=serieDeEp(x.e)||{id:'',titulo:x.e.serie},cap='T'+x.e.temporada+' · E'+x.e.episodio;
+      var c='<span class="ti-t">'+esc(s.titulo)+'</span><span class="ti-m num"><span class="te">'+esc(cap)+'</span> · '+esc(quando(x.d))+'</span>';
+      if(!s.id)return '<li class="ti ti-cont"><div class="ti-b">'+posterHtml(s,{nada:true})+c+'</div></li>';
+      return tile(s,{cls:'ti-cont',cap:c,capTxt:cap+', '+quando(x.d)})}).join('');
+    box.innerHTML=shelfHtml({key:'aseguir',cls:'sh-cont',title:'A seguir',row:row});
+  }catch(e){console.error(e)}
+}
+function renderCal(){
+  try{
+    var body=el('calbody');if(!body)return;
+    renderAcomp();renderASeguir();
+    if(!EP||!EP.episodios){
+      body.innerHTML=semEventos('A agenda de episódios ainda não foi gerada. O robô que busca as datas roda uma vez por dia depois que esta página estiver no ar.')+anunciadas();return}
+    var all=eventos(),now=new Date(),hoje=ymd(now);
+    if(CAL.v==='semana'){
+      // janela que anda: de hoje até daqui a 7 dias (a semana de calendário deixava o domingo só com episódios que já passaram)
+      var ini=new Date(now.getFullYear(),now.getMonth(),now.getDate()),fim=new Date(ini.getFullYear(),ini.getMonth(),ini.getDate()+7);
+      var w=all.filter(function(x){return x.d>=ini&&x.d<fim});
+      body.innerHTML='<p class="note">Próximos 7 dias'+atualizadoEm()+'</p>'+(w.length?agenda(w,hoje):semEventos(CAL.scope==='acomp'?'Nenhum episódio nos próximos 7 dias nas séries que você acompanha. Marque séries como “Acompanho” na aba Séries.':'Nenhum episódio nos próximos 7 dias.'));
+    }else if(CAL.v==='mes'){
+      if(!CAL.m)CAL.m=new Date(now.getFullYear(),now.getMonth(),1);
+      var m=CAL.m,first=(m.getDay()+6)%7,dias=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
+      var by={};all.forEach(function(x){if(x.d.getFullYear()===m.getFullYear()&&x.d.getMonth()===m.getMonth())(by[x.k]=by[x.k]||[]).push(x)});
+      var cells=['seg','ter','qua','qui','sex','sáb','dom'].map(function(d){return '<div class="dow">'+d+'</div>'});
+      for(var i=0;i<first;i++)cells.push('<div class="cell pad"></div>');
+      var sel0=CAL.sel?null:(by[hoje]?hoje:(Object.keys(by).sort().filter(function(k){return k>=hoje})[0]||null));
+      for(var dd=1;dd<=dias;dd++){var k=ymd(new Date(m.getFullYear(),m.getMonth(),dd)),ev=by[k]||[],n=ev.length;
+        var minis=ev.slice(0,2).map(function(x){return miniPoster(serieDeEp(x.e)||{id:'',titulo:x.e.serie})}).join('');
+        cells.push('<button class="cell'+(k===hoje?' today':'')+(k===(CAL.sel||sel0)?' sel':'')+'" data-day="'+k+'" aria-label="'+dd+' de '+MES[m.getMonth()]+', '+n+(n===1?' episódio':' episódios')+'"><span class="dn num">'+dd+'</span>'+
+          (n?'<span class="dots">'+Array(Math.min(n,3)+1).join('<span class="dot"></span>')+'</span><span class="minis">'+minis+'</span>':'')+'</button>')}
+      var prox=Object.keys(by).sort().filter(function(k){return k>=hoje})[0]||null;
+      var sel=CAL.sel?(by[CAL.sel]?CAL.sel:null):(by[hoje]?hoje:prox);
+      var selList=sel?(sel!==hoje&&!CAL.sel?'<p class="note" style="margin:0 0 6px">Próximo dia com episódio:</p>':'')+agenda(by[sel],hoje):'<p class="note" style="margin-top:4px">'+(CAL.sel?'Nenhum episódio neste dia.':'Toque num dia pra ver os episódios.')+'</p>';
+      body.innerHTML='<div class="calwrap mes"><div><div class="mhead"><button class="btn" data-mv="-1" aria-label="Mês anterior">‹</button><b>'+MES[m.getMonth()]+' '+m.getFullYear()+'</b><button class="btn" data-mv="1" aria-label="Próximo mês">›</button></div><div class="month">'+cells.join('')+'</div></div><div class="mlist">'+selList+'</div></div>';
+    }else{
+      var lim=new Date(now.getFullYear(),now.getMonth()+6,1),fut=all.filter(function(x){return x.d>=new Date(now.getFullYear(),now.getMonth(),now.getDate())&&x.d<lim});
+      var porMes={};fut.forEach(function(x){var k=x.d.getFullYear()+'-'+x.d.getMonth();(porMes[k]=porMes[k]||[]).push(x)});
+      body.innerHTML=(fut.length?Object.keys(porMes).map(function(k){var p=k.split('-');return '<h3 style="margin:20px 0 8px;font-size:20px;font-weight:800;text-transform:capitalize">'+MES[+p[1]]+' '+p[0]+'</h3>'+agenda(porMes[k],hoje)}).join(''):semEventos('Sem episódios com data nos próximos seis meses.'))+anunciadas();
+    }
+  }catch(e){console.error(e)}
+}
+function anunciadas(){
+  var s=(D&&D.series||[]).filter(function(x){return x.proximo&&(CAL.scope==='todas'||stOf(x)==='acompanhando')});
+  if(!s.length)return '';
+  return '<div class="box" style="margin-top:18px"><h3>Temporadas anunciadas, ainda sem data de episódio</h3><ul class="ann">'+s.map(function(x){return '<li><b>'+esc(x.titulo)+'</b> — '+esc(x.proximo)+'</li>'}).join('')+'</ul></div>';
+}
+el('calview').addEventListener('click',function(e){var b=e.target.closest('[data-v]');if(!b)return;var v=b.dataset.v;CAL.v=v;
+  el('calview').querySelectorAll('.chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v))});renderCal()});
+el('calscope').addEventListener('change',function(e){CAL.scope=e.target.value;renderCal()});
+el('calbody').addEventListener('click',function(e){
+  var vb=e.target.closest('[data-visto]');
+  if(vb){var pv=vb.dataset.visto.split('|');marcaVisto(pv[0],+pv[1],+pv[2]);renderCal();
+    try{var nb=el('calbody').querySelector('[data-visto="'+cssId(vb.dataset.visto)+'"]');if(nb)nb.focus({preventScroll:true})}catch(err){}return}
+  var t=e.target.closest('[data-mv],[data-day]');if(!t)return;
+  if(t.dataset.mv){CAL.m=new Date(CAL.m.getFullYear(),CAL.m.getMonth()+(+t.dataset.mv),1);CAL.sel=null}else{CAL.sel=t.dataset.day}
+  renderCal();
+});
+
+// ---------- ICS E LISTA DO ROBÔ ----------
+(function(){
+  try{
+    var u=location.origin+'/telas/lancamentos.ics';
+    el('ics-link').href=u.replace(/^https?:/,'webcal:');
+    el('ics-copy').addEventListener('click',function(){copiar(u,el('ics-copy'))});
+    el('acomp-edit').href='https://github.com/lucasvaranda-ux/mochilao-america-do-sul/edit/main/telas/acompanhando.json';
+    el('acomp-copy').addEventListener('click',function(){copiar(el('acomp-json').value,el('acomp-copy'))});
+  }catch(e){console.error(e)}
+})();
+function renderAcomp(){
+  try{
+    var list=[];
+    (D&&D.series||[]).forEach(function(s){if(stOf(s)==='acompanhando'&&s.imdb_id)list.push({imdb_id:s.imdb_id,titulo:s.titulo})});
+    el('acomp-json').value=JSON.stringify({series:list},null,2);
+  }catch(e){}
+}
+function copiar(txt,btn){
+  var ok=function(){var o=btn.textContent;btn.textContent='Copiado';setTimeout(function(){btn.textContent=o},1600)};
+  try{navigator.clipboard.writeText(txt).then(ok,function(){fallback()})}catch(e){fallback()}
+  function fallback(){try{var t=document.createElement('textarea');t.value=txt;t.style.position='fixed';t.style.top='-999px';document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();ok()}catch(e){}}
+}
+
+load();
+</script>
+</body>
+</html>

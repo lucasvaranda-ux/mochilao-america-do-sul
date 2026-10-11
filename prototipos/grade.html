@@ -1,0 +1,2339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)" data-tc="#f4f5f7">
+<meta name="theme-color" content="#121416" media="(prefers-color-scheme: dark)" data-tc="#121416">
+<title>Telas · Filmes e séries</title>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='p' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f4b65f'/%3E%3Cstop offset='1' stop-color='%23c9683b'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231b2733'/%3E%3Cstop offset='1' stop-color='%230c1015'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23b)'/%3E%3Cpath d='M27 17 q5 -6 10 0' fill='none' stroke='%235a6e80' stroke-width='3.5' stroke-linecap='round'/%3E%3Crect x='16' y='20' width='32' height='36' rx='12' fill='url(%23p)'/%3E%3Crect x='25.6' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Crect x='35' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Cpath d='M16 33 v-1 a12 12 0 0 1 12 -12 h8 a12 12 0 0 1 12 12 v1 a3 3 0 0 1 -3 3 H19 a3 3 0 0 1 -3 -3 Z' fill='%23f0a64e'/%3E%3Cpath d='M23 39 h18 a3 3 0 0 1 3 3 v7 a5 5 0 0 1 -5 5 H25 a5 5 0 0 1 -5 -5 v-7 a3 3 0 0 1 3 -3 Z' fill='%23b9572f'/%3E%3Ccircle cx='37.6' cy='45.5' r='2.3' fill='%23ffd27a'/%3E%3Cpath d='M23 53 L28 46 L32 50.5 L36.6 45 L41 53 Z' fill='%235fc9a0'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
+<script>try{var t=localStorage.getItem('telas_tema');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',t==='dark'?'#121416':'#f4f5f7')})}}catch(e){}</script>
+<style>
+/* ---------- TOKENS ---------- */
+/* Grade e diário: o pôster é a unidade de tudo. Grafite neutro, um só acento (âmbar = conexão e ação),
+   cores fixas de status. Claro e escuro com o mesmo cuidado. */
+:root{
+  --bg:#f4f5f7; --pbg:#e7e9ec; --s1:#ffffff; --s2:#eceef1; --line:#dde1e6; --sub:#e2e5e9;
+  --tx:#121416; --tx2:#545c66; --tx3:#656d77;
+  --amb:#9a5210; --amb-s:rgba(154,82,16,.10); --on-amb:#ffffff;
+  --ok:#1a7f4b; --quero:#2266b8; --acomp:#c0395c; --off:#6b7683; --on-st:#ffffff;
+  --ok-s:rgba(26,127,75,.10); --quero-s:rgba(34,102,184,.10); --acomp-s:rgba(192,57,92,.10); --off-s:rgba(122,134,148,.14);
+  --barra:rgba(244,245,247,.86); --nav:rgba(250,250,251,.92); --contorno:rgba(0,0,0,.08); --veu:rgba(12,14,16,.42);
+  --sombra:0 1px 2px rgba(18,20,22,.06),0 16px 40px -14px rgba(18,20,22,.28);
+  --topo-h:52px; --nav-h:58px;
+  --ui:"Inter",-apple-system,system-ui,"Segoe UI",sans-serif;
+  --serif:"Newsreader",ui-serif,Georgia,serif;
+  --ease:cubic-bezier(.22,.9,.3,1);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121416; --pbg:#0c0e10; --s1:#1b1e22; --s2:#24282d; --line:#2d3237; --sub:#1b1e22;
+    --tx:#e8eaed; --tx2:#a0a6ae; --tx3:#80878f;
+    --amb:#f0a254; --amb-s:rgba(240,162,84,.13); --on-amb:#1a1206;
+    --ok:#4cc685; --quero:#5aaee8; --acomp:#ef6f8f; --off:#7f8b97; --on-st:#0c0e10;
+    --ok-s:rgba(76,198,133,.13); --quero-s:rgba(90,174,232,.13); --acomp-s:rgba(239,111,143,.13); --off-s:rgba(127,139,151,.16);
+    --barra:rgba(18,20,22,.84); --nav:rgba(22,24,27,.92); --contorno:rgba(255,255,255,.08); --veu:rgba(0,0,0,.62);
+    --sombra:0 1px 2px rgba(0,0,0,.3),0 18px 44px -14px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121416; --pbg:#0c0e10; --s1:#1b1e22; --s2:#24282d; --line:#2d3237; --sub:#1b1e22;
+  --tx:#e8eaed; --tx2:#a0a6ae; --tx3:#80878f;
+  --amb:#f0a254; --amb-s:rgba(240,162,84,.13); --on-amb:#1a1206;
+  --ok:#4cc685; --quero:#5aaee8; --acomp:#ef6f8f; --off:#7f8b97; --on-st:#0c0e10;
+  --ok-s:rgba(76,198,133,.13); --quero-s:rgba(90,174,232,.13); --acomp-s:rgba(239,111,143,.13); --off-s:rgba(127,139,151,.16);
+  --barra:rgba(18,20,22,.84); --nav:rgba(22,24,27,.92); --contorno:rgba(255,255,255,.08); --veu:rgba(0,0,0,.62);
+  --sombra:0 1px 2px rgba(0,0,0,.3),0 18px 44px -14px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+
+/* ---------- BASE ---------- */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.5 var(--ui);-webkit-font-smoothing:antialiased;
+  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom))}
+html.trava,html.trava body{overflow:hidden}
+a{color:var(--amb)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--amb);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:-1px}
+[hidden]{display:none!important}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;display:block}
+.serif{font-family:var(--serif);font-optical-sizing:auto}
+.rotulo{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tx2);margin:0 0 10px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.rotulo .dica{font-weight:500;letter-spacing:0;text-transform:none;color:var(--tx3);font-size:12px}
+.icb{width:44px;height:44px;display:inline-grid;place-items:center;border:0;background:none;color:var(--tx);border-radius:12px;flex:none;padding:0}
+.icb:hover{background:var(--s2)}
+
+/* ---------- CABEÇALHO E NAVEGAÇÃO ---------- */
+.topo{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top)}
+.topo::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--barra);border-bottom:1px solid transparent;
+  -webkit-backdrop-filter:saturate(1.6) blur(18px);backdrop-filter:saturate(1.6) blur(18px);transition:border-color .2s}
+.topo.rolou::before{border-bottom-color:var(--line)}
+.topo-in{position:relative;height:var(--topo-h);display:flex;align-items:center;gap:0;max-width:960px;margin:0 auto;padding:0 6px 0 16px}
+.marca{display:none}
+.volta{margin-left:-12px;color:var(--tx2)}
+#tit{margin:0;font-size:clamp(22px,7.2vw,28px);font-weight:700;letter-spacing:-.022em;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.balao{color:var(--tx)}
+.balao .rot{display:none}
+.balao.on{color:var(--amb)}
+
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:90;display:flex;justify-content:space-around;align-items:stretch;
+  height:calc(var(--nav-h) + env(safe-area-inset-bottom));padding:0 6px env(safe-area-inset-bottom);
+  background:var(--nav);border-top:1px solid var(--line);-webkit-backdrop-filter:saturate(1.6) blur(18px);backdrop-filter:saturate(1.6) blur(18px)}
+.tabs .tab,.tabs .mais{flex:1 1 0;min-width:0;max-width:96px;border:0;background:none;color:var(--tx3);padding:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:600;letter-spacing:.01em}
+.tabs .tab.on{color:var(--tx)}
+.tabs .tab.on svg{stroke-width:2.2}
+.tabs .ct{display:none}
+.tabs .mais .bola{width:44px;height:44px;border-radius:50%;background:var(--amb);color:var(--on-amb);display:grid;place-items:center;
+  box-shadow:0 4px 14px -4px rgba(166,88,18,.55)}
+.tabs .mais .bola svg{width:22px;height:22px;stroke-width:2.4}
+.tabs .mais .rot{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.aviso{position:fixed;left:50%;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 14px);transform:translate(-50%,8px);z-index:120;
+  max-width:min(92vw,420px);background:var(--tx);color:var(--bg);border-radius:12px;padding:11px 16px;font-size:14px;line-height:1.4;
+  box-shadow:var(--sombra);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s var(--ease)}
+.aviso.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- PAINÉIS ---------- */
+.panel{display:none;padding:4px 0 36px}
+.panel.on{display:block}
+
+/* busca, ordem e grade/lista ficam no cabeçalho: a lupa abre o campo por cima do título,
+   como no app do Letterboxd; a grade começa logo abaixo das fichas de status */
+.ferr{display:none;align-items:center;flex:none}
+body.aba-filmes .ferr[data-ferr="filmes"],body.aba-series .ferr[data-ferr="series"]{display:flex}
+.lupa{position:relative;flex:none;width:44px;height:44px}
+.lupa label{display:block;position:absolute;inset:0}
+.lupa svg.i{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--tx);pointer-events:none;z-index:1}
+.lupa .campo{position:absolute;inset:0;width:100%;height:44px;padding:0 0 0 44px;border:1px solid transparent;background:transparent;color:transparent;border-radius:12px;cursor:pointer;-webkit-appearance:none;appearance:none}
+.lupa .campo::placeholder{color:transparent}
+.lupa .campo::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+.lupa .limpa{display:none;position:absolute;right:0;top:0;width:44px;height:44px;border:0;background:none;color:var(--tx2);place-items:center;padding:0;z-index:2}
+.lupa .limpa svg.i{position:static;transform:none;width:18px;height:18px;color:inherit}
+.lupa:focus-within,.lupa.cheia{position:absolute;left:12px;right:12px;top:4px;width:auto;z-index:3}
+.lupa:focus-within .campo,.lupa.cheia .campo{padding:0 44px 0 40px;border-color:var(--line);background:var(--s1);color:var(--tx);cursor:text}
+.lupa:focus-within .campo::placeholder,.lupa.cheia .campo::placeholder{color:var(--tx3)}
+.lupa:focus-within svg.i,.lupa.cheia svg.i{color:var(--tx3);width:18px;height:18px}
+.lupa:focus-within .limpa,.lupa.cheia .limpa{display:grid}
+.lupa:focus-within .limpa svg.i,.lupa.cheia .limpa svg.i{color:var(--tx2)}
+.ordem{position:relative;color:var(--tx)}
+.ordem select{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px;cursor:pointer;-webkit-appearance:none;appearance:none}
+.ordem.mudou::after{content:"";position:absolute;top:9px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--amb);box-shadow:0 0 0 2px var(--bg);pointer-events:none}
+.vista-b{color:var(--tx)}
+.vista-b svg{width:22px;height:22px}
+/* a busca do picker (Os 4 e Registrar) */
+.busca{position:relative;display:block}
+.busca svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--tx3);pointer-events:none}
+.campo{width:100%;min-width:0;height:44px;border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:12px;padding:0 12px;font-size:16px}
+.campo::placeholder{color:var(--tx3)}
+.campo:focus-visible,.lupa .campo:focus-visible{outline:none;border-color:var(--amb);box-shadow:0 0 0 3px var(--amb-s)}
+.busca .campo{padding-left:38px}
+
+/* status em fichas (36 px, área de toque de 44) */
+.filtros{display:flex;align-items:center;gap:8px;margin:2px 0 8px}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.chips::-webkit-scrollbar{display:none}
+.filtros .chips{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 18px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 18px),transparent);padding:4px 16px 4px 0;margin:-4px 0}
+.chip{position:relative;flex:none;height:36px;border:1px solid var(--line);background:var(--s1);color:var(--tx2);border-radius:18px;padding:0 13px;
+  font-size:14px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.filtros .chip::after{content:"";position:absolute;left:0;right:0;top:-4px;bottom:-4px}
+.chip .num{color:var(--tx3);font-weight:500}
+.chip[aria-pressed="true"]{background:var(--tx);border-color:var(--tx);color:var(--bg)}
+.chip[aria-pressed="true"] .num{color:inherit;opacity:.72}
+.chip.ordem-chip{border-color:var(--amb);color:var(--amb);background:var(--amb-s);padding:0 8px 0 11px}
+.chip.ordem-chip svg{width:15px;height:15px}
+.ondever{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:2px 0 12px}
+.sel{height:36px;border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:10px;padding:0 10px;font-size:16px;max-width:100%}
+.mysvc{font-size:14px}
+.mysvc summary{cursor:pointer;color:var(--tx2);font-weight:600;list-style:none;min-height:36px;display:flex;align-items:center}
+.mysvc summary::-webkit-details-marker{display:none}
+.mysvc summary::after{content:"";width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);margin:-3px 0 0 8px}
+.mysvc[open] summary::after{transform:rotate(-135deg);margin-top:3px}
+.mysvc .chips{flex-wrap:wrap;overflow:visible;margin-top:6px}
+.mysvc p{color:var(--tx3);font-size:13px;margin:8px 0 0;line-height:1.5}
+.alt{color:var(--tx3);font-weight:400}
+
+/* ---------- OS 4 E LINHA DE GOSTO ---------- */
+/* Os 4 moram em Você (como os favoritos no perfil do Letterboxd); na grade fica só a linha de gosto */
+.topo-lista{margin:0 0 14px}
+.os4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.f4{position:relative;display:block;width:100%;padding:0;border:0;background:none;border-radius:4px;text-align:left}
+.f4.vazio{aspect-ratio:2/3;border:0;color:var(--tx3);display:grid;place-items:center;background:var(--s1);box-shadow:inset 0 0 0 1px var(--line)}
+.f4.vazio:hover{color:var(--tx);background:var(--s2)}
+.f4.vazio svg{width:22px;height:22px}
+.f4:active .cap{transform:scale(.95)}
+.gosto{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:28px;font-size:13px;color:var(--tx2);line-height:1.35}
+.gosto b{color:var(--tx);font-weight:600}
+.histo{display:flex;align-items:flex-end;gap:2px;height:20px;flex:none}
+.histo i{display:block;width:4px;border-radius:2px 2px 0 0;background:var(--amb);min-height:2px}
+.histo i.z{background:var(--line)}
+
+/* ---------- GRADE DE PÔSTERES ---------- */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 8px}
+@media (min-width:560px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:720px){.grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:18px 12px}}
+@media (min-width:900px){.grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.card{min-width:0}
+.pw{position:relative}
+.abre{display:block;width:100%;padding:0;border:0;background:none;border-radius:4px;text-align:left}
+.cap{container-type:inline-size;position:relative;display:block;aspect-ratio:2/3;border-radius:4px;overflow:hidden;background:var(--pbg);transition:transform .18s var(--ease),opacity .2s}
+.cap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cap::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--contorno);pointer-events:none}
+.cap .sub{position:absolute;inset:0;display:none;flex-direction:column;justify-content:flex-end;gap:3px;padding:max(4px,8cqw) max(4px,7.5cqw);background:var(--sub)}
+.cap.sem .sub{display:flex}
+.sub b{font-size:clamp(8px,12.5cqw,19px);font-weight:600;line-height:1.2;color:var(--tx);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto;letter-spacing:-.005em}
+.sub i{font-style:normal;font-size:clamp(8px,10cqw,13px);color:var(--tx2)}
+.abre:active .cap{transform:scale(.95)}
+.rk{position:absolute;top:5px;left:5px;font-size:11px;font-weight:600;line-height:17px;padding:0 5px;border-radius:4px;
+  background:rgba(12,14,16,.68);color:#fff;pointer-events:none}
+.vz{position:absolute;top:5px;right:5px;font-size:11px;font-weight:700;line-height:17px;padding:0 5px;border-radius:4px;background:var(--amb);color:var(--on-amb);pointer-events:none}
+.stx{position:absolute;right:5px;bottom:5px;width:22px;height:22px;border-radius:50%;display:none;place-items:center;color:var(--on-st);pointer-events:none;
+  box-shadow:0 0 0 2px rgba(12,14,16,.28);transition:opacity .15s}
+.stx svg{width:14px;height:14px;stroke-width:2.3}
+.s-assisti .stx{display:grid;background:var(--ok)}
+.s-quero .stx{display:grid;background:var(--quero)}
+.s-acompanhando .stx{display:grid;background:var(--acomp)}
+.s-abandonei .stx{display:grid;background:var(--off)}
+.card.s-abandonei .abre .cap,.card.s-abandonei .th .cap{opacity:.45}
+.prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(12,14,16,.45);border-radius:0 0 4px 4px;overflow:hidden;pointer-events:none}
+.prog i{display:block;height:100%;background:var(--acomp)}
+.leg{display:block;list-style:none;padding:6px 0 2px;cursor:pointer;min-height:44px;border-radius:4px}
+.leg::-webkit-details-marker{display:none}
+.leg::marker{content:""}
+.leg .t{display:block;font-size:13px;font-weight:600;line-height:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.005em}
+.leg .nums{display:block;font-size:12px;line-height:16px;margin-top:2px;color:var(--tx2)}
+.leg .cx{color:var(--amb);font-weight:700}
+.leg .mn{color:var(--tx);font-weight:600}
+.leg .xtra,.leg .lst{display:none}
+.leg:hover .t{text-decoration:underline;text-decoration-color:var(--tx3);text-underline-offset:2px}
+
+/* camada rápida sobre o pôster: só com mouse (como o passar do mouse no site do Letterboxd).
+   No toque, o pôster abre a folha. */
+.quick{display:none}
+@media (hover:hover) and (pointer:fine){
+  .quick{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:4px;padding:26px 6px 6px;border-radius:0 0 4px 4px;
+    background:linear-gradient(to top,rgba(10,11,12,.95) 0,rgba(10,11,12,.88) 58%,rgba(10,11,12,0));color:#fff;opacity:0;transition:opacity .15s}
+  .pw:hover .quick,.quick:focus-within{opacity:1}
+  .pw:hover .stx,.pw:focus-within .stx{opacity:0}
+  .quick .seg{display:flex;justify-content:center;gap:4px}
+  .quick .seg button{flex:0 1 26px;min-width:0;aspect-ratio:1;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;display:grid;place-items:center;padding:0}
+  .quick .seg button:hover{background:rgba(255,255,255,.28)}
+  .quick .seg svg{width:62%;height:62%;stroke-width:2.1}
+  .quick .seg button[aria-pressed="true"][data-s="assisti"]{background:#4cc685;color:#0c0e10}
+  .quick .seg button[aria-pressed="true"][data-s="quero"]{background:#5aaee8;color:#0c0e10}
+  .quick .seg button[aria-pressed="true"][data-s="acompanhando"]{background:#ef6f8f;color:#0c0e10}
+  .quick .seg button[aria-pressed="true"][data-s="abandonei"]{background:#7f8b97;color:#0c0e10}
+  .quick .score{display:flex;align-items:center;gap:3px}
+  .quick output{font-size:12px;font-weight:700;min-width:20px;text-align:right}
+  .quick .clr{border:0;background:none;color:rgba(255,255,255,.65);width:16px;height:16px;padding:0;display:grid;place-items:center}
+  .quick .clr svg{width:12px;height:12px}
+  .grid.lista .quick{display:none}
+}
+
+/* modo lista (alternador do Sequel) */
+.grid.lista{grid-template-columns:1fr;gap:0}
+.grid.lista .card{display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.grid.lista .rk{display:none}
+.grid.lista .stx{width:18px;height:18px;right:-5px;bottom:-5px}
+.grid.lista .stx svg{width:11px;height:11px}
+.grid.lista .vz{top:-5px;right:-5px;font-size:10px;line-height:15px;padding:0 4px}
+.grid.lista .leg{padding:4px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center}
+.grid.lista .leg .t{font-size:16px;line-height:21px;grid-column:1}
+.grid.lista .leg .xtra{display:block;grid-column:1;font-size:13px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.grid.lista .leg .nums{grid-column:2;grid-row:1/span 2;font-size:15px;margin:0;text-align:right}
+.grid.lista .leg .lst{display:inline;color:var(--tx3);font-weight:600}
+.grid.lista .loadmore,.grid.lista .empty{grid-column:1/-1}
+.mais-wrap{grid-column:1/-1;padding-top:6px}
+.loadmore{display:block;width:100%;height:44px;border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:12px;font-size:15px;font-weight:600}
+.empty{grid-column:1/-1;color:var(--tx2);text-align:center;padding:40px 12px;font-size:15px;line-height:1.6;margin:0}
+
+/* ---------- PÁGINA DO TÍTULO ----------
+   Mora sempre na camada #avulsa, fora da grade: a grade pode ser redesenhada (onde assistir chegando,
+   serviço marcado) sem derrubar a página aberta. O details do cartão é só o gatilho. */
+.avulsa{position:fixed;inset:0;z-index:60;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  background:var(--bg);padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 40px);cursor:auto}
+.pg-barra{position:sticky;top:0;z-index:3;height:calc(56px + env(safe-area-inset-top));margin-bottom:calc(-56px - env(safe-area-inset-top));
+  display:flex;align-items:center;gap:8px;padding:env(safe-area-inset-top) 16px 0 10px;pointer-events:none}
+.pg-barra::before{content:"";position:absolute;inset:0;background:var(--barra);border-bottom:1px solid var(--line);opacity:0;transition:opacity .2s;
+  -webkit-backdrop-filter:saturate(1.6) blur(18px);backdrop-filter:saturate(1.6) blur(18px)}
+.rolou>.pg-barra::before,.rolou>[data-id]>.pg-barra::before{opacity:1}
+.pg-mini{position:relative;min-width:0;font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transition:opacity .2s}
+.rolou>.pg-barra .pg-mini,.rolou>[data-id]>.pg-barra .pg-mini{opacity:1}
+.pg-volta{position:relative;flex:none;pointer-events:auto;width:44px;height:44px;border-radius:50%;border:0;display:grid;place-items:center;
+  background:rgba(12,14,16,.5);color:#fff;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:background .2s,color .2s}
+.rolou>.pg-barra .pg-volta,.rolou>[data-id]>.pg-barra .pg-volta{background:transparent;color:var(--tx);-webkit-backdrop-filter:none;backdrop-filter:none}
+.pg-band{position:relative;height:200px;overflow:hidden;background:var(--s2)}
+.pg-band img{position:absolute;left:-10%;top:-30%;width:120%;height:160%;object-fit:cover;filter:blur(30px) saturate(1.35);opacity:.75}
+:root:not([data-theme="dark"]) .pg-band img{opacity:.5}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pg-band img{opacity:.75}}
+.pg-band::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 30%,var(--bg) 100%)}
+.pg-in{position:relative;display:grid;grid-template-columns:128px minmax(0,1fr);column-gap:14px;padding:0 16px;margin-top:-104px;max-width:960px;margin-left:auto;margin-right:auto}
+.pg-poster{grid-column:1;grid-row:1}
+.pg-poster .cap{box-shadow:0 10px 30px -10px rgba(0,0,0,.55)}
+.pg-tit{grid-column:2;grid-row:1;align-self:end;min-width:0;padding-bottom:2px}
+.pg-tit h2{margin:0;font-size:26px;line-height:1.12;font-weight:600;letter-spacing:-.01em;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto;outline:none}
+.pg-tit .en{margin:6px 0 0;font-size:13px;color:var(--tx2);line-height:1.35}
+.pg-tit .meta{margin:6px 0 0;font-size:13px;color:var(--tx2);line-height:1.45}
+.pg-tit .pre{margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tx3)}
+.pg-lado,.pg-corpo{grid-column:1/-1;min-width:0}
+.pg-lado{margin-top:20px}
+.pg-sec{margin-top:28px}
+.pg-sec p{margin:0 0 10px;font-size:16px;line-height:1.6}
+.pg-sec .src{font-size:13px;color:var(--tx3);line-height:1.5}
+.cx-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.cx-n{font-size:48px;line-height:1;font-weight:700;color:var(--amb);letter-spacing:-.03em}
+.cx-top p{margin:0;font-size:15px;line-height:1.45;color:var(--tx2)}
+.cx-top p b{color:var(--tx);font-weight:600}
+.barras{display:grid;grid-template-columns:auto minmax(0,1fr) 28px;gap:7px 10px;align-items:center;font-size:13px}
+.barras .bn{color:var(--tx2)}
+.barras .bt{height:8px;border-radius:4px;background:var(--s2);overflow:hidden}
+.barras .bt i{display:block;height:100%;border-radius:4px;background:var(--amb)}
+.barras .bv{text-align:right;color:var(--tx2)}
+.ponte{margin-top:14px!important;padding:12px 14px;background:var(--s1);border:1px solid var(--line);border-radius:12px;font-size:15px!important}
+.ponte b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tx2);margin-bottom:4px}
+.fora{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:15px;color:var(--tx2)}
+.fora b{color:var(--tx);font-weight:600}
+.fora .mem b{color:var(--tx2)}
+.crit{background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px}
+.crit .who{font-weight:600;font-size:15px}
+.crit .who span{color:var(--tx2);font-weight:400}
+.crit p{margin:6px 0 0;font-size:15px;line-height:1.55}
+.crit .src{margin-top:6px}
+.oculto .conteudo{display:none}
+.oculto.aberto .conteudo{display:block}
+.mostra{border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:12px;height:44px;padding:0 14px;font-size:15px;font-weight:600;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between}
+.oculto.aberto .mostra{display:none}
+.temps{display:flex;flex-wrap:wrap;gap:6px}
+.tq{height:36px;border:1px solid var(--line);background:var(--s1);border-radius:18px;padding:0 12px;font-size:14px;font-weight:600;color:var(--tx2);display:inline-flex;align-items:center;gap:6px}
+.tq b{color:var(--amb);font-weight:700}
+.tq[aria-pressed="true"]{border-color:var(--tx);color:var(--tx)}
+.tq-nota{display:flex;align-items:center;gap:10px;margin-top:10px}
+.tq-nota span{font-size:14px;font-weight:600;min-width:28px}
+.tq-nota output{font-weight:700;min-width:28px;text-align:right}
+.tq-nota .trilho{flex:1;min-width:0;margin:0}
+.tq-nota .clr{border:0;background:none;color:var(--tx3);font-size:13px;font-weight:600;min-height:44px;padding:0 6px}
+
+/* ações (folha e página) */
+.acoes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;justify-items:center}
+.ac{display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:none;padding:0;color:var(--tx2);font-size:12px;font-weight:600;width:100%;max-width:72px}
+.ac .bt{width:100%;max-width:64px;aspect-ratio:1;border-radius:18px;background:var(--s2);display:grid;place-items:center;transition:background .15s,color .15s,transform .12s}
+.ac:active .bt{transform:scale(.94)}
+.ac .bt svg{width:26px;height:26px}
+.ac .bt small{display:block;font-size:11px;font-weight:700;line-height:1;margin-top:-4px}
+.ac[data-s="assisti"] .bt{color:var(--ok)}
+.ac[data-s="quero"] .bt{color:var(--quero)}
+.ac[data-s="acompanhando"] .bt{color:var(--acomp)}
+.ac[data-s="abandonei"] .bt{color:var(--off)}
+.ac[data-revi] .bt{color:var(--tx)}
+.ac:disabled{opacity:.38;cursor:default}
+.ac:disabled .bt{transform:none}
+.ac[aria-pressed="true"]{color:var(--tx)}
+.ac[aria-pressed="true"][data-s="assisti"] .bt{background:var(--ok);color:var(--on-st)}
+.ac[aria-pressed="true"][data-s="quero"] .bt{background:var(--quero);color:var(--on-st)}
+.ac[aria-pressed="true"][data-s="acompanhando"] .bt{background:var(--acomp);color:var(--on-st)}
+.ac[aria-pressed="true"][data-s="abandonei"] .bt{background:var(--off);color:var(--on-st)}
+.ac.revisto .bt{background:var(--amb-s);color:var(--amb)}
+
+/* nota 0 a 100 */
+.nota{margin-top:20px}
+.nota-top{display:flex;align-items:baseline;gap:10px;min-height:44px}
+.nota .nv{font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1;min-width:1.2ch}
+.nota.vazio .nv{display:none}
+.nota.vazio .fx{font-size:16px;color:var(--tx2)}
+.nota .fx{font-size:15px;font-weight:600;color:var(--tx2)}
+.nota .clr{margin-left:auto;border:0;background:none;color:var(--tx3);font-size:13px;font-weight:600;padding:0 4px;min-height:44px}
+.nota .clr:hover{color:var(--tx)}
+input[type=range].rng{-webkit-appearance:none;appearance:none;display:block;width:100%;height:32px;margin:0;background:none;--v:50%}
+.rng::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(to right,var(--amb) var(--v),var(--s2) var(--v))}
+.rng::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;border-radius:50%;background:#fff;margin-top:-13px;box-shadow:0 1px 4px rgba(0,0,0,.35),0 0 0 .5px rgba(0,0,0,.12)}
+.rng::-moz-range-track{height:6px;border-radius:3px;background:var(--s2)}
+.rng::-moz-range-progress{height:6px;border-radius:3px;background:var(--amb)}
+.rng::-moz-range-thumb{width:32px;height:32px;border-radius:50%;background:#fff;border:0;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+/* o trilho recebe o toque: tocar em qualquer ponto já marca a nota (no Safari do iPhone, tocar na
+   trilha de um range nativo não muda o valor). O input segue focável pelo teclado. */
+.trilho{display:block;position:relative;padding:6px 0;margin-top:2px;touch-action:pan-y;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.trilho .rng{pointer-events:none}
+.vazio .rng::-webkit-slider-runnable-track{background:var(--s2)}
+.vazio .rng::-webkit-slider-thumb{background:var(--s1);box-shadow:0 0 0 1.5px var(--tx3)}
+.quick .rng{height:18px;margin:0;flex:1;min-width:0}
+.quick .rng::-webkit-slider-runnable-track{height:3px;background:linear-gradient(to right,#f0a254 var(--v),rgba(255,255,255,.25) var(--v))}
+.quick .vazio .rng::-webkit-slider-runnable-track{background:rgba(255,255,255,.25)}
+.quick .rng::-webkit-slider-thumb{width:12px;height:12px;margin-top:-4.5px;background:#fff;box-shadow:none}
+.quick .vazio .rng::-webkit-slider-thumb{background:rgba(255,255,255,.7);box-shadow:none}
+.marcas{display:flex;justify-content:space-between;padding:0 15.5px;margin-top:-5px}
+.marcas i{display:block;width:1px;height:5px;background:var(--line)}
+.marcas i:nth-child(6){height:7px;background:var(--tx3)}
+.dif{font-size:14px;color:var(--tx2);margin:12px 0 0;line-height:1.45}
+.dif b{color:var(--amb);font-weight:700}
+.dif strong{color:var(--tx);font-weight:600}
+.pct{font-size:13px;color:var(--tx3);margin:2px 0 0}
+.pct:empty{display:none}
+
+/* onde assistir */
+.watch{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--tx2)}
+.watch a{color:var(--tx);text-decoration:none;font-weight:600;white-space:nowrap}
+.watch a:hover{text-decoration:underline}
+.wgrp{display:grid;grid-template-columns:96px minmax(0,1fr);gap:6px 10px;align-items:baseline;font-size:14px}
+.wgrp dt{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);padding-top:4px}
+.wgrp dd{margin:0;display:flex;flex-wrap:wrap;gap:6px}
+.svc{display:inline-flex;align-items:center;height:28px;border:1px solid var(--line);border-radius:8px;padding:0 9px;color:var(--tx);white-space:nowrap;font-size:13px;font-weight:600;background:var(--s1)}
+.svc.mine{border-color:var(--ok);color:var(--ok)}
+.svc.logo{padding:0;border:0;background:none;height:auto;position:relative}
+.svc.logo .nm{display:none}
+.svc.logo img{display:block;width:28px;height:28px;border-radius:7px;box-shadow:inset 0 0 0 1px var(--contorno)}
+.svc.logo.mine::after{content:"";position:absolute;right:-3px;bottom:-3px;width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 2px var(--bg)}
+.wlink{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--tx);font-weight:600;text-decoration:none;font-size:15px}
+.wlink:hover{text-decoration:underline}
+.lang{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-right:5px;color:var(--tx3);vertical-align:1px}
+
+/* ---------- FOLHA DE REGISTRO ---------- */
+.folha{position:fixed;inset:0;z-index:100}
+.folha .veu{position:absolute;inset:0;background:var(--veu);animation:esmaece .2s ease}
+.folha .sheet{position:absolute;left:0;right:0;bottom:0;max-height:calc(100% - 28px - env(safe-area-inset-top));overflow-y:auto;overscroll-behavior:contain;
+  background:var(--s1);border-radius:16px 16px 0 0;padding:6px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:var(--sombra);animation:sobe .28s var(--ease);outline:none}
+/* a busca do + tem altura fixa: a folha não pula enquanto a lista encolhe */
+.folha .sheet.alta{height:calc(100% - 28px - env(safe-area-inset-top))}
+@keyframes sobe{from{transform:translateY(40%);opacity:.4}to{transform:none;opacity:1}}
+@keyframes esmaece{from{opacity:0}to{opacity:1}}
+/* a alça e o topo da folha puxam para baixo para fechar, como no iOS */
+.alca{position:relative;height:18px;margin:-4px 0 0;touch-action:none;cursor:grab}
+.alca::before{content:"";position:absolute;left:50%;top:6px;width:36px;height:5px;margin-left:-18px;border-radius:3px;background:var(--line)}
+.folha .sheet.arrasta{animation:none;transition:none}
+.folha .sheet.solta{animation:none;transition:transform .22s var(--ease)}
+.folha .veu.solta{transition:opacity .22s ease}
+.fh-x{position:absolute;top:6px;right:6px;color:var(--tx2)}
+.fh-cab{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:start;margin:4px 0 20px;padding-right:36px}
+.fh-cab h2{margin:2px 0 0;font-size:22px;line-height:1.15;font-weight:600;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.fh-cab .en{margin:4px 0 0;font-size:13px;color:var(--tx2);line-height:1.35}
+.fh-cab .meta{margin:4px 0 0;font-size:13px;color:var(--tx2)}
+.fav{margin-top:8px;display:inline-flex;align-items:center;gap:6px;height:32px;border:1px solid var(--line);background:none;border-radius:16px;padding:0 11px 0 9px;font-size:13px;font-weight:600;color:var(--tx2)}
+.fav svg{width:16px;height:16px}
+.fav[aria-pressed="true"]{border-color:var(--amb);color:var(--amb);background:var(--amb-s)}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.abrir{display:flex;align-items:center;justify-content:space-between;width:100%;height:48px;margin-top:16px;border:0;border-top:1px solid var(--line);background:none;color:var(--tx);font-size:15px;font-weight:600;padding:0 2px}
+.abrir svg{width:18px;height:18px;color:var(--tx3)}
+.fh-col{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:14px;color:var(--tx2)}
+.picker h2{margin:0 0 12px;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.pk-lista{margin-top:10px;display:flex;flex-direction:column}
+.pk{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;border:0;border-bottom:1px solid var(--line);background:none;padding:8px 2px;text-align:left;min-height:56px}
+.pk b{display:block;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pk span{font-size:13px;color:var(--tx2)}
+.pk .nums{font-size:13px}
+.pk .nums b{display:inline;color:var(--amb);font-weight:700}
+
+/* ---------- AGENDA E DIÁRIO ---------- */
+.mes-cab{position:sticky;top:calc(var(--topo-h) + env(safe-area-inset-top));z-index:2;background:var(--bg);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tx2);padding:12px 0 8px;margin:0;border-bottom:1px solid var(--line)}
+.dl{display:grid;grid-template-columns:44px 40px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border:0;border-bottom:1px solid var(--line);background:none;width:100%;text-align:left;color:var(--tx)}
+button.dl:hover .tx b{text-decoration:underline;text-decoration-color:var(--tx3)}
+.dl .dd{display:flex;flex-direction:column;align-items:center;line-height:1}
+.dl .dd b{font-size:28px;font-weight:700;letter-spacing:-.03em}
+.dl .dd span{font-size:11px;color:var(--tx3);margin-top:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.dl.hoje .dd b{color:var(--amb)}
+.dl .mini{width:40px}
+.dl .mini .cap{border-radius:3px}
+.dl .mini .sub b,.dl .mini .sub i,.pk .sub b,.pk .sub i,.card.ind .sub b,.card.ind .sub i{display:none}
+.dl .mini .sub,.pk .sub,.card.ind .sub{justify-content:center;align-items:center}
+.dl .mini .sub::before,.pk .sub::before,.card.ind .sub::before{content:attr(data-ini);font-family:var(--serif);font-size:20px;font-weight:600;color:var(--tx2)}
+.dl .tx{min-width:0}
+.dl .tx b{display:block;font-size:16px;font-weight:600;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dl .tx .qd2.perto{color:var(--amb);font-weight:700}
+.dl .tx span{display:block;font-size:13px;color:var(--tx2);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dl .tx .plat{color:var(--tx3);font-size:12px}
+.dl .qd{font-size:13px;color:var(--tx2);text-align:right;white-space:nowrap;font-weight:500}
+.dl .qd.perto{color:var(--amb);font-weight:700}
+.dl .qd .cx{font-size:15px;font-weight:700;color:var(--amb)}
+.dl .qd .mn{font-size:15px;font-weight:600;color:var(--tx)}
+.dl .tx .qd2{display:none}
+@media (max-width:374px){
+  .dl{grid-template-columns:40px 36px minmax(0,1fr) auto;gap:10px}
+  .dl.ep{grid-template-columns:40px 36px minmax(0,1fr)}
+  .dl.ep>.qd{display:none}
+  .dl .tx .qd2{display:inline}
+  .dl .mini{width:36px}
+}
+.dl .qd svg{width:16px;height:16px;color:var(--tx3);display:inline-block;vertical-align:-3px}
+.calctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:2px 0 6px}
+.calctl .chips{flex:0 1 auto}
+.nota-cal{font-size:13px;color:var(--tx3);margin:8px 0 2px}
+.bloco{margin-top:24px}
+.month{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.month .dow{font-size:11px;color:var(--tx3);text-align:center;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding-bottom:4px}
+.month .cell{min-height:52px;background:var(--s1);border:1px solid var(--line);border-radius:8px;padding:5px 6px;font-size:12px;display:flex;flex-direction:column;gap:3px;text-align:left;color:var(--tx)}
+.month .cell.pad{visibility:hidden}
+.month .cell.today{border-color:var(--amb)}
+.month .cell.sel{background:var(--amb-s);border-color:var(--amb)}
+.month .cell .dn{font-weight:700;color:var(--tx2)}
+.month .cell .dots{display:flex;gap:3px;flex-wrap:wrap}
+.month .cell .dot{display:block;width:6px;height:6px;border-radius:50%;background:var(--acomp)}
+.mhead{display:flex;align-items:center;gap:10px;margin:8px 0 10px}
+.mhead b{font-size:17px;flex:1;text-transform:capitalize;font-weight:700}
+.mhead .icb{border:1px solid var(--line);background:var(--s1)}
+.ann{margin:0;padding:0;list-style:none}
+.ann li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.45}
+.ann li span{color:var(--tx2)}
+
+/* ---------- CAIXAS, BOTÕES, COLEÇÕES ---------- */
+.box{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+.box h3{margin:0 0 6px;font-size:17px;font-weight:700;letter-spacing:-.01em}
+.box p{margin:0 0 10px;color:var(--tx2);font-size:15px;line-height:1.55}
+.box p:last-child{margin-bottom:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:12px;padding:0 16px;font-size:15px;font-weight:600;text-decoration:none}
+.btn:hover{background:var(--s2)}
+.btn.pri{background:var(--amb);color:var(--on-amb);border-color:transparent}
+.btn.pri:hover{filter:brightness(1.06)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+code{font-size:13px;background:var(--s2);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background:var(--bg);color:var(--tx);border-radius:10px;padding:10px;font-size:13px;font-family:ui-monospace,Menlo,monospace}
+.colnote{color:var(--tx2);font-size:15px;line-height:1.55;margin:0;max-width:62ch}
+.colnote b{color:var(--tx)}
+.note{color:var(--tx2);font-size:15px;line-height:1.55;margin:0 0 14px;max-width:62ch}
+.col-cab{display:flex;align-items:center;gap:16px;margin:4px 0 14px}
+.col-cab .leque{flex:none}
+.linhas{border-top:1px solid var(--line)}
+.card.linha{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.card.linha .th{position:relative;display:block}
+.card.linha h3{margin:0;font-size:16px;font-weight:600;line-height:1.3}
+.card.linha .meta{color:var(--tx2);font-size:13px;margin-top:2px;line-height:1.45}
+.card.linha .watch{margin-top:8px}
+.card.linha .src{font-size:13px;color:var(--tx3);margin-top:4px}
+.bdg{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;border-radius:5px;padding:1px 6px;background:var(--s2);color:var(--tx2);vertical-align:1px}
+.bdg.live{background:var(--acomp-s);color:var(--acomp)}
+.ctl2{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px;color:var(--tx2);margin-top:10px}
+.vezes button[data-vz]{width:44px;height:44px;border-radius:50%;border:0;background:var(--s2);color:var(--tx);font-size:20px;line-height:1;padding:0}
+.vezes button[data-vz]:hover{background:var(--s2)}
+.vezes output{min-width:26px;text-align:center;font-weight:700;font-size:17px;color:var(--tx)}
+.fase{flex:1 1 180px;min-width:0;height:40px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--tx);padding:0 2px;font-size:16px;font-style:italic}
+.fase::placeholder{color:var(--tx3)}
+.fase:focus{outline:none;border-bottom-color:var(--amb);font-style:normal}
+.rm{flex:none;width:44px;height:44px;border:0;background:none;color:var(--tx3);display:grid;place-items:center;padding:0;margin:0 -10px 0 auto;border-radius:12px}
+.rm svg{width:18px;height:18px}
+.rm:hover{color:var(--tx);background:var(--s2)}
+.card.linha .tipo{color:var(--tx3)}
+.card.linha .live{color:var(--acomp);font-weight:600}
+.filmes-saga{margin-top:8px}
+.filmes-saga summary{cursor:pointer;color:var(--tx2);font-size:14px;font-weight:600;min-height:32px;display:flex;align-items:center;list-style:none}
+.filmes-saga summary::-webkit-details-marker{display:none}
+.filmes-saga ol{margin:6px 0 0;padding-left:20px;font-size:14px;color:var(--tx2);line-height:1.6}
+.filmes-saga li b{color:var(--tx);font-weight:600}
+.addbox{margin-top:18px}
+.addbox .row .campo{flex:1 1 200px}
+.addmsg{font-size:14px!important}
+
+/* leque de capas das listas (Você) */
+.leque{position:relative;display:block;height:96px;width:148px}
+.leque .cap{position:absolute;top:0;width:64px;box-shadow:0 0 0 2px var(--bg),0 6px 16px -8px rgba(0,0,0,.5)}
+.leque .cap:nth-child(1){left:0;z-index:4}.leque .cap:nth-child(2){left:28px;z-index:3}.leque .cap:nth-child(3){left:56px;z-index:2}.leque .cap:nth-child(4){left:84px;z-index:1}
+.leque .cap .sub i{display:none}
+
+/* ---------- VOCÊ ---------- */
+.vsec{margin-top:28px}
+.vsec:first-child{margin-top:6px}
+.alerta{display:flex;gap:10px;align-items:center;background:var(--amb-s);color:var(--tx);border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.45;margin:4px 0 0}
+.alerta button{margin-left:auto;flex:none;border:0;background:none;color:var(--amb);font-weight:700;font-size:14px;min-height:40px}
+.os4-dupla{display:grid;grid-template-columns:1fr;gap:20px}
+.gosto-g{display:grid;grid-template-columns:1fr;gap:22px}
+.hist-g{display:flex;align-items:flex-end;gap:16px}
+.hist-g .media{flex:none;text-align:left}
+.hist-g .media b{display:block;font-size:44px;line-height:1;font-weight:700;letter-spacing:-.03em}
+.hist-g .media span{font-size:13px;color:var(--tx2)}
+.histo-g{flex:1;min-width:0}
+.histo-g .barras-v{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;align-items:end;height:72px}
+.histo-g .barras-v i{display:block;border-radius:4px 4px 0 0;background:var(--amb);min-height:2px}
+.histo-g .barras-v i.z{background:var(--line)}
+.histo-g .eixo{display:flex;justify-content:space-between;font-size:11px;color:var(--tx3);margin-top:4px;border-top:1px solid var(--line);padding-top:4px}
+.segm{display:inline-flex;background:var(--s2);border-radius:10px;padding:3px;gap:2px}
+.segm button{border:0;background:none;height:34px;padding:0 12px;border-radius:8px;font-size:13px;font-weight:600;color:var(--tx2)}
+.segm button[aria-pressed="true"]{background:var(--s1);color:var(--tx);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.rank-l{margin:0;padding:0;list-style:none;font-size:15px}
+.rank-l li{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
+.rank-l li span{color:var(--tx2)}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.vezes-g{display:flex;gap:10px}
+.vezes-g div{flex:1;background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:12px}
+.vezes-g b{display:block;font-size:28px;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.vezes-g span{font-size:13px;color:var(--tx2)}
+.listas-v{display:grid;grid-template-columns:1fr;gap:10px}
+.lista-c{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:var(--s1);border-radius:14px;padding:12px;text-align:left;color:var(--tx);width:100%}
+.lista-c:hover{border-color:var(--tx3)}
+.lista-c b{display:block;font-size:16px;font-weight:600;color:var(--tx)}
+.leque .cap:not(:first-child) .sub{visibility:hidden}
+.lista-c span{display:block;font-size:13px;color:var(--tx2);line-height:1.45;margin-top:2px}
+.lista-c .leque{flex:none;height:84px;width:130px}
+.lista-c .leque .cap{width:56px}
+.lista-c .leque .cap:nth-child(2){left:24px}.lista-c .leque .cap:nth-child(3){left:48px}.lista-c .leque .cap:nth-child(4){left:72px}
+.ajustes{background:var(--s1);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.aj{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 14px;border:0;border-bottom:1px solid var(--line);background:none;text-align:left;color:var(--tx);text-decoration:none;font-size:16px}
+.aj:last-child{border-bottom:0}
+.aj .txa{flex:1;min-width:0}
+.aj .txa span{display:block;font-weight:600}
+.aj .txa small{display:block;font-size:13px;color:var(--tx2)}
+.aj>svg{width:18px;height:18px;color:var(--tx3)}
+button.aj:hover,a.aj:hover{background:var(--s2)}
+.vazio-txt{color:var(--tx2);font-size:15px;line-height:1.55;margin:0}
+
+/* ---------- PERGUNTAR ---------- */
+.ask textarea{width:100%;min-height:96px;border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:14px;padding:12px 14px;font-size:16px;line-height:1.5;resize:vertical}
+.ask .row{margin-top:10px}
+.ask .opt{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--tx2);min-height:44px}
+.ask .opt input{width:18px;height:18px;accent-color:var(--amb)}
+.ask .sug{margin-top:12px;flex-wrap:wrap;overflow:visible}
+.ask .sug .chip{font-weight:500;height:36px}
+.ans{margin-top:20px}
+.ans .q{font-weight:700;margin:0 0 8px;font-size:17px}
+.ans .txt p{margin:0 0 10px;color:var(--tx);font-size:16px;line-height:1.6}
+.ans .meta2{font-size:13px;color:var(--tx3);margin:2px 0 12px}
+.inds{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.card.ind{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.card.ind h3{margin:0;font-size:16px;font-weight:600;line-height:1.3}
+.card.ind .meta{font-size:13px;color:var(--tx2);margin-top:2px}
+.ind .why{font-size:15px;color:var(--tx2);margin:6px 0 0;line-height:1.5}
+.ind .acts{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;margin-top:4px}
+.ind .acts a,.ind .acts button{color:var(--tx);font-weight:600;background:none;border:0;padding:0;min-height:36px;text-decoration:none;font-size:14px}
+.wait{color:var(--tx2);font-size:15px}
+.err{color:var(--acomp);font-size:15px}
+.hist summary{cursor:pointer;color:var(--tx2);font-size:15px;font-weight:600;min-height:44px;display:flex;align-items:center}
+
+/* ---------- PESOS ---------- */
+.weights{display:flex;flex-direction:column;gap:18px;max-width:640px}
+.w{display:grid;grid-template-columns:1fr auto;gap:2px 12px}
+.w .n{font-weight:600;font-size:16px}
+.w .d{grid-column:1/-1;color:var(--tx2);font-size:14px;line-height:1.45}
+.w .trilho{grid-column:1/-1}
+.w output{font-weight:700;color:var(--amb)}
+
+/* ---------- RODAPÉ ---------- */
+.rodape{border-top:1px solid var(--line);margin-top:8px;padding:18px 0 28px}
+.rodape .rotulo{margin-bottom:6px}
+.rd-links{display:flex;flex-wrap:wrap;gap:0 4px;margin:0 -8px}
+.rd-links .tab,.rd-links a{border:0;background:none;color:var(--tx2);font-size:14px;font-weight:600;min-height:44px;padding:0 8px;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.rd-links .tab:hover,.rd-links a:hover{color:var(--tx)}
+.rd-links .tab.on{color:var(--amb)}
+.rd-links .ct{color:var(--tx3);font-weight:500}
+body.aba-voce .rodape .rotulo,body.aba-voce .rd-links{display:none}
+.foot{color:var(--tx3);font-size:13px;line-height:1.55;margin:10px 0 0;max-width:70ch}
+
+/* ---------- COMPUTADOR ---------- */
+@media (min-width:900px){
+  :root{--topo-h:56px}
+  body{padding-bottom:0}
+  .topo-in{padding:0 16px;gap:4px}
+  .marca{display:inline-flex;align-items:center;gap:9px;width:84px;flex:none;color:var(--tx);text-decoration:none;font-weight:700;font-size:17px;letter-spacing:-.015em}
+  .marca i{width:10px;height:15px;border-radius:2px;background:var(--amb);display:block}
+  #tit,.volta{display:none!important}
+  .topo-in::after{content:"";flex:1;order:1}
+  .ferr{order:2}
+  .balao{order:3;width:auto;padding:0 12px;gap:8px;display:inline-flex;align-items:center}
+  .balao svg{width:20px;height:20px}
+  .balao .rot{display:inline;font-size:13px;font-weight:600;letter-spacing:.09em;text-transform:uppercase}
+  body.aba-filmes .balao,body.aba-series .balao{width:44px;padding:0;justify-content:center}
+  body.aba-filmes .balao .rot,body.aba-series .balao .rot{display:none}
+  /* as seções logo depois da marca, como na barra do site do Letterboxd; busca à direita */
+  .tabs{top:0;bottom:auto;left:calc(max(0px,50% - 480px) + 116px);right:auto;height:56px;padding:0;background:none;border:0;
+    -webkit-backdrop-filter:none;backdrop-filter:none;gap:0;justify-content:flex-start}
+  .tabs .tab,.tabs .mais{flex:none;max-width:none;flex-direction:row;height:56px;padding:0 11px;gap:8px;font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--tx2)}
+  .tabs .tab svg{display:none}
+  .tabs .tab:hover,.tabs .mais:hover{color:var(--tx)}
+  .tabs .tab.on{color:var(--tx);box-shadow:inset 0 -2px 0 var(--amb)}
+  .tabs .mais .bola{width:24px;height:24px;box-shadow:none}
+  .tabs .mais .bola svg{width:14px;height:14px}
+  .tabs .mais .rot{position:static;width:auto;height:auto;overflow:visible;clip:auto}
+  .lupa,.lupa:focus-within,.lupa.cheia{position:relative;left:auto;right:auto;top:auto;width:170px;height:38px;margin-right:4px}
+  .lupa .campo,.lupa:focus-within .campo,.lupa.cheia .campo{height:38px;padding:0 34px 0 36px;border-color:var(--line);background:var(--s1);color:var(--tx);cursor:text;font-size:14px}
+  .lupa .campo::placeholder{color:var(--tx3)}
+  .lupa svg.i{left:11px;width:17px;height:17px;color:var(--tx3)}
+  .lupa .limpa{width:36px;height:38px;display:none!important}
+  .lupa.cheia .limpa{display:grid!important}
+  .panel{padding-top:20px}
+  .cab-mesa{display:block}
+  .filtros{margin:0 0 6px}
+  .filtros .chips{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none;padding:4px 0;margin:-4px 0 0}
+  .topo-lista{margin:6px 0 22px}
+  #calbody,#p-cal .bloco,#p-cal .calctl{max-width:760px}
+  .aviso{bottom:24px}
+  /* página do título em três colunas */
+  .avulsa{top:56px;padding-bottom:64px}
+  .pg-barra{display:none}
+  .pg-band{height:280px}
+  .pg-in{grid-template-columns:230px minmax(0,1fr) 300px;column-gap:32px;margin-top:-170px;max-width:1120px;padding:0 24px}
+  .pg-poster{grid-row:1/span 2}
+  .pg-tit{grid-column:2;grid-row:1;align-self:end;padding-bottom:6px}
+  .pg-tit h2{font-size:34px}
+  .pg-tit .en,.pg-tit .meta{font-size:14px}
+  .pg-corpo{grid-column:2;grid-row:2;max-width:600px}
+  .pg-lado{grid-column:3;grid-row:1/span 2;margin-top:110px;align-self:start;position:sticky;top:20px;background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .pg-lado .acoes{gap:6px}
+  .pg-lado .ac{font-size:11px;white-space:nowrap;max-width:none}
+  .pg-lado .ac .bt{border-radius:14px}
+  .pg-lado .ac .bt svg{width:22px;height:22px}
+  .pg-lado .nota .nv{font-size:34px}
+  .pg-fecha{display:inline-flex!important}
+  /* folha vira janela */
+  .folha .sheet{left:50%;top:50%;bottom:auto;right:auto;width:440px;max-height:86vh;transform:translate(-50%,-50%);border-radius:16px;animation:surge .22s var(--ease);padding-bottom:18px}
+  .alca{display:none}
+  .folha .sheet.alta{height:min(640px,86vh)}
+  @keyframes surge{from{opacity:0;transform:translate(-50%,-48%) scale(.98)}to{opacity:1;transform:translate(-50%,-50%)}}
+  .os4-dupla{grid-template-columns:1fr 1fr;gap:28px}
+  .os4-dupla .os4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .gosto-g{grid-template-columns:1fr 1fr;gap:32px 40px;align-items:start}
+  .gosto-g>div:nth-child(2){grid-column:2;grid-row:1/span 3}
+  .listas-v{grid-template-columns:1fr 1fr}
+  .mes-cab{top:56px}
+  .rodape{padding-bottom:40px}
+}
+.pg-fecha{display:none;align-items:center;gap:6px;height:36px;border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:10px;padding:0 12px;font-size:14px;font-weight:600;margin:16px 0 0}
+.cab-mesa{display:none}
+@media (min-width:1100px){.lupa,.lupa:focus-within,.lupa.cheia{width:220px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="topo" id="topo">
+  <div class="topo-in">
+    <a class="marca" href="#filmes" data-ir="filmes" aria-label="Telas, início"><i aria-hidden="true"></i>Telas</a>
+    <button class="icb volta" data-ir="voce" hidden aria-label="Voltar para Você"><svg class="i" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <h1 id="tit">Filmes</h1>
+    <div class="ferr" data-ferr="filmes">
+      <div class="lupa"><label><span class="sr">Buscar filmes</span><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input class="campo" type="search" placeholder="Buscar filme, diretor, país" data-q="filmes" autocomplete="off" enterkeyhint="search"></label>
+        <button class="limpa" type="button" data-limpaq="filmes" aria-label="Fechar a busca"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <label class="icb ordem" title="Ordenar"><svg class="i" viewBox="0 0 24 24"><path d="M7 4v16M3.5 16.5 7 20l3.5-3.5M17 20V4M13.5 7.5 17 4l3.5 3.5"/></svg><span class="sr" data-ordemrot="filmes">Conexão</span>
+        <select data-sort="filmes" aria-label="Ordenar filmes">
+          <option value="conn">Conexão</option>
+          <option value="nota">Minha nota</option>
+          <option value="surpresa">Surpresa</option>
+          <option value="ano">Ano</option>
+          <option value="imdb">IMDb</option>
+          <option value="rt">Rotten (crítica)</option>
+          <option value="mc">Metacritic</option>
+          <option value="lb">Letterboxd</option>
+        </select></label>
+      <span data-vistabox="filmes"></span>
+    </div>
+    <div class="ferr" data-ferr="series">
+      <div class="lupa"><label><span class="sr">Buscar séries</span><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input class="campo" type="search" placeholder="Buscar série, criador, canal" data-q="series" autocomplete="off" enterkeyhint="search"></label>
+        <button class="limpa" type="button" data-limpaq="series" aria-label="Fechar a busca"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <label class="icb ordem" title="Ordenar"><svg class="i" viewBox="0 0 24 24"><path d="M7 4v16M3.5 16.5 7 20l3.5-3.5M17 20V4M13.5 7.5 17 4l3.5 3.5"/></svg><span class="sr" data-ordemrot="series">Conexão</span>
+        <select data-sort="series" aria-label="Ordenar séries">
+          <option value="conn">Conexão</option>
+          <option value="nota">Minha nota</option>
+          <option value="surpresa">Surpresa</option>
+          <option value="ano">Ano</option>
+          <option value="imdb">IMDb</option>
+          <option value="rt">Rotten (crítica)</option>
+          <option value="mc">Metacritic</option>
+        </select></label>
+      <span data-vistabox="series"></span>
+    </div>
+    <button class="icb tab balao" data-tab="perguntar" aria-label="Perguntar à IA" title="Perguntar à IA"><svg class="i" viewBox="0 0 24 24"><path d="M20.5 11.5a8 8 0 0 1-11.7 7.1L4 20l1.3-4.4a8 8 0 1 1 15.2-4.1z"/><path d="M9 11.5h.01M12.5 11.5h.01M16 11.5h.01" stroke-width="2.6"/></svg><span class="rot">Perguntar</span></button>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Seções">
+  <button class="tab" data-tab="filmes"><svg class="i" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 3v18M16 3v18M4 8h4M4 12.5h4M4 17h4M16 8h4M16 12.5h4M16 17h4"/></svg><span class="rot">Filmes</span><span class="ct num" id="ct-filmes"></span></button>
+  <button class="tab" data-tab="series"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span class="rot">Séries</span><span class="ct num" id="ct-series"></span></button>
+  <!-- lugar da aba Avaliar (entra na próxima versão). Até lá, o + registra: busca um título e abre a folha, como o + do Letterboxd -->
+  <button class="mais" data-reservado="avaliar" data-registrar="1" aria-label="Registrar um filme ou série" title="Registrar um filme ou série"><span class="bola"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><span class="rot">Registrar</span></button>
+  <button class="tab" data-tab="cal"><svg class="i" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span class="rot">Agenda</span></button>
+  <button class="tab" data-tab="voce"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c.8-3.6 3.8-5.5 7.5-5.5s6.7 1.9 7.5 5.5"/></svg><span class="rot">Você</span></button>
+</nav>
+
+<main class="wrap">
+
+  <section class="panel on" id="p-filmes" aria-label="Filmes">
+    <div class="filtros">
+      <div class="chips" data-filter="filmes" role="group" aria-label="Filtrar por status"></div>
+    </div>
+    <div class="ondever" data-watchbox="filmes" hidden>
+      <select class="sel" data-watch="filmes" aria-label="Onde assistir os filmes"></select>
+      <details class="mysvc" data-mysvc="filmes" hidden><summary></summary><div class="chips" role="group" aria-label="Seus serviços de streaming"></div><p>Marque os serviços que você assina: eles aparecem em verde e entram no filtro "Nos meus serviços". Fica guardado neste aparelho, junto com suas notas.</p></details>
+    </div>
+    <div class="topo-lista" id="topo-filmes"></div>
+    <div class="grid" id="list-filmes"></div>
+  </section>
+
+  <section class="panel" id="p-series" aria-label="Séries">
+    <div class="filtros">
+      <div class="chips" data-filter="series" role="group" aria-label="Filtrar por status"></div>
+    </div>
+    <div class="ondever" data-watchbox="series" hidden>
+      <select class="sel" data-watch="series" aria-label="Onde assistir as séries"></select>
+      <details class="mysvc" data-mysvc="series" hidden><summary></summary><div class="chips" role="group" aria-label="Seus serviços de streaming"></div><p>Marque os serviços que você assina: eles aparecem em verde e entram no filtro "Nos meus serviços". Fica guardado neste aparelho, junto com suas notas.</p></details>
+    </div>
+    <div class="topo-lista" id="topo-series"></div>
+    <div class="grid" id="list-series"></div>
+  </section>
+
+  <section class="panel" id="p-voce" aria-label="Você">
+    <div id="voce-corpo"></div>
+  </section>
+
+  <section class="panel" id="p-desligar" aria-label="Desligar o cérebro">
+    <div class="col-cab"><span class="leque" id="leque-desligar" aria-hidden="true"></span>
+      <p class="colnote">O que serve pra descansar a cabeça, cada um numa fase da vida.</p></div>
+    <div class="linhas" id="list-desligar"></div>
+    <div class="box addbox">
+      <h3>Adicionar</h3>
+      <div class="row"><input class="campo" type="text" list="todos-titulos" data-add="desligar" placeholder="Ex.: Seinfeld" aria-label="Título para adicionar em Desligar o cérebro" autocomplete="off"><button class="btn pri" data-addbtn="desligar">Adicionar</button></div>
+      <p class="addmsg" data-addmsg="desligar" style="margin-top:10px">Escolha da lista ou escreva qualquer título. O que não estiver na lista entra só com o nome e a busca no JustWatch; me conta no chat que eu completo os dados.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="p-repetidos" aria-label="Repetidos">
+    <div class="col-cab"><span class="leque" id="leque-repetidos" aria-hidden="true"></span>
+      <p class="colnote">O que você vê dezenas de vezes. O contador fica à vista em cada um.</p></div>
+    <div class="linhas" id="list-repetidos"></div>
+    <div class="box addbox">
+      <h3>Adicionar</h3>
+      <div class="row"><input class="campo" type="text" list="todos-titulos" data-add="repetidos" placeholder="Ex.: De Volta para o Futuro" aria-label="Título para adicionar em Repetidos" autocomplete="off"><button class="btn pri" data-addbtn="repetidos">Adicionar</button></div>
+      <p class="addmsg" data-addmsg="repetidos" style="margin-top:10px">Escolha da lista ou escreva qualquer título. O que não estiver na lista entra só com o nome e a busca no JustWatch; me conta no chat que eu completo os dados.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="p-perguntar" aria-label="Perguntar à IA">
+    <p class="note">A IA responde olhando o que você marcou aqui: suas notas, status, coleções, pesos e o que já está na lista. As indicações chegam com pôster, quando estão na lista.</p>
+    <div class="ask">
+      <label for="ia-q" class="sr">Sua pergunta</label>
+      <textarea id="ia-q" maxlength="800" placeholder="Ex.: quais séries de época eu poderia gostar?"></textarea>
+      <div class="row">
+        <button class="btn pri" id="ia-go">Perguntar</button>
+        <label class="opt"><input type="checkbox" id="ia-web"> procurar na web também (mais lento, mais atual)</label>
+      </div>
+      <div class="chips sug" id="ia-sug" role="group" aria-label="Perguntas prontas">
+        <button class="chip" data-sug="Quais séries de época eu poderia gostar?">Séries de época</button>
+        <button class="chip" data-sug="Um filme pra desligar o cérebro hoje à noite.">Pra desligar hoje</button>
+        <button class="chip" data-sug="O que se parece com o que eu revejo dezenas de vezes?">Parecido com os Repetidos</button>
+        <button class="chip" data-sug="Uma série curta, de uma temporada, pra ver num fim de semana.">Série curta</button>
+        <button class="chip" data-sug="Dos títulos que estão como Quero ver, por qual eu começo e por quê?">Por onde começo</button>
+      </div>
+      <form class="row" id="ia-senha-box" hidden style="margin-top:14px" autocomplete="on">
+        <input type="text" name="username" value="telas" autocomplete="username" hidden>
+        <input class="campo" id="ia-senha" name="password" type="password" autocomplete="current-password" placeholder="Senha da caixa" aria-label="Senha da caixa de perguntas" style="flex:0 1 260px">
+        <span class="opt" style="font-size:14px;color:var(--tx2)">Vale até fechar o navegador; o chaveiro do aparelho pode guardar.</span>
+      </form>
+    </div>
+    <div id="ia-out" class="ans" aria-live="polite"></div>
+    <details class="hist" id="ia-hist" hidden><summary>Perguntas anteriores</summary><div id="ia-hist-list" style="margin-top:10px"></div></details>
+  </section>
+
+  <datalist id="todos-titulos"></datalist>
+
+  <section class="panel" id="p-cal" aria-label="Agenda de episódios">
+    <div class="calctl">
+      <div class="chips" role="group" aria-label="Período" id="calview">
+        <button class="chip" aria-pressed="true" data-v="semana">7 dias</button>
+        <button class="chip" aria-pressed="false" data-v="mes">Mês</button>
+        <button class="chip" aria-pressed="false" data-v="proximos">Próximos meses</button>
+      </div>
+      <select class="sel" id="calscope" aria-label="Quais séries">
+        <option value="acomp">Só o que acompanho</option>
+        <option value="todas">Todas da lista</option>
+      </select>
+    </div>
+    <div id="calbody"></div>
+
+    <div class="bloco">
+      <h2 class="rotulo">Avisos</h2>
+      <div class="box">
+        <h3>No celular</h3>
+        <p>Assine o calendário de lançamentos e os episódios aparecem no app Calendário do iPhone, com alerta na véspera. Ele se atualiza sozinho todo dia.</p>
+        <div class="row"><a class="btn pri" id="ics-link" href="#">Assinar calendário</a><button class="btn" id="ics-copy">Copiar endereço</button></div>
+      </div>
+      <div class="box">
+        <h3>Por e-mail</h3>
+        <p>Um robô roda todo dia de manhã no GitHub, olha os próximos episódios das séries que você acompanha e te manda e-mail na véspera, e um resumo da semana às segundas.</p>
+        <p>Ele só conhece as séries que estão no arquivo <code>telas/acompanhando.json</code> do repositório. Quando mudar o que você acompanha aqui, copie a lista abaixo e cole lá.</p>
+        <textarea class="out" id="acomp-json" readonly aria-label="Lista de séries acompanhadas"></textarea>
+        <div class="row" style="margin-top:10px"><button class="btn" id="acomp-copy">Copiar lista</button><a class="btn" id="acomp-edit" target="_blank" rel="noopener">Abrir o arquivo no GitHub</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-pesos" aria-label="Pesos da conexão">
+    <p class="note">A conexão de cada título é a média das nove dimensões abaixo, ponderada por estes pesos. Os pesos iniciais saíram do seu acervo; mexa à vontade e as grades se reordenam na hora.</p>
+    <div class="weights" id="weights"></div>
+    <div class="row" style="margin-top:18px"><button class="btn" id="w-reset">Voltar aos pesos iniciais</button></div>
+    <div class="box" style="margin-top:24px;max-width:640px">
+      <h3>Seus arquétipos</h3>
+      <p id="arq-dele"></p>
+      <p>Cada título traz o arquétipo do protagonista (os doze de Pearson e Mark), a etapa da jornada do herói que ele mais encena e quais dos seus arquétipos a obra ativa.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="p-dados" aria-label="Backup">
+    <div class="box">
+      <h3>Onde ficam suas notas</h3>
+      <p>Notas, status, pesos, Os 4 e o diário ficam guardados neste navegador, neste aparelho. Se trocar de celular ou limpar o navegador, eles somem. Por isso o backup.</p>
+      <p id="bk-ultimo"></p>
+      <div class="row"><button class="btn pri" id="exp">Baixar backup</button><label class="btn" for="imp">Restaurar backup</label><input id="imp" type="file" accept="application/json" hidden></div>
+      <p id="impmsg" style="margin-top:10px"></p>
+    </div>
+    <div class="box">
+      <h3>De onde vêm os dados</h3>
+      <p id="fonte"></p>
+      <p id="fonte-streaming"></p>
+      <p id="fonte-posteres"></p>
+      <p id="fonte-notas"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <h2 class="rotulo">Listas e ajustes</h2>
+    <div class="rd-links">
+      <button class="tab" data-tab="desligar">Desligar o cérebro<span class="ct num" id="ct-desligar"></span></button>
+      <button class="tab" data-tab="repetidos">Repetidos<span class="ct num" id="ct-repetidos"></span></button>
+      <button class="tab" data-tab="pesos">Conexão</button>
+      <button class="tab" data-tab="dados">Backup</button>
+      <a href="/">Roteiro do Mochilão</a>
+    </div>
+    <p class="foot" id="foot"></p>
+  </div>
+</footer>
+
+<div class="avulsa" id="avulsa" hidden></div>
+<div class="folha" id="folha" hidden><div class="veu" data-ffecha="1"></div><div class="sheet" id="folha-sheet" role="dialog" aria-modal="true" aria-label="Registrar" tabindex="-1"></div></div>
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+// ---------- ESTADO ----------
+var KEY='telas_v1';
+var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},ia:[],fav4:{filmes:[],series:[]},diario:[],temp:{},backupEm:''};
+var STORE=true;
+function obj(x){return x&&typeof x==='object'&&!Array.isArray(x)?x:{}}
+function idsOk(a){return Array.isArray(a)?a.filter(function(x){return typeof x==='string'&&x.length<200}).slice(0,4):[]}
+function dataOk(s){return typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)}
+// o que veio depois da primeira versão (Os 4, diário, notas por temporada, data do backup) também passa por aqui
+function restauraCol(p){
+  ST.col=obj(p.col);ST.livres=obj(p.livres);ST.vezes=obj(p.vezes);ST.fase=obj(p.fase);ST.ia=Array.isArray(p.ia)?p.ia.slice(0,20):[];
+  var f=obj(p.fav4);ST.fav4={filmes:idsOk(f.filmes),series:idsOk(f.series)};
+  ST.diario=Array.isArray(p.diario)?p.diario.filter(function(x){return x&&typeof x.id==='string'&&dataOk(x.d)}).slice(-1000):[];
+  ST.temp=obj(p.temp);ST.backupEm=typeof p.backupEm==='string'?p.backupEm:'';
+}
+try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'){ST.notas=p.notas||{};ST.status=p.status||{};ST.pesos=p.pesos||null;ST.servicos=Array.isArray(p.servicos)?p.servicos:[];restauraCol(p);}}}
+catch(e){STORE=false}
+// o estado pode vir de um backup editado à mão: nota só número de 0 a 100, status só os quatro conhecidos
+function limpaEstado(){
+  var n={};Object.keys(obj(ST.notas)).forEach(function(k){var v=+ST.notas[k];if(isFinite(v)&&ST.notas[k]!==null&&ST.notas[k]!=='')n[k]=Math.max(0,Math.min(100,Math.round(v)))});ST.notas=n;
+  var s={};Object.keys(obj(ST.status)).forEach(function(k){var v=ST.status[k];if(['quero','assisti','acompanhando','abandonei','nenhum'].indexOf(v)>-1)s[k]=v});ST.status=s;
+  var z={};Object.keys(obj(ST.vezes)).forEach(function(k){var v=Math.round(+ST.vezes[k]);if(isFinite(v)&&v>0)z[k]=Math.min(v,9999)});ST.vezes=z;
+  var t={};Object.keys(obj(ST.temp)).forEach(function(k){var o=obj(ST.temp[k]),q={};Object.keys(o).forEach(function(j){var v=+o[j];if(/^\d{1,2}$/.test(j)&&isFinite(v))q[j]=Math.max(0,Math.min(100,Math.round(v)))});if(Object.keys(q).length)t[k]=q});ST.temp=t;
+}
+limpaEstado();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){STORE=false}}
+
+var D=null, EP=null, SV=null, CAT=null, CATPOR={}, POS={};
+var DIMS=[], PESOS0=[];
+var VIEW={filmes:{q:'',sort:'conn',f:'todos',w:'todos',n:30,vista:'grade'},series:{q:'',sort:'conn',f:'todos',w:'todos',n:30,vista:'grade'}};
+var CAL={v:'semana',scope:'acomp',m:null,sel:null};
+var RANK={filmes:{},series:{}};
+var ABA='filmes';
+try{var vv=JSON.parse(localStorage.getItem('telas_vista')||'{}');['filmes','series'].forEach(function(k){if(vv[k]==='lista')VIEW[k].vista='lista'})}catch(e){}
+
+function el(id){return document.getElementById(id)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function num(s){if(s==null)return NaN;var m=String(s).replace(',','.').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN}
+function stOf(it){var v=ST.status[it.id];if(v==='nenhum')return '';return v||(it.biblioteca?'acompanhando':'')}
+function pesos(){return (ST.pesos&&ST.pesos.length===DIMS.length)?ST.pesos:PESOS0}
+function conexao(it){
+  var w=pesos(),d=it.dims,s=0,t=0;
+  if(!d||!d.length)return null;
+  for(var i=0;i<w.length;i++){var v=+d[i];if(isNaN(v))continue;s+=w[i]*v;t+=w[i]}
+  return t?Math.round(s/t):null;
+}
+function itemPorId(id){
+  var l=[].concat((D&&D.filmes)||[],(D&&D.series)||[]);
+  for(var i=0;i<l.length;i++)if(l[i].id===id)return l[i];
+  return null;
+}
+function kindDe(id){return ((D&&D.filmes)||[]).some(function(x){return x.id===id})?'filmes':(((D&&D.series)||[]).some(function(x){return x.id===id})?'series':'')}
+function hoje(){return ymd(new Date())}
+function aviso(t){try{var a=el('aviso');a.textContent=t;a.classList.add('on');clearTimeout(aviso.t);aviso.t=setTimeout(function(){a.classList.remove('on')},2600)}catch(e){}}
+
+// ---------- ÍCONES ----------
+function svg(d,extra){return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"'+(extra||'')+'>'+d+'</svg>'}
+var IC={
+  assisti:svg('<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>'),
+  quero:svg('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
+  acompanhando:svg('<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/>'),
+  abandonei:svg('<path d="M6 12h12"/>'),
+  revi:svg('<path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.5"/><path d="M4 4v4.5h4.5"/>'),
+  mais:svg('<path d="M12 5v14M5 12h14"/>'),
+  x:svg('<path d="M6 6l12 12M18 6 6 18"/>'),
+  dir:svg('<path d="M9 6l6 6-6 6"/>'),
+  esq:svg('<path d="M15 18l-6-6 6-6"/>'),
+  grade:svg('<rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/>'),
+  lista:svg('<path d="M9 6h11M9 12h11M9 18h11"/><rect x="3.5" y="4.5" width="3" height="3" rx=".6"/><rect x="3.5" y="10.5" width="3" height="3" rx=".6"/><rect x="3.5" y="16.5" width="3" height="3" rx=".6"/>'),
+  coracao:svg('<path d="M12 20s-7.5-4.6-9.2-9.3A4.9 4.9 0 0 1 12 6.6a4.9 4.9 0 0 1 9.2 4.1C19.5 15.4 12 20 12 20z"/>'),
+  ext:svg('<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>')
+};
+var SLAB={todos:'Todos',sem:'Sem status',quero:'Quero ver',assisti:'Assisti',acompanhando:'Acompanho',abandonei:'Abandonei'};
+var SORTLAB={conn:'Conexão',nota:'Minha nota',surpresa:'Surpresa',ano:'Ano',imdb:'IMDb',rt:'Rotten',mc:'Metacritic',lb:'Letterboxd'};
+
+// ---------- PÔSTERES ----------
+// telas/posteres.json: o robô grava o cartaz do TMDB (os mesmos do Letterboxd) e, para o que o TMDB não tem,
+// a imagem principal do artigo na Wikipedia. Só usa endereço dos servidores de imagem do TMDB e da Wikimedia;
+// o resto é ignorado e o título ganha o substituto tipográfico.
+var TMDB_IMG='https://image.tmdb.org/t/p/';
+var TMDB_W=[92,154,185,342,500,780];
+var WIKI_W=[120,250,330,500,960];
+function caminhoTmdb(p){
+  // "tmdb": "/abc123.jpg" (poster_path) ou img já em image.tmdb.org/t/p/<tamanho>/abc123.jpg
+  var t=p&&typeof p.tmdb==='string'?p.tmdb:'';
+  if(!t&&p&&typeof p.img==='string'){var m=p.img.match(/^https:\/\/image\.tmdb\.org\/t\/p\/(?:w\d+|original)(\/[A-Za-z0-9_-]+\.(?:jpe?g|png|webp))$/);if(m)t=m[1]}
+  return /^\/[A-Za-z0-9_-]+\.(jpe?g|png|webp)$/.test(t)?t:'';
+}
+function urlPoster(id){
+  var p=POS[id];if(!p)return '';
+  var t=caminhoTmdb(p);if(t)return TMDB_IMG+'w342'+t;
+  var u=typeof p.img==='string'?p.img:'';
+  if(/^https:\/\/(upload\.wikimedia\.org|image\.tmdb\.org)\/[^\s"'<>\\]+$/.test(u))return u;
+  return '';
+}
+// fontes em várias larguras (srcset) para o navegador escolher pela tela: nítido no iPhone (2x e 3x)
+// sem baixar 500 px numa miniatura de 40
+function fontesPoster(id,w){
+  var p=POS[id],u=urlPoster(id);if(!u)return null;
+  var t=caminhoTmdb(p);
+  if(t){
+    var alvo=TMDB_W.filter(function(x){return x>=w})[0]||500;
+    return {src:TMDB_IMG+'w'+alvo+t,srcset:TMDB_W.map(function(x){return TMDB_IMG+'w'+x+t+' '+x+'w'}).join(', ')};
+  }
+  var m=u.match(/^(https:\/\/upload\.wikimedia\.org\/.+\/thumb\/.+\/)(\d+)px-([^/]+)$/);
+  if(m){
+    // a Wikimedia só serve as larguras padrão em hotlink; nunca pede mais que a gravada pelo robô
+    var w0=+m[2],ws=WIKI_W.filter(function(x){return x<w0}).concat([w0]);
+    var esc0=ws.filter(function(x){return x>=w})[0]||w0;
+    return {src:m[1]+esc0+'px-'+m[3],srcset:ws.map(function(x){return m[1]+x+'px-'+m[3]+' '+x+'w'}).join(', ')};
+  }
+  var lw=p&&+p.w;
+  return {src:u,srcset:(/^https:/.test(u)&&lw>0&&lw<100000)?u+' '+Math.round(lw)+'w':''};
+}
+function urlTam(id,w){var f=fontesPoster(id,w);return f?f.src:''}
+// tamanho na tela de cada uso (o "sizes" do srcset)
+var TAMANHOS={330:'(min-width:900px) 150px, (min-width:720px) 18vw, (min-width:560px) 23vw, 31vw',500:'(min-width:900px) 230px, 128px',250:'(min-width:900px) 120px, 96px',120:'64px'};
+// pôster 2:3; sem imagem (ou se ela falhar), um bloco discreto com o título e o ano
+function capa(it,w,cls){
+  var tt=String(it.titulo||'').trim(),ini=(tt.replace(/^(o|a|os|as|the)\s+/i,'').match(/[0-9A-Za-zÀ-ÿ]/)||[''])[0].toUpperCase();
+  var f=fontesPoster(it.id,w),sub='<span class="sub" aria-hidden="true" data-ini="'+esc(ini)+'"><b>'+esc(tt)+'</b><i>'+esc(it.anos||it.ano||'')+'</i></span>';
+  if(!f)return '<span class="cap sem'+(cls?' '+cls:'')+'">'+sub+'</span>';
+  return '<span class="cap'+(cls?' '+cls:'')+'">'+sub+'<img src="'+esc(f.src)+'"'+(f.srcset?' srcset="'+esc(f.srcset)+'" sizes="'+(TAMANHOS[w]||'96px')+'"':'')+
+    ' alt="" loading="lazy" decoding="async" width="200" height="300" onerror="this.parentNode.classList.add(\'sem\');this.remove()"></span>';
+}
+
+// ---------- CARREGAMENTO ----------
+function load(){
+  // catálogo e pôsteres vêm junto; se falharem, a página segue só com dados.json
+  var pc=fetch('/telas/catalogo.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  var pp=fetch('/telas/posteres.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  fetch('/telas/dados.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+  .then(function(j){return Promise.all([pc,pp]).then(function(x){return [j,x[0],x[1]]})})
+  .then(function(jc){
+    var j=jc[0];
+    D=j;DIMS=j.dimensoes||[];PESOS0=DIMS.map(function(d){return d.peso});
+    try{CAT=jc[1]&&Array.isArray(jc[1].itens)?jc[1]:null;CATPOR={};((CAT&&CAT.itens)||[]).forEach(function(it){if(it&&typeof it.id==='string'&&it.titulo&&!CATPOR[it.id])CATPOR[it.id]=it})}catch(e){CAT=null;CATPOR={}}
+    try{POS=jc[2]&&jc[2].itens&&typeof jc[2].itens==='object'?jc[2].itens:{}}catch(e){POS={}}
+    migrarLivres();
+    try{renderAll()}catch(e){console.error(e)}
+    fetch('/telas/streaming.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})
+      .then(function(sj){if(sj&&sj.titulos){SV=sj;try{renderAll();pintaOnde()}catch(e){console.error(e)}}});
+    return fetch('/telas/episodios.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
+  })
+  .then(function(ej){EP=ej;try{renderCal()}catch(e){console.error(e)}})
+  .catch(function(e){
+    el('list-filmes').innerHTML='<p class="empty">Não consegui carregar a lista agora. Tente de novo em instantes.</p>';
+  });
+}
+
+// ---------- LISTAS ----------
+function chips(kind){
+  var box=document.querySelector('[data-filter="'+kind+'"]');if(!box)return;
+  var opts=kind==='filmes'?['todos','quero','assisti','abandonei','sem']:['todos','quero','acompanhando','assisti','abandonei','sem'];
+  var list=D[kind]||[];
+  box.innerHTML=opts.map(function(o){
+    var n=o==='todos'?list.length:list.filter(function(it){var s=stOf(it)||'sem';return s===o}).length;
+    return '<button class="chip" aria-pressed="'+(VIEW[kind].f===o)+'" data-f="'+o+'">'+SLAB[o]+' <span class="num">'+n+'</span></button>';
+  }).join('');
+  var so=VIEW[kind].sort;
+  if(so!=='conn')box.insertAdjacentHTML('afterbegin','<button class="chip ordem-chip" data-ordemvolta="'+kind+'" aria-label="Ordem: '+SORTLAB[so]+'. Voltar para Conexão">'+SORTLAB[so]+IC.x+'</button>');
+}
+function sortKey(kind,it){
+  var s=VIEW[kind].sort,n=it.notas||{};
+  if(s==='conn'){var c=conexao(it);return c==null?-1:c}
+  if(s==='nota'){var v=ST.notas[it.id];return v==null?-1:v}
+  if(s==='surpresa'){var v2=ST.notas[it.id],c2=conexao(it);return (v2==null||c2==null)?-1:Math.abs(v2-c2)+(v2>c2?.5:0)}
+  if(s==='imdb')return num(n.imdb)||-1;
+  if(s==='rt')return num(n.rt_critica)||-1;
+  if(s==='mc')return num(n.metacritic)||-1;
+  if(s==='lb')return num(n.letterboxd)||-1;
+  if(s==='ano')return num(it.ano)||-1;
+  return 0;
+}
+function visiveis(kind){
+  var V=VIEW[kind],q=V.q.trim().toLowerCase();
+  return (D[kind]||[]).filter(function(it){
+    var s=stOf(it)||'sem';
+    if(V.f!=='todos'&&s!==V.f)return false;
+    if(V.w&&V.w!=='todos'&&!passaWatch(it,V.w))return false;
+    if(!q)return true;
+    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,it.arquetipo,emStreaming(it).join(' ')].join(' ').toLowerCase().indexOf(q)>-1;
+  }).sort(function(a,b){return sortKey(kind,b)-sortKey(kind,a)});
+}
+// posição no ranking de conexão (reage aos pesos), independente de filtro e busca
+function calcRank(kind){
+  var r={};(D[kind]||[]).slice().sort(function(a,b){return (conexao(b)||0)-(conexao(a)||0)}).forEach(function(it,i){r[it.id]=i+1});RANK[kind]=r;
+}
+// crítico: só o nome, o veículo e a citação; a procedência da pesquisa fica em Backup > De onde vêm os dados
+function critico(c){
+  if(!c||!c.nome)return '';
+  var u=c.origem!=='memoria'&&linkDe(c.fonte);
+  return '<div class="crit"><div class="who">'+esc(c.nome)+(c.veiculo?' <span>· '+esc(c.veiculo)+'</span>':'')+(c.nota?' <span>· <b class="num">'+esc(c.nota)+'</b></span>':'')+'</div>'+
+    (c.posicao?'<p>'+esc(c.posicao)+'</p>':'')+(u?'<div class="src"><a href="'+esc(u)+'" target="_blank" rel="noopener">Ler a crítica ↗</a></div>':'')+'</div>';
+}
+function linkDe(s){var m=String(s||'').match(/https:\/\/[^\s"'<>]+/);return m?m[0].replace(/[).,;]+$/,''):''}
+function linkOrText(s){s=String(s||'');var m=s.match(/https?:\/\/\S+/);if(!m)return esc(s);var u=m[0].replace(/[).,;]+$/,'');return esc(s.replace(m[0],'').trim())+' <a href="'+esc(u)+'" target="_blank" rel="noopener">fonte</a>'}
+
+// ---------- ONDE ASSISTIR ----------
+function uniq(a){var o=[];a.forEach(function(x){if(x&&o.indexOf(x)<0)o.push(x)});return o}
+function oferta(it){var w=SV&&SV.titulos&&SV.titulos[it.id];return w&&!w.nao_encontrado?w:null}
+function emStreaming(it){var w=oferta(it);return w?uniq([].concat(w.assinatura||[],w.gratis||[],w.anuncios||[])):[]}
+function meus(){return ST.servicos||[]}
+function passaWatch(it,v){
+  var o=emStreaming(it);
+  if(v==='meus')return o.some(function(x){return meus().indexOf(x)>-1});
+  if(v==='assin')return o.length>0;
+  if(v.indexOf('p:')===0)return o.indexOf(v.slice(2))>-1;
+  return true;
+}
+function logoSvc(n){
+  var l=SV&&SV.logos&&typeof SV.logos==='object'?SV.logos[n]:null;
+  return typeof l==='string'&&/^\/[A-Za-z0-9_-]+\.(png|jpe?g|svg|webp)$/.test(l)?TMDB_IMG+'w92'+l:'';
+}
+function jwBusca(it){return 'https://www.justwatch.com/br/busca?q='+encodeURIComponent(it.titulo||it.titulo_original||'')}
+// agrupado por tipo, como no JustWatch, com os serviços dele primeiro
+function watchHtml(it){
+  var busca='<a class="wlink" href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">Procurar no JustWatch '+IC.ext.replace('class="i"','class="i" style="width:15px;height:15px"')+'</a>';
+  var w=oferta(it);
+  if(!w)return busca;
+  var m=meus();
+  function ord(l){return uniq(l||[]).sort(function(a,b){return (m.indexOf(b)>-1)-(m.indexOf(a)>-1)})}
+  function chip(n){var mi=m.indexOf(n)>-1,lg=logoSvc(n);
+    if(lg)return '<span class="svc logo'+(mi?' mine':'')+'" title="'+esc(n)+(mi?' (você assina)':'')+'"><img src="'+esc(lg)+'" alt="'+esc(n)+'" width="28" height="28" loading="lazy" decoding="async" onerror="this.parentNode.classList.remove(\'logo\');this.remove()"><span class="nm">'+esc(n)+'</span></span>';
+    return '<span class="svc'+(mi?' mine':'')+'"'+(mi?' title="Você assina"':'')+'>'+esc(n)+'</span>'}
+  var grupos=[['Assinatura',ord(w.assinatura)],['Grátis',ord(w.gratis)],['Com anúncios',ord((w.anuncios||[]).filter(function(n){return (w.gratis||[]).indexOf(n)<0}))],['Alugar',ord(w.aluguel)],['Comprar',ord(w.compra)]]
+    .filter(function(g){return g[1].length});
+  var out=grupos.map(function(g){return '<dt>'+g[0]+'</dt><dd>'+g[1].slice(0,6).map(chip).join('')+(g[1].length>6?'<span class="alt">e mais '+(g[1].length-6)+'</span>':'')+'</dd>'}).join('');
+  var link=w.link?'<a class="wlink" href="'+esc(w.link)+'" target="_blank" rel="noopener">Ver ofertas '+IC.ext.replace('class="i"','class="i" style="width:15px;height:15px"')+'</a>':busca;
+  return (out?'<dl class="wgrp">'+out+'</dl>':'<p class="alt" style="margin:0">Fora das assinaturas no Brasil.</p>')+link;
+}
+// versão de uma linha (coleções)
+function watchLinha(it){
+  var w=oferta(it),busca='<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a>';
+  if(!w)return '<div class="watch">'+busca+'</div>';
+  var m=meus(),s=emStreaming(it).sort(function(a,b){return (m.indexOf(b)>-1)-(m.indexOf(a)>-1)});
+  return '<div class="watch">'+(s.length?s.slice(0,4).map(function(n){return '<span class="svc'+(m.indexOf(n)>-1?' mine':'')+'">'+esc(n)+'</span>'}).join(''):'<span class="alt">fora das assinaturas</span>')+(w.link?'<a href="'+esc(w.link)+'" target="_blank" rel="noopener">ofertas ↗</a>':busca)+'</div>';
+}
+function contaServicos(){
+  var c={};['filmes','series'].forEach(function(k){(D[k]||[]).forEach(function(it){emStreaming(it).forEach(function(n){c[n]=(c[n]||0)+1})})});
+  return Object.keys(c).sort(function(a,b){return c[b]-c[a]||a.localeCompare(b,'pt-BR')}).map(function(n){return {n:n,c:c[n]}});
+}
+function renderWatchCtl(){
+  try{
+    var tem=!!(SV&&SV.titulos);
+    ['filmes','series'].forEach(function(kind){
+      var box=document.querySelector('[data-watchbox="'+kind+'"]'),det=document.querySelector('[data-mysvc="'+kind+'"]');
+      if(!box||!det)return;
+      box.hidden=!tem;det.hidden=!tem;if(!tem)return;
+      var list=D[kind]||[],V=VIEW[kind];
+      var porServ={};list.forEach(function(it){emStreaming(it).forEach(function(n){porServ[n]=(porServ[n]||0)+1})});
+      var nMeus=list.filter(function(it){return passaWatch(it,'meus')}).length,nAss=list.filter(function(it){return emStreaming(it).length>0}).length;
+      var opts=[['todos','Onde assistir: qualquer lugar'],['meus','Nos meus serviços ('+nMeus+')'],['assin','Em algum streaming ('+nAss+')']];
+      Object.keys(porServ).sort(function(a,b){return porServ[b]-porServ[a]||a.localeCompare(b,'pt-BR')}).forEach(function(n){opts.push(['p:'+n,n+' ('+porServ[n]+')'])});
+      if(!opts.some(function(o){return o[0]===V.w}))V.w='todos';
+      box.querySelector('select').innerHTML=opts.map(function(o){return '<option value="'+esc(o[0])+'"'+(o[0]===V.w?' selected':'')+'>'+esc(o[1])+'</option>'}).join('');
+      var todos=contaServicos(),vistos=todos.map(function(s){return s.n});
+      meus().forEach(function(n){if(vistos.indexOf(n)<0)todos.push({n:n,c:0})});
+      det.querySelector('summary').textContent='Seus serviços'+(meus().length?' ('+meus().length+')':'');
+      det.querySelector('.chips').innerHTML=todos.map(function(s){return '<button class="chip" data-svc="'+esc(s.n)+'" aria-pressed="'+(meus().indexOf(s.n)>-1)+'">'+esc(s.n)+(s.c?'':' <span class="alt">(sem títulos agora)</span>')+'</button>'}).join('');
+    });
+  }catch(e){console.error(e)}
+}
+// título original e título em inglês, sem repetir o que já está escrito
+function titulosExtras(it){
+  var pt=it.titulo||'',og=it.titulo_original||'',en=it.titulo_en||'',out='',tag='<span class="lang" title="Título em inglês">EN</span>';
+  if(og&&og!==pt)out+='<div class="meta">'+(en&&en===og?tag:'')+esc(og)+'</div>';
+  if(en&&en!==og&&en!==pt)out+='<div class="meta">'+tag+esc(en)+'</div>';
+  return out;
+}
+function enLinha(it){
+  var pt=it.titulo||'',og=it.titulo_original||'',en=it.titulo_en||'',p=[];
+  if(en&&en!==pt)p.push(esc(en));
+  if(og&&og!==pt&&og!==en)p.push('<i>'+esc(og)+'</i>');
+  return p.join(' · ');
+}
+function sobrenome(a){a=String(a||'').replace(/\s*\([^)]*\)?/g,'').split(/\s+e\s+|,|\//)[0].trim();var w=a.split(/\s+/);return w.length>1?w[w.length-1]:a}
+function nTemporadas(it){var m=String(it.temporadas||'').match(/(\d+)\s*(temp|parte|jornada|livro)/i);var n=m?+m[1]:0;return n>0&&n<=30?n:0}
+
+// ---------- NOTA: FAIXAS E COMPARAÇÃO ----------
+var SEMNOTA='Sem nota · toque ou arraste para dar a sua';
+function faixa(v){return v>=90?'Me atravessou':v>=75?'Ficou comigo':v>=60?'Bom':v>=40?'Morno':'Não é pra mim'}
+// a nota lida como faixa pessoal, no jeito do Criticker
+function pctNota(v){
+  var l=Object.keys(ST.notas).map(function(k){return +ST.notas[k]}).filter(function(x){return !isNaN(x)});
+  if(l.length<5||v==null)return '';
+  var maiores=l.filter(function(x){return x>=v}).length/l.length,menores=l.filter(function(x){return x<=v}).length/l.length;
+  function r(x){return Math.max(5,Math.ceil(x*100/5)*5)}
+  return maiores<=.5?'Entre as suas '+r(maiores)+'% maiores notas':'Entre as suas '+r(menores)+'% menores notas';
+}
+function difHtml(cx,v){
+  if(cx==null)return v==null?'':'Você deu <strong>'+v+'</strong>.';
+  if(v==null)return 'Conexão prevista <b>'+cx+'</b>. Dê a sua nota e veja a diferença.';
+  var d=v-cx,txt=Math.abs(d)<=2?'bem no previsto':(d>0?'+'+d+' acima do previsto':'−'+Math.abs(d)+' abaixo do previsto');
+  return 'Conexão prevista <b>'+cx+'</b> · você deu <strong>'+v+'</strong>, '+txt;
+}
+
+// ---------- CARTÃO DA GRADE ----------
+var SEGOPTS={filmes:['quero','assisti','abandonei'],series:['quero','acompanhando','assisti','abandonei']};
+function progresso(it,kind){
+  if(kind!=='series'||stOf(it)!=='acompanhando')return '';
+  var n=nTemporadas(it),t=obj(ST.temp[it.id]),f=Object.keys(t).length;
+  var p=n?Math.min(100,Math.round(f/n*100)):0;
+  return '<span class="prog" title="'+(n?f+' de '+n+' temporadas com nota':'Acompanhando')+'"><i style="width:'+Math.max(p,6)+'%"></i></span>';
+}
+function card(it,kind){
+  var st=stOf(it),nota=ST.notas[it.id],cx=conexao(it),rk=RANK[kind]&&RANK[kind][it.id],vz=+ST.vezes[it.id]||0;
+  // a posição só aparece no pôster na ordem por conexão, e só no top 10: o cartaz fica limpo
+  var pilula=rk&&rk<=10&&VIEW[kind].sort==='conn';
+  var xtra=(rk?'<span class="lst">Nº '+rk+'</span> · ':'')+[it.ano,sobrenome(it.autor),kind==='filmes'?it.duracao:''].filter(Boolean).map(esc).join(' · ');
+  return '<article class="card'+(st?' s-'+st:'')+'" data-id="'+esc(it.id)+'" data-kind="'+kind+'">'+
+    '<div class="pw">'+
+      '<button class="abre" data-abre="1" aria-label="'+esc(it.titulo)+': registrar status e nota">'+capa(it,330)+'</button>'+
+      (pilula?'<span class="rk num" aria-hidden="true">'+rk+'</span>':'')+
+      '<span class="vz num"'+(vz>1?'':' hidden')+'>'+vz+'×</span>'+
+      '<span class="stx" aria-hidden="true">'+(st?IC[st]:'')+'</span>'+
+      progresso(it,kind)+
+      '<div class="quick">'+
+        // atalho só do mouse: fora da ordem do Tab (o teclado registra pela folha, no pôster)
+        '<div class="seg" role="group" aria-label="Status">'+SEGOPTS[kind].map(function(s){return '<button tabindex="-1" data-s="'+s+'" aria-pressed="'+(st===s)+'" aria-label="'+SLAB[s]+'" title="'+SLAB[s]+'">'+IC[s]+'</button>'}).join('')+'</div>'+
+        '<div class="score'+(nota==null?' vazio':'')+'"><input tabindex="-1" class="rng" type="range" min="0" max="100" step="1" data-nota="1" value="'+(nota==null?50:nota)+'" style="--v:'+(nota==null?50:nota)+'%" aria-label="Sua nota para '+esc(it.titulo)+'">'+
+          '<output class="nv num">'+(nota==null?'—':nota)+'</output><button tabindex="-1" class="clr" data-clr="1" aria-label="Apagar nota"'+(nota==null?' hidden':'')+'>'+IC.x+'</button></div>'+
+      '</div>'+
+    '</div>'+
+    '<details class="pg"><summary class="leg"><span class="t">'+esc(it.titulo)+'</span><span class="xtra">'+xtra+'</span>'+
+      '<span class="nums num"><b class="cx" title="Conexão prevista">'+(cx==null?'—':cx)+'</b><span class="mn" title="Sua nota">'+(nota!=null?' · '+nota:'')+'</span></span></summary></details>'+
+  '</article>';
+}
+
+// ---------- AÇÕES E NOTA (folha e página) ----------
+function acoesHtml(it,kind){
+  var st=stOf(it),vz=+ST.vezes[it.id]||0;
+  function b(s,lab){return '<button class="ac" data-s="'+s+'" aria-pressed="'+(st===s)+'"><span class="bt">'+IC[s]+'</span>'+lab+'</button>'}
+  // Revi só vale para o que ele já viu: antes de Assisti, o botão fica apagado
+  var terceiro=kind==='series'?b('acompanhando','Acompanho'):
+    '<button class="ac'+(vz>1?' revisto':'')+'" data-revi="1" aria-label="Revi: soma mais uma vez"'+(st==='assisti'?'':' disabled title="Marque Assisti primeiro"')+'><span class="bt">'+IC.revi+'<small class="num rv">'+(vz>1?vz+'×':'+1')+'</small></span>Revi</button>';
+  return '<div class="acoes" role="group" aria-label="Status">'+b('assisti','Assisti')+b('quero','Quero ver')+terceiro+b('abandonei','Abandonei')+'</div>';
+}
+function notaHtml(it){
+  var v=ST.notas[it.id],cx=conexao(it),val=v==null?50:v;
+  var ticks='';for(var i=0;i<=10;i++)ticks+='<i></i>';
+  return '<div class="nota'+(v==null?' vazio':'')+'">'+
+    '<div class="nota-top"><output class="nv num">'+(v==null?'—':v)+'</output><span class="fx">'+(v==null?SEMNOTA:faixa(v))+'</span>'+
+      '<button class="clr" data-clr="1"'+(v==null?' hidden':'')+'>Limpar</button></div>'+
+    '<div class="trilho"><input class="rng" type="range" min="0" max="100" step="1" data-nota="1" value="'+val+'" style="--v:'+val+'%" aria-label="Sua nota de 0 a 100"></div>'+
+    '<div class="marcas" aria-hidden="true">'+ticks+'</div>'+
+    '<p class="dif">'+difHtml(cx,v)+'</p><p class="pct">'+(v==null?'':esc(pctNota(v)))+'</p></div>';
+}
+function metaCurta(it,kind){return [sobrenome(it.autor),it.ano,kind==='filmes'?it.duracao:(it.temporadas||'').replace(/\s*\(.*\)$/,'')].filter(Boolean).map(esc).join(' · ')}
+
+// ---------- PÁGINA COMPLETA ----------
+function conexaoHtml(it){
+  var cx=conexao(it),d=it.dims||[];
+  if(cx==null||!d.length)return '';
+  var l=DIMS.map(function(x,i){return {n:x.nome,v:Math.max(0,Math.min(100,+d[i]||0))}}).sort(function(a,b){return b.v-a.v});
+  var fortes=l.slice(0,3).map(function(x){return x.n}),fraca=l[l.length-1];
+  var frase='Forte em <b>'+esc(fortes.slice(0,2).join(', '))+'</b> e <b>'+esc(fortes[2])+'</b>.'+(fraca.v<50?' Pouco de '+esc(fraca.n)+'.':'');
+  return '<section class="pg-sec"><h3 class="rotulo">Conexão <span class="dica">a previsão, pelos seus pesos</span></h3>'+
+    '<div class="cx-top"><b class="cx-n num">'+cx+'</b><p>'+frase+'</p></div>'+
+    '<div class="barras" role="list">'+l.map(function(x){return '<span class="bn" role="listitem">'+esc(x.n)+'</span><span class="bt" title="'+esc(x.n)+': '+x.v+'"><i style="width:'+x.v+'%"></i></span><span class="bv num">'+x.v+'</span>'}).join('')+'</div>'+
+    (it.ponte?'<p class="ponte"><b>Por que conversa com você</b>'+esc(it.ponte)+'</p>':'')+'</section>';
+}
+function foraHtml(it,kind){
+  var n=it.notas||{},m=n.origem==='memoria',ap=m?'≈':'',out=[];
+  function f(lab,v){out.push('<span'+(m?' class="mem" title="Aproximada: ainda não conferida na fonte"':'')+'>'+lab+' <b class="num">'+ap+esc(v)+'</b></span>')}
+  if(n.imdb)f('IMDb',n.imdb);
+  if(n.rt_critica)f('RT',n.rt_critica);
+  if(n.rt_publico)f('Público',n.rt_publico);
+  if(n.metacritic)f('MC',n.metacritic);
+  if(kind==='filmes'&&n.letterboxd)f('Letterboxd',n.letterboxd);
+  if(!out.length)return '';
+  return '<section class="pg-sec"><h3 class="rotulo">Notas de fora</h3><p class="fora">'+out.join('')+'</p></section>';
+}
+function paginaHtml(it,kind){
+  var st=stOf(it),rk=RANK[kind]&&RANK[kind][it.id];
+  var meta=[it.pais,it.ano,kind==='filmes'?it.duracao:it.temporadas,it.autor].filter(Boolean).map(esc).join(' · ');
+  var band=urlTam(it.id,250);
+  var corpo=[conexaoHtml(it),foraHtml(it,kind)];
+  if(kind==='series'){
+    var n=nTemporadas(it),t=obj(ST.temp[it.id]);
+    var info=[it.status?esc(it.status):'',it.plataforma?esc(it.plataforma):''].filter(Boolean).join(' · ');
+    corpo.push('<section class="pg-sec"><h3 class="rotulo">Temporadas <span class="dica">'+(n?'uma nota para cada, como no Serializd':'')+'</span></h3>'+
+      (n?'<div class="temps" role="group" aria-label="Nota por temporada">'+Array.apply(null,{length:n}).map(function(_,i){var k=String(i+1),v=t[k];
+        return '<button class="tq" data-tq="'+k+'" aria-pressed="false">T'+k+' <b class="num">'+(v!=null?esc(v):'')+'</b></button>'}).join('')+'</div>'+
+        '<div class="tq-nota" hidden><span class="tq-l"></span><span class="trilho"><input class="rng" type="range" min="0" max="100" step="1" data-temp="1" value="50" aria-label="Nota da temporada"></span><output class="num tq-v">—</output><button class="clr" data-tqclr="1">Limpar</button></div>':'')+
+      '<p class="src" style="margin-top:10px">'+[esc(it.temporadas||''),info].filter(Boolean).join(' · ')+'</p>'+
+      (it.proximo?'<p style="margin-top:6px"><b>Próxima temporada:</b> '+esc(it.proximo)+'</p>':'')+'</section>');
+  }
+  var cr=(it.criticos||[]).map(critico).join('');
+  if(cr)corpo.push('<section class="pg-sec"><h3 class="rotulo">Críticos</h3>'+cr+'</section>');
+  var fundo=[];
+  var vl=it.visao&&linkDe(it.visao.fonte);
+  if(it.visao&&it.visao.texto)fundo.push('<section class="pg-sec"><h3 class="rotulo">Visão '+(kind==='filmes'?'do diretor':'de quem criou')+'</h3><p>'+esc(it.visao.texto)+'</p>'+(vl?'<p class="src"><a href="'+esc(vl)+'" target="_blank" rel="noopener">fonte ↗</a></p>':'')+'</section>');
+  if(it.leitura||it.espelho||it.jornada)fundo.push('<section class="pg-sec"><h3 class="rotulo">Leitura arquetípica'+(it.arquetipo?' <span class="dica">'+esc(it.arquetipo)+'</span>':'')+'</h3>'+(it.leitura?'<p>'+esc(it.leitura)+'</p>':'')+
+    (it.jornada?'<p class="src">Jornada: '+esc(it.jornada)+'</p>':'')+(it.espelho?'<p><b>Em você:</b> '+esc(it.espelho)+'</p>':'')+'</section>');
+  if(fundo.length){
+    // quem ainda vai ver não leva a leitura de cara
+    if(st==='quero')corpo.push('<div class="pg-sec oculto"><button class="mostra" data-mostra="1">Mostrar visão e leitura arquetípica'+IC.dir.replace('class="i"','class="i" style="width:18px;height:18px"')+'</button><div class="conteudo">'+fundo.join('')+'</div></div>');
+    else corpo=corpo.concat(fundo);
+  }
+  return '<div class="pg-barra"><button class="pg-volta" data-fecha-pg="1" aria-label="Voltar">'+IC.esq+'</button><span class="pg-mini" aria-hidden="true">'+esc(it.titulo)+'</span></div>'+
+    '<div class="pg-band" aria-hidden="true">'+(band?'<img src="'+esc(band)+'" alt="" decoding="async" onerror="this.remove()">':'')+'</div>'+
+    '<div class="pg-in">'+
+      '<div class="pg-poster">'+capa(it,500)+'</div>'+
+      '<div class="pg-tit"><p class="pre">'+(kind==='filmes'?'Filme':'Série')+(rk?' · Nº '+rk+' em conexão':'')+'</p><h2 class="serif" tabindex="-1">'+esc(it.titulo)+'</h2>'+
+        (enLinha(it)?'<p class="en">'+enLinha(it)+'</p>':'')+'<p class="meta">'+meta+'</p>'+
+        '<button class="pg-fecha" data-fecha-pg="1">'+IC.esq.replace('class="i"','class="i" style="width:16px;height:16px"')+'Voltar à grade</button></div>'+
+      '<div class="pg-lado">'+acoesHtml(it,kind)+notaHtml(it)+'<div class="pg-sec" style="margin-top:22px"><h3 class="rotulo">Onde assistir</h3><div data-onde="1">'+watchHtml(it)+'</div></div></div>'+
+      '<div class="pg-corpo">'+corpo.join('')+'</div>'+
+    '</div>';
+}
+
+// ---------- PINTOR: atualiza no lugar tudo que mostra um título ----------
+function pintaTitulo(id){
+  var it=itemPorId(id);if(!it)return;
+  var st=stOf(it),nota=ST.notas[id],cx=conexao(it),vz=+ST.vezes[id]||0,fav=ST.fav4.filmes.indexOf(id)>-1||ST.fav4.series.indexOf(id)>-1;
+  document.querySelectorAll('[data-kind][data-id]').forEach(function(c){
+    if(c.dataset.id!==id)return;
+    ['quero','assisti','acompanhando','abandonei'].forEach(function(s){c.classList.toggle('s-'+s,st===s)});
+    c.querySelectorAll('[data-s]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.s===st))});
+    c.querySelectorAll('.stx').forEach(function(x){x.innerHTML=st?IC[st]:''});
+    c.querySelectorAll('.nv').forEach(function(o){o.textContent=nota==null?'—':nota});
+    c.querySelectorAll('.score,.nota').forEach(function(s){s.classList.toggle('vazio',nota==null)});
+    c.querySelectorAll('input[data-nota]').forEach(function(r){if(nota!=null&&+r.value!==nota)r.value=nota;r.style.setProperty('--v',(nota==null?+r.value:nota)+'%')});
+    c.querySelectorAll('[data-clr]').forEach(function(b){b.hidden=nota==null});
+    c.querySelectorAll('.mn').forEach(function(m){m.textContent=nota==null?'':' · '+nota});
+    c.querySelectorAll('.fx').forEach(function(f){f.textContent=nota==null?SEMNOTA:faixa(nota)});
+    c.querySelectorAll('.dif').forEach(function(d){d.innerHTML=difHtml(cx,nota)});
+    c.querySelectorAll('.pct').forEach(function(d){d.textContent=nota==null?'':pctNota(nota)});
+    c.querySelectorAll('.vz').forEach(function(v){v.hidden=vz<2;v.textContent=vz+'×'});
+    c.querySelectorAll('[data-revi]').forEach(function(b){b.classList.toggle('revisto',vz>1);var s=b.querySelector('.rv');if(s)s.textContent=vz>1?vz+'×':'+1';
+      b.disabled=st!=='assisti';if(st==='assisti')b.removeAttribute('title');else b.title='Marque Assisti primeiro'});
+    c.querySelectorAll('[data-f4]').forEach(function(b){b.setAttribute('aria-pressed',String(fav))});
+  });
+}
+// onde assistir da página aberta, quando o streaming.json chega depois dela
+function pintaOnde(){
+  try{document.querySelectorAll('#avulsa [data-id][data-kind]').forEach(function(c){var it=itemPorId(c.dataset.id);if(!it)return;
+    c.querySelectorAll('[data-onde]').forEach(function(w){w.innerHTML=watchHtml(it)})})}catch(e){console.error(e)}
+}
+// depois de mudar status ou nota: contagens, Os 4, linha de gosto, Você
+function aposMudar(kind){
+  try{if(kind){chips(kind);renderTopo(kind)}}catch(e){console.error(e)}
+  try{if(ABA==='voce')renderVoce()}catch(e){console.error(e)}
+}
+
+// ---------- AÇÕES ----------
+function diarioAdd(id,r){
+  var d=hoje();
+  if(ST.diario.some(function(x){return x.id===id&&x.d===d&&!!x.r===!!r}))return;
+  ST.diario.push(r?{id:id,d:d,r:1}:{id:id,d:d});
+  if(ST.diario.length>1000)ST.diario=ST.diario.slice(-1000);
+}
+function setStatus(kind,id,s){
+  var it=itemPorId(id)||{id:id};
+  var atual=stOf(it),novo=(atual===s)?'':s;
+  if(novo)ST.status[id]=novo;else if(it.biblioteca)ST.status[id]='nenhum';else delete ST.status[id];
+  // o diário grava a data na hora em que ele marca; desmarcar no mesmo dia desfaz
+  if(novo==='assisti'&&atual!=='assisti')diarioAdd(id,false);
+  if(atual==='assisti'&&novo!=='assisti')ST.diario=ST.diario.filter(function(x){return !(x.id===id&&x.d===hoje()&&!x.r)});
+  save();pintaTitulo(id);aposMudar(kind);
+  if(kind==='series')renderCal();
+}
+function setNota(id,v){if(v==null)delete ST.notas[id];else ST.notas[id]=Math.max(0,Math.min(100,Math.round(v)));pintaTitulo(id)}
+function revi(kind,id){
+  var v=(+ST.vezes[id]||1)+1;ST.vezes[id]=v;
+  var it=itemPorId(id);if(it&&stOf(it)!=='assisti')ST.status[id]='assisti';
+  diarioAdd(id,true);save();pintaTitulo(id);aposMudar(kind);renderCol('repetidos');
+  aviso('Mais uma vez: '+v+' no total.');
+}
+function toggleFav4(kind,id){
+  var l=ST.fav4[kind]||(ST.fav4[kind]=[]),i=l.indexOf(id);
+  if(i>-1)l.splice(i,1);
+  else if(l.length>=4){aviso('Seus 4 já estão escolhidos. Tire um deles antes.');return}
+  else l.push(id);
+  save();pintaTitulo(id);aposMudar(kind);
+}
+
+// ---------- OS 4 E LINHA DE GOSTO ----------
+function os4Ids(kind){
+  var esc4=(ST.fav4[kind]||[]).filter(function(id){return !!itemPorId(id)}).slice(0,4),auto=[];
+  if(esc4.length<4){
+    auto=(D[kind]||[]).filter(function(it){return ST.notas[it.id]!=null&&esc4.indexOf(it.id)<0})
+      .sort(function(a,b){return ST.notas[b.id]-ST.notas[a.id]||(conexao(b)||0)-(conexao(a)||0)}).slice(0,4-esc4.length).map(function(it){return it.id});
+  }
+  return {esc:esc4,auto:auto};
+}
+function os4Html(kind){
+  var o=os4Ids(kind),ids=o.esc.concat(o.auto),out=[];
+  for(var i=0;i<4;i++){
+    var id=ids[i],it=id&&itemPorId(id);
+    if(it)out.push('<button class="f4" data-folha="'+esc(id)+'" aria-label="'+esc(it.titulo)+'" title="'+esc(it.titulo)+(o.auto.indexOf(id)>-1?' (entra pela sua nota até você escolher)':'')+'">'+capa(it,250)+'</button>');
+    else out.push('<button class="f4 vazio" data-pick4="'+kind+'" aria-label="Escolher um dos seus 4">'+IC.mais+'</button>');
+  }
+  var dica=o.esc.length?'':(o.auto.length?'pelas suas notas, até você escolher':'toque no + para escolher');
+  return '<div><h2 class="rotulo">Os 4'+(dica?' <span class="dica">'+dica+'</span>':'')+'</h2><div class="os4">'+out.join('')+'</div></div>';
+}
+function bins(l){var b=[0,0,0,0,0,0,0,0,0,0];l.forEach(function(v){b[Math.min(9,Math.floor(v/10))]++});return b}
+function gostoHtml(kind){
+  var list=D[kind]||[],n=list.length;
+  var viu=list.filter(function(it){var s=stOf(it);return s==='assisti'||(kind==='series'&&s==='acompanhando')}).length;
+  var notas=list.map(function(it){return ST.notas[it.id]}).filter(function(v){return v!=null});
+  var media=notas.length?Math.round(notas.reduce(function(a,b){return a+b},0)/notas.length):null;
+  var b=bins(notas),mx=Math.max.apply(null,b.concat([1]));
+  var hist='<span class="histo" role="img" aria-label="Distribuição das suas notas de '+(kind==='filmes'?'filmes':'séries')+'">'+b.map(function(c,i){
+    return '<i'+(c?'':' class="z"')+' style="height:'+(c?Math.max(3,Math.round(c/mx*20)):2)+'px" title="'+(i*10)+'–'+(i===9?100:i*10+9)+': '+c+(c===1?' nota':' notas')+'"></i>'}).join('')+'</span>';
+  if(!viu&&media==null)return '<div class="gosto"><span>Toque num pôster para marcar o que viu e dar a sua nota.</span></div>';
+  return '<div class="gosto"><span>Viu <b class="num">'+viu+'</b> de '+n+(media==null?'':' · média <b class="num">'+media+'</b>')+'</span>'+(notas.length?hist:'')+'</div>';
+}
+function renderTopo(kind){
+  try{
+    var box=el('topo-'+kind);if(!box)return;
+    var V=VIEW[kind];
+    if(V.q.trim()){box.hidden=true;return}
+    box.hidden=false;box.innerHTML=gostoHtml(kind);
+  }catch(e){console.error(e)}
+}
+
+function renderList(kind){
+  try{
+    calcRank(kind);
+    var box=el('list-'+kind),all=visiveis(kind),V=VIEW[kind];
+    box.classList.toggle('lista',V.vista==='lista');
+    renderVista(kind);renderTopo(kind);
+    var rot=document.querySelector('[data-ordemrot="'+kind+'"]');if(rot){rot.textContent='Ordem: '+(SORTLAB[V.sort]||'');var lb=rot.closest('.ordem');if(lb){lb.classList.toggle('mudou',V.sort!=='conn');lb.title='Ordenar ('+(SORTLAB[V.sort]||'')+')'}}
+    if(!all.length){box.innerHTML='<p class="empty">'+(V.w==='meus'&&!meus().length?'Você ainda não marcou seus serviços. Abra "Seus serviços", logo acima, e marque os que assina.':(V.q?'Nada com “'+esc(V.q.trim())+'” aqui.':'Nada aqui com esse filtro.'))+'</p>';el('ct-'+kind).textContent=' '+(D[kind]||[]).length;chips(kind);return}
+    box.innerHTML=all.slice(0,V.n).map(function(it){try{return card(it,kind)}catch(e){return ''}}).join('')+
+      (all.length>V.n?'<div class="mais-wrap"><button class="loadmore" data-more="'+kind+'">Mostrar mais ('+(all.length-V.n)+')</button></div>':'');
+    el('ct-'+kind).textContent=' '+(D[kind]||[]).length;
+    chips(kind);
+  }catch(e){console.error(e)}
+}
+// um botão só no cabeçalho, que mostra o modo para onde vai (como no Sequel)
+function renderVista(kind){
+  var b=document.querySelector('[data-vistabox="'+kind+'"]');if(!b)return;var v=VIEW[kind].vista,outra=v==='grade'?'lista':'grade';
+  b.innerHTML='<button class="icb vista-b" data-vista="'+outra+'" data-vk="'+kind+'" aria-label="Ver em '+outra+'" title="Ver em '+outra+'">'+IC[outra]+'</button>';
+}
+function renderAll(){
+  renderWatchCtl();renderList('filmes');renderList('series');renderCol('desligar');renderCol('repetidos');renderPesos();renderDados();
+  try{if(ABA==='voce')renderVoce()}catch(e){console.error(e)}
+  try{if(!IA_OCUPADA){el('ia-out').innerHTML=(ST.ia||[]).length?blocoResposta(ST.ia[0]):'';renderHist()}}catch(e){console.error(e)}
+  el('foot').textContent=(D.gerado_em?'Lista gerada em '+D.gerado_em+'. ':'')+'Notas dos agregadores mudam com o tempo; confira na fonte antes de citar.'+(STORE?'':' Este navegador não está guardando suas notas: faça backup.');
+}
+
+// ---------- FOLHA DE REGISTRO ----------
+var FOLHA={id:null,kind:null,volta:null};
+function folhaHtml(it,kind){
+  var fav=(ST.fav4[kind]||[]).indexOf(it.id)>-1,cols=['desligar','repetidos'].filter(function(c){return colItens(c).indexOf(it.id)>-1});
+  var col='';
+  if(cols.length){var vz=+ST.vezes[it.id]||0;col='<div class="fh-col">Está em '+cols.map(function(c){return c==='desligar'?'Desligar o cérebro':'Repetidos'}).join(' e ')+
+    (vz?' · visto '+vz+(vz===1?' vez':' vezes'):'')+(ST.fase[it.id]?' · fase: '+esc(ST.fase[it.id]):'')+'</div>'}
+  return '<div class="ficha" data-id="'+esc(it.id)+'" data-kind="'+kind+'"><div class="alca" aria-hidden="true"></div>'+
+    '<button class="icb fh-x" data-ffecha="1" aria-label="Fechar">'+IC.x+'</button>'+
+    '<div class="fh-cab"><span>'+capa(it,250)+'</span><div><h2 class="serif" id="folha-t">'+esc(it.titulo)+'</h2>'+
+      (enLinha(it)?'<p class="en">'+enLinha(it)+'</p>':'')+'<p class="meta">'+metaCurta(it,kind)+'</p>'+
+      '<button class="fav" data-f4="1" aria-pressed="'+fav+'">'+IC.coracao+'Nos meus 4</button></div></div>'+
+    acoesHtml(it,kind)+notaHtml(it)+col+
+    '<button class="abrir" data-fpg="1">Abrir página'+IC.dir+'</button></div>';
+}
+function abreFolha(kind,id){
+  try{
+    var it=itemPorId(id);if(!it)return;
+    if(!kind)kind=kindDe(id);
+    var f=el('folha'),sh=el('folha-sheet');
+    var nova=f.hidden;
+    // ao trocar o conteúdo (vindo da busca do +), o foco continua voltando para onde estava antes da folha
+    if(nova)FOLHA.volta=document.activeElement;
+    sh.classList.remove('alta');
+    sh.innerHTML=folhaHtml(it,kind);sh.setAttribute('aria-labelledby','folha-t');FOLHA.id=id;FOLHA.kind=kind;
+    f.hidden=false;sh.scrollTop=0;
+    if(nova)empilha(fechaFolhaSem);
+    trava();try{sh.focus({preventScroll:true})}catch(e){}
+  }catch(e){console.error(e)}
+}
+// busca dentro da folha: escolher Os 4 (kind = filmes/series) ou registrar qualquer título pelo + (kind = todos)
+function abrePicker(kind){
+  try{
+    var f=el('folha'),sh=el('folha-sheet'),nova=f.hidden,reg=kind==='todos';
+    if(nova)FOLHA.volta=document.activeElement;
+    FOLHA.id=null;FOLHA.kind=kind;
+    sh.classList.toggle('alta',reg);
+    sh.innerHTML='<div class="picker"><div class="alca" aria-hidden="true"></div><button class="icb fh-x" data-ffecha="1" aria-label="Fechar">'+IC.x+'</button>'+
+      '<h2 id="folha-t">'+(reg?'Registrar':'Escolher para Os 4')+'</h2><label class="busca"><span class="sr">Buscar</span>'+svg('<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/>')+
+      '<input class="campo" type="search" data-pkq="'+kind+'" placeholder="'+(reg?'Buscar filme ou série':kind==='filmes'?'Buscar filme':'Buscar série')+'" autocomplete="off" enterkeyhint="search"></label><div class="pk-lista" id="pk-lista"></div></div>';
+    sh.setAttribute('aria-labelledby','folha-t');
+    f.hidden=false;sh.scrollTop=0;if(nova)empilha(fechaFolhaSem);trava();
+    listaPicker(kind,'');
+    // no + a busca já abre pronta para digitar, como no Letterboxd
+    if(reg){try{sh.querySelector('[data-pkq]').focus({preventScroll:true})}catch(e){}}else{try{sh.focus({preventScroll:true})}catch(e){}}
+  }catch(e){console.error(e)}
+}
+function listaPicker(kind,q){
+  var l=el('pk-lista');if(!l)return;q=String(q||'').trim().toLowerCase();
+  var reg=kind==='todos',ja=reg?[]:(ST.fav4[kind]||[]);
+  var base=reg?[].concat(D.filmes||[],D.series||[]):(D[kind]||[]);
+  var it=base.filter(function(x){return ja.indexOf(x.id)<0&&(!q||[x.titulo,x.titulo_en,x.titulo_original,x.autor].join(' ').toLowerCase().indexOf(q)>-1)});
+  if(reg&&!q){
+    // sem busca: o que ele quer ver primeiro, depois os mais conectados que ele ainda não marcou
+    var quer=it.filter(function(x){return stOf(x)==='quero'}),livres=it.filter(function(x){return !stOf(x)&&ST.notas[x.id]==null});
+    function pc(a,b){return (conexao(b)||0)-(conexao(a)||0)}
+    it=quer.sort(pc).concat(livres.sort(pc)).slice(0,30);
+  }else it=it.sort(function(a,b){var na=ST.notas[a.id],nb=ST.notas[b.id];return (nb==null?-1:nb)-(na==null?-1:na)||(conexao(b)||0)-(conexao(a)||0)}).slice(0,40);
+  var cab=reg&&!q&&it.length?'<h3 class="rotulo" style="margin:14px 0 2px">Sugestões <span class="dica">o que você quer ver e os mais conectados</span></h3>':'';
+  l.innerHTML=it.length?cab+it.map(function(x){var v=ST.notas[x.id],cx=conexao(x),k=kindDe(x.id);
+    var tipo=reg?(k==='filmes'?'Filme':'Série')+' · ':'';
+    return '<button class="pk" '+(reg?'data-folha="'+esc(x.id)+'"':'data-pick="'+esc(x.id)+'" data-pkk="'+kind+'"')+'><span style="width:40px">'+capa(x,120)+'</span><span style="min-width:0"><b>'+esc(x.titulo)+'</b><span>'+tipo+esc([x.ano,sobrenome(x.autor)].filter(Boolean).join(' · '))+'</span></span>'+
+      '<span class="nums num"><b>'+(cx==null?'—':cx)+'</b>'+(v!=null?' · '+v:'')+'</span></button>'}).join(''):'<p class="vazio-txt" style="padding:16px 0">Nada com esse nome.</p>';
+}
+function fechaFolhaSem(){
+  var f=el('folha');if(f.hidden)return;f.hidden=true;var sh=el('folha-sheet');sh.innerHTML='';sh.classList.remove('alta');FOLHA.id=null;trava();
+  try{if(FOLHA.volta&&document.contains(FOLHA.volta)&&!FOLHA.volta.closest('#folha'))FOLHA.volta.focus({preventScroll:true})}catch(e){}
+}
+function fechaFolha(){desempilha(fechaFolhaSem);fechaFolhaSem()}
+
+// puxar a folha para baixo fecha (alça, cabeçalho ou qualquer ponto com a folha no topo), como no iOS
+(function(){
+  try{
+    var sh=el('folha-sheet'),veu=document.querySelector('#folha .veu'),A=null;
+    function celular(){return window.matchMedia('(max-width:899px)').matches}
+    function limpa(){sh.classList.remove('solta','arrasta');veu.classList.remove('solta');sh.style.transform='';veu.style.opacity=''}
+    sh.addEventListener('touchstart',function(e){
+      A=null;
+      if(!celular()||e.touches.length!==1)return;
+      var t=e.target;
+      if(t.closest('.trilho,input,select,textarea,.chips,.temps'))return;
+      var topo=!!t.closest('.alca,.fh-cab,.picker h2');
+      if(!topo&&sh.scrollTop>0)return;
+      A={y:e.touches[0].clientY,x:e.touches[0].clientX,t:Date.now(),dy:0,on:false,topo:topo,vy:0,ly:e.touches[0].clientY,lt:Date.now()};
+    },{passive:true});
+    sh.addEventListener('touchmove',function(e){
+      if(!A)return;
+      var y=e.touches[0].clientY,dy=y-A.y,dx=e.touches[0].clientX-A.x;
+      if(!A.on){
+        if(Math.abs(dy)<6&&Math.abs(dx)<6)return;
+        if(dy<=0||Math.abs(dx)>Math.abs(dy)||(!A.topo&&sh.scrollTop>0)){A=null;return}
+        A.on=true;sh.classList.add('arrasta');
+      }
+      if(e.cancelable)e.preventDefault();
+      var n=Date.now();A.vy=(y-A.ly)/Math.max(1,n-A.lt);A.ly=y;A.lt=n;
+      A.dy=Math.max(0,dy);
+      sh.style.transform='translateY('+A.dy+'px)';
+      veu.style.opacity=String(Math.max(.15,1-A.dy/Math.max(200,sh.offsetHeight)));
+    },{passive:false});
+    function solta(){
+      var a=A;A=null;
+      if(!a||!a.on)return;
+      sh.classList.remove('arrasta');
+      var fecha=a.dy>120||(a.vy>.5&&a.dy>30);
+      var calmo=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(fecha&&calmo){limpa();fechaFolha();return}
+      sh.classList.add('solta');veu.classList.add('solta');
+      if(fecha){sh.style.transform='translateY(100%)';veu.style.opacity='0';setTimeout(function(){limpa();fechaFolha()},210)}
+      else{sh.style.transform='';veu.style.opacity='';setTimeout(limpa,240)}
+    }
+    sh.addEventListener('touchend',solta);sh.addEventListener('touchcancel',solta);
+  }catch(e){console.error(e)}
+})();
+
+// ---------- PÁGINA: abrir e fechar ----------
+// A página mora sempre na camada #avulsa, fora da grade. O details do cartão é só o gatilho (fica aberto
+// enquanto a página estiver na tela): se a grade for redesenhada, a página aberta não some.
+var PAG={id:null,kind:null,det:null,volta:null};
+function preenchePagina(det){
+  var c=det&&det.closest('[data-id][data-kind]');if(!c)return;
+  abrePagina(c.dataset.kind,c.dataset.id,det);
+}
+function abrePagina(kind,id,det){
+  try{
+    var it=itemPorId(id);if(!it)return;
+    if(!kind)kind=kindDe(id);
+    var a=el('avulsa'),nova=a.hidden;
+    if(nova)PAG.volta=document.activeElement;
+    if(PAG.det&&PAG.det!==det&&document.contains(PAG.det))PAG.det.open=false;
+    PAG.id=id;PAG.kind=kind;PAG.det=det||null;
+    a.innerHTML='<div data-id="'+esc(id)+'" data-kind="'+kind+'">'+paginaHtml(it,kind)+'</div>';
+    a.hidden=false;a.scrollTop=0;a.classList.remove('rolou');
+    if(nova)empilha(fechaAvulsaSem);
+    trava();
+    // o foco entra na página: no botão de voltar que estiver à vista (celular ou computador)
+    var b=[].filter.call(a.querySelectorAll('.pg-volta,.pg-fecha'),function(x){return x.offsetParent!==null})[0]||a.querySelector('h2');
+    if(b)b.focus({preventScroll:true});
+  }catch(e){console.error(e)}
+}
+function fechaAvulsaSem(){
+  var a=el('avulsa');if(a.hidden)return;
+  a.hidden=true;a.innerHTML='';
+  var d=PAG.det,id=PAG.id,v=PAG.volta;
+  if(d&&document.contains(d))d.open=false;
+  PAG.id=null;PAG.det=null;PAG.volta=null;
+  trava();
+  // o foco volta para onde estava; se a grade foi redesenhada nesse meio tempo, para o mesmo título nela
+  try{
+    if(!v||!document.contains(v)||v.closest('#folha,#avulsa')){v=null;
+      document.querySelectorAll('.panel.on [data-id]').forEach(function(c){if(!v&&c.dataset.id===id)v=c.querySelector('summary,.abre,[data-folha]')||c})}
+    if(v&&v.focus)v.focus({preventScroll:true});
+  }catch(e){}
+}
+function trava(){
+  try{
+    var f=!el('folha').hidden,a=!el('avulsa').hidden;
+    document.documentElement.classList.toggle('trava',f||a);
+    // o fundo sai do alcance do Tab e do leitor de tela enquanto há camada aberta;
+    // com a página aberta, as abas seguem à mão (no celular, a barra de baixo fica por cima dela)
+    ['main','.rodape'].forEach(function(q){var x=document.querySelector(q);if(x)x.toggleAttribute('inert',f||a)});
+    [el('topo'),document.querySelector('.tabs')].forEach(function(x){if(x)x.toggleAttribute('inert',f)});
+    el('avulsa').toggleAttribute('inert',f&&a);
+  }catch(e){}
+}
+// o Tab circula dentro da camada aberta (folha ou página)
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Tab')return;
+  try{
+    var box=!el('folha').hidden?el('folha-sheet'):(!el('avulsa').hidden?el('avulsa'):null);if(!box)return;
+    var fs=[].filter.call(box.querySelectorAll('a[href],button:not([disabled]),input:not([type=hidden]):not([disabled]),select,textarea,summary,[tabindex]:not([tabindex="-1"])'),function(x){return x.offsetParent!==null&&!x.closest('[hidden]')});
+    if(!fs.length){e.preventDefault();return}
+    var i=fs.indexOf(document.activeElement);
+    if(e.shiftKey){if(i<=0){e.preventDefault();fs[fs.length-1].focus()}}
+    else if(i<0||i===fs.length-1){e.preventDefault();fs[0].focus()}
+  }catch(err){}
+});
+// camadas (folha e página) entram no histórico: o gesto de voltar do iPhone fecha a de cima
+var CAM=[],POP_IGN=0,HASH_PEND=null;
+function empilha(f){CAM.push(f);try{history.pushState({telas:1},'')}catch(e){}}
+function desempilha(f){var i=CAM.lastIndexOf(f);if(i<0)return;CAM.splice(i,1);try{if(history.state&&history.state.telas){POP_IGN++;history.back()}}catch(e){}}
+window.addEventListener('popstate',function(){
+  if(POP_IGN){POP_IGN--;if(HASH_PEND&&!POP_IGN){try{history.replaceState(null,'',HASH_PEND)}catch(e){}HASH_PEND=null}return}
+  var f=CAM.pop();if(f)try{f()}catch(e){}
+  trava();
+});
+
+// ---------- NOTA NO TOQUE ----------
+// No Safari do iPhone, tocar na trilha de um range não muda o valor (só arrastar o polegar). O trilho
+// em volta do input recebe o dedo: toque marca onde tocou, arrasto acompanha, e rolar a página
+// começando em cima dele não mexe na nota.
+(function(){
+  try{
+    var A=null;
+    function valor(tr,x){var r=tr.getBoundingClientRect(),inp=tr.querySelector('input'),mn=+inp.min||0,mx=+(inp.max||100);
+      var f=(x-r.left-16)/Math.max(1,r.width-32);f=Math.max(0,Math.min(1,f));return Math.round(mn+f*(mx-mn))}
+    function poe(a,x){var v=valor(a.tr,x);if(a.ult===v)return;a.ult=v;a.inp.value=v;a.inp.dispatchEvent(new Event('input',{bubbles:true}))}
+    document.addEventListener('pointerdown',function(e){
+      var tr=e.target&&e.target.closest&&e.target.closest('.trilho');if(!tr||e.button>0)return;
+      var inp=tr.querySelector('input[type=range]');if(!inp)return;
+      A={tr:tr,inp:inp,id:e.pointerId,x0:e.clientX,y0:e.clientY,toque:e.pointerType!=='mouse',on:e.pointerType==='mouse',ult:null};
+      if(!A.toque){e.preventDefault();try{inp.focus({preventScroll:true})}catch(_){}poe(A,e.clientX);try{tr.setPointerCapture(e.pointerId)}catch(_){}}
+    });
+    document.addEventListener('pointermove',function(e){
+      if(!A||e.pointerId!==A.id)return;
+      if(!A.on){var dx=Math.abs(e.clientX-A.x0),dy=Math.abs(e.clientY-A.y0);if(dx>6&&dx>dy){A.on=true;try{A.tr.setPointerCapture(e.pointerId)}catch(_){}}else return}
+      poe(A,e.clientX);
+    });
+    function fim(e,cancelou){
+      if(!A||e.pointerId!==A.id)return;
+      var a=A;A=null;
+      if(cancelou&&!a.on)return;
+      if(!a.on)poe(a,e.clientX);
+      a.inp.dispatchEvent(new Event('change',{bubbles:true}));
+    }
+    document.addEventListener('pointerup',function(e){fim(e,false)});
+    document.addEventListener('pointercancel',function(e){fim(e,true)});
+  }catch(e){console.error(e)}
+})();
+
+// ---------- INTERAÇÕES DAS LISTAS ----------
+['filmes','series'].forEach(function(kind){
+  try{
+    var p=el('p-'+kind),q=document.querySelector('[data-q="'+kind+'"]'),lupa=q.closest('.lupa');
+    // a lupa fica aberta enquanto há texto; Enter fecha o teclado, Esc limpa e fecha
+    q.addEventListener('input',function(e){VIEW[kind].q=e.target.value;VIEW[kind].n=30;lupa.classList.toggle('cheia',!!e.target.value);renderList(kind)});
+    q.addEventListener('keydown',function(e){
+      if(e.key==='Enter'){e.preventDefault();q.blur()}
+      else if(e.key==='Escape'){e.preventDefault();limpaBusca(kind)}
+    });
+    document.querySelector('[data-sort="'+kind+'"]').addEventListener('change',function(e){VIEW[kind].sort=e.target.value;renderList(kind)});
+    p.querySelector('[data-watch]').addEventListener('change',function(e){VIEW[kind].w=e.target.value;VIEW[kind].n=30;renderList(kind)});
+    // o x da busca não pode tirar o foco antes do clique (senão a lupa fecha e o clique se perde)
+    lupa.querySelector('.limpa').addEventListener('mousedown',function(e){e.preventDefault()});
+    p.addEventListener('click',function(e){
+      var t=e.target.closest('[data-f],[data-more],[data-svc]');if(!t)return;
+      if(t.dataset.svc){
+        var n=t.dataset.svc,i=meus().indexOf(n);ST.servicos=meus().slice();if(i>-1)ST.servicos.splice(i,1);else ST.servicos.push(n);save();
+        renderWatchCtl();renderList('filmes');renderList('series');renderCol('desligar');renderCol('repetidos');
+        var d=document.querySelector('[data-mysvc="'+kind+'"]');
+        if(d){d.open=true;var b=[].filter.call(d.querySelectorAll('[data-svc]'),function(x){return x.dataset.svc===n})[0];if(b)b.focus()}
+        return}
+      if(t.dataset.f){VIEW[kind].f=t.dataset.f;VIEW[kind].n=30;renderList(kind);return}
+      if(t.dataset.more){VIEW[kind].n+=30;renderList(kind);return}
+    });
+  }catch(e){console.error(e)}
+});
+function limpaBusca(kind){
+  try{
+    var q=document.querySelector('[data-q="'+kind+'"]');if(!q)return;
+    var tinha=!!q.value;q.value='';q.closest('.lupa').classList.remove('cheia');q.blur();
+    if(tinha||VIEW[kind].q){VIEW[kind].q='';VIEW[kind].n=30;renderList(kind)}
+  }catch(e){console.error(e)}
+}
+
+// controles de um título valem em qualquer lugar: grade, página, folha, página avulsa
+document.addEventListener('click',function(e){
+  try{
+    var t=e.target;
+    var tab=t.closest('.tab');if(tab&&tab.dataset.tab){mostra(tab.dataset.tab);return}
+    var ir=t.closest('[data-ir]');if(ir){e.preventDefault();mostra(ir.dataset.ir);return}
+    if(t.closest('[data-registrar]')){abrePicker('todos');return}
+    var lq=t.closest('[data-limpaq]');if(lq){limpaBusca(lq.dataset.limpaq);return}
+    var ov=t.closest('[data-ordemvolta]');if(ov){var ok=ov.dataset.ordemvolta,se=document.querySelector('[data-sort="'+ok+'"]');VIEW[ok].sort='conn';if(se)se.value='conn';renderList(ok);return}
+    var vb=t.closest('[data-vista][data-vk]');if(vb){var vk=vb.dataset.vk;VIEW[vk].vista=vb.dataset.vista==='lista'?'lista':'grade';
+      try{var o={};['filmes','series'].forEach(function(k){o[k]=VIEW[k].vista});localStorage.setItem('telas_vista',JSON.stringify(o))}catch(err){}
+      renderList(vk);try{document.querySelector('[data-vistabox="'+vk+'"] button').focus({preventScroll:true})}catch(err){}return}
+    var pk4=t.closest('[data-pick4]');if(pk4){abrePicker(pk4.dataset.pick4);return}
+    var pk=t.closest('[data-pick]');if(pk){var kk=pk.dataset.pkk,l=ST.fav4[kk]||(ST.fav4[kk]=[]);if(l.length<4&&l.indexOf(pk.dataset.pick)<0)l.push(pk.dataset.pick);save();fechaFolha();aposMudar(kk);pintaTitulo(pk.dataset.pick);return}
+    var fo=t.closest('[data-folha]');if(fo){abreFolha(kindDe(fo.dataset.folha),fo.dataset.folha);return}
+    if(t.closest('[data-ffecha]')){fechaFolha();return}
+    var tm=t.closest('[data-tema]');if(tm){poeTema(tm.dataset.tema);return}
+    var dv=t.closest('[data-dimv]');if(dv){VOCE.dimv=dv.dataset.dimv;renderVoce();return}
+    var dm=t.closest('[data-dmais]');if(dm){VOCE.dn+=30;renderVoce();return}
+    var c=t.closest('[data-id][data-kind]');
+    var sm=t.closest('summary.leg');
+    // o título sob o pôster abre a página; o details fica aberto enquanto ela estiver na tela
+    if(sm&&c){e.preventDefault();var det=sm.parentNode;det.open=true;abrePagina(c.dataset.kind,c.dataset.id,det);return}
+    if(!c)return;
+    var id=c.dataset.id,kind=c.dataset.kind,b;
+    if((b=t.closest('[data-abre]'))){abreFolha(kind,id);return}
+    if((b=t.closest('[data-s]'))){setStatus(kind,id,b.dataset.s);return}
+    if((b=t.closest('[data-clr]'))){setNota(id,null);save();aposMudar(kind);return}
+    if((b=t.closest('[data-revi]'))){if(!b.disabled)revi(kind,id);return}
+    if((b=t.closest('[data-f4]'))){toggleFav4(kind,id);return}
+    if((b=t.closest('[data-fpg]'))){fechaFolha();abrePagina(kind,id);return}
+    if((b=t.closest('[data-fecha-pg]'))){desempilha(fechaAvulsaSem);fechaAvulsaSem();return}
+    if((b=t.closest('[data-mostra]'))){var oc=b.closest('.oculto');if(oc)oc.classList.add('aberto');return}
+    if((b=t.closest('[data-tq]'))){
+      var box=b.closest('.pg-sec'),k=b.dataset.tq,on=b.getAttribute('aria-pressed')!=='true';
+      box.querySelectorAll('[data-tq]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b&&on))});
+      var tn=box.querySelector('.tq-nota');tn.hidden=!on;if(!on)return;
+      var v=obj(ST.temp[id])[k];tn.dataset.k=k;tn.querySelector('.tq-l').textContent='T'+k;
+      var r=tn.querySelector('input');r.value=v==null?50:v;r.style.setProperty('--v',(v==null?50:v)+'%');tn.classList.toggle('vazio',v==null);
+      tn.querySelector('.tq-v').textContent=v==null?'—':v;return}
+    if((b=t.closest('[data-tqclr]'))){var tn2=b.closest('.tq-nota'),k2=tn2.dataset.k,o2=obj(ST.temp[id]);delete o2[k2];ST.temp[id]=o2;if(!Object.keys(o2).length)delete ST.temp[id];save();
+      tn2.querySelector('.tq-v').textContent='—';tn2.classList.add('vazio');var ch=c.querySelector('[data-tq="'+k2+'"] b');if(ch)ch.textContent='';return}
+  }catch(err){console.error(err)}
+});
+document.addEventListener('input',function(e){
+  var t=e.target;
+  try{
+    if(t.dataset&&t.dataset.pkq!=null){listaPicker(t.dataset.pkq,t.value);return}
+    if(t.type!=='range')return;
+    var c=t.closest('[data-id][data-kind]');if(!c)return;var id=c.dataset.id;
+    if(t.dataset.nota){t.style.setProperty('--v',t.value+'%');setNota(id,+t.value);return}
+    if(t.dataset.temp){
+      var tn=t.closest('.tq-nota'),k=tn.dataset.k,o=obj(ST.temp[id]);o[k]=+t.value;ST.temp[id]=o;
+      t.style.setProperty('--v',t.value+'%');tn.classList.remove('vazio');tn.querySelector('.tq-v').textContent=t.value;
+      var ch=c.querySelector('[data-tq="'+k+'"] b');if(ch)ch.textContent=t.value;return}
+  }catch(err){console.error(err)}
+});
+document.addEventListener('change',function(e){
+  var t=e.target;if(t.type!=='range'||!(t.dataset.nota||t.dataset.temp))return;
+  var c=t.closest('[data-id][data-kind]');save();try{aposMudar(c&&c.dataset.kind)}catch(err){}
+});
+// se um details de cartão abrir por outro caminho (teclado, leitor de tela), a página abre do mesmo jeito
+document.addEventListener('toggle',function(e){
+  var d=e.target;if(!d.classList||!d.classList.contains('pg'))return;
+  try{
+    if(d.open&&PAG.det!==d){var c=d.closest('[data-id][data-kind]');if(c)abrePagina(c.dataset.kind,c.dataset.id,d)}
+  }catch(err){console.error(err)}
+},true);
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Escape')return;
+  if(!el('folha').hidden){fechaFolha();return}
+  if(!el('avulsa').hidden){desempilha(fechaAvulsaSem);fechaAvulsaSem();return}
+});
+
+// ---------- ABAS ----------
+var GRUPO={filmes:'filmes',series:'series',cal:'cal',voce:'voce',desligar:'voce',repetidos:'voce',pesos:'voce',dados:'voce',perguntar:'perguntar'};
+var TITULO={filmes:'Filmes',series:'Séries',cal:'Agenda',voce:'Você',desligar:'Desligar o cérebro',repetidos:'Repetidos',pesos:'Conexão',dados:'Backup',perguntar:'Perguntar'};
+var POSY={};
+function mostra(tab){
+  try{
+    if(!el('p-'+tab))return;
+    var mesma=tab===ABA;
+    if(!mesma)POSY[ABA]=window.scrollY;
+    // trocar de aba fecha a folha e a página avulsa; tocar de novo na aba atual volta à raiz dela
+    fechaFolhaSem();fechaAvulsaSem();
+    if(CAM.length){var nc=CAM.length;POP_IGN++;HASH_PEND='#'+tab;CAM=[];try{history.go(-nc)}catch(e){POP_IGN--;HASH_PEND=null}}
+    ABA=tab;
+    document.querySelectorAll('.tab').forEach(function(x){
+      var on=x.dataset.tab===tab||(x.closest('.tabs')&&x.dataset.tab===GRUPO[tab]);
+      x.classList.toggle('on',on);if(x.dataset.tab===tab)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current');
+    });
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='p-'+tab)});
+    el('tit').textContent=TITULO[tab]||'';
+    document.body.className=document.body.className.replace(/\baba-\S+/g,'').trim()+' aba-'+tab;
+    document.querySelector('.volta').hidden=GRUPO[tab]!=='voce'||tab==='voce';
+    try{if(!HASH_PEND)history.replaceState(null,'','#'+tab)}catch(e){}
+    if(tab==='cal')renderCal();
+    if(tab==='voce')renderVoce();
+    trava();
+    window.scrollTo(0,mesma?0:(POSY[tab]||0));
+  }catch(e){console.error(e)}
+}
+// a página do título ganha barra com o nome quando rola
+document.addEventListener('scroll',function(e){var t=e.target;if(t&&t.classList&&(t.classList.contains('pagina')||t.classList.contains('avulsa')))t.classList.toggle('rolou',t.scrollTop>150)},true);
+window.addEventListener('scroll',function(){try{el('topo').classList.toggle('rolou',window.scrollY>4)}catch(e){}},{passive:true});
+
+// ---------- PESOS ----------
+function renderPesos(){
+  try{
+    var w=pesos();
+    el('weights').innerHTML=DIMS.map(function(d,i){
+      return '<div class="w"><span class="n">'+esc(d.nome)+'</span><output class="num" id="wo-'+i+'">'+w[i]+'</output>'+
+        '<span class="d">'+esc(d.desc||'')+'</span><span class="trilho"><input class="rng" type="range" min="0" max="30" step="1" value="'+w[i]+'" style="--v:'+(w[i]/30*100)+'%" data-w="'+i+'" aria-label="Peso de '+esc(d.nome)+'"></span></div>';
+    }).join('');
+    el('arq-dele').textContent=(D.arquetipos_dele||[]).join(' · ');
+  }catch(e){console.error(e)}
+}
+el('weights').addEventListener('input',function(e){
+  var i=e.target.dataset.w;if(i==null)return;
+  var w=pesos().slice();w[+i]=+e.target.value;ST.pesos=w;el('wo-'+i).textContent=w[+i];e.target.style.setProperty('--v',(w[+i]/30*100)+'%');
+});
+el('weights').addEventListener('change',function(){save();renderList('filmes');renderList('series')});
+el('w-reset').addEventListener('click',function(){ST.pesos=null;save();renderPesos();renderList('filmes');renderList('series')});
+
+// ---------- COLEÇÕES ----------
+// Base em dados.json (colecoes + extras) e no catálogo; o que ele acrescenta ou tira fica neste aparelho (ST.col),
+// junto com o contador de vezes (ST.vezes), a nota de fase (ST.fase) e os títulos livres (ST.livres).
+var CTIPO={filme:'Filme',serie:'Série',saga:'Saga'};
+function slug(t){return String(t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60)}
+function achar(id){
+  var k,i,l;
+  var fontes=[['filmes','filme'],['series','serie']];
+  for(k=0;k<fontes.length;k++){l=(D&&D[fontes[k][0]])||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:fontes[k][1]}}
+  l=(D&&D.extras)||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:l[i].tipo==='saga'||l[i].tipo==='filme'?l[i].tipo:'serie'};
+  if(Object.prototype.hasOwnProperty.call(CATPOR,id))return {it:CATPOR[id],tipo:CATPOR[id].tipo==='serie'?'serie':'filme'};
+  if(ST.livres[id])return {it:{id:id,titulo:ST.livres[id].titulo},tipo:'livre'};
+  return null;
+}
+function migrarLivres(){
+  try{
+    var mudou=false;
+    Object.keys(ST.livres).forEach(function(k){
+      var lv=ST.livres[k];if(!lv||!lv.titulo)return;
+      var q=String(lv.titulo).trim().toLowerCase(),n=null;
+      todosItens().some(function(x){if(x.it&&bateTitulo(x.it,q)){n=x.it.id;return true}return false});
+      if(!n)return;
+      if(ST.vezes[k]!=null&&ST.vezes[n]==null)ST.vezes[n]=ST.vezes[k];delete ST.vezes[k];
+      if(ST.fase[k]!=null&&ST.fase[n]==null)ST.fase[n]=ST.fase[k];delete ST.fase[k];
+      Object.keys(ST.col).forEach(function(col){
+        var c=colEstado(col),base=(D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[];
+        var ai=c.add.indexOf(k);if(ai>-1){c.add.splice(ai,1);if(base.indexOf(n)<0&&c.add.indexOf(n)<0)c.add.push(n)}
+        var ri=c.rem.indexOf(k);if(ri>-1){c.rem.splice(ri,1);if(c.rem.indexOf(n)<0)c.rem.push(n)}
+      });
+      delete ST.livres[k];mudou=true;
+    });
+    if(mudou)save();
+  }catch(e){console.error(e)}
+}
+function colEstado(col){var c=ST.col[col];if(!c||typeof c!=='object')c=ST.col[col]={add:[],rem:[]};c.add=Array.isArray(c.add)?c.add:[];c.rem=Array.isArray(c.rem)?c.rem:[];return c}
+function colItens(col){
+  var base=((D&&D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[]).slice(),c=colEstado(col),out=[];
+  base.concat(c.add).forEach(function(id){if(out.indexOf(id)<0&&c.rem.indexOf(id)<0&&achar(id))out.push(id)});
+  return out;
+}
+function sagaWatch(it){
+  var fs=it.filmes||[],cont={},comDado=0;
+  fs.forEach(function(f){var w=oferta(f);if(!w)return;comDado++;emStreaming(f).forEach(function(n){cont[n]=(cont[n]||0)+1})});
+  var busca='<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a>';
+  if(!comDado)return '<div class="watch">'+busca+'</div>';
+  var m=meus(),nomes=Object.keys(cont).sort(function(a,b){return cont[b]-cont[a]||a.localeCompare(b,'pt-BR')});
+  var out=nomes.map(function(n){var mi=m.indexOf(n)>-1;return '<span class="svc'+(mi?' mine':'')+'">'+esc(n)+' <span class="alt">'+cont[n]+' de '+fs.length+'</span></span>'});
+  if(!out.length)out.push('<span class="alt">fora das assinaturas no Brasil</span>');
+  return '<div class="watch">'+out.join('')+busca+'</div>';
+}
+function cardCol(id,col){
+  var a=achar(id);if(!a)return '';var it=a.it,t=a.tipo;
+  var meta=[];
+  if(t==='saga')meta.push((it.filmes||[]).length+' filmes',it.anos||it.ano);
+  else if(t==='serie')meta.push(it.anos||it.ano,it.temporadas?it.temporadas+(/^\d+$/.test(String(it.temporadas))?' temporadas':''):'',it.episodios?it.episodios+(/^\d+$/.test(String(it.episodios))?' episódios':''):'',it.criadores||it.autor||'');
+  else if(t==='filme')meta.push(it.ano,it.autor,it.duracao);
+  else meta.push('adicionado por você');
+  meta=meta.filter(Boolean).map(esc).join(' · ');
+  var watch=t==='saga'?sagaWatch(it):(t==='livre'?'<div class="watch"><a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">procurar no JustWatch ↗</a></div>':watchLinha(it));
+  var lista=t==='saga'&&(it.filmes||[]).length?'<details class="filmes-saga"><summary>Os '+it.filmes.length+' filmes</summary><ol>'+it.filmes.map(function(f){
+    var en=f.titulo_en&&f.titulo_en!==f.titulo?' <span class="lang">EN</span>'+esc(f.titulo_en):'';
+    var sv=emStreaming(f);return '<li><b>'+esc(f.titulo)+'</b> ('+esc(f.ano)+')'+en+(sv.length?' · '+esc(sv.join(', ')):'')+'</li>'}).join('')+'</ol></details>':'';
+  var ctl='',v=+ST.vezes[id]||0;
+  if(col==='repetidos'){
+    ctl='<div class="ctl2 vezes" role="group" aria-label="Quantas vezes você viu"><span>Vi</span><button data-vz="-1" aria-label="Uma vez a menos">−</button><output class="num">'+v+'</output><button data-vz="1" aria-label="Mais uma vez">+</button><span>'+(v===1?'vez':'vezes')+'</span><button class="rm" data-rm="1" aria-label="Tirar '+esc(it.titulo)+' de Repetidos" title="Tirar da lista">'+IC.x+'</button></div>'}
+  else{ctl='<div class="ctl2"><input class="fase" data-fase="1" type="text" maxlength="120" placeholder="Em que fase isso te serviu?" aria-label="Em que fase da vida isso te serviu" value="'+esc(ST.fase[id]||'')+'"><button class="rm" data-rm="1" aria-label="Tirar '+esc(it.titulo)+' de Desligar o cérebro" title="Tirar da lista">'+IC.x+'</button></div>'}
+  var kd=kindDe(id);
+  return '<article class="card linha" data-id="'+esc(id)+'" data-col="'+col+'"><span class="th">'+(kd?'<button class="abre" data-folha="'+esc(id)+'" aria-label="'+esc(it.titulo)+': registrar">'+capa(it,250)+'</button>':capa(it,250))+
+    '<span class="vz num"'+(col==='repetidos'&&v>1?'':' hidden')+'>'+v+'×</span></span><div style="min-width:0"><h3>'+esc(it.titulo)+'</h3>'+titulosExtras(it)+
+    '<div class="meta">'+(CTIPO[t]?'<span class="tipo">'+CTIPO[t]+'</span> · ':'')+meta+(/exib/i.test(it.status||'')?' · <span class="live">em exibição</span>':'')+'</div>'+
+    (it.situacao?'<div class="src">'+esc(it.situacao)+'</div>':'')+watch+lista+ctl+'</div></article>';
+}
+function leque(ids){return ids.slice(0,4).map(function(id){var a=achar(id);return a?capa(a.it,120):''}).join('')}
+function renderCol(col){
+  try{
+    var ids=colItens(col),box=el('list-'+col);if(!box)return;
+    box.innerHTML=ids.length?ids.map(function(id){try{return cardCol(id,col)}catch(e){console.error(e);return ''}}).join(''):'<p class="empty">Nada aqui ainda. Adicione logo abaixo.</p>';
+    el('ct-'+col).textContent=' '+ids.length;
+    var lq=el('leque-'+col);if(lq)lq.innerHTML=leque(ids);
+    renderDatalist();
+  }catch(e){console.error(e)}
+}
+var ROTULOS={}; // rótulo do datalist (minúsculo) -> id
+function todosItens(){
+  var out=[];
+  (D.filmes||[]).forEach(function(it){out.push({it:it,tipo:'filme'})});
+  (D.series||[]).forEach(function(it){out.push({it:it,tipo:'serie'})});
+  (D.extras||[]).forEach(function(it){out.push({it:it,tipo:it.tipo==='saga'||it.tipo==='filme'?it.tipo:'serie'})});
+  ((CAT&&CAT.itens)||[]).forEach(function(it){if(it&&it.id)out.push({it:it,tipo:it.tipo==='serie'?'serie':'filme'})});
+  return out;
+}
+function renderDatalist(){
+  try{
+    var dl=el('todos-titulos');if(!dl||dl.dataset.ok)return;
+    var todos=todosItens(),conta={},op=[];
+    todos.forEach(function(x){var t=x.it&&x.it.titulo;if(t)conta[t.toLowerCase()]=(conta[t.toLowerCase()]||0)+1});
+    todos.forEach(function(x){
+      var it=x.it;if(!it||!it.titulo)return;
+      var rot=conta[it.titulo.toLowerCase()]>1?it.titulo+' ('+(x.tipo==='saga'?'saga':x.tipo==='serie'?'série':'filme')+', '+(it.ano||'')+')':it.titulo;
+      if(ROTULOS[rot.toLowerCase()])return;
+      ROTULOS[rot.toLowerCase()]=it.id;
+      op.push('<option value="'+esc(rot)+'">'+(it.titulo_en&&it.titulo_en!==it.titulo?esc(it.titulo_en):'')+'</option>');
+    });
+    dl.innerHTML=op.join('');dl.dataset.ok='1';
+  }catch(e){console.error(e)}
+}
+function bateTitulo(it,q){return [it.titulo,it.titulo_en,it.titulo_original].some(function(v){return v&&String(v).trim().toLowerCase()===q})}
+function idPorNome(t){
+  var q=String(t||'').trim().toLowerCase();if(!q)return null;
+  var todos=[].concat(D.filmes||[],D.series||[],D.extras||[],(CAT&&CAT.itens)||[]);
+  for(var i=0;i<todos.length;i++){var x=todos[i];if(x&&[x.titulo,x.titulo_en,x.titulo_original].some(function(v){return v&&String(v).trim().toLowerCase()===q}))return x.id}
+  for(var k in ST.livres)if(ST.livres[k]&&String(ST.livres[k].titulo).trim().toLowerCase()===q)return k;
+  return null;
+}
+function adicionar(col){
+  try{
+    var inp=document.querySelector('[data-add="'+col+'"]'),msg=document.querySelector('[data-addmsg="'+col+'"]'),t=(inp.value||'').trim();if(!t)return;
+    var q=t.toLowerCase(),c=colEstado(col),novo=false,id=ROTULOS[q]||null;
+    if(!id)c.rem.some(function(r){var a=achar(r);if(a&&bateTitulo(a.it,q)){id=r;return true}return false});
+    if(!id)id=idPorNome(t);
+    if(!id){
+      var base0='livre-'+(slug(t)||('t'+Array.from(t).reduce(function(h,ch){return (h*31+ch.codePointAt(0))>>>0},7).toString(36)));
+      id=base0;for(var n=2;ST.livres[id]&&String(ST.livres[id].titulo).trim().toLowerCase()!==q;n++)id=base0+'-'+n;
+      if(!ST.livres[id])ST.livres[id]={titulo:t};novo=true}
+    var ri=c.rem.indexOf(id);if(ri>-1)c.rem.splice(ri,1);
+    var base=(D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[];
+    if(base.indexOf(id)<0&&c.add.indexOf(id)<0)c.add.push(id);
+    save();inp.value='';renderCol(col);
+    if(msg)msg.textContent=novo?'"'+t+'" entrou só com o nome. Me conta no chat que eu completo os dados e o onde assistir.':'"'+t+'" adicionado.';
+  }catch(e){console.error(e)}
+}
+['desligar','repetidos'].forEach(function(col){
+  try{
+    var p=el('p-'+col);if(!p)return;
+    p.querySelector('[data-addbtn]').addEventListener('click',function(){adicionar(col)});
+    p.querySelector('[data-add]').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();adicionar(col)}});
+    p.addEventListener('click',function(e){
+      var t=e.target.closest('[data-vz],[data-rm]');if(!t)return;var c=t.closest('.card');if(!c)return;var id=c.dataset.id;
+      if(t.dataset.vz){var v=Math.max(0,(+ST.vezes[id]||0)+(+t.dataset.vz));if(v)ST.vezes[id]=v;else delete ST.vezes[id];save();
+        c.querySelector('.vezes output').textContent=v;c.querySelector('.vezes span:last-of-type').textContent=v===1?'vez':'vezes';
+        var bz=c.querySelector('.th .vz');if(bz){bz.hidden=v<2;bz.textContent=v+'×'}
+        if(itemPorId(id))pintaTitulo(id);return}
+      if(t.dataset.rm){var s=colEstado(col),ai=s.add.indexOf(id);if(ai>-1)s.add.splice(ai,1);else if(s.rem.indexOf(id)<0)s.rem.push(id);save();renderCol(col);return}
+    });
+    p.addEventListener('input',function(e){var t=e.target;if(!t.dataset||!t.dataset.fase)return;var c=t.closest('.card');if(!c)return;
+      var v=t.value.trim();if(v)ST.fase[c.dataset.id]=t.value;else delete ST.fase[c.dataset.id];save()});
+  }catch(e){console.error(e)}
+});
+
+// ---------- VOCÊ ----------
+// Os 4, seu gosto (no molde das estatísticas do Letterboxd), diário, listas e ajustes.
+var VOCE={dimv:'ve',dn:30};
+function vistosTodos(){
+  return [].concat(D.filmes||[],D.series||[]).filter(function(it){var s=stOf(it);return s==='assisti'||s==='acompanhando'||ST.notas[it.id]!=null});
+}
+function mediaDims(l){
+  var s=[0,0,0,0,0,0,0,0,0],n=0;
+  l.forEach(function(it){var d=it.dims;if(!d||d.length!==9)return;n++;for(var i=0;i<9;i++)s[i]+=(+d[i]||0)});
+  return n?s.map(function(x){return Math.round(x/n)}):null;
+}
+function conta(l,f){var c={};l.forEach(function(it){f(it).forEach(function(k){k=String(k||'').trim();if(k)c[k]=(c[k]||0)+1})});return Object.keys(c).map(function(k){return [k,c[k]]}).sort(function(a,b){return b[1]-a[1]||a[0].localeCompare(b[0],'pt-BR')})}
+function gostoVoce(){
+  var todas=Object.keys(ST.notas).map(function(k){return +ST.notas[k]}).filter(function(v){return !isNaN(v)});
+  var vistos=vistosTodos();
+  if(!todas.length&&!vistos.length)return '<p class="vazio-txt">Quando você marcar o que viu e der notas, aqui aparece o desenho do seu gosto: como você dá notas, o que mais vê, o que mais ama, os diretores e os países.</p>';
+  var h=[];
+  var media=todas.length?Math.round(todas.reduce(function(a,b){return a+b},0)/todas.length):null,b=bins(todas),mx=Math.max.apply(null,b.concat([1]));
+  h.push('<div><h3 class="rotulo">Suas notas</h3><div class="hist-g"><div class="media"><b class="num">'+(media==null?'—':media)+'</b><span>média de '+todas.length+(todas.length===1?' nota':' notas')+'</span></div>'+
+    '<div class="histo-g"><div class="barras-v" role="img" aria-label="Quantas notas você deu em cada faixa de 10 pontos">'+b.map(function(c,i){return '<i'+(c?'':' class="z"')+' style="height:'+(c?Math.max(4,Math.round(c/mx*72)):2)+'px" title="'+(i*10)+'–'+(i===9?100:i*10+9)+': '+c+'"></i>'}).join('')+'</div>'+
+    '<div class="eixo num"><span>0</span><span>50</span><span>100</span></div></div></div></div>');
+  var ama=[].concat(D.filmes||[],D.series||[]).filter(function(it){return ST.notas[it.id]!=null&&ST.notas[it.id]>=80});
+  var base=VOCE.dimv==='ama'?ama:vistos,md=mediaDims(base);
+  var dimBloco='<div><h3 class="rotulo">Dimensões</h3><div class="segm" role="group" aria-label="Qual recorte"><button data-dimv="ve" aria-pressed="'+(VOCE.dimv==='ve')+'">O que você mais vê</button><button data-dimv="ama" aria-pressed="'+(VOCE.dimv==='ama')+'">O que mais ama</button></div>';
+  if(md){var l=DIMS.map(function(x,i){return {n:x.nome,v:md[i]}}).sort(function(a,b){return b.v-a.v});
+    dimBloco+='<p class="nota-cal">'+(VOCE.dimv==='ama'?'Média das nove dimensões nos '+base.length+' títulos com nota 80 ou mais.':'Média das nove dimensões nos '+base.length+' títulos que você viu ou deu nota.')+'</p><div class="barras" style="margin-top:8px">'+
+      l.map(function(x){return '<span class="bn">'+esc(x.n)+'</span><span class="bt" title="'+esc(x.n)+': '+x.v+'"><i style="width:'+x.v+'%"></i></span><span class="bv num">'+x.v+'</span>'}).join('')+'</div>'}
+  else dimBloco+='<p class="nota-cal">'+(VOCE.dimv==='ama'?'Ainda não há títulos com nota 80 ou mais.':'Ainda não há títulos vistos.')+'</p>';
+  h.push(dimBloco+'</div>');
+  // só quem se repete conta como padrão
+  var dirs=conta(vistos,function(it){return String(it.autor||'').replace(/\([^)]*\)/g,'').split(/\s+e\s+|,\s*/)}).filter(function(x){return x[1]>1}).slice(0,5);
+  var pais=conta(vistos,function(it){return String(it.pais||'').split('/')}).filter(function(x){return x[1]>1}).slice(0,5);
+  function rl(l){return l.length?'<ol class="rank-l">'+l.map(function(x){return '<li>'+esc(x[0])+' <span class="num">'+x[1]+'</span></li>'}).join('')+'</ol>':'<p class="vazio-txt" style="font-size:14px">Nenhum se repete ainda.</p>'}
+  h.push('<div class="duas"><div><h3 class="rotulo">Diretores e criadores</h3>'+rl(dirs)+'</div><div><h3 class="rotulo">Países</h3>'+rl(pais)+'</div></div>');
+  var rev=0,ses=0,prim=0;
+  vistos.forEach(function(it){var v=+ST.vezes[it.id]||1;ses+=v;if(v>1)rev++;else prim++});
+  h.push('<div><h3 class="rotulo">Primeira vez × revisto</h3><div class="vezes-g"><div><b class="num">'+prim+'</b><span>vistos uma vez</span></div><div><b class="num">'+rev+'</b><span>revistos</span></div><div><b class="num">'+ses+'</b><span>sessões no total</span></div></div></div>');
+  return '<div class="gosto-g">'+h.join('')+'</div>';
+}
+function diarioHtml(){
+  var l=ST.diario.slice().sort(function(a,b){return a.d<b.d?1:a.d>b.d?-1:0});
+  if(!l.length)return '<p class="vazio-txt">O diário começa quando você marca um título como Assisti (ou toca em Revi): a data é gravada na hora.</p>';
+  var por={},ordem=[];
+  l.slice(0,VOCE.dn).forEach(function(x){var k=x.d.slice(0,7);if(!por[k]){por[k]=[];ordem.push(k)}por[k].push(x)});
+  return ordem.map(function(k){var p=k.split('-');return '<h3 class="mes-cab">'+MES[+p[1]-1]+' '+p[0]+'</h3>'+por[k].map(function(x){
+    var it=itemPorId(x.id),kd=kindDe(x.id),d=parseYmd(x.d),v=ST.notas[x.id];if(!it)return '';
+    var inner='<span class="dd"><b class="num">'+d.getDate()+'</b><span>'+DOW[d.getDay()]+'</span></span><span class="mini">'+capa(it,120)+'</span>'+
+      '<span class="tx"><b>'+esc(it.titulo)+'</b><span>'+(kd==='filmes'?'Filme':'Série')+' · '+esc([it.ano,sobrenome(it.autor)].filter(Boolean).join(' · '))+'</span></span>'+
+      '<span class="qd num">'+(x.r?IC.revi.replace('class="i"','class="i" aria-label="Revisto"'):'')+' <span class="cx" title="Conexão prevista">'+(conexao(it)==null?'':conexao(it))+'</span>'+(v!=null?'<span class="mn" title="Sua nota"> · '+v+'</span>':'')+'</span>';
+    return '<button class="dl" data-folha="'+esc(x.id)+'">'+inner+'</button>'}).join('')}).join('')+
+    (l.length>VOCE.dn?'<div style="margin-top:12px"><button class="loadmore" data-dmais="1">Mostrar mais ('+(l.length-VOCE.dn)+')</button></div>':'');
+}
+function temaAtual(){try{return localStorage.getItem('telas_tema')||'auto'}catch(e){return 'auto'}}
+function poeTema(t){
+  try{if(t==='light'||t==='dark'){localStorage.setItem('telas_tema',t);document.documentElement.setAttribute('data-theme',t)}else{localStorage.removeItem('telas_tema');document.documentElement.removeAttribute('data-theme')}}catch(e){
+    if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);else document.documentElement.removeAttribute('data-theme')}
+  // a barra do Safari acompanha o tema escolhido à mão (no automático, cada meta volta à sua cor)
+  try{document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',t==='dark'?'#121416':t==='light'?'#f4f5f7':m.getAttribute('data-tc'))})}catch(e){}
+  renderVoce();
+}
+function backupTexto(){
+  if(!ST.backupEm)return 'Nunca fez backup neste aparelho';
+  var d=Math.floor((Date.now()-new Date(ST.backupEm).getTime())/864e5);
+  return isNaN(d)?'Backup feito':(d<=0?'Último backup hoje':d===1?'Último backup ontem':'Último backup há '+d+' dias');
+}
+function renderVoce(){
+  try{
+    var b=el('voce-corpo');if(!b||!D)return;
+    var h=[],dias=ST.backupEm?Math.floor((Date.now()-new Date(ST.backupEm).getTime())/864e5):null;
+    if((Object.keys(ST.notas).length||ST.diario.length)&&(dias==null||dias>=30))
+      h.push('<p class="alerta">'+(dias==null?'Suas notas ainda não têm backup.':'Seu último backup foi há '+dias+' dias.')+'<button data-ir="dados">Fazer agora</button></p>');
+    h.push('<section class="vsec"><div class="os4-dupla">'+os4Html('filmes').replace('>Os 4','>Os 4 filmes')+os4Html('series').replace('>Os 4','>As 4 séries')+'</div></section>');
+    h.push('<section class="vsec"><h2 class="rotulo" style="font-size:13px;color:var(--tx)">Seu gosto</h2>'+gostoVoce()+'</section>');
+    h.push('<section class="vsec"><h2 class="rotulo" style="font-size:13px;color:var(--tx);margin-bottom:0">Diário</h2>'+diarioHtml()+'</section>');
+    var cols=[['desligar','Desligar o cérebro','O que serve pra descansar a cabeça, cada um numa fase da vida.'],['repetidos','Repetidos','O que você vê dezenas de vezes, com o contador à vista.']];
+    h.push('<section class="vsec"><h2 class="rotulo" style="font-size:13px;color:var(--tx)">Listas</h2><div class="listas-v">'+cols.map(function(c){var ids=colItens(c[0]);
+      return '<button class="lista-c" data-ir="'+c[0]+'"><span class="leque" aria-hidden="true">'+leque(ids)+'</span><span style="min-width:0"><b>'+c[1]+'</b><span>'+ids.length+(ids.length===1?' título':' títulos')+' · '+c[2]+'</span></span></button>'}).join('')+'</div></section>');
+    var tm=temaAtual();
+    h.push('<section class="vsec"><h2 class="rotulo" style="font-size:13px;color:var(--tx)">Ajustes</h2><div class="ajustes">'+
+      '<button class="aj" data-ir="pesos"><span class="txa"><span>Conexão</span><small>Os pesos das nove dimensões</small></span>'+IC.dir+'</button>'+
+      '<button class="aj" data-ir="dados"><span class="txa"><span>Backup e sobre os dados</span><small>'+esc(backupTexto())+'</small></span>'+IC.dir+'</button>'+
+      '<div class="aj"><span class="txa"><span>Tema</span></span><span class="segm" role="group" aria-label="Tema">'+[['auto','Auto'],['light','Claro'],['dark','Escuro']].map(function(x){return '<button data-tema="'+x[0]+'" aria-pressed="'+(tm===x[0])+'">'+x[1]+'</button>'}).join('')+'</span></div>'+
+      '<a class="aj" href="/"><span class="txa"><span>Roteiro do Mochilão</span><small>Voltar ao guia da viagem</small></span>'+IC.dir+'</a></div></section>');
+    b.innerHTML=h.join('');
+  }catch(e){console.error(e)}
+}
+
+// ---------- PERGUNTAR À IA ----------
+// O contexto sai do que está neste aparelho e vai, com a pergunta, para /api/telas-perguntar,
+// que chama o Claude com a chave guardada na Vercel.
+// A senha fica no sessionStorage: some ao fechar o navegador e não fica ao alcance de outra página do domínio depois.
+var IA_SENHA='telas_ia_senha';
+try{localStorage.removeItem(IA_SENHA)}catch(e){}
+function iaSenha(){try{return sessionStorage.getItem(IA_SENHA)||''}catch(e){return ''}}
+function guardaSenha(v){try{if(v)sessionStorage.setItem(IA_SENHA,v);else sessionStorage.removeItem(IA_SENHA)}catch(e){}}
+function contextoIA(){
+  var c={hoje:new Date().toISOString().slice(0,10)};
+  try{
+    var p=pesos();c.dimensoes=DIMS.map(function(d,i){return {nome:d.nome,peso:p[i]}});
+    c.arquetipos=D.arquetipos_dele||[];
+    var porId={};[].concat(D.filmes||[],D.series||[],D.extras||[]).forEach(function(it){if(it&&it.id)porId[it.id]=it});
+    var tipoDe=function(id){return (D.filmes||[]).some(function(x){return x.id===id})?'filme':((D.extras||[]).some(function(x){return x.id===id&&x.tipo==='saga'})?'saga':'série')};
+    var nome=function(id){var it=porId[id]||CATPOR[id]||(ST.livres[id]?{titulo:ST.livres[id].titulo}:null);return it?it.titulo+(it.ano?' ('+it.ano+')':''):id};
+    c.notas=Object.keys(ST.notas).map(function(id){return {titulo:nome(id),tipo:tipoDe(id),nota:ST.notas[id]}}).sort(function(a,b){return b.nota-a.nota});
+    var st={quero:[],assisti:[],acompanhando:[],abandonei:[]};
+    [].concat(D.filmes||[],D.series||[]).forEach(function(it){var s=stOf(it);if(st[s])st[s].push(nome(it.id))});
+    c.status=st;
+    c.colecoes={
+      desligar:colItens('desligar').map(function(id){var o={titulo:nome(id)};if(ST.fase[id])o.fase=ST.fase[id];return o}),
+      repetidos:colItens('repetidos').map(function(id){var o={titulo:nome(id)};if(ST.vezes[id])o.vezes=ST.vezes[id];return o})
+    };
+    c.biblioteca=[].concat(D.filmes||[],D.series||[]).filter(function(it){return it.biblioteca}).map(function(it){return nome(it.id)});
+    var top=function(l){return (l||[]).map(function(it){return {titulo:nome(it.id),conexao:conexao(it)}}).filter(function(x){return x.conexao!=null}).sort(function(a,b){return b.conexao-a.conexao}).slice(0,12)};
+    c.mais_conectados={filmes:top(D.filmes),series:top(D.series)};
+    c.servicos_que_assina=meus();
+    c.na_lista=[].concat(D.filmes||[],D.series||[],D.extras||[]).map(function(it){return it.id+' | '+it.titulo+(it.ano?' ('+it.ano+')':'')});
+  }catch(e){console.error(e)}
+  return c;
+}
+function paragrafos(t){return String(t||'').split(/\n{2,}|\n(?=[-•])/).map(function(x){return x.trim()}).filter(Boolean).map(function(x){return '<p>'+esc(x)+'</p>'}).join('')}
+function naLista(id){return [].concat(D&&D.filmes||[],D&&D.series||[]).some(function(it){return it.id===id})}
+function verBotao(id){
+  if(naLista(id))return '<button data-ver="'+esc(id)+'">ver na lista</button>';
+  var col=['desligar','repetidos'].filter(function(c){return colItens(c).indexOf(id)>-1})[0];
+  return col?'<button data-vercol="'+col+'">ver em '+(col==='desligar'?'Desligar':'Repetidos')+'</button>':'';
+}
+function cardIndicacao(x){
+  var tit=esc(x.titulo||'')+(x.titulo_original&&x.titulo_original!==x.titulo?'<div class="meta">'+esc(x.titulo_original)+'</div>':'');
+  var na=x.ja_na_lista&&achar(x.ja_na_lista);
+  var jw='https://www.justwatch.com/br/busca?q='+encodeURIComponent(x.titulo||x.titulo_original||'');
+  return '<article class="card ind"><span>'+capa(na?na.it:{id:'',titulo:x.titulo||'',ano:x.ano||''},120)+'</span><div style="min-width:0"><h3>'+tit+'</h3><div class="meta">'+
+    '<span class="bdg">'+esc(x.tipo||'')+'</span> '+esc(x.ano||'')+(na?' · <span class="bdg live">já está na lista</span>':'')+'</div>'+
+    '<p class="why">'+esc(x.por_que||'')+'</p><div class="acts"><a href="'+esc(jw)+'" target="_blank" rel="noopener">onde assistir ↗</a>'+
+    (na?verBotao(x.ja_na_lista):'')+'</div></div></article>';
+}
+function blocoResposta(r){
+  return '<p class="q">'+esc(r.pergunta)+'</p><div class="txt">'+paragrafos(r.resposta)+'</div>'+
+    '<p class="meta2">'+esc(r.em||'')+(r.buscas?' · procurou na web':'')+(r.cortada?' · a resposta foi cortada no limite':'')+'</p>'+
+    ((r.indicacoes||[]).length?'<div class="inds">'+r.indicacoes.map(cardIndicacao).join('')+'</div>':'');
+}
+function renderHist(){
+  try{
+    var h=el('ia-hist'),l=el('ia-hist-list');if(!h)return;
+    var ant=(ST.ia||[]).slice(1);h.hidden=!ant.length;
+    l.innerHTML=ant.map(function(r,i){return '<div style="margin-bottom:18px">'+blocoResposta(r)+'</div>'}).join('');
+  }catch(e){console.error(e)}
+}
+var IA_OCUPADA=false;
+function perguntar(){
+  if(IA_OCUPADA)return;
+  var q=(el('ia-q').value||'').trim(),out=el('ia-out');if(!q){el('ia-q').focus();return}
+  if(!D){out.innerHTML='<p class="err">Sua lista ainda está carregando. Tente em instantes.</p>';return}
+  var senhaIn=el('ia-senha'),senha=(senhaIn&&senhaIn.value.trim())||iaSenha();
+  if(!senha){el('ia-senha-box').hidden=false;out.innerHTML='<p class="err">Digite a senha da caixa (a mesma que está em TELAS_SENHA na Vercel).</p>';senhaIn.focus();return}
+  IA_OCUPADA=true;el('ia-go').disabled=true;
+  var t0=Date.now(),tick=setInterval(function(){var w=out.querySelector('.secs');if(w)w.textContent=Math.round((Date.now()-t0)/1000)+' s'},1000);
+  out.setAttribute('aria-busy','true');
+  out.innerHTML='<p class="wait">Pensando… <span class="secs" aria-hidden="true"></span></p>';
+  fetch('/api/telas-perguntar',{method:'POST',headers:{'content-type':'application/json','x-telas-senha':senha},
+    body:JSON.stringify({pergunta:q,contexto:contextoIA(),buscar:!!el('ia-web').checked})})
+  .then(function(r){return r.json().catch(function(){return {erro:r.status===504?'Demorou demais. Tente de novo, talvez sem a busca na web.':'Resposta inesperada do servidor ('+r.status+').'}}).then(function(j){j._status=r.status;return j})})
+  .then(function(j){
+    if(j._status===401){guardaSenha('');el('ia-senha-box').hidden=false;if(senhaIn){senhaIn.value='';senhaIn.focus()}}
+    if(j.erro){out.innerHTML='<p class="err">'+esc(j.erro)+'</p>';return}
+    guardaSenha(senha);
+    el('ia-senha-box').hidden=true;
+    var r={pergunta:q,resposta:j.resposta,indicacoes:j.indicacoes||[],buscas:j.buscas||0,cortada:!!j.cortada,em:new Date().toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})};
+    ST.ia=[r].concat(ST.ia||[]).slice(0,20);save();
+    out.innerHTML=blocoResposta(r);renderHist();
+  })
+  .catch(function(){out.innerHTML='<p class="err">Não consegui falar com a caixa agora. Confira a internet e tente de novo.</p>'})
+  .then(function(){clearInterval(tick);out.removeAttribute('aria-busy');IA_OCUPADA=false;el('ia-go').disabled=false});
+}
+(function(){
+  try{
+    el('ia-go').addEventListener('click',perguntar);
+    el('ia-senha-box').addEventListener('submit',function(e){e.preventDefault();perguntar()});
+    // o formulário tem dois campos e nenhum botão: o Enter não envia sozinho
+    el('ia-senha').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();perguntar()}});
+    el('ia-q').addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();perguntar()}});
+    el('ia-sug').addEventListener('click',function(e){var b=e.target.closest('[data-sug]');if(!b)return;el('ia-q').value=b.dataset.sug;el('ia-q').focus()});
+    el('p-perguntar').addEventListener('click',function(e){
+      var bc=e.target.closest('[data-vercol]');if(bc){mostra(bc.dataset.vercol);return}
+      var b=e.target.closest('[data-ver]');if(!b)return;var a=achar(b.dataset.ver);if(!a)return;
+      var kind=a.tipo==='filme'?'filmes':'series';VIEW[kind].q=a.it.titulo;VIEW[kind].f='todos';VIEW[kind].w='todos';
+      var inp=document.querySelector('[data-q="'+kind+'"]');if(inp)inp.value=a.it.titulo;
+      var sw=document.querySelector('[data-watch="'+kind+'"]');if(sw)sw.value='todos';renderList(kind);
+      mostra(kind);
+    });
+    if(!iaSenha())el('ia-senha-box').hidden=false;
+    if((ST.ia||[]).length){el('ia-out').innerHTML=blocoResposta(ST.ia[0]);renderHist()}
+  }catch(e){console.error(e)}
+})();
+
+// ---------- BACKUP ----------
+function dataBR(s){var m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})/);return m?m[3]+'/'+m[2]+'/'+m[1]:''}
+function renderDados(){
+  try{el('fonte').textContent=D.fonte||''}catch(e){}
+  try{el('bk-ultimo').textContent=backupTexto()+'.'}catch(e){}
+  try{
+    var p=el('fonte-streaming');if(!p)return;
+    p.textContent=SV&&SV.titulos
+      ?'Onde assistir: disponibilidade no Brasil segundo o JustWatch, pela API do TMDB. Um robô confere todo dia; a última mudança foi em '+(dataBR(SV.atualizado_em)||'data desconhecida')+'. Este site usa a API do TMDB, mas não é endossado nem certificado pelo TMDB.'
+      :'Onde assistir: o robô ainda não trouxe os dados de streaming. Enquanto isso, cada título tem um link que procura no JustWatch, sempre atualizado.';
+    var ks=Object.keys(POS),qt=ks.filter(function(k){return !!caminhoTmdb(POS[k])}).length,qw=ks.length-qt;
+    el('fonte-posteres').textContent=ks.length?'Pôsteres: '+(qt?qt+' do TMDB (os mesmos cartazes do Letterboxd)':'')+(qt&&qw?' e ':'')+(qw?qw+' da Wikipedia, para o que o TMDB não tem':'')+', achados pelo IMDb ID. Os que faltam aparecem como um bloco com o título.':'Pôsteres: ainda não carregados; cada título aparece como um bloco com o nome.';
+    el('fonte-notas').textContent='Notas de fora, críticos e visão do autor vêm da pesquisa que montou a lista. Números com ≈ e textos sem link foram lembrados na pesquisa e ainda não conferidos na fonte: confira antes de citar.';
+  }catch(e){}
+}
+el('exp').addEventListener('click',function(){
+  try{
+    ST.backupEm=new Date().toISOString();save();
+    var blob=new Blob([JSON.stringify({app:'telas',versao:1,em:new Date().toISOString(),estado:ST},null,2)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='telas-backup-'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+    renderDados();
+  }catch(e){el('impmsg').textContent='Não consegui gerar o arquivo neste navegador.'}
+});
+el('imp').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{var j=JSON.parse(r.result);var s=j.estado||j;
+      ST.notas=s.notas||{};ST.status=s.status||{};ST.pesos=s.pesos||null;ST.servicos=Array.isArray(s.servicos)?s.servicos:[];restauraCol(s);limpaEstado();save();renderAll();renderCal();
+      el('impmsg').textContent='Backup restaurado: '+Object.keys(ST.notas).length+' notas, '+Object.keys(ST.status).length+' status.';
+    }catch(err){el('impmsg').textContent='Esse arquivo não é um backup do Telas.'}
+  };
+  r.readAsText(f);
+});
+
+// ---------- AGENDA ----------
+// No formato do diário do Letterboxd: o dia grande à esquerda, o pôster, o episódio e, à direita, quanto falta.
+var DOW=['dom','seg','ter','qua','qui','sex','sáb'];
+var MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function ymd(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function parseYmd(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function localDate(e){if(e.airstamp){var d=new Date(e.airstamp);if(!isNaN(d))return d}return e.data?parseYmd(e.data):null}
+function hora(e){if(!e.airstamp)return '';var d=new Date(e.airstamp);if(isNaN(d))return '';var h=d.getHours(),m=d.getMinutes();return (h||m)?String(h).padStart(2,'0')+'h'+(m?String(m).padStart(2,'0'):''):''}
+function acompanhadas(){
+  var set={};
+  (D&&D.series||[]).forEach(function(s){if(stOf(s)==='acompanhando'&&s.imdb_id)set[s.imdb_id]=1});
+  return set;
+}
+function eventos(){
+  if(!EP||!EP.episodios)return [];
+  var set=acompanhadas();
+  return EP.episodios.filter(function(e){return CAL.scope==='todas'||set[e.imdb_id]}).map(function(e){var d=localDate(e);return d?{e:e,d:d,k:ymd(d)}:null}).filter(Boolean)
+    .sort(function(a,b){return a.d-b.d});
+}
+function serieDoEp(e){var l=(D&&D.series)||[];for(var i=0;i<l.length;i++)if(l[i].imdb_id&&l[i].imdb_id===e.imdb_id)return l[i];return null}
+function quando(d){
+  var h=new Date();h.setHours(0,0,0,0);var x=new Date(d.getFullYear(),d.getMonth(),d.getDate()),n=Math.round((x-h)/864e5);
+  return n===0?'hoje':n===1?'amanhã':n===-1?'ontem':n>1?'em '+n+' dias':'há '+(-n)+' dias';
+}
+function epRow(x){
+  var e=x.e,s=serieDoEp(e),d=x.d,q=quando(d),hj=x.k===ymd(new Date());
+  var l2=['T'+e.temporada,'E'+e.episodio,e.titulo].filter(Boolean).join(' · '),l3=[e.plataforma,hora(e)].filter(Boolean).join(' · ');
+  var perto=q==='hoje'||q==='amanhã'?' perto':'';
+  var inner='<span class="dd"><b class="num">'+d.getDate()+'</b><span>'+DOW[d.getDay()]+'</span></span><span class="mini">'+capa(s||{id:'',titulo:e.serie||''},120)+'</span>'+
+    '<span class="tx"><b>'+esc(s?s.titulo:e.serie)+'</b><span class="num">'+esc(l2)+'</span><span class="plat">'+esc(l3)+'<span class="qd2'+perto+'">'+(l3?' · ':'')+q+'</span></span></span>'+
+    '<span class="qd'+perto+'">'+q+'</span>';
+  return s?'<button class="dl ep'+(hj?' hoje':'')+'" data-folha="'+esc(s.id)+'">'+inner+'</button>':'<div class="dl ep'+(hj?' hoje':'')+'">'+inner+'</div>';
+}
+function agenda(list){
+  var by={},ordem=[];
+  list.forEach(function(x){var k=x.d.getFullYear()+'-'+x.d.getMonth();if(!by[k]){by[k]=[];ordem.push(k)}by[k].push(x)});
+  return '<div class="agenda">'+ordem.map(function(k){var p=k.split('-');return '<h3 class="mes-cab">'+MES[+p[1]]+' '+p[0]+'</h3>'+by[k].map(epRow).join('')}).join('')+'</div>';
+}
+function semEventos(msg){return '<p class="empty" style="padding:28px 8px">'+msg+'</p>'}
+// quando o robô gerou os dados (ele roda todo dia; o GitHub às vezes atrasa algumas horas)
+function atualizadoEm(){
+  try{var g=EP&&EP.gerado_em?new Date(EP.gerado_em):null;if(!g||isNaN(g))return '';
+    var hh=('0'+g.getHours()).slice(-2)+'h'+('0'+g.getMinutes()).slice(-2);
+    return 'atualizado pelo robô em '+g.getDate()+' de '+MES[g.getMonth()]+', '+hh}catch(e){return ''}
+}
+// "A seguir": um episódio por série acompanhada, como o Up Next do TV Forecast
+function aSeguir(excluir){
+  if(!EP||!EP.episodios)return '';
+  var set=acompanhadas(),ini=new Date();ini.setHours(0,0,0,0);var vis={},out=[];
+  EP.episodios.map(function(e){var d=localDate(e);return d?{e:e,d:d,k:ymd(d)}:null}).filter(function(x){return x&&set[x.e.imdb_id]&&x.d>=ini})
+    .sort(function(a,b){return a.d-b.d}).forEach(function(x){if(vis[x.e.imdb_id])return;vis[x.e.imdb_id]=1;if(!excluir[x.e.imdb_id])out.push(x)});
+  return out.length?'<div class="bloco"><h2 class="rotulo">Mais adiante <span class="dica">o próximo episódio de cada série que você acompanha</span></h2>'+out.map(epRow).join('')+'</div>':'';
+}
+function renderCal(){
+  try{
+    var body=el('calbody');if(!body)return;
+    renderAcomp();
+    if(!EP||!EP.episodios){
+      body.innerHTML=semEventos('A agenda de episódios ainda não foi gerada. O robô que busca as datas roda uma vez por dia depois que esta página estiver no ar.')+anunciadas();return}
+    var all=eventos(),now=new Date(),hj=ymd(now),at=atualizadoEm();
+    if(CAL.v==='semana'){
+      // janela que anda: de hoje até daqui a 7 dias
+      var ini=new Date(now.getFullYear(),now.getMonth(),now.getDate()),fim=new Date(ini.getFullYear(),ini.getMonth(),ini.getDate()+7);
+      var w=all.filter(function(x){return x.d>=ini&&x.d<fim}),ja={};w.forEach(function(x){ja[x.e.imdb_id]=1});
+      body.innerHTML=(at?'<p class="nota-cal">Próximos 7 dias · '+at+'</p>':'')+(w.length?agenda(w):semEventos(CAL.scope==='acomp'?'Nenhum episódio nos próximos 7 dias nas séries que você acompanha. Marque séries como Acompanho na aba Séries.':'Nenhum episódio nos próximos 7 dias.'))+aSeguir(ja);
+    }else if(CAL.v==='mes'){
+      if(!CAL.m)CAL.m=new Date(now.getFullYear(),now.getMonth(),1);
+      var m=CAL.m,first=(m.getDay()+6)%7,dias=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
+      var by={};all.forEach(function(x){if(x.d.getFullYear()===m.getFullYear()&&x.d.getMonth()===m.getMonth())(by[x.k]=by[x.k]||[]).push(x)});
+      var cells=['seg','ter','qua','qui','sex','sáb','dom'].map(function(d){return '<div class="dow">'+d+'</div>'});
+      for(var i=0;i<first;i++)cells.push('<div class="cell pad"></div>');
+      for(var dd=1;dd<=dias;dd++){var k=ymd(new Date(m.getFullYear(),m.getMonth(),dd)),n=(by[k]||[]).length;
+        cells.push('<button class="cell'+(k===hj?' today':'')+(k===CAL.sel?' sel':'')+'" data-day="'+k+'" aria-label="'+dd+' de '+MES[m.getMonth()]+', '+n+' episódios"><span class="dn num">'+dd+'</span>'+(n?'<span class="dots">'+Array(Math.min(n,3)+1).join('<span class="dot"></span>')+'</span>':'')+'</button>')}
+      var selList=CAL.sel&&by[CAL.sel]?agenda(by[CAL.sel]):'<p class="nota-cal" style="margin-top:12px">Toque num dia pra ver os episódios.</p>';
+      body.innerHTML='<div class="mhead"><button class="icb" data-mv="-1" aria-label="Mês anterior">'+IC.esq+'</button><b>'+MES[m.getMonth()]+' '+m.getFullYear()+'</b><button class="icb" data-mv="1" aria-label="Próximo mês">'+IC.dir+'</button></div><div class="month">'+cells.join('')+'</div><div style="margin-top:12px">'+selList+'</div>';
+    }else{
+      var lim=new Date(now.getFullYear(),now.getMonth()+6,1),fut=all.filter(function(x){return x.d>=new Date(now.getFullYear(),now.getMonth(),now.getDate())&&x.d<lim});
+      body.innerHTML=(at?'<p class="nota-cal">Próximos seis meses · '+at+'</p>':'')+(fut.length?agenda(fut):semEventos('Sem episódios com data nos próximos seis meses.'))+anunciadas();
+    }
+  }catch(e){console.error(e)}
+}
+function anunciadas(){
+  var s=(D&&D.series||[]).filter(function(x){return x.proximo&&(CAL.scope==='todas'||stOf(x)==='acompanhando')});
+  if(!s.length)return '';
+  return '<div class="bloco"><h2 class="rotulo">Temporadas anunciadas <span class="dica">ainda sem data de episódio</span></h2><ul class="ann">'+s.map(function(x){return '<li><b>'+esc(x.titulo)+'</b> <span>· '+esc(x.proximo)+'</span></li>'}).join('')+'</ul></div>';
+}
+el('calview').addEventListener('click',function(e){var b=e.target.closest('[data-v]');if(!b)return;var v=b.dataset.v;CAL.v=v;
+  el('calview').querySelectorAll('.chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v))});renderCal()});
+el('calscope').addEventListener('change',function(e){CAL.scope=e.target.value;renderCal()});
+el('calbody').addEventListener('click',function(e){
+  var t=e.target.closest('[data-mv],[data-day]');if(!t)return;
+  if(t.dataset.mv){CAL.m=new Date(CAL.m.getFullYear(),CAL.m.getMonth()+(+t.dataset.mv),1);CAL.sel=null}else{CAL.sel=t.dataset.day}
+  renderCal();
+});
+
+// ---------- ICS E LISTA DO ROBÔ ----------
+(function(){
+  try{
+    var u=location.origin+'/telas/lancamentos.ics';
+    el('ics-link').href=u.replace(/^https?:/,'webcal:');
+    el('ics-copy').addEventListener('click',function(){copiar(u,el('ics-copy'))});
+    el('acomp-edit').href='https://github.com/lucasvaranda-ux/mochilao-america-do-sul/edit/main/telas/acompanhando.json';
+    el('acomp-copy').addEventListener('click',function(){copiar(el('acomp-json').value,el('acomp-copy'))});
+  }catch(e){console.error(e)}
+})();
+function renderAcomp(){
+  try{
+    var list=[];
+    (D&&D.series||[]).forEach(function(s){if(stOf(s)==='acompanhando'&&s.imdb_id)list.push({imdb_id:s.imdb_id,titulo:s.titulo})});
+    el('acomp-json').value=JSON.stringify({series:list},null,2);
+  }catch(e){}
+}
+function copiar(txt,btn){
+  var ok=function(){var o=btn.textContent;btn.textContent='Copiado';setTimeout(function(){btn.textContent=o},1600)};
+  try{navigator.clipboard.writeText(txt).then(ok,function(){fallback()})}catch(e){fallback()}
+  function fallback(){try{var t=document.createElement('textarea');t.value=txt;t.style.position='fixed';t.style.top='-999px';document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();ok()}catch(e){}}
+}
+
+// ---------- INÍCIO ----------
+(function(){try{var h=(location.hash||'').slice(1);mostra(h&&el('p-'+h)?h:'filmes')}catch(e){console.error(e)}})();
+// no computador o campo da busca é estreito: placeholder curto
+(function(){try{if(window.matchMedia('(min-width:900px)').matches){var a=document.querySelector('[data-q="filmes"]'),b=document.querySelector('[data-q="series"]');if(a)a.placeholder='Buscar filmes';if(b)b.placeholder='Buscar séries'}}catch(e){}})();
+// um link #cal ou #voce com a página já aberta também troca de aba
+window.addEventListener('hashchange',function(){try{var h=(location.hash||'').slice(1);if(h&&h!==ABA&&el('p-'+h))mostra(h)}catch(e){console.error(e)}});
+load();
+</script>
+</body>
+</html>
