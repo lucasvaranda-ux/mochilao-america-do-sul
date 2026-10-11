@@ -392,7 +392,10 @@ export async function copiasLocais({ raiz, itens, fetchFn, dormir, log, prazo, c
       if (!primeiraBaixa) await dormir(PAUSA_COPIA_MS);
       primeiraBaixa = false;
       try {
-        const r = await fetchFn(url, { headers: { 'User-Agent': UA, Accept: 'image/webp,image/*' }, signal: AbortSignal.timeout(TEMPO_COPIA_MS) });
+        // logo em SVG: baixa a versão em PNG que a própria Wikimedia desenha (500 px), nunca o SVG
+        const deOnde = /\.svg$/i.test(new URL(url).pathname) ? miniaturaDoOriginal(url, LARGURA) : url;
+        if (!deOnde) break;
+        const r = await fetchFn(deOnde, { headers: { 'User-Agent': UA, Accept: 'image/webp,image/*' }, signal: AbortSignal.timeout(TEMPO_COPIA_MS) });
         if (r.status === 429 || r.status >= 500) {
           const ra = Math.min(30, Number(r.headers?.get?.('retry-after')) || 5 * t);
           await r.arrayBuffer().catch(() => {});
@@ -405,7 +408,7 @@ export async function copiasLocais({ raiz, itens, fetchFn, dormir, log, prazo, c
         if (!bytes.length || bytes.length > COPIA_MAX) break;
         let ext = EXT[tipo];
         if (converter && ext !== 'gif') {
-          const w = await paraWebp(bytes, Number(e.w) || 500).catch(() => null);
+          const w = await paraWebp(bytes, deOnde === url ? (Number(e.w) || 500) : LARGURA).catch(() => null);
           if (w && w.length) { bytes = w; ext = 'webp'; }
         }
         const arq = nome + '.' + ext;
