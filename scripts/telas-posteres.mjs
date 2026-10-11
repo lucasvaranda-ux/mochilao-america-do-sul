@@ -59,7 +59,13 @@ const urlImagemOk = u => {
   if (typeof u !== 'string' || !/^https:\/\/upload\.wikimedia\.org\/[^\s"'<>\\]+$/.test(u)) return false;
   try { return new URL(u).hostname === 'upload.wikimedia.org'; } catch { return false; }
 };
-const absoluta = u => (typeof u === 'string' && u.startsWith('//') ? 'https:' + u : u);
+// A API passou a pôr "?utm_source=...&utm_campaign=api" nas URLs de imagem (out/2026); sem tirar isso,
+// as trocas de largura (que esperam o nome do arquivo no fim da URL) falham e o título fica sem cartaz.
+const absoluta = u => {
+  if (typeof u !== 'string') return u;
+  const s = u.startsWith('//') ? 'https:' + u : u;
+  return /^https:\/\/upload\.wikimedia\.org\//.test(s) ? s.replace(/[?#].*$/, '') : s;
+};
 const dimOk = n => Number.isInteger(n) && n > 0 && n < 100000;
 
 // entrada do TMDB: só o caminho do cartaz (poster_path), validado, e a página do título no TMDB
