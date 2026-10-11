@@ -871,7 +871,9 @@ button.mini-po:active{transform:scale(.95)}
 .obra-h .po{flex:0 0 48px;width:48px;border-radius:6px}
 .obra-h b{display:block;font-size:16px;font-weight:700;line-height:1.25}
 .obra-h small{display:block;font-size:13px;color:var(--tx2)}
-.obra-h .rm{margin-left:auto;min-height:44px}
+.obra-h .rm{margin-left:auto;min-height:44px;min-width:44px;padding:0 8px}
+.obra .resumo{margin:8px 0 0;font-size:14px;color:var(--tx2);line-height:1.45}
+.obra .resumo b{color:var(--tx);font-weight:600}
 .obra .q{margin:12px 0 6px!important;font-size:14px!important}
 .obra .chip{font-size:14px;padding:6px 12px}
 /* limites: três estados por linha */
@@ -879,9 +881,11 @@ button.mini-po:active{transform:scale(.95)}
 .lim{display:block;background:var(--s1);border-radius:16px;padding:12px 12px 10px 14px;box-shadow:var(--ring)}
 .lim .ln{display:block;font-size:15px;font-weight:600;line-height:1.3;margin-bottom:8px}
 .lim .seg{grid-template-columns:repeat(3,minmax(0,1fr))}
-.lim .seg button{padding:0 6px;font-size:13px}
+.lim .seg button{height:auto;min-height:38px;padding:4px 4px;font-size:13px}
+.lim .seg button>.tx{white-space:normal;line-height:1.15}
 @media (min-width:600px){.lim{display:grid;grid-template-columns:minmax(0,1fr) 320px;align-items:center;gap:12px}.lim .ln{margin-bottom:0}}
-.lim .seg button[aria-pressed="true"][data-lg="nunca"]{color:var(--new)}
+/* "nunca" marcado: anel laranja por dentro (o texto fica na cor normal, que passa no contraste) */
+.lim .seg button[aria-pressed="true"][data-lg="nunca"]{box-shadow:0 1px 3px rgba(0,0,0,.14),inset 0 0 0 2px var(--new)}
 .g6 .opt{display:flex;align-items:center;gap:10px;min-height:44px;font-size:15px;color:var(--tx);margin-top:14px;cursor:pointer}
 .g6 .opt input{width:22px;height:22px;accent-color:var(--acc);margin:0}
 /* primeira lista: cartões com o porquê */
@@ -896,7 +900,7 @@ button.mini-po:active{transform:scale(.95)}
 .frase p{flex:1;min-width:0;margin:0;font-size:16px;line-height:1.5;color:var(--tx)}
 .frase p b{font-weight:800}
 .frase.off p{color:var(--tx3);text-decoration:line-through}
-.frase .lnk{flex:0 0 auto;padding:0 6px;font-size:13px;white-space:nowrap;min-height:40px}
+.frase .lnk{flex:0 0 auto;padding:0 6px;font-size:13px;white-space:nowrap;min-height:44px}
 /* perfil guardado */
 .pw{display:grid;grid-template-columns:minmax(80px,auto) minmax(0,1fr) 34px;gap:7px 10px;align-items:center;font-size:14px;margin-top:4px}
 .pw .bar{height:8px;background:var(--track);border-radius:4px;overflow:hidden;position:relative}
@@ -912,6 +916,8 @@ button.mini-po:active{transform:scale(.95)}
 .ri textarea:focus{outline:none;border-color:var(--acc)}
 .ri .impl .meta{display:block}
 .ri .impl label span{flex:1}
+/* modo pessoa: os blocos que só fazem sentido para o dono da página (robô de e-mail, fonte do acervo) somem */
+html.pessoa #acomp-box,html.pessoa #fonte{display:none}
 @media (min-width:600px){.cenas{grid-template-columns:1fr}.g6-lista{grid-template-columns:1fr 1fr}.portas{grid-template-columns:1fr}}
 @media (min-width:900px){.g6{max-width:720px}.cgrid{grid-template-columns:repeat(3,150px);gap:18px 16px}}
 
@@ -1266,7 +1272,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
         <div class="row"><button class="btn pri" id="exp">Baixar backup</button><label class="btn" for="imp">Restaurar backup</label><input id="imp" type="file" accept="application/json" hidden></div>
         <p id="impmsg" style="margin-top:10px"></p>
       </div>
-      <div class="box">
+      <div class="box" id="acomp-box">
         <h3>Alertas por e-mail</h3>
         <p>Um robô roda todo dia de manhã no GitHub, olha os próximos episódios das séries que você acompanha e te manda e-mail na véspera — e um resumo da semana às segundas.</p>
         <p>Ele só conhece as séries que estão no arquivo <code>telas/acompanhando.json</code> do repositório. Quando mudar o que você acompanha, copie a lista abaixo e cole lá.</p>
@@ -1309,7 +1315,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
     <div class="pad">
       <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
       <header class="pghead"><h2>Colar o resumo da minha IA</h2><p>Copie o pedido abaixo, cole no assistente que você já usa (ChatGPT, Claude, Gemini, Copilot…) numa conversa normal (não a temporária, nem dentro de um projeto) e cole aqui a resposta. A leitura é feita neste navegador: o texto não sai do aparelho e não fica guardado, só o que você aprovar.</p></header>
-      <div id="ri"></div>
+      <div id="ri" class="ri"></div>
     </div>
   </section>
 
@@ -1367,7 +1373,8 @@ function x13(it){
   v.push(temGen(g,GEN_RISO),temGen(g,GEN_TENSAO),temGen(g,GEN_DESENHO));return v;
 }
 // valor bruto do gosto: soma peso × número (w: 13 pesos; x: 13 números)
-function valor13(w,x){if(!x)return null;var s=0;for(var i=0;i<N13;i++)s+=(+w[i]||0)*x[i];return s}
+// (arredondado a 1e-6: com os 9 temas iguais a forma soma zero em todo título, e o ruído de ponto flutuante não pode virar ordem)
+function valor13(w,x){if(!x)return null;var s=0;for(var i=0;i<N13;i++)s+=(+w[i]||0)*x[i];return Math.round(s*1e6)/1e6}
 // percentil (0 a 100) de v numa lista ordenada crescente: parte dos valores abaixo, com meio ponto para os iguais
 // (percentilF devolve o valor sem arredondar: é por ele que as listas se ordenam, para não empatar no inteiro)
 function percentilF(ord,v){
@@ -1385,7 +1392,7 @@ function phiN(z){var t=1/(1+0.2316419*Math.abs(z)),d=0.3989423*Math.exp(-z*z/2),
 function percentilNormal(w,v){
   if(isNaN(v))return null;var m=0,s=0,i,j;
   for(i=0;i<N13;i++){var wi=+w[i]||0;m+=wi*MU13C[i];for(j=0;j<N13;j++)s+=wi*(+w[j]||0)*SIG13[i][j]}
-  if(!(s>1e-12))return null;return 100*phiN((v-m)/Math.sqrt(s));
+  if(!(s>1e-6))return null;return 100*phiN((v-m)/Math.sqrt(s));
 }
 // Os 4 traços que completam as 9 dimensões (13 "eixos" ao todo). Nível é o peso inicial do Lucas: a lista dele é
 // densa em tudo (média 67,8 contra 49,1 no catálogo), então o nível é o que a põe no alto; riso, tensão e desenho
@@ -1406,7 +1413,7 @@ function pesoPct(i,v){return Math.round((( +v||0)-pesoMin(i))/(30-pesoMin(i))*10
 
 // ---------- ESTADO ----------
 var KEY='telas_v1';
-var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},vistos:{},ia:[],naovi:{},sugOcultas:{},pesosAntes:null,av:{},perfil:null};
+var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},vistos:{},ia:[],naovi:{},sugOcultas:{},pesosAntes:null,av:{},perfil:null,servicosAntes:null};
 var STORE=true;
 function obj(x){return x&&typeof x==='object'&&!Array.isArray(x)?x:{}}
 function strs(a){return Array.isArray(a)?a.filter(function(x){return typeof x==='string'}):[]}
@@ -1419,17 +1426,17 @@ function limpaNotas(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var 
 function limpaStatus(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var v=o[k];if(typeof v==='string'&&Object.prototype.hasOwnProperty.call(STATUS_OK,v))r[k]=v});return r}
 function limpaPesos(p){if(!Array.isArray(p)||(p.length!==9&&p.length!==N13))return null;var r=[];for(var i=0;i<N13;i++){var v=i<p.length?p[i]:(i>=9?TRACOS[i-9].peso:0);if(typeof v!=='number'||!isFinite(v))return null;r.push(Math.max(pesoMin(i),Math.min(30,Math.round(v))))}return r}
 var PESOS_MIG=false; // os pesos guardados tinham 9 posições: ganharam os 4 traços nesta carga (aviso na aba Conexão)
-// ST.perfil (modo pessoa): só entra com os 13 pesos válidos; o resto é limpado campo a campo
+// ST.perfil (modo pessoa): só entra com 13 pesos válidos e algum sinal (pesos todos iguais não ordenam nada); o resto é limpado campo a campo
 var LIM_OK={terror:1,guerra:1,desenho:1,infantil:1,antigos:1,longas:1},LIM_GRAU={nunca:1,valer:1};
 function limpaPerfil(p){
-  if(!p||typeof p!=='object'||Array.isArray(p))return null;var w=limpaPesos(p.pesos);if(!w||w.length!==N13)return null;
+  if(!p||typeof p!=='object'||Array.isArray(p)||!Array.isArray(p.pesos)||p.pesos.length!==N13)return null;var w=limpaPesos(p.pesos);if(!w||!w.some(function(v){return v}))return null;
   var r={v:1,pesos:w,origem:/^(gosto6|resumo|arquivo)$/.test(String(p.origem))?String(p.origem):'gosto6',feito_em:/^\d{4}-\d{2}-\d{2}/.test(String(p.feito_em))?String(p.feito_em).slice(0,24):new Date().toISOString()};
   var l={};Object.keys(obj(p.limites)).forEach(function(k){if(LIM_OK[k]&&LIM_GRAU[p.limites[k]])l[k]=p.limites[k]});r.limites=l;
   r.limFase=!!p.limFase;
   var c=obj(p.contexto);r.contexto={quem:strs(c.quem).slice(0,5),idade:/^(ate6|7a11|12mais)$/.test(String(c.idade))?String(c.idade):'',onde:/^(tv|note|cel)$/.test(String(c.onde))?String(c.onde):'',
     tempo:/^(curto|filme|maratona)$/.test(String(c.tempo))?String(c.tempo):'',servicos:strs(c.servicos).slice(0,20)};
   var rs=obj(p.respostas);r.respostas={procura:strs(rs.procura).slice(0,2),fase:typeof rs.fase==='string'?rs.fase.slice(0,20):'',resp:typeof rs.resp==='string'?rs.resp.slice(0,20):'',
-    cenas:Math.max(0,Math.min(6,+rs.cenas||0)),cartazes:limpaVezes(rs.cartazes),obras:strs(rs.obras).slice(0,3),origem_txt:typeof rs.origem_txt==='string'?rs.origem_txt.slice(0,80):''};
+    cenas:Math.max(0,Math.min(6,+rs.cenas||0)),cartazes:limpaVezes(rs.cartazes),obras:strs(rs.obras).slice(0,3)};
   r.pesosSemFase=limpaPesos(p.pesosSemFase);
   r.frases=strs(p.frases).map(function(s){return s.slice(0,240)}).slice(0,8);
   r.nao=strs(p.nao).slice(0,200);
@@ -1442,6 +1449,7 @@ function limpaColEst(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var
 function restauraTudo(p){
   ST.notas=limpaNotas(p.notas);ST.status=limpaStatus(p.status);ST.pesos=limpaPesos(p.pesos);ST.servicos=strs(p.servicos);restauraCol(p);
   ST.perfil=limpaPerfil(p.perfil);
+  ST.servicosAntes=Array.isArray(p.servicosAntes)?strs(p.servicosAntes):null; // os serviços de antes do modo pessoa (voltam no Apagar)
 }
 function restauraCol(p){ST.col=limpaColEst(p.col);ST.livres=limpaLivres(p.livres);ST.vezes=limpaVezes(p.vezes);ST.fase=limpaFase(p.fase);ST.vistos=limpaVistos(p.vistos);ST.ia=Array.isArray(p.ia)?p.ia.filter(function(r){return r&&typeof r==='object'}).slice(0,20):[];restauraAval(p)}
 // aba Avaliar: "não vi", sugestões escondidas por coleção, pesos de antes dos aprendidos, filtros da aba
@@ -1470,7 +1478,7 @@ var RANKS={filmes:{},series:{}}; // posição de cada título no ranking da cone
 var SUJO={}; // telas que precisam redesenhar quando abrirem (algo mudou em outra)
 // Início: Tudo · Filmes · Séries (preferência só deste aparelho)
 var INI={f:'tudo',ordem:null,ocultas:[]};
-var PRAT=[['cont','Continuar'],['top','Top 10 de conexão'],['hoje','No que você assina ou ainda não viu'],['duo','Sessão dupla'],['col','Suas coleções'],['dim','Uma dimensão forte']];
+var PRAT=[['comecar','Por onde começar? (as três portas)'],['cont','Continuar'],['top','Top 10 de conexão'],['hoje','No que você assina ou ainda não viu'],['duo','Sessão dupla'],['col','Suas coleções'],['dim','Uma dimensão forte']];
 try{var ui0=JSON.parse(localStorage.getItem('telas_ui')||'{}');if(ui0&&typeof ui0==='object'){
   if(/^(tudo|filmes|series)$/.test(ui0.ini))INI.f=ui0.ini;
   var ks=PRAT.map(function(x){return x[0]});
@@ -1502,7 +1510,8 @@ function ordPara(w){
 function conexaoF(w,it){
   var x=it&&it.x||x13(it);if(!x||!w||!w.some(function(v){return +v}))return null;
   var v=valor13(w,x);if(v==null||isNaN(v))return null;
-  var ord=ordPara(w);return ord.length<500?percentilNormal(w,v):percentilF(ord,v);
+  var ord=ordPara(w);if(ord.length>=500&&ord[0]===ord[ord.length-1])return null; // empate em tudo (pesos sem sinal): sem conexão
+  return ord.length<500?percentilNormal(w,v):percentilF(ord,v);
 }
 function conexaoCom(w,it){var p=conexaoF(w,it);return p==null?null:Math.round(p)}
 // no modo pessoa, um limite "só se valer muito a pena" desconta 15 pontos
@@ -1659,7 +1668,7 @@ function chips(kind){
   var list=LD(kind);
   if(opts.indexOf(VIEW[kind].f)<0&&VIEW[kind].f!=='sem')VIEW[kind].f='todos';
   box.innerHTML=opts.map(function(o){
-    var n=list.filter(function(it){return passaStatus(it,o)}).length;
+    var n=list.filter(function(it){return o==='criancas'?paraCriancas(it):passaStatus(it,o)}).length;
     return '<button class="chip" aria-pressed="'+(VIEW[kind].f===o)+'" data-f="'+o+'">'+SLAB[o]+' <span class="num">'+n+'</span></button>';
   }).join('');
 }
@@ -1682,7 +1691,7 @@ function visiveis(kind){
     if(V.f==='criancas'&&!paraCriancas(it))return false;
     if(V.w&&V.w!=='todos'&&!passaWatch(it,V.w))return false;
     if(!q)return true;
-    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,it.arquetipo,emStreaming(it).join(' ')].join(' ').toLowerCase().indexOf(q)>-1;
+    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,modoPessoa()?'':it.arquetipo,emStreaming(it).join(' ')].join(' ').toLowerCase().indexOf(q)>-1;
   }).sort(function(a,b){return sortKey(kind,b)-sortKey(kind,a)});
 }
 // as 9 dimensões em barras horizontais, da mais forte para a mais fraca (o único gráfico da página)
@@ -1792,7 +1801,9 @@ function renderAll(){
   try{aplicaModo()}catch(e){console.error(e)}
   renderWatchCtl();renderList('filmes');renderList('series');renderShelves('filmes');renderShelves('series');renderCol('desligar');renderCol('repetidos');renderPesos();renderDados();renderNavBadges();
   renderSug('desligar');renderSug('repetidos');renderGostoResumo();renderAvaliar();
-  try{renderComecar();renderPerfil();if(ABA==='gosto')g6Entrar();if(ABA==='resumo')riRender()}catch(e){console.error(e)}
+  // o caminho e o resumo só se montam aqui se ainda não estavam na tela (o streaming.json chega depois do dados.json: não pode
+  // devolver a pessoa à abertura nem apagar o que ela colou)
+  try{renderComecar();renderPerfil();if(ABA==='gosto'&&!el('g6').querySelector('.g6-top'))g6Entrar();if(ABA==='resumo'&&(RI||!el('ri').innerHTML))riRender()}catch(e){console.error(e)}
   try{if(!IA_OCUPADA){el('ia-out').innerHTML=(ST.ia||[]).length?blocoResposta(ST.ia[0]):'';renderHist()}}catch(e){console.error(e)}
   try{document.querySelector('.foot').hidden=false}catch(e){} // só depois dos dados: senão o rodapé pula para baixo quando a lista chega
   el('foot').textContent=(D.gerado_em?'Lista gerada em '+D.gerado_em+'. ':'')+'Notas dos agregadores mudam com o tempo — confira na fonte antes de citar.'+(STORE?'':' Este navegador não está guardando suas notas: faça backup.');
@@ -1921,7 +1932,6 @@ function shHoje(kind,usados){
   return shelfHtml({key:'hoje-'+kind,title:'Que você ainda não viu',more:'naovi:'+listaDe(kind),
     row:cada(nv,function(it){return tile(it,{sv:kindOf(it.id)==='series'?plataformaCurta(it):(it.autor?String(it.autor).split(/ e |,/)[0]:'')})})});
 }
-function cos(a,b){var s=0,x=0,y=0;for(var i=0;i<Math.min(a.length,b.length);i++){var p=+a[i]||0,q=+b[i]||0;s+=p*q;x+=p*p;y+=q*q}return x&&y?s/Math.sqrt(x*y):0}
 // Sessão dupla (Criterion Channel): um que ele já conhece e um que não viu, com o elo entre os dois.
 // O conhecido sai, nesta ordem, do que ele deu 80 ou mais fora do Top 10, do que marcou como assistido,
 // do que acompanha e, por último, do topo da lista. O outro nunca repete as prateleiras de cima.
@@ -1939,6 +1949,7 @@ function shDuo(kind,usados){
   for(i=0;i<niveis.length&&!amados.length;i++)if(fora(niveis[i][1]).length){amados=fora(niveis[i][1]);tipo=niveis[i][0]}
   for(i=0;i<niveis.length&&!amados.length;i++)if(niveis[i][1].length){amados=niveis[i][1];tipo=niveis[i][0]}
   if(!amados.length)amados=topLista(kind).slice(0,5);
+  if(!amados.length)return '';
   var a=amados[hojeN()%Math.min(amados.length,5)];
   var cand=l.filter(function(it){return it.id!==a.id&&!usados[it.id]&&naoViu(it)}),best=null,bs=-1;
   cand.forEach(function(it){var s=cos13(a,it)*.65+((conexao(it)||0)/100)*.35;if(s>bs){bs=s;best=it}});
@@ -2011,7 +2022,9 @@ function epCap(inf){
   if(inf.ult)return 'T'+inf.ult.e.temporada+' · E'+inf.ult.e.episodio+' · no ar';
   return 'sem data nova';
 }
-function seriesAcompanhadas(){return [].concat(LD('series'),ST.perfil?[]:(D.extras||[]).filter(function(x){return x.tipo==='serie'})).filter(function(it){return stOf(it)==='acompanhando'})}
+// todas as séries em que um status pode morar: as da página, as de extras e, no modo pessoa, as da lista dela
+function seriesTodas(){var v={},out=[];[].concat((D&&D.series)||[],((D&&D.extras)||[]).filter(function(x){return x&&x.tipo==='serie'}),ST.perfil?LD('series'):[]).forEach(function(it){if(it&&it.id&&!v[it.id]){v[it.id]=1;out.push(it)}});return out}
+function seriesAcompanhadas(){return seriesTodas().filter(function(it){return stOf(it)==='acompanhando'})}
 function shContinuar(){
   var l=seriesAcompanhadas();if(!l.length)return '';
   var rows=l.map(function(it){return {it:it,inf:infoSerie(it)}}).sort(function(a,b){
@@ -2027,7 +2040,8 @@ function renderInicio(){
     var out={},usados={},k=INI.f,esc0=INI.ocultas;
     // monta na ordem de sempre (é ela que evita repetir título entre prateleiras) e mostra na ordem que ele escolheu
     function poe(id,f){if(esc0.indexOf(id)>-1)return;try{out[id]=f()}catch(e){console.error(e)}}
-    var topo='';try{topo=ST.perfil?shCriancas(k,usados):shComecar()}catch(e){console.error(e)}
+    var topo='';try{topo=ST.perfil?shCriancas(k,usados):''}catch(e){console.error(e)}
+    poe('comecar',function(){return ST.perfil?'':shComecar()});
     if(k!=='filmes')poe('cont',shContinuar);
     poe('top',function(){return shTop10(k,usados)});
     poe('hoje',function(){return shHoje(k,usados)});
@@ -2121,12 +2135,14 @@ function ir(t){
     document.querySelectorAll('.lseg .tab').forEach(function(b){if(b.dataset.tab===t)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
     el('lnav').hidden=g!=='lista'&&g!=='avaliar';el('lseg-lista').hidden=g!=='lista';el('av-modo').hidden=g!=='avaliar';
     // as subpáginas do Mais entram no histórico (o Voltar do Android e o gesto do iPhone voltam ao Mais); o resto só troca o endereço
-    try{if(g==='mais'&&t!=='mais'&&!ABA0&&!EM_POP&&ABA_ANT==='mais')history.pushState({sub:1},'','#'+t);else history.replaceState(history.state&&history.state.folha?history.state:null,'','#'+t)}catch(e){}
+    // (as portas do Início levam ao caminho, ao resumo e ao começar: vindo de outro grupo, elas também entram, senão o Voltar sai do site)
+    var entra=g==='mais'&&t!=='mais'&&!ABA0&&!EM_POP&&(ABA_ANT==='mais'||(GRUPO[ABA_ANT]!=='mais'&&/^(comecar|gosto|resumo|perfil)$/.test(t)));
+    try{if(entra)history.pushState({sub:1},'','#'+t);else history.replaceState(history.state&&history.state.folha?history.state:null,'','#'+t)}catch(e){}
     fechaAviso(); // o "Desfazer" de uma tela não vale na outra
     if(t==='cal')renderCal();
     atualizaSujo(t);
     if(t==='avaliar')renderAvaliar(true);
-    if(D){try{if(t==='comecar')renderComecar();else if(t==='perfil')renderPerfil();else if(t==='gosto')g6Entrar();else if(t==='resumo')riRender()}catch(e){console.error(e)}}
+    try{if(t==='comecar')renderComecar();else if(t==='perfil')renderPerfil();else if(t==='gosto')g6Entrar();else if(t==='resumo')riRender()}catch(e){console.error(e)} // sem dados, o caminho mostra "Carregando"
     if(mudou&&!ABA0)try{window.scrollTo(0,0)}catch(e){}
   }catch(e){console.error(e)}
 }
@@ -2191,8 +2207,8 @@ el('weights').addEventListener('input',function(e){
   var w=pesos().slice();w[+i]=+e.target.value;ST.pesos=w;el('wo-'+i).textContent=w[+i];
   try{e.target.style.setProperty('--v',pesoPct(+i,w[+i])+'%')}catch(err){}
 });
-el('weights').addEventListener('change',function(){save();renderList('filmes');renderList('series');renderShelves('filmes');renderShelves('series');renderGostoResumo();marcaSujo('pesos')});
-el('w-reset').addEventListener('click',function(){ST.pesos=null;save();renderPesos();renderList('filmes');renderList('series');renderShelves('filmes');renderShelves('series');renderGostoResumo();marcaSujo('pesos')});
+el('weights').addEventListener('change',function(){save();aplicaModo();renderList('filmes');renderList('series');renderShelves('filmes');renderShelves('series');renderGostoResumo();marcaSujo('pesos')});
+el('w-reset').addEventListener('click',function(){ST.pesos=null;save();aplicaModo();renderPesos();renderList('filmes');renderList('series');renderShelves('filmes');renderShelves('series');renderGostoResumo();marcaSujo('pesos')});
 
 // ---------- COLEÇÕES ----------
 // Base em dados.json (colecoes + extras); o que ele acrescenta ou tira fica neste aparelho (ST.col),
@@ -2356,7 +2372,7 @@ function adicionar(col){
 // telas/catalogo.json é público: só dados de obra (título, ano, direção, país, gêneros, as 9 dimensões, pop de 1 a 5).
 // A aba Avaliar junta o catálogo com os filmes e séries de dados.json, sem duplicar. O que ele marca fica em ST:
 // notas (0 a 100), status, naovi (não vi), sugOcultas (sugestões escondidas), pesosAntes e av (filtros da aba).
-var CAT=null,CATPOR={},AVI=[],AVPOR={},MU=null,MU13=null,IDX=null,IMDBIX=null,SAGAF={};
+var CAT=null,CATPOR={},AVI=[],AVPOR={},MU13=null,IDX=null,IMDBIX=null,SAGAF={};
 function zeros(n){var a=[];for(var i=0;i<n;i++)a.push(0);return a}
 var GOSTO_MIN=15;
 var AV={modo:'notas',q:'',tipo:'todos',dec:'',ori:'',ord:'pop',por:12,vis:'pendentes',seed:1,pag:0,foco:0,lista:null};
@@ -2426,8 +2442,8 @@ function montarAvaliaveis(){
   Object.keys(SAGAF).forEach(function(id){poe(SAGAF[id],'filme','pag',5)});
   Object.keys(CATPOR).forEach(function(id){var it=CATPOR[id];poe(it,it.tipo==='serie'?'serie':'filme','cat')});
   AVI.forEach(function(r){r.x=x13(r.it)});ORDS={};
-  var com=AVI.filter(function(r){return r.x});MU=[0,0,0,0,0,0,0,0,0];MU13=zeros(N13);
-  com.forEach(function(r){for(var i=0;i<9;i++)MU[i]+=r.dims[i]/com.length;for(i=0;i<N13;i++)MU13[i]+=r.x[i]/com.length});
+  var com=AVI.filter(function(r){return r.x});MU13=zeros(N13);
+  com.forEach(function(r){for(var i=0;i<N13;i++)MU13[i]+=r.x[i]/com.length});
   var a=ST.av||{};
   if(['todos','filme','serie'].indexOf(a.tipo)>-1)AV.tipo=a.tipo;
   // a década guardada só vale se existir na lista (um backup antigo podia trazer "1960", que não tem par)
@@ -2441,7 +2457,6 @@ function montarAvaliaveis(){
   AV.lista=null;
 }
 function guardaAv(){ST.av={tipo:AV.tipo,dec:AV.dec,ori:AV.ori,ord:AV.ord,por:AV.por,vis:AV.vis,seed:AV.seed};save()}
-function centra(d){var o=[];for(var i=0;i<9;i++)o.push(d[i]-(MU?MU[i]:50));return o}
 // os 13 números menos a média do conjunto: é o vetor da semelhança entre títulos (cosseno)
 function centra13(x){var o=[];for(var i=0;i<N13;i++)o.push(x[i]-(MU13?MU13[i]:0));return o}
 function cos13(a,b){var xa=a&&(a.x||x13(a)),xb=b&&(b.x||x13(b));return xa&&xb?cosV(centra13(xa),centra13(xb)):0}
@@ -2842,7 +2857,7 @@ function gostoCalc(){
   // Ordena pelos pesos aprendidos só quando eles passaram no teste; senão, pelos pesos em uso.
   var vistoSt={assisti:1,acompanhando:1,abandonei:1},fora=filmesDeSagas(),recP=res.bom?res.pesos:pAtual;
   colItens('desligar').concat(colItens('repetidos')).forEach(function(id){fora[id]=1});
-  res.recs=res.vazio?[]:AVI.filter(function(r){return r.x&&ST.notas[r.id]==null&&!vistoSt[stOf(r.it)]&&!fora[r.id]})
+  res.recs=res.vazio?[]:AVI.filter(function(r){return r.x&&ST.notas[r.id]==null&&!vistoSt[stOf(r.it)]&&!fora[r.id]&&!bloqueado(r.it)})
     .map(function(r){return {r:r,c:conexaoCom(recP,r),v:valor13(recP,r.x),p:Math.max(0,Math.min(100,prevZ(md,zDe(r.x))))}})
     .sort(function(a,b){return b.v-a.v||b.r.pop-a.r.pop}).slice(0,10);
   res.igual=res.pesos.every(function(x,i){return x===pAtual[i]});
@@ -2962,7 +2977,7 @@ function voltarPesos(){
   depoisDePesos('Pesos anteriores de volta.');
 }
 function depoisDePesos(msg){
-  marcaSujo();renderPesos();renderGostoResumo();renderList('filmes');renderList('series');renderShelves('filmes');
+  marcaSujo();aplicaModo();renderPesos();renderGostoResumo();renderList('filmes');renderList('series');renderShelves('filmes');
   if(el('p-avaliar').classList.contains('on')&&AV.modo==='gosto')renderGosto();
   delete SUJO.filmes;delete SUJO.series;delete SUJO.pesos;toast(msg,false);
 }
@@ -3063,7 +3078,7 @@ function sugAuto(col,usados){
     if(!v&&!g.length)return null;
     return {id:id,titulo:a.it.titulo,c:v&&MU13?centra13(v):null,g:g,anim:RE_ANIM.test(g.join(' ')),fam:RE_FAM.test(g.join(' ')),tipo:a.tipo==='serie'?'serie':'filme'}}).filter(Boolean);
   if(!membros.length||!MU13)return {lista:[],amados:[]};
-  var pool=AVI.filter(function(r){return r.x&&!usados[r.id]&&na.indexOf(r.id)<0&&oc.indexOf(r.id)<0&&!excl[r.id]&&(keep[r.id]||!ruim(r.id))&&
+  var pool=AVI.filter(function(r){return r.x&&!usados[r.id]&&na.indexOf(r.id)<0&&oc.indexOf(r.id)<0&&!excl[r.id]&&(keep[r.id]||!ruim(r.id))&&!bloqueado(r.it)&&
     (!des||r.gen.some(function(g){return RE_LEVE.test(g)}))});
   function ponto(m,r,c){
     var gr=r.gen.map(minus),sh=gr.filter(function(x){return m.g.indexOf(x)>-1}),G=sh.length/Math.max(m.g.length,gr.length,1);
@@ -3221,10 +3236,13 @@ function casar(titulos,ano,tipo,cod){
 // achou. Vira só o status "assisti", sem nota. A série é o que vem antes do "Temporada 1: …"; os episódios são contados.
 // O pacote completo traz todos os perfis da conta: a pessoa escolhe o seu antes de qualquer casamento.
 var RE_TEMP=/^(temporada|season|parte|part|volume|livro|book|cap[ií]tulo|chapter|miniss[ée]rie|s[ée]rie limitada|limited series|coleção|collection)\b/i;
+// Devolve {nome, serie, alt}: alt é o segundo nome a tentar quando o primeiro não casa. "Stranger Things: Stranger Things 4:
+// Capítulo Um: …" dá nome "Stranger Things: Stranger Things 4" e alt "Stranger Things"; "Série: Episódio: Título" (sem a
+// palavra temporada) dá a série por ps[0] e guarda o título inteiro em alt, para tentar como filme antes ("Star Wars: Episódio IV: …").
 function nfTitulo(t){
   var ps=String(t||'').split(/:\s+/).map(function(x){return x.trim()}).filter(Boolean);if(!ps.length)return null;
-  for(var i=1;i<ps.length;i++)if(RE_TEMP.test(ps[i]))return {nome:ps.slice(0,i).join(': '),serie:true};
-  if(ps.length>=3)return {nome:ps[0],serie:true}; // "Série: Episódio: Título" sem a palavra temporada
+  for(var i=1;i<ps.length;i++)if(RE_TEMP.test(ps[i]))return {nome:ps.slice(0,i).join(': '),serie:true,alt:i>1?ps[0]:''};
+  if(ps.length>=3)return {nome:ps[0],serie:true,filme:ps.join(': ')};
   return {nome:ps.join(': '),serie:false};
 }
 function nfAnalisa(rows,h,perfil){
@@ -3236,14 +3254,20 @@ function nfAnalisa(rows,h,perfil){
     if(iP>-1&&perfis.length>1&&String(c[iP]||'').trim()!==perfil)return;
     if(iS>-1&&String(c[iS]||'').trim())return; // trailer, prévia, hook
     var x=nfTitulo(c[iT]);if(!x||!x.nome)return;linhas++;
-    var k=(x.serie?'s|':'f|')+normT(x.nome);if(!cont[k])cont[k]={nome:x.nome,serie:x.serie,n:0};cont[k].n++;
+    var k=(x.serie?'s|':'f|')+normT(x.nome);if(!cont[k])cont[k]={nome:x.nome,serie:x.serie,n:0,alt:x.alt||'',filmes:[]};cont[k].n++;
+    if(x.filme&&cont[k].filmes.indexOf(x.filme)<0&&cont[k].filmes.length<40)cont[k].filmes.push(x.filme);
   });
   var porId={},semL=[];
+  function poe(r,x,eps,arq){var st=stOf(r.it),ja=ST.notas[r.id]!=null||st==='assisti'||st==='acompanhando'||st==='abandonei';
+    var o=porId[r.id]=porId[r.id]||{id:r.id,arq:arq,eps:0,serie:x.serie,ja:ja,marcado:!ja,nota:null};o.eps+=eps}
   Object.keys(cont).forEach(function(k){var x=cont[k];
+    // "Série: Episódio: Título" sem a palavra temporada: cada título inteiro pode ser um filme ("Star Wars: Episódio IV: …")
+    if(x.filmes.length){var fs=x.filmes.map(function(f){return casar([[f,['pt','en']]],'',null,'')}).filter(Boolean);
+      if(fs.length===x.filmes.length){fs.forEach(function(r,i){poe(r,{serie:false},0,x.filmes[i])});return}}
     var r=casar([[x.nome,['pt','en']]],'',x.serie?'serie':'filme','');
+    if(!r&&x.alt)r=casar([[x.alt,['pt','en']]],'','serie',''); // temporada com nome: tenta só a série
     if(!r){semL.push(x.nome+(x.serie?' (série, '+x.n+' ep.)':''));return}
-    var st=stOf(r.it),ja=ST.notas[r.id]!=null||st==='assisti'||st==='acompanhando'||st==='abandonei';
-    var o=porId[r.id]=porId[r.id]||{id:r.id,arq:x.nome,eps:0,serie:x.serie,ja:ja,marcado:!ja,nota:null};o.eps+=x.serie?x.n:0;
+    poe(r,x,x.serie?x.n:0,x.nome);
   });
   return {fonte:'netflix',perfil:perfil||'',perfis:perfis,linhas:linhas,titulos:Object.keys(cont).length,casados:Object.keys(porId).map(function(k){return porId[k]}),sem:semL};
 }
@@ -3277,7 +3301,13 @@ function renderImp(){
   var box=el('av-imp');if(!box)return;
   if(!IMP){box.innerHTML='';return}
   if(IMP.erro){box.innerHTML='<p class="err">'+esc(IMP.erro)+'</p>';return}
-  if(IMP.feito){box.innerHTML='<div class="box"><h3>'+esc(IMP.feito)+'</h3><p>'+(IMP.nf?'Esses títulos saem das indicações. Quer dar nota a alguns? Na aba Dar notas, o filtro "Com nota" não os mostra, mas a busca acha cada um.':'Elas já entram nas listas e no cálculo do seu gosto.')+'</p><div class="row"><button class="btn t44" data-gir="gosto">Ver seu gosto</button></div></div>';return}
+  if(IMP.feito){
+    // porta 3: sem gosto guardado, a importação oferece montar a página da pessoa (com 15+ notas, pelos pesos que as notas ensinam;
+    // só com "assisti", pelo caminho de seis minutos)
+    var nN=Object.keys(ST.notas).length,montar=ST.perfil?'':(IMP.nf||nN<GOSTO_MIN
+      ?'<p style="margin-top:8px">Para a página virar a sua, falta o seu gosto: '+(IMP.nf?'ver não é gostar, então o caminho de seis minutos continua valendo.':'com '+nN+' nota'+(nN===1?'':'s')+' ainda é pouco para calcular (precisa de '+GOSTO_MIN+'); o caminho de seis minutos resolve.')+'</p><div class="row"><button class="btn pri t44" type="button" data-go="gosto">Seu gosto em 6 minutos</button></div>'
+      :'<p style="margin-top:8px">Com essas notas dá para montar a sua página: os 13 pesos saem delas, e as listas Filmes e Séries viram o seu top 100.</p><div class="row"><button class="btn pri t44" type="button" data-impmontar="1">Montar a minha página</button></div>');
+    box.innerHTML='<div class="box"><h3>'+esc(IMP.feito)+'</h3><p>'+(IMP.nf?'Esses títulos saem das indicações. Quer dar nota a alguns? Na aba Dar notas, o filtro "Com nota" não os mostra, mas a busca acha cada um.':'Elas já entram nas listas e no cálculo do seu gosto.')+'</p>'+montar+'<div class="row" style="margin-top:8px"><button class="btn t44" data-gir="gosto">Ver seu gosto</button></div></div>';return}
   if(IMP.escolher){box.innerHTML='<div class="box"><h3>Netflix: qual perfil é você?</h3><p>O arquivo traz '+IMP.perfis.length+' perfis da conta. Só o seu é lido; os outros são de outras pessoas da casa e ficam de fora.</p><div class="chips" style="flex-wrap:wrap;overflow:visible">'+IMP.perfis.map(function(p){return '<button class="chip t44" type="button" data-impperfil="'+esc(p)+'">'+esc(p)+'</button>'}).join('')+'</div><div class="row" style="margin-top:10px"><button class="btn t44" data-impcancel="1">Cancelar</button></div></div>';return}
   var nf=IMP.fonte==='netflix',n=IMP.casados.filter(function(x){return x.marcado}).length,nome=IMP.fonte==='imdb'?'IMDb':nf?'Netflix':'Letterboxd';
   box.innerHTML='<div class="box"><h3>'+nome+(nf&&IMP.perfil?' ('+esc(IMP.perfil)+')':'')+': '+IMP.casados.length+' de '+(nf?IMP.titulos:IMP.linhas)+' títulos casaram</h3>'+
@@ -3287,6 +3317,20 @@ function renderImp(){
       return '<li><label><input type="checkbox" data-impi="'+i+'"'+(x.marcado?' checked':'')+'><span><b>'+esc(a?a.it.titulo:x.id)+'</b> ('+esc([a&&a.ano||'',a?(a.tipo==='serie'?'série':'filme'):''].filter(Boolean).join(', '))+') · '+(nf?'viu'+(x.eps?' · <b class="num">'+x.eps+'</b> episódio'+(x.eps===1?'':'s'):''):'nota <b class="num">'+notaTxt(x.nota)+'</b>')+
         (nf?(x.ja?' <span class="bdg">já marcado aqui</span>':''):(x.ja!=null?' <span class="bdg">'+(x.ja===x.nota?'igual à de agora':'aqui está '+notaTxt(x.ja))+'</span>':''))+'<br><span class="meta">no arquivo: '+esc(x.arq)+'</span></span></label></li>'}).join('')+'</ul>':'')+
     (IMP.sem.length?'<details style="margin-top:10px"><summary>'+IMP.sem.length+' sem par aqui</summary><p class="note" style="margin-top:8px">'+esc(IMP.sem.slice(0,300).join('; '))+(IMP.sem.length>300?'…':'')+'</p></details>':'')+'</div>';
+}
+// Porta 3: o gosto sai das notas importadas (gostoCalc, os mesmos pesos de "Seu gosto"), com limites e contexto vazios.
+// Se as notas não ensinam nada (sem sinal), a pessoa vai ao caminho de seis minutos.
+function perfilDasNotas(){
+  try{
+    var g=gostoCalc();
+    if(!g.ok||g.vazio||!g.pesos.some(function(v){return v})){toast('As notas ainda não desenham um gosto; o caminho de seis minutos resolve.',false);ir('gosto');return}
+    var frases=g6Frases(g.pesos,{limites:{}}).filter(function(f){return f.k!==''||!/Ainda não deu/.test(f.h)}).map(function(f){return f.h.replace(/<[^>]+>/g,'')});
+    var perfil=limpaPerfil({v:1,pesos:g.pesos,origem:'arquivo',feito_em:new Date().toISOString(),limites:{},limFase:false,contexto:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},
+      respostas:{procura:[],fase:'',resp:'',cenas:0,cartazes:{},obras:[]},pesosSemFase:null,frases:frases,nao:[]});
+    if(!perfil){toast('Não consegui montar o seu gosto com essas notas; o caminho de seis minutos resolve.',false);ir('gosto');return}
+    entraPessoa(perfil);IMP=null;renderImp();
+    toast('Sua página está montada a partir das suas notas. Dá para ajustar em Mais › Seu gosto.',false);ir('inicio');
+  }catch(e){console.error(e)}
 }
 (function(){
   try{
@@ -3300,11 +3344,12 @@ function renderImp(){
     el('av-imp').addEventListener('click',function(e){var b=e.target.closest('[data-impperfil]');if(!b||!IMP_TXT)return;
       try{IMP=impAnalisa(IMP_TXT,b.dataset.impperfil)}catch(err){console.error(err);IMP={erro:'Não consegui ler esse arquivo.'}}IMP_TXT=null;renderImp()});
     el('av-imp').addEventListener('change',function(e){var c=e.target.closest('[data-impi]');if(!c||!IMP||!IMP.casados)return;IMP.casados[+c.dataset.impi].marcado=c.checked;
-      var n=IMP.casados.filter(function(x){return x.marcado}).length,ok=el('av-imp').querySelector('[data-impok]');if(ok){ok.textContent='Gravar '+n+' nota'+(n===1?'':'s');ok.disabled=!n}
+      var n=IMP.casados.filter(function(x){return x.marcado}).length,ok=el('av-imp').querySelector('[data-impok]');if(ok){ok.textContent=IMP.fonte==='netflix'?'Marcar '+n+' como assistido'+(n===1?'':'s'):'Gravar '+n+' nota'+(n===1?'':'s');ok.disabled=!n}
       var td=el('av-imp').querySelector('[data-imptodas]');if(td)td.textContent=n===IMP.casados.length?'Desmarcar todas':'Marcar todas'});
     el('av-imp').addEventListener('click',function(e){
       if(!IMP)return;
       if(e.target.closest('[data-impcancel]')){IMP=null;IMP_TXT=null;renderImp();return}
+      if(e.target.closest('[data-impmontar]')){perfilDasNotas();return}
       if(!IMP.casados)return;
       if(e.target.closest('[data-imptodas]')){var tudo=IMP.casados.every(function(x){return x.marcado});IMP.casados.forEach(function(x){x.marcado=!tudo});renderImp();return}
       if(e.target.closest('[data-impok]')){
@@ -3399,7 +3444,7 @@ function renderFolha(){
   var autor=[t==='serie'?(it.autor||it.criadores):(it.autor||it.diretor),it.pais].filter(Boolean).join(' · ');
   var mot=motivos(it,3);
   // situação da série (em exibição, renovada, encerrada…), selos de biblioteca e radar e o número na pesquisa, como no cartão antigo
-  var sit=t==='serie'?String(it.status||''):'',hs=[],longo=[],mp=modoPessoa();
+  var sit=t==='serie'?String(it.status||''):'',hs=[],longo=[],mp=modoPessoa()||ABA==='gosto'; // no caminho, a folha já é a da pessoa
   if(sit){if(sit.length<=28)hs.push('<span class="bdg'+(/exib|renov/i.test(sit)?' live':'')+'">'+esc(sit)+'</span>');else longo.push(sit)}
   if(it.situacao)longo.push(String(it.situacao));
   // a camada pessoal do Lucas (biblioteca, radar, nº da pesquisa, espelho, ponte, arquétipos) some no modo pessoa
@@ -3585,6 +3630,7 @@ function contextoIA(){
     var top=function(l){return (l||[]).slice().sort(porConexao).filter(function(it){return conexao(it)!=null}).slice(0,12).map(function(it){return {titulo:nome(it.id),conexao:conexao(it)}})};
     c.mais_conectados={filmes:top(LD('filmes')),series:top(LD('series'))};
     c.servicos_que_assina=meus();
+    c.modo=modoPessoa()?'pessoa':'lucas'; // a função troca o papel: no modo pessoa quem pergunta não é o Lucas
     if(ST.perfil){c.gosto_em_palavras=(ST.perfil.frases||[]).slice(0,8);c.limites=ST.perfil.limites||{}}
     c.na_lista=[].concat(LD('filmes'),LD('series'),modoPessoa()?[]:(D.extras||[])).map(function(it){return it.id+' | '+it.titulo+(it.ano?' ('+it.ano+')':'')});
     cortaContexto(c,LIM_CTX);
@@ -3749,13 +3795,15 @@ function indexarEp(){
 }
 function acompanhadas(){
   var set={};
-  LD('series').forEach(function(s){if(stOf(s)==='acompanhando'&&s.imdb_id)set[s.imdb_id]=1});
+  seriesAcompanhadas().forEach(function(s){if(s.imdb_id)set[s.imdb_id]=1});
   return set;
 }
+// "Todas da lista": a lista do Lucas, ou, no modo pessoa, a dela mais o que ela acompanha (os episódios do robô são das séries dele)
 function eventos(){
   if(!EP||!EP.episodios)return [];
-  var set=acompanhadas();
-  return EP.episodios.filter(function(e){return CAL.scope==='todas'||set[e.imdb_id]}).map(function(e){var d=localDate(e);return d?{e:e,d:d,k:ymd(d)}:null}).filter(Boolean)
+  var set=acompanhadas(),todas=null;
+  if(CAL.scope==='todas'&&modoPessoa()){todas={};LD('series').forEach(function(s){if(s.imdb_id)todas[s.imdb_id]=1});Object.keys(set).forEach(function(k){todas[k]=1})}
+  return EP.episodios.filter(function(e){return todas?todas[e.imdb_id]:(CAL.scope==='todas'||set[e.imdb_id])}).map(function(e){var d=localDate(e);return d?{e:e,d:d,k:ymd(d)}:null}).filter(Boolean)
     .sort(function(a,b){return a.d-b.d});
 }
 function serieDeEp(e){return IMDB[e.imdb_id]||null}
@@ -3829,7 +3877,7 @@ function renderCal(){
   }catch(e){console.error(e)}
 }
 function anunciadas(){
-  var s=LD('series').filter(function(x){return x.proximo&&(CAL.scope==='todas'||stOf(x)==='acompanhando')});
+  var s=(CAL.scope==='todas'?LD('series'):seriesAcompanhadas()).filter(function(x){return x.proximo});
   if(!s.length)return '';
   return '<div class="box" style="margin-top:18px"><h3>Temporadas anunciadas, ainda sem data de episódio</h3><ul class="ann">'+s.map(function(x){return '<li><b>'+esc(x.titulo)+'</b> — '+esc(x.proximo)+'</li>'}).join('')+'</ul></div>';
 }
@@ -3858,7 +3906,7 @@ el('calbody').addEventListener('click',function(e){
 function renderAcomp(){
   try{
     var list=[];
-    LD('series').forEach(function(s){if(stOf(s)==='acompanhando'&&s.imdb_id)list.push({imdb_id:s.imdb_id,titulo:s.titulo})});
+    seriesAcompanhadas().forEach(function(s){if(s.imdb_id)list.push({imdb_id:s.imdb_id,titulo:s.titulo})});
     el('acomp-json').value=JSON.stringify({series:list},null,2);
   }catch(e){}
 }
@@ -3898,9 +3946,17 @@ var GEN_PESADO=/terror|guerra|policial|suspense|crime real|psicol|sobrenatural|e
 function paraCriancas(it){
   var g=gens(it).join(' '),id=(ST.perfil&&ST.perfil.contexto&&ST.perfil.contexto.idade)||'';
   if(GEN_PESADO.test(g))return false;
-  if(/infantil|fam[ií]lia/.test(g))return true;
-  // desenho adulto (BoJack, Rick and Morty) tem drama, sátira ou comédia sem "família": fica de fora
-  if(/anima[çc][ãa]o|anime/.test(g))return !/drama|sitcom|s[áa]tira|com[ée]dia|psicol/.test(g)&&id!=='ate6';
+  if(/infantil/.test(g))return true;
+  // "Família" sozinho não basta para os menores (Capitão Fantástico é "comédia dramática, família" e tem 16 anos): até 11,
+  // só junto com animação, aventura, fantasia ou musical e sem drama, romance ou biografia
+  if(/fam[ií]lia/.test(g))return id==='12mais'||id===''?true:(/anima[çc][ãa]o|anime|aventura|fantasia|musical/.test(g)&&!/com[ée]dia dram|drama|romance|biografia/.test(g));
+  // desenho: o adulto (BoJack, Rick and Morty, Big Mouth) tem drama, sátira, sitcom ou "adolescente"; para os menores, só com aventura,
+  // fantasia, musical ou esporte e sem ação, histórico, sobrenatural ou ficção científica (Vinland Saga e Arcane são anime de ação)
+  if(/anima[çc][ãa]o|anime/.test(g)){
+    if(/drama|sitcom|s[áa]tira|psicol|adolescente|antologia|document/.test(g))return false;
+    if(id==='ate6'||id==='7a11')return /fam[ií]lia|infantil|aventura|fantasia|musical|esporte/.test(g)&&!/\ba[çc][ãa]o\b|hist[óo]rico|sobrenatural|fic[çc][ãa]o cient|mist[ée]rio/.test(g); // (\b: "animação" também termina em "ação")
+    return !/com[ée]dia/.test(g)||/aventura|fantasia|musical/.test(g);
+  }
   if(id==='ate6')return false;
   if(id==='7a11')return /aventura|fantasia|musical/.test(g)&&!/drama|romance|document|biografia|hist[óo]rico|[ée]poca|s[áa]tira|sitcom|novela|mist[ée]rio/.test(g);
   if(id==='12mais')return /aventura|fantasia|fic[çc][ãa]o cient|super-her[óo]i|esporte|com[ée]dia/.test(g)&&!/sitcom|drama|document|biografia|s[áa]tira|novela/.test(g);
@@ -3922,6 +3978,13 @@ function aplicaModo(){
   try{document.documentElement.classList.toggle('pessoa',mp)}catch(e){}
   try{document.querySelectorAll('[data-sort] option[value="pesquisa"]').forEach(function(o){o.textContent=mp?'Ordem do seu gosto':'Ordem da pesquisa'})}catch(e){}
   try{el('mais-gosto-sub').textContent=mp?'Seu gosto guardado neste aparelho: ver, refazer ou apagar.':'Seis minutos para a página virar a sua: cenas, cartazes e três obras que marcaram você.'}catch(e){}
+}
+// grava o perfil e entra no modo pessoa (as três portas passam por aqui): os pesos mexidos saem (os em uso passam a ser os do
+// perfil), os serviços de antes ficam guardados para o Apagar devolver, e os do contexto entram
+function entraPessoa(perfil,servicos){
+  ST.perfil=perfil;ST.pesos=null;ST.pesosAntes=null;
+  if(servicos&&servicos.length){if(!ST.servicosAntes)ST.servicosAntes=(ST.servicos||[]).slice();ST.servicos=servicos}
+  save();entraModo();
 }
 // entra ou sai do modo pessoa: recomeça as listas do zero e redesenha tudo
 function entraModo(){
@@ -3994,10 +4057,13 @@ function renderPerfil(){
       if(a==='refazer'){g6Limpa();ir('gosto');return}
       if(a==='apagar'){
         if(!PF_CONF){PF_CONF=setTimeout(function(){PF_CONF=null;renderPerfil()},4000);renderPerfil();return}
-        clearTimeout(PF_CONF);PF_CONF=null;ST.perfil=null;ST.pesos=null;ST.pesosAntes=null;save();entraModo();toast('Gosto apagado. A página voltou ao original; suas notas e status ficaram.',false);ir('mais');return}
+        clearTimeout(PF_CONF);PF_CONF=null;ST.perfil=null;ST.pesos=null;ST.pesosAntes=null;
+        if(ST.servicosAntes){ST.servicos=ST.servicosAntes;ST.servicosAntes=null} // os serviços de antes do modo pessoa voltam
+        g6Limpa();save();entraModo();toast('Gosto apagado. A página voltou ao original; suas notas e status ficaram.',false);ir('mais');return}
       if(a==='fase-manter'||a==='fase-tirar'){var p=ST.perfil;if(!p)return;
-        if(a==='fase-tirar'&&p.pesosSemFase){p.pesos=p.pesosSemFase.slice();if(ST.pesos)ST.pesos=null}
-        p.respostas.fase='';p.pesosSemFase=null;p.feito_em=new Date().toISOString();save();ORDS={};marcaSujo();renderPerfil();renderAll();toast(a==='fase-tirar'?'Fase tirada da conta. As listas se reordenaram.':'Mantido por mais três meses.',false)}
+        // Manter só renova a data (a fase e os pesos sem ela continuam guardados: dá para tirar depois); Tirar troca pelos pesos sem a fase
+        if(a==='fase-tirar'&&p.pesosSemFase){p.pesos=p.pesosSemFase.slice();if(ST.pesos)ST.pesos=null;p.respostas.fase='';p.pesosSemFase=null}
+        p.feito_em=new Date().toISOString();save();ORDS={};marcaSujo();renderPerfil();renderAll();toast(a==='fase-tirar'?'Fase tirada da conta. As listas se reordenaram.':'Mantido por mais três meses.',false)}
     });
   }catch(e){console.error(e)}
 })();
@@ -4043,16 +4109,24 @@ function g6Inv(M){ // Gauss-Jordan com pivô, 13×13
     for(k=0;k<n;k++)if(k!==i){var f=A[k][i];if(f)for(j=0;j<2*n;j++)A[k][j]-=f*A[i][j]}}
   return A.map(function(r){return r.slice(n)});
 }
+// A régua das observações. O §9.3 do estudo põe y = ±1 (amei / não gostei) ao lado de w0·x, o palpite das perguntas, que
+// anda em outra escala: um título que casa com as respostas chega a w0·x = 7 ou 9. Sem acertar as réguas, a regressão
+// "corrigia" o 9 para 1, derrubando os pesos que as perguntas pediram e subindo os que o título não tem (amar Friends tirava
+// as sitcoms da lista). Aqui y entra na escala do prior: dois desvios de w0·x no catálogo (pela covariância SIG13), no mínimo
+// 1 (sem perguntas, só a direção importa). Correção de 11/10/2026, depois da revisão; muda a conta do §9.3.
+function g6Escala(q){var w0=q.map(function(v){return (+v||0)/10}),s=0;for(var i=0;i<N13;i++)for(var j=0;j<N13;j++)s+=w0[i]*w0[j]*SIG13[i][j];return Math.max(1,2*Math.sqrt(Math.max(0,s)))}
 function g6Ajusta(q,toques,obs){
-  var A=[],b=[],i,j;
+  var A=[],b=[],i,j,esc=g6Escala(q);
   for(i=0;i<N13;i++){var pr=1+(toques[i]||0)/2;A.push(zeros(N13));A[i][i]=pr;b.push(pr*(q[i]||0)/10)}
-  obs.forEach(function(o){try{for(i=0;i<N13;i++){b[i]+=o.peso*o.x[i]*o.y/0.5;for(j=0;j<N13;j++)A[i][j]+=o.peso*o.x[i]*o.x[j]/0.5}}catch(e){}});
+  obs.forEach(function(o){try{for(i=0;i<N13;i++){b[i]+=o.peso*o.x[i]*o.y*esc/0.5;for(j=0;j<N13;j++)A[i][j]+=o.peso*o.x[i]*o.x[j]/0.5}}catch(e){}});
   var S=g6Inv(A),w=S.map(function(r){return r.reduce(function(s,v,j){return s+v*b[j]},0)});
   return {w:w,S:S};
 }
 function g6Ganho(m,x){var s=0;for(var i=0;i<N13;i++)for(var j=0;j<N13;j++)s+=x[i]*m.S[i][j]*x[j];return s}
 // w (13 números do modelo) → os pesos da página: temas centrados em 15 (a forma soma zero: só a diferença conta),
 // traços em torno de 0; a mesma escala para os 13, para a ordem não mudar
+// pesos sem sinal (quem pulou tudo): os 9 temas iguais e os 4 traços em zero não ordenam nada
+function semSinal(p){return !p||p.slice(0,9).every(function(v){return v===p[0]})&&p.slice(9).every(function(v){return !v})}
 function g6PesosDe(w){
   var t=w.slice(0,9),m=t.reduce(function(a,b){return a+b},0)/9,tc=t.map(function(v){return v-m}),tr=w.slice(9);
   var mt=Math.max.apply(null,tc.map(Math.abs)),mr=Math.max.apply(null,tr.map(Math.abs));
@@ -4087,17 +4161,21 @@ function g6Corrige(p,corr){
   return p;
 }
 function descCurtaN(i){var d=DIMS[i];if(!d)return '';return minuscIni(String(DESC_NEUTRA[d.id]||d.desc||'').replace(/\.\s*$/,'').split(',').slice(0,2).map(function(x){return x.trim()}).join(', '))}
+// "histórias de " + descrição: contrai com o artigo inicial ("de o sentido da vida" → "do sentido da vida")
+function deX(t){var m=String(t).match(/^(o|a|os|as) /i);return m?{o:'do',a:'da',os:'dos',as:'das'}[m[1].toLowerCase()]+' <b>'+esc(t.slice(m[0].length))+'</b>':'de <b>'+esc(t)+'</b>'}
 // "Seu gosto em palavras": frases por regra, sem rótulo de personalidade; cada uma com a chave da correção
 function g6Frases(p,G){
   var fr=[],temas=p.slice(0,9),m=temas.reduce(function(a,b){return a+b},0)/9,ix=[0,1,2,3,4,5,6,7,8];
   var altas=ix.filter(function(i){return p[i]>=m+3}).sort(function(a,b){return p[b]-p[a]}).slice(0,2);
   var baixas=ix.filter(function(i){return p[i]<=m-3&&altas.indexOf(i)<0}).sort(function(a,b){return p[a]-p[b]}).slice(0,2);
-  if(altas.length)fr.push({k:'alta:'+altas.join(','),h:'Você parece buscar histórias de <b>'+esc(descCurtaN(altas[0]))+'</b>'+(altas[1]?' e de <b>'+esc(descCurtaN(altas[1]))+'</b>':'')+'.'});
+  var lim=(G&&G.limites)||{};
+  if(altas.length)fr.push({k:'alta:'+altas.join(','),h:'Você parece buscar histórias '+deX(descCurtaN(altas[0]))+(altas[1]?' e '+deX(descCurtaN(altas[1])):'')+'.'});
   if(p[10]>=6)fr.push({k:'riso',h:'Humor conta: o que faz <b>rir</b> sobe na sua lista.'});else if(p[10]<=-6)fr.push({k:'riso-',h:'Comédia pura <b>desce</b> na sua lista.'});
-  if(p[11]>=6)fr.push({k:'tensao',h:'<b>Tensão</b> prende você: ação, suspense e policial sobem.'});else if(p[11]<=-6)fr.push({k:'tensao-',h:'Tensão pesada, <b>só de vez em quando</b>.'});
-  if(p[12]>=6)fr.push({k:'desenho',h:'<b>Desenho</b> e anime entram sem susto.'});else if(p[12]<=-6)fr.push({k:'desenho-',h:'Desenho e anime, <b>quase nunca</b>.'});
+  // a frase do traço não pode contradizer o limite que a pessoa acabou de marcar
+  if(p[11]>=6)fr.push({k:'tensao',h:'<b>Tensão</b> prende você: ação, suspense e policial sobem'+(lim.terror?' (terror fora, como você pediu)':'')+'.'});else if(p[11]<=-6)fr.push({k:'tensao-',h:'Tensão pesada, <b>só de vez em quando</b>.'});
+  if(p[12]>=6&&!lim.desenho)fr.push({k:'desenho',h:'<b>Desenho</b> e anime entram sem susto.'});else if(p[12]>=6&&lim.desenho==='valer')fr.push({k:'desenho',h:'<b>Desenho</b> e anime, só quando valer muito a pena.'});else if(p[12]<=-6&&lim.desenho!=='nunca')fr.push({k:'desenho-',h:'Desenho e anime, <b>quase nunca</b>.'});
   if(p[9]>=6)fr.push({k:'nivel',h:'Você prefere o que é <b>denso</b>, que pede atenção e fica na cabeça.'});else if(p[9]<=-6)fr.push({k:'nivel-',h:'Você prefere o <b>leve</b>, de passar o tempo.'});
-  if(baixas.length)fr.push({k:'baixa:'+baixas.join(','),h:'Histórias de '+baixas.map(function(i){return '<b>'+esc(descCurtaN(i))+'</b>'}).join(' e de ')+' pesam menos para você.'});
+  if(baixas.length)fr.push({k:'baixa:'+baixas.join(','),h:'Histórias '+baixas.map(function(i){return deX(descCurtaN(i))}).join(' e ')+' pesam menos para você.'});
   var nunca=Object.keys(G.limites||{}).filter(function(k){return G.limites[k]==='nunca'}).map(function(k){return LIM_NOME[k].toLowerCase()});
   if(nunca.length)fr.push({k:'',h:'Você disse que não quer <b>'+esc(listaPt(nunca))+'</b>'+(G.limFase?' por enquanto':'')+'.'});
   if(!fr.length)fr.push({k:'',h:'Ainda não deu para dizer muito: o seu gosto vai se desenhar com as notas que você der.'});
@@ -4124,8 +4202,10 @@ function g6Grade1(){
   var l=CARTAZES36.filter(function(id){return AVPOR[id]&&AVPOR[id].x}),com=l.filter(function(id){return posterInfo(id)}),sem=l.filter(function(id){return !posterInfo(id)});
   return com.concat(sem).slice(0,9);
 }
+// "forte em X e Y": só dimensões em que o título é forte (x > 0) e que a pessoa busca (peso acima de 15); negativo × negativo
+// não vale (Forrest Gump não é "forte em Terra" para quem evita Terra)
 function forteEm(p,r){
-  var l=[0,1,2,3,4,5,6,7,8].map(function(j){return {j:j,v:r.x[j]*((+p[j]||0)-15)}}).sort(function(a,b){return b.v-a.v}).filter(function(x){return x.v>0}).slice(0,2);
+  var l=[0,1,2,3,4,5,6,7,8].filter(function(j){return r.x[j]>0&&(+p[j]||0)>15}).map(function(j){return {j:j,v:r.x[j]*((+p[j]||0)-15)}}).sort(function(a,b){return b.v-a.v}).slice(0,2);
   return l.length?'forte em '+listaPt(l.map(function(x){return DIMS[x.j].nome})):'perto do seu gosto';
 }
 function eixoIncerto(m,x){var b=0;for(var j=1;j<N13;j++)if(x[j]*x[j]*m.S[j][j]>x[b]*x[b]*m.S[b][b])b=j;return eixos()[b]?eixos()[b].nome:''}
@@ -4139,18 +4219,22 @@ function g6Lista(G,m,p){
   var cands=AVI.filter(function(r){return r.x&&!vistos[r.id]&&ST.notas[r.id]==null&&!/^(assisti|acompanhando|abandonei)$/.test(stOf(r.it))&&!bl(r.it)})
     .map(function(r){var v=valor13(p,r.x),pc=(ord.length<500?percentilNormal(p,v):percentilF(ord,v))||0;return {r:r,v:v,pc:pc-pen(r.it),inc:g6Ganho(m,r.x)}});
   function nosMeus(r){if(!temSV||!servs.length)return true;return emStreaming(r.it).some(function(n){return servs.indexOf(n)>-1})}
-  var usados={},out=[];
-  function pega(n,filtro,grupo,motivo){if(n<=0)return;cands.filter(function(c){return !usados[c.r.id]&&filtro(c)}).sort(function(a,b){return b.pc-a.pc||b.v-a.v}).slice(0,n)
-    .forEach(function(c){usados[c.r.id]=1;out.push({id:c.r.id,grupo:grupo,por:motivo(c),pc:Math.round(c.pc)})})}
+  var usados={},out=[],franq={};
+  // a mesma trava de franquia da grade de cartazes: um título por primeira palavra (Divertida Mente e Divertida Mente 2 não vêm juntos)
+  function fk(r){var k=normT(r.it.titulo).split(' ')[0];return k.length>3?k:''}
+  function livre(c){var k=fk(c.r);return !usados[c.r.id]&&!(k&&franq[k])}
+  function usa(c){usados[c.r.id]=1;var k=fk(c.r);if(k)franq[k]=1}
+  function pega(n,filtro,grupo,motivo){if(n<=0)return;cands.filter(function(c){return livre(c)&&filtro(c)}).sort(function(a,b){return b.pc-a.pc||b.v-a.v}).slice(0,n)
+    .forEach(function(c){usa(c);out.push({id:c.r.id,grupo:grupo,por:motivo(c),pc:Math.round(c.pc)})})}
   var certo=function(c){return 'Conhecido e '+forteEm(p,c.r)+'.'};
   pega(4,function(c){return c.r.pop>=4&&nosMeus(c.r)},'certeiro',certo);
   pega(4-out.length,function(c){return c.r.pop>=4},'certeiro',certo);
   pega(4,function(c){return c.r.pop<=3},'descoberta',function(c){return 'Menos conhecido, mas '+forteEm(p,c.r)+'.'});
   (G.obras||[]).slice(0,2).forEach(function(o){var ro=AVPOR[o.id];if(!ro||!ro.x)return;var best=null,bs=-1;
-    cands.forEach(function(c){if(usados[c.r.id]||c.pc<40)return;var s=cosV(centra13(c.r.x),centra13(ro.x));if(s>bs){bs=s;best=c}});
-    if(best){usados[best.r.id]=1;out.push({id:best.r.id,grupo:'parecido',por:'Perto de '+ro.it.titulo+', que marcou você.',pc:Math.round(best.pc)})}});
-  cands.filter(function(c){return !usados[c.r.id]&&c.pc>=55}).sort(function(a,b){return b.inc-a.inc}).slice(0,2)
-    .forEach(function(c){usados[c.r.id]=1;out.push({id:c.r.id,grupo:'aposta',por:'Uma aposta para a gente te conhecer melhor: o cálculo ainda tem dúvida sobre '+eixoIncerto(m,c.r.x)+'.',pc:Math.round(c.pc)})});
+    cands.forEach(function(c){if(!livre(c)||c.pc<40)return;var s=cosV(centra13(c.r.x),centra13(ro.x));if(s>bs){bs=s;best=c}});
+    if(best){usa(best);out.push({id:best.r.id,grupo:'parecido',por:'Perto de '+ro.it.titulo+', que marcou você.',pc:Math.round(best.pc)})}});
+  var apostas=[];cands.filter(function(c){return livre(c)&&c.pc>=55}).sort(function(a,b){return b.inc-a.inc}).forEach(function(c){if(apostas.length<2&&livre(c)){usa(c);apostas.push(c)}});
+  apostas.forEach(function(c){out.push({id:c.r.id,grupo:'aposta',por:'Uma aposta para a gente te conhecer melhor: o cálculo ainda tem dúvida sobre '+eixoIncerto(m,c.r.x)+'.',pc:Math.round(c.pc)})});
   pega(12-out.length,function(){return true},'certeiro',certo);
   return out.slice(0,12);
 }
@@ -4159,7 +4243,7 @@ function g6Lista(G,m,p){
 // Nove telas (a pergunta da IA fica desligada nesta fase). O rascunho fica em localStorage (telas_gosto_rasc) a cada
 // toque: sair e voltar continua de onde parou. Ao terminar, vira ST.perfil e o modo pessoa entra.
 var G6_ABRE=false; // ao entrar no caminho com um rascunho andado, a abertura oferece "Continuar de onde parei"
-function g6Entrar(){G6_ABRE=true;g6Render()}
+function g6Entrar(){G6_ABRE=true;g6Render(true)}
 var G6_KEY='telas_gosto_rasc',G6=null,G6_TELAS=['abertura','agora','cenas','cartazes','obras','limites','contexto','lista','palavras'];
 function g6Novo(){return {tela:0,sub:0,agora:{procura:[],fase:'',resp:''},cenas:[],grades:[],resp:{},obras:[],limites:{},limFase:false,ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},lista:null,acoes:{},notasL:{},corr:{},q:'',seed:(Date.now()%2147483647)||7}}
 function g6Carrega(){
@@ -4200,7 +4284,7 @@ function g6Cenas(G){
 var CTZ_EST={amei:'Amei',nao:'Não gostei',ok:'Vi, foi ok'},CTZ_SIM={amei:'♥',nao:'✕',ok:'ok'};
 function g6Cartazes(G){
   var gi=G.sub,ids=G.grades[gi]||[];
-  var h='<h2>Destes, o que você já viu?</h2><p class="lead">Grade '+(gi+1)+' de 3. Um toque: <b>amei</b>. Dois: <b>não gostei</b>. Três: <b>vi, foi ok</b>. Sem toque: não vi.</p>'+
+  var h='<h2>Destes, o que você já viu?</h2><p class="lead">Grade '+(gi+1)+' de 3. Um toque: <b>amei</b>. Dois: <b>não gostei</b>. Três: <b>vi, foi ok</b>. Quatro: volta a "não vi".</p>'+
     '<div class="g6-leg"><span><i style="background:var(--acc)"></i>amei</span><span><i style="background:var(--new)"></i>não gostei</span><span><i style="background:var(--tx2)"></i>vi, foi ok</span></div>';
   if(!ids.length)return h+'<p class="note">Não há cartazes para mostrar agora (o catálogo não carregou).</p>'+g6Ft(G,'Próximo',true);
   h+='<div class="cgrid">'+cada(ids,function(id){var r=AVPOR[id];if(!r)return '';var e=G.resp[id]||'';
@@ -4210,8 +4294,11 @@ function g6Cartazes(G){
 }
 function g6ObraCard(G,o,i){
   var r=AVPOR[o.id];if(!r)return '';var it=r.it;
-  return '<div class="obra" data-ob="'+i+'"><div class="obra-h">'+miniPoster(it,{sz:'48px'})+'<div><b>'+esc(it.titulo)+'</b><small>'+esc([r.ano||'',rotTipo(r.tipo)].filter(Boolean).join(' · '))+'</small></div><button class="rm" type="button" data-g6rm="'+i+'">tirar</button></div>'+
-    '<p class="q">O que te pegou nela? <span class="fine" style="display:inline">(até 2)</span></p>'+chipsHtml(PEGOU.map(function(p){return [p[0],p[1]]}),o.pegou||[],'data-g6pg',true)+
+  var h='<div class="obra" data-ob="'+i+'"><div class="obra-h">'+miniPoster(it,{sz:'48px'})+'<div><b>'+esc(it.titulo)+'</b><small>'+esc([r.ano||'',rotTipo(r.tipo)].filter(Boolean).join(' · '))+'</small></div><button class="rm" type="button" data-g6rm="'+i+'">tirar</button></div>';
+  // respondido o "quando", o cartão recolhe numa linha (a tela com três obras ficava com quatro alturas de celular); "mudar" reabre
+  if(o.quando&&!o.aberto){var pg=(o.pegou||[]).map(function(k){var P=PEGOU.filter(function(x){return x[0]===k})[0];return P?P[1]:''}).filter(Boolean),qd=QUANDO.filter(function(x){return x[0]===o.quando})[0];
+    return h+'<p class="resumo">'+(pg.length?'<b>'+esc(listaPt(pg))+'</b> · ':'')+esc(qd?qd[1].toLowerCase():'')+' <button class="lnk" type="button" data-g6ab="'+i+'" style="padding:0 6px;min-height:32px">mudar</button></p></div>'}
+  return h+'<p class="q">O que te pegou nela? <span class="fine" style="display:inline">(até 2)</span></p>'+chipsHtml(PEGOU.map(function(p){return [p[0],p[1]]}),o.pegou||[],'data-g6pg',true)+
     '<p class="q">Quando você viu?</p>'+chipsHtml(QUANDO,o.quando||'','data-g6qd',false)+'</div>';
 }
 function g6Busca(G){
@@ -4259,9 +4346,9 @@ function g6Palavras(G){
   var m=g6Modelo(G),fr=g6Frases(g6PesosDe(m.w),G);
   return '<h2>Seu gosto em palavras</h2><p class="lead">É o que as suas respostas dizem por enquanto. Se uma frase não for bem você, toque em "não é bem eu": o cálculo ajusta.</p><ul class="frases">'+fr.map(function(f){var off=!!(f.k&&G.corr[f.k]);
     return '<li class="frase'+(off?' off':'')+'"><p>'+f.h+'</p>'+(f.k?'<button class="lnk" type="button" data-g6cor="'+esc(f.k)+'" aria-pressed="'+off+'">'+(off?'desfazer':'não é bem eu')+'</button>':'')+'</li>'}).join('')+'</ul>'+
-    '<div class="g6-ft"><button class="btn pri" type="button" data-g6="fim">Guardar meu gosto</button></div><p class="fine">Ao guardar, a página inteira passa a usar o seu gosto: as listas, o Início e as indicações. Os cartazes que você amou viram nota 90 e os que não gostou, 35. Dá para refazer ou apagar em Mais › Seu gosto.</p>';
+    '<div class="g6-ft"><button class="btn pri" type="button" data-g6="fim">Guardar meu gosto</button></div><p class="fine">Ao guardar, a página inteira passa a usar o seu gosto: as listas, o Início e as indicações. Os cartazes que você amou viram nota 90 e os que não gostou, 35; os serviços marcados viram os seus filtros. Dá para refazer ou apagar em Mais › Seu gosto.</p>';
 }
-function g6Render(){
+function g6Render(rolar){
   var box=el('g6');if(!box)return;
   if(!D){box.innerHTML='<p class="note">Carregando a lista…</p>';return}
   try{
@@ -4274,40 +4361,44 @@ function g6Render(){
       '<div class="g6-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(prog*100)+'" aria-label="Progresso"><i style="width:'+Math.round(prog*100)+'%"></i></div>';
     h+={abertura:g6Abertura,agora:g6Agora,cenas:g6Cenas,cartazes:g6Cartazes,obras:g6Obras,limites:g6Limites,contexto:g6Contexto,lista:g6ListaTela,palavras:g6Palavras}[nome](G);
     box.innerHTML=h;
-    try{window.scrollTo(0,0)}catch(e){}
+    if(rolar)try{window.scrollTo(0,0)}catch(e){}
   }catch(e){console.error(e);box.innerHTML='<p class="err">Não consegui montar esta tela agora.</p><div class="row"><button class="btn" type="button" data-g6="denovo">Começar de novo</button></div>'}
 }
 function g6Avanca(){
   var G=G6,nome=G6_TELAS[G.tela];
   if(nome==='cenas'&&G.sub<5){G.sub++}else if(nome==='cartazes'&&G.sub<2){G.sub++}
   else{if(G.tela<G6_TELAS.length-1)G.tela++;G.sub=0;if(G6_TELAS[G.tela]==='lista')G.lista=null}
-  g6Guarda();g6Render();
+  g6Guarda();g6Render(true);
 }
 function g6Volta(){
   var G=G6,nome=G6_TELAS[G.tela];
   if((nome==='cenas'||nome==='cartazes')&&G.sub>0)G.sub--;
   else if(G.tela>0){G.tela--;G.sub=G6_TELAS[G.tela]==='cenas'?5:G6_TELAS[G.tela]==='cartazes'?2:0}
-  g6Guarda();g6Render();
+  g6Guarda();g6Render(true);
 }
 function toggleLista(l,v,max){var i=l.indexOf(v);if(i>-1)l.splice(i,1);else{if(max&&l.length>=max)l.shift();l.push(v)}}
 function g6Fim(){
   var G=G6;if(!G)return;
   try{
     var m=g6Modelo(G),p=g6PesosFinais(G,m),mSem=g6Modelo(G,true),pSem=g6Corrige(g6PesosDe(mSem.w),G.corr);
+    // quem pulou tudo não tem gosto para guardar: pesos iguais ordenariam o catálogo por ruído
+    if(semSinal(p)){toast('Responda pelo menos uma tela (as cenas, os cartazes ou uma obra) para a gente montar o seu gosto.',false);return}
     var frases=g6Frases(g6PesosDe(m.w),G).filter(function(f){return !(f.k&&G.corr[f.k])}).map(function(f){return f.h.replace(/<[^>]+>/g,'')});
     var ct={amei:0,nao:0,ok:0};
-    Object.keys(G.resp||{}).forEach(function(id){var e=G.resp[id];if(!AVPOR[id]||!ct.hasOwnProperty(e))return;ct[e]++;
+    Object.keys(G.resp||{}).forEach(function(id){var e=G.resp[id];if(AVPOR[id]&&ct.hasOwnProperty(e))ct[e]++});
+    var nao=Object.keys(G.acoes||{}).filter(function(id){return G.acoes[id]==='nao'});
+    var temFase=!!(G.agora.fase&&!/^(nada|nao)$/.test(G.agora.fase));
+    // o perfil é montado antes de gravar qualquer nota: se não passar em limpaPerfil, nada muda e o rascunho fica
+    var perfil=limpaPerfil({v:1,pesos:p,origem:'gosto6',feito_em:new Date().toISOString(),limites:G.limites,limFase:G.limFase,contexto:G.ctx,
+      respostas:{procura:G.agora.procura,fase:temFase?G.agora.fase:'',resp:G.agora.resp,cenas:(G.cenas||[]).filter(function(c){return c&&c.esc>=0}).length,cartazes:ct,obras:(G.obras||[]).map(function(o){return o.id})},
+      pesosSemFase:temFase?pSem:null,frases:frases,nao:nao});
+    if(!perfil){toast('Não consegui guardar o seu gosto; tente de novo.',false);return}
+    Object.keys(G.resp||{}).forEach(function(id){var e=G.resp[id];if(!AVPOR[id]||!ct.hasOwnProperty(e))return;
       if(e==='amei')darNota(id,90);else if(e==='nao')darNota(id,35);else if(ST.notas[id]==null&&!ST.status[id])ST.status[id]='assisti'});
     (G.obras||[]).forEach(function(o){if(AVPOR[o.id]&&ST.notas[o.id]==null)darNota(o.id,90)});
     Object.keys(G.acoes||{}).forEach(function(id){var a=G.acoes[id];if(!AVPOR[id])return;if(a==='quero'){if(ST.notas[id]==null){ST.status[id]='quero';delete ST.naovi[id]}}else if(a==='vi'&&G.notasL[id])darNota(id,G.notasL[id])});
-    var nao=Object.keys(G.acoes||{}).filter(function(id){return G.acoes[id]==='nao'});
-    var temFase=!!(G.agora.fase&&!/^(nada|nao)$/.test(G.agora.fase));
-    ST.perfil=limpaPerfil({v:1,pesos:p,origem:'gosto6',feito_em:new Date().toISOString(),limites:G.limites,limFase:G.limFase,contexto:G.ctx,
-      respostas:{procura:G.agora.procura,fase:temFase?G.agora.fase:'',resp:G.agora.resp,cenas:(G.cenas||[]).filter(function(c){return c&&c.esc>=0}).length,cartazes:ct,obras:(G.obras||[]).map(function(o){return o.id})},
-      pesosSemFase:temFase?pSem:null,frases:frases,nao:nao});
-    ST.pesos=null;ST.pesosAntes=null;
-    var sv=(G.ctx.servicos||[]).map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[2]:''}).filter(Boolean);if(sv.length)ST.servicos=sv;
-    save();g6Limpa();entraModo();
+    var sv=(G.ctx.servicos||[]).map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[2]:''}).filter(Boolean);
+    entraPessoa(perfil,sv);g6Limpa();
     toast('Seu gosto ficou guardado neste aparelho. A página agora é a sua.',false);ir('inicio');
   }catch(e){console.error(e)}
 }
@@ -4315,11 +4406,11 @@ function g6Fim(){
   try{
     var p=el('p-gosto');
     p.addEventListener('click',function(e){
-      var b=e.target.closest('[data-g6],[data-g6a],[data-g6f],[data-g6r],[data-g6c],[data-g6p],[data-g6ctz],[data-g6ob],[data-g6rm],[data-g6pg],[data-g6qd],[data-g6l],[data-g6ctx],[data-g6ctxi],[data-g6ctxo],[data-g6ctxt],[data-g6ctxs],[data-g6ac],[data-g6n],[data-g6cor]');
+      var b=e.target.closest('[data-g6],[data-g6a],[data-g6f],[data-g6r],[data-g6c],[data-g6p],[data-g6ctz],[data-g6ob],[data-g6rm],[data-g6pg],[data-g6qd],[data-g6ab],[data-g6l],[data-g6ctx],[data-g6ctxi],[data-g6ctxo],[data-g6ctxt],[data-g6ctxs],[data-g6ac],[data-g6n],[data-g6cor]');
       if(!b)return;var G=g6Carrega(),d=b.dataset,pv;
       if(d.g6){
         if(d.g6==='prox')return g6Avanca();if(d.g6==='pular')return g6Avanca();if(d.g6==='voltar')return g6Volta();
-        if(d.g6==='continuar')return g6Render();if(d.g6==='denovo'){g6Limpa();g6Carrega();G6.tela=1;g6Guarda();return g6Render()}
+        if(d.g6==='continuar')return g6Render(true);if(d.g6==='denovo'){g6Limpa();g6Carrega();G6.tela=1;g6Guarda();return g6Render(true)}
         if(d.g6==='sair'){g6Guarda();ir(ST.perfil?'perfil':'comecar');return}
         if(d.g6==='fim')return g6Fim();return}
       if(d.g6a!=null){toggleLista(G.agora.procura,d.g6a,2)}
@@ -4333,7 +4424,8 @@ function g6Fim(){
       else if(d.g6ob!=null){if((G.obras||[]).length<3&&AVPOR[d.g6ob]){G.obras.push({id:d.g6ob,pegou:[],quando:''});G.q=''}}
       else if(d.g6rm!=null){G.obras.splice(+d.g6rm,1)}
       else if(d.g6pg!=null){var ob=G.obras[+b.closest('.obra').dataset.ob];if(ob)toggleLista(ob.pegou,d.g6pg,2)}
-      else if(d.g6qd!=null){var ob2=G.obras[+b.closest('.obra').dataset.ob];if(ob2)ob2.quando=ob2.quando===d.g6qd?'':d.g6qd}
+      else if(d.g6qd!=null){var ob2=G.obras[+b.closest('.obra').dataset.ob];if(ob2){ob2.quando=ob2.quando===d.g6qd?'':d.g6qd;ob2.aberto=false}}
+      else if(d.g6ab!=null){var ob3=G.obras[+d.g6ab];if(ob3)ob3.aberto=true}
       else if(d.g6l!=null){pv=d.g6l.split('|');if(pv[1])G.limites[pv[0]]=pv[1];else delete G.limites[pv[0]]}
       else if(d.g6ctx!=null){toggleLista(G.ctx.quem,d.g6ctx);if(G.ctx.quem.indexOf('criancas')<0)G.ctx.idade=''}
       else if(d.g6ctxi!=null){G.ctx.idade=d.g6ctxi}else if(d.g6ctxo!=null){G.ctx.onde=G.ctx.onde===d.g6ctxo?'':d.g6ctxo}else if(d.g6ctxt!=null){G.ctx.tempo=G.ctx.tempo===d.g6ctxt?'':d.g6ctxt}
@@ -4359,6 +4451,8 @@ function g6Fim(){
 // gravar. O texto colado não é guardado: só o que ela confirmar.
 var RI_PROMPT="Quero levar para o Telas, um app de filmes e séries, um resumo do que você sabe sobre mim COMO ESPECTADOR. O app vai usar isso para montar minhas primeiras indicações. Vou ler tudo antes de colar lá.\n\nDE ONDE TIRAR\n1. Use só: (a) o que está na sua memória salva sobre mim; (b) o que eu disse em conversas anteriores, se você tem acesso a elas; (c) o que eu responder nesta conversa.\n2. Se você consegue buscar nas nossas conversas antigas, busque por: filme, série, assisti, vi, maratonei, temporada, episódio, cinema, Netflix, Prime, Disney, Max, Globoplay, Apple TV, anime, novela, dorama, documentário, indicação, \"me recomenda\".\n3. Não use ideias gerais sobre \"pessoas como eu\" e não complete lacunas com palpites. Prefiro uma seção vazia a uma seção inventada.\n4. Marque a origem de cada item:\n   memória = está na sua memória salva\n   conversa AAAA-MM = eu disse numa conversa antiga (mês e ano, se souber; senão \"conversa ?\")\n   agora = eu disse nesta conversa\n   dedução = você deduziu de algo que eu disse (use pouco e diga de quê)\n5. Marque a certeza: alta, média ou baixa.\n\nO QUE DEIXAR DE FORA (nem resumido, nem disfarçado)\n- Nomes de pessoas. Use só a relação: \"parceira\", \"filho\", \"amigos\".\n- Saúde física ou mental, diagnósticos, terapia, remédios, gravidez, vícios.\n- A religião ou a crença que eu tenho, minha posição política, orientação sexual, identidade de gênero, cor ou etnia.\n- Dinheiro, endereço, empresa onde trabalho, documentos, telefones, e-mails e links.\n- Detalhes sobre crianças. Basta \"assisto com crianças: sim\" ou \"não\".\n- Testes de personalidade (MBTI, eneagrama, signo), estilo de apego ou qualquer análise psicológica de mim.\nSe o motivo de um gosto ou de um limite for um desses assuntos, escreva o gosto ou o limite SEM o motivo. Exemplo: \"evito cenas de hospital\", e não por quê.\nGostar de histórias SOBRE fé, política ou doença é gosto e pode entrar (\"gosto de filmes sobre fé e dúvida\"). O que eu creio ou tenho, não.\n\nSE VOCÊ SABE POUCO SOBRE MIM\nSe você tem menos de 5 filmes ou séries meus na memória ou nas conversas, diga isso em uma linha e, antes de escrever o resumo, me faça as perguntas abaixo, 4 por vez, em até três rodadas. Use minhas respostas com a origem \"agora\".\n1. Três filmes ou séries que você ama, e por quê em poucas palavras.\n2. Dois que você odiou ou largou no meio, e por quê.\n3. O que você revê, ou põe para descansar a cabeça.\n4. Uma fase da sua vida e o que você assistia nela.\n5. O que você não suporta ver na tela.\n6. Com quem você costuma assistir, e onde (serviços, TV, celular, cinema).\n7. Dublado ou legendado? Que idiomas você entende?\n8. Filme ou série? Curto ou longo? Um episódio por noite ou maratona?\n9. Final fechado ou aberto? Leve ou pesado? Realista ou fantasia?\n10. Alguma obra que todo mundo ama e você não?\n11. Algum país ou tipo de produção de que você gosta muito (coreana, anime, novela, documentário...)?\n12. O que você quer sentir quando escolhe algo para ver hoje em dia?\n\nFORMATO DA RESPOSTA\nPortuguês do Brasil. Títulos como saíram no Brasil e, ao lado, o original. Entregue tudo DENTRO DE UM ÚNICO BLOCO DE CÓDIGO, seguindo exatamente o modelo abaixo. Nas linhas que começam com \"- \", mantenha os campos separados por \" | \". Campo que você não sabe: \"?\". Seção sem nada: escreva \"- nada\". No máximo 1.500 palavras.\n\n```\n# Perfil Telas v1\nassistente: (seu nome) | data: AAAA-MM-DD\nacesso: memória salva = sim/não | conversas antigas = sim/não/parcial | respostas de agora = sim/não\nconversas sobre filmes e séries que encontrei: (número aproximado ou ?)\n\n## 1. Amo\n- título no Brasil | título original | ano | filme/série | por quê (até 15 palavras) | origem | certeza\n(até 20 linhas, as mais fortes primeiro)\n\n## 2. Gosto\n- título no Brasil | título original | ano | filme/série | por quê | origem | certeza\n(até 20 linhas)\n\n## 3. Não gostei ou larguei\n- título no Brasil | título original | ano | filme/série | larguei: sim/não | por quê | origem | certeza\n(até 15 linhas)\n\n## 4. Temas que voltam\n- tema (ex.: família que se reencontra) | obras que mostram isso | origem | certeza\n(até 8 linhas)\n\n## 5. O que procuro numa história\n- tom: leve / equilibrado / pesado / tanto faz | origem | certeza\n- ritmo: lento / médio / rápido / tanto faz | origem | certeza\n- final: fechado / aberto / tanto faz | origem | certeza\n- trama: simples / com camadas / quebra-cabeça | origem | certeza\n- mundo: realista / fantasia ou ficção científica / os dois | origem | certeza\n- humor: muito / algum / pouco | origem | certeza\n- tensão e sustos: gosto / aguento / evito | origem | certeza\n- personagens que me prendem: (frase curta) | origem | certeza\n- outra coisa que procuro: (frase curta) | origem | certeza\n\n## 6. Fases e o que eu assistia\n- fase (ex.: adolescência, faculdade, pandemia, agora) | período aproximado | o que assistia | o que aquilo fazia por mim (companhia, escape, rir, chorar, aprender...) | origem | certeza\n(até 6 linhas, sem detalhes íntimos da fase)\n\n## 7. Limites\n- não suporto: (ex.: violência sexual, morte de animal, gore, terror com sustos, cenas de hospital, guerra, crueldade com criança, vergonha alheia) | evitar sempre / avisar antes | origem | certeza\n\n## 8. Como eu assisto\n- com quem: sozinho / parceiro(a) / família / amigos | crianças junto: sim/não | origem | certeza\n- onde: (serviços que assino; TV, celular, computador, cinema) | origem | certeza\n- quando e quanto: (ex.: um episódio por noite, maratona no fim de semana) | origem | certeza\n- duração: filme até 2h / tanto faz | série curta / longa / tanto faz | origem | certeza\n- para desligar a cabeça: (obras) | origem | certeza\n- revejo: (obras) | origem | certeza\n\n## 9. Idiomas\n- entendo: (idiomas) | prefiro: dublado / legendado / tanto faz | aberto a produções de: (países ou \"qualquer\") | origem | certeza\n\n## 10. O que eu não sei\n- (o que você não sabe sobre o meu gosto e valeria perguntar; até 6 linhas)\n\n## 11. Conferência\n- itens por origem: memória N | conversa N | agora N | dedução N\n- deixei de fora dados sensíveis: sim\n- completo: sim / não, há mais que não coube\n```\n\nDepois do bloco, escreva uma única frase dizendo se isto é tudo o que você tem sobre mim ou se ficou algo de fora.";
 var RI=null;
+// serviços como podem aparecer no "onde" do resumo (Apple TV sem o "+", "Prime" sozinho, HBO)
+var SERV_RE={netflix:/netflix/,prime:/prime|amazon/,disney:/disney/,max:/\bmax\b|hbo/,globo:/globo/,apple:/apple\s*tv/,param:/paramount/,mubi:/mubi/};
 var RI_KW=[[/fam[ií]lia|amor|romance|casal|perda|luto|saudade|v[ií]nculo|reencontro/,{amor:3}],[/amizade|turma|comunidade|cuidado|comida|cozinha|bairro/,{mesa:3}],[/viagem|estrada|caminho|mudan[çc]a|recome[çc]o|passagem|crescer/,{travessia:3}],
   [/magia|fantasia|mundo inventado|mito|[ée]pico|drag[õo]es|fic[çc][ãa]o cient/,{encanto:3}],[/natureza|bicho|animal|paisagem|floresta|mar\b|corpo/,{terra:3}],[/sentido|f[ée]\b|prop[óo]sito|espiritual|grandes perguntas|exist[êe]nc/,{busca:3}],
   [/escuro|segredo|psic|crise|mente|obsess|sombra|trauma/,{sombra:3}],[/pol[ií]tica|poder|guerra|injusti|sociedade|hist[óo]ria real|crime/,{humanidade:3}],[/talento|of[ií]cio|trabalho|criar|m[úu]sica|arte|chef|cozinheir/,{oficio:3}],
@@ -4376,7 +4470,7 @@ function riAnalisa(txt){
   txt=String(txt||'').slice(0,30000).replace(/^\uFEFF/,'');
   var i=txt.indexOf('# Perfil Telas');if(i<0)return {erro:'Não achei "# Perfil Telas v1" no texto. Cole a resposta inteira do assistente: o bloco que começa com "# Perfil Telas v1".'};
   txt=riLimpa(txt.slice(i));var fim=txt.indexOf('```');if(fim>0)txt=txt.slice(0,fim);
-  var sec=0,R={titulos:[],sem:[],q:zeros(N13),t:zeros(N13),limites:{},semFiltro:[],ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},desligar:[],repetidos:[],assistente:'',frasesT:[]};
+  var sec=0,R={titulos:[],sem:[],q:zeros(N13),t:zeros(N13),limites:{},semFiltro:[],ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},desligar:[],repetidos:[],assistente:''};
   function add(o){Object.keys(o).forEach(function(k){var ix=EIX[k];if(ix==null)return;R.q[ix]+=o[k];R.t[ix]++})}
   function kw(s,mult){var g=String(s).toLowerCase();RI_KW.forEach(function(p){if(p[0].test(g)){var o={};Object.keys(p[1]).forEach(function(k){o[k]=p[1][k]*(mult||1)});add(o)}})}
   function casaLista(s){var out=[];String(s||'').split(/[;,]/).forEach(function(x){x=x.replace(/\(.*?\)/g,'').trim();if(!x||/^(nada|\?)$/i.test(x))return;var r=casar([[x,['pt','en']]],'',null,'');if(r&&out.indexOf(r.id)<0)out.push(r.id)});return out}
@@ -4385,8 +4479,9 @@ function riAnalisa(txt){
     var ma=l.match(/^assistente:\s*([^|]+)/i);if(ma&&!sec){R.assistente=ma[1].trim().slice(0,40);return}
     if(l.indexOf('- ')!==0&&l.indexOf('* ')!==0)return;var f=l.slice(2).split('|').map(function(x){return x.trim()});if(!f[0]||/^(nada|\?)$/i.test(f[0]))return;
     if(sec===1||sec===2||sec===3){var x=riTitulo(f,sec);if(!x.t)return;x.nota=sec===1?90:sec===2?75:(x.larg?null:35);x.status=sec===3&&x.larg?'abandonei':'assisti';
-      if(x.r){var ja=ST.notas[x.r.id];x.id=x.r.id;x.ja=ja==null?null:+ja;x.marcado=!x.fraco&&ja==null;R.titulos.push(x)}else R.sem.push(x.t+(anoN(x.ano)?' ('+anoN(x.ano)+')':''))}
-    else if(sec===4){kw(f[0]+' '+(f[1]||''),1);R.frasesT.push(f[0].slice(0,80))}
+      // o mesmo título em duas linhas: fica a primeira (a seção mais forte vem antes)
+      if(x.r){if(R.titulos.some(function(y){return y.id===x.r.id}))return;var ja=ST.notas[x.r.id];x.id=x.r.id;x.ja=ja==null?null:+ja;x.marcado=!x.fraco&&ja==null;R.titulos.push(x)}else R.sem.push(x.t+(anoN(x.ano)?' ('+anoN(x.ano)+')':''))}
+    else if(sec===4){kw(f[0],1)} // só o tema: os nomes das obras na 2ª coluna viravam tema ("Mar Adentro" dava terra, "Chefão" dava ofício)
     else if(sec===5){var k=f[0].toLowerCase(),v=k.split(':').slice(1).join(':');
       if(/^tom/.test(k)){if(/leve/.test(v))add({riso:2,nivel:-2});else if(/pesad/.test(v))add({nivel:2,sombra:2})}
       else if(/^ritmo/.test(k)){if(/lento/.test(v))add({nivel:2});else if(/r[áa]pido/.test(v))add({tensao:2})}
@@ -4400,7 +4495,7 @@ function riAnalisa(txt){
       if(!bateu)R.semFiltro.push(lt.slice(0,60))}
     else if(sec===8){var k8=f[0].toLowerCase(),v8=f.slice(0).join(' | ').toLowerCase();
       if(/^com quem/.test(k8)){if(/sozinh/.test(v8))R.ctx.quem.push('sozinho');if(/parceir|par\b|namorad|marid|esposa/.test(v8))R.ctx.quem.push('par');if(/amigos/.test(v8))R.ctx.quem.push('amigos');if(/fam[ií]lia/.test(v8))R.ctx.quem.push('varia');if(/crian[çc]as junto:\s*sim/.test(v8))R.ctx.quem.push('criancas')}
-      else if(/^onde/.test(k8)){SERVICOS.forEach(function(s){if(s[2]&&new RegExp(s[1].replace('+','\\+'),'i').test(v8))R.ctx.servicos.push(s[0])});if(/celular/.test(v8))R.ctx.onde='cel';else if(/tv\b|televis/.test(v8))R.ctx.onde='tv';else if(/computador|notebook/.test(v8))R.ctx.onde='note'}
+      else if(/^onde/.test(k8)){SERVICOS.forEach(function(s){if(s[2]&&SERV_RE[s[0]]&&SERV_RE[s[0]].test(v8))R.ctx.servicos.push(s[0])});if(/celular/.test(v8))R.ctx.onde='cel';else if(/tv\b|televis/.test(v8))R.ctx.onde='tv';else if(/computador|notebook/.test(v8))R.ctx.onde='note'}
       else if(/^quando/.test(k8)){if(/maratona/.test(v8))R.ctx.tempo='maratona';else if(/epis[óo]dio/.test(v8))R.ctx.tempo='curto';else if(/filme/.test(v8))R.ctx.tempo='filme'}
       else if(/^para desligar/.test(k8)){R.desligar=casaLista(f[0].split(':').slice(1).join(':'))}
       else if(/^revejo/.test(k8)){R.repetidos=casaLista(f[0].split(':').slice(1).join(':'))}}
@@ -4408,6 +4503,7 @@ function riAnalisa(txt){
   if(!R.titulos.length&&!R.sem.length&&!R.t.some(function(v){return v}))return {erro:'Não encontrei as seções do resumo (Amo, Gosto, Não gostei, O que procuro…). Confira se colou o bloco inteiro.'};
   var obs=R.titulos.filter(function(x){return AVPOR[x.id]&&AVPOR[x.id].x}).map(function(x){var r=AVPOR[x.id];return {x:r.x,y:x.nota===90?1:x.nota===75?0.5:-1,peso:x.fraco?0.5:1}});
   var m=g6Ajusta(R.q,R.t,obs);R.pesos=g6PesosDe(m.w);R.frases=g6Frases(R.pesos,{limites:R.limites,limFase:false}).map(function(f){return f.h});
+  if(semSinal(R.pesos))return {erro:'O resumo não traz nada que desenhe um gosto (nenhum título conhecido aqui, nem o que você procura). Confira se colou o bloco inteiro, ou tente o caminho de seis minutos.'};
   R.gravLim=true;R.gravCtx=true;R.gravCol=true;
   return R;
 }
@@ -4435,6 +4531,8 @@ function riRender(){
     (ctx.length?'<li><label><input type="checkbox" data-rictx="1"'+(RI.gravCtx?' checked':'')+'><span><b>Como assiste:</b> '+esc(ctx.join(', '))+'</span></label></li>':'')+
     (cols.length?'<li><label><input type="checkbox" data-ricol="1"'+(RI.gravCol?' checked':'')+'><span><b>Coleções:</b> '+esc(cols.join('; '))+'</span></label></li>':'')+'</ul>'+
     (RI.semFiltro.length?'<p class="note" style="margin-top:10px">Limites que a página ainda não sabe filtrar (ficam de fora): '+esc(RI.semFiltro.join('; '))+'.</p>':'')+'</div>';
+  // Gravar de novo no fim: quem revisa até embaixo não precisa voltar ao topo
+  h+='<div class="box"><div class="row"><button class="btn pri t44" type="button" data-riok="1">Gravar</button><button class="btn t44" type="button" id="ri-cancel">Cancelar</button></div></div>';
   box.innerHTML=h;
 }
 function riGrava(){
@@ -4442,12 +4540,13 @@ function riGrava(){
   try{
     var sel=RI.titulos.filter(function(x){return x.marcado});
     sel.forEach(function(x){if(x.nota!=null)darNota(x.id,x.nota);else{ST.status[x.id]='abandonei';delete ST.notas[x.id]}});
-    var p={v:1,pesos:RI.pesos,origem:'resumo',feito_em:new Date().toISOString(),limites:RI.gravLim?RI.limites:{},limFase:false,contexto:RI.gravCtx?RI.ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},
-      respostas:{procura:[],fase:'',resp:'',cenas:0,cartazes:{},obras:[],origem_txt:RI.assistente},frases:RI.frases.map(function(f){return f.replace(/<[^>]+>/g,'')}),nao:[]};
-    ST.perfil=limpaPerfil(p);ST.pesos=null;ST.pesosAntes=null;
+    // o nome do assistente só aparece na revisão: nada do texto colado fica guardado
+    var perfil=limpaPerfil({v:1,pesos:RI.pesos,origem:'resumo',feito_em:new Date().toISOString(),limites:RI.gravLim?RI.limites:{},limFase:false,contexto:RI.gravCtx?RI.ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},
+      respostas:{procura:[],fase:'',resp:'',cenas:0,cartazes:{},obras:[]},frases:RI.frases.map(function(f){return f.replace(/<[^>]+>/g,'')}),nao:[]});
+    if(!perfil){toast('Não consegui montar o seu gosto com esse resumo.',false);return}
     if(RI.gravCol){RI.desligar.forEach(function(id){adicionarId('desligar',id)});RI.repetidos.forEach(function(id){adicionarId('repetidos',id)})}
-    if(RI.gravCtx){var sv=RI.ctx.servicos.map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[2]:''}).filter(Boolean);if(sv.length)ST.servicos=sv}
-    save();entraModo();RI={feito:'Gosto gravado: '+sel.length+' nota'+(sel.length===1?'':'s')+' e os 13 pesos.'};riRender();
+    var sv=RI.gravCtx?RI.ctx.servicos.map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[2]:''}).filter(Boolean):[];
+    entraPessoa(perfil,sv);RI={feito:'Gosto gravado: '+sel.length+' nota'+(sel.length===1?'':'s')+' e os 13 pesos.'};riRender();
     toast('Seu gosto ficou guardado neste aparelho. A página agora é a sua.',false);
   }catch(e){console.error(e)}
 }
@@ -4457,7 +4556,7 @@ function riGrava(){
     p.addEventListener('click',function(e){
       var t=e.target;
       if(t.closest('#ri-copiar')){var b=t.closest('#ri-copiar');try{navigator.clipboard.writeText(RI_PROMPT).then(function(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar o pedido'},1600)},function(){riSeleciona(b)})}catch(err){riSeleciona(b)}return}
-      if(t.closest('#ri-ler')){var ta=el('ri-txt');try{RI=riAnalisa(ta?ta.value:'')}catch(err){console.error(err);RI={erro:'Não consegui ler esse texto.'}}if(ta)ta.value='';riRender();try{window.scrollTo(0,0)}catch(err){}return}
+      if(t.closest('#ri-ler')){if(!D||!AVI.length){toast('A lista ainda está carregando; tente de novo em instantes.',false);return}var ta=el('ri-txt');try{RI=riAnalisa(ta?ta.value:'')}catch(err){console.error(err);RI={erro:'Não consegui ler esse texto.'}}if(ta)ta.value='';riRender();try{window.scrollTo(0,0)}catch(err){}return}
       if(t.closest('#ri-cancel')){RI=null;riRender();return}
       if(t.closest('[data-riok]')){riGrava();return}
     });

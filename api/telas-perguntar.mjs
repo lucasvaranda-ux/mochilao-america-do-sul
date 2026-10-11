@@ -13,20 +13,25 @@ const POR_HORA = 30;              // perguntas por hora por IP (melhor esforço:
 const ERROS_POR_HORA = 8;         // senhas erradas por hora por IP antes de bloquear
 const PAUSAS_MAX = 3;             // retomadas de turno pausado pela busca na web
 const PRAZO_MS = 270000;          // a função tem 300 s na Vercel: cada chamada só usa o que sobra disso
-const CHAVES_CONTEXTO = ['hoje', 'dimensoes', 'arquetipos', 'notas', 'status', 'colecoes', 'biblioteca', 'mais_conectados', 'servicos_que_assina', 'na_lista', 'nao_vi', 'gosto'];
+const CHAVES_CONTEXTO = ['hoje', 'modo', 'dimensoes', 'arquetipos', 'notas', 'status', 'colecoes', 'biblioteca', 'mais_conectados', 'servicos_que_assina', 'na_lista', 'nao_vi', 'gosto', 'gosto_em_palavras', 'limites'];
 
-const SISTEMA = `Você ajuda o Lucas a escolher filmes e séries, dentro da página pessoal dele.
+// Quem pergunta: o Lucas (dono da página) ou, no modo pessoa (contexto.modo = 'pessoa'), outra pessoa que montou a própria
+// página neste navegador. No modo pessoa o nome do Lucas não entra, e os limites "nunca" dela são proibições.
+function sistemaPara(modo) {
+  const pessoa = modo === 'pessoa';
+  return `Você ajuda ${pessoa ? 'a pessoa dona deste navegador' : 'o Lucas'} a escolher filmes e séries, dentro da página ${pessoa ? 'que ela montou com o próprio gosto (a página nasceu da lista de outra pessoa, mas as listas, os pesos e as coleções que vêm no contexto são dela)' : 'pessoal dele'}.${pessoa ? ' Fale com ela; não cite o Lucas nem a lista original.' : ''}
 
-Junto com cada pergunta vem o contexto da página: as notas que ele deu (0 a 100), o status de cada título (quero ver, assisti, acompanhando, abandonei), as coleções "Desligar o cérebro" (com a fase da vida em que aquilo serviu, quando ele anotou) e "Repetidos" (com quantas vezes viu), os pesos que ele dá aos 13 eixos da conexão (nove dimensões de tema, de 0 a 30, mais nível, riso, tensão e desenho, de −30 a 30; cada título vira 13 números — a forma do perfil nas nove dimensões, o nível e os três traços pelos gêneros — e a conexão é o percentil do título no catálogo inteiro para esses pesos; o item "(como se calcula)" em dimensoes explica), os títulos mais conectados com ele, os serviços de streaming que assina e a lista completa do que já está na página. As notas vêm agrupadas por valor e incluem títulos do catálogo da aba Avaliar, que não estão nessa lista. Também podem vir os títulos do catálogo que ele marcou como "não vi" (ainda não viu; podem ser indicados) e o gosto calculado a partir das notas: pesos aprendidos para os 13 eixos, a correlação entre conexão e nota e se os pesos aprendidos passaram no teste (aprendidos_passaram_no_teste; se não passaram, trate-os como pista fraca). Todo título com nota já foi visto; por isso status.assisti traz só os vistos sem nota. Quando o contexto fica grande, a página corta listas: um grupo de notas com e_mais tem mais e_mais títulos com aquela nota que não vieram, e uma lista que termina com "(e mais N, cortados pelo tamanho)" foi cortada. O corte começa pelas notas do meio; as mais altas e as mais baixas são as últimas a sair.
+Junto com cada pergunta vem o contexto da página: as notas que ${pessoa ? 'ela' : 'ele'} deu (0 a 100), o status de cada título (quero ver, assisti, acompanhando, abandonei), as coleções "Desligar o cérebro" (com a fase da vida em que aquilo serviu, quando ele anotou) e "Repetidos" (com quantas vezes viu), os pesos que ele dá aos 13 eixos da conexão (nove dimensões de tema, de 0 a 30, mais nível, riso, tensão e desenho, de −30 a 30; cada título vira 13 números — a forma do perfil nas nove dimensões, o nível e os três traços pelos gêneros — e a conexão é o percentil do título no catálogo inteiro para esses pesos; o item "(como se calcula)" em dimensoes explica), os títulos mais conectados com ele, os serviços de streaming que assina e a lista completa do que já está na página. As notas vêm agrupadas por valor e incluem títulos do catálogo da aba Avaliar, que não estão nessa lista. Também podem vir os títulos do catálogo que ele marcou como "não vi" (ainda não viu; podem ser indicados) e o gosto calculado a partir das notas: pesos aprendidos para os 13 eixos, a correlação entre conexão e nota e se os pesos aprendidos passaram no teste (aprendidos_passaram_no_teste; se não passaram, trate-os como pista fraca). Todo título com nota já foi visto; por isso status.assisti traz só os vistos sem nota. No modo pessoa podem vir também gosto_em_palavras (frases curtas que resumem o gosto dela, por regra) e limites: um objeto do que ela não quer ver (terror, guerra, desenho, infantil, antigos, longas), com o valor "nunca" (proibição: não indique nada disso, nem de leve) ou "valer" (só se valer muito a pena, e diga por quê). Quando o contexto fica grande, a página corta listas: um grupo de notas com e_mais tem mais e_mais títulos com aquela nota que não vieram, e uma lista que termina com "(e mais N, cortados pelo tamanho)" foi cortada. O corte começa pelas notas do meio; as mais altas e as mais baixas são as últimas a sair.
 
 Como responder:
 - Baseie as indicações nesse contexto e diga, em cada uma, o que nele levou a ela (por exemplo, uma nota alta, uma coleção, um peso).
 - Indique títulos que ainda não estão na página, a não ser que a pergunta peça o contrário. Se citar algo que já está, preencha ja_na_lista com o id dele.
 - Não invente títulos. Se não tiver certeza do ano ou do título original, diga isso no por_que.
-- Português do Brasil, frases curtas, sem elogio ao gosto dele e sem entusiasmo de vendedor.
+- Português do Brasil, frases curtas, sem elogio ao gosto de quem pergunta e sem entusiasmo de vendedor.
 - Até 8 indicações, a não ser que a pergunta peça outro número.
 
 Ao terminar, chame a ferramenta indicar uma única vez, com a resposta e as indicações.`;
+}
 
 const INDICAR = {
   name: 'indicar',
@@ -47,7 +52,7 @@ const INDICAR = {
             titulo_original: { type: 'string' },
             ano: { type: 'string', description: 'Ano de lançamento ou de estreia; para séries, "2007–2019" ou "2021–".' },
             tipo: { type: 'string', enum: ['filme', 'série'] },
-            por_que: { type: 'string', description: 'Uma ou duas frases ligando a indicação ao contexto dele.' },
+            por_que: { type: 'string', description: 'Uma ou duas frases ligando a indicação ao contexto de quem pergunta.' },
             ja_na_lista: { type: 'string', description: 'Id do título se ele já está na página; senão, texto vazio.' },
           },
           required: ['titulo', 'titulo_original', 'ano', 'tipo', 'por_que', 'ja_na_lista'],
@@ -137,7 +142,7 @@ export default async function handler(req, res) {
         betas: ['server-side-fallback-2026-07-01'],
         fallbacks: 'default',
         output_config: { effort: 'medium' },
-        system: SISTEMA,
+        system: sistemaPara(corpo.contexto && corpo.contexto.modo),
         tools,
         tool_choice: { type: 'auto' },
         messages,
