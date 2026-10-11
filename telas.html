@@ -369,7 +369,7 @@ textarea.out{width:100%;min-height:110px;border:1px solid var(--line);background
   <section class="panel" id="p-cal" aria-label="Calendário de episódios">
     <div class="ctrl">
       <div class="chips" role="group" aria-label="Período" id="calview">
-        <button class="chip" aria-pressed="true" data-v="semana">Semana</button>
+        <button class="chip" aria-pressed="true" data-v="semana">7 dias</button>
         <button class="chip" aria-pressed="false" data-v="mes">Mês</button>
         <button class="chip" aria-pressed="false" data-v="proximos">Próximos meses</button>
       </div>
@@ -1006,6 +1006,12 @@ function agenda(list,hoje){
     return '<div class="day'+(k===hoje?' today':'')+'"><h4>'+(k===hoje?'Hoje · ':'')+DOW[d.getDay()]+', '+d.getDate()+' de '+MES[d.getMonth()]+'</h4>'+by[k].map(epRow).join('')+'</div>'}).join('')+'</div>';
 }
 function semEventos(msg){return '<p class="empty">'+msg+'</p>'}
+// quando o robô gerou os dados (ele roda todo dia; o GitHub às vezes atrasa algumas horas)
+function atualizadoEm(){
+  try{var g=EP&&EP.gerado_em?new Date(EP.gerado_em):null;if(!g||isNaN(g))return '';
+    var hh=('0'+g.getHours()).slice(-2)+'h'+('0'+g.getMinutes()).slice(-2);
+    return ' · atualizado pelo robô em '+g.getDate()+' de '+MES[g.getMonth()]+', '+hh}catch(e){return ''}
+}
 function renderCal(){
   try{
     var body=el('calbody');if(!body)return;
@@ -1014,9 +1020,10 @@ function renderCal(){
       body.innerHTML=semEventos('O calendário de episódios ainda não foi gerado. O robô que busca as datas roda uma vez por dia depois que esta página estiver no ar.')+anunciadas();return}
     var all=eventos(),now=new Date(),hoje=ymd(now);
     if(CAL.v==='semana'){
-      var ini=new Date(now.getFullYear(),now.getMonth(),now.getDate()-((now.getDay()+6)%7)),fim=new Date(ini.getFullYear(),ini.getMonth(),ini.getDate()+7);
+      // janela que anda: de hoje até daqui a 7 dias (a semana de calendário deixava o domingo só com episódios que já passaram)
+      var ini=new Date(now.getFullYear(),now.getMonth(),now.getDate()),fim=new Date(ini.getFullYear(),ini.getMonth(),ini.getDate()+7);
       var w=all.filter(function(x){return x.d>=ini&&x.d<fim});
-      body.innerHTML='<p class="note">Semana de '+ini.getDate()+' de '+MES[ini.getMonth()]+'</p>'+(w.length?agenda(w,hoje):semEventos(CAL.scope==='acomp'?'Nenhum episódio esta semana nas séries que você acompanha. Marque séries como “Acompanhando” na aba Séries.':'Nenhum episódio esta semana.'));
+      body.innerHTML='<p class="note">Próximos 7 dias'+atualizadoEm()+'</p>'+(w.length?agenda(w,hoje):semEventos(CAL.scope==='acomp'?'Nenhum episódio nos próximos 7 dias nas séries que você acompanha. Marque séries como “Acompanhando” na aba Séries.':'Nenhum episódio nos próximos 7 dias.'));
     }else if(CAL.v==='mes'){
       if(!CAL.m)CAL.m=new Date(now.getFullYear(),now.getMonth(),1);
       var m=CAL.m,first=(m.getDay()+6)%7,dias=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
