@@ -4429,7 +4429,7 @@ function g6AberturaAfinar(G){
   var fr=(G.ia||[]).slice(0,2);
   return '<h2>Já sabemos isto de você</h2><p class="lead">Pela sua IA: '+esc(listaPt(sabe)||'um primeiro desenho do seu gosto')+'.</p>'+
     (fr.length?'<ul class="perfil-l">'+fr.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul>':'')+
-    '<p class="lead">Agora, uns 3 minutos para afinar: '+esc(listaPt(vai))+'. No fim, a sua primeira lista de 12 e o seu gosto em palavras. Nada aqui é teste, e dá para pular qualquer passo.</p>'+
+    '<p class="lead" style="margin-top:12px">Agora, uns 3 minutos para afinar: '+esc(listaPt(vai))+'. No fim, a sua primeira lista de 12 e o seu gosto em palavras. Nada aqui é teste, e dá para pular qualquer passo.</p>'+
     '<div class="g6-ft">'+(temp?'<button class="btn pri" type="button" data-g6="continuar">Continuar de onde parei</button><button class="lnk" type="button" data-g6="denovo">Começar de novo</button>':'<button class="btn pri" type="button" data-g6="prox">Começar</button>')+'</div>'+
     '<p class="fine">O que a IA disse já está guardado (Mais › Seu gosto). Se sair agora, ele continua valendo.</p>';
 }
@@ -4665,7 +4665,8 @@ function riCert(c){var k=normT(c);return RI_CERT[k]||(/alta/.test(k)?RI_CERT.alt
 function riFrases(t){
   t=String(t||'').replace(/\s+/g,' ').trim();if(!t)return [];
   var l=t.match(/[^.!?…]+[.!?…]+["”»)]*|[^.!?…]+$/g)||[];
-  return l.map(function(x){return x.trim()}).filter(function(x){return x.length>=8&&!/^\(/.test(x)}).slice(0,6).map(function(x){return x.length>240?x.slice(0,237).replace(/\s+\S*$/,'')+'…':x});
+  // frase com e-mail, link, CPF ou telefone (já trocados por riLimpa) não entra: não é gosto, e não deve ficar guardada
+  return l.map(function(x){return x.trim()}).filter(function(x){return x.length>=8&&!/^\(/.test(x)&&!/\[(e-mail|link|cpf|tel)\]/.test(x)}).slice(0,6).map(function(x){return x.length>240?x.slice(0,237).replace(/\s+\S*$/,'')+'…':x});
 }
 function riAnalisa(txt){
   indexa();
