@@ -4164,7 +4164,7 @@ var IC_PORTA={gosto:'<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circ
 function portasHtml(curto){
   return '<div class="portas">'+
     '<button class="porta pri" type="button" data-porta="resumo"><span class="pi">'+IC_PORTA.resumo+'</span><span class="pt"><b>Colar o resumo da minha IA</b><small>'+(curto?'O ChatGPT, o Claude ou o Gemini já sabem do que você gosta. Depois, 3 minutos para afinar.':'Copie um pedido pronto, cole no assistente que você já usa e cole a resposta aqui. A nossa IA lê o resumo, sem guardar o texto. Depois, 3 minutos de cenas e cartazes afinam o que ela entendeu.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
-    '<button class="porta" type="button" data-porta="gosto"><span class="pi">'+IC_PORTA.gosto+'</span><span class="pt"><b>Não uso IA / prefiro responder</b><small>'+(curto?'Seu gosto em 6 minutos: cenas, cartazes e três obras que marcaram você.':'Seu gosto em 6 minutos: o que você quer de uma tela hoje, cenas, 27 cartazes, três obras que marcaram você, limites, com quem e onde você assiste, e uma primeira lista de 12.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
+    '<button class="porta" type="button" data-porta="gosto"><span class="pi">'+IC_PORTA.gosto+'</span><span class="pt"><b>Não uso IA / prefiro responder</b><small>'+(curto?'Seu gosto em 6 minutos: cenas, cartazes e três obras que marcaram você.':'Seu gosto em 6 minutos: o que você quer assistir hoje, cenas, 27 cartazes, três obras que marcaram você, limites, com quem e onde você assiste, e uma primeira lista de 12.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
     '<button class="porta" type="button" data-porta="arquivo"><span class="pi">'+IC_PORTA.arquivo+'</span><span class="pt"><b>Importar um arquivo</b><small>'+(curto?'Letterboxd, IMDb ou o histórico da Netflix.':'As notas do Letterboxd ou do IMDb, ou a atividade de visualização da Netflix (o que você viu vira "assisti", sem nota).')+'</small></span><span class="chev" aria-hidden="true">›</span></button></div>';
 }
 function shComecar(){
@@ -4244,8 +4244,8 @@ function renderPerfil(){
 // observações numa regressão bayesiana de fórmula fechada (A = diag(1/var0) + Σ x xᵀ/0,5; w = A⁻¹ b). A incerteza S = A⁻¹
 // escolhe os próximos cartazes (ganho = chance de ter visto × xᵀ S x). Tudo em JS puro, milissegundos.
 var EIX={busca:0,travessia:1,terra:2,amor:3,sombra:4,mesa:5,oficio:6,humanidade:7,encanto:8,nivel:9,riso:10,tensao:11,desenho:12};
-var AGORA_OPTS=[['rir','Rir',{riso:6}],['mundo','Ser levado para outro mundo',{encanto:5,travessia:2}],['pensar','Ficar pensando depois',{busca:3,humanidade:3,sombra:2,nivel:2}],
-  ['emocao','Me emocionar',{amor:5,mesa:2}],['tensao','Tensão, não conseguir parar',{tensao:6,sombra:2}],['fundo','Companhia de fundo',{mesa:4,riso:2,nivel:-3}],['real','Aprender algo real',{humanidade:3,oficio:3,terra:2}]];
+var AGORA_OPTS=[['rir','Algo para rir',{riso:6}],['mundo','Uma história em outro mundo',{encanto:5,travessia:2}],['pensar','Algo que me deixe pensando',{busca:3,humanidade:3,sombra:2,nivel:2}],
+  ['emocao','Algo que me emocione',{amor:5,mesa:2}],['tensao','Algo tenso, que prenda',{tensao:6,sombra:2}],['fundo','Algo leve, de fundo',{mesa:4,riso:2,nivel:-3}],['real','Uma história real',{humanidade:3,oficio:3,terra:2}]];
 var FASE_OPTS=[['mudanca','Uma mudança (casa, cidade, trabalho)'],['comeco','O começo de algo'],['fim','O fim de algo ou uma perda'],['trabalho','Muito trabalho, pouco tempo'],['nada','Nada de especial'],['nao','Prefiro não dizer']];
 var FASE_Q={mudanca:{travessia:3,busca:2},comeco:{travessia:2,oficio:2},'fim:conversem':{amor:4,busca:2},'fim:respiro':{riso:4,mesa:2,sombra:-4,tensao:-2},trabalho:{nivel:-2}};
 var RESP_OPTS=[['conversem','Conversem com isso'],['respiro','Me deem um respiro'],['tanto','Tanto faz']];
@@ -4457,7 +4457,7 @@ function g6AberturaAfinar(G){
   var lim=Object.keys(G.limites||{});if(lim.length)sabe.push('o que você não quer ver ('+listaPt(lim.map(function(k){return LIM_NOME[k].toLowerCase()}))+')');
   if((G.ctx.servicos||[]).length)sabe.push('os seus serviços');
   var vai=[g6NTrios(G)+' trio'+(g6NTrios(G)>1?'s':'')+' de cenas',g6NGrades(G)+' grades de cartazes escolhidos pelo que ficou em dúvida'];
-  if(g6Ve(G,'agora'))vai.unshift('o que você quer de uma tela hoje');if(g6Ve(G,'obras'))vai.push('três obras que marcaram você');if(g6Ve(G,'limites'))vai.push('o que você não quer ver');if(g6Ve(G,'contexto'))vai.push('com quem e onde você assiste');
+  if(g6Ve(G,'agora'))vai.unshift('o que você quer assistir hoje');if(g6Ve(G,'obras'))vai.push('três obras que marcaram você');if(g6Ve(G,'limites'))vai.push('o que você não quer ver');if(g6Ve(G,'contexto'))vai.push('com quem e onde você assiste');
   var fr=(G.ia||[]).slice(0,2);
   return '<h2>Já sabemos isto de você</h2><p class="lead">Pela sua IA: '+esc(listaPt(sabe)||'um primeiro desenho do seu gosto')+'.</p>'+
     (fr.length?'<ul class="perfil-l">'+fr.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul>':'')+
@@ -4469,13 +4469,13 @@ function g6Abertura(G){
   if(g6Afinar(G))return g6AberturaAfinar(G);
   var temp=g6Temp();
   return '<h2>Seu gosto em 6 minutos</h2><p class="lead">Em uns 6 minutos a gente monta sua primeira lista. Nada aqui é teste: não tem resposta certa, e dá para pular qualquer passo.</p>'+
-    '<p class="lead">O que vem: o que você quer de uma tela hoje em dia, seis trios de cenas, 27 cartazes, três obras que marcaram você, o que você não quer ver, com quem e onde assiste, e uma lista de 12 com o porquê de cada um.</p>'+
+    '<p class="lead">O que vem: o que você quer assistir hoje, seis trios de cenas, 27 cartazes, três obras que marcaram você, o que você não quer ver, com quem e onde assiste, e uma lista de 12 com o porquê de cada um.</p>'+
     '<div class="g6-ft">'+(temp?'<button class="btn pri" type="button" data-g6="continuar">Continuar de onde parei</button><button class="lnk" type="button" data-g6="denovo">Começar de novo</button>':'<button class="btn pri" type="button" data-g6="prox">Começar</button>')+'</div>'+
     '<p class="fine">Seu gosto muda; você pode refazer quando quiser. Tudo fica só neste aparelho.</p>';
 }
 function g6Agora(G){
   var a=G.agora;
-  return '<h2>Agora</h2><p class="q">O que você mais quer de uma tela hoje em dia? <span class="fine" style="display:inline">(até 2)</span></p>'+chipsHtml(AGORA_OPTS,a.procura,'data-g6a',true)+
+  return '<h2>Agora</h2><p class="q">O que você quer assistir hoje? <span class="fine" style="display:inline">(até 2)</span></p>'+chipsHtml(AGORA_OPTS,a.procura,'data-g6a',true)+
     '<h3>Tem algo grande acontecendo na sua vida que você queira que a gente leve em conta?</h3><p class="fine" style="margin:0 0 8px">Opcional. Vale por três meses; depois a gente pergunta se ainda faz sentido. Não vai para ninguém.</p>'+chipsHtml(FASE_OPTS,a.fase,'data-g6f',false)+
     (a.fase==='fim'?'<h3>Quer que as telas conversem com isso ou que te deem um respiro?</h3>'+chipsHtml(RESP_OPTS,a.resp,'data-g6r',false):'')+g6Ft(G,'Próximo',true);
 }
