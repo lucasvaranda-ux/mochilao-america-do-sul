@@ -619,7 +619,7 @@ html.lock,html.lock body{overflow:hidden}
 .eps .epnotas{margin:8px 0 4px 42px}
 .eps .epnotas .clr{font-size:12px;width:auto;padding:0 10px}
 .eprs{margin:2px 0 10px}
-.sit{background:var(--s1);border-radius:18px;padding:14px;margin:14px 0 4px;display:flex;flex-direction:column;gap:12px}
+.sit{background:var(--s1);border-radius:18px;padding:14px;margin:14px var(--gut) 4px;display:flex;flex-direction:column;gap:12px}
 .sit-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .sit-st{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border-radius:999px;padding:5px 11px;background:var(--s2);color:var(--tx2)}
 .sit-st.live{background:var(--acc);color:var(--on-acc)}.sit-st.ren{background:var(--acc-soft);color:var(--acc)}
@@ -787,7 +787,7 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
 .toast #toast-undo,.toast #toast-aj{text-decoration:underline;text-underline-offset:3px}
 /* no celular, o aviso fica no alto, logo abaixo do que está preso no topo: longe do dedo que dá a próxima nota */
 @media (max-width:899px){.toast{top:calc(8px + env(safe-area-inset-top));bottom:auto}}
-@media (min-width:900px){.toast{left:calc(50% + 40px);bottom:24px}}
+@media (min-width:900px){.toast{left:50%;bottom:24px}}
 
 /* seu gosto */
 .gstat{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0 14px}
@@ -807,7 +807,7 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
 .ia-pill{display:inline-flex;align-items:center;gap:7px;min-height:38px;margin:0 4px 0 6px;padding:0 14px 0 11px;border:0;border-radius:999px;background:var(--acc);color:var(--on-acc);font:inherit;font-weight:800;font-size:14px;cursor:pointer;white-space:nowrap}
 .ia-pill svg.i{width:19px;height:19px}
 .ia-pill:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
-@media (max-width:360px){.ia-pill-tx{display:none}.ia-pill{padding:0 10px}}
+@media (max-width:360px),(min-width:900px) and (max-width:1179px){.ia-pill-tx{display:none}.ia-pill{padding:0 10px}}
 html.login-on .ia-pill{display:none}
 .af-meter{height:10px;border-radius:999px;background:var(--s2);overflow:hidden;margin:8px 0 6px}.af-meter i{display:block;height:100%;background:var(--acc);border-radius:999px}
 .af-grid{display:grid;gap:10px}
@@ -829,6 +829,7 @@ html.login-on .ia-pill{display:none}
 .col-chips button{min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--tx);font:inherit;font-size:13px;cursor:pointer}
 .col-chips button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--on-acc);font-weight:700}
 .ia-card{background:var(--s1);border-radius:18px;padding:16px;margin:12px 0 4px;box-shadow:var(--ring)}
+.ini-topo{padding:0 var(--gut)}
 .ia-card h3{margin:0 0 4px;font-size:18px}
 .ia-card p{margin:0 0 10px;color:var(--tx2);font-size:14px}
 .ia-card form{display:flex;gap:8px}
@@ -1126,19 +1127,35 @@ html.whatch .wh-esconde{display:none!important}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
-/* ---------- computador: barra lateral de 80 px e pôsteres de 150 ---------- */
+/* ---------- computador: navegação no topo (logo, nome, destinos à esquerda; busca, IA e conta à direita),
+   o Mais em sobretela e a folha do título como janela no meio da tela, em duas colunas ---------- */
 @media (min-width:900px){
-  :root{--gut:32px;--tw:150px;--tw-top:150px;--tw-cont:120px;--tw-duo:170px}
-  .top{margin-left:80px;min-height:64px;padding-top:calc(10px + env(safe-area-inset-top))}
-  .brand{font-size:24px}
-  .main{margin-left:80px}
-  .main{padding-bottom:48px}
-  .tabbar{top:0;bottom:0;right:auto;width:80px;height:auto;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:4px;
-    padding:calc(14px + env(safe-area-inset-top)) 6px 14px;background:var(--bg);box-shadow:1px 0 0 var(--line)}
-  .tabbar-brand{display:block;width:40px;height:40px;margin:0 auto 16px;border-radius:11px}
-  .dst{flex:0 0 auto;max-width:none;height:64px;border-radius:14px;font-size:11px;gap:5px;color:var(--tx2)}
-  .dst[aria-current="page"]{background:var(--s2)}
-  .dst .newb{top:7px;left:calc(50% + 6px)}
+  :root{--gut:32px;--tw:150px;--tw-top:150px;--tw-cont:120px;--tw-duo:170px;--toph:64px}
+  .top{position:sticky;top:0;z-index:58;background:var(--bg);box-shadow:0 1px 0 var(--line);min-height:var(--toph);padding:8px var(--gut) 8px calc(var(--gut) + 52px)}
+  .brand{flex:0 0 auto;width:118px;font-size:23px}
+  .top::after{content:"";flex:1}
+  .top>.ib,.top>.ia-pill{order:2}
+  .main{margin-left:0;padding-bottom:48px}
+  .tabbar{top:0;bottom:auto;left:calc(var(--gut) + 52px + 126px);right:auto;height:var(--toph);width:auto;flex-direction:row;justify-content:flex-start;align-items:center;gap:2px;
+    padding:0;background:none;box-shadow:none;z-index:59}
+  .tabbar-brand{display:block;position:fixed;left:var(--gut);top:12px;width:40px;height:40px;margin:0;border-radius:11px}
+  .dst{flex:0 0 auto;max-width:none;height:40px;flex-direction:row;gap:7px;padding:0 13px;border-radius:999px;font-size:14px;font-weight:700;color:var(--tx2)}
+  .dst .i{width:20px;height:20px}
+  .dst[aria-current="page"],.dst[aria-expanded="true"]{background:var(--s2);color:var(--tx)}
+  .dst .newb{top:2px;left:24px}
+  /* o Mais vira uma sobretela presa ao botão, por cima da tela em que se está */
+  html.maispop #p-mais{display:block;position:fixed;top:calc(var(--toph) - 2px);left:var(--mp-x,auto);width:400px;max-height:calc(100vh - var(--toph) - 20px);overflow:auto;z-index:86;
+    background:var(--sheet);border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.4),0 0 0 1px var(--line);padding:4px 0 6px}
+  html.maispop #p-mais .pghead{display:none}
+  html.maispop #p-mais .pad{padding:0 8px}
+  html.maispop #p-mais .mgroup{margin:6px 0}
+  .mp-catch{position:fixed;inset:0;z-index:85}
+  /* Início: a pergunta e o "afinar" lado a lado */
+  .ini-topo{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:16px;align-items:stretch}
+  .ini-topo>:only-child{grid-column:1/-1}
+  .ini-topo .ia-card,.ini-topo .af-ban{margin:12px 0 4px}
+  .ini-topo .af-ban{flex-direction:column;align-items:flex-start;justify-content:center;padding:18px 20px;gap:14px}
+  .ini-topo .af-ban p{font-size:15px;line-height:1.45}
   .lnav{position:static;padding:6px var(--gut) 4px}
   .panel{padding-top:0}
   .shelf{margin:10px 0 34px}
@@ -1171,13 +1188,21 @@ html.whatch .wh-esconde{display:none!important}
   .month .cell.sel{box-shadow:inset 0 0 0 2px var(--tx)}
   .month .cell.sel:not(.today) .dn{box-shadow:none}
   .agenda{max-width:760px}
-  .sheet{--gut:24px;left:auto;top:0;right:0;bottom:0;width:420px;height:100%;border-radius:0;transform:translateX(104%);box-shadow:-12px 0 40px rgba(0,0,0,.22);border-left:1px solid var(--line)}
-  .sheet.peek,.sheet.full{transform:none}
+  .sheet{--gut:28px;left:50%;top:50%;right:auto;bottom:auto;width:min(1120px,calc(100vw - 64px));height:min(calc(100vh - 56px),940px);border-radius:22px;
+    transform:translate(-50%,-47%) scale(.985);opacity:0;transition:transform .22s ease,opacity .22s ease;box-shadow:0 30px 90px rgba(0,0,0,.5);border:1px solid var(--line);overflow:hidden}
+  .sheet.peek,.sheet.full{transform:translate(-50%,-50%);opacity:1}
+  .sheet .hero{min-height:0;padding:40px var(--gut) 20px;gap:24px}
+  .sheet .hero-po{flex-basis:180px;width:180px}
+  .sheet .hero-t h2{font-size:34px}
+  .sheet .hero-t .meta{font-size:15px}
+  .sh-cols2{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:0 8px;align-items:start}
+  .sh-c1{position:sticky;top:56px}
+  .sh-c2{border-left:1px solid var(--line);min-height:100%}
   .sheet .sh-body{overflow-y:auto}
   .grab,.xp-w{display:none}
   .sheet:not(.full) .lead,.sheet .lead{display:block;-webkit-line-clamp:unset}
   .sh-bar{padding-top:0}
-  .scrim{background:rgba(0,0,0,.18)}
+  .scrim{background:rgba(0,0,0,.6)}
 }
 @media (min-width:1360px){
   .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -1563,6 +1588,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden><span id="toast-msg"></span><button type="button" id="toast-aj" hidden>Ajustar</button><button type="button" id="toast-undo">Desfazer</button><form id="toast-form" novalidate hidden><input id="toast-num" type="number" inputmode="numeric" min="0" max="100" step="1" aria-label="Nota exata, de 0 a 100"><button type="submit">Salvar</button></form></div>
 <div class="scrim" id="scrim" hidden></div>
+<div class="mp-catch" id="mp-catch" hidden></div>
 <section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title" hidden>
   <div class="sh-bar">
     <button class="grab" id="sh-grab" type="button" aria-label="Abrir a página inteira"></button>
@@ -2338,7 +2364,7 @@ function renderInicio(){
     // monta na ordem de sempre (é ela que evita repetir título entre prateleiras) e mostra na ordem que ele escolheu
     function poe(id,f){if(esc0.indexOf(id)>-1)return;try{out[id]=f()}catch(e){console.error(e)}}
     var topo='';try{topo=ST.perfil?shCriancas(k,usados):''}catch(e){console.error(e)}
-    try{if(WHATCH&&(ST.perfil||dono()))topo=iaCard()+afBanner()+topo}catch(e){console.error(e)}
+    try{if(WHATCH&&(ST.perfil||dono()))topo='<div class="ini-topo">'+iaCard()+afBanner()+'</div>'+topo}catch(e){console.error(e)}
     poe('comecar',function(){return ST.perfil||dono()?'':shComecar()});
     if(k!=='filmes')poe('cont',shContinuar);
     poe('top',function(){return shTop10(k,usados)});
@@ -2426,6 +2452,8 @@ var ABA=null,ABA0=true,ABA_ANT=null,POP_IGNORA=0,EM_POP=false;
 function ir(t){
   try{
     if(!GRUPO[t])t='inicio';
+    try{if(document.documentElement.classList.contains('maispop'))maisPop(false)}catch(e){}
+    if(t==='mais'&&largo()){if(ABA0||!ABA)t='inicio';else{maisPop(true);return}} // no computador o Mais é sobretela, não tela
     if(t==='perfil'&&!ST.perfil)t='comecar'; // sem gosto guardado, "Seu gosto" é a tela "Por onde começar?"
     // no Whatch sem gosto, Início, Lista, Agenda, Conexão e Perguntar mostram as portas (a barra continua marcando o destino tocado)
     var gv=GRUPO[t],t0=t;if(WHATCH&&!ST.perfil&&!dono()&&WH_PORTA[t])t='comecar';
@@ -2451,10 +2479,25 @@ function ir(t){
     if(mudou&&!ABA0)try{window.scrollTo(0,0)}catch(e){}
   }catch(e){console.error(e)}
 }
+// no computador, o Mais abre em sobretela presa ao botão, por cima da tela atual (Esc, clique fora ou escolher fecha)
+function maisPop(on){
+  try{
+    var H=document.documentElement,b=document.querySelector('.tabbar [data-dest="mais"]');
+    if(on==null)on=!H.classList.contains('maispop');
+    if(on&&!largo())on=false;
+    if(on&&b){var r=b.getBoundingClientRect();H.style.setProperty('--mp-x',Math.max(16,Math.min(window.innerWidth-416,r.left-8))+'px')}
+    H.classList.toggle('maispop',on);el('mp-catch').hidden=!on;if(b)b.setAttribute('aria-expanded',on?'true':'false');
+    if(on){var f=document.querySelector('#p-mais .mrow:not([hidden])');if(f)f.focus({preventScroll:true})}
+  }catch(e){console.error(e)}
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.documentElement.classList.contains('maispop')){maisPop(false);try{document.querySelector('.tabbar [data-dest="mais"]').focus()}catch(err){}}});
+window.addEventListener('resize',function(){if(!largo()&&document.documentElement.classList.contains('maispop'))maisPop(false)});
 document.addEventListener('click',function(e){
   try{
+    if(e.target.id==='mp-catch'){maisPop(false);return}
     var b=e.target.closest('.tab[data-tab],[data-dest]');if(!b)return;
     var nb=b.classList.contains('dst'),g=b.dataset.dest||GRUPO[b.dataset.tab];
+    if(nb&&b.dataset.dest==='mais'&&largo()&&ABA!=='mais'){maisPop();return}
     // tocar de novo no destino aberto volta ao topo (e, no Mais, à lista do Mais), como no iPhone
     if(nb&&GRUPO[ABA]===g){if(g==='mais'&&ABA!=='mais')voltaMais();else try{window.scrollTo({top:0,behavior:'smooth'})}catch(err){}return}
     if(b.classList.contains('back')){voltaMais();return}
@@ -3911,7 +3954,7 @@ function situacaoSerie(it,l){
   var st='',stx=String(it.status||'');
   if(sh&&sh.status){st=sh.status==='Running'?((fut.length||!tsFut&&!anunc)?'no ar':'renovada'):sh.status==='Ended'?'encerrada':sh.status==='To Be Determined'?'em pausa':sh.status==='In Development'?'em produção':''}
   if(!st)st=/exib|no ar/i.test(stx)?'no ar':/renov|confirmad|anunciad/i.test(stx)?'renovada':/encerr|cancel/i.test(stx)?'encerrada':/minis/i.test(stx)?'minissérie':/antolog/i.test(stx)?'antologia':'';
-  if((tsFut||anunc)&&st==='no ar'&&!fut.length)st='renovada';
+  if((tsFut||anunc)&&st==='no ar'&&!fut.length||tsFut&&st==='encerrada')st='renovada';
   var cls=st==='no ar'?'live':st==='renovada'?'ren':st==='encerrada'||st==='minissérie'?'fim':'';
   var nT=Math.max(maxLanc,ts.length?ts[ts.length-1].n:0),nE=lanc.length;
   var sub=[sh&&sh.canal,nT?nT+(nT===1?' temporada':' temporadas'):'',ehEPC&&nE?nE+' episódios':''].filter(Boolean).join(' · ');
@@ -4001,7 +4044,7 @@ function acoesFolha(it,k){
 function renderFolha(){
   var a=achar(SH.id);if(!a)return false;var it=a.it,t=a.tipo,c=conexao(it),p=posterInfo(it.id),h=[];
   // a saga não tem status nem nota próprios (são de cada filme); o filme de uma saga ganha os status de filme mesmo fora das listas
-  var k=t==='saga'?null:(kindOf(it.id)||(sagaDe(it.id)?'filmes':null)),sgId=t==='saga'?null:sagaDe(it.id),sgPai=sgId&&achar(sgId);
+  var k=t==='saga'?null:(kindOf(it.id)||(sagaDe(it.id)||t==='filme'?'filmes':t==='serie'?'series':null)),sgId=t==='saga'?null:sagaDe(it.id),sgPai=sgId&&achar(sgId);
   var meta=[];
   if(c!=null)meta.push('<b class="cx'+(c<50?' low':'')+' num">'+c+'% conexão</b>');
   [t==='saga'?(it.anos||it.ano):it.ano,t==='filme'?it.duracao:(t==='serie'?limpaLevant(it.temporadas||''):(t==='saga'?(it.filmes||[]).length+' filmes':''))].filter(Boolean).forEach(function(x){meta.push(esc(x))});
@@ -4040,6 +4083,7 @@ function renderFolha(){
     var corpo='<span class="te num">'+(i+1)+'</span><span class="et">'+esc(f.titulo)+(en||sv||eu?'<span class="ed">'+[en,esc(sv),eu].filter(Boolean).join(' · ')+'</span>':'')+'</span><span class="ed num">'+esc(f.ano||'')+'</span>'+(abre?'<span class="chev" aria-hidden="true">›</span>':'');
     return '<li>'+(abre?'<button class="sgf" type="button" data-open="'+esc(f.id)+'" aria-label="'+esc(f.titulo+(eu?', '+eu.replace(/<[^>]+>/g,''):''))+'">'+corpo+'</button>':corpo)+'</li>'})+'</ol>'));
   h.push(secao('Onde assistir',ondeAssistir(it,t)));
+  var corte=h.length; // daqui para baixo, a 2ª coluna no computador
   if(t==='serie'){h.push('<div id="sh-eps">'+episodiosFolha(it)+'</div>');epsCompletos(it.imdb_id);epsNotas(it.imdb_id)}
   if(it.dims&&it.dims.length){
     var esp=it.ponte&&it.espelho&&!mp?'<p class="esp"><b>Em você:</b> '+esc(it.espelho)+'</p>':'';
@@ -4058,7 +4102,8 @@ function renderFolha(){
   links.push('<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">JustWatch ↗</a>');
   var pg=posterPagina(it.id),fc=fonteCartaz(it.id);if(pg&&fc==='Wikipedia')links.push('<a href="'+esc(pg)+'" target="_blank" rel="noopener">Wikipedia ↗</a>');
   h.push('<section class="sx"><div class="links">'+links.join('')+'</div></section>');
-  el('sh-body').innerHTML=h.join('');
+  // hero no alto; no computador, ações e onde assistir à esquerda e o resto à direita (no celular, um embaixo do outro, na mesma ordem)
+  el('sh-body').innerHTML=h[0]+'<div class="sh-cols2"><div class="sh-c1">'+h.slice(1,corte).join('')+'</div><div class="sh-c2">'+h.slice(corte).join('')+'</div></div>';
   try{el('sh-bt').textContent=it.titulo||''}catch(e){}
   return true;
 }
