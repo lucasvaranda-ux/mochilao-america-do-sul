@@ -39,23 +39,50 @@ export async function confereUso(req, tipo) {
     const user = await ru.json();
     const uid = String(user && user.id || '');
     if (!/^[0-9a-f-]{36}$/.test(uid)) return { ok: false, status: 401, erro: 'Sua sessão venceu. Entre de novo.' };
-    // o dono do app (app_metadata.whatch_dono, só o banco marca) não tem limite; o uso dele não é contado
-    if (user.app_metadata && user.app_metadata.whatch_dono === true) return { ok: true, uid, dono: true };
+    // o dono do app (app_metadata.whatch_dono, só o banco marca) não tem limite, mas o uso dele entra no custo
+    const ehDono = !!(user.app_metadata && user.app_metadata.whatch_dono === true);
+    // limite próprio ou bloqueio, marcado pelo dono no admin (whatch_limites; a pessoa só lê a dela)
+    let lp = null;
+    if (!ehDono) {
+      const rl = await fetch(`${SB_URL}/rest/v1/whatch_limites?select=*&user_id=eq.${uid}`, { headers: h(token) });
+      if (rl.ok) { const a = await rl.json(); lp = Array.isArray(a) && a[0] || null; }
+    }
+    if (lp && lp.bloqueado) return { ok: false, status: 403, erro: 'A IA está desligada para a sua conta. Fale com quem te convidou para o Whatch.' };
+    const limDia = lp && lp[tipo + '_dia'] != null ? +lp[tipo + '_dia'] : lim.dia, limMes = lp && lp[tipo + '_mes'] != null ? +lp[tipo + '_mes'] : lim.mes;
     const agora = new Date();
     // dia e mês no horário de Brasília (UTC−3)
     const br = new Date(agora.getTime() - 3 * 3600e3);
     const dia = new Date(Date.UTC(br.getUTCFullYear(), br.getUTCMonth(), br.getUTCDate()) + 3 * 3600e3);
     const mes = new Date(Date.UTC(br.getUTCFullYear(), br.getUTCMonth(), 1) + 3 * 3600e3);
-    const [nDia, nMes] = await Promise.all([quantos(token, uid, tipo, dia), quantos(token, uid, tipo, mes)]);
-    if (nMes >= lim.mes) return { ok: false, status: 429, erro: `Você usou as ${lim.mes} ${lim.nome} deste mês. Elas voltam no dia 1º.` };
-    if (nDia >= lim.dia) return { ok: false, status: 429, erro: `Você usou as ${lim.dia} ${lim.nome} de hoje. Amanhã tem mais.` };
-    const ri = await fetch(`${SB_URL}/rest/v1/whatch_ia_uso`, {
-      method: 'POST', headers: h(token, { 'content-type': 'application/json', prefer: 'return=minimal' }), body: JSON.stringify({ tipo }),
+    let nDia = 0, nMes = 0;
+    if (!ehDono) {
+      [nDia, nMes] = await Promise.all([quantos(token, uid, tipo, dia), quantos(token, uid, tipo, mes)]);
+      if (nMes >= limMes) return { ok: false, status: 429, erro: `Você usou as ${limMes} ${lim.nome} deste mês. Elas voltam no dia 1º.` };
+      if (nDia >= limDia) return { ok: false, status: 429, erro: `Você usou as ${limDia} ${lim.nome} de hoje. Amanhã tem mais.` };
+    }
+    const ri = await fetch(`${SB_URL}/rest/v1/whatch_ia_uso?select=id`, {
+      method: 'POST', headers: h(token, { 'content-type': 'application/json', prefer: 'return=representation' }), body: JSON.stringify({ tipo }),
     });
     if (!ri.ok) throw new Error('registro ' + ri.status);
-    return { ok: true, uid, restam: { dia: lim.dia - nDia - 1, mes: lim.mes - nMes - 1 } };
+    const reg = await ri.json().catch(() => null);
+    const id = Array.isArray(reg) && reg[0] ? reg[0].id : null;
+    return { ok: true, uid, dono: ehDono, id, token, restam: ehDono ? null : { dia: limDia - nDia - 1, mes: limMes - nMes - 1 } };
   } catch (e) {
     console.error('limite', e && e.message);
     return { ok: false, status: 503, erro: 'Não consegui conferir o seu limite agora. Tente de novo em instantes.' };
   }
+}
+
+// depois da chamada: grava os tokens no registro deste uso (uma vez; o custo em dólar é calculado no banco).
+// usage pode ser um objeto da Anthropic ou uma lista deles (as retomadas da busca na web); falha aqui não atrapalha a resposta.
+export async function registraTokens(uso, usage) {
+  try {
+    if (!uso || !uso.id || !uso.token || !usage) return;
+    const l = Array.isArray(usage) ? usage : [usage];
+    const soma = k => l.reduce((a, u) => a + (u && +u[k] > 0 ? Math.round(+u[k]) : 0), 0);
+    await fetch(`${SB_URL}/rest/v1/whatch_ia_uso?id=eq.${uso.id}`, {
+      method: 'PATCH', headers: h(uso.token, { 'content-type': 'application/json', prefer: 'return=minimal' }),
+      body: JSON.stringify({ tokens_in: soma('input_tokens'), tokens_out: soma('output_tokens'), cache_lido: soma('cache_read_input_tokens'), cache_criado: soma('cache_creation_input_tokens') }),
+    });
+  } catch (e) { console.error('tokens', e && e.message); }
 }

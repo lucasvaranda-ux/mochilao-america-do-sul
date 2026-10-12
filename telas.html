@@ -751,6 +751,75 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
 .gw .dn small{display:block;color:var(--tx2);font-size:11.5px;line-height:1.3}
 .gfrase{color:var(--tx)!important;font-size:15px!important;line-height:1.5}
 .gaviso{border-left:3px solid var(--new);padding:2px 0 2px 10px}
+/* Perguntar: a pílula do topo e o cartão do Início deixam claro o que a IA faz */
+.ia-pill{display:inline-flex;align-items:center;gap:7px;min-height:38px;margin:0 4px 0 6px;padding:0 14px 0 11px;border:0;border-radius:999px;background:var(--acc);color:var(--on-acc);font:inherit;font-weight:800;font-size:14px;cursor:pointer;white-space:nowrap}
+.ia-pill svg.i{width:19px;height:19px}
+.ia-pill:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+@media (max-width:360px){.ia-pill-tx{display:none}.ia-pill{padding:0 10px}}
+html.login-on .ia-pill{display:none}
+.af-meter{height:10px;border-radius:999px;background:var(--s2);overflow:hidden;margin:8px 0 6px}.af-meter i{display:block;height:100%;background:var(--acc);border-radius:999px}
+.af-grid{display:grid;gap:10px}
+@media (min-width:760px){.af-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.af-it{display:flex;gap:12px;background:var(--s1);border-radius:16px;padding:10px;box-shadow:var(--ring)}
+.af-it .mini-po{flex:0 0 64px;border:0;background:none;padding:0;cursor:pointer}
+.af-it h4{margin:2px 0 2px;font-size:15px}.af-it .meta{color:var(--tx2);font-size:12px}
+.af-bt{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.af-bt button{min-height:36px;padding:0 11px;border-radius:999px;border:0;background:var(--s2);color:var(--tx);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.af-bt button[aria-pressed=true]{background:var(--acc);color:var(--on-acc)}
+.af-ban{display:flex;align-items:center;gap:12px;justify-content:space-between;background:var(--acc-soft);border-radius:16px;padding:12px 14px;margin:10px 0 4px}
+.af-ban p{margin:0;font-size:14px}.af-ban b{color:var(--acc)}
+.colcard.col-nova .fan,.colcard.col-sug .fan{border-radius:14px}
+.col-nova .col-mais{display:grid;place-items:center;width:100%;height:100%;min-height:96px;font-size:40px;font-weight:300;color:var(--acc);border:2px dashed var(--line);border-radius:14px}
+.colcard.col-sug{outline:1px dashed var(--line);outline-offset:-1px}
+.colh{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
+.colh h2{margin:0;font-size:26px}.colh .eyebrow{color:var(--acc);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.col-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.col-chips button{min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--tx);font:inherit;font-size:13px;cursor:pointer}
+.col-chips button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--on-acc);font-weight:700}
+.ia-card{background:var(--s1);border-radius:18px;padding:16px;margin:12px 0 4px;box-shadow:var(--ring)}
+.ia-card h3{margin:0 0 4px;font-size:18px}
+.ia-card p{margin:0 0 10px;color:var(--tx2);font-size:14px}
+.ia-card form{display:flex;gap:8px}
+.ia-card input{flex:1 1 auto;min-width:0;min-height:46px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--tx);font:inherit;font-size:16px;padding:0 14px}
+.ia-card .chips-ia{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.ia-card .chips-ia button{border:1px solid var(--line);background:none;color:var(--tx2);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer;min-height:34px}
+.eps-lote{margin:4px 0 8px;gap:8px}
+/* ---------- conta e admin do Whatch ---------- */
+html.whatch #acomp-box,html.whatch #fonte,html.whatch .foot{display:none!important}
+.av{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--acc);color:var(--on-acc);font-weight:800;font-size:15px;text-transform:uppercase;line-height:1}
+.mrow .mi .av{width:36px;height:36px;border-radius:10px}
+.conta-top{display:flex;align-items:center;gap:14px}
+.conta-top .av{width:52px;height:52px;font-size:22px}
+.conta-top b{display:block;font-size:17px;word-break:break-all}
+.selo-dono{display:inline-block;margin-top:4px;padding:2px 8px;border-radius:999px;background:var(--acc-soft);color:var(--acc);font-size:12px;font-weight:700}
+.sw{display:flex;align-items:flex-start;gap:12px;cursor:pointer}
+.sw input{appearance:none;-webkit-appearance:none;flex:0 0 46px;width:46px;height:28px;border-radius:999px;background:var(--track);position:relative;cursor:pointer;margin:0;transition:background .15s}
+.sw input::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s var(--ease)}
+.sw input:checked{background:var(--acc)}.sw input:checked::after{transform:translateX(18px)}
+.sw input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.conta textarea,.adm textarea{width:100%;box-sizing:border-box;min-height:96px;border-radius:14px;border:1px solid var(--line);background:var(--s1);color:var(--tx);font:inherit;padding:12px 14px;resize:vertical}
+.adm .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:700px){.adm .tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.adm .tile{background:var(--s1);border-radius:16px;padding:14px;box-shadow:var(--ring)}
+.adm .tile b{display:block;font-size:26px;line-height:1.1;font-variant-numeric:tabular-nums}
+.adm .tile span{display:block;color:var(--tx2);font-size:13px;margin-top:4px}
+.adm .tile small{display:block;color:var(--tx3);font-size:12px;margin-top:2px}
+.adm table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.adm th{text-align:left;font-size:12px;color:var(--tx3);font-weight:700;padding:6px 8px;border-bottom:1px solid var(--line)}
+.adm td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.adm .tab-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.adm .pess{display:grid;gap:10px}
+.adm .pes{background:var(--s1);border-radius:16px;padding:12px 14px;box-shadow:var(--ring)}
+.adm .pes h4{margin:0;font-size:15px;word-break:break-all}
+.adm .pes .meta{color:var(--tx2);font-size:13px;margin-top:4px;line-height:1.5}
+.adm .pes form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.adm .pes form label{font-size:12px;color:var(--tx2);display:grid;gap:4px}
+.adm .pes form input[type=number],.adm .pes form input[type=text]{min-height:40px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--tx);font:inherit;padding:0 10px}
+.adm .pes form .full{grid-column:1/-1}
+.adm .rec{border-top:1px solid var(--line);padding:10px 0}
+.adm .rec:first-child{border-top:0}
+.adm .rec p{margin:4px 0 0;white-space:pre-wrap}
+.adm .novo{display:inline-block;padding:1px 7px;border-radius:999px;background:var(--new);color:var(--on-new);font-size:11px;font-weight:800;margin-left:6px}
 /* ---------- entrada do Whatch ---------- */
 html.login-on .tabbar,html.login-on header.top,html.login-on footer{display:none}
 .login{max-width:400px;margin:0 auto;padding-top:max(28px,10vh)}
@@ -1089,7 +1158,8 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
 <header class="top">
   <h1 class="brand" id="brand">Telas</h1>
   <button class="ib" id="go-busca" type="button" aria-label="Buscar na lista"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4.2-4.2"/></svg></button>
-  <button class="ib" id="go-ia" type="button" aria-label="Perguntar à IA"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.3l1.3-4.4A8.4 8.4 0 1 1 20.5 11.6z"/><path d="M12 8.2v6.4M8.8 11.4h6.4"/></svg></button>
+  <button class="ia-pill" id="go-ia" type="button" aria-label="Perguntar à IA o que ver"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.3l1.3-4.4A8.4 8.4 0 1 1 20.5 11.6z"/><path d="M12 8.2v6.4M8.8 11.4h6.4"/></svg><span class="ia-pill-tx">Perguntar à IA</span></button>
+  <button class="ib conta-ib" id="go-conta" type="button" hidden aria-label="Sua conta"><span class="av" id="conta-av" aria-hidden="true"></span></button>
 </header>
 
 <nav class="tabbar" aria-label="Seções">
@@ -1321,7 +1391,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
       <div class="box" id="conta-box" hidden></div>
       <div class="box">
         <h3>Onde ficam suas notas</h3>
-        <p>Notas, status, "não vi", sugestões escondidas, episódios vistos e pesos ficam guardados neste navegador, neste aparelho. Se trocar de celular ou limpar o navegador, eles somem — por isso o backup.</p>
+        <p id="onde-notas-p">Notas, status, "não vi", sugestões escondidas, episódios vistos e pesos ficam guardados neste navegador, neste aparelho. Se trocar de celular ou limpar o navegador, eles somem — por isso o backup.</p>
         <div class="row"><button class="btn pri" id="exp">Baixar backup</button><label class="btn" for="imp">Restaurar backup</label><input id="imp" type="file" accept="application/json" hidden></div>
         <p id="impmsg" style="margin-top:10px"></p>
       </div>
@@ -1383,9 +1453,44 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
     </div>
   </section>
 
+  <section class="panel" id="p-colecao" aria-label="Coleção">
+    <div class="pad">
+      <button class="back" type="button" data-dest="inicio"><span aria-hidden="true">‹</span> Início</button>
+      <div id="colecao"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-afinar" aria-label="Aperfeiçoar meu gosto">
+    <div class="pad">
+      <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
+      <header class="pghead"><h2>Aperfeiçoar meu gosto</h2><p>Rodadas de 9 títulos escolhidos para tirar as dúvidas que ainda temos sobre você. A cada rodada a gente confere se acertou e afina.</p></header>
+      <div id="afinar"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-conta" aria-label="Sua conta">
+    <div class="pad">
+      <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
+      <header class="pghead"><h2>Sua conta</h2></header>
+      <div id="conta"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-admin" aria-label="Admin">
+    <div class="pad">
+      <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
+      <header class="pghead"><h2>Admin</h2><p>Só a conta dona do Whatch vê esta tela. Gosto e notas de cada pessoa ficam de fora: aqui só números.</p></header>
+      <div id="admin" class="adm"></div>
+    </div>
+  </section>
+
   <section class="panel" id="p-mais" aria-label="Mais">
     <div class="pad">
       <header class="pghead"><h2>Mais</h2></header>
+      <div class="mgroup" id="mais-conta" hidden>
+        <button class="tab mrow" type="button" data-tab="conta" data-via='.tabbar [data-dest="mais"]'><span class="mi"><span class="av" id="mais-av" aria-hidden="true"></span></span><span class="mt"><b>Sua conta</b><small id="mais-conta-sub"></small></span><span class="chev" aria-hidden="true">›</span></button>
+        <button class="tab mrow" type="button" data-tab="admin" id="mais-admin" hidden data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span class="mt"><b>Admin</b><small id="mais-admin-sub">Pessoas, uso da IA, custos, recados</small></span><span class="chev" aria-hidden="true">›</span></button>
+      </div>
       <div class="mgroup">
         <button class="tab mrow" type="button" data-tab="perfil" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg></span><span class="mt"><b>Seu gosto</b><small id="mais-gosto-sub">O resumo da sua IA, afinado em 3 minutos, para a página virar a sua (ou responda sem IA).</small></span><span class="chev" aria-hidden="true">›</span></button>
         <button class="tab mrow" type="button" data-tab="perguntar" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.3l1.3-4.4A8.4 8.4 0 1 1 20.5 11.6z"/><path d="M12 8.2v6.4M8.8 11.4h6.4"/></svg></span><span class="mt"><b>Perguntar</b><small>A IA responde olhando suas notas, status e coleções.</small></span><span class="chev" aria-hidden="true">›</span></button>
@@ -1470,7 +1575,7 @@ function pesoPct(i,v){return Math.round((( +v||0)-pesoMin(i))/(30-pesoMin(i))*10
 
 // ---------- ESTADO ----------
 var KEY='telas_v1';
-var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},vistos:{},ia:[],naovi:{},sugOcultas:{},pesosAntes:null,av:{},perfil:null,servicosAntes:null};
+var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},vistos:{},ia:[],naovi:{},sugOcultas:{},pesosAntes:null,av:{},perfil:null,servicosAntes:null,minhas:[]};
 var STORE=true;
 function obj(x){return x&&typeof x==='object'&&!Array.isArray(x)?x:{}}
 function strs(a){return Array.isArray(a)?a.filter(function(x){return typeof x==='string'}):[]}
@@ -1515,9 +1620,13 @@ function limpaVezes(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var 
 function limpaFase(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){if(typeof o[k]==='string')r[k]=o[k].slice(0,120)});return r}
 function limpaLivres(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var v=o[k];if(v&&typeof v.titulo==='string'&&v.titulo.trim())r[k]={titulo:v.titulo.slice(0,200)}});return r}
 function limpaColEst(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var c=obj(o[k]);r[k]={add:strs(c.add),rem:strs(c.rem)}});return r}
+// coleções da pessoa: [{id:'c-…', nome, itens:[ids], de (a sugestão que a originou), criada}]; até 40, com até 400 títulos cada
+function limpaMinhas(l){if(!Array.isArray(l))return [];var vis={};return l.filter(function(c){return c&&typeof c==='object'&&/^c-[a-z0-9-]{1,40}$/.test(String(c.id))&&typeof c.nome==='string'&&c.nome.trim()&&!vis[c.id]&&(vis[c.id]=1)})
+  .slice(0,40).map(function(c){return {id:String(c.id),nome:c.nome.trim().slice(0,60),itens:strs(c.itens).filter(function(x){return x.length<=120}).slice(0,400),de:typeof c.de==='string'?c.de.slice(0,40):'',criada:/^\d{4}-/.test(String(c.criada))?String(c.criada).slice(0,24):''}})}
 function restauraTudo(p){
   ST.notas=limpaNotas(p.notas);ST.status=limpaStatus(p.status);ST.pesos=limpaPesos(p.pesos);ST.servicos=strs(p.servicos);restauraCol(p);
   ST.perfil=limpaPerfil(p.perfil);
+  ST.minhas=limpaMinhas(p.minhas);
   ST.servicosAntes=Array.isArray(p.servicosAntes)?strs(p.servicosAntes):null; // os serviços de antes do modo pessoa (voltam no Apagar)
 }
 function restauraCol(p){ST.col=limpaColEst(p.col);ST.livres=limpaLivres(p.livres);ST.vezes=limpaVezes(p.vezes);ST.fase=limpaFase(p.fase);ST.vistos=limpaVistos(p.vistos);ST.ia=Array.isArray(p.ia)?p.ia.filter(function(r){return r&&typeof r==='object'}).slice(0,20):[];restauraAval(p)}
@@ -2065,7 +2174,12 @@ function shColecoes(){
     var fan=cada(ids.slice(0,3),function(id){return posterHtml(acharOuProv(id).it,{nada:true})});
     return '<button class="colcard" type="button" data-go="'+col+'"><span class="fan" aria-hidden="true">'+fan+'</span><span class="cc-t">'+nome+'</span><span class="cc-m num">'+ids.length+(ids.length===1?' título':' títulos')+'</span></button>';
   }).join('');
-  return shelfHtml({key:'col',title:'Suas coleções',sub:'Para descansar a cabeça, ou rever pela décima vez.',body:'<div class="colcards">'+cards+'</div>'});
+  var fan=function(ids){return cada(ids.slice(0,3),function(id){return posterHtml(acharOuProv(id).it,{nada:true})})};
+  cards+=(ST.minhas||[]).map(function(c){return '<button class="colcard" type="button" data-colab="'+esc(c.id)+'"><span class="fan" aria-hidden="true">'+fan(c.itens)+'</span><span class="cc-t">'+esc(c.nome)+'</span><span class="cc-m num">'+c.itens.length+(c.itens.length===1?' título':' títulos')+'</span></button>'}).join('');
+  cards+='<button class="colcard col-nova" type="button" data-colnova="1"><span class="fan" aria-hidden="true"><span class="col-mais">+</span></span><span class="cc-t">Nova coleção</span><span class="cc-m">do seu jeito</span></button>';
+  var sug=[];try{sug=colSugestoes().slice(0,4)}catch(e){console.error(e)}
+  cards+=sug.map(function(g){return '<button class="colcard col-sug" type="button" data-colsug="'+esc(g.key)+'"><span class="fan" aria-hidden="true">'+fan(g.ids)+'</span><span class="cc-t">'+esc(g.nome)+'</span><span class="cc-m">Sugestão · '+g.ids.length+' títulos</span></button>'}).join('');
+  return shelfHtml({key:'col',title:'Suas coleções',sub:'As suas, e algumas que a gente montou pelo que você vê.',body:'<div class="colcards">'+cards+'</div>'});
 }
 function quando(d){
   var h=new Date(),a=new Date(h.getFullYear(),h.getMonth(),h.getDate()),b=new Date(d.getFullYear(),d.getMonth(),d.getDate()),n=Math.round((b-a)/864e5);
@@ -2084,6 +2198,13 @@ function marcaVisto(imdb,t,e){
   if(jaVisto({temporada:t,episodio:e},v)){
     if(e>1)ST.vistos[imdb]={t:t,e:e-1};else if(t>1)ST.vistos[imdb]={t:t-1,e:9999};else delete ST.vistos[imdb];
   }else ST.vistos[imdb]={t:t,e:e};
+  save();
+  try{renderShelves('series');renderNavBadges()}catch(err){console.error(err)}
+}
+// marca tudo até um episódio (t, e); t = 0 desmarca a série inteira
+function marcaAte(imdb,t,e){
+  if(!/^tt\d{5,10}$/.test(imdb)||!isFinite(t)||!isFinite(e))return;
+  if(t<=0)delete ST.vistos[imdb];else{var v=vistoDe(imdb);if(!jaVisto({temporada:t,episodio:e},v))ST.vistos[imdb]={t:t,e:e}}
   save();
   try{renderShelves('series');renderNavBadges()}catch(err){console.error(err)}
 }
@@ -2129,6 +2250,7 @@ function renderInicio(){
     // monta na ordem de sempre (é ela que evita repetir título entre prateleiras) e mostra na ordem que ele escolheu
     function poe(id,f){if(esc0.indexOf(id)>-1)return;try{out[id]=f()}catch(e){console.error(e)}}
     var topo='';try{topo=ST.perfil?shCriancas(k,usados):''}catch(e){console.error(e)}
+    try{if(WHATCH&&(ST.perfil||dono()))topo=iaCard()+afBanner()+topo}catch(e){console.error(e)}
     poe('comecar',function(){return ST.perfil?'':shComecar()});
     if(k!=='filmes')poe('cont',shContinuar);
     poe('top',function(){return shTop10(k,usados)});
@@ -2209,7 +2331,7 @@ function renderOrg(){
 // Cinco destinos na barra (Início, Lista, Avaliar, Agenda e Mais). Filmes, Séries, Desligar e Repetidos moram
 // na Lista; Perguntar, Conexão, Backup e Organizar moram no Mais. A Lista e o Avaliar têm um segmentado preso no topo.
 var GRUPO={inicio:'inicio',avaliar:'avaliar',filmes:'lista',series:'lista',desligar:'lista',repetidos:'lista',cal:'agenda',mais:'mais',perguntar:'mais',pesos:'mais',dados:'mais',organizar:'mais',
-  comecar:'mais',perfil:'mais',gosto:'mais',resumo:'mais',login:'entrar'};
+  comecar:'mais',perfil:'mais',gosto:'mais',resumo:'mais',login:'entrar',conta:'mais',admin:'mais',afinar:'mais',colecao:'inicio'};
 var DEST0={inicio:'inicio',lista:'filmes',avaliar:'avaliar',agenda:'cal',mais:'mais'};
 var WH_PORTA={inicio:1,filmes:1,series:1,desligar:1,repetidos:1,cal:1,perguntar:1,pesos:1};
 var ABA=null,ABA0=true,ABA_ANT=null,POP_IGNORA=0,EM_POP=false;
@@ -2221,6 +2343,7 @@ function ir(t){
     var gv=GRUPO[t],t0=t;if(WHATCH&&!ST.perfil&&!dono()&&WH_PORTA[t])t='comecar';
     // com o login ligado, sem sessão não se passa da entrada (o Backup e o Avaliar também pedem conta); guarda o destino pedido
     if(WH_LOGIN&&!SES&&t!=='login'){LG.depois=t0;t='login'}
+    if((t==='conta'&&!(WH_LOGIN&&SES))||(t==='admin'&&!dono()))t='mais'; // sem conta não há "Sua conta"; o Admin é só do dono
     try{document.documentElement.classList.toggle('login-on',t==='login')}catch(e){}
     var mudou=ABA!==t,g=GRUPO[t];ABA_ANT=ABA;ABA=t;
     if(g==='lista')DEST0.lista=t;
@@ -2230,13 +2353,13 @@ function ir(t){
     el('lnav').hidden=g!=='lista'&&g!=='avaliar';el('lseg-lista').hidden=g!=='lista';el('av-modo').hidden=g!=='avaliar';
     // as subpáginas do Mais entram no histórico (o Voltar do Android e o gesto do iPhone voltam ao Mais); o resto só troca o endereço
     // (as portas do Início levam ao caminho, ao resumo e ao começar: vindo de outro grupo, elas também entram, senão o Voltar sai do site)
-    var entra=g==='mais'&&t!=='mais'&&!ABA0&&!EM_POP&&(ABA_ANT==='mais'||(GRUPO[ABA_ANT]!=='mais'&&/^(comecar|gosto|resumo|perfil)$/.test(t)));
+    var entra=g==='mais'&&t!=='mais'&&!ABA0&&!EM_POP&&(ABA_ANT==='mais'||(GRUPO[ABA_ANT]!=='mais'&&/^(comecar|gosto|resumo|perfil|conta|admin|afinar)$/.test(t)));
     try{if(entra)history.pushState({sub:1},'','#'+t);else history.replaceState(history.state&&history.state.folha?history.state:null,'','#'+t)}catch(e){}
     fechaAviso(); // o "Desfazer" de uma tela não vale na outra
     if(t==='cal')renderCal();
     atualizaSujo(t);
     if(t==='avaliar')renderAvaliar(true);
-    try{if(t==='login')loginRender();else if(t==='comecar')renderComecar();else if(t==='perfil')renderPerfil();else if(t==='gosto')g6Entrar();else if(t==='resumo')riRender()}catch(e){console.error(e)} // sem dados, o caminho mostra "Carregando"
+    try{if(t==='login')loginRender();else if(t==='conta')contaPagina();else if(t==='afinar')afRender(true);else if(t==='colecao')colRender();else if(t==='admin')adminRender();else if(t==='comecar')renderComecar();else if(t==='perfil')renderPerfil();else if(t==='gosto')g6Entrar();else if(t==='resumo')riRender()}catch(e){console.error(e)} // sem dados, o caminho mostra "Carregando"
     if(mudou&&!ABA0)try{window.scrollTo(0,0)}catch(e){}
   }catch(e){console.error(e)}
 }
@@ -3540,6 +3663,7 @@ function perfilDasNotas(){
       if(e.target.closest('[data-imptodas]')){var tudo=IMP.casados.every(function(x){return x.marcado});IMP.casados.forEach(function(x){x.marcado=!tudo});renderImp();return}
       if(e.target.closest('[data-impok]')){
         var sel=IMP.casados.filter(function(x){return x.marcado});if(!sel.length)return;
+        semParGrava(IMP.sem,'importar');
         if(IMP.fonte==='netflix'){
           comDesfazer(sel.map(function(x){return x.id}),sel.length+' título'+(sel.length>1?'s':'')+' marcado'+(sel.length>1?'s':'')+' como assistido'+(sel.length>1?'s':'')+'.',function(){sel.forEach(function(x){if(ST.notas[x.id]==null&&!/^(acompanhando|abandonei)$/.test(ST.status[x.id]||'')){ST.status[x.id]='assisti';delete ST.naovi[x.id]}})});
           IMP={feito:sel.length+' título'+(sel.length>1?'s':'')+' da Netflix marcado'+(sel.length>1?'s':'')+' como assistido'+(sel.length>1?'s':'')+'.',nf:true};
@@ -3622,7 +3746,12 @@ function episodiosFolha(it){
     return '<li><span class="te num">E'+esc(x.e.episodio)+'</span><span class="et">'+esc(x.e.titulo||'Episódio '+x.e.episodio)+'<span class="ed num">'+esc(+x.d===SEM_DATA?'sem data':quando(x.d))+'</span></span>'+
       (on?botaoVisto(it.imdb_id,x.e,v):'<span class="bd">Em breve</span>')+'</li>'}).join('');
   var bar='<div class="tbar"><button class="ib" type="button" data-tp="'+(ti>0?esc(temps[ti-1]):'')+'" aria-label="Temporada anterior"'+(ti>0?'':' disabled')+'>‹</button><b>Temporada '+esc(tp)+'</b><button class="ib" type="button" data-tp="'+(ti<temps.length-1?esc(temps[ti+1]):'')+'" aria-label="Próxima temporada"'+(ti<temps.length-1?'':' disabled')+'>›</button></div>';
-  return secao('Episódios',bar+'<ul class="eps">'+lis+'</ul>'+(algum?'<p class="eps-n">Marcar um episódio marca os anteriores como vistos.</p>':'')+prox);
+  // marcar de uma vez: a temporada aberta (até o último lançado dela) ou tudo o que já saiu; tudo visto → desmarcar
+  var lanc=l.filter(function(x){return x.d<=now}),ultT=lanc.filter(function(x){return String(x.e.temporada)===tp}).pop(),ultG=lanc[lanc.length-1],emLote='';
+  if(ultG&&it.imdb_id){var tudo=jaVisto(ultG.e,v),tempOk=!ultT||jaVisto(ultT.e,v);
+    emLote='<div class="row eps-lote">'+(ultT&&!tempOk?'<button class="btn t44" type="button" data-vate="'+esc(it.imdb_id+'|'+ultT.e.temporada+'|'+ultT.e.episodio)+'">Vi a temporada '+esc(tp)+' inteira</button>':'')+
+      (!tudo?'<button class="btn t44" type="button" data-vate="'+esc(it.imdb_id+'|'+ultG.e.temporada+'|'+ultG.e.episodio)+'">Vi tudo até hoje</button>':'<button class="btn t44" type="button" data-vate="'+esc(it.imdb_id)+'|0|0">Desmarcar tudo</button>')+'</div>'}
+  return secao('Episódios',bar+emLote+'<ul class="eps">'+lis+'</ul>'+(algum?'<p class="eps-n">Marcar um episódio marca os anteriores como vistos.</p>':'')+prox);
 }
 // série tem 4 status: na folha (no máximo 420 px) os rótulos encurtam para caber inteiros, com o nome todo no title
 var SEGC={quero:'Quero',acompanhando:'Vendo',assisti:'Assisti',abandonei:'Larguei'};
@@ -3663,6 +3792,7 @@ function renderFolha(){
     (mot.length?'<p class="mot">'+mot.map(esc).join(' · ')+'</p>':'')+(hs.length?'<p class="hs badges">'+hs.join(' ')+'</p>':'')+'</div></div>');
   if(t==='saga'){var sv=sagaVistos(it);h.push('<div class="sx sx-act" id="sh-act"><p class="prev">'+(sv.n?'Você viu <b class="num">'+sv.n+'</b> de '+sv.de+' filmes.':'Uma saga de '+sv.de+' filmes.')+' Toque num filme para dar nota ou mudar o status.'+(c!=null?' A conexão da saga é a do filme que mais combina com você.':'')+'</p></div>')}
   else h.push('<div class="sx sx-act" id="sh-act">'+acoesFolha(it,k)+'</div>');
+  try{h.push('<div class="sx" id="sh-cols">'+colChips(it.id)+'</div>')}catch(e){console.error(e)}
   if(sgPai)h.push('<p class="colinfo">Parte da saga <button class="lnk" type="button" data-open="'+esc(sgId)+'">'+esc(sgPai.it.titulo)+' ›</button></p>');
   if(longo.length)h.push('<p class="colinfo situ">'+longo.map(function(x){return esc(x)}).join('<br>')+'</p>');
   var cols=[];
@@ -3774,7 +3904,8 @@ function syncSheet(){
       else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
     });
     s.addEventListener('click',function(e){
-      var t=e.target.closest('[data-ss],[data-th],[data-shclr],[data-expand],[data-tp],[data-visto]');if(!t||!SH.id)return;
+      var t=e.target.closest('[data-ss],[data-th],[data-shclr],[data-expand],[data-tp],[data-visto],[data-vate]');if(!t||!SH.id)return;
+      if(t.dataset.vate){var pa=t.dataset.vate.split('|'),ya=el('sh-body').scrollTop;marcaAte(pa[0],+pa[1],+pa[2]);var bx=el('sh-eps'),a0=achar(SH.id);if(bx&&a0)bx.innerHTML=episodiosFolha(a0.it);else renderFolha();el('sh-body').scrollTop=ya;return}
       var id=SH.id;
       if(t.dataset.expand){expandeFolha();return}
       if(t.dataset.visto){var pv=t.dataset.visto.split('|'),y0=el('sh-body').scrollTop;marcaVisto(pv[0],+pv[1],+pv[2]);renderFolha();el('sh-body').scrollTop=y0;
@@ -3914,6 +4045,157 @@ function renderHist(){
   }catch(e){console.error(e)}
 }
 var IA_OCUPADA=false;
+// ---------- COLEÇÕES DA PESSOA ----------
+// Além de Desligar e Repetidos, a pessoa cria as dela (ST.minhas) e a página sugere algumas pelo que ela vê e dá nota
+// (colSugestoes): as que ela amou, os desenhos, as comédias, os clássicos, a fila do "quero ver", para as crianças.
+// Uma sugestão abre como prévia; "Criar esta coleção" vira uma coleção dela (com de = a chave, e a sugestão some).
+var COL={id:'',sug:'',edita:false,conf:false};
+function minhaCol(id){return (ST.minhas||[]).filter(function(c){return c.id===id})[0]||null}
+function colNova(nome,ids,de){
+  var base='c-'+(slug(nome)||'colecao').slice(0,30),id=base,n=2;while(minhaCol(id))id=base+'-'+(n++);
+  var c={id:id,nome:String(nome).trim().slice(0,60)||'Minha coleção',itens:(ids||[]).slice(0,400),de:de||'',criada:new Date().toISOString()};
+  ST.minhas=(ST.minhas||[]).concat([c]).slice(0,40);save();marcaSujo();return c;
+}
+function colSugestoes(){
+  var feitas={};(ST.minhas||[]).forEach(function(c){if(c.de)feitas[c.de]=1});
+  var vistoBom=function(r,min){var v=ST.notas[r.id];return v!=null&&+v>=min},gr=function(r){return gens(r.it)},out=[];
+  var tem=function(r,lista){var g=r.it&&r.it.generos||[];return g.some(function(x){return lista[x]})};
+  var base=AVI.filter(function(r){return !r.saga});
+  function add(key,nome,ids){if(feitas[key])return;ids=agrupaIds(ids).slice(0,40);if(ids.length>=3)out.push({key:key,nome:nome,ids:ids})}
+  add('amei','As que você amou',base.filter(function(r){return vistoBom(r,85)}).sort(function(a,b){return ST.notas[b.id]-ST.notas[a.id]}).map(function(r){return r.id}));
+  add('desenhos','Seus desenhos e animes',base.filter(function(r){return tem(r,GEN_DESENHO)&&(vistoBom(r,70)||ST.status[r.id]==='acompanhando')}).map(function(r){return r.id}));
+  add('rir','Para rir',base.filter(function(r){return tem(r,GEN_RISO)&&!tem(r,GEN_DESENHO)&&vistoBom(r,70)}).map(function(r){return r.id}));
+  add('classicos','Os clássicos que você ama',base.filter(function(r){return vistoBom(r,80)&&r.ano&&+r.ano<1990}).map(function(r){return r.id}));
+  add('fila','Sua fila: quero ver',base.filter(function(r){return ST.status[r.id]==='quero'}).map(function(r){return r.id}));
+  if(comCriancas())add('criancas','Para ver com as crianças',[].concat(LD('filmes'),LD('series')).filter(function(it){return paraCriancas(it)}).slice(0,24).map(function(it){return it.id}));
+  return out;
+}
+function colChips(id){
+  var b=function(k,nome,on){return '<button type="button" data-colpoe="'+esc(k)+'" aria-pressed="'+!!on+'">'+(on?'✓ ':'')+esc(nome)+'</button>'};
+  var l=[b('desligar','Desligar o cérebro',colItens('desligar').indexOf(id)>-1),b('repetidos','Repetidos',colItens('repetidos').indexOf(id)>-1)]
+    .concat((ST.minhas||[]).map(function(c){return b(c.id,c.nome,c.itens.indexOf(id)>-1)}));
+  return '<p class="muted" style="margin:0">Coleções</p><div class="col-chips">'+l.join('')+'<button type="button" data-colpoe="+">+ Nova</button></div>';
+}
+function colToggle(k,id){
+  if(k==='desligar'||k==='repetidos'){var ja=colItens(k).indexOf(id)>-1,s=colEstado(k);
+    if(ja){var ai=s.add.indexOf(id);if(ai>-1)s.add.splice(ai,1);else if(s.rem.indexOf(id)<0)s.rem.push(id)}else adicionarId(k,id);save();marcaSujo(k);return !ja}
+  var c=minhaCol(k);if(!c)return false;var i=c.itens.indexOf(id);if(i>-1)c.itens.splice(i,1);else c.itens.unshift(id);save();marcaSujo();return i<0;
+}
+function colRender(){
+  var box=el('colecao');if(!box)return;
+  var c=COL.sug?null:minhaCol(COL.id),g=COL.sug?(colSugestoes().filter(function(x){return x.key===COL.sug})[0]||null):null;
+  if(!c&&!g){box.innerHTML='<p class="muted">Essa coleção não existe mais.</p>';return}
+  var ids=c?c.itens:g.ids,h='<div class="colh"><div><span class="eyebrow">'+(g?'Sugestão':'Sua coleção')+'</span>';
+  if(c&&COL.edita)h+='<form id="col-nome-f" class="row" style="margin-top:6px"><input class="search" id="col-nome" maxlength="60" value="'+esc(c.nome)+'" aria-label="Nome da coleção"><button class="btn pri t44" type="submit">Salvar</button></form>';
+  else h+='<h2>'+esc(c?c.nome:g.nome)+'</h2>';
+  h+='<p class="muted" style="margin:4px 0 0">'+ids.length+(ids.length===1?' título':' títulos')+'</p></div>';
+  h+=g?'<button class="btn pri t44" type="button" id="col-criar">Criar esta coleção</button>':'<div class="row"><button class="btn t44" type="button" id="col-ren">Renomear</button><button class="btn t44" type="button" id="col-del">'+(COL.conf?'Toque de novo para apagar':'Apagar')+'</button></div>';
+  h+='</div>';
+  h+=ids.length?'<div class="cgrid2">'+cada(ids,function(id){var a=acharOuProv(id),it=a.it;return '<article class="card ctile" data-id="'+esc(id)+'"><button class="ti-b" type="button" data-open="'+esc(id)+'" aria-label="'+esc('Abrir '+it.titulo)+'">'+posterHtml(it,{})+'<span class="ti-t">'+esc(it.titulo)+'</span></button>'+(c?'<div class="ct-f"><button class="rm" type="button" data-coltira="'+esc(id)+'">tirar daqui</button></div>':'')+'</article>'})+'</div>':'<p class="empty">Nada aqui ainda. Adicione abaixo ou pelo botão "Coleções" na página de cada título.</p>';
+  if(c)h+='<div class="box addbox"><h3>Adicionar</h3><div class="row"><input class="search" type="text" list="todos-titulos" id="col-add" placeholder="Nome do filme ou da série" aria-label="Título para adicionar" autocomplete="off"><button class="btn pri t44" type="button" id="col-addb">Adicionar</button></div><p class="addmsg" id="col-addmsg" style="margin-top:10px"></p></div>';
+  box.innerHTML=h;try{renderDatalist()}catch(e){}
+}
+function colAbre(id,sug){COL={id:id||'',sug:sug||'',edita:false,conf:false};ir('colecao');try{history.replaceState(history.state,'','#colecao')}catch(e){}}
+document.addEventListener('click',function(e){
+  var t=e.target;if(!t||!t.closest)return;
+  var a=t.closest('[data-colab]');if(a){colAbre(a.dataset.colab);return}
+  var sg=t.closest('[data-colsug]');if(sg){colAbre('',sg.dataset.colsug);return}
+  if(t.closest('[data-colnova]')){var nm=prompt('Nome da nova coleção:','');if(nm&&nm.trim()){var c=colNova(nm,[]);colAbre(c.id);renderInicio()}return}
+  var cp=t.closest('[data-colpoe]');if(cp&&SH.id){var k=cp.dataset.colpoe;
+    if(k==='+'){var nm2=prompt('Nome da nova coleção:','');if(!nm2||!nm2.trim())return;var c2=colNova(nm2,[SH.id]);toast('"'+c2.nome+'" criada com este título.',false)}
+    else{var on=colToggle(k,SH.id);toast(on?'Pôs na coleção.':'Tirou da coleção.',false)}
+    var bx=el('sh-cols');if(bx)bx.innerHTML=colChips(SH.id);try{renderInicio()}catch(err){}return}
+  if(ABA!=='colecao')return;
+  if(t.closest('#col-criar')){var g=colSugestoes().filter(function(x){return x.key===COL.sug})[0];if(!g)return;var c3=colNova(g.nome,g.ids,g.key);toast('Coleção "'+c3.nome+'" criada.',false);COL={id:c3.id,sug:'',edita:false,conf:false};colRender();return}
+  if(t.closest('#col-ren')){COL.edita=true;colRender();try{el('col-nome').focus()}catch(err){}return}
+  if(t.closest('#col-del')){if(!COL.conf){COL.conf=true;colRender();setTimeout(function(){COL.conf=false;if(ABA==='colecao')colRender()},4000);return}
+    ST.minhas=(ST.minhas||[]).filter(function(c){return c.id!==COL.id});save();marcaSujo();toast('Coleção apagada.',false);ir('inicio');return}
+  var tr=t.closest('[data-coltira]');if(tr){var c4=minhaCol(COL.id);if(!c4)return;c4.itens=c4.itens.filter(function(x){return x!==tr.dataset.coltira});save();marcaSujo();colRender();return}
+  if(t.closest('#col-addb')){colAdd();return}
+});
+document.addEventListener('keydown',function(e){if(e.target&&e.target.id==='col-add'&&e.key==='Enter'){e.preventDefault();colAdd()}});
+document.addEventListener('submit',function(e){if(e.target&&e.target.id==='col-nome-f'){e.preventDefault();var c=minhaCol(COL.id),v=(el('col-nome').value||'').trim();if(c&&v){c.nome=v.slice(0,60);save();marcaSujo()}COL.edita=false;colRender()}});
+function colAdd(){
+  var c=minhaCol(COL.id),inp=el('col-add'),msg=el('col-addmsg');if(!c||!inp)return;var tx=(inp.value||'').trim();if(!tx)return;
+  var id=ROTULOS[tx.toLowerCase()]||idPorNome(tx);
+  if(!id){if(msg)msg.textContent='Não achei "'+tx+'" na lista. Escolha uma das opções que aparecem enquanto digita.';return}
+  if(c.itens.indexOf(id)<0)c.itens.unshift(id);save();marcaSujo();inp.value='';colRender();var m2=el('col-addmsg');if(m2)m2.textContent='"'+tx+'" adicionado.';
+}
+// ---------- APERFEIÇOAR MEU GOSTO ----------
+// Um laço: a cada rodada, 9 títulos que a pessoa ainda não avaliou — 3 que o cálculo acha a cara dela (confere se acerta),
+// 2 que ele acha que não são (confere se erra para baixo) e 4 do meio, onde ele tem menos certeza. As respostas viram notas
+// (amei 90, gostei 75, não curti 35) ou "não vi". No fim da rodada, o acerto é medido pela correlação entre a conexão e as
+// notas dela; com 15 notas ou mais e o ajuste passando no teste de Seu gosto (gostoCalc().bom), dá para ajustar os pesos.
+// O medidor junta quantas notas temos (até 30) e o acerto: é o que diz se precisamos aprofundar.
+var AF={ids:null,ini:null};
+function afQualidade(){
+  var w=pesos(),a=[],y=[];
+  AVI.forEach(function(r){var v=ST.notas[r.id];if(!r.x||v==null||isNaN(+v))return;var p=conexaoF(w,r.it);if(p==null)return;a.push(p);y.push(+v)});
+  var n=y.length,r=corr(a,y),base=Math.min(1,n/30),q=r==null?0:Math.max(0,Math.min(1,r/0.5));
+  return {n:n,r:r,pct:Math.round(100*base*(0.35+0.65*q))};
+}
+function afTxt(q){return q.n<5?'ainda quase não te conhecemos':q.pct>=85?'bem afinado':q.pct>=60?'no caminho':'ainda aprendendo'}
+function afBanner(){
+  if(!AVI.length)return '';var q=afQualidade();if(q.pct>=85)return '';
+  return '<div class="af-ban"><p>Seu gosto está <b>'+q.pct+'% afinado</b> ('+esc(afTxt(q))+'). Uma rodada de 9 títulos já melhora as indicações.</p><button class="btn pri t44" type="button" data-ir="afinar">Aperfeiçoar</button></div>';
+}
+function afRodada(){
+  var w=pesos(),nao=(ST.perfil&&ST.perfil.nao)||[],vis={},fk=function(r){return normT(r.it.titulo).split(' ')[0]};
+  var pool=AVI.filter(function(r){return r.x&&!r.saga&&ST.notas[r.id]==null&&!ST.naovi[r.id]&&!ST.status[r.id]&&nao.indexOf(r.id)<0&&(r.pop||0)>=3&&!bloqueado(r.it)})
+    .map(function(r){return {r:r,p:conexaoF(w,r.it)}}).filter(function(o){return o.p!=null});
+  var R=rng((Date.now()>>>10)^pool.length),out=[];
+  function pega(l,n){for(var i=0;i<l.length&&n>0;i++){var o=l[i],k=fk(o.r);if(vis[k])continue;vis[k]=1;out.push(o.r.id);n--}}
+  var conhecidos=pool.filter(function(o){return o.r.pop>=4});
+  pega(conhecidos.slice().sort(function(a,b){return b.p-a.p}),3);
+  pega(conhecidos.slice().sort(function(a,b){return a.p-b.p}),2);
+  var meio=pool.filter(function(o){return o.p>=40&&o.p<=75}).map(function(o){return {o:o,k:R()+o.r.pop*0.15}}).sort(function(a,b){return b.k-a.k}).map(function(x){return x.o});
+  pega(meio,9-out.length);
+  // embaralha, para os "certeiros" não virem sempre primeiro
+  for(var i=out.length-1;i>0;i--){var j=Math.floor(R()*(i+1)),t=out[i];out[i]=out[j];out[j]=t}
+  return out;
+}
+var AF_R={amei:90,gostei:75,nao:35};
+function afResp(id){var v=ST.notas[id];if(ST.naovi[id])return 'naovi';if(v==null)return '';v=+v;return v>=85?'amei':v>=60?'gostei':'nao'}
+function afRender(nova){
+  var box=el('afinar');if(!box)return;
+  if(!AVI.length){box.innerHTML='<p class="muted">Carregando a lista…</p>';return}
+  if(nova||!AF.ids){AF.ids=afRodada();AF.ini=afQualidade()}
+  var q=afQualidade(),feitos=AF.ids.filter(function(id){return afResp(id)}).length,h='';
+  h+='<div class="box"><h3>Quanto já entendemos do seu gosto</h3><div class="af-meter" role="img" aria-label="'+q.pct+'% afinado"><i style="width:'+q.pct+'%"></i></div><p><b>'+q.pct+'%</b> · '+esc(afTxt(q))+' · '+q.n+' nota'+(q.n===1?'':'s')+' em títulos que a gente conhece'+(q.r!=null&&q.n>=8?' · acerto '+esc(acerto(q.r)):'')+'.</p>'+
+    (q.n<15?'<p class="muted">Com 15 notas ou mais dá para conferir se o cálculo acerta e ajustar os pesos.</p>':'')+'</div>';
+  if(!AF.ids.length){box.innerHTML=h+'<div class="box"><p>Você já avaliou tudo o que a gente tinha para perguntar agora. Volte depois de assistir mais coisas.</p></div>';return}
+  h+='<div class="box"><h3>Rodada: '+feitos+' de '+AF.ids.length+'</h3><p class="muted">Responda o que souber. "Não vi" também ajuda: a gente para de perguntar.</p><div class="af-grid">'+cada(AF.ids,function(id){
+      var r=AVPOR[id];if(!r)return '';var it=r.it,re=afResp(id),b=function(k,t){return '<button type="button" data-afr="'+esc(id)+'|'+k+'" aria-pressed="'+(re===k)+'">'+t+'</button>'};
+      return '<article class="af-it"><button class="mini-po" type="button" data-open="'+esc(id)+'" aria-label="'+esc('Abrir '+it.titulo)+'">'+miniPoster(it,{sz:'64px'})+'</button><div><h4>'+esc(it.titulo)+'</h4><div class="meta">'+esc([r.ano||'',rotTipo(r.tipo)].filter(Boolean).join(' · '))+'</div>'+
+        '<div class="af-bt">'+b('amei','Amei')+b('gostei','Gostei')+b('nao','Não curti')+b('naovi','Não vi')+'</div></div></article>'})+'</div></div>';
+  // o resultado da rodada
+  var g=null;try{g=q.n>=15?gostoCalc():null}catch(e){}
+  h+='<div class="box"><h3>Como ficou</h3><p>Antes desta rodada: '+AF.ini.pct+'%. Agora: <b>'+q.pct+'%</b>.</p>'+
+    (g&&g.ok&&g.bom?'<p>Suas notas mostram um gosto um pouco diferente do que a gente calculava, e o ajuste passou no teste (acerta mais em notas que ele não viu).</p><div class="row"><button class="btn pri t44" type="button" id="af-usar">Ajustar meu gosto com isso</button></div>':
+     g&&g.ok?'<p class="muted">O cálculo de agora ainda é o que mais acerta nas suas notas: nada a ajustar.</p>':'')+
+    '<div class="row" style="margin-top:10px"><button class="btn t44" type="button" id="af-mais">'+(feitos===AF.ids.length?'Mais uma rodada':'Trocar estes títulos')+'</button></div></div>';
+  box.innerHTML=h;
+}
+document.addEventListener('click',function(e){
+  var t=e.target;if(!t||!t.closest||ABA!=='afinar')return;
+  var b=t.closest('[data-afr]');if(b){var pv=b.dataset.afr.split('|'),id=pv[0],k=pv[1],at=afResp(id);
+    if(at===k){delete ST.notas[id];delete ST.naovi[id];if(ST.status[id]==='assisti')delete ST.status[id]}
+    else if(k==='naovi'){delete ST.notas[id];if(ST.status[id]==='assisti')delete ST.status[id];ST.naovi[id]=1}
+    else{delete ST.naovi[id];darNota(id,AF_R[k])}
+    save();marcaSujo();var y=window.scrollY;afRender();window.scrollTo(0,y);return}
+  if(t.closest('#af-mais')){afRender(true);try{window.scrollTo(0,0)}catch(err){}return}
+  if(t.closest('#af-usar')){try{var g=gostoCalc();if(!g.ok||!g.bom)return;var nv=limpaPesos(pesos().map(function(v,i){return (v+g.pesos[i])/2}));if(!nv)return;
+    if(ST.perfil){ST.perfil.pesos=nv;ST.pesos=null}else{ST.pesosAntes={p:ST.pesos?ST.pesos.slice():null};ST.pesos=nv}
+    save();entraModo();toast('Seu gosto foi ajustado com as suas notas.',false);AF.ini=afQualidade();afRender()}catch(err){console.error(err)}return}
+});
+// o cartão do Início: a pergunta já sai daqui (vai para a tela Perguntar e dispara); os atalhos mostram o tipo de pergunta
+var IA_ATALHOS=['Uma série leve para hoje à noite','Um filme para ver em casal','Algo parecido com o que eu mais amei','O que está no meu streaming e combina comigo'];
+function iaCard(){return '<section class="ia-card" aria-label="Pergunte à IA"><h3>O que ver hoje?</h3><p>Pergunte do seu jeito: a IA responde pelo seu gosto, pelas suas notas e pelo que você assina.</p>'+
+  '<form id="ia-card-f"><input id="ia-card-q" maxlength="800" placeholder="Ex.: uma comédia curta para hoje" aria-label="Sua pergunta para a IA"><button class="btn pri t44" type="submit">Perguntar</button></form>'+
+  '<div class="chips-ia">'+IA_ATALHOS.map(function(t){return '<button type="button" data-iaq="'+esc(t)+'">'+esc(t)+'</button>'}).join('')+'</div></section>'}
+function iaManda(q){q=String(q||'').trim();if(!q)return;ir('perguntar');var t=el('ia-q');if(t)t.value=q.slice(0,800);setTimeout(function(){try{perguntar()}catch(e){console.error(e)}},30)}
+document.addEventListener('submit',function(e){if(e.target&&e.target.id==='ia-card-f'){e.preventDefault();iaManda(el('ia-card-q').value)}});
+document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('[data-iaq]');if(b)iaManda(b.dataset.iaq)});
 function perguntar(){
   if(IA_OCUPADA)return;
   var q=(el('ia-q').value||'').trim(),out=el('ia-out');if(!q){el('ia-q').focus();return}
@@ -4265,6 +4547,7 @@ function renderPerfil(){
   var lims=Object.keys(p.limites||{}).map(function(k){return LIM_NOME[k]+' ('+(p.limites[k]==='nunca'?'nunca':'só se valer muito a pena')+')'});
   var org={gosto6:'do caminho "Seu gosto em 6 minutos"',resumo:'do resumo colado da sua IA',arquivo:'de um arquivo importado'}[p.origem]||'';
   var h='<header class="pghead"><h2>Seu gosto</h2><p>Guardado '+(dataLonga(p.feito_em)?'em '+esc(dataLonga(p.feito_em)):'')+(org?', '+org:'')+'. A página inteira (as listas, o Início, as indicações) sai destes 13 pesos.</p></header>';
+  try{var aq=afQualidade();h+='<div class="box"><h3>Aperfeiçoar</h3><div class="af-meter" role="img" aria-label="'+aq.pct+'% afinado"><i style="width:'+aq.pct+'%"></i></div><p><b>'+aq.pct+'% afinado</b> ('+esc(afTxt(aq))+'). Rodadas de 9 títulos tiram as dúvidas que ainda temos.</p><div class="row"><button class="btn pri t44" type="button" data-ir="afinar">Aperfeiçoar meu gosto</button></div></div>'}catch(e){}
   if(faseVencida(p))h+='<div class="box gaviso"><h3>Ainda faz sentido?</h3><p>Há três meses você disse que estava numa fase: '+esc(FASE_NOME[p.respostas.fase]||p.respostas.fase)+'. Quer manter isso na conta do seu gosto?</p><div class="row"><button class="btn pri t44" type="button" data-pf="fase-manter">Manter</button><button class="btn t44" type="button" data-pf="fase-tirar">Tirar da conta</button></div></div>';
   h+='<div class="box"><h3>Em palavras</h3>'+((p.frases||[]).length?'<ul class="perfil-l">'+p.frases.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul>':'<p>Sem frases guardadas.</p>')+'</div>';
   h+='<div class="box"><h3>Os 13 pesos</h3><p>Nove temas de 0 a 30 (o que conta é a diferença entre eles) e quatro traços de −30 a 30. Dá para mexer um a um em Mais › Conexão.</p>'+pesosBarras(p.pesos)+'</div>';
@@ -4878,7 +5161,7 @@ function iaGosto(corpo,ms){
     var feito=false,fim=function(v){if(!feito){feito=true;ok(v)}};
     setTimeout(function(){fim(null)},ms||60000);
     try{iaHeaders().then(function(h){return fetch('/api/whatch-gosto',{method:'POST',headers:h,body:JSON.stringify(corpo)})})
-      .then(function(r){return r.json().catch(function(){return null}).then(function(j){return r.ok?j:(j&&j.erro&&(r.status===429||r.status===401)?{_erro:String(j.erro)}:null)})}).then(fim,function(){fim(null)})}catch(e){fim(null)}
+      .then(function(r){return r.json().catch(function(){return null}).then(function(j){return r.ok?j:(j&&j.erro&&(r.status===429||r.status===401||r.status===403)?{_erro:String(j.erro)}:null)})}).then(fim,function(){fim(null)})}catch(e){fim(null)}
   });
 }
 function riBloco(t){t=String(t||'').slice(0,30000);var i=t.search(RE_PERFIL);if(i<0)return '';t=riLimpa(t.slice(i));var f=t.indexOf('```');return f>0?t.slice(0,f):t}
@@ -4981,6 +5264,7 @@ function riGrava(modo){
       respostas:{procura:[],fase:'',resp:'',cenas:0,cartazes:{},obras:[]},frases:fi.length?fi:RI.frases.map(function(f){return f.replace(/<[^>]+>/g,'')}),ia:fi,nao:[],
       base:{q:RI.q,t:RI.t,obs:obs,cit:cit,sec5:RI.sec5,nIA:RI.nIA}});
     if(!perfil){toast('Não consegui montar o seu gosto com esse resumo.',false);return}
+    semParGrava(RI.sem,'resumo');
     sel.forEach(function(x){if(x.nota!=null)darNota(x.id,x.nota);else{ST.status[x.id]='abandonei';delete ST.notas[x.id]}});
     if(RI.gravCol){RI.desligar.forEach(function(id){adicionarId('desligar',id)});RI.repetidos.forEach(function(id){adicionarId('repetidos',id)})}
     var sv=RI.gravCtx?RI.ctx.servicos.map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[2]:''}).filter(Boolean):[];
@@ -5152,12 +5436,147 @@ function nuvemSobe(fim){
 var save0=save;save=function(){save0();nuvemAgenda()};
 try{document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden'){clearTimeout(NV.t);nuvemSobe(true)}})}catch(e){}
 try{window.addEventListener('online',function(){if(NV.sujo)nuvemSobe()})}catch(e){}
+// o que mostra a conta: o círculo com a inicial no topo, a linha "Sua conta" (e "Admin", do dono) no Mais e a linha do Backup
 function contaRender(){
-  var b=el('conta-box');if(!b)return;b.hidden=!(WH_LOGIN&&SES);if(b.hidden)return;
-  b.innerHTML='<h3>Sua conta</h3><p>Conectado como <b>'+esc(SES.user.email||'(sem e-mail)')+'</b>. Suas notas, o seu gosto e a sua lista ficam guardados na conta e aparecem em qualquer aparelho em que você entrar.</p>'+
-    (NV.erro?'<p class="err">'+esc(NV.erro)+'</p>':'')+
-    '<div class="row" style="margin-top:10px"><button class="btn t44" type="button" data-lg="sair">Sair deste aparelho</button></div><p class="fine" style="margin-top:8px">Sair apaga os dados deste aparelho; eles continuam na sua conta.</p>';
+  var on=!!(WH_LOGIN&&SES),em=on?String(SES.user.email||''):'',ini=(em.replace(/[^a-z0-9]/gi,'')[0]||'?');
+  try{var g=el('go-conta');g.hidden=!on;if(on){el('conta-av').textContent=ini;g.setAttribute('aria-label','Sua conta: '+em);g.title=em}}catch(e){}
+  try{el('mais-conta').hidden=!on;if(on){el('mais-av').textContent=ini;el('mais-conta-sub').textContent=em+(dono()?' · dono':'')}el('mais-admin').hidden=!dono()}catch(e){}
+  try{var p=el('onde-notas-p');if(p){if(!p.dataset.orig)p.dataset.orig=p.textContent;p.textContent=on?'Suas notas, o seu gosto e a sua lista ficam guardados na sua conta ('+em+') e aparecem em qualquer aparelho em que você entrar. O backup é uma cópia extra, em arquivo.':p.dataset.orig}}catch(e){}
+  var b=el('conta-box');if(b){b.hidden=!on;if(on)b.innerHTML='<p>Conectado como <b>'+esc(em||'(sem e-mail)')+'</b>. <button class="lnk" type="button" data-ir="conta">Sua conta ›</button></p>'+(NV.erro?'<p class="err">'+esc(NV.erro)+'</p>':'')}
+  if(ABA==='conta')contaPagina();
 }
+try{el('go-conta').addEventListener('click',function(){ir('conta')})}catch(e){}
+// ---- Sua conta: quem está logado, avisos por e-mail, recado, admin (dono) e Sair ----
+var AV_EMAIL={carregado:false,ligado:false,ocupado:false,erro:''},RECADO={ok:false,erro:'',ocupado:false};
+function contaPagina(){
+  var box=el('conta');if(!box||!SES)return;var u=SES.user,em=String(u.email||''),ini=(em.replace(/[^a-z0-9]/gi,'')[0]||'?');
+  var nAc=0;try{nAc=seriesTodas().filter(function(it){return stOf(it)==='acompanhando'}).length}catch(e){}
+  if(!AV_EMAIL.carregado&&!AV_EMAIL.ocupado)avisosLe();
+  box.className='conta';
+  box.innerHTML='<div class="box"><div class="conta-top"><span class="av" aria-hidden="true">'+esc(ini)+'</span><div><b>'+esc(em||'(sem e-mail)')+'</b><span class="muted">Entrou com '+(u.prov==='google'?'o Google':'e-mail e código')+'</span>'+(dono()?'<br><span class="selo-dono">Dono do Whatch</span>':'')+'</div></div>'+
+      '<p style="margin-top:12px">Suas notas, o seu gosto e a sua lista ficam guardados nesta conta e aparecem em qualquer aparelho em que você entrar.</p>'+(NV.erro?'<p class="err">'+esc(NV.erro)+'</p>':'')+'</div>'+
+    '<div class="box"><h3>Avisos por e-mail</h3><label class="sw"><input type="checkbox" id="av-email"'+(AV_EMAIL.ligado?' checked':'')+(AV_EMAIL.carregado&&!AV_EMAIL.ocupado?'':' disabled')+'><span>Me avise na véspera quando sair episódio novo das séries que eu estou vendo.<span class="muted" style="display:block;margin-top:4px">O e-mail vai para '+esc(em)+'. '+(nAc?'Hoje você está vendo '+nAc+' série'+(nAc>1?'s':'')+'.':'Para uma série entrar, marque "Vendo" na página dela.')+'</span></span></label>'+
+      (AV_EMAIL.erro?'<p class="err">'+esc(AV_EMAIL.erro)+'</p>':'')+'</div>'+
+    '<div class="box"><h3>Mandar um recado</h3><p>Achou um erro, sentiu falta de algo, tem uma ideia? Escreva aqui: chega direto para quem faz o Whatch.</p>'+
+      (RECADO.ok?'<p><b>Recebido. Obrigado!</b> <button class="lnk" type="button" id="rec-outro">Mandar outro</button></p>':
+      '<textarea id="rec-txt" maxlength="2000" aria-label="Seu recado"></textarea><div class="row" style="margin-top:10px"><button class="btn pri t44" type="button" id="rec-env"'+(RECADO.ocupado?' disabled':'')+'>'+(RECADO.ocupado?'Mandando…':'Mandar')+'</button></div>'+(RECADO.erro?'<p class="err">'+esc(RECADO.erro)+'</p>':''))+'</div>'+
+    (dono()?'<div class="box"><h3>Admin</h3><p>Pessoas, uso e custo da IA, limites, recados, catálogo e robôs.</p><div class="row"><button class="btn t44" type="button" data-ir="admin">Abrir o admin</button></div></div>':'')+
+    '<div class="box"><div class="row"><button class="btn t44" type="button" data-lg="sair">Sair deste aparelho</button></div><p class="fine" style="margin-top:8px">Sair apaga os dados deste aparelho; eles continuam na sua conta.</p></div>';
+}
+function avisosLe(){
+  AV_EMAIL.ocupado=true;
+  sesValida().then(function(s){if(!s)throw new Error('sessão');return sb('/rest/v1/whatch_avisos?select=ligado&user_id=eq.'+encodeURIComponent(s.user.id),{token:s.access_token})})
+    .then(function(r){AV_EMAIL.ocupado=false;if(!r.ok)throw new Error(r.status);AV_EMAIL.carregado=true;AV_EMAIL.ligado=!!(Array.isArray(r.j)&&r.j[0]&&r.j[0].ligado);AV_EMAIL.erro='';if(ABA==='conta')contaPagina()},
+      function(){AV_EMAIL.ocupado=false;AV_EMAIL.carregado=true;AV_EMAIL.erro='Não consegui ler o aviso agora.';if(ABA==='conta')contaPagina()});
+}
+function avisosGrava(lig){
+  AV_EMAIL.ocupado=true;AV_EMAIL.erro='';contaPagina();
+  sesValida().then(function(s){if(!s)throw new Error('sessão');return sb('/rest/v1/whatch_avisos?on_conflict=user_id',{method:'POST',token:s.access_token,prefer:'resolution=merge-duplicates,return=minimal',body:{ligado:!!lig,atualizado_em:new Date().toISOString()}})})
+    .then(function(r){AV_EMAIL.ocupado=false;if(!r.ok)throw new Error(r.status);AV_EMAIL.ligado=!!lig;contaPagina();toast(lig?'Aviso ligado: você recebe um e-mail na véspera de episódio novo.':'Aviso desligado.',false)},
+      function(){AV_EMAIL.ocupado=false;AV_EMAIL.erro='Não consegui guardar agora. Tente de novo.';contaPagina()});
+}
+document.addEventListener('change',function(e){if(e.target&&e.target.id==='av-email')avisosGrava(e.target.checked)});
+document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('[data-ir]');if(b)ir(b.dataset.ir)});
+// títulos que não casaram (resumo da IA e importações) vão para o admin, só título e ano, para melhorar o catálogo
+function semParGrava(lista,origem){
+  try{if(!WH_LOGIN||!SES||!Array.isArray(lista)||!lista.length)return;
+    var linhas=lista.slice(0,60).map(function(t){var m=String(t||'').match(/^(.*?)(?:\s*\((\d{4})\))?\s*$/);return {titulo:String(m?m[1]:t).trim().slice(0,200),ano:m&&m[2]?m[2]:null,origem:origem}}).filter(function(x){return x.titulo});
+    if(!linhas.length)return;
+    sesValida().then(function(s){if(s)return sb('/rest/v1/whatch_sem_par',{method:'POST',token:s.access_token,prefer:'return=minimal',body:linhas})}).catch(function(){});
+  }catch(e){console.error(e)}
+}
+// ---------- ADMIN (só o dono) ----------
+// Lê pelas funções whatch_admin_* do banco (cada uma confere whatch_e_dono() lá dentro: a tela escondida não é a trava).
+// Mostra números e o uso da IA por pessoa; nunca o gosto nem as notas de ninguém. Custo em dólar pelos tokens que as
+// funções da IA gravam (claude-opus-5-5); em reais pelo câmbio base do projeto (US$ 1 = R$ 5).
+var ADM={dados:null,pessoas:null,recados:null,pend:null,robos:null,arquivos:null,erro:'',abre:'',busca:'',carregando:false,quando:0};
+function rpc(nome,args){return sesValida().then(function(s){if(!s)throw new Error('sessão');return sb('/rest/v1/rpc/'+nome,{method:'POST',token:s.access_token,body:args||{}})}).then(function(r){if(!r.ok)throw new Error((r.j&&r.j.message)||('erro '+r.status));return r.j})}
+function usd(v){v=+v||0;return 'US$ '+(v<1?v.toFixed(4):v.toFixed(2)).replace('.',',')}
+function brl(v){return 'R$ '+((+v||0)*5).toFixed(2).replace('.',',')}
+function dtBR(x){var d=new Date(x);return isNaN(d)?'':d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}
+function adminCarrega(){
+  if(ADM.carregando)return;ADM.carregando=true;ADM.erro='';
+  var j=function(u){return fetch(u,{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})};
+  Promise.all([rpc('whatch_admin_resumo'),rpc('whatch_admin_pessoas',{p_busca:ADM.busca,p_limite:300}),rpc('whatch_admin_recados',{p_limite:100}),
+    j('/telas/ids-pendentes.json'),j('https://api.github.com/repos/lucasvaranda-ux/mochilao-america-do-sul/actions/workflows/telas-episodios.yml/runs?per_page=6'),
+    Promise.all([j('/telas/posteres.json'),j('/telas/episodios.json'),j('/telas/streaming.json')])])
+    .then(function(r){ADM.dados=r[0];ADM.pessoas=r[1]||[];ADM.recados=r[2]||[];ADM.pend=r[3];ADM.robos=r[4];
+      ADM.arquivos={posteres:r[5][0]&&r[5][0].gerado_em,episodios:r[5][1]&&r[5][1].gerado_em,streaming:r[5][2]&&(r[5][2].atualizado_em||r[5][2].gerado_em)};
+      ADM.quando=Date.now();ADM.carregando=false;if(ABA==='admin')adminRender()},
+      function(e){ADM.carregando=false;ADM.erro=String(e&&e.message||e);if(ABA==='admin')adminRender()});
+}
+function admTile(n,rot,sub){return '<div class="tile"><b>'+esc(n)+'</b><span>'+esc(rot)+'</span>'+(sub?'<small>'+esc(sub)+'</small>':'')+'</div>'}
+function admLim(p){var l=p.limite;if(!l)return 'limite padrão';if(l.bloqueado)return 'IA bloqueada';
+  var f=function(a,b){return (a==null?'pad.':a)+'/'+(b==null?'pad.':b)};return 'limite próprio: perguntas '+f(l.pergunta_dia,l.pergunta_mes)+', gosto '+f(l.gosto_dia,l.gosto_mes)+' (dia/mês)'}
+function admUso(o){o=o||{};var a=[];if(o.pergunta)a.push(o.pergunta+' pergunta'+(o.pergunta>1?'s':''));if(o.gosto)a.push(o.gosto+' de gosto');return a.join(', ')||'nada'}
+function adminRender(){
+  var box=el('admin');if(!box)return;if(!dono()){box.innerHTML='';return}
+  if(!ADM.dados&&!ADM.erro){box.innerHTML='<p class="muted">Carregando…</p>';adminCarrega();return}
+  if(ADM.erro&&!ADM.dados){box.innerHTML='<p class="err">Não consegui carregar: '+esc(ADM.erro)+'</p><div class="row"><button class="btn t44" type="button" id="adm-rec">Tentar de novo</button></div>';return}
+  var d=ADM.dados,ia=d.ia||{},lg=d.login||{},h='';
+  h+='<div class="row" style="justify-content:space-between;align-items:center;margin-bottom:12px"><span class="muted">Atualizado '+esc(dtBR(ADM.quando))+'</span><button class="btn t44" type="button" id="adm-rec">'+(ADM.carregando?'Atualizando…':'Atualizar')+'</button></div>';
+  h+='<div class="box"><h3>Pessoas</h3><div class="tiles">'+admTile(d.pessoas,'pessoas no Whatch',d.novas_7d+' novas na semana')+admTile(d.ativas_7d,'ativas na semana','mexeram na lista')+admTile(d.com_gosto,'com gosto montado',Object.keys(d.origem_gosto||{}).map(function(k){return ({resumo:'IA',gosto6:'6 min',arquivo:'arquivo'}[k]||k)+' '+d.origem_gosto[k]}).join(' · '))+
+    admTile(Object.keys(d.entrada||{}).map(function(k){return d.entrada[k]}).reduce(function(a,b){return a+b},0),'contas',Object.keys(d.entrada||{}).map(function(k){return ({google:'Google',email:'e-mail'}[k]||k)+' '+d.entrada[k]}).join(' · '))+'</div></div>';
+  h+='<div class="box"><h3>Uso da IA</h3><div class="tiles">'+admTile(ia.hoje,'usos hoje',usd(ia.custo_hoje))+admTile(ia.mes,'usos no mês',(ia.por_tipo_mes&&ia.por_tipo_mes.pergunta||0)+' perguntas · '+(ia.por_tipo_mes&&ia.por_tipo_mes.gosto||0)+' de gosto')+
+    admTile(usd(ia.custo_mes),'custo no mês','≈ '+brl(ia.custo_mes))+admTile(usd(ia.custo_total),'custo total',ia.total+' usos')+'</div>'+
+    (ia.sem_tokens?'<p class="fine" style="margin-top:10px">'+ia.sem_tokens+' uso(s) sem tokens gravados (a IA falhou ou o registro não chegou): contam no limite, não no custo.</p>':'')+
+    ((ia.por_dia||[]).length?'<div class="tab-wrap" style="margin-top:12px"><table><thead><tr><th>Dia</th><th>Usos</th><th>Custo</th></tr></thead><tbody>'+ia.por_dia.slice(-14).reverse().map(function(x){return '<tr><td>'+esc(String(x.dia).split('-').reverse().slice(0,2).join('/'))+'</td><td>'+esc(x.n)+'</td><td>'+esc(usd(x.custo))+'</td></tr>'}).join('')+'</tbody></table></div>':'<p class="muted" style="margin-top:10px">Ninguém usou a IA ainda.</p>')+
+    '<p class="fine" style="margin-top:10px">Limite padrão por pessoa: 15 perguntas por dia e 150 por mês; 8 leituras de gosto por dia e 30 por mês. O dono não tem limite.</p></div>';
+  // pessoas
+  h+='<div class="box"><h3>Quem usa</h3><form id="adm-busca-f" class="row" style="margin-bottom:10px"><input class="search" id="adm-busca" type="search" placeholder="Buscar por e-mail" value="'+esc(ADM.busca)+'" style="flex:1 1 200px"><button class="btn t44" type="submit">Buscar</button></form><div class="pess">'+
+    (ADM.pessoas||[]).map(function(p){var l=p.limite||{},ab=ADM.abre===p.id;
+      return '<article class="pes"><h4>'+esc(p.email||'(sem e-mail)')+(p.dono?' <span class="selo-dono">dono</span>':'')+(l.bloqueado?' <span class="novo">IA bloqueada</span>':'')+'</h4>'+
+        '<div class="meta">Entrou '+esc(dtBR(p.entrou))+' pelo '+esc({google:'Google',email:'e-mail'}[p.como]||p.como)+(p.ultimo?' · última atividade '+esc(dtBR(p.ultimo)):'')+'<br>'+
+        'Gosto: '+esc(p.gosto?({resumo:'resumo da IA',gosto6:'6 minutos',arquivo:'arquivo'}[p.gosto]||p.gosto):'ainda não')+' · '+esc(p.notas)+' nota'+(p.notas==1?'':'s')+'<br>'+
+        'IA hoje: '+esc(admUso(p.ia_hoje))+' · no mês: '+esc(admUso(p.ia_mes))+' · '+esc(usd(p.custo_mes))+' no mês ('+esc(usd(p.custo_total))+' no total)<br>'+esc(admLim(p))+(l.nota?' · '+esc(l.nota):'')+'</div>'+
+        (p.dono?'':'<div class="row" style="margin-top:8px"><button class="btn t44" type="button" data-admlim="'+esc(p.id)+'">'+(ab?'Fechar':'Mudar limite ou bloquear')+'</button></div>')+
+        (ab?'<form data-admform="'+esc(p.id)+'"><label>Perguntas por dia<input type="number" min="0" max="1000" name="pd" placeholder="15" value="'+esc(l.pergunta_dia==null?'':l.pergunta_dia)+'"></label><label>Perguntas por mês<input type="number" min="0" max="10000" name="pm" placeholder="150" value="'+esc(l.pergunta_mes==null?'':l.pergunta_mes)+'"></label>'+
+          '<label>Gosto por dia<input type="number" min="0" max="1000" name="gd" placeholder="8" value="'+esc(l.gosto_dia==null?'':l.gosto_dia)+'"></label><label>Gosto por mês<input type="number" min="0" max="10000" name="gm" placeholder="30" value="'+esc(l.gosto_mes==null?'':l.gosto_mes)+'"></label>'+
+          '<label class="full sw" style="flex-direction:row"><input type="checkbox" name="bl"'+(l.bloqueado?' checked':'')+'><span>Bloquear a IA desta pessoa</span></label><label class="full">Nota (só você vê)<input type="text" name="nt" maxlength="300" value="'+esc(l.nota||'')+'"></label>'+
+          '<div class="row full"><button class="btn pri t44" type="submit">Salvar</button><button class="btn t44" type="button" data-admpad="'+esc(p.id)+'">Voltar ao padrão</button></div><p class="fine full">Campo vazio = o padrão.</p></form>':'')+'</article>'}).join('')+
+    (!(ADM.pessoas||[]).length?'<p class="muted">Ninguém encontrado.</p>':'')+'</div></div>';
+  // recados
+  var rs=ADM.recados||[];
+  h+='<div class="box"><h3>Recados'+(d.recados_novos?' <span class="novo">'+d.recados_novos+' novo'+(d.recados_novos>1?'s':'')+'</span>':'')+'</h3>'+(rs.length?rs.map(function(r){
+    return '<div class="rec"><div class="meta">'+esc(dtBR(r.quando))+' · '+esc(r.email||'')+(r.tela?' · na tela '+esc(r.tela):'')+(r.lido?'':' <span class="novo">novo</span>')+'</div><p>'+esc(r.texto)+'</p><button class="lnk" type="button" data-admlido="'+esc(r.id)+'|'+(r.lido?'0':'1')+'">'+(r.lido?'marcar como novo':'marcar como lido')+'</button></div>'}).join(''):'<p class="muted">Nenhum recado ainda. Os testadores mandam em Mais › Sua conta.</p>')+'</div>';
+  // códigos de login
+  h+='<div class="box"><h3>Pedidos de código (últimas 24 h)</h3><div class="tiles">'+admTile(lg.pedidos_24h,'pedidos',lg.emails_24h+' e-mails, '+lg.ips_24h+' redes')+admTile(lg.ips_no_limite_24h,'redes que bateram no limite','10 por hora')+admTile(lg.emails_no_limite_24h,'e-mails que bateram no limite','10 por dia')+'</div><p class="fine" style="margin-top:10px">E-mail e IP ficam guardados só como código (HMAC): dá para contar, não para ler.</p></div>';
+  // catálogo
+  var sp=d.sem_par||[],pe=ADM.pend&&ADM.pend.itens?Object.keys(ADM.pend.itens).map(function(k){var x=ADM.pend.itens[k];x.id=k;return x}):[];
+  h+='<div class="box"><h3>Catálogo</h3><p><b>Títulos que não casaram</b> (resumos da IA e importações, últimos 90 dias): o que vale acrescentar ao catálogo.</p>'+
+    (sp.length?'<div class="tab-wrap"><table><thead><tr><th>Título</th><th>Vezes</th><th>Pessoas</th><th>De onde</th></tr></thead><tbody>'+sp.map(function(x){return '<tr><td>'+esc(x.titulo)+(x.ano?' ('+esc(x.ano)+')':'')+'</td><td>'+esc(x.n)+'</td><td>'+esc(x.pessoas)+'</td><td>'+esc(x.origens||'')+'</td></tr>'}).join('')+'</tbody></table></div>':'<p class="muted">Nada ainda.</p>')+
+    '<p style="margin-top:14px"><b>Sem código do IMDb</b> ('+pe.length+'): o robô não teve certeza e deixou para decidir à mão. Mande no chat quais conferir.</p>'+
+    (pe.length?'<details><summary>Ver a lista</summary><div class="tab-wrap" style="margin-top:8px"><table><thead><tr><th>Título</th><th>Tipo</th><th>Motivo</th></tr></thead><tbody>'+pe.slice(0,200).map(function(x){return '<tr><td>'+esc(x.titulo)+(x.ano?' ('+esc(x.ano)+')':'')+'</td><td>'+esc(x.tipo==='serie'?'série':'filme')+'</td><td>'+esc(x.motivo||'')+'</td></tr>'}).join('')+'</tbody></table></div></details>':'')+'</div>';
+  // robôs
+  var runs=ADM.robos&&ADM.robos.workflow_runs||[],ar=ADM.arquivos||{};
+  h+='<div class="box"><h3>Robôs</h3>'+(runs.length?'<div class="tab-wrap"><table><thead><tr><th>Quando</th><th>Resultado</th><th>Ramo</th></tr></thead><tbody>'+runs.map(function(r){
+      var res=r.status!=='completed'?'rodando':({success:'deu certo',failure:'falhou',cancelled:'cancelado'}[r.conclusion]||r.conclusion||'');
+      return '<tr><td><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener">'+esc(dtBR(r.created_at))+'</a></td><td>'+(r.conclusion==='failure'?'<span class="novo">falhou</span>':esc(res))+'</td><td>'+esc(r.head_branch==='main'?'main':'teste')+'</td></tr>'}).join('')+'</tbody></table></div>':'<p class="muted">Não consegui ler o GitHub agora.</p>')+
+    '<p class="fine" style="margin-top:10px">Episódios: '+esc(ar.episodios?dtBR(ar.episodios):'?')+' · Onde assistir: '+esc(ar.streaming?dtBR(ar.streaming):'?')+' · Cartazes: '+esc(ar.posteres?dtBR(ar.posteres):'?')+'</p></div>';
+  box.innerHTML=h;
+}
+document.addEventListener('click',function(e){
+  var t=e.target;if(!t||!t.closest||ABA!=='admin')return;
+  if(t.closest('#adm-rec')){adminCarrega();adminRender();return}
+  var b=t.closest('[data-admlim]');if(b){ADM.abre=ADM.abre===b.dataset.admlim?'':b.dataset.admlim;adminRender();return}
+  var pd=t.closest('[data-admpad]');if(pd){rpc('whatch_admin_limite',{p_user:pd.dataset.admpad,p_pergunta_dia:null,p_pergunta_mes:null,p_gosto_dia:null,p_gosto_mes:null,p_bloqueado:false,p_nota:''}).then(function(){ADM.abre='';toast('Voltou ao limite padrão.',false);adminCarrega()},function(err){toast('Não consegui: '+(err&&err.message||err),false)});return}
+  var ld=t.closest('[data-admlido]');if(ld){var pv=ld.dataset.admlido.split('|');rpc('whatch_admin_recado_lido',{p_id:+pv[0],p_lido:pv[1]==='1'}).then(function(){adminCarrega()},function(){toast('Não consegui marcar.',false)});return}
+});
+document.addEventListener('submit',function(e){
+  var f=e.target;if(!f||ABA!=='admin')return;
+  if(f.id==='adm-busca-f'){e.preventDefault();ADM.busca=(el('adm-busca').value||'').trim().slice(0,80);adminCarrega();return}
+  if(f.dataset&&f.dataset.admform){e.preventDefault();var n=function(k){var v=f.elements[k].value.trim();return v===''?null:Math.max(0,Math.round(+v))};
+    rpc('whatch_admin_limite',{p_user:f.dataset.admform,p_pergunta_dia:n('pd'),p_pergunta_mes:n('pm'),p_gosto_dia:n('gd'),p_gosto_mes:n('gm'),p_bloqueado:!!f.elements.bl.checked,p_nota:f.elements.nt.value.trim().slice(0,300)})
+      .then(function(){ADM.abre='';toast('Limite guardado.',false);adminCarrega()},function(err){toast('Não consegui guardar: '+(err&&err.message||err),false)})}
+});
+document.addEventListener('click',function(e){
+  var t=e.target;if(!t||!t.closest)return;
+  if(t.closest('#rec-outro')){RECADO.ok=false;contaPagina();return}
+  if(t.closest('#rec-env')){var tx=(el('rec-txt')&&el('rec-txt').value||'').trim();if(!tx){RECADO.erro='Escreva o recado antes.';contaPagina();return}
+    RECADO.ocupado=true;RECADO.erro='';var guarda=tx;contaPagina();
+    sesValida().then(function(s){if(!s)throw new Error('sessão');return sb('/rest/v1/whatch_recados',{method:'POST',token:s.access_token,prefer:'return=minimal',body:{texto:guarda.slice(0,2000),tela:String(ABA_ANT||'').slice(0,40)}})})
+      .then(function(r){RECADO.ocupado=false;if(!r.ok)throw new Error(r.status);RECADO.ok=true;contaPagina()},function(){RECADO.ocupado=false;RECADO.erro='Não consegui mandar agora. Tente de novo.';contaPagina();var x=el('rec-txt');if(x)x.value=guarda})}
+});
 function contaSai(){
   clearTimeout(NV.t);var s=SES;
   var fim=function(){if(s)sb('/auth/v1/logout',{method:'POST',token:s.access_token,keepalive:true}).catch(function(){});

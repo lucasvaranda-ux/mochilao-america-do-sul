@@ -112,6 +112,9 @@
     },
     "api/whatch-gosto.mjs": {
       "maxDuration": 60
+    },
+    "api/whatch-avisos.mjs": {
+      "maxDuration": 300
     }
   },
   "redirects": [
@@ -131,6 +134,12 @@
           "key": "x-whatch-interno"
         }
       ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/whatch-avisos",
+      "schedule": "0 11 * * *"
     }
   ]
 }

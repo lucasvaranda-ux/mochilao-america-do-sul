@@ -7,7 +7,7 @@
 // Variável na Vercel (nunca no código): ANTHROPIC_API_KEY. O texto recebido não é gravado em lugar nenhum, nem no log.
 
 import Anthropic from '@anthropic-ai/sdk';
-import { confereUso } from './_whatch-conta.mjs';
+import { confereUso, registraTokens } from './_whatch-conta.mjs';
 
 const MODELO = 'claude-opus-5-5';
 const LIMITE_RESUMO = 30000;    // caracteres do resumo colado (o mesmo teto da página)
@@ -156,7 +156,7 @@ function porEixo(lista, campo, mn, mx) {
   return out;
 }
 
-async function chama(sistema, ferramenta, conteudo) {
+async function chama(sistema, ferramenta, conteudo, uso) {
   const client = new Anthropic({ maxRetries: 0 });
   const msg = await client.beta.messages.create({
     model: MODELO,
@@ -169,6 +169,7 @@ async function chama(sistema, ferramenta, conteudo) {
     tool_choice: { type: 'auto' },
     messages: [{ role: 'user', content: conteudo }],
   }, { timeout: PRAZO_MS });
+  await registraTokens(uso, msg.usage); // custo no admin (só quando a pessoa está logada)
   if (msg.stop_reason === 'refusal') return null;
   const b = msg.content.find(x => x.type === 'tool_use' && x.name === ferramenta.name);
   return b && b.input && typeof b.input === 'object' ? b.input : null;
@@ -194,7 +195,7 @@ export default async function handler(req, res) {
       const texto = typeof corpo.texto === 'string' ? corpo.texto.trim() : '';
       if (texto.length < 40) return res.status(400).json({ erro: 'Resumo vazio.' });
       if (texto.length > LIMITE_RESUMO) return res.status(400).json({ erro: 'Resumo grande demais.' });
-      const r = await chama(SISTEMA_RESUMO, LER_RESUMO, `Resumo colado pela pessoa (entre as marcas):\n<<<\n${texto}\n>>>`);
+      const r = await chama(SISTEMA_RESUMO, LER_RESUMO, `Resumo colado pela pessoa (entre as marcas):\n<<<\n${texto}\n>>>`, uso);
       if (!r) return res.status(502).json({ erro: 'A IA não leu o resumo.' });
       const notas = porEixo(r.notas, 'nota', -1, 10).map(x => x && x.nota >= 0
         ? { v: Math.round(x.nota * 10) / 10, cert: ['alta', 'media', 'baixa'].includes(x.certeza) ? x.certeza : 'media', por: txt(x.por_que, 160) }
@@ -206,7 +207,7 @@ export default async function handler(req, res) {
       if (!dados) return res.status(400).json({ erro: 'Sem respostas.' });
       const json = JSON.stringify(dados);
       if (json.length > LIMITE_FINAL) return res.status(400).json({ erro: 'Respostas grandes demais.' });
-      const r = await chama(SISTEMA_FINAL, GOSTO_FINAL, `Resumo e respostas da pessoa (JSON):\n${json}`);
+      const r = await chama(SISTEMA_FINAL, GOSTO_FINAL, `Resumo e respostas da pessoa (JSON):\n${json}`, uso);
       if (!r) return res.status(502).json({ erro: 'A IA não fechou o gosto.' });
       const p = porEixo(r.pesos, 'peso', -30, 30);
       if (p.some(x => !x)) return res.status(502).json({ erro: 'A IA não devolveu os 13 pesos.' });

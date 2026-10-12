@@ -7,7 +7,7 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import { createHash, timingSafeEqual } from 'node:crypto';
-import { confereUso } from './_whatch-conta.mjs';
+import { confereUso, registraTokens } from './_whatch-conta.mjs';
 
 const MODELO = 'claude-opus-5-5';
 const LIMITE_PERGUNTA = 800;      // caracteres
@@ -116,6 +116,7 @@ export default async function handler(req, res) {
   try {
     if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ erro: 'Use POST.' }); }
     const aberto = process.env.TELAS_ABERTO === '1';
+    let uso = null; // registro do uso por pessoa (Whatch logado): os tokens entram nele no fim
     if (!process.env.ANTHROPIC_API_KEY || (!aberto && !process.env.TELAS_SENHA)) {
       return res.status(503).json({ erro: 'A caixa ainda não foi configurada: faltam ANTHROPIC_API_KEY e TELAS_SENHA nas variáveis do projeto na Vercel (a senha deve ser longa e aleatória).' });
     }
@@ -123,7 +124,7 @@ export default async function handler(req, res) {
     if (aberto) {
       if (!origemWhatch(req.headers.origin)) return res.status(403).json({ erro: 'Origem não aceita.' });
       // logado: limite por pessoa, guardado no banco; sem login (enquanto ele estiver desligado): freios por IP
-      const uso = await confereUso(req, 'pergunta');
+      uso = await confereUso(req, 'pergunta');
       if (!uso.ok) return res.status(uso.status).json({ erro: uso.erro });
       if (uso.anonimo) {
         if (conta(pedidos, ip, true) > POR_HORA_ABERTO) return res.status(429).json({ erro: 'Muitas perguntas nesta hora. Tente daqui a pouco.' });
@@ -159,6 +160,7 @@ export default async function handler(req, res) {
     }];
 
     let msg;
+    const usos = [];
     for (let i = 0; i <= PAUSAS_MAX; i++) {
       const resta = PRAZO_MS - (Date.now() - t0);
       if (resta < 20000) break; // não começa uma chamada que não vai caber
@@ -173,10 +175,13 @@ export default async function handler(req, res) {
         tool_choice: { type: 'auto' },
         messages,
       }, { timeout: resta });
+      usos.push(msg.usage);
       if (msg.stop_reason !== 'pause_turn') break;
       messages.push({ role: 'assistant', content: msg.content }); // a busca na web pausou: retoma de onde parou
     }
 
+    // os tokens de todas as voltas (a busca na web pausa e retoma) entram no custo do admin
+    await registraTokens(uso, usos);
     if (!msg) return res.status(504).json({ erro: 'Demorou demais. Tente de novo, talvez sem a busca na web.' });
     if (msg.stop_reason === 'refusal') {
       return res.status(200).json({ resposta: 'A IA não respondeu a essa pergunta. Tente escrever de outro jeito.', indicacoes: [], recusou: true });

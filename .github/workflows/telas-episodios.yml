@@ -18,6 +18,7 @@ on:
       - 'scripts/telas-streaming.mjs'
       - 'scripts/telas-posteres.mjs'
       - 'scripts/telas-ids.mjs'
+      - 'scripts/telas-sagas.mjs'
       - 'telas/catalogo.json'
 
 permissions:
@@ -62,6 +63,15 @@ jobs:
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: node scripts/telas-ids.mjs
+      - name: Sagas completas pelas coleções do TMDB (o filme que faltava entra no catálogo)
+        id: sagas
+        # roda também no "Só os pôsteres", antes deles: os filmes novos já ganham cartaz na mesma execução.
+        # Sem o segredo TMDB_API_KEY, não faz nada. Se falhar, o resto do dia segue.
+        continue-on-error: true
+        timeout-minutes: 8
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node scripts/telas-sagas.mjs
       - name: Pôsteres (TMDB; Wikipedia via Wikidata para o que faltar)
         id: posteres
         # mesma regra do onde assistir: se o TMDB e a Wikimedia falharem, o resto do dia ainda é
@@ -85,6 +95,7 @@ jobs:
             if [ -d telas/cartazes ]; then git add -A telas/cartazes; fi
             git add telas/catalogo.json telas/dados.json
             if [ -f telas/ids-pendentes.json ]; then git add telas/ids-pendentes.json; fi
+            if [ -f telas/sagas-tmdb.json ]; then git add telas/sagas-tmdb.json; fi
             git commit -m "telas: robô atualizou episódios, onde assistir, IDs e pôsteres"
             git push
           else
