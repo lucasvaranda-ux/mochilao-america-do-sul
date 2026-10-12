@@ -894,7 +894,7 @@ html.login-on .tabbar,html.login-on header.top,html.login-on footer{display:none
 .login label{display:block;font-weight:700;font-size:14px;margin:0 0 6px}
 .login input{width:100%;box-sizing:border-box;min-height:48px;border-radius:14px;border:1px solid var(--line);background:var(--s1);color:var(--tx);font:inherit;font-size:16px;padding:0 14px}
 .login input:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
-.login input.cod{font-size:26px;letter-spacing:10px;text-align:center;font-variant-numeric:tabular-nums}
+.login input.cod{font-size:26px;letter-spacing:6px;text-align:center;font-variant-numeric:tabular-nums}
 .login .btn.lg-ok{width:100%;min-height:48px;margin-top:12px}
 .login .lg-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:16px}
 .login .err{margin:12px 0 0}
@@ -5695,8 +5695,8 @@ function loginRender(){
   var topo='<div class="lg-marca"><img src="/whatch/icone.svg" alt="" width="44" height="44"><span>Whatch</span></div>';
   var erro=LG.erro?'<p class="err" role="alert">'+esc(LG.erro)+'</p>':'';
   if(LG.passo==='codigo'){
-    h=topo+'<h2>Confira o seu e-mail</h2><p class="lead">Mandamos um código de 6 dígitos para <b>'+e+'</b>. Pode levar um minuto; olhe também o spam.</p>'+
-      '<form id="lg-f" data-lg="verificar" novalidate><label for="lg-cod">Código</label><input id="lg-cod" class="cod" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" required>'+
+    h=topo+'<h2>Confira o seu e-mail</h2><p class="lead">Mandamos um código para <b>'+e+'</b>. Pode levar um minuto; olhe também o spam.</p>'+
+      '<form id="lg-f" data-lg="verificar" novalidate><label for="lg-cod">Código</label><input id="lg-cod" class="cod" inputmode="numeric" autocomplete="one-time-code" maxlength="10" pattern="[0-9]*" required>'+
       '<button class="btn pri lg-ok" type="submit"'+oc+'>'+(LG.ocupado?'Conferindo…':'Entrar')+'</button></form>'+erro+
       '<div class="lg-links"><button class="lnk" type="button" data-lg="reenviar"'+(LG.reenvio>Date.now()?' disabled':'')+'>Mandar de novo</button><button class="lnk" type="button" data-lg="voltar">Trocar o e-mail</button></div>';
   }else if(LG.passo==='senha-nova'){
@@ -5941,7 +5941,7 @@ document.addEventListener('submit',function(e){
   var f=e.target;if(!f||f.id!=='lg-f')return;e.preventDefault();if(LG.ocupado)return;
   try{var a=f.dataset.lg,v=function(id){var x=el(id);return x?x.value.trim():''};
     if(a==='pedir'){var em=v('lg-em').toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){LG.email=em;LG.erro='Confira o e-mail.';loginRender();return}lgPedir(em)}
-    else if(a==='verificar'){var c=v('lg-cod').replace(/\D/g,'');if(c.length!==6){LG.erro='O código tem 6 dígitos.';loginRender();return}
+    else if(a==='verificar'){var c=v('lg-cod').replace(/\D/g,'');if(c.length<6||c.length>10){LG.erro='Confira o código: são só os números que chegaram no e-mail.';loginRender();return}
       LG.ocupado=true;LG.erro='';loginRender();sb('/auth/v1/verify',{method:'POST',body:{type:'email',email:LG.email,token:c}}).then(function(r){lgEntrou(r,true)},function(){lgEntrou({ok:false},true)})}
     else if(a==='entrar'){var em2=v('lg-em').toLowerCase(),sn=el('lg-sn')?el('lg-sn').value:'';LG.email=em2;if(!em2||!sn){LG.erro='Preencha o e-mail e a senha.';loginRender();return}
       LG.ocupado=true;LG.erro='';loginRender();sb('/auth/v1/token?grant_type=password',{method:'POST',body:{email:em2,password:sn}}).then(function(r){lgEntrou(r,false)},function(){lgEntrou({ok:false},false)})}
