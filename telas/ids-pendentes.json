@@ -1,0 +1,229 @@
+{
+ "sobre": "Títulos sem IMDb ID que o robô de IDs (scripts/telas-ids.mjs) não casou com segurança no TMDB. Conferir à mão e pôr o imdb_id no catálogo ou em dados.json.",
+ "itens": {
+  "1917-2019": {
+   "titulo": "1917",
+   "ano": "2019",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "3-porcento-2016": {
+   "titulo": "3%",
+   "ano": "2016",
+   "tipo": "serie",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "a-caca-2012": {
+   "titulo": "A Caça",
+   "ano": "2012",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "a-chegada-2016": {
+   "titulo": "A Chegada",
+   "ano": "2016",
+   "tipo": "filme",
+   "motivo": "3 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "a-mumia-1999": {
+   "titulo": "A Múmia",
+   "ano": "1999",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "aftersun-2022": {
+   "titulo": "Aftersun",
+   "ano": "2022",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "akira-1988": {
+   "titulo": "Akira",
+   "ano": "1988",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "aladdin-1992": {
+   "titulo": "Aladdin",
+   "ano": "1992",
+   "tipo": "filme",
+   "motivo": "3 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "alien-o-oitavo-passageiro-1979": {
+   "titulo": "Alien: O Oitavo Passageiro",
+   "ano": "1979",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "aquarius-2016": {
+   "titulo": "Aquarius",
+   "ano": "2016",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "atividade-paranormal-2007": {
+   "titulo": "Atividade Paranormal",
+   "ano": "2007",
+   "tipo": "filme",
+   "motivo": "nenhum resultado com o mesmo título e ano (±1)",
+   "tentado_em": "2026-10-12"
+  },
+  "avenida-brasil-2012": {
+   "titulo": "Avenida Brasil",
+   "ano": "2012",
+   "tipo": "serie",
+   "motivo": "nenhum resultado com o mesmo título e ano (±1)",
+   "tentado_em": "2026-10-12"
+  },
+  "cosmos-mundos-possiveis-2020": {
+   "titulo": "Cosmos: Mundos Possíveis",
+   "ano": "2020",
+   "tipo": "serie",
+   "motivo": "nenhum resultado com o mesmo título e ano (±1)",
+   "tentado_em": "2026-10-12"
+  },
+  "dahmer-um-canibal-americano-2022": {
+   "titulo": "Dahmer: Um Canibal Americano",
+   "ano": "2022",
+   "tipo": "serie",
+   "motivo": "TMDB tv/113988 sem IMDb",
+   "tentado_em": "2026-10-12"
+  },
+  "demolidor-2015": {
+   "titulo": "Demolidor",
+   "ano": "2015",
+   "tipo": "serie",
+   "motivo": "nenhum resultado com o mesmo título e ano (±1)",
+   "tentado_em": "2026-10-12"
+  },
+  "digimon-adventure-1999": {
+   "titulo": "Digimon Adventure",
+   "ano": "1999",
+   "tipo": "serie",
+   "motivo": "nenhum resultado com o mesmo título e ano (±1)",
+   "tentado_em": "2026-10-12"
+  },
+  "duna-2021": {
+   "titulo": "Duna",
+   "ano": "2021",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "elena-2012": {
+   "titulo": "Elena",
+   "ano": "2012",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "hercules-1997": {
+   "titulo": "Hércules",
+   "ano": "1997",
+   "tipo": "filme",
+   "motivo": "3 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "iracema-uma-transa-amazonica-1974": {
+   "titulo": "Iracema, uma Transa Amazônica",
+   "ano": "1974",
+   "tipo": "filme",
+   "motivo": "nenhum resultado com o mesmo título e ano (±1)",
+   "tentado_em": "2026-10-12"
+  },
+  "it-a-coisa-2017": {
+   "titulo": "It: A Coisa",
+   "ano": "2017",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "luca-2021": {
+   "titulo": "Luca",
+   "ano": "2021",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "maid-2021": {
+   "titulo": "Maid",
+   "ano": "2021",
+   "tipo": "serie",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "mil-e-uma-noites-2006": {
+   "titulo": "Mil e Uma Noites",
+   "ano": "2006",
+   "tipo": "serie",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "mulan-1998": {
+   "titulo": "Mulan",
+   "ano": "1998",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "no-ritmo-do-coracao-2021": {
+   "titulo": "No Ritmo do Coração",
+   "ano": "2021",
+   "tipo": "filme",
+   "motivo": "4 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "o-brutalista-2024": {
+   "titulo": "O Brutalista",
+   "ano": "2024",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "o-caso-evandro-2021": {
+   "titulo": "O Caso Evandro",
+   "ano": "2021",
+   "tipo": "serie",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "once-upon-a-time-2011": {
+   "titulo": "Once Upon a Time",
+   "ano": "2011",
+   "tipo": "serie",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "pocahontas-1995": {
+   "titulo": "Pocahontas",
+   "ano": "1995",
+   "tipo": "filme",
+   "motivo": "5 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "rocky-um-lutador-1976": {
+   "titulo": "Rocky, um Lutador",
+   "ano": "1976",
+   "tipo": "filme",
+   "motivo": "2 candidatos com o mesmo título e ano",
+   "tentado_em": "2026-10-12"
+  },
+  "the-jinx-a-vida-e-as-mortes-de-robert-durst-2015": {
+   "titulo": "The Jinx: A Vida e as Mortes de Robert Durst",
+   "ano": "2015",
+   "tipo": "serie",
+   "motivo": "nenhum resultado com o mesmo título e ano (±1)",
+   "tentado_em": "2026-10-12"
+  }
+ }
+}
