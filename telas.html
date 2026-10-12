@@ -3586,16 +3586,33 @@ function notasFora(n,t){
   if(!out.length)return '';
   return '<div class="ext">'+out.join('')+'</div>'+(m?'<p class="ext-n">≈ de memória, ainda não conferidas na fonte.</p>':'');
 }
+// Episódios de qualquer série com IMDb: a lista inteira vem do TVmaze quando a folha abre (EPC, só na memória); antes disso,
+// e se o TVmaze falhar, fica a janela do robô (EPI: só as séries que ele acompanha, e só os episódios perto de hoje)
+var EPC={},EPC_P={},SEM_DATA=8.64e15;
+function epsCompletos(imdb){
+  if(!imdb||!/^tt\d{5,10}$/.test(imdb)||EPC[imdb]||EPC_P[imdb])return;EPC_P[imdb]=1;
+  var j=function(r){return r.ok?r.json():null};
+  fetch('https://api.tvmaze.com/lookup/shows?imdb='+imdb).then(j).then(function(sh){if(!sh||!sh.id)throw new Error('sem série');return fetch('https://api.tvmaze.com/shows/'+sh.id+'/episodes').then(j)})
+    .then(function(l){if(!Array.isArray(l)||!l.length)throw new Error('sem episódios');
+      EPC[imdb]=l.filter(function(e){return e&&e.season!=null&&e.number!=null}).map(function(e){
+        var d=e.airstamp?new Date(e.airstamp):(e.airdate?parseYmd(e.airdate):null);return {e:{temporada:e.season,episodio:e.number,titulo:e.name||''},d:d&&!isNaN(d)?d:new Date(SEM_DATA)}})
+        .sort(function(a,b){return (a.e.temporada-b.e.temporada)||(a.e.episodio-b.e.episodio)});
+      delete EPC_P[imdb];
+      try{var a=SH.id&&achar(SH.id),box=el('sh-eps');if(a&&a.it.imdb_id===imdb&&box)box.innerHTML=episodiosFolha(a.it)}catch(e){console.error(e)}})
+    .catch(function(){setTimeout(function(){delete EPC_P[imdb]},60000)});
+}
 function episodiosFolha(it){
-  var l=(it.imdb_id&&EPI[it.imdb_id])||[];
+  var l=(it.imdb_id&&(EPC[it.imdb_id]||EPI[it.imdb_id]))||[];
   var prox=it.proximo?'<p class="muted" style="margin-top:10px">'+esc(it.proximo)+'</p>':'';
   if(!l.length)return prox?secao('Próxima temporada',prox):'';
   var temps=uniq(l.map(function(x){return String(x.e.temporada)}));
-  var now=new Date(),tp=SH.temp&&temps.indexOf(SH.temp)>-1?SH.temp:String(((l.filter(function(x){return x.d>now})[0])||l[l.length-1]).e.temporada);
+  var now=new Date(),v=vistoDe(it.imdb_id),algum=false;
+  // abre na temporada em que a pessoa parou; sem progresso, na que tem episódio novo chegando; senão, na 1ª (lista completa) ou na última (janela do robô)
+  var futuro=l.filter(function(x){return x.d>now&&+x.d!==SEM_DATA})[0],tp0=v&&temps.indexOf(String(v.t))>-1?String(v.t):futuro?String(futuro.e.temporada):(EPC[it.imdb_id]?temps[0]:temps[temps.length-1]);
+  var tp=SH.temp&&temps.indexOf(SH.temp)>-1?SH.temp:tp0;
   SH.temp=tp;var ti=temps.indexOf(tp);
-  var v=vistoDe(it.imdb_id),algum=false;
   var lis=l.filter(function(x){return String(x.e.temporada)===tp}).map(function(x){var on=x.d<=now;if(on)algum=true;
-    return '<li><span class="te num">E'+esc(x.e.episodio)+'</span><span class="et">'+esc(x.e.titulo||'Episódio '+x.e.episodio)+'<span class="ed num">'+esc(quando(x.d))+'</span></span>'+
+    return '<li><span class="te num">E'+esc(x.e.episodio)+'</span><span class="et">'+esc(x.e.titulo||'Episódio '+x.e.episodio)+'<span class="ed num">'+esc(+x.d===SEM_DATA?'sem data':quando(x.d))+'</span></span>'+
       (on?botaoVisto(it.imdb_id,x.e,v):'<span class="bd">Em breve</span>')+'</li>'}).join('');
   var bar='<div class="tbar"><button class="ib" type="button" data-tp="'+(ti>0?esc(temps[ti-1]):'')+'" aria-label="Temporada anterior"'+(ti>0?'':' disabled')+'>‹</button><b>Temporada '+esc(tp)+'</b><button class="ib" type="button" data-tp="'+(ti<temps.length-1?esc(temps[ti+1]):'')+'" aria-label="Próxima temporada"'+(ti<temps.length-1?'':' disabled')+'>›</button></div>';
   return secao('Episódios',bar+'<ul class="eps">'+lis+'</ul>'+(algum?'<p class="eps-n">Marcar um episódio marca os anteriores como vistos.</p>':'')+prox);
@@ -3656,7 +3673,7 @@ function renderFolha(){
     var corpo='<span class="te num">'+(i+1)+'</span><span class="et">'+esc(f.titulo)+(en||sv||eu?'<span class="ed">'+[en,esc(sv),eu].filter(Boolean).join(' · ')+'</span>':'')+'</span><span class="ed num">'+esc(f.ano||'')+'</span>'+(abre?'<span class="chev" aria-hidden="true">›</span>':'');
     return '<li>'+(abre?'<button class="sgf" type="button" data-open="'+esc(f.id)+'" aria-label="'+esc(f.titulo+(eu?', '+eu.replace(/<[^>]+>/g,''):''))+'">'+corpo+'</button>':corpo)+'</li>'})+'</ol>'));
   h.push(secao('Onde assistir',ondeAssistir(it,t)));
-  if(t==='serie')h.push(episodiosFolha(it));
+  if(t==='serie'){h.push('<div id="sh-eps">'+episodiosFolha(it)+'</div>');epsCompletos(it.imdb_id)}
   if(it.dims&&it.dims.length){
     var esp=it.ponte&&it.espelho&&!mp?'<p class="esp"><b>Em você:</b> '+esc(it.espelho)+'</p>':'';
     h.push(secao('Por que conecta','<p class="sum">Mais forte em '+mot.map(function(x){return '<b>'+esc(x)+'</b>'}).join(', ').replace(/, ([^,]*)$/,' e $1')+'.</p>'+esp+dimTable(it)));
