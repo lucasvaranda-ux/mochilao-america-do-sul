@@ -124,7 +124,13 @@
         }
       ],
       "destination": "/",
-      "permanent": false
+      "permanent": false,
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-whatch-interno"
+        }
+      ]
     }
   ]
 }

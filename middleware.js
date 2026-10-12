@@ -12,7 +12,8 @@ export default async function middleware(request) {
   if (!/^(whatch|whattowatch)/.test(url.hostname)) return new Response(null, { headers: { 'x-middleware-next': '1' } });
   const app = new URL('/telas', url.origin);
   try {
-    const r = await fetch(app, { headers: { accept: 'text/html' } });
+    // o cabeçalho pula o redirecionamento de /telas para / (senão a busca voltava para cá, em laço)
+    const r = await fetch(app, { headers: { accept: 'text/html', 'x-whatch-interno': '1' }, redirect: 'manual' });
     if (!r.ok) throw new Error(String(r.status));
     const img = url.origin + '/whatch/icone-512.png';
     const meta = `<meta property="og:title" content="${TITULO}"><meta property="og:description" content="${DESC}"><meta property="og:image" content="${img}">` +
