@@ -2,6 +2,8 @@
 // (notas, status, coleções, pesos das dimensões, o que já está na lista) e pede indicações ao Claude.
 // Variáveis na Vercel (nunca no código): ANTHROPIC_API_KEY e TELAS_SENHA.
 // A página manda a senha no cabeçalho x-telas-senha; sem ela, a função não gasta nada.
+// No projeto do Whatch, TELAS_ABERTO=1 tira a senha (é um app para outras pessoas): valem então a origem do pedido,
+// um limite menor por IP e um teto diário por instância. O teto de gasto de verdade continua sendo o limite da chave no Console.
 
 import Anthropic from '@anthropic-ai/sdk';
 import { createHash, timingSafeEqual } from 'node:crypto';
@@ -10,10 +12,12 @@ const MODELO = 'claude-opus-5-5';
 const LIMITE_PERGUNTA = 800;      // caracteres
 const LIMITE_CONTEXTO = 60000;    // caracteres do contexto em JSON (o real, com ~215 títulos, fica perto de 25 mil)
 const POR_HORA = 30;              // perguntas por hora por IP (melhor esforço: cada instância conta a sua)
-const ERROS_POR_HORA = 8;         // senhas erradas por hora por IP antes de bloquear
+const ERROS_POR_HORA = 8;
+const POR_HORA_ABERTO = 10;       // sem senha (Whatch): perguntas por hora por IP
+const POR_DIA_ABERTO = 200;       // sem senha (Whatch): perguntas por dia por instância         // senhas erradas por hora por IP antes de bloquear
 const PAUSAS_MAX = 3;             // retomadas de turno pausado pela busca na web
 const PRAZO_MS = 270000;          // a função tem 300 s na Vercel: cada chamada só usa o que sobra disso
-const CHAVES_CONTEXTO = ['hoje', 'modo', 'dimensoes', 'arquetipos', 'notas', 'status', 'colecoes', 'biblioteca', 'mais_conectados', 'servicos_que_assina', 'na_lista', 'nao_vi', 'gosto', 'gosto_em_palavras', 'limites'];
+const CHAVES_CONTEXTO = ['hoje', 'modo', 'dimensoes', 'arquetipos', 'notas', 'status', 'colecoes', 'biblioteca', 'mais_conectados', 'servicos_que_assina', 'na_lista', 'nao_vi', 'gosto', 'gosto_em_palavras', 'limites', 'como_assiste', 'resumo_da_ia_dela', 'nao_e_pra_mim'];
 
 // Quem pergunta: o Lucas (dono da página) ou, no modo pessoa (contexto.modo = 'pessoa'), outra pessoa que montou a própria
 // página neste navegador. No modo pessoa o nome do Lucas não entra, e os limites "nunca" dela são proibições.
@@ -21,7 +25,7 @@ function sistemaPara(modo) {
   const pessoa = modo === 'pessoa';
   return `Você ajuda ${pessoa ? 'a pessoa dona deste navegador' : 'o Lucas'} a escolher filmes e séries, dentro da página ${pessoa ? 'que ela montou com o próprio gosto (a página nasceu da lista de outra pessoa, mas as listas, os pesos e as coleções que vêm no contexto são dela)' : 'pessoal dele'}.${pessoa ? ' Fale com ela; não cite o Lucas nem a lista original.' : ''}
 
-Junto com cada pergunta vem o contexto da página: as notas que ${pessoa ? 'ela' : 'ele'} deu (0 a 100), o status de cada título (quero ver, assisti, acompanhando, abandonei), as coleções "Desligar o cérebro" (com a fase da vida em que aquilo serviu, quando ele anotou) e "Repetidos" (com quantas vezes viu), os pesos que ele dá aos 13 eixos da conexão (nove dimensões de tema, de 0 a 30, mais nível, riso, tensão e desenho, de −30 a 30; cada título vira 13 números — a forma do perfil nas nove dimensões, o nível e os três traços pelos gêneros — e a conexão é o percentil do título no catálogo inteiro para esses pesos; o item "(como se calcula)" em dimensoes explica), os títulos mais conectados com ele, os serviços de streaming que assina e a lista completa do que já está na página. As notas vêm agrupadas por valor e incluem títulos do catálogo da aba Avaliar, que não estão nessa lista. Também podem vir os títulos do catálogo que ele marcou como "não vi" (ainda não viu; podem ser indicados) e o gosto calculado a partir das notas: pesos aprendidos para os 13 eixos, a correlação entre conexão e nota e se os pesos aprendidos passaram no teste (aprendidos_passaram_no_teste; se não passaram, trate-os como pista fraca). Todo título com nota já foi visto; por isso status.assisti traz só os vistos sem nota. No modo pessoa podem vir também gosto_em_palavras (frases curtas que resumem o gosto dela, por regra) e limites: um objeto do que ela não quer ver (terror, guerra, desenho, infantil, antigos, longas), com o valor "nunca" (proibição: não indique nada disso, nem de leve) ou "valer" (só se valer muito a pena, e diga por quê). Quando o contexto fica grande, a página corta listas: um grupo de notas com e_mais tem mais e_mais títulos com aquela nota que não vieram, e uma lista que termina com "(e mais N, cortados pelo tamanho)" foi cortada. O corte começa pelas notas do meio; as mais altas e as mais baixas são as últimas a sair.
+Junto com cada pergunta vem o contexto da página: as notas que ${pessoa ? 'ela' : 'ele'} deu (0 a 100), o status de cada título (quero ver, assisti, acompanhando, abandonei), as coleções "Desligar o cérebro" (com a fase da vida em que aquilo serviu, quando ele anotou) e "Repetidos" (com quantas vezes viu), os pesos que ele dá aos 13 eixos da conexão (nove dimensões de tema, de 0 a 30, mais nível, riso, tensão e desenho, de −30 a 30; cada título vira 13 números — a forma do perfil nas nove dimensões, o nível e os três traços pelos gêneros — e a conexão é o percentil do título no catálogo inteiro para esses pesos; o item "(como se calcula)" em dimensoes explica), os títulos mais conectados com ele, os serviços de streaming que assina e a lista completa do que já está na página. As notas vêm agrupadas por valor e incluem títulos do catálogo da aba Avaliar, que não estão nessa lista. Também podem vir os títulos do catálogo que ele marcou como "não vi" (ainda não viu; podem ser indicados) e o gosto calculado a partir das notas: pesos aprendidos para os 13 eixos, a correlação entre conexão e nota e se os pesos aprendidos passaram no teste (aprendidos_passaram_no_teste; se não passaram, trate-os como pista fraca). Todo título com nota já foi visto; por isso status.assisti traz só os vistos sem nota. No modo pessoa podem vir também gosto_em_palavras (frases curtas que resumem o gosto dela, por regra) e limites: um objeto do que ela não quer ver (terror, guerra, desenho, infantil, antigos, longas), com o valor "nunca" (proibição: não indique nada disso, nem de leve) ou "valer" (só se valer muito a pena, e diga por quê). Também podem vir como_assiste (com quem, idade das crianças, tela e ritmo: indique o que cabe nisso; com crianças pequenas, nada impróprio), resumo_da_ia_dela (o que o assistente de IA da própria pessoa contou do gosto dela: vale como pista forte) e nao_e_pra_mim (títulos que ela tirou da lista: não indique esses nem parecidos demais). Quando o contexto fica grande, a página corta listas: um grupo de notas com e_mais tem mais e_mais títulos com aquela nota que não vieram, e uma lista que termina com "(e mais N, cortados pelo tamanho)" foi cortada. O corte começa pelas notas do meio; as mais altas e as mais baixas são as últimas a sair.
 
 Como responder:
 - Baseie as indicações nesse contexto e diga, em cada uma, o que nele levou a ela (por exemplo, uma nota alta, uma coleção, um peso).
@@ -81,6 +85,15 @@ function conta(mapa, ip, soma) {
   return lista.length;
 }
 // só as chaves que a página manda; o resto é descartado antes de ir para o modelo
+let diaAberto = '', noDiaAberto = 0;
+function contaDiaAberto() {
+  const hoje = new Date().toISOString().slice(0, 10);
+  if (hoje !== diaAberto) { diaAberto = hoje; noDiaAberto = 0; }
+  return ++noDiaAberto;
+}
+function origemWhatch(o) {
+  try { const h = new URL(o).hostname; return h === 'whatch.madeinbr.app' || /^(whatch|whattowatch)[a-z0-9-]*\.vercel\.app$/.test(h); } catch { return false; }
+}
 function filtraContexto(c) {
   const out = {};
   if (c && typeof c === 'object' && !Array.isArray(c)) for (const k of CHAVES_CONTEXTO) if (k in c) out[k] = c[k];
@@ -101,14 +114,21 @@ function lerResposta(msg) {
 export default async function handler(req, res) {
   try {
     if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ erro: 'Use POST.' }); }
-    if (!process.env.ANTHROPIC_API_KEY || !process.env.TELAS_SENHA) {
+    const aberto = process.env.TELAS_ABERTO === '1';
+    if (!process.env.ANTHROPIC_API_KEY || (!aberto && !process.env.TELAS_SENHA)) {
       return res.status(503).json({ erro: 'A caixa ainda não foi configurada: faltam ANTHROPIC_API_KEY e TELAS_SENHA nas variáveis do projeto na Vercel (a senha deve ser longa e aleatória).' });
     }
     const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'sem-ip';
-    // o freio vem antes da senha: tentativa errada também conta
-    if (conta(erros, ip, false) >= ERROS_POR_HORA) return res.status(429).json({ erro: 'Muitas tentativas de senha. Espere uma hora.' });
-    if (!senhaConfere(req.headers['x-telas-senha'])) { conta(erros, ip, true); return res.status(401).json({ erro: 'Senha da caixa errada ou ausente.' }); }
-    if (conta(pedidos, ip, true) > POR_HORA) return res.status(429).json({ erro: 'Muitas perguntas nesta hora. Tente daqui a pouco.' });
+    if (aberto) {
+      if (!origemWhatch(req.headers.origin)) return res.status(403).json({ erro: 'Origem não aceita.' });
+      if (conta(pedidos, ip, true) > POR_HORA_ABERTO) return res.status(429).json({ erro: 'Muitas perguntas nesta hora. Tente daqui a pouco.' });
+      if (contaDiaAberto() > POR_DIA_ABERTO) return res.status(429).json({ erro: 'As perguntas de hoje acabaram. Volte amanhã.' });
+    } else {
+      // o freio vem antes da senha: tentativa errada também conta
+      if (conta(erros, ip, false) >= ERROS_POR_HORA) return res.status(429).json({ erro: 'Muitas tentativas de senha. Espere uma hora.' });
+      if (!senhaConfere(req.headers['x-telas-senha'])) { conta(erros, ip, true); return res.status(401).json({ erro: 'Senha da caixa errada ou ausente.' }); }
+      if (conta(pedidos, ip, true) > POR_HORA) return res.status(429).json({ erro: 'Muitas perguntas nesta hora. Tente daqui a pouco.' });
+    }
 
     const corpo = req.body && typeof req.body === 'object' ? req.body : {};
     const pergunta = typeof corpo.pergunta === 'string' ? corpo.pergunta.trim() : '';

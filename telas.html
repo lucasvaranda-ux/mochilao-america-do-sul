@@ -9,6 +9,17 @@
 <title>Telas · Filmes e séries</title>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='p' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23f4b65f'/%3E%3Cstop offset='1' stop-color='%23c9683b'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231b2733'/%3E%3Cstop offset='1' stop-color='%230c1015'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23b)'/%3E%3Cpath d='M27 17 q5 -6 10 0' fill='none' stroke='%235a6e80' stroke-width='3.5' stroke-linecap='round'/%3E%3Crect x='16' y='20' width='32' height='36' rx='12' fill='url(%23p)'/%3E%3Crect x='25.6' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Crect x='35' y='33' width='3.4' height='8' rx='1.3' fill='%238c4326'/%3E%3Cpath d='M16 33 v-1 a12 12 0 0 1 12 -12 h8 a12 12 0 0 1 12 12 v1 a3 3 0 0 1 -3 3 H19 a3 3 0 0 1 -3 -3 Z' fill='%23f0a64e'/%3E%3Cpath d='M23 39 h18 a3 3 0 0 1 3 3 v7 a5 5 0 0 1 -5 5 H25 a5 5 0 0 1 -5 -5 v-7 a3 3 0 0 1 3 -3 Z' fill='%23b9572f'/%3E%3Ccircle cx='37.6' cy='45.5' r='2.3' fill='%23ffd27a'/%3E%3Cpath d='M23 53 L28 46 L32 50.5 L36.6 45 L41 53 Z' fill='%235fc9a0'/%3E%3C/svg%3E">
+<script>
+// Whatch: a mesma página, aberta em whatch.madeinbr.app (ou nos endereços de teste da Vercel, ou com ?app=whatch), vira o app
+// para outras pessoas: nome, ícone e manifesto próprios, sem nada do mochilão, e a entrada é "Por onde começar?" até existir um gosto.
+try{if(/^(whatch|whattowatch)/.test(location.hostname)||/[?&]app=whatch\b/.test(location.search)){window.WHATCH=true;document.documentElement.classList.add('whatch');
+  document.title='Whatch · filmes e séries do seu jeito';
+  var ic=document.querySelector('link[rel="icon"]');if(ic){ic.type='image/svg+xml';ic.href='/whatch/icone.svg'}
+  var ap=document.querySelector('link[rel="apple-touch-icon"]');if(ap)ap.href='/whatch/icone-180.png';
+  var mf=document.createElement('link');mf.rel='manifest';mf.href='/whatch/manifest.webmanifest';document.head.appendChild(mf);
+  var ds=document.createElement('meta');ds.name='description';ds.content='Diga do que você gosta (ou cole o que a sua IA já sabe) e o Whatch monta a sua lista de filmes e séries, com onde assistir no Brasil.';document.head.appendChild(ds);
+  var aw=document.createElement('meta');aw.name='apple-mobile-web-app-title';aw.content='Whatch';document.head.appendChild(aw)}}catch(e){}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
@@ -738,6 +749,9 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
 .gw .dn small{display:block;color:var(--tx2);font-size:11.5px;line-height:1.3}
 .gfrase{color:var(--tx)!important;font-size:15px!important;line-height:1.5}
 .gaviso{border-left:3px solid var(--new);padding:2px 0 2px 10px}
+.ri-barra,.g6-barra-ia{height:4px;border-radius:2px;background:var(--s2);overflow:hidden;margin-top:12px}.ri-barra i,.g6-barra-ia i{display:block;height:100%;width:30%;background:var(--acc);border-radius:2px;animation:iaVai 1.4s ease-in-out infinite}
+@keyframes iaVai{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
+@media (prefers-reduced-motion:reduce){.ri-barra i,.g6-barra-ia i{animation:none;width:100%;opacity:.5}}
 .gw .bars{display:flex;flex-direction:column;gap:2px;min-width:0}
 .gw .bars i{display:block;height:8px;border-radius:0 4px 4px 0;min-width:2px}
 .gw .bars i.at{background:var(--tx3)}
@@ -931,7 +945,8 @@ button.mini-po:active{transform:scale(.95)}
 .ri .impl .meta{display:block}
 .ri .impl label span{flex:1}
 /* modo pessoa: os blocos que só fazem sentido para o dono da página (robô de e-mail, fonte do acervo) somem */
-html.pessoa #acomp-box,html.pessoa #fonte{display:none}
+html.pessoa #acomp-box,html.pessoa #fonte,html.whatch .so-lucas{display:none}
+html.whatch .wh-esconde{display:none!important}
 @media (min-width:600px){.cenas{grid-template-columns:1fr}.g6-lista{grid-template-columns:1fr 1fr}.portas{grid-template-columns:1fr}}
 @media (min-width:900px){.g6{max-width:720px}.cgrid{grid-template-columns:repeat(3,150px);gap:18px 16px}}
 
@@ -1049,7 +1064,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
 <body>
 
 <header class="top">
-  <h1 class="brand">Telas</h1>
+  <h1 class="brand" id="brand">Telas</h1>
   <button class="ib" id="go-busca" type="button" aria-label="Buscar na lista"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4.2-4.2"/></svg></button>
   <button class="ib" id="go-ia" type="button" aria-label="Perguntar à IA"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.3l1.3-4.4A8.4 8.4 0 1 1 20.5 11.6z"/><path d="M12 8.2v6.4M8.8 11.4h6.4"/></svg></button>
 </header>
@@ -1315,8 +1330,8 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
        o resumo colado da IA e a página do gosto guardado. Tudo fica no aparelho (telas_v1 › perfil). -->
   <section class="panel" id="p-comecar" aria-label="Por onde começar?">
     <div class="pad">
-      <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
-      <header class="pghead"><h2>Por onde começar?</h2><p>Esta página nasceu da lista de uma pessoa. Para ela virar a sua, a gente precisa conhecer o seu gosto. O mais rápido e o mais certeiro: o que a sua IA já sabe de você, afinado em 3 minutos.</p></header>
+      <button class="back" type="button" data-dest="mais" id="comecar-back"><span aria-hidden="true">‹</span> Mais</button>
+      <header class="pghead"><h2 id="comecar-h">Por onde começar?</h2><p id="comecar-p">Esta página nasceu da lista de uma pessoa. Para ela virar a sua, a gente precisa conhecer o seu gosto. O mais rápido e o mais certeiro: o que a sua IA já sabe de você, afinado em 3 minutos.</p></header>
       <div id="comecar-portas"></div>
     </div>
   </section>
@@ -1328,7 +1343,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
   <section class="panel" id="p-resumo" aria-label="Colar o resumo da minha IA">
     <div class="pad">
       <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
-      <header class="pghead"><h2>Colar o resumo da minha IA</h2><p>Copie o pedido abaixo, cole no assistente que você já usa (ChatGPT, Claude, Gemini, Copilot…) numa conversa normal (não a temporária, nem dentro de um projeto) e cole aqui a resposta. A leitura é feita neste navegador: o texto não sai do aparelho e não fica guardado, só o que você aprovar.</p></header>
+      <header class="pghead"><h2>Colar o resumo da minha IA</h2><p>Copie o pedido abaixo, cole no assistente que você já usa (ChatGPT, Claude, Gemini, Copilot…) numa conversa normal (não a temporária, nem dentro de um projeto) e cole aqui a resposta. O texto é lido aqui e pela nossa IA (o Claude, da Anthropic), só para montar o seu gosto, e não fica guardado em lugar nenhum. Neste aparelho fica só o que você aprovar.</p></header>
       <div id="ri" class="ri"></div>
     </div>
   </section>
@@ -1353,7 +1368,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
     </div>
   </section>
 
-  <footer class="foot" hidden><p id="foot"></p><a href="/">← Voltar ao roteiro do mochilão</a></footer>
+  <footer class="foot" hidden><p id="foot"></p><a href="/" class="so-lucas">← Voltar ao roteiro do mochilão</a></footer>
 </main>
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden><span id="toast-msg"></span><button type="button" id="toast-aj" hidden>Ajustar</button><button type="button" id="toast-undo">Desfazer</button><form id="toast-form" novalidate hidden><input id="toast-num" type="number" inputmode="numeric" min="0" max="100" step="1" aria-label="Nota exata, de 0 a 100"><button type="submit">Salvar</button></form></div>
@@ -1421,7 +1436,7 @@ var DESC_NEUTRA={busca:'O sentido da vida, fé, as grandes perguntas.',travessia
   oficio:'Trabalho, talento, criar algo, ser muito bom no que faz.',humanidade:'Poder, política, injustiça, guerra, sociedade.',encanto:'Magia, mitos, mundos inventados, o épico.'};
 function eixos(){return DIMS.concat(TRACOS)}
 function ehTraco(i){return i>=9}
-function descDe(d){return String((ST.perfil&&d&&DESC_NEUTRA[d.id])||(d&&d.desc)||'')}
+function descDe(d){return String((modoPessoa()&&d&&DESC_NEUTRA[d.id])||(d&&d.desc)||'')}
 function pesoMin(i){return ehTraco(i)?-30:0}
 function pesoPct(i,v){return Math.round((( +v||0)-pesoMin(i))/(30-pesoMin(i))*100)}
 
@@ -1497,6 +1512,9 @@ if(PESOS_MIG)save(); // grava logo os 13, para a migração acontecer uma vez s�
 var D=null, EP=null, SV=null;
 var PO={};          // pôsteres: telas/posteres.json -> itens
 var EPI={},IMDB={}; // episódios por imdb_id e série por imdb_id
+// no Whatch (ver o <head>), a página nunca é a do Lucas: sem gosto guardado, as telas que dependem dele levam a "Por onde começar?"
+var WHATCH=!!window.WHATCH,APP=WHATCH?'Whatch':'Telas';
+try{if(WHATCH)document.getElementById('brand').textContent='Whatch'}catch(e){}
 var DIMS=[], PESOS0=[];
 var VIEW={filmes:{q:'',sort:'pesquisa',f:'todos',w:'todos',n:30},series:{q:'',sort:'pesquisa',f:'todos',w:'todos',n:30}};
 var CAL={v:'mes',scope:'acomp',m:null,sel:null};
@@ -1518,11 +1536,11 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 function num(s){if(s==null)return NaN;var m=String(s).replace(',','.').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN}
 // "na sua biblioteca" (Stremio) é da camada do Lucas: no modo pessoa não vira "acompanhando" sozinho
 function stOf(it){var v=ST.status[it.id];if(v==='nenhum')return '';if(!v&&ehSaga(it)&&it.filmes.length){var sv=sagaVistos(it);return sv.n>=sv.de?'assisti':''} // saga: "assisti" quando viu todos os filmes
-  return v||(it.biblioteca&&!ST.perfil?'acompanhando':'')}
+  return v||(it.biblioteca&&!modoPessoa()?'acompanhando':'')}
 // pesos em uso: os mexidos na aba Conexão; senão os do gosto da pessoa (modo pessoa); senão os iniciais do Lucas
 function pesos(){return (ST.pesos&&ST.pesos.length===N13)?ST.pesos:pesosBase()}
 function pesosBase(){return ST.perfil&&ST.perfil.pesos&&ST.perfil.pesos.length===N13?ST.perfil.pesos:PESOS0}
-function modoPessoa(){return !!ST.perfil}
+function modoPessoa(){return !!ST.perfil||WHATCH}
 // Conexão = percentil do valor (peso × 13 números) do título no conjunto catálogo + página, de 0 a 100.
 // A lista ordenada de valores é calculada uma vez por vetor de pesos (ORDS); montarAvaliaveis() a zera.
 var ORDS={};
@@ -1551,7 +1569,7 @@ function cssId(id){try{return window.CSS&&CSS.escape?CSS.escape(id):String(id).r
 // as listas Filmes e Séries: a pesquisa do Lucas ou, no modo pessoa, o top 100 dela (LP, montado em montarListas)
 var LP={filmes:[],series:[]},RANKP={};
 function LD(kind){return ST.perfil&&LP[kind]?LP[kind]:((D&&D[kind])||[])}
-function rankDe(it){return ST.perfil?(RANKP[it.id]||null):(+it.rank>0?+it.rank:null)}
+function rankDe(it){return modoPessoa()?(RANKP[it.id]||null):(+it.rank>0?+it.rank:null)}
 function kindOf(id){
   if(LD('filmes').some(function(x){return x.id===id}))return 'filmes';
   if(LD('series').some(function(x){return x.id===id}))return 'series';
@@ -2157,15 +2175,18 @@ function renderOrg(){
 var GRUPO={inicio:'inicio',avaliar:'avaliar',filmes:'lista',series:'lista',desligar:'lista',repetidos:'lista',cal:'agenda',mais:'mais',perguntar:'mais',pesos:'mais',dados:'mais',organizar:'mais',
   comecar:'mais',perfil:'mais',gosto:'mais',resumo:'mais'};
 var DEST0={inicio:'inicio',lista:'filmes',avaliar:'avaliar',agenda:'cal',mais:'mais'};
+var WH_PORTA={inicio:1,filmes:1,series:1,desligar:1,repetidos:1,cal:1,perguntar:1,pesos:1};
 var ABA=null,ABA0=true,ABA_ANT=null,POP_IGNORA=0,EM_POP=false;
 function ir(t){
   try{
     if(!GRUPO[t])t='inicio';
     if(t==='perfil'&&!ST.perfil)t='comecar'; // sem gosto guardado, "Seu gosto" é a tela "Por onde começar?"
+    // no Whatch sem gosto, Início, Lista, Agenda, Conexão e Perguntar mostram as portas (a barra continua marcando o destino tocado)
+    var gv=GRUPO[t];if(WHATCH&&!ST.perfil&&WH_PORTA[t])t='comecar';
     var mudou=ABA!==t,g=GRUPO[t];ABA_ANT=ABA;ABA=t;
     if(g==='lista')DEST0.lista=t;
     document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='p-'+t)});
-    document.querySelectorAll('.dst[data-dest]').forEach(function(b){if(b.dataset.dest===g)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+    document.querySelectorAll('.dst[data-dest]').forEach(function(b){if(b.dataset.dest===gv)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
     document.querySelectorAll('.lseg .tab').forEach(function(b){if(b.dataset.tab===t)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
     el('lnav').hidden=g!=='lista'&&g!=='avaliar';el('lseg-lista').hidden=g!=='lista';el('av-modo').hidden=g!=='avaliar';
     // as subpáginas do Mais entram no histórico (o Voltar do Android e o gesto do iPhone voltam ao Mais); o resto só troca o endereço
@@ -2290,7 +2311,7 @@ function colEstado(col){var c=ST.col[col];if(!c||typeof c!=='object')c=ST.col[co
 // Ids que ninguém reconhece (o catálogo ainda não carregou, ou saiu dele) continuam na coleção, num cartão provisório.
 // no modo pessoa as coleções fixas do Lucas (Rick and Morty, Harry Potter...) ficam de fora: as dela começam vazias
 function colItens(col){
-  var base=(ST.perfil?[]:((D&&D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[])).slice(),c=colEstado(col),out=[];
+  var base=(modoPessoa()?[]:((D&&D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[])).slice(),c=colEstado(col),out=[];
   base.concat(c.add).forEach(function(id){if(typeof id==='string'&&id&&out.indexOf(id)<0&&c.rem.indexOf(id)<0)out.push(id)});
   return out;
 }
@@ -2366,7 +2387,7 @@ function idPorNome(t){
 // põe um id (da página, de extras, do catálogo ou livre) na coleção; usado pelo campo e pelas sugestões
 function adicionarId(col,id){
   var c=colEstado(col),ri=c.rem.indexOf(id);if(ri>-1)c.rem.splice(ri,1);
-  var base=ST.perfil?[]:((D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[]);
+  var base=modoPessoa()?[]:((D.colecoes&&D.colecoes[col]&&D.colecoes[col].itens)||[]);
   if(base.indexOf(id)<0&&c.add.indexOf(id)<0)c.add.push(id);
 }
 function adicionar(col){
@@ -3113,7 +3134,7 @@ document.querySelector('main').addEventListener('click',function(e){
 // ---------- RESUMO PARA O CLAUDE ----------
 function textoResumo(){
   var L=[],hoje=new Date();
-  L.push('Resumo do Telas (filmes e séries), '+hoje.toLocaleDateString('pt-BR')+'.');
+  L.push('Resumo do '+APP+' (filmes e séries), '+hoje.toLocaleDateString('pt-BR')+'.');
   L.push('');L.push('A página mede a conexão de cada título por 13 números. Nove dimensões de tema, de 0 a 100 cada: '+DIMS.map(function(d){return d.nome+' ('+minuscIni(descDe(d).replace(/\.\s*$/,''))+')'}).join('; ')+'. '+
     'Entram como forma do perfil (cada dimensão menos a média do próprio título), mais o nível (a média das nove: quanto o título é denso em tudo) e três traços tirados dos gêneros: '+TRACOS.slice(1).map(function(d){return d.nome+' ('+minuscIni(descDe(d).replace(/\.\s*$/,''))+')'}).join('; ')+'. '+
     'A conexão mostrada é o percentil do título no catálogo inteiro para os meus pesos (0 a 100). Temas pesam de 0 a 30; nível e traços, de −30 a 30 (negativo = evito).');
@@ -3236,7 +3257,7 @@ function sugAuto(col,usados){
 function sugLista(col){
   var na=colItens(col),oc=ocultas(col),keep=SUGKEEP[col],usados={},fixas=[];
   // as sugestões fixas do catálogo se ligam às coleções do Lucas: no modo pessoa só valem as automáticas
-  ((CAT&&!ST.perfil&&CAT.sugestoes&&CAT.sugestoes[col])||[]).forEach(function(s){
+  ((CAT&&!modoPessoa()&&CAT.sugestoes&&CAT.sugestoes[col])||[]).forEach(function(s){
     if(!s||typeof s.id!=='string'||usados[s.id]||!achar(s.id))return;
     var sg=sagaDe(s.id),id=sg&&AVPOR[sg]&&AVPOR[sg].saga?sg:s.id; // filme de saga: a sugestão é a saga
     if(usados[id])return;usados[s.id]=1;usados[id]=1;
@@ -3764,7 +3785,12 @@ function contextoIA(){
     c.mais_conectados={filmes:top(LD('filmes')),series:top(LD('series'))};
     c.servicos_que_assina=meus();
     c.modo=modoPessoa()?'pessoa':'lucas'; // a função troca o papel: no modo pessoa quem pergunta não é o Lucas
-    if(ST.perfil){c.gosto_em_palavras=(ST.perfil.frases||[]).slice(0,8);c.limites=ST.perfil.limites||{}}
+    if(ST.perfil){c.gosto_em_palavras=(ST.perfil.frases||[]).slice(0,8);c.limites=ST.perfil.limites||{};
+      // o que é só desta pessoa: como ela assiste, o que a IA dela contou (o parágrafo do resumo) e o que ela tirou da lista
+      var cx=ST.perfil.contexto||{},rq={sozinho:'sozinha',par:'com par',criancas:'com crianças',amigos:'com amigos',varia:'varia'},ri={ate6:'até 6 anos','7a11':'7 a 11 anos','12mais':'12 ou mais'};
+      c.como_assiste={com_quem:(cx.quem||[]).map(function(q){return rq[q]||q}),idade_das_criancas:ri[cx.idade]||'',onde:{tv:'TV',note:'computador',cel:'celular'}[cx.onde]||'',tempo:{curto:'um episódio por vez',filme:'um filme',maratona:'maratona'}[cx.tempo]||''};
+      if((ST.perfil.ia||[]).length)c.resumo_da_ia_dela=ST.perfil.ia.slice(0,6);
+      if((ST.perfil.nao||[]).length)c.nao_e_pra_mim=ST.perfil.nao.slice(0,60).map(nome)}
     c.na_lista=[].concat(LD('filmes'),LD('series'),modoPessoa()?[]:(D.extras||[])).map(function(it){return it.id+' | '+it.titulo+(it.ano?' ('+it.ano+')':'')});
     cortaContexto(c,LIM_CTX);
   }catch(e){console.error(e)}
@@ -3837,7 +3863,8 @@ function perguntar(){
   var q=(el('ia-q').value||'').trim(),out=el('ia-out');if(!q){el('ia-q').focus();return}
   if(!D){out.innerHTML='<p class="err">Sua lista ainda está carregando. Tente em instantes.</p>';return}
   var senhaIn=el('ia-senha'),senha=(senhaIn&&senhaIn.value.trim())||iaSenha();
-  if(!senha){el('ia-senha-box').hidden=false;out.innerHTML='<p class="err">Digite a senha da caixa (a mesma que está em TELAS_SENHA na Vercel).</p>';senhaIn.focus();return}
+  // no Whatch a caixa é aberta (sem senha), com limite por pessoa e por dia na função
+  if(!senha&&!WHATCH){el('ia-senha-box').hidden=false;out.innerHTML='<p class="err">Digite a senha da caixa (a mesma que está em TELAS_SENHA na Vercel).</p>';senhaIn.focus();return}
   IA_OCUPADA=true;el('ia-go').disabled=true;
   var t0=Date.now(),tick=setInterval(function(){var w=out.querySelector('.secs');if(w)w.textContent=Math.round((Date.now()-t0)/1000)+' s'},1000);
   out.setAttribute('aria-busy','true');
@@ -3873,7 +3900,7 @@ function perguntar(){
       var sw=document.querySelector('[data-watch="'+kind+'"]');if(sw)sw.value='todos';renderList(kind);
       ir(kind);
     });
-    if(!iaSenha())el('ia-senha-box').hidden=false;
+    if(!iaSenha()&&!WHATCH)el('ia-senha-box').hidden=false;
     if((ST.ia||[]).length){el('ia-out').innerHTML=blocoResposta(ST.ia[0]);renderHist()}
   }catch(e){console.error(e)}
 })();
@@ -3908,7 +3935,7 @@ el('imp').addEventListener('change',function(e){
       marcaSujo();renderAll();renderCal();
       var nOc=Object.keys(ST.sugOcultas).reduce(function(a,k){return a+ST.sugOcultas[k].length},0);
       el('impmsg').textContent='Backup restaurado: '+Object.keys(ST.notas).length+' notas, '+Object.keys(ST.status).length+' status, '+Object.keys(ST.naovi).length+' "não vi" e '+nOc+' sugestões escondidas.';
-    }catch(err){el('impmsg').textContent='Esse arquivo não é um backup do Telas.'}
+    }catch(err){el('impmsg').textContent='Esse arquivo não é um backup do '+APP+'.'}
   };
   r.readAsText(f);
 });
@@ -4136,7 +4163,7 @@ var IC_PORTA={gosto:'<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circ
 // cartazes afinam o que ela deixou em dúvida. Quem não usa IA responde o caminho inteiro (6 minutos); o arquivo continua.
 function portasHtml(curto){
   return '<div class="portas">'+
-    '<button class="porta pri" type="button" data-porta="resumo"><span class="pi">'+IC_PORTA.resumo+'</span><span class="pt"><b>Colar o resumo da minha IA</b><small>'+(curto?'O ChatGPT, o Claude ou o Gemini já sabem do que você gosta. Depois, 3 minutos para afinar.':'Copie um pedido pronto, cole no assistente que você já usa e cole a resposta aqui. A leitura é neste navegador, sem IA e sem sair do aparelho. Depois, 3 minutos de cenas e cartazes afinam o que a IA disse.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
+    '<button class="porta pri" type="button" data-porta="resumo"><span class="pi">'+IC_PORTA.resumo+'</span><span class="pt"><b>Colar o resumo da minha IA</b><small>'+(curto?'O ChatGPT, o Claude ou o Gemini já sabem do que você gosta. Depois, 3 minutos para afinar.':'Copie um pedido pronto, cole no assistente que você já usa e cole a resposta aqui. A nossa IA lê o resumo, sem guardar o texto. Depois, 3 minutos de cenas e cartazes afinam o que ela entendeu.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
     '<button class="porta" type="button" data-porta="gosto"><span class="pi">'+IC_PORTA.gosto+'</span><span class="pt"><b>Não uso IA / prefiro responder</b><small>'+(curto?'Seu gosto em 6 minutos: cenas, cartazes e três obras que marcaram você.':'Seu gosto em 6 minutos: o que você quer de uma tela hoje, cenas, 27 cartazes, três obras que marcaram você, limites, com quem e onde você assiste, e uma primeira lista de 12.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
     '<button class="porta" type="button" data-porta="arquivo"><span class="pi">'+IC_PORTA.arquivo+'</span><span class="pt"><b>Importar um arquivo</b><small>'+(curto?'Letterboxd, IMDb ou o histórico da Netflix.':'As notas do Letterboxd ou do IMDb, ou a atividade de visualização da Netflix (o que você viu vira "assisti", sem nota).')+'</small></span><span class="chev" aria-hidden="true">›</span></button></div>';
 }
@@ -4151,9 +4178,14 @@ function shCriancas(kind,usados){
   return shelfHtml({key:'cri-'+kind,title:'Para ver com as crianças',sub:'Uma lista à parte, pelos gêneros: não mistura com a sua.',more:'criancas:'+listaDe(kind),row:cada(l,function(it){return tile(it)})});
 }
 function renderComecar(){
-  var box=el('comecar-portas');if(!box)return;
+  var box=el('comecar-portas');if(!box||typeof IC_PORTA==='undefined')return;
+  // no Whatch, sem gosto, esta é a primeira tela do app: sem o "‹ Mais" e com a apresentação dele
+  try{var wh=WHATCH&&!ST.perfil;el('comecar-back').hidden=wh;
+    el('comecar-h').textContent=wh?'Filmes e séries do seu jeito':'Por onde começar?';
+    el('comecar-p').textContent=wh?'O Whatch monta a sua lista a partir do que você gosta, com onde assistir no Brasil. O jeito mais rápido e mais certeiro: o que a sua IA já sabe de você, lido pela nossa e afinado em 3 minutos.':
+      (WHATCH?'Para a página seguir o seu gosto, comece por aqui. O mais certeiro: o que a sua IA já sabe de você, afinado em 3 minutos.':'Esta página nasceu da lista de uma pessoa. Para ela virar a sua, a gente precisa conhecer o seu gosto. O mais rápido e o mais certeiro: o que a sua IA já sabe de você, afinado em 3 minutos.')}catch(e){}
   box.innerHTML=(ST.perfil?'<p class="comecar-ja">Você já tem um gosto guardado neste aparelho. <button class="lnk" type="button" data-go="perfil">Ver o seu gosto</button></p>':'')+portasHtml(false)+
-    '<p class="note" style="margin-top:16px">Tudo fica neste aparelho, junto com as suas notas, e vai no backup. Nada é enviado a lugar nenhum.</p>';
+    '<p class="note" style="margin-top:16px">Sem cadastro: o seu gosto e as suas notas ficam neste aparelho e vão no backup. Para montar o gosto, o resumo e as respostas passam pela nossa IA (o Claude, da Anthropic), que não guarda nada.</p>';
 }
 document.addEventListener('click',function(e){
   try{var b=e.target.closest('[data-porta]');if(!b)return;var p=b.dataset.porta;
@@ -4183,7 +4215,7 @@ function renderPerfil(){
   if(lims.length||ctx.length||(c.servicos||[]).length)h+='<div class="box"><h3>Limites e contexto</h3>'+(lims.length?'<p><b>Não quer ver:</b> '+esc(lims.join('; '))+(p.limFase?' (só por uma fase)':'')+'.</p>':'')+
     (ctx.length?'<p><b>Como assiste:</b> '+esc(ctx.join(', '))+'.</p>':'')+((c.servicos||[]).length?'<p><b>Serviços:</b> '+esc(c.servicos.map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[1]:s}).join(', '))+'.</p>':'')+'</div>';
   if(p.base)h+='<div class="box"><h3>Afinar</h3><p>'+(p.afinado?'Você já afinou o que a sua IA disse. Dá para afinar de novo: cenas e cartazes novos, partindo do mesmo resumo.':'O gosto saiu do resumo da sua IA. Em 3 minutos, cenas e cartazes escolhidos pelo que ficou em dúvida deixam a lista mais certeira.')+'</p><div class="row"><button class="btn pri t44" type="button" data-pf="afinar">Afinar em 3 minutos</button></div></div>';
-  h+='<div class="box"><h3>Refazer ou apagar</h3><p>Colar outro resumo começa de novo pela sua IA; refazer sem IA recomeça o caminho de seis minutos. Em qualquer um, ao terminar, o gosto novo substitui este. Apagar devolve a página ao original (a lista de quem a fez), sem apagar as suas notas e status.</p>'+
+  h+='<div class="box"><h3>Refazer ou apagar</h3><p>Colar outro resumo começa de novo pela sua IA; refazer sem IA recomeça o caminho de seis minutos. Em qualquer um, ao terminar, o gosto novo substitui este. '+(WHATCH?'Apagar tira o seu gosto deste aparelho (a página volta à entrada), sem apagar as suas notas e status.':'Apagar devolve a página ao original (a lista de quem a fez), sem apagar as suas notas e status.')+'</p>'+
     '<div class="row"><button class="btn'+(p.base?'':' pri')+' t44" type="button" data-pf="resumo">Colar outro resumo</button><button class="btn t44" type="button" data-pf="refazer">Refazer sem IA</button><button class="btn t44" type="button" data-pf="apagar">'+(PF_CONF?'Tem certeza? Toque de novo':'Apagar meu gosto')+'</button></div></div>';
   box.innerHTML=h;
 }
@@ -4558,15 +4590,54 @@ function g6Volta(){
   g6Guarda();g6Render(true);
 }
 function toggleLista(l,v,max){var i=l.indexOf(v);if(i>-1)l.splice(i,1);else{if(max&&l.length>=max)l.shift();l.push(v)}}
-function g6Fim(){
+// O fim com a nossa IA: a regra faz a conta; a IA lê o resumo (se houve) e as respostas juntos e devolve os 13 pesos e o gosto
+// em palavras. Os pesos finais são a média dos dois (a IA corrige, a regra segura); sem a IA, fica só a regra.
+var G6_IA=false;
+function g6Nome(id){var r=AVPOR[id];return r?r.it.titulo+(r.ano?' ('+r.ano+')':''):''}
+function g6DadosIA(G,p){
+  var nomeEixo=eixos().map(function(d){return d.nome}),rot=function(lista,k){var o=lista.filter(function(x){return x[0]===k})[0];return o?o[1]:''};
+  var cenas=[];(Array.isArray(G.trios)&&G.trios.length?G.trios:CENAS.map(function(c,i){return i})).forEach(function(ti){var c=G.cenas[ti],tr=CENAS[ti];if(!c||!tr)return;
+    if(c.esc>=0)cenas.push({escolheu:tr[c.esc][0],eixos:[tr[c.esc][1],tr[c.esc][2]]});if(c.pul>=0)cenas.push({pularia:tr[c.pul][0],eixos:[tr[c.pul][1],tr[c.pul][2]]})});
+  var ctz={amei:[],nao_gostei:[],viu_ok:[]};Object.keys(G.resp||{}).forEach(function(id){var e=G.resp[id],n=g6Nome(id);if(!n)return;(e==='amei'?ctz.amei:e==='nao'?ctz.nao_gostei:ctz.viu_ok).push(n)});
+  var b=G.base||null,res=null;
+  if(b){res={frases_da_ia_dela:(G.ia||[]).filter(function(f,i){return !G.iaOff[i]}),
+    obras_citadas:b.obs.slice(0,40).map(function(o){return {titulo:g6Nome(o[0]),como:o[1]>=1?'ama':o[1]>0?'gosta':'não gostou'}}).filter(function(o){return o.titulo})}}
+  return {pesos_regra:nomeEixo.map(function(n,i){return {eixo:EIXOS_ID[i],nome:n,peso:Math.round(p[i]*10)/10}}),resumo_da_ia_dela:res,
+    agora:{procura:(G.agora.procura||[]).map(function(k){return rot(AGORA_OPTS,k)}).filter(Boolean)},
+    cenas:cenas,cartazes:ctz,
+    obras_que_marcaram:(G.obras||[]).map(function(o){return {titulo:g6Nome(o.id),pegou:(o.pegou||[]).map(function(k){return rot(PEGOU,k)}).filter(Boolean),quando:rot(QUANDO,o.quando)}}).filter(function(o){return o.titulo}),
+    limites:Object.keys(G.limites||{}).map(function(k){return rot(LIMITES,k)+': '+(G.limites[k]==='nunca'?'nunca':'só se valer muito')}),
+    frases_que_ela_tirou:Object.keys(G.corr||{}).filter(function(k){return G.corr[k]})};
+}
+var EIXOS_ID=['busca','travessia','terra','amor','sombra','mesa','oficio','humanidade','encanto','nivel','riso','tensao','desenho'];
+function g6FimIA(b){
+  var G=G6;if(!G||G6_IA)return;
+  var p;try{p=g6PesosFinais(G,g6Modelo(G))}catch(e){return g6Fim()}
+  if(semSinal(p))return g6Fim(); // g6Fim avisa
+  G6_IA=true;var txt=b?b.textContent:'';if(b){b.disabled=true;b.textContent='A nossa IA está fechando o seu gosto…'}
+  var ft=b&&b.closest('.g6-ft'),barra=null;if(ft){barra=document.createElement('div');barra.className='g6-barra-ia';barra.setAttribute('aria-hidden','true');barra.innerHTML='<i></i>';ft.appendChild(barra)}
+  var dados;try{dados=g6DadosIA(G,p)}catch(e){console.error(e)}
+  (dados?iaGosto({modo:'final',dados:dados},45000):Promise.resolve(null)).then(function(j){
+    G6_IA=false;if(b){b.disabled=false;b.textContent=txt}if(barra)barra.remove();
+    if(G6!==G)return;
+    var ia=null;try{if(j&&Array.isArray(j.pesos)&&j.pesos.length===N13&&j.pesos.every(function(v){return typeof v==='number'&&isFinite(v)}))ia=j}catch(e){}
+    g6Fim(ia);
+  });
+}
+function g6Fim(ia){
   var G=G6;if(!G)return;
   try{
     var m=g6Modelo(G),p=g6PesosFinais(G,m),mSem=g6Modelo(G,true),pSem=g6Corrige(g6PesosDe(mSem.w),G.corr);
+    // com a IA: média dos dois, nas faixas de cada eixo (os temas de 0 a 30, os traços de -30 a 30); a fase de vida desloca os dois do mesmo jeito
+    if(ia){var mix=function(a){return a.map(function(v,i){var x=(v+ia.pesos[i])/2;return Math.round(Math.max(i<9?0:-30,Math.min(30,x))*10)/10})},dif=p.map(function(v,i){return v-pSem[i]});
+      p=mix(p);pSem=p.map(function(v,i){return Math.round(Math.max(i<9?0:-30,Math.min(30,v-dif[i]))*10)/10})}
     // quem pulou tudo não tem gosto para guardar: pesos iguais ordenariam o catálogo por ruído
     if(semSinal(p)){toast('Responda pelo menos uma tela (as cenas, os cartazes ou uma obra) para a gente montar o seu gosto.',false);return}
     var frases=g6Frases(g6PesosDe(m.w),G).filter(function(f){return !(f.k&&G.corr[f.k])}).map(function(f){return f.h.replace(/<[^>]+>/g,'')});
     // caminho curto: o parágrafo da IA (sem as frases tiradas) vem antes das frases daqui
-    var ia=g6Afinar(G)?(G.ia||[]).filter(function(f,i){return !G.iaOff[i]}):[];frases=ia.concat(frases).slice(0,12);
+    var iaF=g6Afinar(G)?(G.ia||[]).filter(function(f,i){return !G.iaOff[i]}):[];
+    // o parágrafo da nossa IA (que leu as duas coisas) vem antes; o da IA dela fica guardado em perfil.ia
+    var nossa=ia&&ia.palavras?riFrases(riLimpa(ia.palavras)):[];frases=(nossa.length?nossa:iaF).concat(frases).slice(0,12);
     var ct={amei:0,nao:0,ok:0};
     Object.keys(G.resp||{}).forEach(function(id){var e=G.resp[id];if(AVPOR[id]&&ct.hasOwnProperty(e))ct[e]++});
     var nao=Object.keys(G.acoes||{}).filter(function(id){return G.acoes[id]==='nao'});
@@ -4574,7 +4645,7 @@ function g6Fim(){
     // o perfil é montado antes de gravar qualquer nota: se não passar em limpaPerfil, nada muda e o rascunho fica
     var perfil=limpaPerfil({v:1,pesos:p,origem:g6Afinar(G)?'resumo':'gosto6',feito_em:new Date().toISOString(),limites:G.limites,limFase:G.limFase,contexto:G.ctx,
       respostas:{procura:G.agora.procura,fase:temFase?G.agora.fase:'',resp:G.agora.resp,cenas:(G.cenas||[]).filter(function(c){return c&&c.esc>=0}).length,cartazes:ct,obras:(G.obras||[]).map(function(o){return o.id})},
-      pesosSemFase:temFase?pSem:null,frases:frases,nao:nao,ia:ia,base:g6Afinar(G)?G.base:null,afinado:g6Afinar(G)});
+      pesosSemFase:temFase?pSem:null,frases:frases,nao:nao,ia:iaF,base:g6Afinar(G)?G.base:null,afinado:g6Afinar(G)});
     if(!perfil){toast('Não consegui guardar o seu gosto; tente de novo.',false);return}
     // cartaz de saga: a resposta vale para o primeiro filme dela (o que a pessoa com certeza viu); "quero ver", para o primeiro ainda não visto
     function alvo(id){var r=AVPOR[id];return r&&r.saga?r.membros[0]:id}
@@ -4585,7 +4656,7 @@ function g6Fim(){
     Object.keys(G.acoes||{}).forEach(function(id){var a=G.acoes[id];if(!AVPOR[id])return;if(a==='quero'){var q=alvoQuero(id);if(q&&ST.notas[q]==null){ST.status[q]='quero';delete ST.naovi[q]}}else if(a==='vi'&&G.notasL[id])darNota(alvo(id),G.notasL[id])});
     var sv=(G.ctx.servicos||[]).map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[2]:''}).filter(Boolean);
     entraPessoa(perfil,sv);g6Limpa();
-    toast('Seu gosto ficou guardado neste aparelho. A página agora é a sua.',false);ir('inicio');
+    toast(ia?'A nossa IA juntou tudo, e o seu gosto ficou guardado neste aparelho. A página agora é a sua.':'Seu gosto ficou guardado neste aparelho. A página agora é a sua.',false);ir('inicio');
   }catch(e){console.error(e)}
 }
 (function(){
@@ -4598,7 +4669,7 @@ function g6Fim(){
         if(d.g6==='prox')return g6Avanca();if(d.g6==='pular')return g6Avanca();if(d.g6==='voltar')return g6Volta();
         if(d.g6==='continuar')return g6Render(true);if(d.g6==='denovo'){g6Limpa();g6Carrega();G6.tela=1;g6Guarda();return g6Render(true)}
         if(d.g6==='sair'){g6Guarda();ir(ST.perfil?'perfil':'comecar');return}
-        if(d.g6==='fim')return g6Fim();return}
+        if(d.g6==='fim')return g6FimIA(b);return}
       if(d.g6a!=null){toggleLista(G.agora.procura,d.g6a,2)}
       else if(d.g6f!=null){G.agora.fase=G.agora.fase===d.g6f?'':d.g6f;if(G.agora.fase!=='fim')G.agora.resp=''}
       else if(d.g6r!=null){G.agora.resp=d.g6r}
@@ -4636,8 +4707,8 @@ function g6Fim(){
 // "- a | b | c" das seções Amo, Gosto e Não gostei casam com o catálogo por casar(); as seções de temas, "o que
 // procuro", limites e "como eu assisto" viram pontos nos 13 pesos. Tudo passa por uma revisão linha a linha antes de
 // gravar. O texto colado não é guardado: só o que ela confirmar.
-var RI_PROMPT="Quero levar para o Telas, um app de filmes e séries, um resumo do que você sabe sobre mim COMO ESPECTADOR. O app vai usar isso para montar meu gosto e minhas primeiras indicações. Vou ler tudo antes de colar lá.\n\nDE ONDE TIRAR\n1. Use só: (a) o que está na sua memória salva sobre mim; (b) o que eu disse em conversas anteriores, se você tem acesso a elas; (c) o que eu responder nesta conversa.\n2. Se você consegue buscar nas nossas conversas antigas, busque por: filme, série, assisti, vi, maratonei, temporada, episódio, cinema, Netflix, Prime, Disney, Max, Globoplay, Apple TV, anime, novela, dorama, documentário, indicação, \"me recomenda\".\n3. Não use ideias gerais sobre \"pessoas como eu\" e não complete lacunas com palpites. Prefiro uma seção vazia a uma seção inventada.\n4. Marque a origem de cada item:\n   memória = está na sua memória salva\n   conversa AAAA-MM = eu disse numa conversa antiga (mês e ano, se souber; senão \"conversa ?\")\n   agora = eu disse nesta conversa\n   dedução = você deduziu de algo que eu disse (use pouco e diga de quê)\n5. Marque a certeza: alta, média ou baixa.\n\nO QUE DEIXAR DE FORA (nem resumido, nem disfarçado)\n- Nomes de pessoas. Use só a relação: \"parceira\", \"filho\", \"amigos\".\n- Saúde física ou mental, diagnósticos, terapia, remédios, gravidez, vícios.\n- A religião ou a crença que eu tenho, minha posição política, orientação sexual, identidade de gênero, cor ou etnia.\n- Dinheiro, endereço, empresa onde trabalho, documentos, telefones, e-mails e links.\n- Detalhes sobre crianças. Basta \"assisto com crianças: sim\" ou \"não\".\n- Testes de personalidade (MBTI, eneagrama, signo), estilo de apego ou qualquer análise psicológica de mim.\nSe o motivo de um gosto ou de um limite for um desses assuntos, escreva o gosto ou o limite SEM o motivo. Exemplo: \"evito cenas de hospital\", e não por quê.\nGostar de histórias SOBRE fé, política ou doença é gosto e pode entrar (\"gosto de filmes sobre fé e dúvida\"). O que eu creio ou tenho, não.\n\nSE VOCÊ SABE POUCO SOBRE MIM\nSe você tem menos de 5 filmes ou séries meus na memória ou nas conversas, diga isso em uma linha e, antes de escrever o resumo, me faça as perguntas abaixo, 4 por vez, em até três rodadas. Use minhas respostas com a origem \"agora\".\n1. Três filmes ou séries que você ama, e por quê em poucas palavras.\n2. Dois que você odiou ou largou no meio, e por quê.\n3. O que você revê, ou põe para descansar a cabeça.\n4. Uma fase da sua vida e o que você assistia nela.\n5. O que você não suporta ver na tela.\n6. Com quem você costuma assistir, e onde (serviços, TV, celular, cinema).\n7. Dublado ou legendado? Que idiomas você entende?\n8. Filme ou série? Curto ou longo? Um episódio por noite ou maratona?\n9. Final fechado ou aberto? Leve ou pesado? Realista ou fantasia?\n10. Alguma obra que todo mundo ama e você não?\n11. Algum país ou tipo de produção de que você gosta muito (coreana, anime, novela, documentário...)?\n12. O que você quer sentir quando escolhe algo para ver hoje em dia?\n\nNOTAS POR TEMA E POR TRAÇO (seções 10 e 11)\nDê uma nota de 0 a 10 para quanto cada tema e cada traço pesa no que eu escolho ver, a partir das obras e do que eu disse (não de ideias gerais). Nos temas, 0 = não me atrai, 5 = tanto faz, 10 = é o que eu mais procuro. Nos traços, 0 = evito, 5 = tanto faz, 10 = procuro muito. Use a escala inteira: se tudo der 7 ou 8, a nota não diz nada. Se não souber, escreva \"?\" no lugar da nota: prefiro \"?\" a um chute. Em cada linha, uma frase curta de porquê, com uma obra de exemplo quando houver.\n\nFORMATO DA RESPOSTA\nPortuguês do Brasil. Títulos como saíram no Brasil e, ao lado, o original. Entregue tudo DENTRO DE UM ÚNICO BLOCO DE CÓDIGO, seguindo exatamente o modelo abaixo. Nas linhas que começam com \"- \", mantenha os campos separados por \" | \". Campo que você não sabe: \"?\". Seção sem nada: escreva \"- nada\". No máximo 1.800 palavras.\n\n```\n# Perfil Telas v2\nassistente: (seu nome) | data: AAAA-MM-DD\nacesso: memória salva = sim/não | conversas antigas = sim/não/parcial | respostas de agora = sim/não\nconversas sobre filmes e séries que encontrei: (número aproximado ou ?)\n\n## 1. Amo\n- título no Brasil | título original | ano | filme/série | por quê (até 15 palavras) | origem | certeza\n(até 20 linhas, as mais fortes primeiro)\n\n## 2. Gosto\n- título no Brasil | título original | ano | filme/série | por quê | origem | certeza\n(até 20 linhas)\n\n## 3. Não gostei ou larguei\n- título no Brasil | título original | ano | filme/série | larguei: sim/não | por quê | origem | certeza\n(até 15 linhas)\n\n## 4. Temas que voltam\n- tema (ex.: família que se reencontra) | obras que mostram isso | origem | certeza\n(até 8 linhas)\n\n## 5. O que procuro numa história\n- tom: leve / equilibrado / pesado / tanto faz | origem | certeza\n- ritmo: lento / médio / rápido / tanto faz | origem | certeza\n- final: fechado / aberto / tanto faz | origem | certeza\n- trama: simples / com camadas / quebra-cabeça | origem | certeza\n- mundo: realista / fantasia ou ficção científica / os dois | origem | certeza\n- humor: muito / algum / pouco | origem | certeza\n- tensão e sustos: gosto / aguento / evito | origem | certeza\n- personagens que me prendem: (frase curta) | origem | certeza\n- outra coisa que procuro: (frase curta) | origem | certeza\n\n## 6. Fases e o que eu assistia\n- fase (ex.: adolescência, faculdade, pandemia, agora) | período aproximado | o que assistia | o que aquilo fazia por mim (companhia, escape, rir, chorar, aprender...) | origem | certeza\n(até 6 linhas, sem detalhes íntimos da fase)\n\n## 7. Limites\n- não suporto: (ex.: violência sexual, morte de animal, gore, terror com sustos, cenas de hospital, guerra, crueldade com criança, vergonha alheia) | evitar sempre / avisar antes | origem | certeza\n\n## 8. Como eu assisto\n- com quem: sozinho / parceiro(a) / família / amigos | crianças junto: sim/não | origem | certeza\n- onde: (serviços que assino; TV, celular, computador, cinema) | origem | certeza\n- quando e quanto: (ex.: um episódio por noite, maratona no fim de semana) | origem | certeza\n- duração: filme até 2h / tanto faz | série curta / longa / tanto faz | origem | certeza\n- para desligar a cabeça: (obras) | origem | certeza\n- revejo: (obras) | origem | certeza\n\n## 9. Idiomas\n- entendo: (idiomas) | prefiro: dublado / legendado / tanto faz | aberto a produções de: (países ou \"qualquer\") | origem | certeza\n\n## 10. Notas por tema\n- Busca (o sentido da vida, fé, as grandes perguntas) | nota 0 a 10 ou ? | por quê (até 15 palavras) | certeza\n- Travessia (viagem, estrada, recomeço, virar adulto) | nota | por quê | certeza\n- Terra (natureza, bichos, paisagem, povos da floresta, o corpo) | nota | por quê | certeza\n- Amor (amor, família, amizade, perda e saudade) | nota | por quê | certeza\n- Sombra (a cabeça das pessoas, crise, segredos, o lado escuro) | nota | por quê | certeza\n- Mesa (turma, comunidade, comida, gente cuidando de gente) | nota | por quê | certeza\n- Ofício (trabalho, talento, criar algo, ser muito bom no que faz) | nota | por quê | certeza\n- Humanidade (poder, política, injustiça, guerra, sociedade) | nota | por quê | certeza\n- Encanto (magia, mitos, mundos inventados, o épico) | nota | por quê | certeza\n\n## 11. Nível e traços\n- Nível (densidade: obras que pedem atenção e ficam na cabeça; 0 = prefiro o leve, de passar o tempo) | nota 0 a 10 ou ? | por quê | certeza\n- Riso (comédia, sitcom, sátira, paródia) | nota | por quê | certeza\n- Tensão (ação, suspense, terror, policial, espionagem) | nota | por quê | certeza\n- Desenho (animação e anime) | nota | por quê | certeza\n\n## 12. Meu gosto em palavras\n(um parágrafo de 3 a 6 frases curtas, falando comigo: \"Você procura...\". Só sobre o que eu gosto de ver e por quê, com obras de exemplo. Sem rótulo de personalidade, sem diagnóstico e sem nada da lista do que deixar de fora. Escreva em linhas normais, sem \"- \".)\n\n## 13. O que eu não sei\n- (o que você não sabe sobre o meu gosto e valeria perguntar; até 6 linhas)\n\n## 14. Conferência\n- itens por origem: memória N | conversa N | agora N | dedução N\n- deixei de fora dados sensíveis: sim\n- completo: sim / não, há mais que não coube\n```\n\nDepois do bloco, escreva uma única frase dizendo se isto é tudo o que você tem sobre mim ou se ficou algo de fora.";
-var RI=null;
+var RI_PROMPT=("Quero levar para o Telas, um app de filmes e séries, um resumo do que você sabe sobre mim COMO ESPECTADOR. O app vai usar isso para montar meu gosto e minhas primeiras indicações. Vou ler tudo antes de colar lá.\n\nDE ONDE TIRAR\n1. Use só: (a) o que está na sua memória salva sobre mim; (b) o que eu disse em conversas anteriores, se você tem acesso a elas; (c) o que eu responder nesta conversa.\n2. Se você consegue buscar nas nossas conversas antigas, busque por: filme, série, assisti, vi, maratonei, temporada, episódio, cinema, Netflix, Prime, Disney, Max, Globoplay, Apple TV, anime, novela, dorama, documentário, indicação, \"me recomenda\".\n3. Não use ideias gerais sobre \"pessoas como eu\" e não complete lacunas com palpites. Prefiro uma seção vazia a uma seção inventada.\n4. Marque a origem de cada item:\n   memória = está na sua memória salva\n   conversa AAAA-MM = eu disse numa conversa antiga (mês e ano, se souber; senão \"conversa ?\")\n   agora = eu disse nesta conversa\n   dedução = você deduziu de algo que eu disse (use pouco e diga de quê)\n5. Marque a certeza: alta, média ou baixa.\n\nO QUE DEIXAR DE FORA (nem resumido, nem disfarçado)\n- Nomes de pessoas. Use só a relação: \"parceira\", \"filho\", \"amigos\".\n- Saúde física ou mental, diagnósticos, terapia, remédios, gravidez, vícios.\n- A religião ou a crença que eu tenho, minha posição política, orientação sexual, identidade de gênero, cor ou etnia.\n- Dinheiro, endereço, empresa onde trabalho, documentos, telefones, e-mails e links.\n- Detalhes sobre crianças. Basta \"assisto com crianças: sim\" ou \"não\".\n- Testes de personalidade (MBTI, eneagrama, signo), estilo de apego ou qualquer análise psicológica de mim.\nSe o motivo de um gosto ou de um limite for um desses assuntos, escreva o gosto ou o limite SEM o motivo. Exemplo: \"evito cenas de hospital\", e não por quê.\nGostar de histórias SOBRE fé, política ou doença é gosto e pode entrar (\"gosto de filmes sobre fé e dúvida\"). O que eu creio ou tenho, não.\n\nSE VOCÊ SABE POUCO SOBRE MIM\nSe você tem menos de 5 filmes ou séries meus na memória ou nas conversas, diga isso em uma linha e, antes de escrever o resumo, me faça as perguntas abaixo, 4 por vez, em até três rodadas. Use minhas respostas com a origem \"agora\".\n1. Três filmes ou séries que você ama, e por quê em poucas palavras.\n2. Dois que você odiou ou largou no meio, e por quê.\n3. O que você revê, ou põe para descansar a cabeça.\n4. Uma fase da sua vida e o que você assistia nela.\n5. O que você não suporta ver na tela.\n6. Com quem você costuma assistir, e onde (serviços, TV, celular, cinema).\n7. Dublado ou legendado? Que idiomas você entende?\n8. Filme ou série? Curto ou longo? Um episódio por noite ou maratona?\n9. Final fechado ou aberto? Leve ou pesado? Realista ou fantasia?\n10. Alguma obra que todo mundo ama e você não?\n11. Algum país ou tipo de produção de que você gosta muito (coreana, anime, novela, documentário...)?\n12. O que você quer sentir quando escolhe algo para ver hoje em dia?\n\nNOTAS POR TEMA E POR TRAÇO (seções 10 e 11)\nDê uma nota de 0 a 10 para quanto cada tema e cada traço pesa no que eu escolho ver, a partir das obras e do que eu disse (não de ideias gerais). Nos temas, 0 = não me atrai, 5 = tanto faz, 10 = é o que eu mais procuro. Nos traços, 0 = evito, 5 = tanto faz, 10 = procuro muito. Use a escala inteira: se tudo der 7 ou 8, a nota não diz nada. Se não souber, escreva \"?\" no lugar da nota: prefiro \"?\" a um chute. Em cada linha, uma frase curta de porquê, com uma obra de exemplo quando houver.\n\nFORMATO DA RESPOSTA\nPortuguês do Brasil. Títulos como saíram no Brasil e, ao lado, o original. Entregue tudo DENTRO DE UM ÚNICO BLOCO DE CÓDIGO, seguindo exatamente o modelo abaixo. Nas linhas que começam com \"- \", mantenha os campos separados por \" | \". Campo que você não sabe: \"?\". Seção sem nada: escreva \"- nada\". No máximo 1.800 palavras.\n\n```\n# Perfil Telas v2\nassistente: (seu nome) | data: AAAA-MM-DD\nacesso: memória salva = sim/não | conversas antigas = sim/não/parcial | respostas de agora = sim/não\nconversas sobre filmes e séries que encontrei: (número aproximado ou ?)\n\n## 1. Amo\n- título no Brasil | título original | ano | filme/série | por quê (até 15 palavras) | origem | certeza\n(até 20 linhas, as mais fortes primeiro)\n\n## 2. Gosto\n- título no Brasil | título original | ano | filme/série | por quê | origem | certeza\n(até 20 linhas)\n\n## 3. Não gostei ou larguei\n- título no Brasil | título original | ano | filme/série | larguei: sim/não | por quê | origem | certeza\n(até 15 linhas)\n\n## 4. Temas que voltam\n- tema (ex.: família que se reencontra) | obras que mostram isso | origem | certeza\n(até 8 linhas)\n\n## 5. O que procuro numa história\n- tom: leve / equilibrado / pesado / tanto faz | origem | certeza\n- ritmo: lento / médio / rápido / tanto faz | origem | certeza\n- final: fechado / aberto / tanto faz | origem | certeza\n- trama: simples / com camadas / quebra-cabeça | origem | certeza\n- mundo: realista / fantasia ou ficção científica / os dois | origem | certeza\n- humor: muito / algum / pouco | origem | certeza\n- tensão e sustos: gosto / aguento / evito | origem | certeza\n- personagens que me prendem: (frase curta) | origem | certeza\n- outra coisa que procuro: (frase curta) | origem | certeza\n\n## 6. Fases e o que eu assistia\n- fase (ex.: adolescência, faculdade, pandemia, agora) | período aproximado | o que assistia | o que aquilo fazia por mim (companhia, escape, rir, chorar, aprender...) | origem | certeza\n(até 6 linhas, sem detalhes íntimos da fase)\n\n## 7. Limites\n- não suporto: (ex.: violência sexual, morte de animal, gore, terror com sustos, cenas de hospital, guerra, crueldade com criança, vergonha alheia) | evitar sempre / avisar antes | origem | certeza\n\n## 8. Como eu assisto\n- com quem: sozinho / parceiro(a) / família / amigos | crianças junto: sim/não | origem | certeza\n- onde: (serviços que assino; TV, celular, computador, cinema) | origem | certeza\n- quando e quanto: (ex.: um episódio por noite, maratona no fim de semana) | origem | certeza\n- duração: filme até 2h / tanto faz | série curta / longa / tanto faz | origem | certeza\n- para desligar a cabeça: (obras) | origem | certeza\n- revejo: (obras) | origem | certeza\n\n## 9. Idiomas\n- entendo: (idiomas) | prefiro: dublado / legendado / tanto faz | aberto a produções de: (países ou \"qualquer\") | origem | certeza\n\n## 10. Notas por tema\n- Busca (o sentido da vida, fé, as grandes perguntas) | nota 0 a 10 ou ? | por quê (até 15 palavras) | certeza\n- Travessia (viagem, estrada, recomeço, virar adulto) | nota | por quê | certeza\n- Terra (natureza, bichos, paisagem, povos da floresta, o corpo) | nota | por quê | certeza\n- Amor (amor, família, amizade, perda e saudade) | nota | por quê | certeza\n- Sombra (a cabeça das pessoas, crise, segredos, o lado escuro) | nota | por quê | certeza\n- Mesa (turma, comunidade, comida, gente cuidando de gente) | nota | por quê | certeza\n- Ofício (trabalho, talento, criar algo, ser muito bom no que faz) | nota | por quê | certeza\n- Humanidade (poder, política, injustiça, guerra, sociedade) | nota | por quê | certeza\n- Encanto (magia, mitos, mundos inventados, o épico) | nota | por quê | certeza\n\n## 11. Nível e traços\n- Nível (densidade: obras que pedem atenção e ficam na cabeça; 0 = prefiro o leve, de passar o tempo) | nota 0 a 10 ou ? | por quê | certeza\n- Riso (comédia, sitcom, sátira, paródia) | nota | por quê | certeza\n- Tensão (ação, suspense, terror, policial, espionagem) | nota | por quê | certeza\n- Desenho (animação e anime) | nota | por quê | certeza\n\n## 12. Meu gosto em palavras\n(um parágrafo de 3 a 6 frases curtas, falando comigo: \"Você procura...\". Só sobre o que eu gosto de ver e por quê, com obras de exemplo. Sem rótulo de personalidade, sem diagnóstico e sem nada da lista do que deixar de fora. Escreva em linhas normais, sem \"- \".)\n\n## 13. O que eu não sei\n- (o que você não sabe sobre o meu gosto e valeria perguntar; até 6 linhas)\n\n## 14. Conferência\n- itens por origem: memória N | conversa N | agora N | dedução N\n- deixei de fora dados sensíveis: sim\n- completo: sim / não, há mais que não coube\n```\n\nDepois do bloco, escreva uma única frase dizendo se isto é tudo o que você tem sobre mim ou se ficou algo de fora.").replace(/o Telas, um app/,'o '+APP+', um app').replace(/# Perfil Telas v2/g,'# Perfil '+APP+' v2');
+var RI=null,RE_PERFIL=/# Perfil (Telas|Whatch)\b/;
 // serviços como podem aparecer no "onde" do resumo (Apple TV sem o "+", "Prime" sozinho, HBO)
 var SERV_RE={netflix:/netflix/,prime:/prime|amazon/,disney:/disney/,max:/\bmax\b|hbo/,globo:/globo/,apple:/apple\s*tv/,param:/paramount/,mubi:/mubi/};
 var RI_KW=[[/fam[ií]lia|amor|romance|casal|perda|luto|saudade|v[ií]nculo|reencontro/,{amor:3}],[/amizade|turma|comunidade|cuidado|comida|cozinha|bairro/,{mesa:3}],[/viagem|estrada|caminho|mudan[çc]a|recome[çc]o|passagem|crescer/,{travessia:3}],
@@ -4671,9 +4742,9 @@ function riFrases(t){
 function riAnalisa(txt){
   indexa();
   txt=String(txt||'').slice(0,30000).replace(/^﻿/,'');
-  var i=txt.indexOf('# Perfil Telas');if(i<0)return {erro:'Não achei "# Perfil Telas" no texto. Cole a resposta inteira do assistente: o bloco que começa com "# Perfil Telas v2" (ou v1).'};
+  var i=txt.search(RE_PERFIL);if(i<0)return {erro:'Não achei "# Perfil '+APP+'" no texto. Cole a resposta inteira do assistente: o bloco que começa com "# Perfil '+APP+' v2".'};
   txt=riLimpa(txt.slice(i));var fim=txt.indexOf('```');if(fim>0)txt=txt.slice(0,fim);
-  var sec=0,kind='',par=[],R={titulos:[],sem:[],q:zeros(N13),t:zeros(N13),qk:zeros(N13),tk:zeros(N13),notasIA:[],limites:{},semFiltro:[],ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},desligar:[],repetidos:[],assistente:'',sec5:false,versao:/^# Perfil Telas v2/.test(txt)?2:1};
+  var sec=0,kind='',par=[],R={titulos:[],sem:[],q:zeros(N13),t:zeros(N13),qk:zeros(N13),tk:zeros(N13),notasIA:[],limites:{},semFiltro:[],ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},desligar:[],repetidos:[],assistente:'',sec5:false,versao:/^# Perfil (Telas|Whatch) v2/.test(txt)?2:1};
   for(var e=0;e<N13;e++)R.notasIA.push(null);
   // os pontos das seções 4 e 5 (palavras-chave) ficam à parte: com as notas por tema da IA, valem a metade
   function add(o){Object.keys(o).forEach(function(k){var ix=EIX[k];if(ix==null)return;R.qk[ix]+=o[k];R.tk[ix]++})}
@@ -4711,6 +4782,12 @@ function riAnalisa(txt){
       else if(/^revejo/.test(k8)){R.repetidos=casaLista(f[0].split(':').slice(1).join(':'))}}
   });
   R.fraseIA=riFrases(riLimpa(par.join(' ')));R.iaOff={};
+  var er=riCalcula(R);if(er)return er;
+  R.gravLim=true;R.gravCtx=true;R.gravCol=true;
+  return R;
+}
+// os 13 pesos a partir do que foi lido (notas por eixo, palavras-chave e títulos): roda na leitura e de novo quando a nossa IA responde
+function riCalcula(R){
   // As notas da IA por tema e por traço são o ponto de partida dos 13 pesos (o prior): cada tema conta pela distância da média
   // das notas de tema dela (com 3 ou mais; senão, de 5), cada traço pela distância de 5; 1 ponto de nota = 2 pontos do modelo,
   // menos com certeza média ou baixa. A certeza também dá a firmeza do prior (toques).
@@ -4719,6 +4796,7 @@ function riAnalisa(txt){
   var qa=zeros(N13),ta=zeros(N13);
   R.notasIA.forEach(function(x,ix){if(!x)return;var c=riCert(x.cert);qa[ix]=(x.v-(ix<9?mt:5))*2*c.m;ta[ix]=c.t});
   var fk=R.nIA>=5?0.5:1;
+  R.q=zeros(N13);R.t=zeros(N13);
   for(var j=0;j<N13;j++){R.q[j]=qa[j]+R.qk[j]*fk;R.t[j]=ta[j]+R.tk[j]}
   if(!R.titulos.length&&!R.sem.length&&!R.t.some(function(v){return v})&&!R.fraseIA.length)return {erro:'Não encontrei as seções do resumo (Amo, Gosto, Não gostei, Notas por tema…). Confira se colou o bloco inteiro.'};
   // Com as notas por tema (5 ou mais), a IA já resumiu o que os títulos dizem: eles entram mais leves (×0,15) e só corrigem o desenho
@@ -4727,8 +4805,31 @@ function riAnalisa(txt){
   R.obs=R.titulos.filter(function(x){return AVPOR[x.id]&&AVPOR[x.id].x}).map(function(x){return {id:x.id,y:x.nota===90?1:x.nota===75?0.5:-1,peso:(x.fraco?0.5:1)*R.fobs}});
   var m=g6Ajusta(R.q,R.t,R.obs.map(function(o){return {x:AVPOR[o.id].x,y:o.y,peso:o.peso}}));R.m=m;R.pesos=g6PesosDe(m.w);R.frases=g6Frases(R.pesos,{limites:R.limites,limFase:false}).map(function(f){return f.h});
   if(semSinal(R.pesos))return {erro:'O resumo não traz nada que desenhe um gosto (nenhum título conhecido aqui, nem notas por tema, nem o que você procura). Confira se colou o bloco inteiro, ou responda sem IA.'};
-  R.gravLim=true;R.gravCtx=true;R.gravCol=true;
-  return R;
+  R.lista=null;return null;
+}
+// ---------- A NOSSA IA (api/whatch-gosto) ----------
+// Duas chamadas, as duas opcionais: sem chave, sem rede ou acima do limite, a página segue só com a regra.
+// 'resumo': lê o bloco colado e devolve as notas de 0 a 10 dos 13 eixos e o gosto em palavras (o texto não é guardado em lugar nenhum).
+// 'final': junta o resumo com as respostas do caminho e devolve os 13 pesos, que entram na média com os da regra.
+function iaGosto(corpo,ms){
+  return new Promise(function(ok){
+    var feito=false,fim=function(v){if(!feito){feito=true;ok(v)}};
+    setTimeout(function(){fim(null)},ms||60000);
+    try{fetch('/api/whatch-gosto',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(corpo)})
+      .then(function(r){return r.ok?r.json():null}).then(fim,function(){fim(null)})}catch(e){fim(null)}
+  });
+}
+function riBloco(t){t=String(t||'').slice(0,30000);var i=t.search(RE_PERFIL);if(i<0)return '';t=riLimpa(t.slice(i));var f=t.indexOf('```');return f>0?t.slice(0,f):t}
+// a leitura da IA entra por cima da regra: as notas dela substituem as do resumo (ela leu tudo, inclusive as obras), e o parágrafo
+// dela só entra quando o resumo não trouxe o "meu gosto em palavras"
+function riAplicaIA(R,j){
+  if(!R||R.erro||!j||!Array.isArray(j.notas)||j.notas.length!==N13)return false;
+  var antes={notasIA:R.notasIA.slice(),fraseIA:R.fraseIA,iaOff:R.iaOff,q:R.q,t:R.t,obs:R.obs,m:R.m,pesos:R.pesos,frases:R.frases,nIA:R.nIA,fobs:R.fobs};
+  var n=0;j.notas.forEach(function(x,ix){if(x&&typeof x.v==='number'&&isFinite(x.v)){R.notasIA[ix]={v:Math.max(0,Math.min(10,x.v)),por:String(x.por||'').slice(0,160),cert:String(x.cert||'media')};n++}});
+  if(!n)return false;
+  if(!R.fraseIA.length&&j.palavras){R.fraseIA=riFrases(riLimpa(j.palavras));R.iaOff={};R.fraseNossa=true}
+  var er=riCalcula(R);if(er){for(var k in antes)R[k]=antes[k];return false}
+  R.lidoIA=true;return true;
 }
 // o que o resumo não trouxe e o caminho curto pode perguntar
 function riFalta(R){var f=[];if(R.titulos.length<5)f.push(R.titulos.length?'só '+R.titulos.length+' título'+(R.titulos.length>1?'s':'')+' conhecido'+(R.titulos.length>1?'s':'')+' aqui':'nenhum título conhecido aqui');
@@ -4751,21 +4852,23 @@ function riBotoes(){return '<div class="row"><button class="btn pri t44" type="b
 function riRender(){
   var box=el('ri');if(!box)return;
   var topo='<div class="box"><h3>1. Copie o pedido</h3><p>Cole numa conversa normal com o seu assistente (ChatGPT, Claude, Gemini…). Se usar mais de um, escolha o que mais conversou com você sobre filmes e séries.</p><pre class="ri-prompt" id="ri-prompt" tabindex="0">'+esc(RI_PROMPT)+'</pre><div class="row" style="margin-top:10px"><button class="btn pri t44" type="button" id="ri-copiar">Copiar o pedido</button></div></div>';
-  if(!RI){box.innerHTML=topo+'<div class="box"><h3>2. Cole a resposta aqui</h3><p>O bloco que começa com "# Perfil Telas" (pode colar a mensagem inteira). Até 30 mil caracteres.</p><textarea id="ri-txt" maxlength="30000" placeholder="# Perfil Telas v2&#10;assistente: … | data: …" aria-label="Resposta do assistente"></textarea><div class="row" style="margin-top:10px"><button class="btn pri t44" type="button" id="ri-ler">Ler o resumo</button></div><p class="note" style="margin-top:10px">A leitura é feita aqui, no navegador. O texto não é enviado nem guardado; só o que você aprovar na revisão. Depois, 3 minutos de cenas e cartazes afinam o que a IA disse.</p>'+
+  if(!RI){box.innerHTML=topo+'<div class="box"><h3>2. Cole a resposta aqui</h3><p>O bloco que começa com "# Perfil '+APP+'" (pode colar a mensagem inteira). Até 30 mil caracteres.</p><textarea id="ri-txt" maxlength="30000" placeholder="# Perfil '+APP+' v2&#10;assistente: … | data: …" aria-label="Resposta do assistente"></textarea><div class="row" style="margin-top:10px"><button class="btn pri t44" type="button" id="ri-ler">Ler o resumo</button></div><p class="note" style="margin-top:10px">O texto é lido aqui e pela nossa IA (o Claude, da Anthropic), só para montar o seu gosto: não fica guardado em lugar nenhum. Fica neste aparelho só o que você aprovar na revisão. Depois, 3 minutos de cenas e cartazes afinam o que a IA disse.</p>'+
     '<p class="note" style="margin-top:6px">Não usa IA? <button class="lnk" type="button" data-go="gosto">Responda sem IA (6 minutos)</button></p></div>';return}
   if(RI.erro){box.innerHTML=topo+'<div class="box"><p class="err">'+esc(RI.erro)+'</p><div class="row"><button class="btn t44" type="button" id="ri-cancel">Colar de novo</button></div></div>';return}
   if(RI.feito){var fl=RI.falta||[];box.innerHTML='<div class="box"><h3>'+esc(RI.feito)+'</h3><p>A página agora usa o seu gosto. Dá para ver, refazer ou apagar em Mais › Seu gosto.</p>'+
     (fl.length?'<p class="gaviso">O resumo não trouxe '+esc(listaPt(fl))+'. Em 3 minutos o caminho curto pergunta só o que falta, mais umas cenas e cartazes para afinar.</p>':'<p>Quer afinar? Em 3 minutos, cenas e cartazes escolhidos para tirar as dúvidas que a sua IA deixou.</p>')+
     '<div class="row"><button class="btn pri t44" type="button" data-riafinar="1">Afinar em 3 minutos</button><button class="btn t44" type="button" data-go="inicio">Ir para o Início</button><button class="btn t44" type="button" data-go="perfil">Ver o meu gosto</button></div></div>';return}
   var n=RI.titulos.filter(function(x){return x.marcado}).length,falta=riFalta(RI);
+  if(RI.lendoIA){box.innerHTML='<div class="box ri-lendo" role="status"><h3>A nossa IA está lendo o seu resumo</h3><p>Uns 20 segundos. Ela dá uma nota a cada tema e traço a partir de tudo o que a sua IA contou; depois você revisa linha a linha.</p><div class="ri-barra" aria-hidden="true"><i></i></div></div>';return}
   var h='<div class="box"><h3>O que entendemos'+(RI.assistente?' (do '+esc(RI.assistente)+')':'')+'</h3><p>Revise linha a linha. Só o que estiver marcado é gravado; o texto colado não fica guardado. Depois de gravar, 3 minutos de cenas e cartazes afinam o que a IA disse (dá para pular).</p>'+
+    (RI.semIA?'<p class="note">A nossa IA não respondeu agora; a leitura abaixo é só por regra. Dá para gravar assim mesmo.</p>':'')+
     (falta.length?'<p class="gaviso">O resumo não trouxe '+esc(listaPt(falta))+': o caminho curto pergunta isso também.</p>':'')+riBotoes()+'</div>';
   // o gosto em palavras: o parágrafo da IA, frase a frase ("não é bem eu" tira a frase); sem ele, as frases por regra
   var fi=RI.fraseIA||[];
-  h+='<div class="box"><h3>Seu gosto em palavras</h3>'+(fi.length?'<p>Pela sua IA. Se uma frase não for bem você, toque em "não é bem eu": ela sai.</p><ul class="frases">'+fi.map(function(f,i){var off=!!RI.iaOff[i];
+  h+='<div class="box"><h3>Seu gosto em palavras</h3>'+(fi.length?'<p>'+(RI.fraseNossa?'Pela nossa IA, a partir do seu resumo.':'Pela sua IA.')+' Se uma frase não for bem você, toque em "não é bem eu": ela sai.</p><ul class="frases">'+fi.map(function(f,i){var off=!!RI.iaOff[i];
       return '<li class="frase'+(off?' off':'')+'"><p>'+esc(f)+'</p><button class="lnk" type="button" data-riia="'+i+'" aria-pressed="'+off+'">'+(off?'desfazer':'não é bem eu')+'</button></li>'}).join('')+'</ul>':
     '<p>Pelos títulos citados e pelo que você disse que procura.</p><ul class="perfil-l">'+RI.frases.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul>')+
-    '<p class="note" style="margin-top:10px">'+(RI.nIA?'Os 13 pesos partem das notas que a IA deu a '+RI.nIA+' de 13 temas e traços, ajustadas pelos títulos citados.':'O resumo não trouxe notas por tema (é do formato antigo, ou a IA não soube): os pesos saem dos títulos citados e do que você procura.')+'</p>'+pesosBarras(RI.pesos)+'</div>';
+    '<p class="note" style="margin-top:10px">'+(RI.nIA?(RI.lidoIA?'A nossa IA leu o resumo inteiro e deu nota a '+RI.nIA+' de 13 temas e traços; os 13 pesos partem dessas notas, ajustadas pelos títulos citados.':'Os 13 pesos partem das notas que a IA deu a '+RI.nIA+' de 13 temas e traços, ajustadas pelos títulos citados.'):'O resumo não trouxe notas por tema (é do formato antigo, ou a IA não soube): os pesos saem dos títulos citados e do que você procura.')+'</p>'+pesosBarras(RI.pesos)+'</div>';
   h+='<div class="box"><h3>'+RI.titulos.length+' título'+(RI.titulos.length===1?'':'s')+' casaram'+(RI.sem.length?' · '+RI.sem.length+' sem par':'')+'</h3><p>Amo vira nota 90; Gosto, 75; Não gostei, 35; "larguei" vira o status Larguei, sem nota. Linhas de dedução ou com certeza baixa vêm desmarcadas, como as que já têm nota aqui.</p>'+
     (RI.titulos.length?'<ul class="impl">'+RI.titulos.map(function(x,i){var a=AVPOR[x.id];
       return '<li><label><input type="checkbox" data-rii="'+i+'"'+(x.marcado?' checked':'')+'><span><b>'+esc(a?a.it.titulo:x.id)+'</b> ('+esc([a&&a.ano||'',a?rotTipo(a.tipo).toLowerCase():''].filter(Boolean).join(', '))+') · '+(x.nota!=null?'nota <b class="num">'+x.nota+'</b>':'larguei')+
@@ -4837,7 +4940,11 @@ function riAfinar(){
     p.addEventListener('click',function(e){
       var t=e.target;
       if(t.closest('#ri-copiar')){var b=t.closest('#ri-copiar');try{navigator.clipboard.writeText(RI_PROMPT).then(function(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar o pedido'},1600)},function(){riSeleciona(b)})}catch(err){riSeleciona(b)}return}
-      if(t.closest('#ri-ler')){if(!D||!AVI.length){toast('A lista ainda está carregando; tente de novo em instantes.',false);return}var ta=el('ri-txt');try{RI=riAnalisa(ta?ta.value:'')}catch(err){console.error(err);RI={erro:'Não consegui ler esse texto.'}}if(ta)ta.value='';riRender();try{window.scrollTo(0,0)}catch(err){}return}
+      if(t.closest('#ri-ler')){if(!D||!AVI.length){toast('A lista ainda está carregando; tente de novo em instantes.',false);return}var ta=el('ri-txt'),bruto=ta?ta.value:'';try{RI=riAnalisa(bruto)}catch(err){console.error(err);RI={erro:'Não consegui ler esse texto.'}}if(ta)ta.value='';
+        // a regra já leu; a nossa IA lê de novo e, se responder, refaz os pesos. O texto vai só nesta chamada e não fica guardado.
+        if(RI&&!RI.erro){var R0=RI,bl=riBloco(bruto);bruto='';R0.lendoIA=true;riRender();try{window.scrollTo(0,0)}catch(err){}
+          iaGosto({modo:'resumo',texto:bl},60000).then(function(j){bl='';R0.lendoIA=false;if(!riAplicaIA(R0,j))R0.semIA=true;if(RI===R0)riRender()});return}
+        riRender();try{window.scrollTo(0,0)}catch(err){}return}
       if(t.closest('#ri-cancel')){RI=null;riRender();return}
       if(t.closest('[data-riok]')){riGrava(t.closest('[data-riok]').dataset.riok);return}
       if(t.closest('[data-riafinar]')){riAfinar();return}
@@ -4853,6 +4960,8 @@ function riAfinar(){
 // sem clipboard (http, permissão negada): seleciona o bloco para a pessoa copiar com o toque longo ou Ctrl+C
 function riSeleciona(b){try{var pre=el('ri-prompt'),r=document.createRange();r.selectNodeContents(pre);var s=window.getSelection();s.removeAllRanges();s.addRange(r);pre.focus();b.textContent='Selecionado: copie';setTimeout(function(){b.textContent='Copiar o pedido'},2500)}catch(e){}}
 
+// no Whatch a página abre em "Por onde começar?" antes de as portas (IC_PORTA) existirem: desenha de novo aqui
+try{if(ABA==='comecar')renderComecar()}catch(e){console.error(e)}
 load();
 </script>
 </body>

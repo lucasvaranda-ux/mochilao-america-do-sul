@@ -86,11 +86,57 @@
           "value": "public, max-age=3600"
         }
       ]
+    },
+    {
+      "source": "/whatch/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/whatch/manifest.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json; charset=utf-8"
+        }
+      ]
     }
   ],
   "functions": {
     "api/telas-perguntar.mjs": {
       "maxDuration": 300
+    },
+    "api/whatch-gosto.mjs": {
+      "maxDuration": 60
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/(index|peru|telas)(\\.html)?",
+      "has": [
+        {
+          "type": "host",
+          "value": "(whatch|whattowatch)(\\.madeinbr\\.app|[a-z0-9-]*\\.vercel\\.app)"
+        }
+      ],
+      "destination": "/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(whatch|whattowatch)(\\.madeinbr\\.app|[a-z0-9-]*\\.vercel\\.app)"
+        }
+      ],
+      "destination": "/telas"
+    }
+  ]
 }
