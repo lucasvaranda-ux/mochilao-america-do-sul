@@ -171,7 +171,8 @@ export function coletarTitulos(dados, catalogo) {
     if (!it || typeof it !== 'object' || Array.isArray(it)) return '';
     const id = idDe(it);
     if (Array.isArray(it.filmes) && it.filmes.length) {
-      const filhos = it.filmes.map(poe).filter(Boolean);
+      // a saga do catálogo (catalogo.json > sagas) lista os filmes pelo id; a de dados.json > extras, como objetos
+      const filhos = it.filmes.map(f => (typeof f === 'string' ? f.trim() : poe(f))).filter(Boolean);
       if (id && filhos.length && !sagas.has(id) && !normImdb(it.imdb_id)) sagas.set(id, filhos);
       if (!normImdb(it.imdb_id)) return id; // a saga em si não tem IMDb: o cartaz vem do 1º filme
     }
@@ -191,6 +192,7 @@ export function coletarTitulos(dados, catalogo) {
       doCatalogo = Object.entries(catalogo.itens).map(([k, v]) => (v && typeof v === 'object' && !Array.isArray(v) ? { ...v, id: v.id ?? k } : null));
     }
     for (const k of ['filmes', 'series', 'extras']) doCatalogo = doCatalogo.concat(lista(catalogo[k]));
+    doCatalogo = doCatalogo.concat(lista(catalogo.sagas)); // depois dos itens: os filmes já estão em ids
   }
   doCatalogo.forEach(poe);
   for (const [s] of sagas) if (ids.has(s)) sagas.delete(s);
