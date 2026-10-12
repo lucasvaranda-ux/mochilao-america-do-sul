@@ -3030,10 +3030,12 @@ function mediaBloco(tit,l){
 function miniCard(id,o){
   // cartão compacto: sugestões das coleções e "pode ser a sua cara"
   var a=achar(id);if(!a)return '';var it=a.it,r=AVPOR[id],n=ST.notas[id];
-  var meta=[anoN(it.ano)||'',it.criadores||it.autor||'',a.tipo==='serie'?'Série':a.tipo==='saga'?'Saga':'Filme'].filter(Boolean).map(esc).join(' · ');
+  var meta=[a.tipo==='saga'?(it.anos||it.ano||''):(anoN(it.ano)||''),it.criadores||it.autor||'',a.tipo==='serie'?'Série':a.tipo==='saga'?'Saga · '+(it.filmes||[]).length+' filmes':'Filme'].filter(Boolean).map(esc).join(' · ');
   var aberto=o.aberto&&n==null,acts=[];
   if(o.col)acts.push('<button class="btn pri" data-sput="1">Pôr em '+(o.col==='desligar'?'Desligar':'Repetidos')+'</button>');
-  acts.push('<button class="btn" data-sjv="1" aria-expanded="'+!!o.aberto+'">'+(n!=null?'Mudar nota':o.acomp?'Dar nota':'Já vi')+'</button>');
+  // saga: a nota é de cada filme, na folha dela
+  if(a.tipo==='saga')acts.push('<button class="btn" type="button" data-open="'+esc(id)+'">Ver os '+(it.filmes||[]).length+' filmes</button>');
+  else acts.push('<button class="btn" data-sjv="1" aria-expanded="'+!!o.aberto+'">'+(n!=null?'Mudar nota':o.acomp?'Dar nota':'Já vi')+'</button>');
   if(o.col)acts.push('<button class="btn" data-snp="1">Não é pra mim</button>');
   else acts.push('<button class="btn" data-sqv="1" aria-pressed="'+(ST.status[id]==='quero')+'">Quero ver</button>');
   var pr=n!=null&&+n>=5?Math.max(1,Math.min(10,Math.round(+n/10))):0,nb='';
@@ -3186,7 +3188,9 @@ function sugAuto(col,usados){
     if(!v&&!g.length)return null;
     return {id:id,titulo:a.it.titulo,c:v&&MU13?centra13(v):null,g:g,anim:RE_ANIM.test(g.join(' ')),fam:RE_FAM.test(g.join(' ')),tipo:a.tipo==='serie'?'serie':'filme'}}).filter(Boolean);
   if(!membros.length||!MU13)return {lista:[],amados:[]};
-  var pool=AVI.filter(function(r){return r.x&&!usados[r.id]&&na.indexOf(r.id)<0&&oc.indexOf(r.id)<0&&!excl[r.id]&&(keep[r.id]||!ruim(r.id))&&!bloqueado(r.it)&&
+  // AVG: as sagas entram como um cartão; uma saga com algum filme já na coleção fica de fora
+  var pool=(AVG.length?AVG:AVI).filter(function(r){return r.x&&!usados[r.id]&&na.indexOf(r.id)<0&&oc.indexOf(r.id)<0&&!excl[r.id]&&(keep[r.id]||!ruim(r.id))&&!bloqueado(r.it)&&
+    !(r.saga&&r.membros.some(function(m){return na.indexOf(m)>-1||excl[m]}))&&
     (!des||r.gen.some(function(g){return RE_LEVE.test(g)}))});
   function ponto(m,r,c){
     var gr=r.gen.map(minus),sh=gr.filter(function(x){return m.g.indexOf(x)>-1}),G=sh.length/Math.max(m.g.length,gr.length,1);
@@ -3221,10 +3225,12 @@ function sugLista(col){
   var na=colItens(col),oc=ocultas(col),keep=SUGKEEP[col],usados={},fixas=[];
   // as sugestões fixas do catálogo se ligam às coleções do Lucas: no modo pessoa só valem as automáticas
   ((CAT&&!ST.perfil&&CAT.sugestoes&&CAT.sugestoes[col])||[]).forEach(function(s){
-    if(!s||typeof s.id!=='string'||usados[s.id]||!achar(s.id))return;usados[s.id]=1;
-    if(na.indexOf(s.id)>-1||oc.indexOf(s.id)>-1)return;
+    if(!s||typeof s.id!=='string'||usados[s.id]||!achar(s.id))return;
+    var sg=sagaDe(s.id),id=sg&&AVPOR[sg]&&AVPOR[sg].saga?sg:s.id; // filme de saga: a sugestão é a saga
+    if(usados[id])return;usados[s.id]=1;usados[id]=1;
+    if(na.indexOf(id)>-1||oc.indexOf(id)>-1||na.indexOf(s.id)>-1)return;
     if(!keep[s.id]&&ruim(s.id))return; // viu e não gostou: não volta a sugerir
-    fixas.push({id:s.id,auto:false,membro:typeof s.membro==='string'?s.membro:'',por:typeof s.por_que==='string'?s.por_que:''});
+    fixas.push({id:id,auto:false,membro:typeof s.membro==='string'?s.membro:'',por:typeof s.por_que==='string'?s.por_que:''});
   });
   fixas=rodizio(fixas,na);
   var au={lista:[],amados:[]};try{au=sugAuto(col,usados)}catch(e){console.error(e)}
