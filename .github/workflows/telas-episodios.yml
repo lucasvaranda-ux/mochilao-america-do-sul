@@ -20,6 +20,7 @@ on:
       - 'scripts/telas-ids.mjs'
       - 'scripts/telas-sagas.mjs'
       - 'scripts/telas-notas.mjs'
+      - 'scripts/telas-omdb.mjs'
       - 'telas/catalogo.json'
 
 permissions:
@@ -79,6 +80,15 @@ jobs:
         continue-on-error: true
         timeout-minutes: 5
         run: node scripts/telas-notas.mjs
+      - name: Notas do Rotten Tomatoes e do Metacritic (OMDb)
+        id: omdb
+        # até 800 títulos por dia (a chave grátis dá 1.000), os nunca consultados primeiro, depois os de mais de 45 dias;
+        # grava telas/notas-fora.json. Sem o segredo OMDB_API_KEY, não faz nada. Se falhar, o resto do dia segue.
+        continue-on-error: true
+        timeout-minutes: 7
+        env:
+          OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+        run: node scripts/telas-omdb.mjs
       - name: Pôsteres (TMDB; Wikipedia via Wikidata para o que faltar)
         id: posteres
         # mesma regra do onde assistir: se o TMDB e a Wikimedia falharem, o resto do dia ainda é
@@ -104,6 +114,7 @@ jobs:
             if [ -f telas/ids-pendentes.json ]; then git add telas/ids-pendentes.json; fi
             if [ -f telas/sagas-tmdb.json ]; then git add telas/sagas-tmdb.json; fi
             if [ -f telas/notas.json ]; then git add telas/notas.json; fi
+            if [ -f telas/notas-fora.json ]; then git add telas/notas-fora.json; fi
             git commit -m "telas: robô atualizou episódios, onde assistir, IDs e pôsteres"
             git push
           else
@@ -118,6 +129,11 @@ jobs:
         if: ${{ !cancelled() && steps.ids.outcome == 'failure' }}
         run: |
           echo "::error::IDs do IMDb não foram procurados — veja o passo dos IDs (chave TMDB_API_KEY ou TMDB fora do ar)"
+          exit 1
+      - name: Avisar se as notas da OMDb falharam
+        if: ${{ !cancelled() && steps.omdb.outcome == 'failure' }}
+        run: |
+          echo "::error::Notas do Rotten e do Metacritic não foram atualizadas — veja o passo da OMDb (chave OMDB_API_KEY recusada ou OMDb fora do ar)"
           exit 1
       - name: Avisar se os pôsteres falharam
         if: ${{ !cancelled() && steps.posteres.outcome == 'failure' }}

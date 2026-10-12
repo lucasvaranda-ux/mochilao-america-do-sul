@@ -1654,6 +1654,7 @@ if(PESOS_MIG)save(); // grava logo os 13, para a migração acontecer uma vez s�
 var D=null, EP=null, SV=null;
 var PO={};          // pôsteres: telas/posteres.json -> itens
 var NT={};          // notas do IMDb de todo o catálogo: telas/notas.json -> itens {tt…: [nota, votos]} (robô telas-notas)
+var NF={};          // Rotten (crítica) e Metacritic pela OMDb: telas/notas-fora.json -> itens {tt…: [rt, mc, data]} (robô telas-omdb)
 var EPI={},IMDB={}; // episódios por imdb_id e série por imdb_id
 // no Whatch (ver o <head>), a página nunca é a do Lucas: sem gosto guardado, as telas que dependem dele levam a "Por onde começar?"
 var WHATCH=!!window.WHATCH,APP=WHATCH?'Whatch':'Telas';
@@ -1847,6 +1848,7 @@ function load(){
     try{renderAll()}catch(e){console.error(e)}
     pronto('ja-dados');
     fetch('/telas/notas.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(nj){try{NT=obj(nj&&nj.itens)}catch(e){NT={}}});
+    fetch('/telas/notas-fora.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(nj){try{NF=obj(nj&&nj.itens)}catch(e){NF={}}});
     fetch('/telas/streaming.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})
       .then(function(sj){if(sj&&sj.titulos){SV=sj;try{renderAll()}catch(e){console.error(e)}}});
     return fetch('/telas/episodios.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
@@ -1873,7 +1875,7 @@ function chips(kind){
   }).join('');
 }
 function sortKey(kind,it){
-  var s=VIEW[kind].sort,n=it.notas||{};
+  var s=VIEW[kind].sort,n=(/^(imdb|rt|mc|lb)$/.test(VIEW[kind].sort)&&notasDe(it))||{};
   if(s==='pesquisa'){var rk=rankDe(it);return rk>0?-rk:-1e9}
   if(s==='conn'){var c=pontos(it);return c===-Infinity?-1:c}
   if(s==='nota'){var v=ST.notas[it.id];return v==null?-1:v}
@@ -3720,16 +3722,35 @@ function ondeAssistir(it,t){
   var lk=linkSeguro(w.link);
   return (h||'<p class="muted">Fora das assinaturas no Brasil agora.</p>')+'<div class="row" style="margin-top:12px">'+(lk?'<a class="btn" href="'+esc(lk)+'" target="_blank" rel="noopener">Ver ofertas no JustWatch ↗</a>':jw)+'</div>';
 }
+// as notas de fora de um título: as pesquisadas à mão (dados.json) valem onde existem; o que faltar vem dos robôs
+// (IMDb da base pública, todo dia; Rotten e Metacritic da OMDb)
+function notasDe(it){
+  var nn=it&&it.notas,id=it&&it.imdb_id,ni=id&&NT[id],nf=id&&NF[id],add={},r={},fx=[],mem=!!(nn&&nn.origem==='memoria');
+  // o que veio "de memória" (≈) perde para o dado conferido do robô
+  var falta=function(k){return !nn||!nn[k]||mem};
+  if(falta('imdb')&&Array.isArray(ni)&&ni[0]){add.imdb=String(ni[0]).replace('.',',');add.imdb_votos=fmtVotos(ni[1]);r.imdb=1;fx.push('IMDb (atualizada todo dia)')}
+  if(Array.isArray(nf)){var fo=[];
+    if(falta('rt_critica')&&/^\d{1,3}%$/.test(String(nf[0]||''))){add.rt_critica=String(nf[0]);r.rt_critica=1;fo.push('Rotten Tomatoes')}
+    if(falta('metacritic')&&/^\d{1,3}$/.test(String(nf[1]||''))){add.metacritic=String(nf[1]);r.metacritic=1;fo.push('Metacritic')}
+    if(fo.length)fx.push(fo.join(' e ')+' (pela OMDb)');
+  }
+  if(!fx.length)return nn||null;
+  var fonte=fx.join('; ');
+  return Object.assign({},nn||{},add,{_r:r,fonte:nn&&nn.fonte?nn.fonte+'. Conferidas: '+fonte:fonte,origem:nn&&nn.origem||'robo'});
+}
 function fmtVotos(v){v=+v||0;return v>=1e6?String(Math.round(v/1e5)/10).replace('.',',')+' mi':v>=1e3?Math.round(v/1e3)+' mil':String(v)}
 function notasFora(n,t){
-  n=n||{};var m=n.origem==='memoria',ap=m?'≈':'',x='x'+(m?' mem':''),out=[];
-  if(n.imdb)out.push('<span class="'+x+'"><span class="imdb">IMDb</span><b class="num">'+ap+esc(n.imdb)+'</b>'+(n.imdb_votos?'<span class="num">'+esc(n.imdb_votos)+'</span>':'')+'</span>');
-  if(n.rt_critica)out.push('<span class="'+x+'">Rotten <b class="num">'+ap+esc(n.rt_critica)+'</b></span>');
-  if(n.rt_publico)out.push('<span class="'+x+'">Público <b class="num">'+ap+esc(n.rt_publico)+'</b></span>');
-  if(n.metacritic)out.push('<span class="'+x+'">Metacritic <b class="num">'+ap+esc(n.metacritic)+'</b></span>');
-  if(n.letterboxd)out.push('<span class="'+x+'">Letterboxd <b class="num">'+ap+esc(n.letterboxd)+'</b></span>');
+  n=n||{};var r=n._r||{},m0=n.origem==='memoria',algum=false,out=[];
+  // o ≈ vale por nota: a que o robô conferiu (n._r) sai sem ele
+  var mk=function(k){var m=m0&&!r[k];if(m)algum=true;return {ap:m?'≈':'',x:'x'+(m?' mem':'')}};
+  var c;
+  if(n.imdb){c=mk('imdb');out.push('<span class="'+c.x+'"><span class="imdb">IMDb</span><b class="num">'+c.ap+esc(n.imdb)+'</b>'+(n.imdb_votos?'<span class="num">'+esc(n.imdb_votos)+'</span>':'')+'</span>')}
+  if(n.rt_critica){c=mk('rt_critica');out.push('<span class="'+c.x+'">Rotten <b class="num">'+c.ap+esc(n.rt_critica)+'</b></span>')}
+  if(n.rt_publico){c=mk('rt_publico');out.push('<span class="'+c.x+'">Público <b class="num">'+c.ap+esc(n.rt_publico)+'</b></span>')}
+  if(n.metacritic){c=mk('metacritic');out.push('<span class="'+c.x+'">Metacritic <b class="num">'+c.ap+esc(n.metacritic)+'</b></span>')}
+  if(n.letterboxd){c=mk('letterboxd');out.push('<span class="'+c.x+'">Letterboxd <b class="num">'+c.ap+esc(n.letterboxd)+'</b></span>')}
   if(!out.length)return '';
-  return '<div class="ext">'+out.join('')+'</div>'+(m?'<p class="ext-n">≈ de memória, ainda não conferidas na fonte.</p>':'');
+  return '<div class="ext">'+out.join('')+'</div>'+(algum?'<p class="ext-n">≈ de memória, ainda não conferidas na fonte.</p>':'');
 }
 // Episódios de qualquer série com IMDb: a lista inteira vem do TVmaze quando a folha abre (EPC, só na memória); antes disso,
 // e se o TVmaze falhar, fica a janela do robô (EPI: só as séries que ele acompanha, e só os episódios perto de hoje)
@@ -3841,9 +3862,7 @@ function renderFolha(){
     var esp=it.ponte&&it.espelho&&!mp?'<p class="esp"><b>Em você:</b> '+esc(it.espelho)+'</p>':'';
     h.push(secao('Por que conecta','<p class="sum">Mais forte em '+mot.map(function(x){return '<b>'+esc(x)+'</b>'}).join(', ').replace(/, ([^,]*)$/,' e $1')+'.</p>'+esp+dimTable(it)));
   }
-  // as notas pesquisadas à mão (dados.json) valem onde existem; para o resto, a nota do IMDb que o robô traz todo dia
-  var nn=it.notas,ni=it.imdb_id&&NT[it.imdb_id];
-  if((!nn||!nn.imdb)&&Array.isArray(ni)){nn=Object.assign({},nn||{},{imdb:String(ni[0]).replace('.',','),imdb_votos:fmtVotos(ni[1]),fonte:'IMDb, atualizada todo dia',origem:'robo'})}
+  var nn=notasDe(it);
   var nf=notasFora(nn,t);
   h.push(secao('Notas de fora',nf?nf+(nn&&nn.fonte?'<p class="ext-n">Notas: '+esc(nn.fonte)+'</p>':''):''));
   if(it.visao&&it.visao.texto)h.push('<details class="sx-d"><summary>Visão '+(t==='filme'?'do diretor':'de quem criou')+'</summary><div class="more"><p>'+esc(it.visao.texto)+'</p>'+(it.visao.fonte?'<div class="src">'+linkOrText(it.visao.fonte)+'</div>':'')+'</div></details>');
