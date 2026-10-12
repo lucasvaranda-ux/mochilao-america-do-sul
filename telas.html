@@ -18,7 +18,9 @@ try{if(/^(whatch|whattowatch)/.test(location.hostname)||/[?&]app=whatch\b/.test(
   var ap=document.querySelector('link[rel="apple-touch-icon"]');if(ap)ap.href='/whatch/icone-180.png';
   var mf=document.createElement('link');mf.rel='manifest';mf.href='/whatch/manifest.webmanifest';document.head.appendChild(mf);
   if(!document.querySelector('meta[name="description"]')){var ds=document.createElement('meta');ds.name='description';ds.content='Diga do que você gosta (ou cole o que a sua IA já sabe) e o Whatch monta a sua lista de filmes e séries, com onde assistir no Brasil.';document.head.appendChild(ds)}
-  var aw=document.createElement('meta');aw.name='apple-mobile-web-app-title';aw.content='Whatch';document.head.appendChild(aw)}}catch(e){}
+  var aw=document.createElement('meta');aw.name='apple-mobile-web-app-title';aw.content='Whatch';document.head.appendChild(aw);
+  // volta do login do Google: os tokens vêm no # (que a página usa para as abas); guarda só nesta aba e limpa o endereço
+  if(/(^#|&)(access_token|error)=/.test(location.hash)){sessionStorage.setItem('whatch_volta',location.hash.slice(1));history.replaceState(null,'',location.pathname+location.search)}}}catch(e){}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -749,6 +751,24 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
 .gw .dn small{display:block;color:var(--tx2);font-size:11.5px;line-height:1.3}
 .gfrase{color:var(--tx)!important;font-size:15px!important;line-height:1.5}
 .gaviso{border-left:3px solid var(--new);padding:2px 0 2px 10px}
+/* ---------- entrada do Whatch ---------- */
+html.login-on .tabbar,html.login-on header.top .ib,html.login-on footer{display:none}
+.login{max-width:400px;margin:0 auto;padding-top:min(8vh,56px)}
+.login .lg-ic{width:64px;height:64px;border-radius:16px;display:block;margin:0 0 18px}
+.login h2{font-size:28px;line-height:1.15;letter-spacing:-.01em;margin:0 0 8px}
+.login .lead{color:var(--tx2);margin:0 0 22px}
+.login .lg-g{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;border-radius:14px;border:1px solid var(--line);background:var(--s1);color:var(--tx);font:inherit;font-weight:700;cursor:pointer}
+.login .lg-g svg{width:20px;height:20px}
+.login .lg-ou{display:flex;align-items:center;gap:12px;color:var(--tx3);font-size:13px;margin:18px 0}
+.login .lg-ou:before,.login .lg-ou:after{content:"";flex:1;height:1px;background:var(--line)}
+.login label{display:block;font-weight:700;font-size:14px;margin:0 0 6px}
+.login input{width:100%;box-sizing:border-box;min-height:48px;border-radius:14px;border:1px solid var(--line);background:var(--s1);color:var(--tx);font:inherit;font-size:16px;padding:0 14px}
+.login input:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+.login input.cod{font-size:26px;letter-spacing:10px;text-align:center;font-variant-numeric:tabular-nums}
+.login .btn.lg-ok{width:100%;min-height:48px;margin-top:12px}
+.login .lg-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:16px}
+.login .err{margin:12px 0 0}
+.login .fine{margin-top:22px}
 .ri-barra,.g6-barra-ia{height:4px;border-radius:2px;background:var(--s2);overflow:hidden;margin-top:12px}.ri-barra i,.g6-barra-ia i{display:block;height:100%;width:30%;background:var(--acc);border-radius:2px;animation:iaVai 1.4s ease-in-out infinite}
 @keyframes iaVai{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
 @media (prefers-reduced-motion:reduce){.ri-barra i,.g6-barra-ia i{animation:none;width:100%;opacity:.5}}
@@ -1295,6 +1315,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
     <div class="pad">
       <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
       <header class="pghead"><h2>Backup e ajustes</h2><p>Suas notas, status, coleções e pesos moram neste aparelho.</p></header>
+      <div class="box" id="conta-box" hidden></div>
       <div class="box">
         <h3>Onde ficam suas notas</h3>
         <p>Notas, status, "não vi", sugestões escondidas, episódios vistos e pesos ficam guardados neste navegador, neste aparelho. Se trocar de celular ou limpar o navegador, eles somem — por isso o backup.</p>
@@ -1328,6 +1349,10 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
 
   <!-- Telas para outras pessoas (fase 1, sem login): "Por onde começar?", o caminho "Seu gosto em 6 minutos",
        o resumo colado da IA e a página do gosto guardado. Tudo fica no aparelho (telas_v1 › perfil). -->
+  <section class="panel" id="p-login" aria-label="Entrar no Whatch">
+    <div class="pad"><div id="login" class="login"></div></div>
+  </section>
+
   <section class="panel" id="p-comecar" aria-label="Por onde começar?">
     <div class="pad">
       <button class="back" type="button" data-dest="mais" id="comecar-back"><span aria-hidden="true">‹</span> Mais</button>
@@ -1514,7 +1539,11 @@ var PO={};          // pôsteres: telas/posteres.json -> itens
 var EPI={},IMDB={}; // episódios por imdb_id e série por imdb_id
 // no Whatch (ver o <head>), a página nunca é a do Lucas: sem gosto guardado, as telas que dependem dele levam a "Por onde começar?"
 var WHATCH=!!window.WHATCH,APP=WHATCH?'Whatch':'Telas';
-try{if(WHATCH)document.getElementById('brand').textContent='Whatch'}catch(e){}
+// conta do Whatch (bloco CONTA DO WHATCH): o login fica desligado até a migração e a função whatch-login estarem no banco;
+// ?login=1 liga para testar. SES = sessão do Supabase guardada neste aparelho; LG = estado da tela de entrada.
+var WH_LOGIN_LIGADO=false,WH_LOGIN=WHATCH&&(WH_LOGIN_LIGADO||/[?&]login=1\b/.test(location.search));
+var SKEY='whatch_sessao',SES=WH_LOGIN?sesLe():null,LG={passo:'inicio',email:'',erro:'',ocupado:false,depois:'',reenvio:0};
+try{if(WHATCH){document.getElementById('brand').textContent='Whatch';var tb=document.querySelector('.tabbar-brand');if(tb)tb.src='/whatch/icone.svg'}}catch(e){}
 var DIMS=[], PESOS0=[];
 var VIEW={filmes:{q:'',sort:'pesquisa',f:'todos',w:'todos',n:30},series:{q:'',sort:'pesquisa',f:'todos',w:'todos',n:30}};
 var CAL={v:'mes',scope:'acomp',m:null,sel:null};
@@ -2173,7 +2202,7 @@ function renderOrg(){
 // Cinco destinos na barra (Início, Lista, Avaliar, Agenda e Mais). Filmes, Séries, Desligar e Repetidos moram
 // na Lista; Perguntar, Conexão, Backup e Organizar moram no Mais. A Lista e o Avaliar têm um segmentado preso no topo.
 var GRUPO={inicio:'inicio',avaliar:'avaliar',filmes:'lista',series:'lista',desligar:'lista',repetidos:'lista',cal:'agenda',mais:'mais',perguntar:'mais',pesos:'mais',dados:'mais',organizar:'mais',
-  comecar:'mais',perfil:'mais',gosto:'mais',resumo:'mais'};
+  comecar:'mais',perfil:'mais',gosto:'mais',resumo:'mais',login:'entrar'};
 var DEST0={inicio:'inicio',lista:'filmes',avaliar:'avaliar',agenda:'cal',mais:'mais'};
 var WH_PORTA={inicio:1,filmes:1,series:1,desligar:1,repetidos:1,cal:1,perguntar:1,pesos:1};
 var ABA=null,ABA0=true,ABA_ANT=null,POP_IGNORA=0,EM_POP=false;
@@ -2182,7 +2211,10 @@ function ir(t){
     if(!GRUPO[t])t='inicio';
     if(t==='perfil'&&!ST.perfil)t='comecar'; // sem gosto guardado, "Seu gosto" é a tela "Por onde começar?"
     // no Whatch sem gosto, Início, Lista, Agenda, Conexão e Perguntar mostram as portas (a barra continua marcando o destino tocado)
-    var gv=GRUPO[t];if(WHATCH&&!ST.perfil&&WH_PORTA[t])t='comecar';
+    var gv=GRUPO[t],t0=t;if(WHATCH&&!ST.perfil&&WH_PORTA[t])t='comecar';
+    // com o login ligado, sem sessão não se passa da entrada (o Backup e o Avaliar também pedem conta); guarda o destino pedido
+    if(WH_LOGIN&&!SES&&t!=='login'){LG.depois=t0;t='login'}
+    try{document.documentElement.classList.toggle('login-on',t==='login')}catch(e){}
     var mudou=ABA!==t,g=GRUPO[t];ABA_ANT=ABA;ABA=t;
     if(g==='lista')DEST0.lista=t;
     document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='p-'+t)});
@@ -2197,7 +2229,7 @@ function ir(t){
     if(t==='cal')renderCal();
     atualizaSujo(t);
     if(t==='avaliar')renderAvaliar(true);
-    try{if(t==='comecar')renderComecar();else if(t==='perfil')renderPerfil();else if(t==='gosto')g6Entrar();else if(t==='resumo')riRender()}catch(e){console.error(e)} // sem dados, o caminho mostra "Carregando"
+    try{if(t==='login')loginRender();else if(t==='comecar')renderComecar();else if(t==='perfil')renderPerfil();else if(t==='gosto')g6Entrar();else if(t==='resumo')riRender()}catch(e){console.error(e)} // sem dados, o caminho mostra "Carregando"
     if(mudou&&!ABA0)try{window.scrollTo(0,0)}catch(e){}
   }catch(e){console.error(e)}
 }
@@ -4960,8 +4992,189 @@ function riAfinar(){
 // sem clipboard (http, permissão negada): seleciona o bloco para a pessoa copiar com o toque longo ou Ctrl+C
 function riSeleciona(b){try{var pre=el('ri-prompt'),r=document.createRange();r.selectNodeContents(pre);var s=window.getSelection();s.removeAllRanges();s.addRange(r);pre.focus();b.textContent='Selecionado: copie';setTimeout(function(){b.textContent='Copiar o pedido'},2500)}catch(e){}}
 
+// ---------- CONTA DO WHATCH ----------
+// Login no projeto Supabase compartilhado (madeinbr), sem biblioteca: a página fala direto com /auth/v1 e /rest/v1.
+// Google: /auth/v1/authorize volta com os tokens no # (o <head> guarda em sessionStorage antes de a página usar o #).
+// E-mail: a função whatch-login manda o código; /auth/v1/verify confere; na primeira vez a pessoa cria a senha
+// (PUT /auth/v1/user, com whatch_senha nos metadados). Quem já tem senha entra por /auth/v1/token?grant_type=password.
+// O estado (o mesmo objeto do backup) vai para telas_estado (RLS: só a própria linha), 2,5 s depois de cada mudança.
+// Sair apaga o estado deste aparelho: ele fica na conta.
+var SB_URL='https://irawlnmcinqkxzgczmrb.supabase.co',SB_KEY='sb_publishable_zZ56QYXUwK7PruwzyvESrg_Jp_qS6bG',SB_FN=SB_URL+'/functions/v1/whatch-login',SKEY='whatch_sessao';
+var NV={ok:false,t:null,sujo:false,subindo:false,erro:''};
+function sesLe(){try{var s=JSON.parse(localStorage.getItem(SKEY)||'null');if(s&&s.access_token&&s.refresh_token&&s.user&&s.user.id)return s}catch(e){}return null}
+function sesGrava(j){
+  var u=j.user||(SES&&SES.user)||{};
+  var s={access_token:String(j.access_token),refresh_token:String(j.refresh_token),expires_at:Date.now()+(+j.expires_in||3600)*1000,
+    user:{id:String(u.id||''),email:String(u.email||''),senha:!!(u.user_metadata&&u.user_metadata.whatch_senha)||!!u.senha,prov:String((u.app_metadata&&u.app_metadata.provider)||u.prov||'')}};
+  if(!s.user.id)return null;SES=s;try{localStorage.setItem(SKEY,JSON.stringify(s))}catch(e){}return s;
+}
+function sesLimpa(){SES=null;try{localStorage.removeItem(SKEY)}catch(e){}}
+function sb(path,o){o=o||{};var h={apikey:SB_KEY,'content-type':'application/json'};if(o.token)h.authorization='Bearer '+o.token;if(o.prefer)h.prefer=o.prefer;
+  return fetch(SB_URL+path,{method:o.method||'GET',headers:h,body:o.body!=null?JSON.stringify(o.body):undefined,keepalive:!!o.keepalive})
+    .then(function(r){return r.text().then(function(t){var j=null;try{j=t?JSON.parse(t):null}catch(e){}return {ok:r.ok,status:r.status,j:j}})})}
+// token em dia: renova quando falta menos de 1 minuto; recusado de vez (400/401), a sessão sai
+function sesValida(){
+  if(!SES)return Promise.resolve(null);if(SES.expires_at-Date.now()>60000)return Promise.resolve(SES);
+  return sb('/auth/v1/token?grant_type=refresh_token',{method:'POST',body:{refresh_token:SES.refresh_token}}).then(function(r){
+    if(r.ok&&r.j&&r.j.access_token)return sesGrava(r.j);if(r.status===400||r.status===401){sesLimpa();ir('login')}return null},function(){return null});
+}
+function lgErro(r,padrao){var j=r&&r.j||{},m=String(j.msg||j.error_description||j.message||j.erro||'');
+  if(/invalid login credentials/i.test(m))return 'E-mail ou senha não conferem.';if(/expired|invalid.*(otp|token)|token.*(expired|invalid)/i.test(m))return 'Código errado ou vencido. Peça outro.';
+  if(r&&r.status===429)return j.erro||'Muitas tentativas. Espere um pouco.';if(/weak|at least|characters/i.test(m))return 'Senha fraca: use pelo menos 8 caracteres, com letras e números.';
+  return j.erro&&typeof j.erro==='string'?j.erro:padrao}
+var IC_GOOGLE='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1c.9-2.9 3.6-4.9 6.7-4.9z"/></svg>';
+function loginRender(){
+  var box=el('login');if(!box)return;var e=esc(LG.email),oc=LG.ocupado?' disabled':'',h;
+  var topo='<img class="lg-ic" src="/whatch/icone.svg" alt="" width="64" height="64">';
+  var erro=LG.erro?'<p class="err" role="alert">'+esc(LG.erro)+'</p>':'';
+  if(LG.passo==='codigo'){
+    h=topo+'<h2>Confira o seu e-mail</h2><p class="lead">Mandamos um código de 6 dígitos para <b>'+e+'</b>. Pode levar um minuto; olhe também o spam.</p>'+
+      '<form id="lg-f" data-lg="verificar" novalidate><label for="lg-cod">Código</label><input id="lg-cod" class="cod" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" required>'+
+      '<button class="btn pri lg-ok" type="submit"'+oc+'>'+(LG.ocupado?'Conferindo…':'Entrar')+'</button></form>'+erro+
+      '<div class="lg-links"><button class="lnk" type="button" data-lg="reenviar"'+(LG.reenvio>Date.now()?' disabled':'')+'>Mandar de novo</button><button class="lnk" type="button" data-lg="voltar">Trocar o e-mail</button></div>';
+  }else if(LG.passo==='senha-nova'){
+    h=topo+'<h2>Crie a sua senha</h2><p class="lead">Para as próximas vezes entrar com <b>'+esc(SES&&SES.user.email||LG.email)+'</b> sem esperar código.</p>'+
+      '<form id="lg-f" data-lg="criar" novalidate><label for="lg-s1">Senha nova</label><input id="lg-s1" type="password" autocomplete="new-password" minlength="8" required>'+
+      '<p class="fine" style="margin:8px 0 0">Pelo menos 8 caracteres, com letras e números.</p>'+
+      '<button class="btn pri lg-ok" type="submit"'+oc+'>'+(LG.ocupado?'Guardando…':'Guardar e entrar')+'</button></form>'+erro+
+      '<p class="fine">Se você já usa outro app da Made in BR com este e-mail, esta passa a ser a senha dele também.</p>';
+  }else if(LG.passo==='senha'){
+    h=topo+'<h2>Entrar com senha</h2><p class="lead">Com o e-mail e a senha que você criou.</p>'+
+      '<form id="lg-f" data-lg="entrar" novalidate><label for="lg-em">E-mail</label><input id="lg-em" type="email" autocomplete="username" inputmode="email" value="'+e+'" required>'+
+      '<label for="lg-sn" style="margin-top:12px">Senha</label><input id="lg-sn" type="password" autocomplete="current-password" required>'+
+      '<button class="btn pri lg-ok" type="submit"'+oc+'>'+(LG.ocupado?'Entrando…':'Entrar')+'</button></form>'+erro+
+      '<div class="lg-links"><button class="lnk" type="button" data-lg="esqueci">Esqueci a senha</button><button class="lnk" type="button" data-lg="voltar">Voltar</button></div>';
+  }else{
+    h=topo+'<h2>Filmes e séries do seu jeito</h2><p class="lead">Entre para o Whatch guardar o seu gosto, as suas notas e a sua lista em qualquer aparelho.</p>'+
+      '<button class="lg-g" type="button" data-lg="google"'+oc+'>'+IC_GOOGLE+'Continuar com o Google</button>'+
+      '<div class="lg-ou">ou com o seu e-mail</div>'+
+      '<form id="lg-f" data-lg="pedir" novalidate><label for="lg-em">E-mail</label><input id="lg-em" type="email" autocomplete="email" inputmode="email" value="'+e+'" required>'+
+      '<button class="btn pri lg-ok" type="submit"'+oc+'>'+(LG.ocupado?'Mandando…':'Receber o código')+'</button></form>'+erro+
+      '<div class="lg-links"><button class="lnk" type="button" data-lg="ir-senha">Já tenho senha</button></div>'+
+      '<p class="fine">Na primeira vez, um código no e-mail confirma que ele é seu, e aí você cria a senha. Nada é publicado e ninguém vê a sua lista.</p>';
+  }
+  box.innerHTML=h;
+  try{var f=box.querySelector('input:not([value]),input[value=""]')||box.querySelector('input');if(f&&!LG.ocupado&&LG.passo!=='inicio')f.focus({preventScroll:true})}catch(err){}
+}
+function lgPasso(p,erro){LG.passo=p;LG.erro=erro||'';LG.ocupado=false;loginRender()}
+function lgPedir(email){
+  LG.email=email;LG.ocupado=true;LG.erro='';loginRender();
+  fetch(SB_FN,{method:'POST',headers:{'content-type':'application/json',apikey:SB_KEY},body:JSON.stringify({email:email})})
+    .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,status:r.status,j:j}})})
+    .then(function(r){if(r.ok&&r.j&&r.j.ok){LG.reenvio=Date.now()+30000;setTimeout(function(){if(LG.passo==='codigo')loginRender()},30500);lgPasso('codigo')}
+      else{LG.ocupado=false;LG.erro=lgErro(r,'Não consegui mandar o código. Tente de novo.');loginRender()}},
+      function(){LG.ocupado=false;LG.erro='Sem conexão. Confira a internet e tente de novo.';loginRender()});
+}
+// sessão nova (código, senha ou Google): sem senha do Whatch e entrando por e-mail, cria a senha; depois baixa o estado e segue
+function lgEntrou(r,criarSenha){
+  if(!r.ok||!r.j||!r.j.access_token){LG.ocupado=false;LG.erro=lgErro(r,'Não deu para entrar. Tente de novo.');loginRender();return}
+  var s=sesGrava(r.j);if(!s){LG.ocupado=false;LG.erro='Não deu para entrar. Tente de novo.';loginRender();return}
+  if(criarSenha&&!s.user.senha){lgPasso('senha-nova');return}
+  contaPronta(true);
+}
+function contaPronta(agora){
+  LG.ocupado=false;LG.passo='inicio';LG.erro='';
+  sesValida().then(function(s){if(!s)return;
+    sb('/rest/v1/telas_members',{method:'POST',token:s.access_token,prefer:'resolution=ignore-duplicates,return=minimal',body:{user_id:s.user.id}}).catch(function(){});
+    return nuvemBaixa();
+  }).then(function(){contaRender();if(!agora&&ST.perfil&&ABA==='comecar')ir('inicio');if(agora){var d=LG.depois&&LG.depois!=='login'?LG.depois:'';LG.depois='';ir(d&&(ST.perfil||!WH_PORTA[d])?d:(ST.perfil?'inicio':'comecar'))}},
+    function(e){console.error(e);contaRender();if(agora)ir(ST.perfil?'inicio':'comecar')});
+}
+// ---- o estado na conta ----
+function temAlgo(s){return !!(s&&(s.perfil||Object.keys(s.notas||{}).length||Object.keys(s.status||{}).length))}
+// os dois lados têm coisa: fica o da conta, mais as notas, os status e o "não vi" deste aparelho que a conta não tem
+function junta(conta,aqui){
+  var r=JSON.parse(JSON.stringify(conta));
+  ['notas','status','naovi','vistos','vezes','fase'].forEach(function(k){var a=aqui[k]||{};r[k]=r[k]||{};Object.keys(a).forEach(function(id){if(r[k][id]==null)r[k][id]=a[id]})});
+  if(!r.perfil&&aqui.perfil){r.perfil=aqui.perfil;r.servicos=aqui.servicos}
+  return r;
+}
+function aplicaEstado(est){
+  restauraTudo(est);save0();
+  try{if(D){montarAvaliaveis();entraModo()}}catch(e){console.error(e)}
+}
+function nuvemBaixa(){
+  return sesValida().then(function(s){if(!s)return;
+    return sb('/rest/v1/telas_estado?select=estado,atualizado_em&user_id=eq.'+encodeURIComponent(s.user.id),{token:s.access_token}).then(function(r){
+      if(!r.ok){NV.erro='Não consegui ler a sua conta agora; o que fizer aqui sobe depois.';throw new Error('telas_estado '+r.status)}
+      var row=Array.isArray(r.j)&&r.j[0],aqui=JSON.parse(JSON.stringify(ST));
+      if(row&&row.estado&&typeof row.estado==='object'){aplicaEstado(temAlgo(aqui)?junta(row.estado,aqui):row.estado);NV.ok=true;if(temAlgo(aqui))nuvemAgenda()}
+      else{NV.ok=true;if(temAlgo(aqui))nuvemAgenda()}
+      NV.erro='';
+    });
+  });
+}
+function nuvemAgenda(){if(!WH_LOGIN||!SES||!NV.ok)return;NV.sujo=true;clearTimeout(NV.t);NV.t=setTimeout(nuvemSobe,2500)}
+function nuvemSobe(fim){
+  if(!SES||!NV.ok||!NV.sujo||NV.subindo)return;
+  NV.subindo=true;NV.sujo=false;
+  var corpo={user_id:SES.user.id,estado:ST,atualizado_em:new Date().toISOString()};
+  (fim?Promise.resolve(SES):sesValida()).then(function(s){if(!s){NV.sujo=true;return}
+    return sb('/rest/v1/telas_estado',{method:'POST',token:s.access_token,prefer:'resolution=merge-duplicates,return=minimal',body:corpo,keepalive:!!fim}).then(function(r){
+      if(!r.ok){NV.sujo=true;NV.erro='Não consegui guardar na sua conta (erro '+r.status+'); tento de novo na próxima mudança.'}else NV.erro='';contaRender()});
+  }).then(function(){NV.subindo=false},function(){NV.subindo=false;NV.sujo=true;NV.erro='Sem conexão: guardo na sua conta quando ela voltar.';contaRender()});
+}
+// toda gravação local agenda a subida para a conta
+var save0=save;save=function(){save0();nuvemAgenda()};
+try{document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden'){clearTimeout(NV.t);nuvemSobe(true)}})}catch(e){}
+try{window.addEventListener('online',function(){if(NV.sujo)nuvemSobe()})}catch(e){}
+function contaRender(){
+  var b=el('conta-box');if(!b)return;b.hidden=!(WH_LOGIN&&SES);if(b.hidden)return;
+  b.innerHTML='<h3>Sua conta</h3><p>Conectado como <b>'+esc(SES.user.email||'(sem e-mail)')+'</b>. Suas notas, o seu gosto e a sua lista ficam guardados na conta e aparecem em qualquer aparelho em que você entrar.</p>'+
+    (NV.erro?'<p class="err">'+esc(NV.erro)+'</p>':'')+
+    '<div class="row" style="margin-top:10px"><button class="btn t44" type="button" data-lg="sair">Sair deste aparelho</button></div><p class="fine" style="margin-top:8px">Sair apaga os dados deste aparelho; eles continuam na sua conta.</p>';
+}
+function contaSai(){
+  clearTimeout(NV.t);var s=SES;
+  var fim=function(){if(s)sb('/auth/v1/logout',{method:'POST',token:s.access_token,keepalive:true}).catch(function(){});
+    sesLimpa();NV.ok=false;try{localStorage.removeItem(KEY);localStorage.removeItem('telas_gosto_rasc')}catch(e){}location.replace(location.pathname+location.search)};
+  // o que ainda não subiu sobe antes de sair
+  if(NV.sujo&&s)sb('/rest/v1/telas_estado',{method:'POST',token:s.access_token,prefer:'resolution=merge-duplicates,return=minimal',body:{user_id:s.user.id,estado:ST,atualizado_em:new Date().toISOString()}}).then(fim,fim);else fim();
+}
+document.addEventListener('submit',function(e){
+  var f=e.target;if(!f||f.id!=='lg-f')return;e.preventDefault();if(LG.ocupado)return;
+  try{var a=f.dataset.lg,v=function(id){var x=el(id);return x?x.value.trim():''};
+    if(a==='pedir'){var em=v('lg-em').toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){LG.email=em;LG.erro='Confira o e-mail.';loginRender();return}lgPedir(em)}
+    else if(a==='verificar'){var c=v('lg-cod').replace(/\D/g,'');if(c.length!==6){LG.erro='O código tem 6 dígitos.';loginRender();return}
+      LG.ocupado=true;LG.erro='';loginRender();sb('/auth/v1/verify',{method:'POST',body:{type:'email',email:LG.email,token:c}}).then(function(r){lgEntrou(r,true)},function(){lgEntrou({ok:false},true)})}
+    else if(a==='entrar'){var em2=v('lg-em').toLowerCase(),sn=el('lg-sn')?el('lg-sn').value:'';LG.email=em2;if(!em2||!sn){LG.erro='Preencha o e-mail e a senha.';loginRender();return}
+      LG.ocupado=true;LG.erro='';loginRender();sb('/auth/v1/token?grant_type=password',{method:'POST',body:{email:em2,password:sn}}).then(function(r){lgEntrou(r,false)},function(){lgEntrou({ok:false},false)})}
+    else if(a==='criar'){var s1=el('lg-s1')?el('lg-s1').value:'';if(s1.length<8||!/[a-zA-Z]/.test(s1)||!/\d/.test(s1)){LG.erro='Use pelo menos 8 caracteres, com letras e números.';loginRender();return}
+      LG.ocupado=true;LG.erro='';loginRender();
+      sesValida().then(function(s){if(!s)throw new Error('sessão');return sb('/auth/v1/user',{method:'PUT',token:s.access_token,body:{password:s1,data:{whatch_senha:true}}})}).then(function(r){
+        if(!r.ok){LG.ocupado=false;LG.erro=lgErro(r,'Não consegui guardar a senha. Tente de novo.');loginRender();return}
+        SES.user.senha=true;try{localStorage.setItem(SKEY,JSON.stringify(SES))}catch(err){}contaPronta(true)},function(){LG.ocupado=false;LG.erro='Sem conexão. Tente de novo.';loginRender()})}
+  }catch(err){console.error(err)}
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-lg]');if(!b||b.tagName==='FORM')return;
+  try{var a=b.dataset.lg;
+    if(a==='google'){LG.ocupado=true;loginRender();location.href=SB_URL+'/auth/v1/authorize?provider=google&redirect_to='+encodeURIComponent(location.origin+'/'+(location.search||''))}
+    else if(a==='ir-senha'){var x=el('lg-em');if(x)LG.email=x.value.trim();lgPasso('senha')}
+    else if(a==='esqueci'){var y=el('lg-em');if(y)LG.email=y.value.trim().toLowerCase();if(!LG.email){lgPasso('inicio','Escreva o e-mail para receber o código.');return}lgPedir(LG.email)}
+    else if(a==='voltar')lgPasso('inicio');
+    else if(a==='reenviar'){if(LG.reenvio>Date.now())return;lgPedir(LG.email)}
+    else if(a==='sair')contaSai();
+  }catch(err){console.error(err)}
+});
+// na carga: a volta do Google, ou a sessão guardada; sem nenhuma, a entrada
+function contaInicia(){
+  if(!WH_LOGIN)return;
+  SES=sesLe();
+  var volta='';try{volta=sessionStorage.getItem('whatch_volta')||'';sessionStorage.removeItem('whatch_volta')}catch(e){}
+  if(volta){var q={};volta.split('&').forEach(function(kv){var i=kv.indexOf('=');if(i>0)q[decodeURIComponent(kv.slice(0,i))]=decodeURIComponent(kv.slice(i+1).replace(/\+/g,' '))});
+    if(q.access_token&&q.refresh_token){
+      sb('/auth/v1/user',{token:q.access_token}).then(function(r){if(r.ok&&r.j&&r.j.id){lgEntrou({ok:true,j:{access_token:q.access_token,refresh_token:q.refresh_token,expires_in:q.expires_in,user:r.j}},false)}else{lgPasso('inicio','O Google não confirmou a entrada. Tente de novo.');ir('login')}},
+        function(){lgPasso('inicio','Sem conexão. Tente de novo.');ir('login')});
+      ir('login');LG.ocupado=true;loginRender();return}
+    if(q.error){LG.erro=q.error==='access_denied'?'Entrada pelo Google cancelada.':'O Google não deixou entrar ('+q.error+').'}}
+  if(SES){contaPronta(false);return}
+  ir('login');
+}
+
 // no Whatch a página abre em "Por onde começar?" antes de as portas (IC_PORTA) existirem: desenha de novo aqui
 try{if(ABA==='comecar')renderComecar()}catch(e){console.error(e)}
+try{contaInicia()}catch(e){console.error(e)}
 load();
 </script>
 </body>
