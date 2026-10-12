@@ -8,13 +8,26 @@
 // Usa o RESEND_API_KEY que o projeto já tem e o remetente avisos@mail.madeinbr.app.
 // =============================================================================
 
-import { createClient } from "npm:@supabase/supabase-js@2.45.4";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const SITE = "https://whatch.madeinbr.app";
 const MAX_PESSOAS = 300;
+// sem biblioteca: PostgREST e a API de admin do Auth com a chave de serviço (o deploy com import do npm falhou em 12/10)
+const H = { apikey: SERVICE, Authorization: `Bearer ${SERVICE}`, "Content-Type": "application/json" };
+async function rest(caminho: string, init: RequestInit = {}) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${caminho}`, { ...init, headers: { ...H, ...(init.headers || {}) } });
+  if (!r.ok) throw new Error(`rest ${r.status} ${caminho.split("?")[0]}`);
+  const t = await r.text();
+  return t ? JSON.parse(t) : null;
+}
+async function emailDe(uid: string): Promise<string> {
+  const r = await fetch(`${SUPABASE_URL}/auth/v1/admin/users/${uid}`, { headers: H });
+  if (!r.ok) return "";
+  const u = await r.json();
+  return String((u && (u.email || (u.user && u.user.email))) || "");
+}
 
 const json = (b: unknown, s = 200) => new Response(JSON.stringify(b), { status: s, headers: { "Content-Type": "application/json" } });
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
@@ -43,11 +56,9 @@ Deno.serve(async (req) => {
   if (horaBR < 7 || horaBR > 13) return json({ ok: true, pulou: "fora do horário (7h às 13h de Brasília)" });
   if (!RESEND_API_KEY) return json({ ok: false, erro: "sem RESEND_API_KEY" }, 503);
   const hoje = diaBR(agora), amanha = diaBR(new Date(agora.getTime() + 24 * 3600e3));
-  const admin = createClient(SUPABASE_URL, SERVICE, { auth: { autoRefreshToken: false, persistSession: false } });
   try {
-    const { data: avs, error } = await admin.from("whatch_avisos").select("user_id, ultimo_envio").eq("ligado", true);
-    if (error) throw error;
-    const pend = (avs || []).filter((a) => a.ultimo_envio !== hoje).slice(0, MAX_PESSOAS);
+    const avs = await rest("whatch_avisos?select=user_id,ultimo_envio&ligado=eq.true");
+    const pend = (avs || []).filter((a: { ultimo_envio: string | null }) => a.ultimo_envio !== hoje).slice(0, MAX_PESSOAS);
     if (!pend.length) return json({ ok: true, pessoas: 0 });
 
     // id do título -> IMDb e nome (só séries), do que a página publica
@@ -88,14 +99,14 @@ Deno.serve(async (req) => {
     let enviados = 0, semNada = 0, falhas = 0;
     for (const p of pend) {
       try {
-        const { data: est } = await admin.from("telas_estado").select("estado").eq("user_id", p.user_id).maybeSingle();
+        const linhas = await rest(`telas_estado?select=estado&user_id=eq.${p.user_id}`);
+        const est = Array.isArray(linhas) ? linhas[0] : null;
         const st = (est && est.estado && typeof est.estado.status === "object" && est.estado.status) || {};
         const ids = Object.keys(st).filter((k) => st[k] === "acompanhando" && serie.has(k)).slice(0, 60);
         const eps: Ep[] = [];
         for (const id of ids) { const s = serie.get(id)!; const ep = await proximo(s.imdb, s.titulo); if (ep) eps.push(ep); }
         if (eps.length) {
-          const { data: u } = await admin.auth.admin.getUserById(p.user_id);
-          const email = u && u.user && u.user.email;
+          const email = await emailDe(p.user_id);
           if (email) {
             const r = await fetch("https://api.resend.com/emails", {
               method: "POST", headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
@@ -105,7 +116,7 @@ Deno.serve(async (req) => {
             enviados++;
           }
         } else semNada++;
-        await admin.from("whatch_avisos").update({ ultimo_envio: hoje }).eq("user_id", p.user_id);
+        await rest(`whatch_avisos?user_id=eq.${p.user_id}`, { method: "PATCH", body: JSON.stringify({ ultimo_envio: hoje }), headers: { Prefer: "return=minimal" } });
       } catch (e) { falhas++; console.error("aviso", e instanceof Error ? e.message : e); }
     }
     return json({ ok: true, pessoas: pend.length, enviados, semNada, falhas });
