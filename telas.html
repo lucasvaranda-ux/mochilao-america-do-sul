@@ -17,7 +17,7 @@ try{if(/^(whatch|whattowatch)/.test(location.hostname)||/[?&]app=whatch\b/.test(
   var ic=document.querySelector('link[rel="icon"]');if(ic){ic.type='image/svg+xml';ic.href='/whatch/icone.svg'}
   var ap=document.querySelector('link[rel="apple-touch-icon"]');if(ap)ap.href='/whatch/icone-180.png';
   var mf=document.createElement('link');mf.rel='manifest';mf.href='/whatch/manifest.webmanifest';document.head.appendChild(mf);
-  var ds=document.createElement('meta');ds.name='description';ds.content='Diga do que você gosta (ou cole o que a sua IA já sabe) e o Whatch monta a sua lista de filmes e séries, com onde assistir no Brasil.';document.head.appendChild(ds);
+  if(!document.querySelector('meta[name="description"]')){var ds=document.createElement('meta');ds.name='description';ds.content='Diga do que você gosta (ou cole o que a sua IA já sabe) e o Whatch monta a sua lista de filmes e séries, com onde assistir no Brasil.';document.head.appendChild(ds)}
   var aw=document.createElement('meta');aw.name='apple-mobile-web-app-title';aw.content='Whatch';document.head.appendChild(aw)}}catch(e){}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
