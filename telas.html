@@ -3921,8 +3921,8 @@ function perguntar(){
   var t0=Date.now(),tick=setInterval(function(){var w=out.querySelector('.secs');if(w)w.textContent=Math.round((Date.now()-t0)/1000)+' s'},1000);
   out.setAttribute('aria-busy','true');
   out.innerHTML='<p class="wait">Pensando… <span class="secs" aria-hidden="true"></span></p>';
-  fetch('/api/telas-perguntar',{method:'POST',headers:{'content-type':'application/json','x-telas-senha':senha},
-    body:JSON.stringify({pergunta:q,contexto:contextoIA(),buscar:!!el('ia-web').checked})})
+  iaHeaders().then(function(h){h['x-telas-senha']=senha||'';return fetch('/api/telas-perguntar',{method:'POST',headers:h,
+    body:JSON.stringify({pergunta:q,contexto:contextoIA(),buscar:!!el('ia-web').checked})})})
   .then(function(r){return r.json().catch(function(){return {erro:r.status===504?'Demorou demais. Tente de novo, talvez sem a busca na web.':'Resposta inesperada do servidor ('+r.status+').'}}).then(function(j){j._status=r.status;return j})})
   .then(function(j){
     if(j._status===401){guardaSenha('');el('ia-senha-box').hidden=false;if(senhaIn){senhaIn.value='';senhaIn.focus()}}
@@ -4672,6 +4672,7 @@ function g6FimIA(b){
   (dados?iaGosto({modo:'final',dados:dados},45000):Promise.resolve(null)).then(function(j){
     G6_IA=false;if(b){b.disabled=false;b.textContent=txt}if(barra)barra.remove();
     if(G6!==G)return;
+    if(j&&j._erro)toast(j._erro+' O gosto foi calculado sem a IA.',false);
     var ia=null;try{if(j&&Array.isArray(j.pesos)&&j.pesos.length===N13&&j.pesos.every(function(v){return typeof v==='number'&&isFinite(v)}))ia=j}catch(e){}
     g6Fim(ia);
   });
@@ -4863,12 +4864,17 @@ function riCalcula(R){
 // Duas chamadas, as duas opcionais: sem chave, sem rede ou acima do limite, a página segue só com a regra.
 // 'resumo': lê o bloco colado e devolve as notas de 0 a 10 dos 13 eixos e o gosto em palavras (o texto não é guardado em lugar nenhum).
 // 'final': junta o resumo com as respostas do caminho e devolve os 13 pesos, que entram na média com os da regra.
+// logado no Whatch, vai o token da sessão: o limite é por pessoa (api/_whatch-conta.mjs). Erro com mensagem (limite, sessão) volta como {_erro}
+function iaHeaders(){
+  var h={'content-type':'application/json'};
+  return (WH_LOGIN&&SES?sesValida():Promise.resolve(null)).then(function(s){if(s)h.authorization='Bearer '+s.access_token;return h},function(){return h});
+}
 function iaGosto(corpo,ms){
   return new Promise(function(ok){
     var feito=false,fim=function(v){if(!feito){feito=true;ok(v)}};
     setTimeout(function(){fim(null)},ms||60000);
-    try{fetch('/api/whatch-gosto',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(corpo)})
-      .then(function(r){return r.ok?r.json():null}).then(fim,function(){fim(null)})}catch(e){fim(null)}
+    try{iaHeaders().then(function(h){return fetch('/api/whatch-gosto',{method:'POST',headers:h,body:JSON.stringify(corpo)})})
+      .then(function(r){return r.json().catch(function(){return null}).then(function(j){return r.ok?j:(j&&j.erro&&(r.status===429||r.status===401)?{_erro:String(j.erro)}:null)})}).then(fim,function(){fim(null)})}catch(e){fim(null)}
   });
 }
 function riBloco(t){t=String(t||'').slice(0,30000);var i=t.search(RE_PERFIL);if(i<0)return '';t=riLimpa(t.slice(i));var f=t.indexOf('```');return f>0?t.slice(0,f):t}
@@ -4913,7 +4919,7 @@ function riRender(){
   var n=RI.titulos.filter(function(x){return x.marcado}).length,falta=riFalta(RI);
   if(RI.lendoIA){box.innerHTML='<div class="box ri-lendo" role="status"><h3>A nossa IA está lendo o seu resumo</h3><p>Uns 20 segundos. Ela dá uma nota a cada tema e traço a partir de tudo o que a sua IA contou; depois você revisa linha a linha.</p><div class="ri-barra" aria-hidden="true"><i></i></div></div>';return}
   var h='<div class="box"><h3>O que entendemos'+(RI.assistente?' (do '+esc(RI.assistente)+')':'')+'</h3><p>Revise linha a linha. Só o que estiver marcado é gravado; o texto colado não fica guardado. Depois de gravar, 3 minutos de cenas e cartazes afinam o que a IA disse (dá para pular).</p>'+
-    (RI.semIA?'<p class="note">A nossa IA não respondeu agora; a leitura abaixo é só por regra. Dá para gravar assim mesmo.</p>':'')+
+    (RI.semIA?'<p class="note">'+(RI.semIAmsg?esc(RI.semIAmsg)+' ':'A nossa IA não respondeu agora; ')+'A leitura abaixo é só por regra. Dá para gravar assim mesmo.</p>':'')+
     (falta.length?'<p class="gaviso">O resumo não trouxe '+esc(listaPt(falta))+': o caminho curto pergunta isso também.</p>':'')+riBotoes()+'</div>';
   // o gosto em palavras: o parágrafo da IA, frase a frase ("não é bem eu" tira a frase); sem ele, as frases por regra
   var fi=RI.fraseIA||[];
@@ -4995,7 +5001,7 @@ function riAfinar(){
       if(t.closest('#ri-ler')){if(!D||!AVI.length){toast('A lista ainda está carregando; tente de novo em instantes.',false);return}var ta=el('ri-txt'),bruto=ta?ta.value:'';try{RI=riAnalisa(bruto)}catch(err){console.error(err);RI={erro:'Não consegui ler esse texto.'}}if(ta)ta.value='';
         // a regra já leu; a nossa IA lê de novo e, se responder, refaz os pesos. O texto vai só nesta chamada e não fica guardado.
         if(RI&&!RI.erro){var R0=RI,bl=riBloco(bruto);bruto='';R0.lendoIA=true;riRender();try{window.scrollTo(0,0)}catch(err){}
-          iaGosto({modo:'resumo',texto:bl},60000).then(function(j){bl='';R0.lendoIA=false;if(!riAplicaIA(R0,j))R0.semIA=true;if(RI===R0)riRender()});return}
+          iaGosto({modo:'resumo',texto:bl},60000).then(function(j){bl='';R0.lendoIA=false;if(!riAplicaIA(R0,j)){R0.semIA=true;R0.semIAmsg=j&&j._erro||''}if(RI===R0)riRender()});return}
         riRender();try{window.scrollTo(0,0)}catch(err){}return}
       if(t.closest('#ri-cancel')){RI=null;riRender();return}
       if(t.closest('[data-riok]')){riGrava(t.closest('[data-riok]').dataset.riok);return}

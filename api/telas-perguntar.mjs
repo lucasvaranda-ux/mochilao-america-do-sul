@@ -7,6 +7,7 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import { createHash, timingSafeEqual } from 'node:crypto';
+import { confereUso } from './_whatch-conta.mjs';
 
 const MODELO = 'claude-opus-5-5';
 const LIMITE_PERGUNTA = 800;      // caracteres
@@ -121,8 +122,13 @@ export default async function handler(req, res) {
     const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'sem-ip';
     if (aberto) {
       if (!origemWhatch(req.headers.origin)) return res.status(403).json({ erro: 'Origem não aceita.' });
-      if (conta(pedidos, ip, true) > POR_HORA_ABERTO) return res.status(429).json({ erro: 'Muitas perguntas nesta hora. Tente daqui a pouco.' });
-      if (contaDiaAberto() > POR_DIA_ABERTO) return res.status(429).json({ erro: 'As perguntas de hoje acabaram. Volte amanhã.' });
+      // logado: limite por pessoa, guardado no banco; sem login (enquanto ele estiver desligado): freios por IP
+      const uso = await confereUso(req, 'pergunta');
+      if (!uso.ok) return res.status(uso.status).json({ erro: uso.erro });
+      if (uso.anonimo) {
+        if (conta(pedidos, ip, true) > POR_HORA_ABERTO) return res.status(429).json({ erro: 'Muitas perguntas nesta hora. Tente daqui a pouco.' });
+        if (contaDiaAberto() > POR_DIA_ABERTO) return res.status(429).json({ erro: 'As perguntas de hoje acabaram. Volte amanhã.' });
+      }
     } else {
       // o freio vem antes da senha: tentativa errada também conta
       if (conta(erros, ip, false) >= ERROS_POR_HORA) return res.status(429).json({ erro: 'Muitas tentativas de senha. Espere uma hora.' });

@@ -7,6 +7,7 @@
 // Variável na Vercel (nunca no código): ANTHROPIC_API_KEY. O texto recebido não é gravado em lugar nenhum, nem no log.
 
 import Anthropic from '@anthropic-ai/sdk';
+import { confereUso } from './_whatch-conta.mjs';
 
 const MODELO = 'claude-opus-5-5';
 const LIMITE_RESUMO = 30000;    // caracteres do resumo colado (o mesmo teto da página)
@@ -179,9 +180,14 @@ export default async function handler(req, res) {
     if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ erro: 'Use POST.' }); }
     if (!process.env.ANTHROPIC_API_KEY) return res.status(503).json({ erro: 'A IA ainda não foi ligada neste site.' });
     if (!origemOk(req.headers.origin)) return res.status(403).json({ erro: 'Origem não aceita.' });
-    const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'sem-ip';
-    if (contaIp(ip) > POR_HORA) return res.status(429).json({ erro: 'Muitas leituras nesta hora. A página segue sem a IA.' });
-    if (contaDia() > POR_DIA) return res.status(429).json({ erro: 'A IA do dia acabou. A página segue sem ela.' });
+    // logado: limite por pessoa, guardado no banco (_whatch-conta.mjs); sem login (enquanto ele estiver desligado): freios por IP
+    const uso = await confereUso(req, 'gosto');
+    if (!uso.ok) return res.status(uso.status).json({ erro: uso.erro });
+    if (uso.anonimo) {
+      const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'sem-ip';
+      if (contaIp(ip) > POR_HORA) return res.status(429).json({ erro: 'Muitas leituras nesta hora. A página segue sem a IA.' });
+      if (contaDia() > POR_DIA) return res.status(429).json({ erro: 'A IA do dia acabou. A página segue sem ela.' });
+    }
 
     const corpo = req.body && typeof req.body === 'object' ? req.body : {};
     if (corpo.modo === 'resumo') {
