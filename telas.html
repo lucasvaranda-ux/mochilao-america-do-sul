@@ -383,6 +383,16 @@ details[open]>summary::after{transform:rotate(225deg) translate(-2px,0)}
 .crit{border-left:2px solid var(--line);padding-left:11px}
 .crit .who{font-weight:700}
 .crit+.crit{margin-top:10px}
+.res{margin:0 0 12px;background:var(--s1);border-radius:16px;padding:14px 14px 12px;position:relative}
+.res blockquote{margin:0;font-size:15px;line-height:1.5;color:var(--tx)}
+.res blockquote::before{content:"“";font-size:30px;line-height:0;vertical-align:-11px;margin-right:2px;color:var(--acc);font-weight:800}
+.res figcaption{margin-top:8px;font-size:13px;color:var(--tx2)}
+.res figcaption a{color:var(--acc);font-weight:700}
+.res-n{float:right;margin:0 0 6px 10px;display:inline-flex;align-items:baseline;gap:1px;border-radius:10px;padding:4px 9px;background:var(--s2);font-size:17px}
+.res-n small{font-size:11px;color:var(--tx2)}
+.res-n.bom{background:var(--acc-soft);color:var(--acc)}
+.res-n.ruim{color:var(--tx2)}
+.res-l{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--tx3)}
 .dimtable{display:grid;grid-template-columns:auto minmax(0,1fr) 28px;gap:7px 10px;align-items:center;font-size:14px}
 .dimtable .bar{height:8px;background:var(--track);border-radius:4px;overflow:hidden}
 .dimtable .bar i{display:block;height:100%;background:var(--tx3);border-radius:4px}
@@ -1951,6 +1961,24 @@ function dimTable(it){
 function motivos(it,n){
   var d=it.dims||[];if(!d.length||!DIMS.length)return [];var w=pesos();
   return DIMS.map(function(x,i){return {n:x.nome,v:+d[i]||0,w:w[i]||0}}).sort(function(a,b){return b.v-a.v||b.w-a.w}).slice(0,n||3).map(function(x){return x.n});
+}
+// resenhas do público no TMDB (robô telas-criticas): telas/criticas/<tt>.json, buscado quando a folha abre, só na memória
+var RES={},RES_P={};
+function resenhas(imdb){
+  if(RES[imdb]||RES_P[imdb])return;RES_P[imdb]=1;
+  fetch('/telas/criticas/'+imdb+'.json').then(function(r){return r.ok?r.json():{itens:[]}}).catch(function(){return null}).then(function(j){
+    delete RES_P[imdb];if(!j)return;
+    RES[imdb]={total:+j.total||0,itens:(Array.isArray(j.itens)?j.itens:[]).filter(function(x){return x&&x.trecho}).slice(0,3)};
+    try{var a=SH.id&&achar(SH.id),box=el('sh-res');if(a&&a.it.imdb_id===imdb&&box)box.innerHTML=resenhasFolha(a.it)}catch(e){console.error(e)}});
+}
+function resenhasFolha(it){
+  var r=RES[it.imdb_id];if(!r||!r.itens.length)return '';
+  var card=function(x){var n=x.nota!=null&&isFinite(+x.nota)?Math.max(0,Math.min(10,+x.nota)):null,u=/^https:\/\/www\.themoviedb\.org\/review\/[\w-]+$/.test(String(x.url||''))?x.url:'';
+    var dt=/^\d{4}-\d{2}$/.test(String(x.data||''))?MES3[+x.data.slice(5)-1]+' '+x.data.slice(0,4):'';
+    return '<figure class="res">'+(n!=null?'<span class="res-n'+(n>=7?' bom':n<=5?' ruim':'')+'"><b class="num">'+fmtN1(Math.round(n*10)/10).replace(',0','')+'</b><small>/10</small></span>':'')+
+      '<blockquote>'+esc(x.trecho)+'</blockquote><figcaption><b>'+esc(x.autor||'anônimo')+'</b>'+(dt?' · '+esc(dt):'')+(x.lingua==='en'?' · <span class="res-l">em inglês</span>':'')+
+      (u?' · <a href="'+esc(u)+'" target="_blank" rel="noopener">ler inteira ↗</a>':'')+'</figcaption></figure>'};
+  return secao('O que o público diz',r.itens.map(card).join('')+'<p class="ext-n">Resenhas de quem usa o TMDB'+(r.total>r.itens.length?' ('+r.itens.length+' de '+r.total+')':'')+'. Os trechos são curtos; a resenha inteira fica no link.</p>');
 }
 function critico(c){
   if(!c||!c.nome)return '';
@@ -4023,6 +4051,7 @@ function renderFolha(){
   if(it.visao&&it.visao.texto)h.push('<details class="sx-d"><summary>Visão '+(t==='filme'?'do diretor':'de quem criou')+'</summary><div class="more"><p>'+esc(it.visao.texto)+'</p>'+(limpaFonte(it.visao.fonte)?'<div class="src">'+linkOrText(limpaFonte(it.visao.fonte))+'</div>':'')+'</div></details>');
   var cr=(it.criticos||[]).map(critico).join('');
   if(cr)h.push('<details class="sx-d"><summary>Críticos ('+it.criticos.length+')</summary><div class="more">'+cr+'</div></details>');
+  if(/^tt\d{5,10}$/.test(String(it.imdb_id||''))){h.push('<div id="sh-res">'+resenhasFolha(it)+'</div>');resenhas(it.imdb_id)}
   if((it.leitura||it.jornada||it.arquetipo)&&!mp)h.push('<details class="sx-d"><summary>Leitura arquetípica'+(it.arquetipo?' · '+esc(it.arquetipo):'')+'</summary><div class="more">'+(it.leitura?'<p>'+esc(it.leitura)+'</p>':'')+(it.jornada?'<p class="src">Jornada: '+esc(it.jornada)+'</p>':'')+(it.espelho&&!it.ponte?'':'')+'</div></details>');
   var links=[];
   if(/^tt\d{5,10}$/.test(String(it.imdb_id||'')))links.push('<a href="https://www.imdb.com/title/'+esc(it.imdb_id)+'/" target="_blank" rel="noopener">IMDb ↗</a>');
