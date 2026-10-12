@@ -752,9 +752,12 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
 .gfrase{color:var(--tx)!important;font-size:15px!important;line-height:1.5}
 .gaviso{border-left:3px solid var(--new);padding:2px 0 2px 10px}
 /* ---------- entrada do Whatch ---------- */
-html.login-on .tabbar,html.login-on header.top .ib,html.login-on footer{display:none}
-.login{max-width:400px;margin:0 auto;padding-top:min(8vh,56px)}
-.login .lg-ic{width:64px;height:64px;border-radius:16px;display:block;margin:0 0 18px}
+html.login-on .tabbar,html.login-on header.top,html.login-on footer{display:none}
+.login{max-width:400px;margin:0 auto;padding-top:max(28px,10vh)}
+/* a marca uma vez só: ícone e nome juntos (o topo da página some na entrada) */
+.login .lg-marca{display:flex;align-items:center;gap:12px;margin:0 0 28px}
+.login .lg-marca img{width:44px;height:44px;border-radius:11px;display:block}
+.login .lg-marca span{font-size:24px;font-weight:800;letter-spacing:-.02em}
 .login h2{font-size:28px;line-height:1.15;letter-spacing:-.01em;margin:0 0 8px}
 .login .lead{color:var(--tx2);margin:0 0 22px}
 .login .lg-g{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;border-radius:14px;border:1px solid var(--line);background:var(--s1);color:var(--tx);font:inherit;font-weight:700;cursor:pointer}
@@ -768,7 +771,7 @@ html.login-on .tabbar,html.login-on header.top .ib,html.login-on footer{display:
 .login .btn.lg-ok{width:100%;min-height:48px;margin-top:12px}
 .login .lg-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:16px}
 .login .err{margin:12px 0 0}
-.login .fine{margin-top:22px}
+.login .fine{margin-top:22px;color:var(--tx3);font-size:13px;line-height:1.5}
 .ri-barra,.g6-barra-ia{height:4px;border-radius:2px;background:var(--s2);overflow:hidden;margin-top:12px}.ri-barra i,.g6-barra-ia i{display:block;height:100%;width:30%;background:var(--acc);border-radius:2px;animation:iaVai 1.4s ease-in-out infinite}
 @keyframes iaVai{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
 @media (prefers-reduced-motion:reduce){.ri-barra i,.g6-barra-ia i{animation:none;width:100%;opacity:.5}}
@@ -5042,7 +5045,7 @@ function lgErro(r,padrao){var j=r&&r.j||{},m=String(j.msg||j.error_description||
 var IC_GOOGLE='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1c.9-2.9 3.6-4.9 6.7-4.9z"/></svg>';
 function loginRender(){
   var box=el('login');if(!box)return;var e=esc(LG.email),oc=LG.ocupado?' disabled':'',h;
-  var topo='<img class="lg-ic" src="/whatch/icone.svg" alt="" width="64" height="64">';
+  var topo='<div class="lg-marca"><img src="/whatch/icone.svg" alt="" width="44" height="44"><span>Whatch</span></div>';
   var erro=LG.erro?'<p class="err" role="alert">'+esc(LG.erro)+'</p>':'';
   if(LG.passo==='codigo'){
     h=topo+'<h2>Confira o seu e-mail</h2><p class="lead">Mandamos um código de 6 dígitos para <b>'+e+'</b>. Pode levar um minuto; olhe também o spam.</p>'+
