@@ -39,6 +39,8 @@ export async function confereUso(req, tipo) {
     const user = await ru.json();
     const uid = String(user && user.id || '');
     if (!/^[0-9a-f-]{36}$/.test(uid)) return { ok: false, status: 401, erro: 'Sua sessão venceu. Entre de novo.' };
+    // o dono do app (app_metadata.whatch_dono, só o banco marca) não tem limite; o uso dele não é contado
+    if (user.app_metadata && user.app_metadata.whatch_dono === true) return { ok: true, uid, dono: true };
     const agora = new Date();
     // dia e mês no horário de Brasília (UTC−3)
     const br = new Date(agora.getTime() - 3 * 3600e3);

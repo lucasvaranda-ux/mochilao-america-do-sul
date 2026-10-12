@@ -1544,7 +1544,9 @@ var EPI={},IMDB={}; // episódios por imdb_id e série por imdb_id
 var WHATCH=!!window.WHATCH,APP=WHATCH?'Whatch':'Telas';
 // conta do Whatch (bloco CONTA DO WHATCH): o login fica desligado até a migração e a função whatch-login estarem no banco;
 // ?login=1 liga para testar. SES = sessão do Supabase guardada neste aparelho; LG = estado da tela de entrada.
-var WH_LOGIN_LIGADO=false,WH_LOGIN=WHATCH&&(WH_LOGIN_LIGADO||/[?&]login=1\b/.test(location.search));
+// quem já entrou (com ?login=1, enquanto o login está desligado para o público) continua com a conta nas próximas visitas
+// ligado em 12/10/2026, depois de a SV Nuvem aplicar a Fase 0; ?login=0 desliga só em localhost (os testes da página sem conta)
+var WH_LOGIN_LIGADO=!(/^(localhost|127\.0\.0\.1)$/.test(location.hostname)&&/[?&]login=0\b/.test(location.search)),WH_LOGIN=WHATCH&&(WH_LOGIN_LIGADO||/[?&]login=1\b/.test(location.search)||(function(){try{return !!localStorage.getItem('whatch_sessao')}catch(e){return false}})());
 var SKEY='whatch_sessao',SES=WH_LOGIN?sesLe():null,LG={passo:'inicio',email:'',erro:'',ocupado:false,depois:'',reenvio:0};
 try{if(WHATCH){document.getElementById('brand').textContent='Whatch';var tb=document.querySelector('.tabbar-brand');if(tb)tb.src='/whatch/icone.svg'}}catch(e){}
 var DIMS=[], PESOS0=[];
@@ -1572,7 +1574,9 @@ function stOf(it){var v=ST.status[it.id];if(v==='nenhum')return '';if(!v&&ehSaga
 // pesos em uso: os mexidos na aba Conexão; senão os do gosto da pessoa (modo pessoa); senão os iniciais do Lucas
 function pesos(){return (ST.pesos&&ST.pesos.length===N13)?ST.pesos:pesosBase()}
 function pesosBase(){return ST.perfil&&ST.perfil.pesos&&ST.perfil.pesos.length===N13?ST.perfil.pesos:PESOS0}
-function modoPessoa(){return !!ST.perfil||WHATCH}
+// o dono (app_metadata.whatch_dono, marcado no banco; ninguém se dá isso sozinho) vê no Whatch a página dele, como em mochilao/telas
+function dono(){return !!(WHATCH&&SES&&SES.user&&SES.user.dono)}
+function modoPessoa(){return !!ST.perfil||(WHATCH&&!dono())}
 // Conexão = percentil do valor (peso × 13 números) do título no conjunto catálogo + página, de 0 a 100.
 // A lista ordenada de valores é calculada uma vez por vetor de pesos (ORDS); montarAvaliaveis() a zera.
 var ORDS={};
@@ -2214,7 +2218,7 @@ function ir(t){
     if(!GRUPO[t])t='inicio';
     if(t==='perfil'&&!ST.perfil)t='comecar'; // sem gosto guardado, "Seu gosto" é a tela "Por onde começar?"
     // no Whatch sem gosto, Início, Lista, Agenda, Conexão e Perguntar mostram as portas (a barra continua marcando o destino tocado)
-    var gv=GRUPO[t],t0=t;if(WHATCH&&!ST.perfil&&WH_PORTA[t])t='comecar';
+    var gv=GRUPO[t],t0=t;if(WHATCH&&!ST.perfil&&!dono()&&WH_PORTA[t])t='comecar';
     // com o login ligado, sem sessão não se passa da entrada (o Backup e o Avaliar também pedem conta); guarda o destino pedido
     if(WH_LOGIN&&!SES&&t!=='login'){LG.depois=t0;t='login'}
     try{document.documentElement.classList.toggle('login-on',t==='login')}catch(e){}
@@ -4232,7 +4236,7 @@ function shCriancas(kind,usados){
 function renderComecar(){
   var box=el('comecar-portas');if(!box||typeof IC_PORTA==='undefined')return;
   // no Whatch, sem gosto, esta é a primeira tela do app: sem o "‹ Mais" e com a apresentação dele
-  try{var wh=WHATCH&&!ST.perfil;el('comecar-back').hidden=wh;
+  try{var wh=WHATCH&&!ST.perfil&&!dono();el('comecar-back').hidden=wh;
     el('comecar-h').textContent=wh?'Filmes e séries do seu jeito':'Por onde começar?';
     el('comecar-p').textContent=wh?'O Whatch monta a sua lista a partir do que você gosta, com onde assistir no Brasil. O jeito mais rápido e mais certeiro: o que a sua IA já sabe de você, lido pela nossa e afinado em 3 minutos.':
       (WHATCH?'Para a página seguir o seu gosto, comece por aqui. O mais certeiro: o que a sua IA já sabe de você, afinado em 3 minutos.':'Esta página nasceu da lista de uma pessoa. Para ela virar a sua, a gente precisa conhecer o seu gosto. O mais rápido e o mais certeiro: o que a sua IA já sabe de você, afinado em 3 minutos.')}catch(e){}
@@ -5031,7 +5035,7 @@ function sesLe(){try{var s=JSON.parse(localStorage.getItem(SKEY)||'null');if(s&&
 function sesGrava(j){
   var u=j.user||(SES&&SES.user)||{};
   var s={access_token:String(j.access_token),refresh_token:String(j.refresh_token),expires_at:Date.now()+(+j.expires_in||3600)*1000,
-    user:{id:String(u.id||''),email:String(u.email||''),senha:!!(u.user_metadata&&u.user_metadata.whatch_senha)||!!u.senha,prov:String((u.app_metadata&&u.app_metadata.provider)||u.prov||'')}};
+    user:{id:String(u.id||''),email:String(u.email||''),senha:!!(u.user_metadata&&u.user_metadata.whatch_senha)||!!u.senha,dono:u.app_metadata?!!u.app_metadata.whatch_dono:!!u.dono,prov:String((u.app_metadata&&u.app_metadata.provider)||u.prov||'')}};
   if(!s.user.id)return null;SES=s;try{localStorage.setItem(SKEY,JSON.stringify(s))}catch(e){}return s;
 }
 function sesLimpa(){SES=null;try{localStorage.removeItem(SKEY)}catch(e){}}
@@ -5100,11 +5104,15 @@ function lgEntrou(r,criarSenha){
 }
 function contaPronta(agora){
   LG.ocupado=false;LG.passo='inicio';LG.erro='';
+  var donoAntes=dono();
   sesValida().then(function(s){if(!s)return;
     sb('/rest/v1/telas_members',{method:'POST',token:s.access_token,prefer:'resolution=ignore-duplicates,return=minimal',body:{user_id:s.user.id}}).catch(function(){});
-    return nuvemBaixa();
-  }).then(function(){contaRender();if(!agora&&ST.perfil&&ABA==='comecar')ir('inicio');if(agora){var d=LG.depois&&LG.depois!=='login'?LG.depois:'';LG.depois='';ir(d&&(ST.perfil||!WH_PORTA[d])?d:(ST.perfil?'inicio':'comecar'))}},
-    function(e){console.error(e);contaRender();if(agora)ir(ST.perfil?'inicio':'comecar')});
+    // os metadados mudam no banco (dono, senha criada noutro aparelho): confere a cada entrada
+    return sb('/auth/v1/user',{token:s.access_token}).then(function(r){if(r.ok&&r.j&&r.j.id&&SES){SES.user.dono=!!(r.j.app_metadata&&r.j.app_metadata.whatch_dono);SES.user.senha=SES.user.senha||!!(r.j.user_metadata&&r.j.user_metadata.whatch_senha);try{localStorage.setItem(SKEY,JSON.stringify(SES))}catch(e){}}},function(){})
+      .then(nuvemBaixa);
+  }).then(function(){contaRender();if(dono()!==donoAntes){try{if(D)entraModo()}catch(e){console.error(e)}}
+    if(!agora&&(ST.perfil||dono())&&ABA==='comecar')ir('inicio');if(agora){var d=LG.depois&&LG.depois!=='login'?LG.depois:'';LG.depois='';ir(d&&(ST.perfil||dono()||!WH_PORTA[d])?d:(ST.perfil||dono()?'inicio':'comecar'))}},
+    function(e){console.error(e);contaRender();if(agora)ir(ST.perfil||dono()?'inicio':'comecar')});
 }
 // ---- o estado na conta ----
 function temAlgo(s){return !!(s&&(s.perfil||Object.keys(s.notas||{}).length||Object.keys(s.status||{}).length))}
