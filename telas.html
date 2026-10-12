@@ -1452,9 +1452,21 @@ function limpaPerfil(p){
   var rs=obj(p.respostas);r.respostas={procura:strs(rs.procura).slice(0,2),fase:typeof rs.fase==='string'?rs.fase.slice(0,20):'',resp:typeof rs.resp==='string'?rs.resp.slice(0,20):'',
     cenas:Math.max(0,Math.min(6,+rs.cenas||0)),cartazes:limpaVezes(rs.cartazes),obras:strs(rs.obras).slice(0,3)};
   r.pesosSemFase=limpaPesos(p.pesosSemFase);
-  r.frases=strs(p.frases).map(function(s){return s.slice(0,240)}).slice(0,8);
+  r.frases=strs(p.frases).map(function(s){return s.slice(0,240)}).slice(0,12);
   r.nao=strs(p.nao).slice(0,200);
+  // do resumo da IA: as frases dela (o parágrafo "meu gosto em palavras") e o ponto de partida do caminho curto
+  r.ia=strs(p.ia).map(function(s){return s.slice(0,240)}).slice(0,6);
+  r.base=limpaBase(p.base);r.afinado=!!p.afinado;
   return r;
+}
+// base: o prior que o resumo deu (q e t, 13 números cada), os títulos citados com o sinal da nota ([id, y, peso]) e os ids citados
+function limpaBase(b){
+  if(!b||typeof b!=='object'||Array.isArray(b))return null;
+  function v13(a,mn,mx){if(!Array.isArray(a)||a.length!==N13)return null;var o=[];for(var i=0;i<N13;i++){var x=+a[i];if(typeof a[i]!=='number'||!isFinite(x))return null;o.push(Math.max(mn,Math.min(mx,Math.round(x*1000)/1000)))}return o}
+  var q=v13(b.q,-80,80),t=v13(b.t,0,80);if(!q||!t)return null;
+  var obs=(Array.isArray(b.obs)?b.obs:[]).filter(function(o){return Array.isArray(o)&&o.length===3&&typeof o[0]==='string'&&o[0].length<=120&&isFinite(+o[1])&&isFinite(+o[2])&&+o[2]>0})
+    .slice(0,80).map(function(o){return [o[0],Math.max(-1,Math.min(1,+o[1])),Math.min(2,+o[2])]});
+  return {q:q,t:t,obs:obs,cit:strs(b.cit).filter(function(x){return x.length<=120}).slice(0,120),sec5:!!b.sec5,nIA:Math.max(0,Math.min(N13,Math.round(+b.nIA||0)))};
 }
 function limpaVezes(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){var v=+o[k];if(isFinite(v)&&v>0)r[k]=Math.min(9999,Math.round(v))});return r}
 function limpaFase(o){var r={};o=obj(o);Object.keys(o).forEach(function(k){if(typeof o[k]==='string')r[k]=o[k].slice(0,120)});return r}
@@ -4571,7 +4583,7 @@ function g6Fim(){
 // "- a | b | c" das seções Amo, Gosto e Não gostei casam com o catálogo por casar(); as seções de temas, "o que
 // procuro", limites e "como eu assisto" viram pontos nos 13 pesos. Tudo passa por uma revisão linha a linha antes de
 // gravar. O texto colado não é guardado: só o que ela confirmar.
-var RI_PROMPT="Quero levar para o Telas, um app de filmes e séries, um resumo do que você sabe sobre mim COMO ESPECTADOR. O app vai usar isso para montar minhas primeiras indicações. Vou ler tudo antes de colar lá.\n\nDE ONDE TIRAR\n1. Use só: (a) o que está na sua memória salva sobre mim; (b) o que eu disse em conversas anteriores, se você tem acesso a elas; (c) o que eu responder nesta conversa.\n2. Se você consegue buscar nas nossas conversas antigas, busque por: filme, série, assisti, vi, maratonei, temporada, episódio, cinema, Netflix, Prime, Disney, Max, Globoplay, Apple TV, anime, novela, dorama, documentário, indicação, \"me recomenda\".\n3. Não use ideias gerais sobre \"pessoas como eu\" e não complete lacunas com palpites. Prefiro uma seção vazia a uma seção inventada.\n4. Marque a origem de cada item:\n   memória = está na sua memória salva\n   conversa AAAA-MM = eu disse numa conversa antiga (mês e ano, se souber; senão \"conversa ?\")\n   agora = eu disse nesta conversa\n   dedução = você deduziu de algo que eu disse (use pouco e diga de quê)\n5. Marque a certeza: alta, média ou baixa.\n\nO QUE DEIXAR DE FORA (nem resumido, nem disfarçado)\n- Nomes de pessoas. Use só a relação: \"parceira\", \"filho\", \"amigos\".\n- Saúde física ou mental, diagnósticos, terapia, remédios, gravidez, vícios.\n- A religião ou a crença que eu tenho, minha posição política, orientação sexual, identidade de gênero, cor ou etnia.\n- Dinheiro, endereço, empresa onde trabalho, documentos, telefones, e-mails e links.\n- Detalhes sobre crianças. Basta \"assisto com crianças: sim\" ou \"não\".\n- Testes de personalidade (MBTI, eneagrama, signo), estilo de apego ou qualquer análise psicológica de mim.\nSe o motivo de um gosto ou de um limite for um desses assuntos, escreva o gosto ou o limite SEM o motivo. Exemplo: \"evito cenas de hospital\", e não por quê.\nGostar de histórias SOBRE fé, política ou doença é gosto e pode entrar (\"gosto de filmes sobre fé e dúvida\"). O que eu creio ou tenho, não.\n\nSE VOCÊ SABE POUCO SOBRE MIM\nSe você tem menos de 5 filmes ou séries meus na memória ou nas conversas, diga isso em uma linha e, antes de escrever o resumo, me faça as perguntas abaixo, 4 por vez, em até três rodadas. Use minhas respostas com a origem \"agora\".\n1. Três filmes ou séries que você ama, e por quê em poucas palavras.\n2. Dois que você odiou ou largou no meio, e por quê.\n3. O que você revê, ou põe para descansar a cabeça.\n4. Uma fase da sua vida e o que você assistia nela.\n5. O que você não suporta ver na tela.\n6. Com quem você costuma assistir, e onde (serviços, TV, celular, cinema).\n7. Dublado ou legendado? Que idiomas você entende?\n8. Filme ou série? Curto ou longo? Um episódio por noite ou maratona?\n9. Final fechado ou aberto? Leve ou pesado? Realista ou fantasia?\n10. Alguma obra que todo mundo ama e você não?\n11. Algum país ou tipo de produção de que você gosta muito (coreana, anime, novela, documentário...)?\n12. O que você quer sentir quando escolhe algo para ver hoje em dia?\n\nFORMATO DA RESPOSTA\nPortuguês do Brasil. Títulos como saíram no Brasil e, ao lado, o original. Entregue tudo DENTRO DE UM ÚNICO BLOCO DE CÓDIGO, seguindo exatamente o modelo abaixo. Nas linhas que começam com \"- \", mantenha os campos separados por \" | \". Campo que você não sabe: \"?\". Seção sem nada: escreva \"- nada\". No máximo 1.500 palavras.\n\n```\n# Perfil Telas v1\nassistente: (seu nome) | data: AAAA-MM-DD\nacesso: memória salva = sim/não | conversas antigas = sim/não/parcial | respostas de agora = sim/não\nconversas sobre filmes e séries que encontrei: (número aproximado ou ?)\n\n## 1. Amo\n- título no Brasil | título original | ano | filme/série | por quê (até 15 palavras) | origem | certeza\n(até 20 linhas, as mais fortes primeiro)\n\n## 2. Gosto\n- título no Brasil | título original | ano | filme/série | por quê | origem | certeza\n(até 20 linhas)\n\n## 3. Não gostei ou larguei\n- título no Brasil | título original | ano | filme/série | larguei: sim/não | por quê | origem | certeza\n(até 15 linhas)\n\n## 4. Temas que voltam\n- tema (ex.: família que se reencontra) | obras que mostram isso | origem | certeza\n(até 8 linhas)\n\n## 5. O que procuro numa história\n- tom: leve / equilibrado / pesado / tanto faz | origem | certeza\n- ritmo: lento / médio / rápido / tanto faz | origem | certeza\n- final: fechado / aberto / tanto faz | origem | certeza\n- trama: simples / com camadas / quebra-cabeça | origem | certeza\n- mundo: realista / fantasia ou ficção científica / os dois | origem | certeza\n- humor: muito / algum / pouco | origem | certeza\n- tensão e sustos: gosto / aguento / evito | origem | certeza\n- personagens que me prendem: (frase curta) | origem | certeza\n- outra coisa que procuro: (frase curta) | origem | certeza\n\n## 6. Fases e o que eu assistia\n- fase (ex.: adolescência, faculdade, pandemia, agora) | período aproximado | o que assistia | o que aquilo fazia por mim (companhia, escape, rir, chorar, aprender...) | origem | certeza\n(até 6 linhas, sem detalhes íntimos da fase)\n\n## 7. Limites\n- não suporto: (ex.: violência sexual, morte de animal, gore, terror com sustos, cenas de hospital, guerra, crueldade com criança, vergonha alheia) | evitar sempre / avisar antes | origem | certeza\n\n## 8. Como eu assisto\n- com quem: sozinho / parceiro(a) / família / amigos | crianças junto: sim/não | origem | certeza\n- onde: (serviços que assino; TV, celular, computador, cinema) | origem | certeza\n- quando e quanto: (ex.: um episódio por noite, maratona no fim de semana) | origem | certeza\n- duração: filme até 2h / tanto faz | série curta / longa / tanto faz | origem | certeza\n- para desligar a cabeça: (obras) | origem | certeza\n- revejo: (obras) | origem | certeza\n\n## 9. Idiomas\n- entendo: (idiomas) | prefiro: dublado / legendado / tanto faz | aberto a produções de: (países ou \"qualquer\") | origem | certeza\n\n## 10. O que eu não sei\n- (o que você não sabe sobre o meu gosto e valeria perguntar; até 6 linhas)\n\n## 11. Conferência\n- itens por origem: memória N | conversa N | agora N | dedução N\n- deixei de fora dados sensíveis: sim\n- completo: sim / não, há mais que não coube\n```\n\nDepois do bloco, escreva uma única frase dizendo se isto é tudo o que você tem sobre mim ou se ficou algo de fora.";
+var RI_PROMPT="Quero levar para o Telas, um app de filmes e séries, um resumo do que você sabe sobre mim COMO ESPECTADOR. O app vai usar isso para montar meu gosto e minhas primeiras indicações. Vou ler tudo antes de colar lá.\n\nDE ONDE TIRAR\n1. Use só: (a) o que está na sua memória salva sobre mim; (b) o que eu disse em conversas anteriores, se você tem acesso a elas; (c) o que eu responder nesta conversa.\n2. Se você consegue buscar nas nossas conversas antigas, busque por: filme, série, assisti, vi, maratonei, temporada, episódio, cinema, Netflix, Prime, Disney, Max, Globoplay, Apple TV, anime, novela, dorama, documentário, indicação, \"me recomenda\".\n3. Não use ideias gerais sobre \"pessoas como eu\" e não complete lacunas com palpites. Prefiro uma seção vazia a uma seção inventada.\n4. Marque a origem de cada item:\n   memória = está na sua memória salva\n   conversa AAAA-MM = eu disse numa conversa antiga (mês e ano, se souber; senão \"conversa ?\")\n   agora = eu disse nesta conversa\n   dedução = você deduziu de algo que eu disse (use pouco e diga de quê)\n5. Marque a certeza: alta, média ou baixa.\n\nO QUE DEIXAR DE FORA (nem resumido, nem disfarçado)\n- Nomes de pessoas. Use só a relação: \"parceira\", \"filho\", \"amigos\".\n- Saúde física ou mental, diagnósticos, terapia, remédios, gravidez, vícios.\n- A religião ou a crença que eu tenho, minha posição política, orientação sexual, identidade de gênero, cor ou etnia.\n- Dinheiro, endereço, empresa onde trabalho, documentos, telefones, e-mails e links.\n- Detalhes sobre crianças. Basta \"assisto com crianças: sim\" ou \"não\".\n- Testes de personalidade (MBTI, eneagrama, signo), estilo de apego ou qualquer análise psicológica de mim.\nSe o motivo de um gosto ou de um limite for um desses assuntos, escreva o gosto ou o limite SEM o motivo. Exemplo: \"evito cenas de hospital\", e não por quê.\nGostar de histórias SOBRE fé, política ou doença é gosto e pode entrar (\"gosto de filmes sobre fé e dúvida\"). O que eu creio ou tenho, não.\n\nSE VOCÊ SABE POUCO SOBRE MIM\nSe você tem menos de 5 filmes ou séries meus na memória ou nas conversas, diga isso em uma linha e, antes de escrever o resumo, me faça as perguntas abaixo, 4 por vez, em até três rodadas. Use minhas respostas com a origem \"agora\".\n1. Três filmes ou séries que você ama, e por quê em poucas palavras.\n2. Dois que você odiou ou largou no meio, e por quê.\n3. O que você revê, ou põe para descansar a cabeça.\n4. Uma fase da sua vida e o que você assistia nela.\n5. O que você não suporta ver na tela.\n6. Com quem você costuma assistir, e onde (serviços, TV, celular, cinema).\n7. Dublado ou legendado? Que idiomas você entende?\n8. Filme ou série? Curto ou longo? Um episódio por noite ou maratona?\n9. Final fechado ou aberto? Leve ou pesado? Realista ou fantasia?\n10. Alguma obra que todo mundo ama e você não?\n11. Algum país ou tipo de produção de que você gosta muito (coreana, anime, novela, documentário...)?\n12. O que você quer sentir quando escolhe algo para ver hoje em dia?\n\nNOTAS POR TEMA E POR TRAÇO (seções 10 e 11)\nDê uma nota de 0 a 10 para quanto cada tema e cada traço pesa no que eu escolho ver, a partir das obras e do que eu disse (não de ideias gerais). Nos temas, 0 = não me atrai, 5 = tanto faz, 10 = é o que eu mais procuro. Nos traços, 0 = evito, 5 = tanto faz, 10 = procuro muito. Use a escala inteira: se tudo der 7 ou 8, a nota não diz nada. Se não souber, escreva \"?\" no lugar da nota: prefiro \"?\" a um chute. Em cada linha, uma frase curta de porquê, com uma obra de exemplo quando houver.\n\nFORMATO DA RESPOSTA\nPortuguês do Brasil. Títulos como saíram no Brasil e, ao lado, o original. Entregue tudo DENTRO DE UM ÚNICO BLOCO DE CÓDIGO, seguindo exatamente o modelo abaixo. Nas linhas que começam com \"- \", mantenha os campos separados por \" | \". Campo que você não sabe: \"?\". Seção sem nada: escreva \"- nada\". No máximo 1.800 palavras.\n\n```\n# Perfil Telas v2\nassistente: (seu nome) | data: AAAA-MM-DD\nacesso: memória salva = sim/não | conversas antigas = sim/não/parcial | respostas de agora = sim/não\nconversas sobre filmes e séries que encontrei: (número aproximado ou ?)\n\n## 1. Amo\n- título no Brasil | título original | ano | filme/série | por quê (até 15 palavras) | origem | certeza\n(até 20 linhas, as mais fortes primeiro)\n\n## 2. Gosto\n- título no Brasil | título original | ano | filme/série | por quê | origem | certeza\n(até 20 linhas)\n\n## 3. Não gostei ou larguei\n- título no Brasil | título original | ano | filme/série | larguei: sim/não | por quê | origem | certeza\n(até 15 linhas)\n\n## 4. Temas que voltam\n- tema (ex.: família que se reencontra) | obras que mostram isso | origem | certeza\n(até 8 linhas)\n\n## 5. O que procuro numa história\n- tom: leve / equilibrado / pesado / tanto faz | origem | certeza\n- ritmo: lento / médio / rápido / tanto faz | origem | certeza\n- final: fechado / aberto / tanto faz | origem | certeza\n- trama: simples / com camadas / quebra-cabeça | origem | certeza\n- mundo: realista / fantasia ou ficção científica / os dois | origem | certeza\n- humor: muito / algum / pouco | origem | certeza\n- tensão e sustos: gosto / aguento / evito | origem | certeza\n- personagens que me prendem: (frase curta) | origem | certeza\n- outra coisa que procuro: (frase curta) | origem | certeza\n\n## 6. Fases e o que eu assistia\n- fase (ex.: adolescência, faculdade, pandemia, agora) | período aproximado | o que assistia | o que aquilo fazia por mim (companhia, escape, rir, chorar, aprender...) | origem | certeza\n(até 6 linhas, sem detalhes íntimos da fase)\n\n## 7. Limites\n- não suporto: (ex.: violência sexual, morte de animal, gore, terror com sustos, cenas de hospital, guerra, crueldade com criança, vergonha alheia) | evitar sempre / avisar antes | origem | certeza\n\n## 8. Como eu assisto\n- com quem: sozinho / parceiro(a) / família / amigos | crianças junto: sim/não | origem | certeza\n- onde: (serviços que assino; TV, celular, computador, cinema) | origem | certeza\n- quando e quanto: (ex.: um episódio por noite, maratona no fim de semana) | origem | certeza\n- duração: filme até 2h / tanto faz | série curta / longa / tanto faz | origem | certeza\n- para desligar a cabeça: (obras) | origem | certeza\n- revejo: (obras) | origem | certeza\n\n## 9. Idiomas\n- entendo: (idiomas) | prefiro: dublado / legendado / tanto faz | aberto a produções de: (países ou \"qualquer\") | origem | certeza\n\n## 10. Notas por tema\n- Busca (o sentido da vida, fé, as grandes perguntas) | nota 0 a 10 ou ? | por quê (até 15 palavras) | certeza\n- Travessia (viagem, estrada, recomeço, virar adulto) | nota | por quê | certeza\n- Terra (natureza, bichos, paisagem, povos da floresta, o corpo) | nota | por quê | certeza\n- Amor (amor, família, amizade, perda e saudade) | nota | por quê | certeza\n- Sombra (a cabeça das pessoas, crise, segredos, o lado escuro) | nota | por quê | certeza\n- Mesa (turma, comunidade, comida, gente cuidando de gente) | nota | por quê | certeza\n- Ofício (trabalho, talento, criar algo, ser muito bom no que faz) | nota | por quê | certeza\n- Humanidade (poder, política, injustiça, guerra, sociedade) | nota | por quê | certeza\n- Encanto (magia, mitos, mundos inventados, o épico) | nota | por quê | certeza\n\n## 11. Nível e traços\n- Nível (densidade: obras que pedem atenção e ficam na cabeça; 0 = prefiro o leve, de passar o tempo) | nota 0 a 10 ou ? | por quê | certeza\n- Riso (comédia, sitcom, sátira, paródia) | nota | por quê | certeza\n- Tensão (ação, suspense, terror, policial, espionagem) | nota | por quê | certeza\n- Desenho (animação e anime) | nota | por quê | certeza\n\n## 12. Meu gosto em palavras\n(um parágrafo de 3 a 6 frases curtas, falando comigo: \"Você procura...\". Só sobre o que eu gosto de ver e por quê, com obras de exemplo. Sem rótulo de personalidade, sem diagnóstico e sem nada da lista do que deixar de fora. Escreva em linhas normais, sem \"- \".)\n\n## 13. O que eu não sei\n- (o que você não sabe sobre o meu gosto e valeria perguntar; até 6 linhas)\n\n## 14. Conferência\n- itens por origem: memória N | conversa N | agora N | dedução N\n- deixei de fora dados sensíveis: sim\n- completo: sim / não, há mais que não coube\n```\n\nDepois do bloco, escreva uma única frase dizendo se isto é tudo o que você tem sobre mim ou se ficou algo de fora.";
 var RI=null;
 // serviços como podem aparecer no "onde" do resumo (Apple TV sem o "+", "Prime" sozinho, HBO)
 var SERV_RE={netflix:/netflix/,prime:/prime|amazon/,disney:/disney/,max:/\bmax\b|hbo/,globo:/globo/,apple:/apple\s*tv/,param:/paramount/,mubi:/mubi/};
@@ -4587,31 +4599,53 @@ function riTitulo(f,sec){
   var r=casar([[t,['pt','en']],[og,['en']]],ano,tp,'');
   return {t:t,og:og,ano:ano,tp:tp,larg:larg,origem:origem,cert:cert,r:r,fraco:/dedu[çc][ãa]o/i.test(origem)||/baixa/i.test(cert)};
 }
+// "Busca (o sentido da vida…)" -> índice do eixo (0 a 12), pelo nome antes do parêntese
+function riEixo(nome){
+  var k=normT(String(nome||'').replace(/\(.*$/,''));if(!k)return -1;
+  for(var i=0;i<DIMS.length;i++)if(normT(DIMS[i].nome)===k||DIMS[i].id===k)return i;
+  if(/^(nivel|densidade)/.test(k))return 9;if(/^(riso|humor|comedia)/.test(k))return 10;if(/^(tensao|suspense)/.test(k))return 11;if(/^(desenho|animacao|anime)/.test(k))return 12;
+  return -1;
+}
+var RI_CERT={alta:{m:1,t:6},media:{m:0.75,t:4},baixa:{m:0.5,t:2}};
+function riCert(c){var k=normT(c);return RI_CERT[k]||(/alta/.test(k)?RI_CERT.alta:/baixa/.test(k)?RI_CERT.baixa:RI_CERT.media)}
+// o parágrafo "meu gosto em palavras" em frases (até 6, de até 240 caracteres)
+function riFrases(t){
+  t=String(t||'').replace(/\s+/g,' ').trim();if(!t)return [];
+  var l=t.match(/[^.!?…]+[.!?…]+["”»)]*|[^.!?…]+$/g)||[];
+  return l.map(function(x){return x.trim()}).filter(function(x){return x.length>=8&&!/^\(/.test(x)}).slice(0,6).map(function(x){return x.length>240?x.slice(0,237).replace(/\s+\S*$/,'')+'…':x});
+}
 function riAnalisa(txt){
   indexa();
-  txt=String(txt||'').slice(0,30000).replace(/^\uFEFF/,'');
-  var i=txt.indexOf('# Perfil Telas');if(i<0)return {erro:'Não achei "# Perfil Telas v1" no texto. Cole a resposta inteira do assistente: o bloco que começa com "# Perfil Telas v1".'};
+  txt=String(txt||'').slice(0,30000).replace(/^﻿/,'');
+  var i=txt.indexOf('# Perfil Telas');if(i<0)return {erro:'Não achei "# Perfil Telas" no texto. Cole a resposta inteira do assistente: o bloco que começa com "# Perfil Telas v2" (ou v1).'};
   txt=riLimpa(txt.slice(i));var fim=txt.indexOf('```');if(fim>0)txt=txt.slice(0,fim);
-  var sec=0,R={titulos:[],sem:[],q:zeros(N13),t:zeros(N13),limites:{},semFiltro:[],ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},desligar:[],repetidos:[],assistente:''};
-  function add(o){Object.keys(o).forEach(function(k){var ix=EIX[k];if(ix==null)return;R.q[ix]+=o[k];R.t[ix]++})}
+  var sec=0,kind='',par=[],R={titulos:[],sem:[],q:zeros(N13),t:zeros(N13),qk:zeros(N13),tk:zeros(N13),notasIA:[],limites:{},semFiltro:[],ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},desligar:[],repetidos:[],assistente:'',sec5:false,versao:/^# Perfil Telas v2/.test(txt)?2:1};
+  for(var e=0;e<N13;e++)R.notasIA.push(null);
+  // os pontos das seções 4 e 5 (palavras-chave) ficam à parte: com as notas por tema da IA, valem a metade
+  function add(o){Object.keys(o).forEach(function(k){var ix=EIX[k];if(ix==null)return;R.qk[ix]+=o[k];R.tk[ix]++})}
   function kw(s,mult){var g=String(s).toLowerCase();RI_KW.forEach(function(p){if(p[0].test(g)){var o={};Object.keys(p[1]).forEach(function(k){o[k]=p[1][k]*(mult||1)});add(o)}})}
   function casaLista(s){var out=[];String(s||'').split(/[;,]/).forEach(function(x){x=x.replace(/\(.*?\)/g,'').trim();if(!x||/^(nada|\?)$/i.test(x))return;var r=casar([[x,['pt','en']]],'',null,'');if(r&&out.indexOf(r.id)<0)out.push(r.id)});return out}
   txt.split(/\r?\n/).forEach(function(l){l=l.trim();if(!l)return;
-    var m=l.match(/^##\s*(\d+)\b/);if(m){sec=+m[1];return}
+    // seções 1 a 9 pelo número (iguais na v1 e na v2); as novas pelo nome (na v1, a 10 é "O que eu não sei")
+    var m=l.match(/^##\s*(\d+)\.?\s*(.*)$/);if(m){sec=+m[1];var tt=normT(m[2]);kind=/notas? por tema|^temas?$/.test(tt)?'temas':/traco|^nivel/.test(tt)?'tracos':/em palavras/.test(tt)?'palavras':sec<=9?'s'+sec:'';return}
+    if(/^#/.test(l))return;
     var ma=l.match(/^assistente:\s*([^|]+)/i);if(ma&&!sec){R.assistente=ma[1].trim().slice(0,40);return}
+    if(kind==='palavras'){if(/^\(/.test(l)||/^[-*]\s*(nada|\?)\s*$/i.test(l))return;par.push(l.replace(/^[-*]\s+/,''));return}
     if(l.indexOf('- ')!==0&&l.indexOf('* ')!==0)return;var f=l.slice(2).split('|').map(function(x){return x.trim()});if(!f[0]||/^(nada|\?)$/i.test(f[0]))return;
-    if(sec===1||sec===2||sec===3){var x=riTitulo(f,sec);if(!x.t)return;x.nota=sec===1?90:sec===2?75:(x.larg?null:35);x.status=sec===3&&x.larg?'abandonei':'assisti';
+    if(kind==='temas'||kind==='tracos'){var ix=riEixo(f[0]),v=num(f[1]);if(ix<0||isNaN(v)||/^\s*\?/.test(f[1]||'')||/0\s*a\s*10/.test(f[1]||''))return; // "?" ou o modelo copiado: sem nota
+      R.notasIA[ix]={v:Math.max(0,Math.min(10,v)),por:String(f[2]||'').slice(0,160),cert:String(f[f.length-1]||'')};return}
+    if(sec===1||sec===2||sec===3){var x=riTitulo(f,sec);if(!x.t)return;x.nota=sec===1?90:sec===2?75:(x.larg?null:35);x.status=sec===3&&x.larg?'abandonei':'assisti';x.sec=sec;
       // o mesmo título em duas linhas: fica a primeira (a seção mais forte vem antes)
       if(x.r){if(R.titulos.some(function(y){return y.id===x.r.id}))return;var ja=ST.notas[x.r.id];x.id=x.r.id;x.ja=ja==null?null:+ja;x.marcado=!x.fraco&&ja==null;R.titulos.push(x)}else R.sem.push(x.t+(anoN(x.ano)?' ('+anoN(x.ano)+')':''))}
     else if(sec===4){kw(f[0],1)} // só o tema: os nomes das obras na 2ª coluna viravam tema ("Mar Adentro" dava terra, "Chefão" dava ofício)
-    else if(sec===5){var k=f[0].toLowerCase(),v=k.split(':').slice(1).join(':');
-      if(/^tom/.test(k)){if(/leve/.test(v))add({riso:2,nivel:-2});else if(/pesad/.test(v))add({nivel:2,sombra:2})}
-      else if(/^ritmo/.test(k)){if(/lento/.test(v))add({nivel:2});else if(/r[áa]pido/.test(v))add({tensao:2})}
-      else if(/^trama/.test(k)){if(/quebra/.test(v))add({sombra:2,nivel:2});else if(/camadas/.test(v))add({nivel:2});else if(/simples/.test(v))add({nivel:-2})}
-      else if(/^mundo/.test(k)){if(/fantasia|fic[çc][ãa]o/.test(v)&&!/os dois/.test(v))add({encanto:4});else if(/os dois/.test(v))add({encanto:2});else if(/realista/.test(v))add({encanto:-2,humanidade:2})}
-      else if(/^humor/.test(k)){if(/muito/.test(v))add({riso:5});else if(/algum/.test(v))add({riso:2});else if(/pouco/.test(v))add({riso:-3})}
-      else if(/^tens/.test(k)){if(/gosto/.test(v))add({tensao:5});else if(/evito/.test(v))add({tensao:-5})}
-      else kw(v,0.7)}
+    else if(sec===5){var k=f[0].toLowerCase(),v5=k.split(':').slice(1).join(':');if(v5.replace(/[\s?]/g,''))R.sec5=true;
+      if(/^tom/.test(k)){if(/leve/.test(v5))add({riso:2,nivel:-2});else if(/pesad/.test(v5))add({nivel:2,sombra:2})}
+      else if(/^ritmo/.test(k)){if(/lento/.test(v5))add({nivel:2});else if(/r[áa]pido/.test(v5))add({tensao:2})}
+      else if(/^trama/.test(k)){if(/quebra/.test(v5))add({sombra:2,nivel:2});else if(/camadas/.test(v5))add({nivel:2});else if(/simples/.test(v5))add({nivel:-2})}
+      else if(/^mundo/.test(k)){if(/fantasia|fic[çc][ãa]o/.test(v5)&&!/os dois/.test(v5))add({encanto:4});else if(/os dois/.test(v5))add({encanto:2});else if(/realista/.test(v5))add({encanto:-2,humanidade:2})}
+      else if(/^humor/.test(k)){if(/muito/.test(v5))add({riso:5});else if(/algum/.test(v5))add({riso:2});else if(/pouco/.test(v5))add({riso:-3})}
+      else if(/^tens/.test(k)){if(/gosto/.test(v5))add({tensao:5});else if(/evito/.test(v5))add({tensao:-5})}
+      else kw(v5,0.7)}
     else if(sec===7){var lt=f[0].toLowerCase().replace(/^n[ãa]o suporto:\s*/,''),forca=/evitar sempre/i.test(f[1]||'')?'nunca':'valer',bateu=false;
       [['terror',/terror|susto/],['guerra',/guerra/],['desenho',/anima[çc][ãa]o|anime|desenho/],['infantil',/infantil/],['antigos',/antigo|preto e branco/],['longas',/s[ée]ries? long/]].forEach(function(p){if(p[1].test(lt)){R.limites[p[0]]=forca;bateu=true}});
       if(!bateu)R.semFiltro.push(lt.slice(0,60))}
@@ -4622,23 +4656,59 @@ function riAnalisa(txt){
       else if(/^para desligar/.test(k8)){R.desligar=casaLista(f[0].split(':').slice(1).join(':'))}
       else if(/^revejo/.test(k8)){R.repetidos=casaLista(f[0].split(':').slice(1).join(':'))}}
   });
-  if(!R.titulos.length&&!R.sem.length&&!R.t.some(function(v){return v}))return {erro:'Não encontrei as seções do resumo (Amo, Gosto, Não gostei, O que procuro…). Confira se colou o bloco inteiro.'};
-  var obs=R.titulos.filter(function(x){return AVPOR[x.id]&&AVPOR[x.id].x}).map(function(x){var r=AVPOR[x.id];return {x:r.x,y:x.nota===90?1:x.nota===75?0.5:-1,peso:x.fraco?0.5:1}});
-  var m=g6Ajusta(R.q,R.t,obs);R.pesos=g6PesosDe(m.w);R.frases=g6Frases(R.pesos,{limites:R.limites,limFase:false}).map(function(f){return f.h});
-  if(semSinal(R.pesos))return {erro:'O resumo não traz nada que desenhe um gosto (nenhum título conhecido aqui, nem o que você procura). Confira se colou o bloco inteiro, ou tente o caminho de seis minutos.'};
+  R.fraseIA=riFrases(riLimpa(par.join(' ')));R.iaOff={};
+  // As notas da IA por tema e por traço são o ponto de partida dos 13 pesos (o prior): cada tema conta pela distância da média
+  // das notas de tema dela (com 3 ou mais; senão, de 5), cada traço pela distância de 5; 1 ponto de nota = 2 pontos do modelo,
+  // menos com certeza média ou baixa. A certeza também dá a firmeza do prior (toques).
+  var temas=R.notasIA.slice(0,9).filter(Boolean),mt=temas.length>=3?temas.reduce(function(a,x){return a+x.v},0)/temas.length:5;
+  R.nIA=R.notasIA.filter(Boolean).length;
+  var qa=zeros(N13),ta=zeros(N13);
+  R.notasIA.forEach(function(x,ix){if(!x)return;var c=riCert(x.cert);qa[ix]=(x.v-(ix<9?mt:5))*2*c.m;ta[ix]=c.t});
+  var fk=R.nIA>=5?0.5:1;
+  for(var j=0;j<N13;j++){R.q[j]=qa[j]+R.qk[j]*fk;R.t[j]=ta[j]+R.tk[j]}
+  if(!R.titulos.length&&!R.sem.length&&!R.t.some(function(v){return v})&&!R.fraseIA.length)return {erro:'Não encontrei as seções do resumo (Amo, Gosto, Não gostei, Notas por tema…). Confira se colou o bloco inteiro.'};
+  R.obs=R.titulos.filter(function(x){return AVPOR[x.id]&&AVPOR[x.id].x}).map(function(x){return {id:x.id,y:x.nota===90?1:x.nota===75?0.5:-1,peso:x.fraco?0.5:1}});
+  var m=g6Ajusta(R.q,R.t,R.obs.map(function(o){return {x:AVPOR[o.id].x,y:o.y,peso:o.peso}}));R.m=m;R.pesos=g6PesosDe(m.w);R.frases=g6Frases(R.pesos,{limites:R.limites,limFase:false}).map(function(f){return f.h});
+  if(semSinal(R.pesos))return {erro:'O resumo não traz nada que desenhe um gosto (nenhum título conhecido aqui, nem notas por tema, nem o que você procura). Confira se colou o bloco inteiro, ou responda sem IA.'};
   R.gravLim=true;R.gravCtx=true;R.gravCol=true;
   return R;
 }
+// o que o resumo não trouxe e o caminho curto pode perguntar
+function riFalta(R){var f=[];if(R.titulos.length<5)f.push(R.titulos.length?'só '+R.titulos.length+' título'+(R.titulos.length>1?'s':'')+' conhecido'+(R.titulos.length>1?'s':'')+' aqui':'nenhum título conhecido aqui');
+  if(!Object.keys(R.limites).length)f.push('o que você não quer ver');if(!R.ctx.servicos.length)f.push('os serviços que você assina');return f}
+// a primeira lista de 12 (a mesma regra de g6Lista), pelo que o resumo disse: fora o que ele já citou
+function riG(R){
+  var resp={};R.titulos.forEach(function(x){resp[x.id]='ok'});R.desligar.concat(R.repetidos).forEach(function(id){resp[id]='ok'});
+  var amo=R.titulos.filter(function(x){return x.nota===90&&AVPOR[x.id]&&AVPOR[x.id].x}).slice(0,2).map(function(x){return {id:x.id}});
+  return {resp:resp,obras:amo,limites:R.gravLim?R.limites:{},ctx:R.gravCtx?R.ctx:{servicos:[]},acoes:{}};
+}
+function riLista(R){try{if(!R.lista)R.lista=g6Lista(riG(R),R.m,R.pesos);return R.lista}catch(e){console.error(e);return []}}
+function riCardLista(x){
+  var a=achar(x.id);if(!a)return '';var it=a.it,r=AVPOR[x.id];
+  var grupo={certeiro:'Certeiro',descoberta:'Talvez você não conheça',parecido:'Para continuar',aposta:'Aposta'}[x.grupo]||'';
+  var meta=[a.tipo==='saga'?(it.anos||''):(r&&r.ano||''),it.autor||it.criadores||'',a.tipo==='saga'?'Saga · '+(it.filmes||[]).length+' filmes':rotTipo(r?r.tipo:'filme')].filter(Boolean).map(esc).join(' · ');
+  return '<article class="mini" data-id="'+esc(x.id)+'"><div class="mini-h"><button class="mini-po" type="button" data-open="'+esc(x.id)+'" aria-label="'+esc('Abrir '+it.titulo)+'">'+miniPoster(it,{sz:'76px'})+'</button>'+
+    '<div class="mini-t"><span class="grupo'+(x.grupo==='aposta'?' ap':'')+'">'+grupo+' · '+x.pc+'%</span><h3>'+esc(it.titulo)+'</h3><div class="meta">'+meta+'</div><p class="why">'+esc(x.por)+'</p></div></div>'+(oferta(it)?watchHtml(it):'')+'</article>';
+}
+function riBotoes(){return '<div class="row"><button class="btn pri t44" type="button" data-riok="afinar">Gravar e afinar em 3 minutos</button><button class="btn t44" type="button" data-riok="so">Só gravar</button><button class="btn t44" type="button" id="ri-cancel">Cancelar</button></div>'}
 function riRender(){
   var box=el('ri');if(!box)return;
-  var topo='<div class="box"><h3>1. Copie o pedido</h3><p>Cole numa conversa normal com o seu assistente. Se tiver mais de um, pode repetir em cada um e colar os dois.</p><pre class="ri-prompt" id="ri-prompt" tabindex="0">'+esc(RI_PROMPT)+'</pre><div class="row" style="margin-top:10px"><button class="btn pri t44" type="button" id="ri-copiar">Copiar o pedido</button></div></div>';
-  if(!RI){box.innerHTML=topo+'<div class="box"><h3>2. Cole a resposta aqui</h3><p>O bloco que começa com "# Perfil Telas v1" (pode colar a mensagem inteira). Até 30 mil caracteres.</p><textarea id="ri-txt" maxlength="30000" placeholder="# Perfil Telas v1&#10;assistente: … | data: …" aria-label="Resposta do assistente"></textarea><div class="row" style="margin-top:10px"><button class="btn pri t44" type="button" id="ri-ler">Ler o resumo</button></div><p class="note" style="margin-top:10px">A leitura é feita aqui, no navegador. O texto não é enviado nem guardado; só o que você aprovar na revisão.</p></div>';return}
+  var topo='<div class="box"><h3>1. Copie o pedido</h3><p>Cole numa conversa normal com o seu assistente (ChatGPT, Claude, Gemini…). Se usar mais de um, escolha o que mais conversou com você sobre filmes e séries.</p><pre class="ri-prompt" id="ri-prompt" tabindex="0">'+esc(RI_PROMPT)+'</pre><div class="row" style="margin-top:10px"><button class="btn pri t44" type="button" id="ri-copiar">Copiar o pedido</button></div></div>';
+  if(!RI){box.innerHTML=topo+'<div class="box"><h3>2. Cole a resposta aqui</h3><p>O bloco que começa com "# Perfil Telas" (pode colar a mensagem inteira). Até 30 mil caracteres.</p><textarea id="ri-txt" maxlength="30000" placeholder="# Perfil Telas v2&#10;assistente: … | data: …" aria-label="Resposta do assistente"></textarea><div class="row" style="margin-top:10px"><button class="btn pri t44" type="button" id="ri-ler">Ler o resumo</button></div><p class="note" style="margin-top:10px">A leitura é feita aqui, no navegador. O texto não é enviado nem guardado; só o que você aprovar na revisão. Depois, 3 minutos de cenas e cartazes afinam o que a IA disse.</p>'+
+    '<p class="note" style="margin-top:6px">Não usa IA? <button class="lnk" type="button" data-go="gosto">Responda sem IA (6 minutos)</button></p></div>';return}
   if(RI.erro){box.innerHTML=topo+'<div class="box"><p class="err">'+esc(RI.erro)+'</p><div class="row"><button class="btn t44" type="button" id="ri-cancel">Colar de novo</button></div></div>';return}
-  if(RI.feito){box.innerHTML='<div class="box"><h3>'+esc(RI.feito)+'</h3><p>A página agora usa o seu gosto. Dá para ver, refazer ou apagar em Mais › Seu gosto.</p><div class="row"><button class="btn pri t44" type="button" data-go="inicio">Ir para o Início</button><button class="btn t44" type="button" data-go="perfil">Ver o meu gosto</button></div></div>';return}
-  var n=RI.titulos.filter(function(x){return x.marcado}).length;
-  var h='<div class="box"><h3>O que entendemos'+(RI.assistente?' (do '+esc(RI.assistente)+')':'')+'</h3><p>Revise linha a linha. Só o que estiver marcado é gravado; o texto colado não fica guardado.</p>'+
-    '<div class="row"><button class="btn pri t44" type="button" data-riok="1">Gravar</button><button class="btn t44" type="button" id="ri-cancel">Cancelar</button></div></div>';
-  h+='<div class="box"><h3>Seu gosto em palavras</h3><p>Pelos títulos citados e pelo que você disse que procura.</p><ul class="perfil-l">'+RI.frases.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul>'+pesosBarras(RI.pesos)+'</div>';
+  if(RI.feito){var fl=RI.falta||[];box.innerHTML='<div class="box"><h3>'+esc(RI.feito)+'</h3><p>A página agora usa o seu gosto. Dá para ver, refazer ou apagar em Mais › Seu gosto.</p>'+
+    (fl.length?'<p class="gaviso">O resumo não trouxe '+esc(listaPt(fl))+'. Em 3 minutos o caminho curto pergunta só o que falta, mais umas cenas e cartazes para afinar.</p>':'<p>Quer afinar? Em 3 minutos, cenas e cartazes escolhidos para tirar as dúvidas que a sua IA deixou.</p>')+
+    '<div class="row"><button class="btn pri t44" type="button" data-riafinar="1">Afinar em 3 minutos</button><button class="btn t44" type="button" data-go="inicio">Ir para o Início</button><button class="btn t44" type="button" data-go="perfil">Ver o meu gosto</button></div></div>';return}
+  var n=RI.titulos.filter(function(x){return x.marcado}).length,falta=riFalta(RI);
+  var h='<div class="box"><h3>O que entendemos'+(RI.assistente?' (do '+esc(RI.assistente)+')':'')+'</h3><p>Revise linha a linha. Só o que estiver marcado é gravado; o texto colado não fica guardado. Depois de gravar, 3 minutos de cenas e cartazes afinam o que a IA disse (dá para pular).</p>'+
+    (falta.length?'<p class="gaviso">O resumo não trouxe '+esc(listaPt(falta))+': o caminho curto pergunta isso também.</p>':'')+riBotoes()+'</div>';
+  // o gosto em palavras: o parágrafo da IA, frase a frase ("não é bem eu" tira a frase); sem ele, as frases por regra
+  var fi=RI.fraseIA||[];
+  h+='<div class="box"><h3>Seu gosto em palavras</h3>'+(fi.length?'<p>Pela sua IA. Se uma frase não for bem você, toque em "não é bem eu": ela sai.</p><ul class="frases">'+fi.map(function(f,i){var off=!!RI.iaOff[i];
+      return '<li class="frase'+(off?' off':'')+'"><p>'+esc(f)+'</p><button class="lnk" type="button" data-riia="'+i+'" aria-pressed="'+off+'">'+(off?'desfazer':'não é bem eu')+'</button></li>'}).join('')+'</ul>':
+    '<p>Pelos títulos citados e pelo que você disse que procura.</p><ul class="perfil-l">'+RI.frases.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul>')+
+    '<p class="note" style="margin-top:10px">'+(RI.nIA?'Os 13 pesos partem das notas que a IA deu a '+RI.nIA+' de 13 temas e traços, ajustadas pelos títulos citados.':'O resumo não trouxe notas por tema (é do formato antigo, ou a IA não soube): os pesos saem dos títulos citados e do que você procura.')+'</p>'+pesosBarras(RI.pesos)+'</div>';
   h+='<div class="box"><h3>'+RI.titulos.length+' título'+(RI.titulos.length===1?'':'s')+' casaram'+(RI.sem.length?' · '+RI.sem.length+' sem par':'')+'</h3><p>Amo vira nota 90; Gosto, 75; Não gostei, 35; "larguei" vira o status Larguei, sem nota. Linhas de dedução ou com certeza baixa vêm desmarcadas, como as que já têm nota aqui.</p>'+
     (RI.titulos.length?'<ul class="impl">'+RI.titulos.map(function(x,i){var a=AVPOR[x.id];
       return '<li><label><input type="checkbox" data-rii="'+i+'"'+(x.marcado?' checked':'')+'><span><b>'+esc(a?a.it.titulo:x.id)+'</b> ('+esc([a&&a.ano||'',a?rotTipo(a.tipo).toLowerCase():''].filter(Boolean).join(', '))+') · '+(x.nota!=null?'nota <b class="num">'+x.nota+'</b>':'larguei')+
@@ -4653,24 +4723,56 @@ function riRender(){
     (ctx.length?'<li><label><input type="checkbox" data-rictx="1"'+(RI.gravCtx?' checked':'')+'><span><b>Como assiste:</b> '+esc(ctx.join(', '))+'</span></label></li>':'')+
     (cols.length?'<li><label><input type="checkbox" data-ricol="1"'+(RI.gravCol?' checked':'')+'><span><b>Coleções:</b> '+esc(cols.join('; '))+'</span></label></li>':'')+'</ul>'+
     (RI.semFiltro.length?'<p class="note" style="margin-top:10px">Limites que a página ainda não sabe filtrar (ficam de fora): '+esc(RI.semFiltro.join('; '))+'.</p>':'')+'</div>';
+  // a primeira lista de 12, já pelo resumo (no fim dos 3 minutos ela volta, afinada, com Quero ver, Já vi e Não é pra mim)
+  var l=riLista(RI);
+  if(l.length)h+='<div class="box"><h3>Sua primeira lista</h3><p>Doze títulos pelo que a sua IA contou: quatro certeiros, quatro que talvez você não conheça, dois para continuar o que você ama e duas apostas. Toque no cartaz para ver mais; a lista afina nos próximos 3 minutos.</p><div class="g6-lista">'+cada(l,riCardLista)+'</div></div>';
   // Gravar de novo no fim: quem revisa até embaixo não precisa voltar ao topo
-  h+='<div class="box"><div class="row"><button class="btn pri t44" type="button" data-riok="1">Gravar</button><button class="btn t44" type="button" id="ri-cancel">Cancelar</button></div></div>';
+  h+='<div class="box">'+riBotoes()+'</div>';
   box.innerHTML=h;
 }
-function riGrava(){
+// o rascunho do caminho curto (3 minutos) a partir do perfil gravado pelo resumo: o prior dos 13 pesos vem do resumo,
+// o que ele já respondeu é pulado ou vem preenchido, e os cartazes perguntam o que ficou incerto
+function g6DoPerfil(p){
+  var b=p&&p.base;if(!b)return null;
+  var G=g6Novo();G.modo='afinar';G.base={q:b.q.slice(),t:b.t.slice(),obs:b.obs.map(function(o){return o.slice()})};
+  G.ia=(p.ia||[]).slice();G.iaOff={};G.limites=JSON.parse(JSON.stringify(p.limites||{}));G.limFase=!!p.limFase;
+  var c=p.contexto||{};G.ctx={quem:(c.quem||[]).slice(),idade:c.idade||'',onde:c.onde||'',tempo:c.tempo||'',servicos:(c.servicos||[]).slice()};
+  G.citados=b.obs.map(function(o){return o[0]}).concat(b.cit||[]);
+  G.obrasRef=b.obs.filter(function(o){return o[1]>=1}).slice(0,2).map(function(o){return o[0]});
+  var amo=b.obs.filter(function(o){return o[1]>=1}).length;
+  G.pula={agora:b.sec5||b.nIA>=4?1:0,obras:amo>=3?1:0,limites:Object.keys(G.limites).length?1:0,contexto:G.ctx.servicos.length&&G.ctx.quem.length?1:0};
+  // quantos trios de cenas: menos quando o resumo já cobriu os temas (pelos toques do prior); os de maior incerteza primeiro
+  var cob=b.t.slice(0,9).filter(function(v){return v>=2}).length,nt=cob>=7?2:cob>=4?4:6;
+  var m0=g6Modelo(G),sc=CENAS.map(function(tr,ti){var u=0;tr.forEach(function(c){u+=m0.S[EIX[c[1]]][EIX[c[1]]]+m0.S[EIX[c[2]]][EIX[c[2]]]});return {ti:ti,u:u}}).sort(function(a,b){return b.u-a.u});
+  G.trios=sc.slice(0,nt).map(function(x){return x.ti});G.nGrades=2;
+  return G;
+}
+function riGrava(modo){
   if(!RI||RI.erro)return;
   try{
     var sel=RI.titulos.filter(function(x){return x.marcado});
-    sel.forEach(function(x){if(x.nota!=null)darNota(x.id,x.nota);else{ST.status[x.id]='abandonei';delete ST.notas[x.id]}});
-    // o nome do assistente só aparece na revisão: nada do texto colado fica guardado
+    var fi=(RI.fraseIA||[]).filter(function(f,i){return !RI.iaOff[i]});
+    // o prior (q, t) e os títulos citados ficam no perfil: o caminho curto de agora ou de depois parte deles. O texto colado não.
+    var obs=RI.titulos.filter(function(x){return x.marcado||x.ja!=null}).filter(function(x){return AVPOR[x.id]&&AVPOR[x.id].x}).map(function(x){return [x.id,x.nota===90?1:x.nota===75?0.5:-1,x.fraco?0.5:1]});
+    var cit=RI.titulos.map(function(x){return x.id}).concat(RI.desligar,RI.repetidos);
     var perfil=limpaPerfil({v:1,pesos:RI.pesos,origem:'resumo',feito_em:new Date().toISOString(),limites:RI.gravLim?RI.limites:{},limFase:false,contexto:RI.gravCtx?RI.ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},
-      respostas:{procura:[],fase:'',resp:'',cenas:0,cartazes:{},obras:[]},frases:RI.frases.map(function(f){return f.replace(/<[^>]+>/g,'')}),nao:[]});
+      respostas:{procura:[],fase:'',resp:'',cenas:0,cartazes:{},obras:[]},frases:fi.length?fi:RI.frases.map(function(f){return f.replace(/<[^>]+>/g,'')}),ia:fi,nao:[],
+      base:{q:RI.q,t:RI.t,obs:obs,cit:cit,sec5:RI.sec5,nIA:RI.nIA}});
     if(!perfil){toast('Não consegui montar o seu gosto com esse resumo.',false);return}
+    sel.forEach(function(x){if(x.nota!=null)darNota(x.id,x.nota);else{ST.status[x.id]='abandonei';delete ST.notas[x.id]}});
     if(RI.gravCol){RI.desligar.forEach(function(id){adicionarId('desligar',id)});RI.repetidos.forEach(function(id){adicionarId('repetidos',id)})}
     var sv=RI.gravCtx?RI.ctx.servicos.map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[2]:''}).filter(Boolean):[];
-    entraPessoa(perfil,sv);RI={feito:'Gosto gravado: '+sel.length+' nota'+(sel.length===1?'':'s')+' e os 13 pesos.'};riRender();
+    var falta=riFalta(RI);
+    entraPessoa(perfil,sv);RI={feito:'Gosto gravado: '+sel.length+' nota'+(sel.length===1?'':'s')+' e os 13 pesos.',falta:falta};
+    if(modo==='afinar'){riAfinar();return}
+    riRender();
     toast('Seu gosto ficou guardado neste aparelho. A página agora é a sua.',false);
   }catch(e){console.error(e)}
+}
+// do resumo gravado ao caminho curto: um rascunho novo, partindo do perfil
+function riAfinar(){
+  var G=g6DoPerfil(ST.perfil);if(!G){ir('gosto');return}
+  g6Limpa();G6=G;g6Guarda();G6_ABRE=false;ir('gosto');
 }
 (function(){
   try{
@@ -4680,10 +4782,15 @@ function riGrava(){
       if(t.closest('#ri-copiar')){var b=t.closest('#ri-copiar');try{navigator.clipboard.writeText(RI_PROMPT).then(function(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar o pedido'},1600)},function(){riSeleciona(b)})}catch(err){riSeleciona(b)}return}
       if(t.closest('#ri-ler')){if(!D||!AVI.length){toast('A lista ainda está carregando; tente de novo em instantes.',false);return}var ta=el('ri-txt');try{RI=riAnalisa(ta?ta.value:'')}catch(err){console.error(err);RI={erro:'Não consegui ler esse texto.'}}if(ta)ta.value='';riRender();try{window.scrollTo(0,0)}catch(err){}return}
       if(t.closest('#ri-cancel')){RI=null;riRender();return}
-      if(t.closest('[data-riok]')){riGrava();return}
+      if(t.closest('[data-riok]')){riGrava(t.closest('[data-riok]').dataset.riok);return}
+      if(t.closest('[data-riafinar]')){riAfinar();return}
+      var ia=t.closest('[data-riia]');if(ia&&RI&&RI.iaOff){var k=+ia.dataset.riia;RI.iaOff[k]=!RI.iaOff[k];riRender();var nb=el('ri').querySelector('[data-riia="'+k+'"]');if(nb)nb.focus({preventScroll:true});return}
     });
     p.addEventListener('change',function(e){var t=e.target;if(!RI||RI.erro)return;
-      if(t.dataset.rii!=null){RI.titulos[+t.dataset.rii].marcado=t.checked}else if(t.dataset.rilim){RI.gravLim=t.checked}else if(t.dataset.rictx){RI.gravCtx=t.checked}else if(t.dataset.ricol){RI.gravCol=t.checked}});
+      if(t.dataset.rii!=null){RI.titulos[+t.dataset.rii].marcado=t.checked}else if(t.dataset.ricol){RI.gravCol=t.checked}
+      else if(t.dataset.rilim||t.dataset.rictx){if(t.dataset.rilim)RI.gravLim=t.checked;else RI.gravCtx=t.checked;
+        // limites e serviços mudam a primeira lista: refaz e devolve o foco à caixa
+        RI.lista=null;var q=t.dataset.rilim?'[data-rilim]':'[data-rictx]';riRender();var nb=el('ri').querySelector(q);if(nb)nb.focus({preventScroll:true})}});
   }catch(e){console.error(e)}
 })();
 // sem clipboard (http, permissão negada): seleciona o bloco para a pessoa copiar com o toque longo ou Ctrl+C
