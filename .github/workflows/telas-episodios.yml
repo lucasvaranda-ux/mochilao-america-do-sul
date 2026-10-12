@@ -20,6 +20,9 @@ on:
       - 'scripts/telas-ids.mjs'
       - 'scripts/telas-sagas.mjs'
       - 'scripts/telas-notas.mjs'
+      - 'scripts/telas-omdb.mjs'
+      - 'scripts/telas-eps-notas.mjs'
+      - 'scripts/telas-criticas.mjs'
       - 'telas/catalogo.json'
 
 permissions:
@@ -32,7 +35,7 @@ concurrency:
 jobs:
   atualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -79,6 +82,30 @@ jobs:
         continue-on-error: true
         timeout-minutes: 5
         run: node scripts/telas-notas.mjs
+      - name: Notas por episódio (base pública do IMDb)
+        id: epsnotas
+        # um arquivo por série em telas/eps-notas/<tt>.json, com a nota e os votos de cada episódio; só regrava o que muda
+        continue-on-error: true
+        timeout-minutes: 6
+        run: node scripts/telas-eps-notas.mjs
+      - name: Resenhas do público (TMDB)
+        id: criticas
+        # até 3 resenhas por título (trecho curto e link), em telas/criticas/<tt>.json; 500 títulos por rodada,
+        # renova depois de 30 dias. Sem o segredo TMDB_API_KEY, não faz nada. Se falhar, o resto do dia segue.
+        continue-on-error: true
+        timeout-minutes: 7
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node scripts/telas-criticas.mjs
+      - name: Notas do Rotten Tomatoes e do Metacritic (OMDb)
+        id: omdb
+        # até 800 títulos por dia (a chave grátis dá 1.000), os nunca consultados primeiro, depois os de mais de 45 dias;
+        # grava telas/notas-fora.json. Sem o segredo OMDB_API_KEY, não faz nada. Se falhar, o resto do dia segue.
+        continue-on-error: true
+        timeout-minutes: 7
+        env:
+          OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+        run: node scripts/telas-omdb.mjs
       - name: Pôsteres (TMDB; Wikipedia via Wikidata para o que faltar)
         id: posteres
         # mesma regra do onde assistir: se o TMDB e a Wikimedia falharem, o resto do dia ainda é
@@ -104,7 +131,10 @@ jobs:
             if [ -f telas/ids-pendentes.json ]; then git add telas/ids-pendentes.json; fi
             if [ -f telas/sagas-tmdb.json ]; then git add telas/sagas-tmdb.json; fi
             if [ -f telas/notas.json ]; then git add telas/notas.json; fi
-            git commit -m "telas: robô atualizou episódios, onde assistir, IDs e pôsteres"
+            if [ -f telas/notas-fora.json ]; then git add telas/notas-fora.json; fi
+            if [ -d telas/eps-notas ]; then git add -A telas/eps-notas; fi
+            if [ -d telas/criticas ]; then git add -A telas/criticas; fi
+            git commit -m "telas: robô atualizou episódios, onde assistir, IDs, notas, resenhas e pôsteres"
             git push
           else
             echo "sem mudanças"
@@ -118,6 +148,21 @@ jobs:
         if: ${{ !cancelled() && steps.ids.outcome == 'failure' }}
         run: |
           echo "::error::IDs do IMDb não foram procurados — veja o passo dos IDs (chave TMDB_API_KEY ou TMDB fora do ar)"
+          exit 1
+      - name: Avisar se as notas por episódio falharam
+        if: ${{ !cancelled() && steps.epsnotas.outcome == 'failure' }}
+        run: |
+          echo "::error::Notas por episódio não foram atualizadas — veja o passo das notas por episódio (base do IMDb fora do ar ou formato mudou)"
+          exit 1
+      - name: Avisar se as resenhas falharam
+        if: ${{ !cancelled() && steps.criticas.outcome == 'failure' }}
+        run: |
+          echo "::error::Resenhas não foram atualizadas — veja o passo das resenhas (chave TMDB_API_KEY ou TMDB fora do ar)"
+          exit 1
+      - name: Avisar se as notas da OMDb falharam
+        if: ${{ !cancelled() && steps.omdb.outcome == 'failure' }}
+        run: |
+          echo "::error::Notas do Rotten e do Metacritic não foram atualizadas — veja o passo da OMDb (chave OMDB_API_KEY recusada ou OMDb fora do ar)"
           exit 1
       - name: Avisar se os pôsteres falharam
         if: ${{ !cancelled() && steps.posteres.outcome == 'failure' }}

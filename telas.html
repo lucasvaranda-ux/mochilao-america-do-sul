@@ -383,6 +383,16 @@ details[open]>summary::after{transform:rotate(225deg) translate(-2px,0)}
 .crit{border-left:2px solid var(--line);padding-left:11px}
 .crit .who{font-weight:700}
 .crit+.crit{margin-top:10px}
+.res{margin:0 0 12px;background:var(--s1);border-radius:16px;padding:14px 14px 12px;position:relative}
+.res blockquote{margin:0;font-size:15px;line-height:1.5;color:var(--tx)}
+.res blockquote::before{content:"“";font-size:30px;line-height:0;vertical-align:-11px;margin-right:2px;color:var(--acc);font-weight:800}
+.res figcaption{margin-top:8px;font-size:13px;color:var(--tx2)}
+.res figcaption a{color:var(--acc);font-weight:700}
+.res-n{float:right;margin:0 0 6px 10px;display:inline-flex;align-items:baseline;gap:1px;border-radius:10px;padding:4px 9px;background:var(--s2);font-size:17px}
+.res-n small{font-size:11px;color:var(--tx2)}
+.res-n.bom{background:var(--acc-soft);color:var(--acc)}
+.res-n.ruim{color:var(--tx2)}
+.res-l{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--tx3)}
 .dimtable{display:grid;grid-template-columns:auto minmax(0,1fr) 28px;gap:7px 10px;align-items:center;font-size:14px}
 .dimtable .bar{height:8px;background:var(--track);border-radius:4px;overflow:hidden}
 .dimtable .bar i{display:block;height:100%;background:var(--tx3);border-radius:4px}
@@ -597,7 +607,49 @@ html.lock,html.lock body{overflow:hidden}
 .sx-d>summary{min-height:52px;font-size:16px;color:var(--tx)}
 .sx-d .more{padding-top:0}
 .eps{list-style:none;margin:0;padding:0}
-.eps li{display:flex;gap:10px;align-items:center;min-height:52px;padding:6px 0;border-bottom:1px solid var(--line);font-size:15px}
+.eps li{min-height:52px;padding:6px 0;border-bottom:1px solid var(--line);font-size:15px}
+.eps .epl{display:flex;gap:10px;align-items:center;min-height:40px}
+.eps .epn{display:flex;align-items:center;gap:8px;margin-top:3px;flex-wrap:wrap}
+.eps .epf{font-size:12.5px;color:var(--tx2);display:inline-flex;align-items:center;gap:4px}
+.eps .epf .imdb{font-size:10.5px}
+.eps .epf .tvm{font-size:10.5px;font-weight:800;color:var(--tx3)}
+.eps .epm{border:0;background:var(--s2);color:var(--tx2);font:inherit;font-size:12.5px;font-weight:700;border-radius:999px;padding:3px 10px;min-height:26px;cursor:pointer;position:relative}
+.eps .epm::before{content:"";position:absolute;inset:-9px -4px}
+.eps .epm.tem{background:var(--acc-soft);color:var(--acc)}
+.eps .epnotas{margin:8px 0 4px 42px}
+.eps .epnotas .clr{font-size:12px;width:auto;padding:0 10px}
+.eprs{margin:2px 0 10px}
+.sit{background:var(--s1);border-radius:18px;padding:14px;margin:14px var(--gut) 4px;display:flex;flex-direction:column;gap:12px}
+.sit-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sit-st{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border-radius:999px;padding:5px 11px;background:var(--s2);color:var(--tx2)}
+.sit-st.live{background:var(--acc);color:var(--on-acc)}.sit-st.ren{background:var(--acc-soft);color:var(--acc)}
+.sit-st i{width:8px;height:8px;border-radius:50%;background:currentColor;animation:sitpulse 1.6s ease-in-out infinite}
+@keyframes sitpulse{50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.sit-st i{animation:none}}
+.sit-sub{font-size:13.5px;color:var(--tx2)}
+.sit-ts{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0}
+.sit-ts::-webkit-scrollbar{display:none}
+.sit-t{position:relative;flex:0 0 auto;min-width:48px;height:44px;border:0;border-radius:12px;background:var(--s2);color:var(--tx);font:inherit;font-size:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:3px;padding:0 10px;cursor:pointer;overflow:hidden}
+.sit-t svg{width:15px;height:15px;fill:none;stroke:var(--acc);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.sit-t.vista{background:var(--acc-soft);color:var(--acc)}
+.sit-t.fut{background:none;box-shadow:inset 0 0 0 1.5px var(--track);color:var(--tx3);border:1.5px dashed transparent}
+.sit-t.sel{background:var(--tx);color:var(--bg);box-shadow:none}
+.sit-t.sel svg{stroke:var(--bg)}
+.sit-pg{position:absolute;left:0;bottom:0;height:4px;width:var(--p);background:var(--acc)}
+.sit-b{display:flex;gap:14px;align-items:center}
+.sit-d{flex:0 0 64px;height:70px;border-radius:14px;background:var(--bg);box-shadow:inset 0 0 0 1px var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05}
+.sit-d .dw{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--acc);letter-spacing:.06em}
+.sit-d .dd{font-size:26px;font-weight:800}
+.sit-d .dm{font-size:12px;font-weight:700;color:var(--tx2);text-transform:uppercase}
+.sit-d.sem .dd{color:var(--tx3)}.sit-d.sem .dm{text-transform:none;font-size:11px}
+.sit-x{display:flex;flex-direction:column;gap:3px;min-width:0}
+.sit-x b{font-size:15.5px;line-height:1.3}
+.sit-x .sit-k{font-size:13px;color:var(--tx2)}
+.sit-x.so b{font-weight:600;font-size:15px}
+.epbars{display:flex;align-items:flex-end;gap:3px;height:44px;padding:4px 0}
+.epbars span{flex:1;max-width:22px;min-width:4px;border-radius:3px 3px 1px 1px}
+.epbars .a{background:var(--acc)}.epbars .b{background:color-mix(in srgb,var(--acc) 62%,var(--s2))}.epbars .c{background:color-mix(in srgb,var(--acc) 30%,var(--s2))}.epbars .d{background:var(--tx3);opacity:.55}
+.eprs-t{font-size:13px;color:var(--tx2);margin:4px 0 0}
 .eps li:last-child{border-bottom:0}
 .eps .te{flex:0 0 auto;font-weight:800;color:var(--acc);font-size:13px;min-width:32px}
 .eps .et{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;line-height:1.3}
@@ -735,7 +787,7 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
 .toast #toast-undo,.toast #toast-aj{text-decoration:underline;text-underline-offset:3px}
 /* no celular, o aviso fica no alto, logo abaixo do que está preso no topo: longe do dedo que dá a próxima nota */
 @media (max-width:899px){.toast{top:calc(8px + env(safe-area-inset-top));bottom:auto}}
-@media (min-width:900px){.toast{left:calc(50% + 40px);bottom:24px}}
+@media (min-width:900px){.toast{left:50%;bottom:24px}}
 
 /* seu gosto */
 .gstat{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0 14px}
@@ -755,7 +807,7 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
 .ia-pill{display:inline-flex;align-items:center;gap:7px;min-height:38px;margin:0 4px 0 6px;padding:0 14px 0 11px;border:0;border-radius:999px;background:var(--acc);color:var(--on-acc);font:inherit;font-weight:800;font-size:14px;cursor:pointer;white-space:nowrap}
 .ia-pill svg.i{width:19px;height:19px}
 .ia-pill:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
-@media (max-width:360px){.ia-pill-tx{display:none}.ia-pill{padding:0 10px}}
+@media (max-width:360px),(min-width:900px) and (max-width:1179px){.ia-pill-tx{display:none}.ia-pill{padding:0 10px}}
 html.login-on .ia-pill{display:none}
 .af-meter{height:10px;border-radius:999px;background:var(--s2);overflow:hidden;margin:8px 0 6px}.af-meter i{display:block;height:100%;background:var(--acc);border-radius:999px}
 .af-grid{display:grid;gap:10px}
@@ -777,6 +829,7 @@ html.login-on .ia-pill{display:none}
 .col-chips button{min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--tx);font:inherit;font-size:13px;cursor:pointer}
 .col-chips button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--on-acc);font-weight:700}
 .ia-card{background:var(--s1);border-radius:18px;padding:16px;margin:12px 0 4px;box-shadow:var(--ring)}
+.ini-topo{padding:0 var(--gut)}
 .ia-card h3{margin:0 0 4px;font-size:18px}
 .ia-card p{margin:0 0 10px;color:var(--tx2);font-size:14px}
 .ia-card form{display:flex;gap:8px}
@@ -1074,19 +1127,35 @@ html.whatch .wh-esconde{display:none!important}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
-/* ---------- computador: barra lateral de 80 px e pôsteres de 150 ---------- */
+/* ---------- computador: navegação no topo (logo, nome, destinos à esquerda; busca, IA e conta à direita),
+   o Mais em sobretela e a folha do título como janela no meio da tela, em duas colunas ---------- */
 @media (min-width:900px){
-  :root{--gut:32px;--tw:150px;--tw-top:150px;--tw-cont:120px;--tw-duo:170px}
-  .top{margin-left:80px;min-height:64px;padding-top:calc(10px + env(safe-area-inset-top))}
-  .brand{font-size:24px}
-  .main{margin-left:80px}
-  .main{padding-bottom:48px}
-  .tabbar{top:0;bottom:0;right:auto;width:80px;height:auto;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:4px;
-    padding:calc(14px + env(safe-area-inset-top)) 6px 14px;background:var(--bg);box-shadow:1px 0 0 var(--line)}
-  .tabbar-brand{display:block;width:40px;height:40px;margin:0 auto 16px;border-radius:11px}
-  .dst{flex:0 0 auto;max-width:none;height:64px;border-radius:14px;font-size:11px;gap:5px;color:var(--tx2)}
-  .dst[aria-current="page"]{background:var(--s2)}
-  .dst .newb{top:7px;left:calc(50% + 6px)}
+  :root{--gut:32px;--tw:150px;--tw-top:150px;--tw-cont:120px;--tw-duo:170px;--toph:64px}
+  .top{position:sticky;top:0;z-index:58;background:var(--bg);box-shadow:0 1px 0 var(--line);min-height:var(--toph);padding:8px var(--gut) 8px calc(var(--gut) + 52px)}
+  .brand{flex:0 0 auto;width:118px;font-size:23px}
+  .top::after{content:"";flex:1}
+  .top>.ib,.top>.ia-pill{order:2}
+  .main{margin-left:0;padding-bottom:48px}
+  .tabbar{top:0;bottom:auto;left:calc(var(--gut) + 52px + 126px);right:auto;height:var(--toph);width:auto;flex-direction:row;justify-content:flex-start;align-items:center;gap:2px;
+    padding:0;background:none;box-shadow:none;z-index:59}
+  .tabbar-brand{display:block;position:fixed;left:var(--gut);top:12px;width:40px;height:40px;margin:0;border-radius:11px}
+  .dst{flex:0 0 auto;max-width:none;height:40px;flex-direction:row;gap:7px;padding:0 13px;border-radius:999px;font-size:14px;font-weight:700;color:var(--tx2)}
+  .dst .i{width:20px;height:20px}
+  .dst[aria-current="page"],.dst[aria-expanded="true"]{background:var(--s2);color:var(--tx)}
+  .dst .newb{top:2px;left:24px}
+  /* o Mais vira uma sobretela presa ao botão, por cima da tela em que se está */
+  html.maispop #p-mais{display:block;position:fixed;top:calc(var(--toph) - 2px);left:var(--mp-x,auto);width:400px;max-height:calc(100vh - var(--toph) - 20px);overflow:auto;z-index:86;
+    background:var(--sheet);border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.4),0 0 0 1px var(--line);padding:4px 0 6px}
+  html.maispop #p-mais .pghead{display:none}
+  html.maispop #p-mais .pad{padding:0 8px}
+  html.maispop #p-mais .mgroup{margin:6px 0}
+  .mp-catch{position:fixed;inset:0;z-index:85}
+  /* Início: a pergunta e o "afinar" lado a lado */
+  .ini-topo{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:16px;align-items:stretch}
+  .ini-topo>:only-child{grid-column:1/-1}
+  .ini-topo .ia-card,.ini-topo .af-ban{margin:12px 0 4px}
+  .ini-topo .af-ban{flex-direction:column;align-items:flex-start;justify-content:center;padding:18px 20px;gap:14px}
+  .ini-topo .af-ban p{font-size:15px;line-height:1.45}
   .lnav{position:static;padding:6px var(--gut) 4px}
   .panel{padding-top:0}
   .shelf{margin:10px 0 34px}
@@ -1119,13 +1188,21 @@ html.whatch .wh-esconde{display:none!important}
   .month .cell.sel{box-shadow:inset 0 0 0 2px var(--tx)}
   .month .cell.sel:not(.today) .dn{box-shadow:none}
   .agenda{max-width:760px}
-  .sheet{--gut:24px;left:auto;top:0;right:0;bottom:0;width:420px;height:100%;border-radius:0;transform:translateX(104%);box-shadow:-12px 0 40px rgba(0,0,0,.22);border-left:1px solid var(--line)}
-  .sheet.peek,.sheet.full{transform:none}
+  .sheet{--gut:28px;left:50%;top:50%;right:auto;bottom:auto;width:min(1120px,calc(100vw - 64px));height:min(calc(100vh - 56px),940px);border-radius:22px;
+    transform:translate(-50%,-47%) scale(.985);opacity:0;transition:transform .22s ease,opacity .22s ease;box-shadow:0 30px 90px rgba(0,0,0,.5);border:1px solid var(--line);overflow:hidden}
+  .sheet.peek,.sheet.full{transform:translate(-50%,-50%);opacity:1}
+  .sheet .hero{min-height:0;padding:40px var(--gut) 20px;gap:24px}
+  .sheet .hero-po{flex-basis:180px;width:180px}
+  .sheet .hero-t h2{font-size:34px}
+  .sheet .hero-t .meta{font-size:15px}
+  .sh-cols2{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:0 8px;align-items:start}
+  .sh-c1{position:sticky;top:56px}
+  .sh-c2{border-left:1px solid var(--line);min-height:100%}
   .sheet .sh-body{overflow-y:auto}
   .grab,.xp-w{display:none}
   .sheet:not(.full) .lead,.sheet .lead{display:block;-webkit-line-clamp:unset}
   .sh-bar{padding-top:0}
-  .scrim{background:rgba(0,0,0,.18)}
+  .scrim{background:rgba(0,0,0,.6)}
 }
 @media (min-width:1360px){
   .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -1511,6 +1588,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden><span id="toast-msg"></span><button type="button" id="toast-aj" hidden>Ajustar</button><button type="button" id="toast-undo">Desfazer</button><form id="toast-form" novalidate hidden><input id="toast-num" type="number" inputmode="numeric" min="0" max="100" step="1" aria-label="Nota exata, de 0 a 100"><button type="submit">Salvar</button></form></div>
 <div class="scrim" id="scrim" hidden></div>
+<div class="mp-catch" id="mp-catch" hidden></div>
 <section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title" hidden>
   <div class="sh-bar">
     <button class="grab" id="sh-grab" type="button" aria-label="Abrir a página inteira"></button>
@@ -1580,7 +1658,7 @@ function pesoPct(i,v){return Math.round((( +v||0)-pesoMin(i))/(30-pesoMin(i))*10
 
 // ---------- ESTADO ----------
 var KEY='telas_v1';
-var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},vistos:{},ia:[],naovi:{},sugOcultas:{},pesosAntes:null,av:{},perfil:null,servicosAntes:null,minhas:[]};
+var ST={notas:{},status:{},pesos:null,servicos:[],col:{},livres:{},vezes:{},fase:{},vistos:{},epNotas:{},ia:[],naovi:{},sugOcultas:{},pesosAntes:null,av:{},perfil:null,servicosAntes:null,minhas:[]};
 var STORE=true;
 function obj(x){return x&&typeof x==='object'&&!Array.isArray(x)?x:{}}
 function strs(a){return Array.isArray(a)?a.filter(function(x){return typeof x==='string'}):[]}
@@ -1634,7 +1712,7 @@ function restauraTudo(p){
   ST.minhas=limpaMinhas(p.minhas);
   ST.servicosAntes=Array.isArray(p.servicosAntes)?strs(p.servicosAntes):null; // os serviços de antes do modo pessoa (voltam no Apagar)
 }
-function restauraCol(p){ST.col=limpaColEst(p.col);ST.livres=limpaLivres(p.livres);ST.vezes=limpaVezes(p.vezes);ST.fase=limpaFase(p.fase);ST.vistos=limpaVistos(p.vistos);ST.ia=Array.isArray(p.ia)?p.ia.filter(function(r){return r&&typeof r==='object'}).slice(0,20):[];restauraAval(p)}
+function restauraCol(p){ST.col=limpaColEst(p.col);ST.livres=limpaLivres(p.livres);ST.vezes=limpaVezes(p.vezes);ST.fase=limpaFase(p.fase);ST.vistos=limpaVistos(p.vistos);ST.epNotas=limpaEpNotas(p.epNotas);ST.ia=Array.isArray(p.ia)?p.ia.filter(function(r){return r&&typeof r==='object'}).slice(0,20):[];restauraAval(p)}
 // aba Avaliar: "não vi", sugestões escondidas por coleção, pesos de antes dos aprendidos, filtros da aba
 function restauraAval(p){
   ST.naovi={};var nv=obj(p.naovi);Object.keys(nv).forEach(function(k){if(nv[k])ST.naovi[k]=1});
@@ -1643,6 +1721,9 @@ function restauraAval(p){
   ST.av=obj(p.av);
 }
 // último episódio visto de cada série (por IMDb ID): tudo até ele conta como visto
+// notas por episódio: ST.epNotas[imdb da série]["temporada.episódio"] = 0 a 100
+function limpaEpNotas(v){var o={},n=0;v=obj(v);Object.keys(v).forEach(function(k){if(!/^tt\d{5,10}$/.test(k)||n>=600)return;var x=obj(v[k]),y={},c=0;
+  Object.keys(x).forEach(function(te){var q=+x[te];if(c<3000&&/^\d{1,3}\.\d{1,4}$/.test(te)&&isFinite(q)&&q>=0&&q<=100){y[te]=Math.round(q);c++}});if(c){o[k]=y;n++}});return o}
 function limpaVistos(v){var o={};v=obj(v);Object.keys(v).forEach(function(k){var x=v[k];if(/^tt\d{5,10}$/.test(k)&&x&&isFinite(+x.t)&&isFinite(+x.e)&&+x.t>=0&&+x.e>=0)o[k]={t:Math.floor(+x.t),e:Math.floor(+x.e)}});return o}
 // sem acesso ao localStorage, o rodapé avisa; um telas_v1 estragado só é descartado (o navegador continua guardando)
 try{var raw=localStorage.getItem(KEY);try{if(raw){var p=JSON.parse(raw);if(p&&typeof p==='object'&&!Array.isArray(p)){restauraTudo(p);
@@ -1654,6 +1735,7 @@ if(PESOS_MIG)save(); // grava logo os 13, para a migração acontecer uma vez s�
 var D=null, EP=null, SV=null;
 var PO={};          // pôsteres: telas/posteres.json -> itens
 var NT={};          // notas do IMDb de todo o catálogo: telas/notas.json -> itens {tt…: [nota, votos]} (robô telas-notas)
+var NF={};          // Rotten (crítica) e Metacritic pela OMDb: telas/notas-fora.json -> itens {tt…: [rt, mc, data]} (robô telas-omdb)
 var EPI={},IMDB={}; // episódios por imdb_id e série por imdb_id
 // no Whatch (ver o <head>), a página nunca é a do Lucas: sem gosto guardado, as telas que dependem dele levam a "Por onde começar?"
 var WHATCH=!!window.WHATCH,APP=WHATCH?'Whatch':'Telas';
@@ -1847,6 +1929,7 @@ function load(){
     try{renderAll()}catch(e){console.error(e)}
     pronto('ja-dados');
     fetch('/telas/notas.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(nj){try{NT=obj(nj&&nj.itens)}catch(e){NT={}}});
+    fetch('/telas/notas-fora.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(nj){try{NF=obj(nj&&nj.itens)}catch(e){NF={}}});
     fetch('/telas/streaming.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})
       .then(function(sj){if(sj&&sj.titulos){SV=sj;try{renderAll()}catch(e){console.error(e)}}});
     return fetch('/telas/episodios.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
@@ -1873,7 +1956,7 @@ function chips(kind){
   }).join('');
 }
 function sortKey(kind,it){
-  var s=VIEW[kind].sort,n=it.notas||{};
+  var s=VIEW[kind].sort,n=(/^(imdb|rt|mc|lb)$/.test(VIEW[kind].sort)&&notasDe(it))||{};
   if(s==='pesquisa'){var rk=rankDe(it);return rk>0?-rk:-1e9}
   if(s==='conn'){var c=pontos(it);return c===-Infinity?-1:c}
   if(s==='nota'){var v=ST.notas[it.id];return v==null?-1:v}
@@ -1905,10 +1988,28 @@ function motivos(it,n){
   var d=it.dims||[];if(!d.length||!DIMS.length)return [];var w=pesos();
   return DIMS.map(function(x,i){return {n:x.nome,v:+d[i]||0,w:w[i]||0}}).sort(function(a,b){return b.v-a.v||b.w-a.w}).slice(0,n||3).map(function(x){return x.n});
 }
+// resenhas do público no TMDB (robô telas-criticas): telas/criticas/<tt>.json, buscado quando a folha abre, só na memória
+var RES={},RES_P={};
+function resenhas(imdb){
+  if(RES[imdb]||RES_P[imdb])return;RES_P[imdb]=1;
+  fetch('/telas/criticas/'+imdb+'.json').then(function(r){return r.ok?r.json():{itens:[]}}).catch(function(){return null}).then(function(j){
+    delete RES_P[imdb];if(!j)return;
+    RES[imdb]={total:+j.total||0,itens:(Array.isArray(j.itens)?j.itens:[]).filter(function(x){return x&&x.trecho}).slice(0,3)};
+    try{var a=SH.id&&achar(SH.id),box=el('sh-res');if(a&&a.it.imdb_id===imdb&&box)box.innerHTML=resenhasFolha(a.it)}catch(e){console.error(e)}});
+}
+function resenhasFolha(it){
+  var r=RES[it.imdb_id];if(!r||!r.itens.length)return '';
+  var card=function(x){var n=x.nota!=null&&isFinite(+x.nota)?Math.max(0,Math.min(10,+x.nota)):null,u=/^https:\/\/www\.themoviedb\.org\/review\/[\w-]+$/.test(String(x.url||''))?x.url:'';
+    var dt=/^\d{4}-\d{2}$/.test(String(x.data||''))?MES3[+x.data.slice(5)-1]+' '+x.data.slice(0,4):'';
+    return '<figure class="res">'+(n!=null?'<span class="res-n'+(n>=7?' bom':n<=5?' ruim':'')+'"><b class="num">'+fmtN1(Math.round(n*10)/10).replace(',0','')+'</b><small>/10</small></span>':'')+
+      '<blockquote>'+esc(x.trecho)+'</blockquote><figcaption><b>'+esc(x.autor||'anônimo')+'</b>'+(dt?' · '+esc(dt):'')+(x.lingua==='en'?' · <span class="res-l">em inglês</span>':'')+
+      (u?' · <a href="'+esc(u)+'" target="_blank" rel="noopener">ler inteira ↗</a>':'')+'</figcaption></figure>'};
+  return secao('O que o público diz',r.itens.map(card).join('')+'<p class="ext-n">Resenhas de quem usa o TMDB'+(r.total>r.itens.length?' ('+r.itens.length+' de '+r.total+')':'')+'. Os trechos são curtos; a resenha inteira fica no link.</p>');
+}
 function critico(c){
   if(!c||!c.nome)return '';
   return '<div class="crit"><div><span class="who">'+esc(c.nome)+'</span>'+(c.veiculo?' · '+esc(c.veiculo):'')+(c.nota?' · <b class="num">'+esc(c.nota)+'</b>':'')+'</div>'+
-    (c.posicao?'<p>'+esc(c.posicao)+'</p>':'')+(c.fonte?'<div class="src">'+(c.origem==='memoria'?'≈ de memória, a conferir · ':'')+linkOrText(c.fonte)+'</div>':'')+'</div>';
+    (c.posicao?'<p>'+esc(c.posicao)+'</p>':'')+(limpaFonte(c.fonte)?'<div class="src">'+linkOrText(limpaFonte(c.fonte))+'</div>':'')+'</div>';
 }
 function linkOrText(s){s=String(s||'');var m=s.match(/https?:\/\/\S+/);if(!m)return esc(s);var u=m[0].replace(/[).,;]+$/,'');return esc(s.replace(m[0],'').trim())+' <a href="'+esc(u)+'" target="_blank" rel="noopener">fonte</a>'}
 // ---------- ONDE ASSISTIR ----------
@@ -2263,7 +2364,7 @@ function renderInicio(){
     // monta na ordem de sempre (é ela que evita repetir título entre prateleiras) e mostra na ordem que ele escolheu
     function poe(id,f){if(esc0.indexOf(id)>-1)return;try{out[id]=f()}catch(e){console.error(e)}}
     var topo='';try{topo=ST.perfil?shCriancas(k,usados):''}catch(e){console.error(e)}
-    try{if(WHATCH&&(ST.perfil||dono()))topo=iaCard()+afBanner()+topo}catch(e){console.error(e)}
+    try{if(WHATCH&&(ST.perfil||dono()))topo='<div class="ini-topo">'+iaCard()+afBanner()+'</div>'+topo}catch(e){console.error(e)}
     poe('comecar',function(){return ST.perfil||dono()?'':shComecar()});
     if(k!=='filmes')poe('cont',shContinuar);
     poe('top',function(){return shTop10(k,usados)});
@@ -2351,6 +2452,8 @@ var ABA=null,ABA0=true,ABA_ANT=null,POP_IGNORA=0,EM_POP=false;
 function ir(t){
   try{
     if(!GRUPO[t])t='inicio';
+    try{if(document.documentElement.classList.contains('maispop'))maisPop(false)}catch(e){}
+    if(t==='mais'&&largo()){if(ABA0||!ABA)t='inicio';else{maisPop(true);return}} // no computador o Mais é sobretela, não tela
     if(t==='perfil'&&!ST.perfil)t='comecar'; // sem gosto guardado, "Seu gosto" é a tela "Por onde começar?"
     // no Whatch sem gosto, Início, Lista, Agenda, Conexão e Perguntar mostram as portas (a barra continua marcando o destino tocado)
     var gv=GRUPO[t],t0=t;if(WHATCH&&!ST.perfil&&!dono()&&WH_PORTA[t])t='comecar';
@@ -2376,10 +2479,25 @@ function ir(t){
     if(mudou&&!ABA0)try{window.scrollTo(0,0)}catch(e){}
   }catch(e){console.error(e)}
 }
+// no computador, o Mais abre em sobretela presa ao botão, por cima da tela atual (Esc, clique fora ou escolher fecha)
+function maisPop(on){
+  try{
+    var H=document.documentElement,b=document.querySelector('.tabbar [data-dest="mais"]');
+    if(on==null)on=!H.classList.contains('maispop');
+    if(on&&!largo())on=false;
+    if(on&&b){var r=b.getBoundingClientRect();H.style.setProperty('--mp-x',Math.max(16,Math.min(window.innerWidth-416,r.left-8))+'px')}
+    H.classList.toggle('maispop',on);el('mp-catch').hidden=!on;if(b)b.setAttribute('aria-expanded',on?'true':'false');
+    if(on){var f=document.querySelector('#p-mais .mrow:not([hidden])');if(f)f.focus({preventScroll:true})}
+  }catch(e){console.error(e)}
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.documentElement.classList.contains('maispop')){maisPop(false);try{document.querySelector('.tabbar [data-dest="mais"]').focus()}catch(err){}}});
+window.addEventListener('resize',function(){if(!largo()&&document.documentElement.classList.contains('maispop'))maisPop(false)});
 document.addEventListener('click',function(e){
   try{
+    if(e.target.id==='mp-catch'){maisPop(false);return}
     var b=e.target.closest('.tab[data-tab],[data-dest]');if(!b)return;
     var nb=b.classList.contains('dst'),g=b.dataset.dest||GRUPO[b.dataset.tab];
+    if(nb&&b.dataset.dest==='mais'&&largo()&&ABA!=='mais'){maisPop();return}
     // tocar de novo no destino aberto volta ao topo (e, no Mais, à lista do Mais), como no iPhone
     if(nb&&GRUPO[ABA]===g){if(g==='mais'&&ABA!=='mais')voltaMais();else try{window.scrollTo({top:0,behavior:'smooth'})}catch(err){}return}
     if(b.classList.contains('back')){voltaMais();return}
@@ -3711,7 +3829,7 @@ function ondeAssistir(it,t){
   if(t==='saga')return sagaWatch(it);
   var w=oferta(it),m=meus(),jw='<a class="btn" href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">Procurar no JustWatch ↗</a>';
   // sem o dado do robô, a plataforma da pesquisa (dados.json) é a pista que existe, como no cartão antigo
-  if(!w)return (it.plataforma?'<p class="muted">Segundo a pesquisa: <b>'+esc(it.plataforma)+'</b></p>':'')+
+  if(!w)return (limpaLevant(it.plataforma)?'<p class="muted">Segundo a pesquisa: <b>'+esc(limpaLevant(it.plataforma))+'</b></p>':'')+
     '<p class="muted">'+(SV&&SV.titulos?'Sem dados de streaming no Brasil para este título agora.':'O robô ainda não trouxe o onde assistir. A busca no JustWatch está sempre em dia.')+'</p>'+jw;
   var gr=[['Assinatura',w.assinatura],['Grátis',uniq([].concat(w.gratis||[],w.anuncios||[]))],['Aluguel',w.aluguel],['Compra',w.compra]];
   var h=gr.filter(function(g){return g[1]&&g[1].length}).map(function(g){
@@ -3720,20 +3838,45 @@ function ondeAssistir(it,t){
   var lk=linkSeguro(w.link);
   return (h||'<p class="muted">Fora das assinaturas no Brasil agora.</p>')+'<div class="row" style="margin-top:12px">'+(lk?'<a class="btn" href="'+esc(lk)+'" target="_blank" rel="noopener">Ver ofertas no JustWatch ↗</a>':jw)+'</div>';
 }
+// as notas de fora de um título: as pesquisadas à mão (dados.json) valem onde existem; o que faltar vem dos robôs
+// (IMDb da base pública, todo dia; Rotten e Metacritic da OMDb)
+function notasDe(it){
+  // as pesquisadas na web (dados.json, origem 'web') valem; as "de memória" nunca conferidas não aparecem (nem para o Lucas);
+  // o que faltar vem dos robôs: IMDb da base pública (todo dia), Rotten e Metacritic da OMDb
+  var nn=it&&it.notas,id=it&&it.imdb_id,ni=id&&NT[id],nf=id&&NF[id],o={},fx=[],web=nn&&nn.origem==='web';
+  var CAMPOS=['imdb','imdb_votos','rt_critica','rt_publico','metacritic','letterboxd'];
+  if(web)CAMPOS.forEach(function(k){if(nn[k])o[k]=nn[k]});
+  var pesq=CAMPOS.some(function(k){return o[k]});
+  if(!o.imdb&&Array.isArray(ni)&&ni[0]){o.imdb=String(ni[0]).replace('.',',');o.imdb_votos=fmtVotos(ni[1]);fx.push('IMDb atualizada todo dia')}
+  if(Array.isArray(nf)){var fo=[];
+    if(!o.rt_critica&&/^\d{1,3}%$/.test(String(nf[0]||''))){o.rt_critica=String(nf[0]);fo.push('Rotten Tomatoes')}
+    if(!o.metacritic&&/^\d{1,3}$/.test(String(nf[1]||''))){o.metacritic=String(nf[1]);fo.push('Metacritic')}
+    if(fo.length)fx.push(fo.join(' e ')+' pela OMDb');
+  }
+  if(pesq)fx.unshift('pesquisa de out/2026');
+  if(!CAMPOS.some(function(k){return o[k]}))return null;
+  o.fonte=fx.join(' · ');return o;
+}
+// tira das fontes as anotações internas da pesquisa (de memória, cota de busca, conferir, proxy…), que não são para quem lê
+function limpaFonte(t){
+  return String(t||'').split(/\s*(?:—|;|\(|\)|\. )\s*/).filter(function(x){return x&&!/mem[óo]ria|cota|conferir|confer[ií]|proxy|bloquead|websearch|etapa|levantamento|reconf|busca web|n[ãa]o localiz/i.test(x)}).join(', ').replace(/[,.\s]+$/,'');
+}
 function fmtVotos(v){v=+v||0;return v>=1e6?String(Math.round(v/1e5)/10).replace('.',',')+' mi':v>=1e3?Math.round(v/1e3)+' mil':String(v)}
 function notasFora(n,t){
-  n=n||{};var m=n.origem==='memoria',ap=m?'≈':'',x='x'+(m?' mem':''),out=[];
-  if(n.imdb)out.push('<span class="'+x+'"><span class="imdb">IMDb</span><b class="num">'+ap+esc(n.imdb)+'</b>'+(n.imdb_votos?'<span class="num">'+esc(n.imdb_votos)+'</span>':'')+'</span>');
-  if(n.rt_critica)out.push('<span class="'+x+'">Rotten <b class="num">'+ap+esc(n.rt_critica)+'</b></span>');
-  if(n.rt_publico)out.push('<span class="'+x+'">Público <b class="num">'+ap+esc(n.rt_publico)+'</b></span>');
-  if(n.metacritic)out.push('<span class="'+x+'">Metacritic <b class="num">'+ap+esc(n.metacritic)+'</b></span>');
-  if(n.letterboxd)out.push('<span class="'+x+'">Letterboxd <b class="num">'+ap+esc(n.letterboxd)+'</b></span>');
+  n=n||{};var out=[];
+  var mk=function(){return {ap:'',x:'x'}};
+  var c;
+  if(n.imdb){c=mk('imdb');out.push('<span class="'+c.x+'"><span class="imdb">IMDb</span><b class="num">'+c.ap+esc(n.imdb)+'</b>'+(n.imdb_votos?'<span class="num">'+esc(n.imdb_votos)+'</span>':'')+'</span>')}
+  if(n.rt_critica){c=mk('rt_critica');out.push('<span class="'+c.x+'">Rotten <b class="num">'+c.ap+esc(n.rt_critica)+'</b></span>')}
+  if(n.rt_publico){c=mk('rt_publico');out.push('<span class="'+c.x+'">Público <b class="num">'+c.ap+esc(n.rt_publico)+'</b></span>')}
+  if(n.metacritic){c=mk('metacritic');out.push('<span class="'+c.x+'">Metacritic <b class="num">'+c.ap+esc(n.metacritic)+'</b></span>')}
+  if(n.letterboxd){c=mk('letterboxd');out.push('<span class="'+c.x+'">Letterboxd <b class="num">'+c.ap+esc(n.letterboxd)+'</b></span>')}
   if(!out.length)return '';
-  return '<div class="ext">'+out.join('')+'</div>'+(m?'<p class="ext-n">≈ de memória, ainda não conferidas na fonte.</p>':'');
+  return '<div class="ext">'+out.join('')+'</div>';
 }
 // Episódios de qualquer série com IMDb: a lista inteira vem do TVmaze quando a folha abre (EPC, só na memória); antes disso,
 // e se o TVmaze falhar, fica a janela do robô (EPI: só as séries que ele acompanha, e só os episódios perto de hoje)
-var EPC={},EPC_P={},SEM_DATA=8.64e15,EPC_PROX={};
+var EPC={},EPC_P={},SEM_DATA=8.64e15,EPC_PROX={},EPC_SH={},EPC_TS={};
 // a próxima temporada pelo TVmaze: a primeira com estreia no futuro, ou a anunciada sem episódio com data
 function proxTemporada(temps){
   var hoje=new Date().toISOString().slice(0,10),fut=null;
@@ -3743,41 +3886,145 @@ function proxTemporada(temps){
   if(fut.d){var p=fut.d.split('-');var dt=new Date(+p[0],+p[1]-1,+p[2]);return 'Temporada '+fut.n+': estreia em '+dt.toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'})+' (previsão do TVmaze).'}
   return 'Temporada '+fut.n+' anunciada, ainda sem data.';
 }
+// notas do IMDb por episódio (robô telas-eps-notas): telas/eps-notas/<tt>.json = {temporada: [[episódio, nota, votos]]}, só na memória
+var EPN={},EPN_P={};
+function epsNotas(imdb){
+  if(!imdb||!/^tt\d{5,10}$/.test(imdb)||EPN[imdb]||EPN_P[imdb])return;EPN_P[imdb]=1;
+  fetch('/telas/eps-notas/'+imdb+'.json').then(function(r){return r.ok?r.json():{}}).catch(function(){return null}).then(function(j){
+    delete EPN_P[imdb];if(!j)return;var o={};
+    Object.keys(obj(j)).forEach(function(t){(Array.isArray(j[t])?j[t]:[]).forEach(function(x){if(Array.isArray(x)&&isFinite(+x[0])&&+x[1]>0&&+x[1]<=10)o[(+t)+'.'+(+x[0])]=[+x[1],+x[2]||0]})});
+    EPN[imdb]=o;
+    try{var a=SH.id&&achar(SH.id),box=el('sh-eps');if(a&&a.it.imdb_id===imdb&&box)box.innerHTML=episodiosFolha(a.it)}catch(e){console.error(e)}});
+}
+function epNotaFora(imdb,e,x){var k=(+e.temporada)+'.'+(+e.episodio),n=imdb&&EPN[imdb]&&EPN[imdb][k];if(n)return {v:n[0],votos:n[1],f:'IMDb'};return x&&x.r?{v:x.r,votos:0,f:'TVmaze'}:null}
+function epMinha(imdb,e){var m=imdb&&ST.epNotas[imdb];var v=m&&m[(+e.temporada)+'.'+(+e.episodio)];return v==null?null:+v}
+function darNotaEp(imdb,t,e,n){
+  if(!/^tt\d{5,10}$/.test(imdb)||!(t>0)||!(e>0))return;var k=t+'.'+e;
+  if(n==null){if(ST.epNotas[imdb]){delete ST.epNotas[imdb][k];if(!Object.keys(ST.epNotas[imdb]).length)delete ST.epNotas[imdb]}}
+  else{(ST.epNotas[imdb]=ST.epNotas[imdb]||{})[k]=Math.max(0,Math.min(100,Math.round(n)));
+    // nota de episódio quer dizer que viu: marca até ele (e os anteriores), como o ✓
+    var v=vistoDe(imdb);if(!jaVisto({temporada:t,episodio:e},v))ST.vistos[imdb]={t:t,e:e}}
+  save();try{renderShelves('series');renderNavBadges()}catch(err){console.error(err)}
+}
+function fmtN1(v){return String(v).indexOf('.')>-1?String(v).replace('.',','):v+',0'}
 function epsCompletos(imdb){
   if(!imdb||!/^tt\d{5,10}$/.test(imdb)||EPC[imdb]||EPC_P[imdb])return;EPC_P[imdb]=1;
   var j=function(r){return r.ok?r.json():null};
   fetch('https://api.tvmaze.com/lookup/shows?imdb='+imdb).then(j).then(function(sh){if(!sh||!sh.id)throw new Error('sem série');
+      EPC_SH[imdb]={status:String(sh.status||''),canal:String((sh.webChannel&&sh.webChannel.name)||(sh.network&&sh.network.name)||'')};
       // as temporadas (para a previsão da próxima) vêm em paralelo; se falharem, só fica sem a previsão
-      fetch('https://api.tvmaze.com/shows/'+sh.id+'/seasons').then(j).then(function(ts){EPC_PROX[imdb]=proxTemporada(ts);try{var a=SH.id&&achar(SH.id),box=el('sh-eps');if(a&&a.it.imdb_id===imdb&&box)box.innerHTML=episodiosFolha(a.it)}catch(e){}},function(){});
+      fetch('https://api.tvmaze.com/shows/'+sh.id+'/seasons').then(j).then(function(ts){EPC_PROX[imdb]=proxTemporada(ts);EPC_TS[imdb]=(Array.isArray(ts)?ts:[]).filter(function(t){return t&&t.number>0}).map(function(t){return {n:+t.number,ini:String(t.premiereDate||''),fim:String(t.endDate||''),eps:+t.episodeOrder||0}});try{var a=SH.id&&achar(SH.id),box=el('sh-eps');if(a&&a.it.imdb_id===imdb&&box)box.innerHTML=episodiosFolha(a.it)}catch(e){}},function(){});
       return fetch('https://api.tvmaze.com/shows/'+sh.id+'/episodes').then(j)})
     .then(function(l){if(!Array.isArray(l)||!l.length)throw new Error('sem episódios');
       EPC[imdb]=l.filter(function(e){return e&&e.season!=null&&e.number!=null}).map(function(e){
-        var d=e.airstamp?new Date(e.airstamp):(e.airdate?parseYmd(e.airdate):null);return {e:{temporada:e.season,episodio:e.number,titulo:e.name||''},d:d&&!isNaN(d)?d:new Date(SEM_DATA)}})
+        var d=e.airstamp?new Date(e.airstamp):(e.airdate?parseYmd(e.airdate):null);return {e:{temporada:e.season,episodio:e.number,titulo:e.name||''},r:e.rating&&+e.rating.average>0?Math.round(+e.rating.average*10)/10:null,d:d&&!isNaN(d)?d:new Date(SEM_DATA)}})
         .sort(function(a,b){return (a.e.temporada-b.e.temporada)||(a.e.episodio-b.e.episodio)});
       delete EPC_P[imdb];
       try{var a=SH.id&&achar(SH.id),box=el('sh-eps');if(a&&a.it.imdb_id===imdb&&box)box.innerHTML=episodiosFolha(a.it)}catch(e){console.error(e)}})
     .catch(function(){setTimeout(function(){delete EPC_P[imdb]},60000)});
 }
+// ---------- SITUAÇÃO DA SÉRIE (quadro visual) ----------
+// No ar / renovada / encerrada, as temporadas em fila (a sua marcada com ✓, a do momento com a barra de episódios
+// lançados) e um bloco de data grande para o que vem: próximo episódio, estreia da próxima temporada, ou o último que saiu.
+// Vem do TVmaze quando a folha abre; antes disso (ou sem TVmaze), da pesquisa, sem o jargão do levantamento.
+var MES3=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'],SEM3=['dom','seg','ter','qua','qui','sex','sáb'];
+function limpaLevant(t){
+  // tira as anotações internas da pesquisa: parênteses e trechos com levantamento, etapa anterior, conferir, de memória…
+  var J=/levantamento|etapa anterior|conferir|reconf|at[ée] onde sei|dado d[oa]|de mem[óo]ria/i;
+  return String(t||'').replace(/\s*\([^()]*\)/g,function(m){return J.test(m)?'':m}).replace(/,?\s*segundo o levantamento[^.;]*/gi,'')
+    .split(/(?<=\.)\s+/).map(function(f){return f.split(/\s*;\s*/).filter(function(x){return x&&!J.test(x)}).join('; ')}).filter(Boolean).join(' ').replace(/\s+/g,' ').trim().replace(/[;,]$/,'');
+}
+function diasAte(d){var h=new Date(),a=new Date(h.getFullYear(),h.getMonth(),h.getDate()),b=new Date(d.getFullYear(),d.getMonth(),d.getDate());return Math.round((b-a)/864e5)}
+function tileData(d,semDia){
+  if(!d)return '<div class="sit-d sem" aria-hidden="true"><span class="dd">?</span><span class="dm">sem data</span></div>';
+  var y=d.getFullYear()!==new Date().getFullYear();
+  return '<div class="sit-d" aria-hidden="true">'+(semDia?'':'<span class="dw">'+SEM3[d.getDay()]+'</span>')+'<span class="dd num">'+d.getDate()+'</span><span class="dm">'+MES3[d.getMonth()]+(y?' '+String(d.getFullYear()).slice(2):'')+'</span></div>';
+}
+function quandoRel(d){var n=diasAte(d);if(n===0)return 'hoje';if(n===1)return 'amanhã';if(n===-1)return 'ontem';if(n>1&&n<=60)return 'em '+n+' dias';if(n<-1&&n>=-60)return 'há '+(-n)+' dias';
+  return d.toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'})}
+function situacaoSerie(it,l){
+  var im=it.imdb_id,sh=im&&EPC_SH[im],ts=(im&&EPC_TS[im])||[],now=new Date(),v=vistoDe(im),ehEPC=!!(im&&EPC[im]);
+  l=l||[];
+  var lanc=l.filter(function(x){return x.d<=now}),fut=l.filter(function(x){return x.d>now&&+x.d!==SEM_DATA});
+  var hoje=now.toISOString().slice(0,10);
+  var tsFut=ts.filter(function(t){return t.ini&&t.ini>hoje}).sort(function(a,b){return a.n-b.n})[0];
+  var maxLanc=lanc.length?+lanc[lanc.length-1].e.temporada:0;
+  var anunc=ts.filter(function(t){return t.n>maxLanc&&!t.ini})[0];
+  // estado: TVmaze primeiro; senão, o status curto da pesquisa
+  var st='',stx=String(it.status||'');
+  if(sh&&sh.status){st=sh.status==='Running'?((fut.length||!tsFut&&!anunc)?'no ar':'renovada'):sh.status==='Ended'?'encerrada':sh.status==='To Be Determined'?'em pausa':sh.status==='In Development'?'em produção':''}
+  if(!st)st=/exib|no ar/i.test(stx)?'no ar':/renov|confirmad|anunciad/i.test(stx)?'renovada':/encerr|cancel/i.test(stx)?'encerrada':/minis/i.test(stx)?'minissérie':/antolog/i.test(stx)?'antologia':'';
+  if((tsFut||anunc)&&st==='no ar'&&!fut.length||tsFut&&st==='encerrada')st='renovada';
+  var cls=st==='no ar'?'live':st==='renovada'?'ren':st==='encerrada'||st==='minissérie'?'fim':'';
+  var nT=Math.max(maxLanc,ts.length?ts[ts.length-1].n:0),nE=lanc.length;
+  var sub=[sh&&sh.canal,nT?nT+(nT===1?' temporada':' temporadas'):'',ehEPC&&nE?nE+' episódios':''].filter(Boolean).join(' · ');
+  var head='<div class="sit-h">'+(st?'<span class="sit-st '+cls+'">'+(cls==='live'?'<i></i>':'')+esc(st)+'</span>':'')+(sub?'<span class="sit-sub">'+esc(sub)+'</span>':'')+'</div>';
+  // fila de temporadas (só com a lista inteira do TVmaze)
+  var fila='';
+  if(ehEPC&&nT>1||ehEPC&&nT===1&&(fut.length||tsFut||anunc)){
+    var pills=[];
+    for(var n=1;n<=Math.max(nT,maxLanc);n++){
+      var dn=l.filter(function(x){return +x.e.temporada===n}),ln=dn.filter(function(x){return x.d<=now}),ult=ln[ln.length-1];
+      var tot=dn.length||((ts.filter(function(t){return t.n===n})[0]||{}).eps)||0,vista=!!(ult&&jaVisto(ult.e,v)&&ln.length===dn.length);
+      var cur=ln.length&&ln.length<dn.length,futT=!ln.length;
+      pills.push('<button type="button" class="sit-t'+(cur?' cur':'')+(futT?' fut':'')+(vista?' vista':'')+(String(n)===String(SH.temp)?' sel':'')+'" data-tp="'+n+'" aria-label="Temporada '+n+(vista?', vista':'')+(cur?', no ar: '+ln.length+' de '+tot+' episódios':'')+(futT?', ainda não estreou':'')+'">'+
+        '<span class="num">T'+n+'</span>'+(vista?IC.ok:'')+(cur&&tot?'<span class="sit-pg" style="--p:'+Math.round(ln.length/tot*100)+'%"></span>':'')+'</button>');
+    }
+    fila='<div class="sit-ts" role="group" aria-label="Temporadas">'+pills.join('')+'</div>';
+  }
+  // o bloco de data: o que vem, ou o último que saiu
+  var bloco='';
+  if(fut.length){var p=fut[0];
+    bloco=tileData(p.d)+'<div class="sit-x"><span class="sit-k">Próximo episódio · '+esc(quandoRel(p.d))+'</span><b>T'+esc(p.e.temporada)+' · E'+esc(p.e.episodio)+(p.e.titulo?' · '+esc(p.e.titulo):'')+'</b>'+
+      (fut.filter(function(x){return +x.e.temporada===+p.e.temporada}).length>1?'<span class="sit-k">mais '+(fut.filter(function(x){return +x.e.temporada===+p.e.temporada}).length-1)+' até o fim da temporada</span>':'<span class="sit-k">último da temporada '+esc(p.e.temporada)+'</span>')+'</div>'}
+  else if(tsFut){var pd=tsFut.ini.split('-'),dt=new Date(+pd[0],+pd[1]-1,+pd[2]);
+    bloco=tileData(dt)+'<div class="sit-x"><span class="sit-k">Estreia · '+esc(quandoRel(dt))+'</span><b>Temporada '+tsFut.n+'</b><span class="sit-k">data do TVmaze, pode mudar</span></div>'}
+  else if(anunc){bloco=tileData(null)+'<div class="sit-x"><span class="sit-k">Já confirmada</span><b>Temporada '+anunc.n+'</b><span class="sit-k">ainda sem data de estreia</span></div>'}
+  else if(lanc.length&&ehEPC){var u=lanc[lanc.length-1];
+    bloco=tileData(u.d)+'<div class="sit-x"><span class="sit-k">'+(st==='encerrada'||st==='minissérie'?'Último episódio da série':'Último episódio')+' · '+esc(quandoRel(u.d))+'</span><b>T'+esc(u.e.temporada)+' · E'+esc(u.e.episodio)+(u.e.titulo?' · '+esc(u.e.titulo):'')+'</b>'+
+      (st==='no ar'||st==='em pausa'?'<span class="sit-k">sem próxima temporada anunciada</span>':'')+'</div>'}
+  else{var tx=limpaLevant(it.proximo||(String(it.status||'').length>28?it.status:'')||it.situacao||'');if(tx)bloco='<div class="sit-x so"><b>'+esc(tx)+'</b></div>'}
+  if(!head&&!bloco&&!fila)return '';
+  return '<div class="sit">'+head+fila+(bloco?'<div class="sit-b">'+bloco+'</div>':'')+'</div>';
+}
 function episodiosFolha(it){
   var l=(it.imdb_id&&(EPC[it.imdb_id]||EPI[it.imdb_id]))||[];
   var pt=it.imdb_id&&EPC_PROX[it.imdb_id],prox=(it.proximo||pt)?'<p class="muted" style="margin-top:10px">'+esc(it.proximo||pt)+'</p>':'';
-  if(!l.length)return prox?secao('Próxima temporada',prox):'';
+  var sit=situacaoSerie(it,l);
+  if(!l.length)return sit;
   var temps=uniq(l.map(function(x){return String(x.e.temporada)}));
   var now=new Date(),v=vistoDe(it.imdb_id),algum=false;
   // abre na temporada em que a pessoa parou; sem progresso, na que tem episódio novo chegando; senão, na 1ª (lista completa) ou na última (janela do robô)
   var futuro=l.filter(function(x){return x.d>now&&+x.d!==SEM_DATA})[0],tp0=v&&temps.indexOf(String(v.t))>-1?String(v.t):futuro?String(futuro.e.temporada):(EPC[it.imdb_id]?temps[0]:temps[temps.length-1]);
   var tp=SH.temp&&temps.indexOf(SH.temp)>-1?SH.temp:tp0;
   SH.temp=tp;var ti=temps.indexOf(tp);
-  var lis=l.filter(function(x){return String(x.e.temporada)===tp}).map(function(x){var on=x.d<=now;if(on)algum=true;
-    return '<li><span class="te num">E'+esc(x.e.episodio)+'</span><span class="et">'+esc(x.e.titulo||'Episódio '+x.e.episodio)+'<span class="ed num">'+esc(+x.d===SEM_DATA?'sem data':quando(x.d))+'</span></span>'+
-      (on?botaoVisto(it.imdb_id,x.e,v):'<span class="bd">Em breve</span>')+'</li>'}).join('');
+  var daT=l.filter(function(x){return String(x.e.temporada)===tp}),im=it.imdb_id,fora=[],minhas=[],fonteEp='';
+  var lis=daT.map(function(x){var on=x.d<=now;if(on)algum=true;
+    var nf=epNotaFora(im,x.e,x),mn=epMinha(im,x.e),k=x.e.temporada+'.'+x.e.episodio,ab=SH.epAb===k&&on,cod=esc(im+'|'+x.e.temporada+'|'+x.e.episodio);
+    if(nf){fora.push({e:+x.e.episodio,v:nf.v});fonteEp=fonteEp||nf.f}if(mn!=null)minhas.push(mn);
+    var notaL=(nf?'<span class="epf" title="'+esc(nf.f)+(nf.votos?' · '+esc(fmtVotos(nf.votos))+' votos':'')+'"><span class="'+(nf.f==='IMDb'?'imdb':'tvm')+'">'+esc(nf.f)+'</span> <b class="num">'+fmtN1(nf.v)+'</b></span>':'')+
+      (on&&im?'<button class="epm'+(mn!=null?' tem':'')+'" type="button" data-epn="'+cod+'" aria-expanded="'+ab+'" aria-label="'+(mn!=null?'Sua nota para o E'+esc(x.e.episodio)+': '+mn+'. Tocar para mudar':'Dar nota ao E'+esc(x.e.episodio))+'">'+(mn!=null?'Sua <b class="num">'+mn+'</b>':'+ nota')+'</button>':'');
+    var bt='';if(ab){for(var i=1;i<=10;i++)bt+='<button class="nb" type="button" data-epv="'+cod+'|'+(i*10)+'" aria-pressed="'+(mn!=null&&Math.round(mn/10)===i)+'" aria-label="Nota '+(i*10)+' de 100">'+(i*10)+'</button>';
+      if(mn!=null)bt+='<button class="nb clr" type="button" data-epv="'+cod+'|x">limpar</button>'}
+    return '<li'+(ab?' class="ab"':'')+'><div class="epl"><span class="te num">E'+esc(x.e.episodio)+'</span><span class="et">'+esc(x.e.titulo||'Episódio '+x.e.episodio)+'<span class="ed num">'+esc(+x.d===SEM_DATA?'sem data':quando(x.d))+'</span>'+(notaL?'<span class="epn">'+notaL+'</span>':'')+'</span>'+
+      (on?botaoVisto(im,x.e,v):'<span class="bd">Em breve</span>')+'</div>'+(ab?'<div class="notas so10 epnotas" role="group" aria-label="Sua nota para o E'+esc(x.e.episodio)+', de 0 a 100">'+bt+'</div>':'')+'</li>'}).join('');
+  // a temporada num relance: as notas de fora episódio a episódio (barras), a média, o melhor, e a média das suas
+  var resumoT='';
+  if(fora.length>=2||minhas.length){var md=fora.length?fora.reduce(function(a,b){return a+b.v},0)/fora.length:null,mx=fora.slice().sort(function(a,b){return b.v-a.v})[0],
+      mm=minhas.length?Math.round(minhas.reduce(function(a,b){return a+b},0)/minhas.length):null,lo=Math.min.apply(null,fora.map(function(f){return f.v}).concat([10]));
+    var barras=fora.length>=2?'<div class="epbars" aria-hidden="true">'+fora.map(function(f){var hgt=Math.max(8,Math.round((f.v-Math.min(lo,6))/(10-Math.min(lo,6))*100));
+        return '<span class="'+(f.v>=8.5?'a':f.v>=7.5?'b':f.v>=6.5?'c':'d')+'" style="height:'+hgt+'%" title="E'+f.e+': '+fmtN1(f.v)+'"></span>'}).join('')+'</div>':'';
+    resumoT='<div class="eprs">'+barras+'<p class="eprs-t">'+[md!=null?esc(fonteEp)+' <b class="num">'+fmtN1(Math.round(md*10)/10)+'</b> de média':'',mx&&fora.length>=2?'melhor: <b class="num">E'+mx.e+'</b> ('+fmtN1(mx.v)+')':'',mm!=null?'sua média <b class="num">'+mm+'</b>':''].filter(Boolean).join(' · ')+'</p></div>'}
+  // com 3 ou mais episódios avaliados e sem nota na série, oferece a média como nota da série
+  var todasM=[];Object.keys(ST.epNotas[im]||{}).forEach(function(k){todasM.push(+ST.epNotas[im][k])});
+  var usa=todasM.length>=3&&ST.notas[it.id]==null?'<p class="eps-n">Você deu nota a <b class="num">'+todasM.length+'</b> episódios. <button class="lnk" type="button" data-epserie="'+Math.round(todasM.reduce(function(a,b){return a+b},0)/todasM.length)+'">Usar a média, '+Math.round(todasM.reduce(function(a,b){return a+b},0)/todasM.length)+', como nota da série ›</button></p>':'';
   var bar='<div class="tbar"><button class="ib" type="button" data-tp="'+(ti>0?esc(temps[ti-1]):'')+'" aria-label="Temporada anterior"'+(ti>0?'':' disabled')+'>‹</button><b>Temporada '+esc(tp)+'</b><button class="ib" type="button" data-tp="'+(ti<temps.length-1?esc(temps[ti+1]):'')+'" aria-label="Próxima temporada"'+(ti<temps.length-1?'':' disabled')+'>›</button></div>';
   // marcar de uma vez: a temporada aberta (até o último lançado dela) ou tudo o que já saiu; tudo visto → desmarcar
   var lanc=l.filter(function(x){return x.d<=now}),ultT=lanc.filter(function(x){return String(x.e.temporada)===tp}).pop(),ultG=lanc[lanc.length-1],emLote='';
   if(ultG&&it.imdb_id){var tudo=jaVisto(ultG.e,v),tempOk=!ultT||jaVisto(ultT.e,v);
     emLote='<div class="row eps-lote">'+(ultT&&!tempOk?'<button class="btn t44" type="button" data-vate="'+esc(it.imdb_id+'|'+ultT.e.temporada+'|'+ultT.e.episodio)+'">Vi a temporada '+esc(tp)+' inteira</button>':'')+
       (!tudo?'<button class="btn t44" type="button" data-vate="'+esc(it.imdb_id+'|'+ultG.e.temporada+'|'+ultG.e.episodio)+'">Vi tudo até hoje</button>':'<button class="btn t44" type="button" data-vate="'+esc(it.imdb_id)+'|0|0">Desmarcar tudo</button>')+'</div>'}
-  return secao('Episódios',bar+emLote+'<ul class="eps">'+lis+'</ul>'+(algum?'<p class="eps-n">Marcar um episódio marca os anteriores como vistos.</p>':'')+prox);
+  return sit+secao('Episódios',bar+resumoT+emLote+'<ul class="eps">'+lis+'</ul>'+usa+(algum?'<p class="eps-n">Marcar um episódio (ou dar nota a ele) marca os anteriores como vistos.</p>':''));
 }
 // série tem 4 status: na folha (no máximo 420 px) os rótulos encurtam para caber inteiros, com o nome todo no title
 var SEGC={quero:'Quero',acompanhando:'Vendo',assisti:'Assisti',abandonei:'Larguei'};
@@ -3797,16 +4044,16 @@ function acoesFolha(it,k){
 function renderFolha(){
   var a=achar(SH.id);if(!a)return false;var it=a.it,t=a.tipo,c=conexao(it),p=posterInfo(it.id),h=[];
   // a saga não tem status nem nota próprios (são de cada filme); o filme de uma saga ganha os status de filme mesmo fora das listas
-  var k=t==='saga'?null:(kindOf(it.id)||(sagaDe(it.id)?'filmes':null)),sgId=t==='saga'?null:sagaDe(it.id),sgPai=sgId&&achar(sgId);
+  var k=t==='saga'?null:(kindOf(it.id)||(sagaDe(it.id)||t==='filme'?'filmes':t==='serie'?'series':null)),sgId=t==='saga'?null:sagaDe(it.id),sgPai=sgId&&achar(sgId);
   var meta=[];
   if(c!=null)meta.push('<b class="cx'+(c<50?' low':'')+' num">'+c+'% conexão</b>');
-  [t==='saga'?(it.anos||it.ano):it.ano,t==='filme'?it.duracao:(t==='serie'?(it.temporadas||''):(t==='saga'?(it.filmes||[]).length+' filmes':''))].filter(Boolean).forEach(function(x){meta.push(esc(x))});
+  [t==='saga'?(it.anos||it.ano):it.ano,t==='filme'?it.duracao:(t==='serie'?limpaLevant(it.temporadas||''):(t==='saga'?(it.filmes||[]).length+' filmes':''))].filter(Boolean).forEach(function(x){meta.push(esc(x))});
   var autor=[t==='serie'?(it.autor||it.criadores):(it.autor||it.diretor),it.pais].filter(Boolean).join(' · ');
   var mot=motivos(it,3);
   // situação da série (em exibição, renovada, encerrada…), selos de biblioteca e radar e o número na pesquisa, como no cartão antigo
   var sit=t==='serie'?String(it.status||''):'',hs=[],longo=[],mp=modoPessoa()||ABA==='gosto'||ABA==='resumo'; // no caminho e no resumo, a folha já é a da pessoa
-  if(sit){if(sit.length<=28)hs.push('<span class="bdg'+(/exib|renov/i.test(sit)?' live':'')+'">'+esc(sit)+'</span>');else longo.push(sit)}
-  if(it.situacao)longo.push(String(it.situacao));
+  if(sit&&t!=='serie'){if(sit.length<=28)hs.push('<span class="bdg'+(/exib|renov/i.test(sit)?' live':'')+'">'+esc(sit)+'</span>');else longo.push(sit)}
+  if(it.situacao&&t!=='serie')longo.push(String(it.situacao));
   // a camada pessoal do Lucas (biblioteca, radar, nº da pesquisa, espelho, ponte, arquétipos) some no modo pessoa
   if(it.biblioteca&&!mp)hs.push('<span class="bdg live">na sua biblioteca</span>');
   if(it.radar&&!mp)hs.push('<span class="bdg radar">no seu radar</span>');
@@ -3836,33 +4083,34 @@ function renderFolha(){
     var corpo='<span class="te num">'+(i+1)+'</span><span class="et">'+esc(f.titulo)+(en||sv||eu?'<span class="ed">'+[en,esc(sv),eu].filter(Boolean).join(' · ')+'</span>':'')+'</span><span class="ed num">'+esc(f.ano||'')+'</span>'+(abre?'<span class="chev" aria-hidden="true">›</span>':'');
     return '<li>'+(abre?'<button class="sgf" type="button" data-open="'+esc(f.id)+'" aria-label="'+esc(f.titulo+(eu?', '+eu.replace(/<[^>]+>/g,''):''))+'">'+corpo+'</button>':corpo)+'</li>'})+'</ol>'));
   h.push(secao('Onde assistir',ondeAssistir(it,t)));
-  if(t==='serie'){h.push('<div id="sh-eps">'+episodiosFolha(it)+'</div>');epsCompletos(it.imdb_id)}
+  var corte=h.length; // daqui para baixo, a 2ª coluna no computador
+  if(t==='serie'){h.push('<div id="sh-eps">'+episodiosFolha(it)+'</div>');epsCompletos(it.imdb_id);epsNotas(it.imdb_id)}
   if(it.dims&&it.dims.length){
     var esp=it.ponte&&it.espelho&&!mp?'<p class="esp"><b>Em você:</b> '+esc(it.espelho)+'</p>':'';
     h.push(secao('Por que conecta','<p class="sum">Mais forte em '+mot.map(function(x){return '<b>'+esc(x)+'</b>'}).join(', ').replace(/, ([^,]*)$/,' e $1')+'.</p>'+esp+dimTable(it)));
   }
-  // as notas pesquisadas à mão (dados.json) valem onde existem; para o resto, a nota do IMDb que o robô traz todo dia
-  var nn=it.notas,ni=it.imdb_id&&NT[it.imdb_id];
-  if((!nn||!nn.imdb)&&Array.isArray(ni)){nn=Object.assign({},nn||{},{imdb:String(ni[0]).replace('.',','),imdb_votos:fmtVotos(ni[1]),fonte:'IMDb, atualizada todo dia',origem:'robo'})}
+  var nn=notasDe(it);
   var nf=notasFora(nn,t);
   h.push(secao('Notas de fora',nf?nf+(nn&&nn.fonte?'<p class="ext-n">Notas: '+esc(nn.fonte)+'</p>':''):''));
-  if(it.visao&&it.visao.texto)h.push('<details class="sx-d"><summary>Visão '+(t==='filme'?'do diretor':'de quem criou')+'</summary><div class="more"><p>'+esc(it.visao.texto)+'</p>'+(it.visao.fonte?'<div class="src">'+linkOrText(it.visao.fonte)+'</div>':'')+'</div></details>');
+  if(it.visao&&it.visao.texto)h.push('<details class="sx-d"><summary>Visão '+(t==='filme'?'do diretor':'de quem criou')+'</summary><div class="more"><p>'+esc(it.visao.texto)+'</p>'+(limpaFonte(it.visao.fonte)?'<div class="src">'+linkOrText(limpaFonte(it.visao.fonte))+'</div>':'')+'</div></details>');
   var cr=(it.criticos||[]).map(critico).join('');
   if(cr)h.push('<details class="sx-d"><summary>Críticos ('+it.criticos.length+')</summary><div class="more">'+cr+'</div></details>');
+  if(/^tt\d{5,10}$/.test(String(it.imdb_id||''))){h.push('<div id="sh-res">'+resenhasFolha(it)+'</div>');resenhas(it.imdb_id)}
   if((it.leitura||it.jornada||it.arquetipo)&&!mp)h.push('<details class="sx-d"><summary>Leitura arquetípica'+(it.arquetipo?' · '+esc(it.arquetipo):'')+'</summary><div class="more">'+(it.leitura?'<p>'+esc(it.leitura)+'</p>':'')+(it.jornada?'<p class="src">Jornada: '+esc(it.jornada)+'</p>':'')+(it.espelho&&!it.ponte?'':'')+'</div></details>');
   var links=[];
   if(/^tt\d{5,10}$/.test(String(it.imdb_id||'')))links.push('<a href="https://www.imdb.com/title/'+esc(it.imdb_id)+'/" target="_blank" rel="noopener">IMDb ↗</a>');
   links.push('<a href="'+esc(jwBusca(it))+'" target="_blank" rel="noopener">JustWatch ↗</a>');
   var pg=posterPagina(it.id),fc=fonteCartaz(it.id);if(pg&&fc==='Wikipedia')links.push('<a href="'+esc(pg)+'" target="_blank" rel="noopener">Wikipedia ↗</a>');
   h.push('<section class="sx"><div class="links">'+links.join('')+'</div></section>');
-  el('sh-body').innerHTML=h.join('');
+  // hero no alto; no computador, ações e onde assistir à esquerda e o resto à direita (no celular, um embaixo do outro, na mesma ordem)
+  el('sh-body').innerHTML=h[0]+'<div class="sh-cols2"><div class="sh-c1">'+h.slice(1,corte).join('')+'</div><div class="sh-c2">'+h.slice(corte).join('')+'</div></div>';
   try{el('sh-bt').textContent=it.titulo||''}catch(e){}
   return true;
 }
 function abrirFolha(id,de){
   try{
     var a=achar(id);if(!a||a.tipo==='livre'||a.tipo==='prov')return;
-    if(SH.id!==id)SH.temp=null;
+    if(SH.id!==id){SH.temp=null;SH.epAb=null}
     SH.id=id;if(de&&!el('sheet').contains(de))SH.from=de; // de saga para filme, dentro da folha: o foco volta ao pôster de origem
     if(!renderFolha())return;
     var s=el('sheet'),sc=el('scrim'),ja=!s.hidden;
@@ -3933,7 +4181,13 @@ function syncSheet(){
       else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
     });
     s.addEventListener('click',function(e){
-      var t=e.target.closest('[data-ss],[data-th],[data-shclr],[data-expand],[data-tp],[data-visto],[data-vate]');if(!t||!SH.id)return;
+      var t=e.target.closest('[data-ss],[data-th],[data-shclr],[data-expand],[data-tp],[data-visto],[data-vate],[data-epn],[data-epv],[data-epserie]');if(!t||!SH.id)return;
+      var reEps=function(){var bx=el('sh-eps'),a0=achar(SH.id),yy=el('sh-body').scrollTop;if(bx&&a0)bx.innerHTML=episodiosFolha(a0.it);else renderFolha();el('sh-body').scrollTop=yy};
+      if(t.dataset.epn){var pn=t.dataset.epn.split('|'),kk=pn[1]+'.'+pn[2];SH.epAb=SH.epAb===kk?null:kk;reEps();try{var fb=s.querySelector('[data-epn="'+cssId(t.dataset.epn)+'"]');if(fb)fb.focus({preventScroll:true})}catch(err){}return}
+      if(t.dataset.epv){var pe=t.dataset.epv.split('|');darNotaEp(pe[0],+pe[1],+pe[2],pe[3]==='x'?null:+pe[3]);SH.epAb=null;reEps();
+        try{var fb2=s.querySelector('[data-epn="'+cssId(pe.slice(0,3).join('|'))+'"]');if(fb2)fb2.focus({preventScroll:true})}catch(err){}
+        if(pe[3]!=='x')toast('Nota '+pe[3]+' para o T'+pe[1]+' · E'+pe[2]+'.');return}
+      if(t.dataset.epserie){aplicaNota(SH.id,+t.dataset.epserie);return}
       if(t.dataset.vate){var pa=t.dataset.vate.split('|'),ya=el('sh-body').scrollTop;marcaAte(pa[0],+pa[1],+pa[2]);var bx=el('sh-eps'),a0=achar(SH.id);if(bx&&a0)bx.innerHTML=episodiosFolha(a0.it);else renderFolha();el('sh-body').scrollTop=ya;return}
       var id=SH.id;
       if(t.dataset.expand){expandeFolha();return}
@@ -5437,7 +5691,7 @@ function temAlgo(s){return !!(s&&(s.perfil||Object.keys(s.notas||{}).length||Obj
 // os dois lados têm coisa: fica o da conta, mais as notas, os status e o "não vi" deste aparelho que a conta não tem
 function junta(conta,aqui){
   var r=JSON.parse(JSON.stringify(conta));
-  ['notas','status','naovi','vistos','vezes','fase'].forEach(function(k){var a=aqui[k]||{};r[k]=r[k]||{};Object.keys(a).forEach(function(id){if(r[k][id]==null)r[k][id]=a[id]})});
+  ['notas','status','naovi','vistos','epNotas','vezes','fase'].forEach(function(k){var a=aqui[k]||{};r[k]=r[k]||{};Object.keys(a).forEach(function(id){if(r[k][id]==null)r[k][id]=a[id]})});
   if(!r.perfil&&aqui.perfil){r.perfil=aqui.perfil;r.servicos=aqui.servicos}
   return r;
 }
