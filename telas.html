@@ -1847,7 +1847,7 @@ function aplicaStatus(id,novo){
   var a=achar(id),it=a?a.it:{id:id};
   if(novo)ST.status[id]=novo;else if(it.biblioteca)ST.status[id]='nenhum';else delete ST.status[id];
   save();
-  var k=kindOf(id);
+  var k=kindOf(id)||(sagaDe(id)?kindOf(sagaDe(id)):null); // filme de saga: redesenha onde a saga mora
   syncRow(id);
   if(k){chips(k);renderShelves(k)}
   if(k==='series'){renderCal();renderNavBadges()}
@@ -1858,7 +1858,7 @@ function aplicaStatus(id,novo){
 function aplicaNota(id,v){
   if(v==null)delete ST.notas[id];else ST.notas[id]=Math.max(0,Math.min(100,Math.round(v)));
   if(v!=null)delete ST.naovi[id];
-  save();syncRow(id);var k=kindOf(id);if(k){chips(k);renderShelves(k)}marcaSujo(ABA);renderAvTab();if(ABA==='desligar'||ABA==='repetidos'){renderCol(ABA);renderSug(ABA)}
+  save();syncRow(id);var k=kindOf(id)||(sagaDe(id)?kindOf(sagaDe(id)):null);if(k){chips(k);renderShelves(k)}marcaSujo(ABA);renderAvTab();if(ABA==='desligar'||ABA==='repetidos'){renderCol(ABA);renderSug(ABA)}
   if(ABA==='avaliar'&&AV.modo==='gosto')renderGosto();
   syncSheet();
 }
