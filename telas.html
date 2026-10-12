@@ -590,6 +590,9 @@ html.lock,html.lock body{overflow:hidden}
 .eps .et{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;line-height:1.3}
 .eps .et .ed{font-size:13px;color:var(--tx2)}
 .eps-n{font-size:13px;color:var(--tx3);margin-top:8px;line-height:1.45}
+.sgl li{padding:0}
+.sgf{display:flex;gap:10px;align-items:center;width:100%;min-height:52px;padding:6px 0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.sgf .chev{flex:0 0 auto;color:var(--tx3);font-size:20px;line-height:1}
 /* episódio visto: círculo com check, como no Stremio (vazio = ainda não viu) */
 .vb{flex:0 0 44px;width:44px;height:44px;margin:-4px -8px -4px 0;border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center;color:var(--tx3);border-radius:50%}
 .vb svg{width:28px;height:28px;padding:6px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--track);fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;box-sizing:border-box}
@@ -667,6 +670,14 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
 .avr-t h3{font-size:16px;font-weight:700;line-height:1.25;letter-spacing:-.01em;overflow-wrap:anywhere}
 .avr-t .sub{font-size:13px;margin-top:1px}
 .avr-t .meta{font-size:12.5px;margin-top:3px;line-height:1.35;overflow-wrap:anywhere}
+/* a saga no Avaliar: o cartão dela com os filmes embaixo, cada um com a sua fileira de notas */
+.avs-l{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.avs-f{display:flex;flex-direction:column;gap:8px;padding:10px 0 2px;border-top:1px solid var(--line)}
+.avs-t{font-size:14.5px;line-height:1.3;overflow-wrap:anywhere}
+.avs-t b{font-weight:700}
+.avs-t .meta{font-size:12.5px;color:var(--tx2)}
+.avs-f.feita .avs-t b{color:var(--acc)}
+.avs-f.naovi .avs-t b{color:var(--tx2)}
 .notas{display:grid;grid-template-columns:repeat(5,minmax(44px,1fr)) minmax(78px,1.4fr);gap:9px 5px;max-width:480px}
 .notas.so10{grid-template-columns:repeat(5,minmax(44px,1fr))}
 .nb,.nv{min-height:44px;border:0;background:var(--s2);color:var(--tx);border-radius:12px;cursor:pointer;padding:0 6px;font-size:15px;font-weight:700;
@@ -693,6 +704,9 @@ kbd{font-family:inherit;font-size:12px;font-weight:700;border-radius:5px;padding
   .avl .notas .nv{padding:0 12px;margin-left:0}
   .avl .notas .nv[data-nv]{grid-column:11;grid-row:1;margin-left:6px}
   .avl .notas .nv[data-qv]{grid-column:12;grid-row:1}
+  .avr.avs{flex-direction:column;align-items:stretch;gap:10px}
+  .avs-f{flex-direction:row;align-items:center;gap:16px}
+  .avs-t{flex:1;min-width:0}
 }
 
 /* aviso com Desfazer e Ajustar */
@@ -1491,7 +1505,8 @@ function el(id){return document.getElementById(id)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function num(s){if(s==null)return NaN;var m=String(s).replace(',','.').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN}
 // "na sua biblioteca" (Stremio) é da camada do Lucas: no modo pessoa não vira "acompanhando" sozinho
-function stOf(it){var v=ST.status[it.id];if(v==='nenhum')return '';return v||(it.biblioteca&&!ST.perfil?'acompanhando':'')}
+function stOf(it){var v=ST.status[it.id];if(v==='nenhum')return '';if(!v&&ehSaga(it)&&it.filmes.length){var sv=sagaVistos(it);return sv.n>=sv.de?'assisti':''} // saga: "assisti" quando viu todos os filmes
+  return v||(it.biblioteca&&!ST.perfil?'acompanhando':'')}
 // pesos em uso: os mexidos na aba Conexão; senão os do gosto da pessoa (modo pessoa); senão os iniciais do Lucas
 function pesos(){return (ST.pesos&&ST.pesos.length===N13)?ST.pesos:pesosBase()}
 function pesosBase(){return ST.perfil&&ST.perfil.pesos&&ST.perfil.pesos.length===N13?ST.perfil.pesos:PESOS0}
@@ -1508,6 +1523,7 @@ function ordPara(w){
 }
 // percentil sem arredondar; null sem os 13 números, com todos os pesos em zero ou com valor inválido
 function conexaoF(w,it){
+  if(ehSaga(it)){var ms=membrosR(it),b=null;ms.forEach(function(r){var p=r.x?conexaoF(w,r.it):null;if(p!=null&&(b==null||p>b))b=p});if(ms.length)return b} // saga: a do melhor filme
   var x=it&&it.x||x13(it);if(!x||!w||!w.some(function(v){return +v}))return null;
   var v=valor13(w,x);if(v==null||isNaN(v))return null;
   var ord=ordPara(w);if(ord.length>=500&&ord[0]===ord[ord.length-1])return null; // empate em tudo (pesos sem sinal): sem conexão
@@ -1548,8 +1564,10 @@ function lum(hex){var n=parseInt(hex.slice(1),16),r=(n>>16&255)/255,g=(n>>8&255)
 var TMDB_W=[92,154,185,342,500,780];
 // cópia no próprio site (telas/cartazes/, gravada pelo robô): carrega primeiro; se falhar, o <img> tenta o endereço original
 var LOCAL_OK=/^\/telas\/cartazes\/[0-9a-f]{16}\.(webp|jpg|png|gif)$/;
+// a saga sem cartaz próprio usa o do primeiro filme que tem (o robô também grava esse para as sagas)
+function poId(id){if(PO[id]&&typeof PO[id]==='object')return id;var s=SAGAIX[id];if(s&&Array.isArray(s.filmes))for(var i=0;i<s.filmes.length;i++){var f=s.filmes[i]&&s.filmes[i].id;if(f&&PO[f]&&typeof PO[f]==='object')return f}return id}
 function posterInfo(id){
-  var p=PO[id];if(!p||typeof p!=='object')return null;
+  id=poId(id);var p=PO[id];if(!p||typeof p!=='object')return null;
   var u=String(p.img||''),lc=String(p.local||'');if(!LOCAL_OK.test(lc))lc='';
   if(!posterOk(u)){if(!lc)return null;u=''}
   var w=Math.round(+p.w)||500,h=Math.round(+p.h)||750;if(w<10||h<10||w>6000||h>9000){w=500;h=750}
@@ -1563,9 +1581,9 @@ function posterInfo(id){
 // logo em SVG ou PNG com "logo" no nome: quase sempre tem fundo transparente (a tinta pode sumir no fundo escuro)
 function transp(u){var f=String(u).split('/').pop();return /\.svg(\.png)?$/i.test(f)||/logo[^/]*\.png$/i.test(f)}
 // cor média do pôster (opcional em posteres.json): pinta o substituto e o fundo da folha quando não há imagem
-function corDe(id){var p=PO[id];var c=p&&typeof p==='object'?String(p.cor||''):'';return /^#[0-9a-f]{6}$/i.test(c)?c:null}
-function fonteCartaz(id){var p=PO[id];if(!p||typeof p!=='object'||!posterOk(String(p.img||'')))return '';return p.fonte==='tmdb'||/^https:\/\/image\.tmdb\.org\//.test(String(p.img))?'TMDB':'Wikipedia'}
-function posterPagina(id){var p=PO[id];var u=p&&typeof p==='object'?String(p.pagina||''):'';
+function corDe(id){var p=PO[poId(id)];var c=p&&typeof p==='object'?String(p.cor||''):'';return /^#[0-9a-f]{6}$/i.test(c)?c:null}
+function fonteCartaz(id){var p=PO[poId(id)];if(!p||typeof p!=='object'||!posterOk(String(p.img||'')))return '';return p.fonte==='tmdb'||/^https:\/\/image\.tmdb\.org\//.test(String(p.img))?'TMDB':'Wikipedia'}
+function posterPagina(id){var p=PO[poId(id)];var u=p&&typeof p==='object'?String(p.pagina||''):'';
   return /^https:\/\/[a-z-]+\.(m\.)?wikipedia\.org\/[^\s"<>]+$/.test(u)||/^https:\/\/www\.themoviedb\.org\/(movie|tv)\/\d+$/.test(u)?u:''}
 // marcas no canto do pôster, como no Stremio: check (assisti), marcador (quero ver), +N (episódio novo), nota, vezes, progresso
 function marcas(it,o){
@@ -1691,7 +1709,7 @@ function visiveis(kind){
     if(V.f==='criancas'&&!paraCriancas(it))return false;
     if(V.w&&V.w!=='todos'&&!passaWatch(it,V.w))return false;
     if(!q)return true;
-    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,modoPessoa()?'':it.arquetipo,emStreaming(it).join(' ')].join(' ').toLowerCase().indexOf(q)>-1;
+    return [it.titulo,it.titulo_original,it.titulo_en,it.autor,it.pais,it.plataforma,modoPessoa()?'':it.arquetipo,emStreaming(it).join(' '),ehSaga(it)?it.filmes.map(function(f){return [f.titulo,f.titulo_en].join(' ')}).join(' '):''].join(' ').toLowerCase().indexOf(q)>-1;
   }).sort(function(a,b){return sortKey(kind,b)-sortKey(kind,a)});
 }
 // as 9 dimensões em barras horizontais, da mais forte para a mais fraca (o único gráfico da página)
@@ -1778,6 +1796,8 @@ function setV(r){try{r.style.setProperty('--v',(+r.value||0)+'%')}catch(e){}}
 function tileOpts(it,kind){
   var c=conexao(it),V=VIEW[kind]||{},rk=V.sort==='pesquisa'?rankDe(it):V.sort==='conn'&&RANKS[kind]?RANKS[kind][it.id]:null,ano=String(it.ano||'').slice(0,4);
   var linha=[];if(c!=null&&c>=50)linha.push('<b class="num">'+c+'%</b>');if(ano)linha.push('<span class="num">'+esc(ano)+'</span>');
+  if(ehSaga(it)){var sv=sagaVistos(it);linha.push(sv.n?'viu '+sv.n+' de '+sv.de:'saga · '+sv.de+' filmes');return {rank:rk||null,pre:rk?rk+'º:':'',semSaga:true,capTxt:'saga com '+sv.de+' filmes',prog:sv.n&&sv.n<sv.de?sv.n/sv.de:null,
+    cap:'<span class="ti-t">'+esc(it.titulo)+'</span><span class="ti-m">'+linha.join(' · ')+'</span>'}}
   return {rank:rk||null,pre:rk?rk+'º:':'',cap:'<span class="ti-t">'+esc(it.titulo)+'</span>'+(linha.length?'<span class="ti-m">'+linha.join(' · ')+'</span>':'')};
 }
 function card(it,kind){
@@ -1832,6 +1852,7 @@ function aplicaNota(id,v){
 }
 // atualiza o pôster da grade no lugar, sem redesenhar a lista (o botão continua o mesmo e a folha devolve o foco a ele)
 function syncRow(id){
+  var sg=sagaDe(id);if(sg&&sg!==id)syncRow(sg); // o cartão da saga mostra quantos filmes foram vistos
   ['filmes','series'].forEach(function(k){
     try{
       var c=document.querySelector('#list-'+k+' .card[data-id="'+cssId(id)+'"]');if(!c)return;
@@ -1874,6 +1895,7 @@ function hojeN(){return Math.floor((Date.now()-new Date().getTimezoneOffset()*6e
 function itensDe(kind){return kind==='tudo'?[].concat(LD('filmes'),LD('series')):LD(kind)}
 function tileParts(it,o){
   o=o||{};var c=conexao(it),st=stOf(it),n=ST.notas[it.id];
+  if(ehSaga(it)&&!o.semSaga){var sv=sagaVistos(it);o=Object.assign({},o,{sv:o.sv||(sv.n?'viu '+sv.n+' de '+sv.de:'saga · '+sv.de+' filmes'),prog:o.prog!=null?o.prog:(sv.n&&sv.n<sv.de?sv.n/sv.de:null)})}
   var lab=[(o.pre?o.pre+' ':'')+it.titulo];
   if(c!=null&&c>=50)lab.push(c+'% de conexão');
   if(st&&SLAB[st])lab.push(SLAB[st].toLowerCase());
@@ -2220,6 +2242,7 @@ function achar(id){
   var fontes=[['filmes','filme'],['series','serie']];
   for(k=0;k<fontes.length;k++){l=(D&&D[fontes[k][0]])||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:fontes[k][1]}}
   l=(D&&D.extras)||[];for(i=0;i<l.length;i++)if(l[i].id===id)return {it:l[i],tipo:l[i].tipo==='saga'||l[i].tipo==='filme'?l[i].tipo:'serie'};
+  if(Object.prototype.hasOwnProperty.call(SAGAIX,id))return {it:SAGAIX[id],tipo:'saga'}; // saga do catálogo (as de extras já saíram acima)
   if(Object.prototype.hasOwnProperty.call(SAGAF,id))return {it:SAGAF[id],tipo:'filme'};
   if(Object.prototype.hasOwnProperty.call(CATPOR,id))return {it:CATPOR[id],tipo:CATPOR[id].tipo==='serie'?'serie':'filme'};
   if(ST.livres[id])return {it:{id:id,titulo:ST.livres[id].titulo},tipo:'livre'};
@@ -2407,16 +2430,70 @@ function votosPop(v){var s=String(v||''),n=num(s);if(isNaN(n))return 2;if(/m/i.t
 // Os filmes das sagas de dados.json > extras (Harry Potter, Animais Fantásticos...) viram títulos avaliáveis.
 // Os que não estão na página nem no catálogo herdam da saga o país, os gêneros e as nove dimensões.
 function montarSagas(){
-  SAGAF={};
+  SAGAF={};SAGAIX={};SAGADE={};
   ((D&&D.extras)||[]).forEach(function(sg){
-    if(!sg||sg.tipo!=='saga')return;
+    if(!sg||sg.tipo!=='saga'||typeof sg.id!=='string')return;
+    SAGAIX[sg.id]=sg;
     (sg.filmes||[]).forEach(function(f){
-      if(!f||typeof f.id!=='string'||!f.titulo||SAGAF[f.id])return;
+      if(!f||typeof f.id!=='string'||!f.titulo)return;
+      if(!SAGADE[f.id])SAGADE[f.id]=sg.id;
+      if(SAGAF[f.id])return;
       SAGAF[f.id]={id:f.id,titulo:f.titulo,titulo_original:f.titulo_original||'',titulo_en:f.titulo_en||'',ano:f.ano,autor:f.diretor||f.autor||'',
         pais:f.pais||sg.pais||'',generos:Array.isArray(f.generos)?f.generos:(sg.generos||[]),dims:dimsOk(f.dims)||dimsOk(sg.dims),imdb_id:f.imdb_id,saga:sg.id};
     });
   });
 }
+// ---------- SAGAS ----------
+// Filmes da mesma franquia viram UM cartão: as sagas de dados.json > extras (Harry Potter, O Senhor dos Anéis, Animais
+// Fantásticos) e as de catalogo.json > sagas (Star Wars, Toy Story, O Poderoso Chefão...: ids dos filmes, na ordem). As
+// notas e os status continuam por filme; o cartão da saga abre a folha com os filmes, e cada filme abre a folha dele.
+// SAGAIX: id da saga -> objeto (tipo 'saga', filmes como objetos); SAGADE: id do filme -> id da saga; AVPOR[saga] é o
+// registro da saga para Avaliar, indicações e grades (fora de AVI, que fica só com títulos de verdade).
+// Conexão da saga = a do MELHOR filme (não a média): o cartão diz "aqui tem algo para você", e uma continuação fraca
+// (Matrix 2, Shrek 2) não pode esconder o primeiro filme; a média dos filmes só dá as dimensões e o perfil (x13).
+var SAGAIX={},SAGADE={},AVG=[];
+function ehSaga(it){return !!(it&&it.tipo==='saga'&&Array.isArray(it.filmes))}
+function sagaDe(id){return Object.prototype.hasOwnProperty.call(SAGADE,id)?SAGADE[id]:null}
+// os filmes da saga como títulos avaliáveis (os registros de AVI), na ordem
+function membrosR(it){if(!ehSaga(it))return [];var o=[];it.filmes.forEach(function(f){var r=f&&AVPOR[f.id];if(r&&!r.saga&&o.indexOf(r)<0)o.push(r)});return o}
+// quantos filmes da saga a pessoa já viu (nota, ou status de visto)
+function sagaVistos(it){var fs=ehSaga(it)?it.filmes:[],n=0;fs.forEach(function(f){var id=f&&f.id,s=ST.status[id];if(ST.notas[id]!=null||s==='assisti'||s==='acompanhando'||s==='abandonei')n++});return {n:n,de:fs.length}}
+// sagas do catálogo: só entram com 2 filmes ou mais que existem aqui e que não estão em outra saga
+function montarSagasCat(){
+  ((CAT&&Array.isArray(CAT.sagas))?CAT.sagas:[]).forEach(function(s){
+    try{
+      if(!s||typeof s.id!=='string'||!/^saga-[a-z0-9-]{2,80}$/.test(s.id)||SAGAIX[s.id]||!s.titulo||!Array.isArray(s.filmes))return;
+      var ms=s.filmes.filter(function(id,i,a){return typeof id==='string'&&a.indexOf(id)===i&&AVPOR[id]&&AVPOR[id].tipo==='filme'&&!SAGADE[id]}).map(function(id){return AVPOR[id]});
+      if(ms.length<2)return;
+      var dm=dimsOk(s.dims);if(!dm){var ok=ms.filter(function(r){return r.dims});if(ok.length){dm=[];for(var i=0;i<9;i++)dm.push(Math.round(ok.reduce(function(a,r){return a+r.dims[i]},0)/ok.length))}}
+      var gen=Array.isArray(s.generos)?strs(s.generos):[];if(!gen.length)ms.forEach(function(r){r.gen.forEach(function(g){if(gen.indexOf(g)<0)gen.push(g)})});
+      var anos=ms.map(function(r){return r.ano}).filter(Boolean);
+      var sg={id:s.id,tipo:'saga',titulo:String(s.titulo),titulo_original:String(s.titulo_original||''),titulo_en:String(s.titulo_en||''),ano:String(s.ano||Math.min.apply(null,anos)||''),
+        anos:String(s.anos||(anos.length?Math.min.apply(null,anos)+'–'+Math.max.apply(null,anos):'')),pais:String(s.pais||ms[0].it.pais||''),autor:String(s.autor||''),generos:gen,dims:dm,pop:+s.pop||0,
+        filmes:ms.map(function(r){return r.it})};
+      SAGAIX[s.id]=sg;ms.forEach(function(r){SAGADE[r.id]=s.id});
+    }catch(e){console.error(e)}
+  });
+}
+// o registro de cada saga (AVPOR[id]) e AVG: AVI com os filmes de uma saga trocados pelo registro dela, no lugar do primeiro
+function montarRegSagas(){
+  AVG=[];
+  Object.keys(SAGAIX).forEach(function(id){
+    try{
+      var sg=SAGAIX[id],ms=membrosR(sg);if(ms.length<2){ms.forEach(function(r){if(SAGADE[r.id]===id)delete SAGADE[r.id]});return}
+      var busca=normT([sg.titulo,sg.titulo_original,sg.titulo_en,sg.autor].concat(ms.map(function(r){return r.busca})).join(' '));
+      AVPOR[id]={id:id,tipo:'filme',saga:true,it:sg,fonte:ms.some(function(r){return r.fonte==='cat'})?'cat':'pag',ano:anoN(sg.ano)||ms[0].ano,
+        pop:Math.max.apply(null,ms.map(function(r){return r.pop}).concat([+sg.pop||0])),ori:origem(sg.pais),gen:Array.isArray(sg.generos)?sg.generos:[],dims:dimsOk(sg.dims),
+        h:hashS(id),x:x13(sg),membros:ms.map(function(r){return r.id}),busca:busca};
+    }catch(e){console.error(e)}
+  });
+  var visto={};
+  AVI.forEach(function(r){var s=sagaDe(r.id);if(s&&AVPOR[s]&&AVPOR[s].saga){if(!visto[s]){visto[s]=1;AVG.push(AVPOR[s])}}else AVG.push(r)});
+}
+// uma lista de registros (de AVI) com os filmes de saga trocados pela saga, na posição do primeiro que aparece
+function agrupaR(l){var v={},out=[];l.forEach(function(r){var s=r&&sagaDe(r.id),rs=s&&AVPOR[s];if(rs&&rs.saga){if(!v[s]){v[s]=1;out.push(rs)}}else if(r&&!v[r.id]){v[r.id]=1;out.push(r)}});return out}
+// id do filme -> id da saga (quando houver), sem repetir
+function agrupaIds(ids){var v={},out=[];ids.forEach(function(id){var s=sagaDe(id),k=s&&AVPOR[s]&&AVPOR[s].saga?s:id;if(!v[k]){v[k]=1;out.push(k)}});return out}
 // ids dos filmes das sagas que estão nas coleções (já vistos dezenas de vezes: não entram em indicações)
 function filmesDeSagas(cols){
   var o={};(cols||['desligar','repetidos']).forEach(function(col){colItens(col).forEach(function(id){var a=achar(id);if(a&&a.tipo==='saga')(a.it.filmes||[]).forEach(function(f){if(f&&f.id)o[f.id]=1})})});
@@ -2442,6 +2519,7 @@ function montarAvaliaveis(){
   Object.keys(SAGAF).forEach(function(id){poe(SAGAF[id],'filme','pag',5)});
   Object.keys(CATPOR).forEach(function(id){var it=CATPOR[id];poe(it,it.tipo==='serie'?'serie':'filme','cat')});
   AVI.forEach(function(r){r.x=x13(r.it)});ORDS={};
+  try{montarSagasCat();montarRegSagas()}catch(e){console.error(e);AVG=AVI.slice()}
   var com=AVI.filter(function(r){return r.x});MU13=zeros(N13);
   com.forEach(function(r){for(var i=0;i<N13;i++)MU13[i]+=r.x[i]/com.length});
   var a=ST.av||{};
@@ -2575,12 +2653,18 @@ function avPassa(r,q){
   if(AV.dec){if(!r.ano)return false;if(AV.dec==='antigo'?r.ano>=1970:Math.floor(r.ano/10)*10!==+AV.dec)return false}
   if(AV.ori&&r.ori!==AV.ori)return false;
   if(q)return r.busca.indexOf(q)>-1; // a busca procura em tudo, avaliado ou não
-  var e=avEstado(r.id);
-  if(AV.vis==='pendentes')return e==='';
-  if(AV.vis==='avaliados')return e==='nota';
-  if(AV.vis==='naovi')return e==='naovi'||e==='quero';
+  return avVis(r,AV.vis);
+}
+// em que filtro o título aparece; a saga aparece em cada um em que algum filme dela estiver (um sem resposta, um com nota...)
+function avVis(r,vis){
+  var es=r&&r.saga?r.membros.map(avEstado):[avEstado(r.id)];
+  if(vis==='pendentes')return es.indexOf('')>-1;
+  if(vis==='avaliados')return es.indexOf('nota')>-1;
+  if(vis==='naovi')return es.indexOf('naovi')>-1||es.indexOf('quero')>-1;
   return true;
 }
+// a nota que ordena "Sua nota": a da saga é a maior dos filmes dela
+function notaR(r){if(r&&r.saga){var m=null;r.membros.forEach(function(id){var v=ST.notas[id];if(v!=null&&(m==null||+v>m))m=+v});return m}return r?ST.notas[r.id]:null}
 function porHash(a,b){return a.h-b.h}
 function ordPop(l){
   var niv={};l.forEach(function(r){var n=niv[r.pop]=niv[r.pop]||{filme:[],serie:[]};n[r.tipo].push(r)});
@@ -2598,7 +2682,7 @@ function amados(){
   return a;
 }
 function avMontar(){
-  var q=normT(AV.q),l=AVI.filter(function(r){return avPassa(r,q)});
+  var q=normT(AV.q),l=(AVG.length?AVG:AVI).filter(function(r){return avPassa(r,q)}); // as sagas num cartão só
   AV.semAmados=false;
   if(AV.ord==='aleatorio'){var R=rng(AV.seed),x=l.slice().sort(porHash);for(var i=x.length-1;i>0;i--){var j=Math.floor(R()*(i+1)),t=x[i];x[i]=x[j];x[j]=t}l=x}
   else if(AV.ord==='parecidos'){
@@ -2609,7 +2693,7 @@ function avMontar(){
       l.sort(function(a,b){return sc[b.id]-sc[a.id]||pos[a.id]-pos[b.id]})}
   }
   else if(AV.ord==='nota'){var pos2={};ordPop(l).forEach(function(r,i){pos2[r.id]=i});
-    l.sort(function(a,b){var na=ST.notas[a.id],nb=ST.notas[b.id];return (nb==null?-1:+nb)-(na==null?-1:+na)||pos2[a.id]-pos2[b.id]})}
+    l.sort(function(a,b){var na=notaR(a),nb=notaR(b);return (nb==null?-1:+nb)-(na==null?-1:+na)||pos2[a.id]-pos2[b.id]})}
   else l=ordPop(l);
   AV.lista=l.map(function(r){return r.id});
   AV.pag=0;AV.foco=0;
@@ -2628,9 +2712,9 @@ function renderAvCont(){
 }
 function opcoes(sel,ops,v){sel.innerHTML=ops.map(function(o){return '<option value="'+esc(o[0])+'"'+(String(o[0])===String(v)?' selected':'')+'>'+esc(o[1])+'</option>'}).join('')}
 function renderAvCtl(){
-  var base=AVI.filter(function(r){return (AV.tipo==='todos'||r.tipo===AV.tipo)&&(!AV.dec||(r.ano&&(AV.dec==='antigo'?r.ano<1970:Math.floor(r.ano/10)*10===+AV.dec)))&&(!AV.ori||r.ori===AV.ori)});
-  var c={nota:0,naovi:0,quero:0,'':0};base.forEach(function(r){c[avEstado(r.id)]++});
-  el('av-vis').innerHTML=[['pendentes','Para avaliar',c['']],['avaliados','Com nota',c.nota],['naovi','Não vi / quero ver',c.naovi+c.quero]].map(function(o){
+  var base=(AVG.length?AVG:AVI).filter(function(r){return (AV.tipo==='todos'||r.tipo===AV.tipo)&&(!AV.dec||(r.ano&&(AV.dec==='antigo'?r.ano<1970:Math.floor(r.ano/10)*10===+AV.dec)))&&(!AV.ori||r.ori===AV.ori)});
+  var c={pendentes:0,avaliados:0,naovi:0};base.forEach(function(r){Object.keys(c).forEach(function(k){if(avVis(r,k))c[k]++})});
+  el('av-vis').innerHTML=[['pendentes','Para avaliar',c.pendentes],['avaliados','Com nota',c.avaliados],['naovi','Não vi / quero ver',c.naovi]].map(function(o){
     return '<button class="chip t44" data-vis="'+o[0]+'" aria-pressed="'+(AV.vis===o[0]&&!AV.q.trim())+'">'+o[1]+' <span class="num">'+milhar(o[2])+'</span></button>'}).join('');
   el('av-tipo').innerHTML=[['todos','Tudo'],['filme','Filmes'],['serie','Séries']].map(function(o){return '<button class="chip t44" data-tipo="'+o[0]+'" aria-pressed="'+(AV.tipo===o[0])+'">'+o[1]+'</button>'}).join('');
   var decs={};AVI.forEach(function(r){if(r.ano)decs[r.ano<1970?'antigo':String(Math.floor(r.ano/10)*10)]=1});
@@ -2641,7 +2725,25 @@ function renderAvCtl(){
   var ordR={pop:'mais conhecidos',aleatorio:'aleatório',parecidos:'parecidos com o que você amou',nota:'sua nota'};
   el('av-fres').textContent=[AV.tipo==='todos'?'filmes e séries':AV.tipo==='filme'?'só filmes':'só séries',AV.dec?(AV.dec==='antigo'?'até 1969':'anos '+AV.dec):'',AV.ori?ORI_ROT[AV.ori]:'',ordR[AV.ord],AV.por+' por página'].filter(Boolean).join(' · ');
 }
+function notasBt(id,fid,pt){
+  var n=ST.notas[id],nv=!!ST.naovi[id],qv=ST.status[id]==='quero',fa=fid?' data-fid="'+esc(id)+'"':'';
+  var pr=n!=null&&+n>=5?Math.max(1,Math.min(10,Math.round(+n/10))):0,bt='';
+  for(var k=1;k<=10;k++)bt+='<button class="nb" data-n="'+k+'"'+fa+' aria-pressed="'+(pr===k)+'" aria-label="Nota '+(k*10)+' de 100">'+(k*10)+'</button>';
+  bt+='<button class="nv" data-nv="1"'+fa+' aria-pressed="'+nv+'">Não vi</button><button class="nv" data-qv="1"'+fa+' aria-pressed="'+qv+'">Quero ver</button>';
+  return '<div class="notas" role="group" aria-label="'+esc('Nota para '+pt)+'">'+bt+'</div>';
+}
+// a saga no Avaliar: um cartão com os filmes dela, cada um com a sua nota
+function avRowSaga(r,i){
+  var sg=r.it,ms=r.membros.map(function(id){return AVPOR[id]}).filter(Boolean),sv=sagaVistos(sg);
+  var meta=[sg.anos||sg.ano||'',sg.autor||'',sg.pais||''].filter(Boolean).map(esc).join(' · ');
+  var est=ms.map(function(m){return avEstado(m.id)}),cls='avr avs'+(est.indexOf('')<0?' feita':'')+(i===AV.foco?' foco':'');
+  return '<li class="'+cls+'" data-id="'+esc(r.id)+'" data-i="'+i+'" tabindex="-1"><div class="avr-h"><span class="avr-po" aria-hidden="true">'+miniPoster(sg,{sz:'44px'})+'</span>'+
+    '<div class="avr-t"><h3>'+esc(sg.titulo)+'</h3><div class="sub">Saga · '+ms.length+' filmes'+(sv.n?' · viu '+sv.n:'')+'</div><div class="meta">'+meta+'</div></div></div>'+
+    '<ol class="avs-l">'+ms.map(function(m){var e=avEstado(m.id),n=ST.notas[m.id],ex=n!=null&&+n%10!==0?' · sua nota '+notaTxt(n):'';
+      return '<li class="avs-f'+(e==='nota'?' feita':e?' '+e:'')+'" data-fid="'+esc(m.id)+'"><div class="avs-t"><b>'+esc(m.it.titulo)+'</b> <span class="meta num">'+esc((m.ano||'')+ex)+'</span></div>'+notasBt(m.id,true,m.it.titulo)+'</li>'}).join('')+'</ol></li>';
+}
 function avRow(r,i){
+  if(r&&r.saga)return avRowSaga(r,i);
   var it=r.it,id=r.id,n=ST.notas[id],nv=!!ST.naovi[id],qv=ST.status[id]==='quero';
   var pt=it.titulo||'',og=it.titulo_original||'',en=it.titulo_en||'',sub=og&&og!==pt?og:(en&&en!==pt?en:'');
   // a nota exata só aparece quando não é múltiplo de 10 (veio do ajuste fino ou do controle deslizante): o botão
@@ -2688,7 +2790,7 @@ function renderAvaliar(abrindo){
     delete SUJO.avaliar;
     if(abrindo&&AV.lista&&AV.vis==='pendentes'&&!AV.q.trim()){
       var ini=AV.pag*AV.por,pg=AV.lista.slice(ini,ini+AV.por);
-      if(pg.length&&pg.every(function(id){return avEstado(id)!==''}))AV.lista=null;
+      if(pg.length&&pg.every(function(id){return !avVis(AVPOR[id],'pendentes')}))AV.lista=null;
     }
     ['notas','gosto','importar'].forEach(function(m){el('av-v-'+m).hidden=AV.modo!==m});
     el('av-modo').querySelectorAll('[data-modo]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.modo===AV.modo))});
@@ -2712,9 +2814,11 @@ function avIrPag(d,focoNoFim,rolar){
   return true;
 }
 function avTroca(id){
-  var li=el('av-lista').querySelector('.avr[data-id="'+cssId(id)+'"]');if(!li)return;
+  var sg=sagaDe(id),lid=sg&&AVPOR[sg]&&el('av-lista').querySelector('.avr[data-id="'+cssId(sg)+'"]')?sg:id; // filme de saga: redesenha o cartão da saga
+  var li=el('av-lista').querySelector('.avr[data-id="'+cssId(lid)+'"]');if(!li)return;
   var i=+li.dataset.i,foco=document.activeElement,qual=foco&&li.contains(foco)?(foco.dataset.n?'[data-n="'+foco.dataset.n+'"]':foco.dataset.nv?'[data-nv]':foco.dataset.qv?'[data-qv]':''):null;
-  var tmp=document.createElement('ol');tmp.innerHTML=avRow(AVPOR[id],i);var novo=tmp.firstChild;li.replaceWith(novo);
+  if(qual&&foco.dataset.fid)qual='[data-fid="'+cssId(foco.dataset.fid)+'"]'+qual;
+  var tmp=document.createElement('ol');tmp.innerHTML=avRow(AVPOR[lid],i);var novo=tmp.firstChild;li.replaceWith(novo);
   if(qual){var b=novo.querySelector(qual);if(b)b.focus({preventScroll:true})}
   else if(foco===li){try{novo.focus({preventScroll:true})}catch(e){}}
 }
@@ -2762,7 +2866,7 @@ function confirmaNaoVi(b,id){
       var pg=e.target.closest('[data-pg]');if(pg){avIrPag(+pg.dataset.pg,false,true);return}
       var b=e.target.closest('.nb,.nv');var li=e.target.closest('.avr');if(!li)return;
       avFoco(+li.dataset.i,false);if(!b)return;
-      var id=li.dataset.id;
+      var id=b.dataset.fid||li.dataset.id; // na saga, cada botão leva o id do filme
       if(b.dataset.n)avAcao(id,'nota',+b.dataset.n);else if(b.dataset.nv){if(confirmaNaoVi(b,id))avAcao(id,'naovi')}else if(b.dataset.qv)avAcao(id,'quero');
     });
     document.addEventListener('keydown',function(e){
@@ -2771,6 +2875,8 @@ function confirmaNaoVi(b,id){
       if(campo)return;
       if(e.metaKey||e.ctrlKey||e.altKey){if((e.metaKey||e.ctrlKey)&&!e.altKey&&!e.shiftKey&&(e.key==='z'||e.key==='Z')&&UNDO){e.preventDefault();desfazer()}return}
       var k=e.key,li=avLinha(AV.foco),id=li&&li.dataset.id;
+      // na saga, o teclado vale para o primeiro filme ainda sem resposta (ou o primeiro, se todos já têm)
+      if(id&&AVPOR[id]&&AVPOR[id].saga){var ms=AVPOR[id].membros;id=ms.filter(function(m){return avEstado(m)===''})[0]||ms[0]}
       if(/^[0-9]$/.test(k)){if(!id)return;e.preventDefault();avAcao(id,'nota',k==='0'?10:+k,true);return}
       if(k==='n'||k==='N'){if(!id)return;e.preventDefault();avAcao(id,'naovi',0,true);return}
       if(k==='q'||k==='Q'){if(!id)return;e.preventDefault();avAcao(id,'quero',0,true);return}
@@ -2859,7 +2965,9 @@ function gostoCalc(){
   colItens('desligar').concat(colItens('repetidos')).forEach(function(id){fora[id]=1});
   res.recs=res.vazio?[]:AVI.filter(function(r){return r.x&&ST.notas[r.id]==null&&!vistoSt[stOf(r.it)]&&!fora[r.id]&&!bloqueado(r.it)})
     .map(function(r){return {r:r,c:conexaoCom(recP,r),v:valor13(recP,r.x),p:Math.max(0,Math.min(100,prevZ(md,zDe(r.x))))}})
-    .sort(function(a,b){return b.v-a.v||b.r.pop-a.r.pop}).slice(0,10);
+    .sort(function(a,b){return b.v-a.v||b.r.pop-a.r.pop});
+  // filmes de uma saga viram um cartão só (a saga), com a conexão e a nota prevista do melhor deles
+  var vsg={};res.recs=res.recs.map(function(x){var sg=sagaDe(x.r.id),rs=sg&&AVPOR[sg];if(!rs||!rs.saga)return x;if(vsg[sg]||fora[sg])return null;vsg[sg]=1;return {r:rs,c:x.c,v:x.v,p:x.p}}).filter(Boolean).slice(0,10);
   res.igual=res.pesos.every(function(x,i){return x===pAtual[i]});
   return res;
 }
@@ -3437,7 +3545,9 @@ function acoesFolha(it,k){
   return out;
 }
 function renderFolha(){
-  var a=achar(SH.id);if(!a)return false;var it=a.it,t=a.tipo,k=kindOf(it.id),c=conexao(it),p=posterInfo(it.id),h=[];
+  var a=achar(SH.id);if(!a)return false;var it=a.it,t=a.tipo,c=conexao(it),p=posterInfo(it.id),h=[];
+  // a saga não tem status nem nota próprios (são de cada filme); o filme de uma saga ganha os status de filme mesmo fora das listas
+  var k=t==='saga'?null:(kindOf(it.id)||(sagaDe(it.id)?'filmes':null)),sgId=t==='saga'?null:sagaDe(it.id),sgPai=sgId&&achar(sgId);
   var meta=[];
   if(c!=null)meta.push('<b class="cx'+(c<50?' low':'')+' num">'+c+'% conexão</b>');
   [t==='saga'?(it.anos||it.ano):it.ano,t==='filme'?it.duracao:(t==='serie'?(it.temporadas||''):(t==='saga'?(it.filmes||[]).length+' filmes':''))].filter(Boolean).forEach(function(x){meta.push(esc(x))});
@@ -3456,7 +3566,9 @@ function renderFolha(){
     '<div class="hero-po">'+posterHtml(it,{semNota:true})+creditoCartaz(it.id)+'</div>'+
     '<div class="hero-t"><h2 id="sh-title">'+esc(it.titulo)+'</h2>'+titulosExtras(it)+(meta.length?'<p class="meta">'+meta.join(' · ')+'</p>':'')+(autor?'<p class="ha">'+esc(autor)+'</p>':'')+
     (mot.length?'<p class="mot">'+mot.map(esc).join(' · ')+'</p>':'')+(hs.length?'<p class="hs badges">'+hs.join(' ')+'</p>':'')+'</div></div>');
-  h.push('<div class="sx sx-act" id="sh-act">'+acoesFolha(it,k)+'</div>');
+  if(t==='saga'){var sv=sagaVistos(it);h.push('<div class="sx sx-act" id="sh-act"><p class="prev">'+(sv.n?'Você viu <b class="num">'+sv.n+'</b> de '+sv.de+' filmes.':'Uma saga de '+sv.de+' filmes.')+' Toque num filme para dar nota ou mudar o status.'+(c!=null?' A conexão da saga é a do filme que mais combina com você.':'')+'</p></div>')}
+  else h.push('<div class="sx sx-act" id="sh-act">'+acoesFolha(it,k)+'</div>');
+  if(sgPai)h.push('<p class="colinfo">Parte da saga <button class="lnk" type="button" data-open="'+esc(sgId)+'">'+esc(sgPai.it.titulo)+' ›</button></p>');
   if(longo.length)h.push('<p class="colinfo situ">'+longo.map(function(x){return esc(x)}).join('<br>')+'</p>');
   var cols=[];
   if(colItens('repetidos').indexOf(it.id)>-1)cols.push('Repetidos'+((+ST.vezes[it.id]||0)>0?': você viu <b class="num">'+(+ST.vezes[it.id])+(+ST.vezes[it.id]===1?' vez':' vezes')+'</b>':''));
@@ -3466,11 +3578,14 @@ function renderFolha(){
   var lead=mp?'':(it.ponte||it.espelho||'');
   if(lead)h.push('<p class="lead">'+esc(lead)+'</p>');
   h.push('<div class="xp-w"><button class="btn xp" type="button" data-expand="1">Abrir página</button></div>');
+  // os filmes da saga: cada um abre a folha dele (status e nota por filme)
+  if(t==='saga'&&(it.filmes||[]).length)h.push(secao('Os '+it.filmes.length+' filmes','<ol class="eps sgl">'+cada(it.filmes,function(f,i){
+    var en=f.titulo_en&&f.titulo_en!==f.titulo?'<span class="lang">EN</span>'+esc(f.titulo_en):'',sv=emStreaming(f).join(', '),n=ST.notas[f.id],st=ST.status[f.id],
+      eu=n!=null?'sua nota <b class="num">'+esc(notaTxt(n))+'</b>':st&&SLAB[st]?SLAB[st].toLowerCase():'',abre=!!achar(f.id);
+    var corpo='<span class="te num">'+(i+1)+'</span><span class="et">'+esc(f.titulo)+(en||sv||eu?'<span class="ed">'+[en,esc(sv),eu].filter(Boolean).join(' · ')+'</span>':'')+'</span><span class="ed num">'+esc(f.ano||'')+'</span>'+(abre?'<span class="chev" aria-hidden="true">›</span>':'');
+    return '<li>'+(abre?'<button class="sgf" type="button" data-open="'+esc(f.id)+'" aria-label="'+esc(f.titulo+(eu?', '+eu.replace(/<[^>]+>/g,''):''))+'">'+corpo+'</button>':corpo)+'</li>'})+'</ol>'));
   h.push(secao('Onde assistir',ondeAssistir(it,t)));
   if(t==='serie')h.push(episodiosFolha(it));
-  if(t==='saga'&&(it.filmes||[]).length)h.push(secao('Os '+it.filmes.length+' filmes','<ol class="eps" style="list-style:none">'+cada(it.filmes,function(f,i){
-    var en=f.titulo_en&&f.titulo_en!==f.titulo?'<span class="lang">EN</span>'+esc(f.titulo_en):'',sv=emStreaming(f).join(', ');
-    return '<li><span class="te num">'+(i+1)+'</span><span class="et">'+esc(f.titulo)+(en||sv?'<span class="ed">'+en+(en&&sv?' · ':'')+esc(sv)+'</span>':'')+'</span><span class="ed num">'+esc(f.ano||'')+'</span></li>'})+'</ol>'));
   if(it.dims&&it.dims.length){
     var esp=it.ponte&&it.espelho&&!mp?'<p class="esp"><b>Em você:</b> '+esc(it.espelho)+'</p>':'';
     h.push(secao('Por que conecta','<p class="sum">Mais forte em '+mot.map(function(x){return '<b>'+esc(x)+'</b>'}).join(', ').replace(/, ([^,]*)$/,' e $1')+'.</p>'+esp+dimTable(it)));
@@ -3494,7 +3609,7 @@ function abrirFolha(id,de){
   try{
     var a=achar(id);if(!a||a.tipo==='livre'||a.tipo==='prov')return;
     if(SH.id!==id)SH.temp=null;
-    SH.id=id;if(de)SH.from=de;
+    SH.id=id;if(de&&!el('sheet').contains(de))SH.from=de; // de saga para filme, dentro da folha: o foco volta ao pôster de origem
     if(!renderFolha())return;
     var s=el('sheet'),sc=el('scrim'),ja=!s.hidden;
     s.hidden=false;sc.hidden=false;el('sh-body').scrollTop=0;s.classList.remove('rolou');
@@ -3968,10 +4083,11 @@ function montarListas(){
   LP={filmes:[],series:[]};RANKP={};
   if(!ST.perfil||!AVI.length)return;
   var nao=ST.perfil.nao||[],sc={},nf=0,ns=0;
-  var cand=AVI.filter(function(r){return r.x&&nao.indexOf(r.id)<0&&!bloqueado(r.it)});
+  // os filmes de uma saga entram como UM cartão (a saga), no lugar do melhor deles; "não é pra mim" na saga tira todos
+  var cand=AVI.filter(function(r){var sg=sagaDe(r.id);return r.x&&nao.indexOf(r.id)<0&&!(sg&&nao.indexOf(sg)>-1)&&!bloqueado(r.it)});
   cand.forEach(function(r){sc[r.id]=pontos(r.it)});
   cand.sort(function(a,b){return (sc[b.id]-sc[a.id])||(valor13(pesos(),b.x)-valor13(pesos(),a.x))});
-  cand.forEach(function(r){if(r.tipo==='filme'){if(nf<100){LP.filmes.push(r.it);RANKP[r.id]=++nf}}else if(ns<100){LP.series.push(r.it);RANKP[r.id]=++ns}});
+  agrupaR(cand).forEach(function(r){if(r.saga&&bloqueado(r.it))return;if(r.tipo==='filme'){if(nf<100){LP.filmes.push(r.it);RANKP[r.id]=++nf}}else if(ns<100){LP.series.push(r.it);RANKP[r.id]=++ns}});
 }
 function aplicaModo(){
   var mp=modoPessoa();montarListas();
