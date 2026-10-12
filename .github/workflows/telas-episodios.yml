@@ -21,6 +21,7 @@ on:
       - 'scripts/telas-sagas.mjs'
       - 'scripts/telas-notas.mjs'
       - 'scripts/telas-omdb.mjs'
+      - 'scripts/telas-eps-notas.mjs'
       - 'telas/catalogo.json'
 
 permissions:
@@ -80,6 +81,12 @@ jobs:
         continue-on-error: true
         timeout-minutes: 5
         run: node scripts/telas-notas.mjs
+      - name: Notas por episódio (base pública do IMDb)
+        id: epsnotas
+        # um arquivo por série em telas/eps-notas/<tt>.json, com a nota e os votos de cada episódio; só regrava o que muda
+        continue-on-error: true
+        timeout-minutes: 6
+        run: node scripts/telas-eps-notas.mjs
       - name: Notas do Rotten Tomatoes e do Metacritic (OMDb)
         id: omdb
         # até 800 títulos por dia (a chave grátis dá 1.000), os nunca consultados primeiro, depois os de mais de 45 dias;
@@ -115,6 +122,7 @@ jobs:
             if [ -f telas/sagas-tmdb.json ]; then git add telas/sagas-tmdb.json; fi
             if [ -f telas/notas.json ]; then git add telas/notas.json; fi
             if [ -f telas/notas-fora.json ]; then git add telas/notas-fora.json; fi
+            if [ -d telas/eps-notas ]; then git add -A telas/eps-notas; fi
             git commit -m "telas: robô atualizou episódios, onde assistir, IDs e pôsteres"
             git push
           else
@@ -129,6 +137,11 @@ jobs:
         if: ${{ !cancelled() && steps.ids.outcome == 'failure' }}
         run: |
           echo "::error::IDs do IMDb não foram procurados — veja o passo dos IDs (chave TMDB_API_KEY ou TMDB fora do ar)"
+          exit 1
+      - name: Avisar se as notas por episódio falharam
+        if: ${{ !cancelled() && steps.epsnotas.outcome == 'failure' }}
+        run: |
+          echo "::error::Notas por episódio não foram atualizadas — veja o passo das notas por episódio (base do IMDb fora do ar ou formato mudou)"
           exit 1
       - name: Avisar se as notas da OMDb falharam
         if: ${{ !cancelled() && steps.omdb.outcome == 'failure' }}
