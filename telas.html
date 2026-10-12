@@ -1316,7 +1316,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
   <section class="panel" id="p-comecar" aria-label="Por onde começar?">
     <div class="pad">
       <button class="back" type="button" data-dest="mais"><span aria-hidden="true">‹</span> Mais</button>
-      <header class="pghead"><h2>Por onde começar?</h2><p>Esta página nasceu da lista de uma pessoa. Para ela virar a sua, a gente precisa conhecer o seu gosto. Três caminhos; o primeiro é o mais completo.</p></header>
+      <header class="pghead"><h2>Por onde começar?</h2><p>Esta página nasceu da lista de uma pessoa. Para ela virar a sua, a gente precisa conhecer o seu gosto. O mais rápido e o mais certeiro: o que a sua IA já sabe de você, afinado em 3 minutos.</p></header>
       <div id="comecar-portas"></div>
     </div>
   </section>
@@ -1344,7 +1344,7 @@ html:not(.ja-eps) #sh-cal,html:not(.ja-eps) #p-cal>.pad+.shelves+.pad,html:not(.
     <div class="pad">
       <header class="pghead"><h2>Mais</h2></header>
       <div class="mgroup">
-        <button class="tab mrow" type="button" data-tab="perfil" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg></span><span class="mt"><b>Seu gosto</b><small id="mais-gosto-sub">Seis minutos para a página virar a sua: cenas, cartazes e três obras que marcaram você.</small></span><span class="chev" aria-hidden="true">›</span></button>
+        <button class="tab mrow" type="button" data-tab="perfil" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg></span><span class="mt"><b>Seu gosto</b><small id="mais-gosto-sub">O resumo da sua IA, afinado em 3 minutos, para a página virar a sua (ou responda sem IA).</small></span><span class="chev" aria-hidden="true">›</span></button>
         <button class="tab mrow" type="button" data-tab="perguntar" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.3l1.3-4.4A8.4 8.4 0 1 1 20.5 11.6z"/><path d="M12 8.2v6.4M8.8 11.4h6.4"/></svg></span><span class="mt"><b>Perguntar</b><small>A IA responde olhando suas notas, status e coleções.</small></span><span class="chev" aria-hidden="true">›</span></button>
         <button class="tab mrow" type="button" data-tab="pesos" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M17 7h3M4 12h3M11 12h9M4 17h11M19 17h1"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17" r="2"/></svg></span><span class="mt"><b>Conexão</b><small>Os 13 pesos (nove temas, nível e três traços) que ordenam tudo.</small></span><span class="chev" aria-hidden="true">›</span></button>
         <button class="tab mrow" type="button" data-tab="dados" data-via='.tabbar [data-dest="mais"]'><span class="mi"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11M7.5 10l4.5 4.5 4.5-4.5"/><path d="M4 15.5v2.5a2.5 2.5 0 0 0 2.5 2.5h11a2.5 2.5 0 0 0 2.5-2.5v-2.5"/></svg></span><span class="mt"><b>Backup e ajustes</b><small>Notas guardadas neste aparelho, alertas por e-mail e de onde vêm os dados.</small></span><span class="chev" aria-hidden="true">›</span></button>
@@ -3572,7 +3572,7 @@ function renderFolha(){
   var autor=[t==='serie'?(it.autor||it.criadores):(it.autor||it.diretor),it.pais].filter(Boolean).join(' · ');
   var mot=motivos(it,3);
   // situação da série (em exibição, renovada, encerrada…), selos de biblioteca e radar e o número na pesquisa, como no cartão antigo
-  var sit=t==='serie'?String(it.status||''):'',hs=[],longo=[],mp=modoPessoa()||ABA==='gosto'; // no caminho, a folha já é a da pessoa
+  var sit=t==='serie'?String(it.status||''):'',hs=[],longo=[],mp=modoPessoa()||ABA==='gosto'||ABA==='resumo'; // no caminho e no resumo, a folha já é a da pessoa
   if(sit){if(sit.length<=28)hs.push('<span class="bdg'+(/exib|renov/i.test(sit)?' live':'')+'">'+esc(sit)+'</span>');else longo.push(sit)}
   if(it.situacao)longo.push(String(it.situacao));
   // a camada pessoal do Lucas (biblioteca, radar, nº da pesquisa, espelho, ponte, arquétipos) some no modo pessoa
@@ -4111,7 +4111,7 @@ function aplicaModo(){
   var mp=modoPessoa();montarListas();
   try{document.documentElement.classList.toggle('pessoa',mp)}catch(e){}
   try{document.querySelectorAll('[data-sort] option[value="pesquisa"]').forEach(function(o){o.textContent=mp?'Ordem do seu gosto':'Ordem da pesquisa'})}catch(e){}
-  try{el('mais-gosto-sub').textContent=mp?'Seu gosto guardado neste aparelho: ver, refazer ou apagar.':'Seis minutos para a página virar a sua: cenas, cartazes e três obras que marcaram você.'}catch(e){}
+  try{el('mais-gosto-sub').textContent=mp?'Seu gosto guardado neste aparelho: ver, afinar, refazer ou apagar.':'O resumo da sua IA, afinado em 3 minutos, para a página virar a sua (ou responda sem IA).'}catch(e){}
 }
 // grava o perfil e entra no modo pessoa (as três portas passam por aqui): os pesos mexidos saem (os em uso passam a ser os do
 // perfil), os serviços de antes ficam guardados para o Apagar devolver, e os do contexto entram
@@ -4132,14 +4132,16 @@ function entraModo(){
 var IC_PORTA={gosto:'<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
   resumo:'<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.4 8.4 0 0 1-12.3 7.4L3.5 20.3l1.3-4.4A8.4 8.4 0 1 1 20.5 11.6z"/><path d="M8.5 10h7M8.5 13.5h4.5"/></svg>',
   arquivo:'<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11M7.5 10l4.5 4.5 4.5-4.5"/><path d="M4 15.5v2.5a2.5 2.5 0 0 0 2.5 2.5h11a2.5 2.5 0 0 0 2.5-2.5v-2.5"/></svg>'};
+// O caminho principal é em sequência: o resumo da IA dá o primeiro desenho do gosto e, logo depois, 3 minutos de cenas e
+// cartazes afinam o que ela deixou em dúvida. Quem não usa IA responde o caminho inteiro (6 minutos); o arquivo continua.
 function portasHtml(curto){
   return '<div class="portas">'+
-    '<button class="porta pri" type="button" data-porta="gosto"><span class="pi">'+IC_PORTA.gosto+'</span><span class="pt"><b>Seu gosto em 6 minutos</b><small>'+(curto?'Cenas, cartazes e três obras que marcaram você. Sem resposta certa.':'Nove telas curtas: o que você quer de uma tela hoje, cenas, 27 cartazes, três obras que marcaram você, limites, com quem e onde você assiste, e uma primeira lista de 12.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
-    '<button class="porta" type="button" data-porta="resumo"><span class="pi">'+IC_PORTA.resumo+'</span><span class="pt"><b>Colar o resumo da minha IA</b><small>'+(curto?'Um pedido pronto para o ChatGPT, Claude ou Gemini; você cola a resposta aqui.':'Copie um pedido pronto, cole no assistente que você já usa e cole a resposta aqui. A leitura é neste navegador, sem IA e sem sair do aparelho.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
+    '<button class="porta pri" type="button" data-porta="resumo"><span class="pi">'+IC_PORTA.resumo+'</span><span class="pt"><b>Colar o resumo da minha IA</b><small>'+(curto?'O ChatGPT, o Claude ou o Gemini já sabem do que você gosta. Depois, 3 minutos para afinar.':'Copie um pedido pronto, cole no assistente que você já usa e cole a resposta aqui. A leitura é neste navegador, sem IA e sem sair do aparelho. Depois, 3 minutos de cenas e cartazes afinam o que a IA disse.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
+    '<button class="porta" type="button" data-porta="gosto"><span class="pi">'+IC_PORTA.gosto+'</span><span class="pt"><b>Não uso IA / prefiro responder</b><small>'+(curto?'Seu gosto em 6 minutos: cenas, cartazes e três obras que marcaram você.':'Seu gosto em 6 minutos: o que você quer de uma tela hoje, cenas, 27 cartazes, três obras que marcaram você, limites, com quem e onde você assiste, e uma primeira lista de 12.')+'</small></span><span class="chev" aria-hidden="true">›</span></button>'+
     '<button class="porta" type="button" data-porta="arquivo"><span class="pi">'+IC_PORTA.arquivo+'</span><span class="pt"><b>Importar um arquivo</b><small>'+(curto?'Letterboxd, IMDb ou o histórico da Netflix.':'As notas do Letterboxd ou do IMDb, ou a atividade de visualização da Netflix (o que você viu vira "assisti", sem nota).')+'</small></span><span class="chev" aria-hidden="true">›</span></button></div>';
 }
 function shComecar(){
-  return '<section class="shelf sh-comecar" aria-label="Por onde começar?"><div class="sh-head"><h2>Por onde começar?</h2><p>Esta página nasceu da lista de uma pessoa. Em seis minutos ela vira a sua.</p></div>'+portasHtml(true)+'</section>';
+  return '<section class="shelf sh-comecar" aria-label="Por onde começar?"><div class="sh-head"><h2>Por onde começar?</h2><p>Esta página nasceu da lista de uma pessoa. Com o resumo da sua IA, ela vira a sua em poucos minutos.</p></div>'+portasHtml(true)+'</section>';
 }
 function shCriancas(kind,usados){
   if(!comCriancas())return '';
@@ -4180,8 +4182,9 @@ function renderPerfil(){
   h+='<div class="box"><h3>Os 13 pesos</h3><p>Nove temas de 0 a 30 (o que conta é a diferença entre eles) e quatro traços de −30 a 30. Dá para mexer um a um em Mais › Conexão.</p>'+pesosBarras(p.pesos)+'</div>';
   if(lims.length||ctx.length||(c.servicos||[]).length)h+='<div class="box"><h3>Limites e contexto</h3>'+(lims.length?'<p><b>Não quer ver:</b> '+esc(lims.join('; '))+(p.limFase?' (só por uma fase)':'')+'.</p>':'')+
     (ctx.length?'<p><b>Como assiste:</b> '+esc(ctx.join(', '))+'.</p>':'')+((c.servicos||[]).length?'<p><b>Serviços:</b> '+esc(c.servicos.map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[1]:s}).join(', '))+'.</p>':'')+'</div>';
-  h+='<div class="box"><h3>Refazer ou apagar</h3><p>Refazer recomeça o caminho de seis minutos; ao terminar, o gosto novo substitui este. Apagar devolve a página ao original (a lista de quem a fez), sem apagar as suas notas e status.</p>'+
-    '<div class="row"><button class="btn pri t44" type="button" data-pf="refazer">Refazer meu gosto</button><button class="btn t44" type="button" data-pf="apagar">'+(PF_CONF?'Tem certeza? Toque de novo':'Apagar meu gosto')+'</button></div></div>';
+  if(p.base)h+='<div class="box"><h3>Afinar</h3><p>'+(p.afinado?'Você já afinou o que a sua IA disse. Dá para afinar de novo: cenas e cartazes novos, partindo do mesmo resumo.':'O gosto saiu do resumo da sua IA. Em 3 minutos, cenas e cartazes escolhidos pelo que ficou em dúvida deixam a lista mais certeira.')+'</p><div class="row"><button class="btn pri t44" type="button" data-pf="afinar">Afinar em 3 minutos</button></div></div>';
+  h+='<div class="box"><h3>Refazer ou apagar</h3><p>Colar outro resumo começa de novo pela sua IA; refazer sem IA recomeça o caminho de seis minutos. Em qualquer um, ao terminar, o gosto novo substitui este. Apagar devolve a página ao original (a lista de quem a fez), sem apagar as suas notas e status.</p>'+
+    '<div class="row"><button class="btn'+(p.base?'':' pri')+' t44" type="button" data-pf="resumo">Colar outro resumo</button><button class="btn t44" type="button" data-pf="refazer">Refazer sem IA</button><button class="btn t44" type="button" data-pf="apagar">'+(PF_CONF?'Tem certeza? Toque de novo':'Apagar meu gosto')+'</button></div></div>';
   box.innerHTML=h;
 }
 (function(){
@@ -4189,6 +4192,8 @@ function renderPerfil(){
     el('p-perfil').addEventListener('click',function(e){
       var b=e.target.closest('[data-pf]');if(!b)return;var a=b.dataset.pf;
       if(a==='refazer'){g6Limpa();ir('gosto');return}
+      if(a==='resumo'){RI=null;ir('resumo');return}
+      if(a==='afinar'){var G=g6DoPerfil(ST.perfil);if(!G)return;g6Limpa();G6=G;g6Guarda();ir('gosto');return}
       if(a==='apagar'){
         if(!PF_CONF){PF_CONF=setTimeout(function(){PF_CONF=null;renderPerfil()},4000);renderPerfil();return}
         clearTimeout(PF_CONF);PF_CONF=null;ST.perfil=null;ST.pesos=null;ST.pesosAntes=null;
@@ -4269,10 +4274,12 @@ function g6PesosDe(w){
 }
 function g6Q(G,semFase){
   var q=zeros(N13),t=zeros(N13);
+  // caminho curto depois do resumo da IA: o prior começa no que o resumo deu (q e t), e as respostas daqui somam
+  if(G.base&&Array.isArray(G.base.q)){for(var b0=0;b0<N13;b0++){q[b0]+=+G.base.q[b0]||0;t[b0]+=+G.base.t[b0]||0}}
   function add(o,mult){if(!o)return;Object.keys(o).forEach(function(k){var i=EIX[k];if(i==null)return;q[i]+=o[k]*(mult||1);t[i]++})}
   (G.agora.procura||[]).forEach(function(id){AGORA_OPTS.forEach(function(o){if(o[0]===id)add(o[2])})});
   if(!semFase&&G.agora.fase){var k=G.agora.fase==='fim'?(G.agora.resp&&G.agora.resp!=='tanto'?'fim:'+G.agora.resp:''):G.agora.fase;if(FASE_Q[k])add(FASE_Q[k])}
-  (G.cenas||[]).forEach(function(c,ti){var trio=CENAS[ti];if(!c||!trio)return;
+  (G.cenas||[]).forEach(function(c,ti){var trio=CENAS[ti];if(!c||!trio)return; // G.cenas fica pelo número do trio (o caminho curto usa só alguns)
     if(c.esc>=0&&trio[c.esc]){var o={};o[trio[c.esc][1]]=5;o[trio[c.esc][2]]=(o[trio[c.esc][2]]||0)+2;add(o)}
     if(c.pul>=0&&trio[c.pul]){var p={};p[trio[c.pul][1]]=-3;add(p)}});
   (G.obras||[]).forEach(function(o){(o.pegou||[]).forEach(function(pk){PEGOU.forEach(function(P){if(P[0]===pk&&P[2])add(P[2])})})});
@@ -4281,6 +4288,8 @@ function g6Q(G,semFase){
 }
 function g6Obs(G){
   var obs=[];
+  // os títulos citados no resumo da IA (amo, gosto, não gostei) continuam valendo como observações
+  if(G.base&&Array.isArray(G.base.obs))G.base.obs.forEach(function(o){var r=AVPOR[o[0]];if(r&&r.x&&+o[2]>0)obs.push({x:r.x,y:+o[1],peso:+o[2]})});
   Object.keys(G.resp||{}).forEach(function(id){var r=AVPOR[id],e=G.resp[id];if(!r||!r.x)return;var y=e==='amei'?1:e==='nao'?-1:e==='ok'?0.3:0;if(y)obs.push({x:r.x,y:y,peso:1})});
   (G.obras||[]).forEach(function(o){var r=AVPOR[o.id];if(!r||!r.x)return;var m=o.quando==='antigo'?0.5:o.quando==='alguns'?0.8:1;if((o.pegou||[]).indexOf('epoca')>-1)m*=0.5;obs.push({x:r.x,y:1,peso:2*m})});
   return obs;
@@ -4319,12 +4328,15 @@ function g6PesosFinais(G,m){return g6Corrige(g6PesosDe(m.w),G.corr)}
 // escolha ativa dos próximos 9 cartazes (§6): ganho = chance de ter visto × xᵀ S x, com as travas de diversidade
 function g6Escolhe(G,m){
   var mostrados={};(G.grades||[]).forEach(function(g){(g||[]).forEach(function(id){mostrados[id]=1})});(G.obras||[]).forEach(function(o){mostrados[o.id]=1});
+  // o que o resumo da IA já citou não volta como cartaz (nem a saga dele)
+  var fora={};(G.citados||[]).forEach(function(id){fora[id]=1;var sg=sagaDe(id);if(sg)fora[sg]=1});Object.keys(mostrados).forEach(function(id){var sg=sagaDe(id);if(sg)fora[sg]=1});
   var CH={5:.6,4:.35,3:.15},mos={},vis={};
   function chaves(r){return [String(r.ano?Math.floor(r.ano/10)*10:'?'),'o:'+r.ori]}
   Object.keys(mostrados).forEach(function(id){var r=AVPOR[id];if(!r)return;chaves(r).forEach(function(k){mos[k]=(mos[k]||0)+(CH[r.pop]||.1);if(G.resp&&G.resp[id])vis[k]=(vis[k]||0)+1})});
   function fator(k){return ((vis[k]||0)+1)/((mos[k]||0)+1)}
-  var cands=AVI.filter(function(r){return r.x&&r.pop>=3&&!mostrados[r.id]&&r.fonte==='cat'});
-  if(cands.length<30)cands=AVI.filter(function(r){return r.x&&r.pop>=3&&!mostrados[r.id]});
+  var L=AVG.length?AVG:AVI,livre=function(r){return r.x&&r.pop>=3&&!mostrados[r.id]&&!fora[r.id]&&!(r.saga&&r.membros.some(function(m){return mostrados[m]||fora[m]}))};
+  var cands=L.filter(function(r){return livre(r)&&r.fonte==='cat'});
+  if(cands.length<30)cands=L.filter(livre);
   var sc=cands.map(function(r){var pv=(CH[r.pop]||.1)*chaves(r).reduce(function(p,k){return p*fator(k)},1);return {r:r,g:Math.min(.95,pv)*g6Ganho(m,r.x)}}).sort(function(a,b){return b.g-a.g});
   var out=[],ns=0,nf=0,nd=0,franq={};
   for(var i=0;i<sc.length&&out.length<9;i++){var r=sc[i].r,des=r.x[12]>0,fk=normT(r.it.titulo).split(' ')[0];
@@ -4333,7 +4345,7 @@ function g6Escolhe(G,m){
   return out;
 }
 function g6Grade1(){
-  var l=CARTAZES36.filter(function(id){return AVPOR[id]&&AVPOR[id].x}),com=l.filter(function(id){return posterInfo(id)}),sem=l.filter(function(id){return !posterInfo(id)});
+  var l=agrupaIds(CARTAZES36).filter(function(id){return AVPOR[id]&&AVPOR[id].x}),com=l.filter(function(id){return posterInfo(id)}),sem=l.filter(function(id){return !posterInfo(id)});
   return com.concat(sem).slice(0,9);
 }
 // "forte em X e Y": só dimensões em que o título é forte (x > 0) e que a pessoa busca (peso acima de 15); negativo × negativo
@@ -4345,30 +4357,32 @@ function forteEm(p,r){
 function eixoIncerto(m,x){var b=0;for(var j=1;j<N13;j++)if(x[j]*x[j]*m.S[j][j]>x[b]*x[b]*m.S[b][b])b=j;return eixos()[b]?eixos()[b].nome:''}
 // a primeira lista de 12: 4 certeiros, 4 menos conhecidos, 2 parecidos com as obras, 2 apostas declaradas
 function g6Lista(G,m,p){
-  var vistos={};Object.keys(G.resp||{}).forEach(function(id){if(G.resp[id])vistos[id]=1});(G.obras||[]).forEach(function(o){vistos[o.id]=1});
+  var vistos={};Object.keys(G.resp||{}).forEach(function(id){if(G.resp[id])vistos[id]=1});(G.obras||[]).forEach(function(o){vistos[o.id]=1});(G.citados||[]).forEach(function(id){vistos[id]=1});
+  var obras=(G.obras||[]).length?G.obras:(G.obrasRef||[]).map(function(id){return {id:id}}); // no caminho curto, as obras que o resumo diz que ela ama
   var lim=G.limites||{},servs=(G.ctx&&G.ctx.servicos||[]).map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[2]:''}).filter(Boolean),temSV=!!(SV&&SV.titulos);
   function bl(it){for(var k in lim)if(lim[k]==='nunca'&&bateLim(k,it))return true;return false}
   function pen(it){for(var k in lim)if(lim[k]==='valer'&&bateLim(k,it))return 15;return 0}
   var ord=ordPara(p);
   var cands=AVI.filter(function(r){return r.x&&!vistos[r.id]&&ST.notas[r.id]==null&&!/^(assisti|acompanhando|abandonei)$/.test(stOf(r.it))&&!bl(r.it)})
-    .map(function(r){var v=valor13(p,r.x),pc=(ord.length<500?percentilNormal(p,v):percentilF(ord,v))||0;return {r:r,v:v,pc:pc-pen(r.it),inc:g6Ganho(m,r.x)}});
+    .map(function(r){var v=valor13(p,r.x),pc=(ord.length<500?percentilNormal(p,v):percentilF(ord,v))||0,sg=sagaDe(r.id);var sid=sg&&AVPOR[sg]&&AVPOR[sg].saga?sg:'';return {r:r,rs:sid?AVPOR[sid]:r,v:v,pc:pc-pen(r.it),inc:g6Ganho(m,r.x),sid:sid}})
+    .filter(function(c){return !(c.sid&&vistos[c.sid])}); // filme de saga: entra a saga (uma vez), com a conexão do melhor filme
   function nosMeus(r){if(!temSV||!servs.length)return true;return emStreaming(r.it).some(function(n){return servs.indexOf(n)>-1})}
   var usados={},out=[],franq={};
   // a mesma trava de franquia da grade de cartazes: um título por primeira palavra (Divertida Mente e Divertida Mente 2 não vêm juntos)
   function fk(r){var k=normT(r.it.titulo).split(' ')[0];return k.length>3?k:''}
-  function livre(c){var k=fk(c.r);return !usados[c.r.id]&&!(k&&franq[k])}
-  function usa(c){usados[c.r.id]=1;var k=fk(c.r);if(k)franq[k]=1}
-  function pega(n,filtro,grupo,motivo){if(n<=0)return;cands.filter(function(c){return livre(c)&&filtro(c)}).sort(function(a,b){return b.pc-a.pc||b.v-a.v}).slice(0,n)
-    .forEach(function(c){usa(c);out.push({id:c.r.id,grupo:grupo,por:motivo(c),pc:Math.round(c.pc)})})}
-  var certo=function(c){return 'Conhecido e '+forteEm(p,c.r)+'.'};
+  function livre(c){var k=fk(c.r);return !usados[c.r.id]&&!(c.sid&&usados[c.sid])&&!(k&&franq[k])}
+  function usa(c){usados[c.r.id]=1;if(c.sid)usados[c.sid]=1;var k=fk(c.r);if(k)franq[k]=1}
+  function pega(n,filtro,grupo,motivo){if(n<=0)return;var l=[];cands.filter(function(c){return filtro(c)}).sort(function(a,b){return b.pc-a.pc||b.v-a.v}).forEach(function(c){if(l.length<n&&livre(c)){usa(c);l.push(c)}});
+    l.forEach(function(c){out.push({id:c.sid||c.r.id,grupo:grupo,por:motivo(c),pc:Math.round(c.pc)})})}
+  var certo=function(c){return 'Conhecido e '+forteEm(p,c.rs)+'.'}; // rs: a saga, quando o cartão é dela
   pega(4,function(c){return c.r.pop>=4&&nosMeus(c.r)},'certeiro',certo);
   pega(4-out.length,function(c){return c.r.pop>=4},'certeiro',certo);
-  pega(4,function(c){return c.r.pop<=3},'descoberta',function(c){return 'Menos conhecido, mas '+forteEm(p,c.r)+'.'});
-  (G.obras||[]).slice(0,2).forEach(function(o){var ro=AVPOR[o.id];if(!ro||!ro.x)return;var best=null,bs=-1;
+  pega(4,function(c){return c.r.pop<=3},'descoberta',function(c){return 'Menos conhecido, mas '+forteEm(p,c.rs)+'.'});
+  obras.slice(0,2).forEach(function(o){var ro=AVPOR[o.id];if(!ro||!ro.x)return;var best=null,bs=-1;
     cands.forEach(function(c){if(!livre(c)||c.pc<40)return;var s=cosV(centra13(c.r.x),centra13(ro.x));if(s>bs){bs=s;best=c}});
-    if(best){usa(best);out.push({id:best.r.id,grupo:'parecido',por:'Perto de '+ro.it.titulo+', que marcou você.',pc:Math.round(best.pc)})}});
+    if(best){usa(best);out.push({id:best.sid||best.r.id,grupo:'parecido',por:'Perto de '+ro.it.titulo+', que marcou você.',pc:Math.round(best.pc)})}});
   var apostas=[];cands.filter(function(c){return livre(c)&&c.pc>=55}).sort(function(a,b){return b.inc-a.inc}).forEach(function(c){if(apostas.length<2&&livre(c)){usa(c);apostas.push(c)}});
-  apostas.forEach(function(c){out.push({id:c.r.id,grupo:'aposta',por:'Uma aposta para a gente te conhecer melhor: o cálculo ainda tem dúvida sobre '+eixoIncerto(m,c.r.x)+'.',pc:Math.round(c.pc)})});
+  apostas.forEach(function(c){out.push({id:c.sid||c.r.id,grupo:'aposta',por:'Uma aposta para a gente te conhecer melhor: o cálculo ainda tem dúvida sobre '+eixoIncerto(m,c.rs.x)+'.',pc:Math.round(c.pc)})});
   pega(12-out.length,function(){return true},'certeiro',certo);
   return out.slice(0,12);
 }
@@ -4379,7 +4393,16 @@ function g6Lista(G,m,p){
 var G6_ABRE=false; // ao entrar no caminho com um rascunho andado, a abertura oferece "Continuar de onde parei"
 function g6Entrar(){G6_ABRE=true;g6Render(true)}
 var G6_KEY='telas_gosto_rasc',G6=null,G6_TELAS=['abertura','agora','cenas','cartazes','obras','limites','contexto','lista','palavras'];
-function g6Novo(){return {tela:0,sub:0,agora:{procura:[],fase:'',resp:''},cenas:[],grades:[],resp:{},obras:[],limites:{},limFase:false,ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},lista:null,acoes:{},notasL:{},corr:{},q:'',seed:(Date.now()%2147483647)||7}}
+// modo 'afinar' (depois do resumo da IA): base (o prior do resumo), ia (as frases dela), pula (telas já respondidas),
+// trios (os trios de cenas de maior incerteza), nGrades (2), citados (o que o resumo já citou: fora das grades e da lista)
+function g6Novo(){return {tela:0,sub:0,agora:{procura:[],fase:'',resp:''},cenas:[],grades:[],resp:{},obras:[],limites:{},limFase:false,ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},lista:null,acoes:{},notasL:{},corr:{},q:'',seed:(Date.now()%2147483647)||7,
+  modo:'',base:null,ia:[],iaOff:{},pula:{},trios:null,nGrades:3,citados:[],obrasRef:[]}}
+function g6Afinar(G){return G&&G.modo==='afinar'&&!!G.base}
+function g6NTrios(G){return Array.isArray(G.trios)&&G.trios.length?G.trios.length:6}
+function g6Trio(G){return Array.isArray(G.trios)&&G.trios.length?G.trios[Math.min(G.sub,G.trios.length-1)]:G.sub}
+function g6NGrades(G){return Math.max(1,Math.min(3,+G.nGrades||3))}
+function g6Ve(G,nome){return !(G.pula&&G.pula[nome])}
+function g6Vis(G){return G6_TELAS.filter(function(n){return g6Ve(G,n)})}
 function g6Carrega(){
   if(G6)return G6;
   try{var r=JSON.parse(localStorage.getItem(G6_KEY)||'null');if(r&&typeof r==='object'&&!Array.isArray(r)&&typeof r.tela==='number'){var n=g6Novo();Object.keys(n).forEach(function(k){if(r[k]==null)r[k]=n[k]});r.tela=Math.max(0,Math.min(G6_TELAS.length-1,Math.floor(r.tela)));G6=r}}catch(e){}
@@ -4393,7 +4416,25 @@ function chipsHtml(ops,sel,attr,multi){
     return '<button class="chip" type="button" '+attr+'="'+esc(o[0])+'" aria-pressed="'+on+'">'+esc(o[1])+'</button>'}).join('')+'</div>';
 }
 function g6Ft(G,rot,pular){return '<div class="g6-ft"><button class="btn pri" type="button" data-g6="prox">'+esc(rot||'Próximo')+'</button>'+(pular?'<button class="lnk" type="button" data-g6="pular">'+esc(pular===true?'Pular':pular)+'</button>':'')+'</div>'}
+// a abertura do caminho curto: o que a IA já contou e o que falta perguntar
+function g6AberturaAfinar(G){
+  var temp=g6Temp(),p=ST.perfil||{},b=G.base||{},obs=b.obs||[],amo=obs.filter(function(o){return o[1]>=1}).length,nao=obs.filter(function(o){return o[1]<0}).length;
+  var sabe=[];
+  if(obs.length)sabe.push(obs.length+' título'+(obs.length>1?'s':'')+' que você citou'+(amo?' ('+amo+' que ama'+(nao?', '+nao+' de que não gostou':'')+')':''));
+  if(b.nIA)sabe.push('notas para '+b.nIA+' de 13 temas e traços');
+  var lim=Object.keys(G.limites||{});if(lim.length)sabe.push('o que você não quer ver ('+listaPt(lim.map(function(k){return LIM_NOME[k].toLowerCase()}))+')');
+  if((G.ctx.servicos||[]).length)sabe.push('os seus serviços');
+  var vai=[g6NTrios(G)+' trio'+(g6NTrios(G)>1?'s':'')+' de cenas',g6NGrades(G)+' grades de cartazes escolhidos pelo que ficou em dúvida'];
+  if(g6Ve(G,'agora'))vai.unshift('o que você quer de uma tela hoje');if(g6Ve(G,'obras'))vai.push('três obras que marcaram você');if(g6Ve(G,'limites'))vai.push('o que você não quer ver');if(g6Ve(G,'contexto'))vai.push('com quem e onde você assiste');
+  var fr=(G.ia||[]).slice(0,2);
+  return '<h2>Já sabemos isto de você</h2><p class="lead">Pela sua IA: '+esc(listaPt(sabe)||'um primeiro desenho do seu gosto')+'.</p>'+
+    (fr.length?'<ul class="perfil-l">'+fr.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul>':'')+
+    '<p class="lead">Agora, uns 3 minutos para afinar: '+esc(listaPt(vai))+'. No fim, a sua primeira lista de 12 e o seu gosto em palavras. Nada aqui é teste, e dá para pular qualquer passo.</p>'+
+    '<div class="g6-ft">'+(temp?'<button class="btn pri" type="button" data-g6="continuar">Continuar de onde parei</button><button class="lnk" type="button" data-g6="denovo">Começar de novo</button>':'<button class="btn pri" type="button" data-g6="prox">Começar</button>')+'</div>'+
+    '<p class="fine">O que a IA disse já está guardado (Mais › Seu gosto). Se sair agora, ele continua valendo.</p>';
+}
 function g6Abertura(G){
+  if(g6Afinar(G))return g6AberturaAfinar(G);
   var temp=g6Temp();
   return '<h2>Seu gosto em 6 minutos</h2><p class="lead">Em uns 6 minutos a gente monta sua primeira lista. Nada aqui é teste: não tem resposta certa, e dá para pular qualquer passo.</p>'+
     '<p class="lead">O que vem: o que você quer de uma tela hoje em dia, seis trios de cenas, 27 cartazes, três obras que marcaram você, o que você não quer ver, com quem e onde assiste, e uma lista de 12 com o porquê de cada um.</p>'+
@@ -4408,8 +4449,8 @@ function g6Agora(G){
 }
 function g6OrdemTrio(G,ti){var R=rng(G.seed+ti*7),o=[0,1,2];for(var i=2;i>0;i--){var j=Math.floor(R()*(i+1)),t=o[i];o[i]=o[j];o[j]=t}return o}
 function g6Cenas(G){
-  var ti=G.sub,trio=CENAS[ti],c=G.cenas[ti]||{esc:-1,pul:-1},ordem=g6OrdemTrio(G,ti);
-  var h='<h2>Qual destas você assistiria agora?</h2><p class="lead">Cena '+(ti+1)+' de 6. Toque na que te chama mais.</p><div class="cenas">'+ordem.map(function(i){
+  var ti=g6Trio(G),trio=CENAS[ti],c=G.cenas[ti]||{esc:-1,pul:-1},ordem=g6OrdemTrio(G,ti);
+  var h='<h2>Qual destas você assistiria agora?</h2><p class="lead">Cena '+(G.sub+1)+' de '+g6NTrios(G)+'. Toque na que te chama mais.</p><div class="cenas">'+ordem.map(function(i){
     return '<button class="cena'+(c.pul===i?' pul':'')+'" type="button" data-g6c="'+i+'" aria-pressed="'+(c.esc===i)+'"><span class="ck" aria-hidden="true">'+IC.ok+'</span><span>'+esc(trio[i][0])+'</span></button>'}).join('')+'</div>';
   if(c.esc>=0){var outras=ordem.filter(function(i){return i!==c.esc});
     h+='<div class="pularia"><p class="q">E qual você pularia? <span class="fine" style="display:inline">(opcional)</span></p><div class="chips">'+outras.map(function(i){return '<button class="chip" type="button" data-g6p="'+i+'" aria-pressed="'+(c.pul===i)+'">'+esc(trio[i][0].split(' ').slice(0,5).join(' '))+'…</button>'}).join('')+'</div></div>'}
@@ -4418,13 +4459,13 @@ function g6Cenas(G){
 var CTZ_EST={amei:'Amei',nao:'Não gostei',ok:'Vi, foi ok'},CTZ_SIM={amei:'♥',nao:'✕',ok:'ok'};
 function g6Cartazes(G){
   var gi=G.sub,ids=G.grades[gi]||[];
-  var h='<h2>Destes, o que você já viu?</h2><p class="lead">Grade '+(gi+1)+' de 3. Um toque: <b>amei</b>. Dois: <b>não gostei</b>. Três: <b>vi, foi ok</b>. Quatro: volta a "não vi".</p>'+
+  var h='<h2>Destes, o que você já viu?</h2><p class="lead">Grade '+(gi+1)+' de '+g6NGrades(G)+'.'+(g6Afinar(G)?' Escolhidos para tirar as dúvidas que a sua IA deixou.':'')+' Um toque: <b>amei</b>. Dois: <b>não gostei</b>. Três: <b>vi, foi ok</b>. Quatro: volta a "não vi".</p>'+
     '<div class="g6-leg"><span><i style="background:var(--acc)"></i>amei</span><span><i style="background:var(--new)"></i>não gostei</span><span><i style="background:var(--tx2)"></i>vi, foi ok</span></div>';
   if(!ids.length)return h+'<p class="note">Não há cartazes para mostrar agora (o catálogo não carregou).</p>'+g6Ft(G,'Próximo',true);
   h+='<div class="cgrid">'+cada(ids,function(id){var r=AVPOR[id];if(!r)return '';var e=G.resp[id]||'';
     return '<button class="ctz" type="button" data-g6ctz="'+esc(id)+'" data-est="'+e+'" aria-pressed="'+!!e+'" aria-label="'+esc(r.it.titulo+(e?': '+CTZ_EST[e]:''))+'">'+posterHtml(r.it,{nada:true}).replace(/<\/span>$/,'<span class="est" aria-hidden="true">'+(CTZ_SIM[e]||'')+'</span></span>')+
       '<span class="ti-t">'+esc(r.it.titulo)+'</span><span class="ti-m">'+esc(e?CTZ_EST[e]:(r.ano||''))+'</span></button>'})+'</div>';
-  return h+g6Ft(G,gi<2?'Próxima grade':'Próximo',true);
+  return h+g6Ft(G,gi<g6NGrades(G)-1?'Próxima grade':'Próximo',true);
 }
 function g6ObraCard(G,o,i){
   var r=AVPOR[o.id];if(!r)return '';var it=r.it;
@@ -4463,11 +4504,12 @@ function g6Contexto(G){
 function g6CardLista(G,x){
   var a=achar(x.id);if(!a)return '';var it=a.it,r=AVPOR[x.id],ac=G.acoes[x.id]||'',n=G.notasL[x.id];
   var grupo={certeiro:'Certeiro',descoberta:'Talvez você não conheça',parecido:'Para continuar',aposta:'Aposta'}[x.grupo]||'';
-  var meta=[r&&r.ano||'',it.autor||it.criadores||'',rotTipo(r?r.tipo:'filme')].filter(Boolean).map(esc).join(' · ');
+  var sg=a.tipo==='saga',meta=[sg?(it.anos||''):(r&&r.ano||''),it.autor||it.criadores||'',sg?'Saga · '+(it.filmes||[]).length+' filmes':rotTipo(r?r.tipo:'filme')].filter(Boolean).map(esc).join(' · ');
   var nb='';for(var k=1;k<=10;k++)nb+='<button class="nb" type="button" data-g6n="'+esc(x.id)+'|'+k+'" aria-pressed="'+(n===k*10)+'" aria-label="Nota '+(k*10)+' de 100">'+(k*10)+'</button>';
   return '<article class="mini" data-id="'+esc(x.id)+'" data-ac="'+ac+'"><div class="mini-h"><button class="mini-po" type="button" data-open="'+esc(x.id)+'" aria-label="'+esc('Abrir '+it.titulo)+'">'+miniPoster(it,{sz:'76px'})+'</button>'+
     '<div class="mini-t"><span class="grupo'+(x.grupo==='aposta'?' ap':'')+'">'+grupo+' · '+x.pc+'%</span><h3>'+esc(it.titulo)+'</h3><div class="meta">'+meta+'</div><p class="why">'+esc(x.por)+'</p></div></div>'+(oferta(it)?watchHtml(it):'')+
-    '<div class="macts"><button class="btn" type="button" data-g6ac="'+esc(x.id)+'|quero" aria-pressed="'+(ac==='quero')+'">Quero ver</button><button class="btn" type="button" data-g6ac="'+esc(x.id)+'|vi" aria-expanded="'+(ac==='vi')+'">'+(n?'Nota '+n:'Já vi')+'</button><button class="btn" type="button" data-g6ac="'+esc(x.id)+'|nao" aria-pressed="'+(ac==='nao')+'">Não é pra mim</button></div>'+
+    // saga: a nota é de cada filme, na folha dela ("Ver os filmes")
+    '<div class="macts"><button class="btn" type="button" data-g6ac="'+esc(x.id)+'|quero" aria-pressed="'+(ac==='quero')+'">Quero ver</button>'+(sg?'<button class="btn" type="button" data-open="'+esc(x.id)+'">Ver os filmes</button>':'<button class="btn" type="button" data-g6ac="'+esc(x.id)+'|vi" aria-expanded="'+(ac==='vi')+'">'+(n?'Nota '+n:'Já vi')+'</button>')+'<button class="btn" type="button" data-g6ac="'+esc(x.id)+'|nao" aria-pressed="'+(ac==='nao')+'">Não é pra mim</button></div>'+
     '<div class="notas so10" role="group" aria-label="'+esc('Sua nota para '+it.titulo)+'"'+(ac==='vi'?'':' hidden')+'>'+nb+'</div></article>';
 }
 function g6ListaTela(G){
@@ -4477,8 +4519,11 @@ function g6ListaTela(G){
 }
 function g6Palavras(G){
   // as frases saem dos pesos sem as correções: a corrigida fica riscada, com "desfazer" (os pesos finais levam a correção)
-  var m=g6Modelo(G),fr=g6Frases(g6PesosDe(m.w),G);
-  return '<h2>Seu gosto em palavras</h2><p class="lead">É o que as suas respostas dizem por enquanto. Se uma frase não for bem você, toque em "não é bem eu": o cálculo ajusta.</p><ul class="frases">'+fr.map(function(f){var off=!!(f.k&&G.corr[f.k]);
+  var m=g6Modelo(G),fr=g6Frases(g6PesosDe(m.w),G),ia=G.ia||[];
+  // no caminho curto: primeiro o parágrafo da IA (frase a frase; "não é bem eu" tira a frase), depois o que as respostas daqui acrescentam
+  var hIA=ia.length?'<h3>Pela sua IA</h3><ul class="frases">'+ia.map(function(f,i){var off=!!G.iaOff[i];
+    return '<li class="frase'+(off?' off':'')+'"><p>'+esc(f)+'</p><button class="lnk" type="button" data-g6ia="'+i+'" aria-pressed="'+off+'">'+(off?'desfazer':'não é bem eu')+'</button></li>'}).join('')+'</ul><h3>Pelas suas respostas aqui</h3>':'';
+  return '<h2>Seu gosto em palavras</h2><p class="lead">'+(ia.length?'O que a sua IA contou, afinado pelas suas respostas.':'É o que as suas respostas dizem por enquanto.')+' Se uma frase não for bem você, toque em "não é bem eu": o cálculo ajusta.</p>'+hIA+'<ul class="frases">'+fr.map(function(f){var off=!!(f.k&&G.corr[f.k]);
     return '<li class="frase'+(off?' off':'')+'"><p>'+f.h+'</p>'+(f.k?'<button class="lnk" type="button" data-g6cor="'+esc(f.k)+'" aria-pressed="'+off+'">'+(off?'desfazer':'não é bem eu')+'</button>':'')+'</li>'}).join('')+'</ul>'+
     '<div class="g6-ft"><button class="btn pri" type="button" data-g6="fim">Guardar meu gosto</button></div><p class="fine">Ao guardar, a página inteira passa a usar o seu gosto: as listas, o Início e as indicações. Os cartazes que você amou viram nota 90 e os que não gostou, 35; os serviços marcados viram os seus filtros. Dá para refazer ou apagar em Mais › Seu gosto.</p>';
 }
@@ -4488,10 +4533,12 @@ function g6Render(rolar){
   try{
     var G=g6Carrega(),t=G.tela,nT=G6_TELAS.length,nome=G6_TELAS[t];
     if(G6_ABRE){G6_ABRE=false;if(t>0){t=0;nome='abertura'}}
-    if(nome==='cartazes'&&!G.grades[G.sub]){G.grades[G.sub]=G.sub===0?g6Grade1():g6Escolhe(G,g6Modelo(G));g6Guarda()}
+    // no caminho curto (depois do resumo da IA) até a 1ª grade é escolhida pela incerteza que o resumo deixou
+    if(nome==='cartazes'&&!G.grades[G.sub]){G.grades[G.sub]=G.sub===0&&!g6Afinar(G)?g6Grade1():g6Escolhe(G,g6Modelo(G));g6Guarda()}
     if(nome==='lista'&&!G.lista){var m=g6Modelo(G);G.lista=g6Lista(G,m,g6PesosFinais(G,m));g6Guarda()}
-    var prog=(t+(nome==='cenas'?G.sub/6:nome==='cartazes'?G.sub/3:0))/(nT-1);
-    var h='<div class="g6-top"><button class="back" type="button" data-g6="'+(t>0?'voltar':'sair')+'"><span aria-hidden="true">‹</span> '+(t>0?'Voltar':'Sair')+'</button><span class="g6-n num">'+(t+1)+' de '+nT+'</span>'+(t>0?'<button class="g6-sair" type="button" data-g6="sair">Sair</button>':'')+'</div>'+
+    var vis=g6Vis(G),pos=Math.max(0,vis.indexOf(nome));nT=vis.length;
+    var prog=(pos+(nome==='cenas'?G.sub/g6NTrios(G):nome==='cartazes'?G.sub/g6NGrades(G):0))/(nT-1);
+    var h='<div class="g6-top"><button class="back" type="button" data-g6="'+(t>0?'voltar':'sair')+'"><span aria-hidden="true">‹</span> '+(t>0?'Voltar':'Sair')+'</button><span class="g6-n num">'+(pos+1)+' de '+nT+'</span>'+(t>0?'<button class="g6-sair" type="button" data-g6="sair">Sair</button>':'')+'</div>'+
       '<div class="g6-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(prog*100)+'" aria-label="Progresso"><i style="width:'+Math.round(prog*100)+'%"></i></div>';
     h+={abertura:g6Abertura,agora:g6Agora,cenas:g6Cenas,cartazes:g6Cartazes,obras:g6Obras,limites:g6Limites,contexto:g6Contexto,lista:g6ListaTela,palavras:g6Palavras}[nome](G);
     box.innerHTML=h;
@@ -4500,14 +4547,14 @@ function g6Render(rolar){
 }
 function g6Avanca(){
   var G=G6,nome=G6_TELAS[G.tela];
-  if(nome==='cenas'&&G.sub<5){G.sub++}else if(nome==='cartazes'&&G.sub<2){G.sub++}
-  else{if(G.tela<G6_TELAS.length-1)G.tela++;G.sub=0;if(G6_TELAS[G.tela]==='lista')G.lista=null}
+  if(nome==='cenas'&&G.sub<g6NTrios(G)-1){G.sub++}else if(nome==='cartazes'&&G.sub<g6NGrades(G)-1){G.sub++}
+  else{var t=G.tela;do{t++}while(t<G6_TELAS.length-1&&!g6Ve(G,G6_TELAS[t]));if(t<=G6_TELAS.length-1)G.tela=t;G.sub=0;if(G6_TELAS[G.tela]==='lista')G.lista=null}
   g6Guarda();g6Render(true);
 }
 function g6Volta(){
   var G=G6,nome=G6_TELAS[G.tela];
   if((nome==='cenas'||nome==='cartazes')&&G.sub>0)G.sub--;
-  else if(G.tela>0){G.tela--;G.sub=G6_TELAS[G.tela]==='cenas'?5:G6_TELAS[G.tela]==='cartazes'?2:0}
+  else if(G.tela>0){var t=G.tela;do{t--}while(t>0&&!g6Ve(G,G6_TELAS[t]));G.tela=t;G.sub=G6_TELAS[G.tela]==='cenas'?g6NTrios(G)-1:G6_TELAS[G.tela]==='cartazes'?g6NGrades(G)-1:0}
   g6Guarda();g6Render(true);
 }
 function toggleLista(l,v,max){var i=l.indexOf(v);if(i>-1)l.splice(i,1);else{if(max&&l.length>=max)l.shift();l.push(v)}}
@@ -4518,19 +4565,24 @@ function g6Fim(){
     // quem pulou tudo não tem gosto para guardar: pesos iguais ordenariam o catálogo por ruído
     if(semSinal(p)){toast('Responda pelo menos uma tela (as cenas, os cartazes ou uma obra) para a gente montar o seu gosto.',false);return}
     var frases=g6Frases(g6PesosDe(m.w),G).filter(function(f){return !(f.k&&G.corr[f.k])}).map(function(f){return f.h.replace(/<[^>]+>/g,'')});
+    // caminho curto: o parágrafo da IA (sem as frases tiradas) vem antes das frases daqui
+    var ia=g6Afinar(G)?(G.ia||[]).filter(function(f,i){return !G.iaOff[i]}):[];frases=ia.concat(frases).slice(0,12);
     var ct={amei:0,nao:0,ok:0};
     Object.keys(G.resp||{}).forEach(function(id){var e=G.resp[id];if(AVPOR[id]&&ct.hasOwnProperty(e))ct[e]++});
     var nao=Object.keys(G.acoes||{}).filter(function(id){return G.acoes[id]==='nao'});
     var temFase=!!(G.agora.fase&&!/^(nada|nao)$/.test(G.agora.fase));
     // o perfil é montado antes de gravar qualquer nota: se não passar em limpaPerfil, nada muda e o rascunho fica
-    var perfil=limpaPerfil({v:1,pesos:p,origem:'gosto6',feito_em:new Date().toISOString(),limites:G.limites,limFase:G.limFase,contexto:G.ctx,
+    var perfil=limpaPerfil({v:1,pesos:p,origem:g6Afinar(G)?'resumo':'gosto6',feito_em:new Date().toISOString(),limites:G.limites,limFase:G.limFase,contexto:G.ctx,
       respostas:{procura:G.agora.procura,fase:temFase?G.agora.fase:'',resp:G.agora.resp,cenas:(G.cenas||[]).filter(function(c){return c&&c.esc>=0}).length,cartazes:ct,obras:(G.obras||[]).map(function(o){return o.id})},
-      pesosSemFase:temFase?pSem:null,frases:frases,nao:nao});
+      pesosSemFase:temFase?pSem:null,frases:frases,nao:nao,ia:ia,base:g6Afinar(G)?G.base:null,afinado:g6Afinar(G)});
     if(!perfil){toast('Não consegui guardar o seu gosto; tente de novo.',false);return}
-    Object.keys(G.resp||{}).forEach(function(id){var e=G.resp[id];if(!AVPOR[id]||!ct.hasOwnProperty(e))return;
+    // cartaz de saga: a resposta vale para o primeiro filme dela (o que a pessoa com certeza viu); "quero ver", para o primeiro ainda não visto
+    function alvo(id){var r=AVPOR[id];return r&&r.saga?r.membros[0]:id}
+    function alvoQuero(id){var r=AVPOR[id];if(!r||!r.saga)return id;return r.membros.filter(function(m){return ST.notas[m]==null&&!ST.status[m]})[0]||''}
+    Object.keys(G.resp||{}).forEach(function(id0){var e=G.resp[id0];if(!AVPOR[id0]||!ct.hasOwnProperty(e))return;var id=alvo(id0);
       if(e==='amei')darNota(id,90);else if(e==='nao')darNota(id,35);else if(ST.notas[id]==null&&!ST.status[id])ST.status[id]='assisti'});
-    (G.obras||[]).forEach(function(o){if(AVPOR[o.id]&&ST.notas[o.id]==null)darNota(o.id,90)});
-    Object.keys(G.acoes||{}).forEach(function(id){var a=G.acoes[id];if(!AVPOR[id])return;if(a==='quero'){if(ST.notas[id]==null){ST.status[id]='quero';delete ST.naovi[id]}}else if(a==='vi'&&G.notasL[id])darNota(id,G.notasL[id])});
+    (G.obras||[]).forEach(function(o){var id=alvo(o.id);if(AVPOR[id]&&ST.notas[id]==null)darNota(id,90)});
+    Object.keys(G.acoes||{}).forEach(function(id){var a=G.acoes[id];if(!AVPOR[id])return;if(a==='quero'){var q=alvoQuero(id);if(q&&ST.notas[q]==null){ST.status[q]='quero';delete ST.naovi[q]}}else if(a==='vi'&&G.notasL[id])darNota(alvo(id),G.notasL[id])});
     var sv=(G.ctx.servicos||[]).map(function(s){var o=SERVICOS.filter(function(x){return x[0]===s})[0];return o?o[2]:''}).filter(Boolean);
     entraPessoa(perfil,sv);g6Limpa();
     toast('Seu gosto ficou guardado neste aparelho. A página agora é a sua.',false);ir('inicio');
@@ -4540,7 +4592,7 @@ function g6Fim(){
   try{
     var p=el('p-gosto');
     p.addEventListener('click',function(e){
-      var b=e.target.closest('[data-g6],[data-g6a],[data-g6f],[data-g6r],[data-g6c],[data-g6p],[data-g6ctz],[data-g6ob],[data-g6rm],[data-g6pg],[data-g6qd],[data-g6ab],[data-g6l],[data-g6ctx],[data-g6ctxi],[data-g6ctxo],[data-g6ctxt],[data-g6ctxs],[data-g6ac],[data-g6n],[data-g6cor]');
+      var b=e.target.closest('[data-g6],[data-g6ia],[data-g6a],[data-g6f],[data-g6r],[data-g6c],[data-g6p],[data-g6ctz],[data-g6ob],[data-g6rm],[data-g6pg],[data-g6qd],[data-g6ab],[data-g6l],[data-g6ctx],[data-g6ctxi],[data-g6ctxo],[data-g6ctxt],[data-g6ctxs],[data-g6ac],[data-g6n],[data-g6cor]');
       if(!b)return;var G=g6Carrega(),d=b.dataset,pv;
       if(d.g6){
         if(d.g6==='prox')return g6Avanca();if(d.g6==='pular')return g6Avanca();if(d.g6==='voltar')return g6Volta();
@@ -4550,8 +4602,9 @@ function g6Fim(){
       if(d.g6a!=null){toggleLista(G.agora.procura,d.g6a,2)}
       else if(d.g6f!=null){G.agora.fase=G.agora.fase===d.g6f?'':d.g6f;if(G.agora.fase!=='fim')G.agora.resp=''}
       else if(d.g6r!=null){G.agora.resp=d.g6r}
-      else if(d.g6c!=null){var c=G.cenas[G.sub]||{esc:-1,pul:-1};var i=+d.g6c;c.esc=c.esc===i?-1:i;if(c.pul===c.esc)c.pul=-1;G.cenas[G.sub]=c}
-      else if(d.g6p!=null){var c2=G.cenas[G.sub]||{esc:-1,pul:-1};var j=+d.g6p;c2.pul=c2.pul===j?-1:j;G.cenas[G.sub]=c2}
+      else if(d.g6c!=null){var tc=g6Trio(G),c=G.cenas[tc]||{esc:-1,pul:-1};var i=+d.g6c;c.esc=c.esc===i?-1:i;if(c.pul===c.esc)c.pul=-1;G.cenas[tc]=c}
+      else if(d.g6p!=null){var tp=g6Trio(G),c2=G.cenas[tp]||{esc:-1,pul:-1};var j=+d.g6p;c2.pul=c2.pul===j?-1:j;G.cenas[tp]=c2}
+      else if(d.g6ia!=null){G.iaOff[d.g6ia]=!G.iaOff[d.g6ia]}
       else if(d.g6ctz!=null){var cic=['','amei','nao','ok'],at=G.resp[d.g6ctz]||'',nx=cic[(cic.indexOf(at)+1)%4];if(nx)G.resp[d.g6ctz]=nx;else delete G.resp[d.g6ctz];
         g6Guarda();b.dataset.est=nx;b.setAttribute('aria-pressed',String(!!nx));var r=AVPOR[d.g6ctz];b.setAttribute('aria-label',r.it.titulo+(nx?': '+CTZ_EST[nx]:''));
         var es=b.querySelector('.est');if(es)es.textContent=CTZ_SIM[nx]||'';var tm=b.querySelector('.ti-m');if(tm)tm.textContent=nx?CTZ_EST[nx]:(r.ano||'');return}
@@ -4606,7 +4659,7 @@ function riEixo(nome){
   if(/^(nivel|densidade)/.test(k))return 9;if(/^(riso|humor|comedia)/.test(k))return 10;if(/^(tensao|suspense)/.test(k))return 11;if(/^(desenho|animacao|anime)/.test(k))return 12;
   return -1;
 }
-var RI_CERT={alta:{m:1,t:6},media:{m:0.75,t:4},baixa:{m:0.5,t:2}};
+var RI_CERT={alta:{m:1,t:20},media:{m:0.75,t:12},baixa:{m:0.5,t:6}};
 function riCert(c){var k=normT(c);return RI_CERT[k]||(/alta/.test(k)?RI_CERT.alta:/baixa/.test(k)?RI_CERT.baixa:RI_CERT.media)}
 // o parágrafo "meu gosto em palavras" em frases (até 6, de até 240 caracteres)
 function riFrases(t){
@@ -4667,7 +4720,10 @@ function riAnalisa(txt){
   var fk=R.nIA>=5?0.5:1;
   for(var j=0;j<N13;j++){R.q[j]=qa[j]+R.qk[j]*fk;R.t[j]=ta[j]+R.tk[j]}
   if(!R.titulos.length&&!R.sem.length&&!R.t.some(function(v){return v})&&!R.fraseIA.length)return {erro:'Não encontrei as seções do resumo (Amo, Gosto, Não gostei, Notas por tema…). Confira se colou o bloco inteiro.'};
-  R.obs=R.titulos.filter(function(x){return AVPOR[x.id]&&AVPOR[x.id].x}).map(function(x){return {id:x.id,y:x.nota===90?1:x.nota===75?0.5:-1,peso:x.fraco?0.5:1}});
+  // Com as notas por tema (5 ou mais), a IA já resumiu o que os títulos dizem: eles entram mais leves (×0,15) e só corrigem o desenho
+  // (com o peso inteiro, um "amo Central do Brasil" na régua do prior levava Busca e Travessia acima do que a IA disse). Sem elas, peso inteiro.
+  R.fobs=R.nIA>=5?0.15:1;
+  R.obs=R.titulos.filter(function(x){return AVPOR[x.id]&&AVPOR[x.id].x}).map(function(x){return {id:x.id,y:x.nota===90?1:x.nota===75?0.5:-1,peso:(x.fraco?0.5:1)*R.fobs}});
   var m=g6Ajusta(R.q,R.t,R.obs.map(function(o){return {x:AVPOR[o.id].x,y:o.y,peso:o.peso}}));R.m=m;R.pesos=g6PesosDe(m.w);R.frases=g6Frases(R.pesos,{limites:R.limites,limFase:false}).map(function(f){return f.h});
   if(semSinal(R.pesos))return {erro:'O resumo não traz nada que desenhe um gosto (nenhum título conhecido aqui, nem notas por tema, nem o que você procura). Confira se colou o bloco inteiro, ou responda sem IA.'};
   R.gravLim=true;R.gravCtx=true;R.gravCol=true;
@@ -4734,7 +4790,7 @@ function riRender(){
 // o que ele já respondeu é pulado ou vem preenchido, e os cartazes perguntam o que ficou incerto
 function g6DoPerfil(p){
   var b=p&&p.base;if(!b)return null;
-  var G=g6Novo();G.modo='afinar';G.base={q:b.q.slice(),t:b.t.slice(),obs:b.obs.map(function(o){return o.slice()})};
+  var G=g6Novo();G.modo='afinar';G.base=JSON.parse(JSON.stringify(b));
   G.ia=(p.ia||[]).slice();G.iaOff={};G.limites=JSON.parse(JSON.stringify(p.limites||{}));G.limFase=!!p.limFase;
   var c=p.contexto||{};G.ctx={quem:(c.quem||[]).slice(),idade:c.idade||'',onde:c.onde||'',tempo:c.tempo||'',servicos:(c.servicos||[]).slice()};
   G.citados=b.obs.map(function(o){return o[0]}).concat(b.cit||[]);
@@ -4753,7 +4809,7 @@ function riGrava(modo){
     var sel=RI.titulos.filter(function(x){return x.marcado});
     var fi=(RI.fraseIA||[]).filter(function(f,i){return !RI.iaOff[i]});
     // o prior (q, t) e os títulos citados ficam no perfil: o caminho curto de agora ou de depois parte deles. O texto colado não.
-    var obs=RI.titulos.filter(function(x){return x.marcado||x.ja!=null}).filter(function(x){return AVPOR[x.id]&&AVPOR[x.id].x}).map(function(x){return [x.id,x.nota===90?1:x.nota===75?0.5:-1,x.fraco?0.5:1]});
+    var obs=RI.titulos.filter(function(x){return x.marcado||x.ja!=null}).filter(function(x){return AVPOR[x.id]&&AVPOR[x.id].x}).map(function(x){return [x.id,x.nota===90?1:x.nota===75?0.5:-1,(x.fraco?0.5:1)*(RI.fobs||1)]});
     var cit=RI.titulos.map(function(x){return x.id}).concat(RI.desligar,RI.repetidos);
     var perfil=limpaPerfil({v:1,pesos:RI.pesos,origem:'resumo',feito_em:new Date().toISOString(),limites:RI.gravLim?RI.limites:{},limFase:false,contexto:RI.gravCtx?RI.ctx:{quem:[],idade:'',onde:'',tempo:'',servicos:[]},
       respostas:{procura:[],fase:'',resp:'',cenas:0,cartazes:{},obras:[]},frases:fi.length?fi:RI.frases.map(function(f){return f.replace(/<[^>]+>/g,'')}),ia:fi,nao:[],
