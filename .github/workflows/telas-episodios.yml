@@ -19,6 +19,7 @@ on:
       - 'scripts/telas-posteres.mjs'
       - 'scripts/telas-ids.mjs'
       - 'scripts/telas-sagas.mjs'
+      - 'scripts/telas-notas.mjs'
       - 'telas/catalogo.json'
 
 permissions:
@@ -72,6 +73,12 @@ jobs:
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: node scripts/telas-sagas.mjs
+      - name: Notas do IMDb de todo o catálogo (base pública do IMDb)
+        id: notas
+        # nota e votos do IMDb para todo título com imdb_id (telas/notas.json); só regrava quando muda
+        continue-on-error: true
+        timeout-minutes: 5
+        run: node scripts/telas-notas.mjs
       - name: Pôsteres (TMDB; Wikipedia via Wikidata para o que faltar)
         id: posteres
         # mesma regra do onde assistir: se o TMDB e a Wikimedia falharem, o resto do dia ainda é
@@ -96,6 +103,7 @@ jobs:
             git add telas/catalogo.json telas/dados.json
             if [ -f telas/ids-pendentes.json ]; then git add telas/ids-pendentes.json; fi
             if [ -f telas/sagas-tmdb.json ]; then git add telas/sagas-tmdb.json; fi
+            if [ -f telas/notas.json ]; then git add telas/notas.json; fi
             git commit -m "telas: robô atualizou episódios, onde assistir, IDs e pôsteres"
             git push
           else

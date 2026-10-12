@@ -6,7 +6,8 @@ import { join } from 'node:path';
 import { executar, nomeColecao } from './telas-sagas.mjs';
 let falhas = 0; const ok = (c, m) => { if (!c) falhas++; console.log((c ? 'OK   ' : 'FALHA') + ' ' + m); };
 const dir = await mkdtemp(join(tmpdir(), 'sagas-')); await mkdir(join(dir, 'telas'));
-for (const f of ['catalogo.json', 'dados.json']) await copyFile(join('telas', f), join(dir, 'telas', f));
+// catálogo de 12/10, de antes da primeira rodada do robô (o de hoje já tem o Avatar 3)
+await copyFile('scripts/fixtures/catalogo-2026-10-12.json', join(dir, 'telas', 'catalogo.json')); await copyFile(join('telas', 'dados.json'), join(dir, 'telas', 'dados.json'));
 const COL = {
   87096: { name: 'Avatar - Coleção', en: 'Avatar Collection', parts: [[19995, 'Avatar', '2009-12-15'], [76600, 'Avatar: O Caminho da Água', '2022-12-14'], [83533, 'Avatar: Fogo e Cinzas', '2025-12-17'], [216527, 'Avatar 4', '2029-12-19']] },
   2344: { name: 'Matrix - Coleção', en: 'The Matrix Collection', parts: [[603, 'Matrix', '1999-03-30'], [604, 'Matrix Reloaded', '2003-05-15'], [605, 'Matrix Revolutions', '2003-11-05'], [624860, 'Matrix Resurrections', '2021-12-16']] },

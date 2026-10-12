@@ -784,6 +784,11 @@ html.login-on .ia-pill{display:none}
 .ia-card .chips-ia{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .ia-card .chips-ia button{border:1px solid var(--line);background:none;color:var(--tx2);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer;min-height:34px}
 .eps-lote{margin:4px 0 8px;gap:8px}
+.duo-bt{grid-column:1/-1;justify-content:center;gap:8px;margin-top:10px}
+.dim-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-top:8px;padding-bottom:2px}
+.dim-chips::-webkit-scrollbar{display:none}
+.dim-chips button{flex:0 0 auto;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--tx2);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.dim-chips button[aria-pressed=true]{background:var(--tx);border-color:var(--tx);color:var(--bg)}
 /* ---------- conta e admin do Whatch ---------- */
 html.whatch #acomp-box,html.whatch #fonte,html.whatch .foot{display:none!important}
 .av{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--acc);color:var(--on-acc);font-weight:800;font-size:15px;text-transform:uppercase;line-height:1}
@@ -1648,6 +1653,7 @@ if(PESOS_MIG)save(); // grava logo os 13, para a migração acontecer uma vez s�
 
 var D=null, EP=null, SV=null;
 var PO={};          // pôsteres: telas/posteres.json -> itens
+var NT={};          // notas do IMDb de todo o catálogo: telas/notas.json -> itens {tt…: [nota, votos]} (robô telas-notas)
 var EPI={},IMDB={}; // episódios por imdb_id e série por imdb_id
 // no Whatch (ver o <head>), a página nunca é a do Lucas: sem gosto guardado, as telas que dependem dele levam a "Por onde começar?"
 var WHATCH=!!window.WHATCH,APP=WHATCH?'Whatch':'Telas';
@@ -1840,6 +1846,7 @@ function load(){
     migrarLivres();
     try{renderAll()}catch(e){console.error(e)}
     pronto('ja-dados');
+    fetch('/telas/notas.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(nj){try{NT=obj(nj&&nj.itens)}catch(e){NT={}}});
     fetch('/telas/streaming.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})
       .then(function(sj){if(sj&&sj.titulos){SV=sj;try{renderAll()}catch(e){console.error(e)}}});
     return fetch('/telas/episodios.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null});
@@ -2132,6 +2139,8 @@ function shHoje(kind,usados){
 // Sessão dupla (Criterion Channel): um que ele já conhece e um que não viu, com o elo entre os dois.
 // O conhecido sai, nesta ordem, do que ele deu 80 ou mais fora do Top 10, do que marcou como assistido,
 // do que acompanha e, por último, do topo da lista. O outro nunca repete as prateleiras de cima.
+// Sessão dupla: "Outro par" troca só o segundo (o próximo mais parecido com o mesmo de origem); "Trocar o de origem" anda na lista do que ela ama
+var DUO={base:0,par:0};
 function shDuo(kind,usados){
   usados=usados||{};
   var l=itensDe(kind).filter(function(it){return it.dims&&it.dims.length});if(l.length<2)return '';
@@ -2147,26 +2156,30 @@ function shDuo(kind,usados){
   for(i=0;i<niveis.length&&!amados.length;i++)if(niveis[i][1].length){amados=niveis[i][1];tipo=niveis[i][0]}
   if(!amados.length)amados=topLista(kind).slice(0,5);
   if(!amados.length)return '';
-  var a=amados[hojeN()%Math.min(amados.length,5)];
-  var cand=l.filter(function(it){return it.id!==a.id&&!usados[it.id]&&naoViu(it)}),best=null,bs=-1;
-  cand.forEach(function(it){var s=cos13(a,it)*.65+((conexao(it)||0)/100)*.35;if(s>bs){bs=s;best=it}});
-  if(!best)return '';
+  var a=amados[(hojeN()+DUO.base)%Math.min(amados.length,12)];
+  var cand=l.filter(function(it){return it.id!==a.id&&!usados[it.id]&&naoViu(it)}).map(function(it){return {it:it,s:cos13(a,it)*.65+((conexao(it)||0)/100)*.35}}).sort(function(x,y){return y.s-x.s});
+  if(!cand.length)return '';
+  var best=cand[DUO.par%Math.min(cand.length,12)].it;
   usados[a.id]=1;usados[best.id]=1;
   var w=pesos(),comum=DIMS.map(function(d,i){return {n:d.nome,v:Math.min(+a.dims[i]||0,+best.dims[i]||0),w:w[i]||0}}).sort(function(x,y){return y.v-x.v||y.w-x.w}).slice(0,2).map(function(x){return '<b>'+esc(x.n)+'</b>'});
   var la=tipo==='ama'?'Você deu '+ST.notas[a.id]:tipo==='viu'?'Você já viu':tipo==='acomp'?'Você acompanha':'Do seu Top 10';
   var body='<div class="duo"><div class="duo-i"><span class="duo-l">'+esc(la)+'</span><div class="ti">'+tileBtn(a)+'</div></div><span class="duo-x" aria-hidden="true">+</span>'+
     '<div class="duo-i"><span class="duo-l">Ainda não viu</span><div class="ti">'+tileBtn(best)+'</div></div>'+
-    '<p class="duo-elo">Os dois se encontram em '+comum.join(' e ')+'.</p></div>';
+    '<p class="duo-elo">Os dois se encontram em '+comum.join(' e ')+'.</p>'+
+    '<div class="row duo-bt"><button class="btn t44" type="button" data-duo="par">Outro par para '+esc(a.titulo)+'</button>'+(amados.length>1?'<button class="btn t44" type="button" data-duo="base">Trocar o de origem</button>':'')+'</div></div>';
   return shelfHtml({key:'duo-'+kind,cls:'sh-duo',title:'Sessão dupla',sub:'Um que você já conhece e um que conversa com ele.',body:body});
 }
+// "Mais <dimensão>": a do dia sai das 4 que ela mais pesa; os chips trocam para qualquer uma das 9 (DIM_SEL, só nesta visita)
+var DIM_SEL=null;
 function shDim(kind,usados){
   if(!DIMS.length)return '';
-  var w=pesos(),ordem=DIMS.map(function(d,i){return {i:i,w:w[i]||0}}).sort(function(a,b){return b.w-a.w}).slice(0,4);
-  var di=ordem[hojeN()%ordem.length].i,d=DIMS[di];
+  var w=pesos(),todas=DIMS.map(function(d,i){return {i:i,w:w[i]||0}}).sort(function(a,b){return b.w-a.w}),ordem=todas.slice(0,4);
+  var di=DIM_SEL!=null&&DIMS[DIM_SEL]?DIM_SEL:ordem[hojeN()%ordem.length].i,d=DIMS[di];
   var l=itensDe(kind).filter(function(it){return !usados[it.id]&&it.dims&&(+it.dims[di]||0)>=70&&stOf(it)!=='abandonei'})
     .sort(function(a,b){return ((+b.dims[di]||0)-(+a.dims[di]||0))||porConexao(a,b)}).slice(0,14);
-  if(l.length<3)return '';
-  return shelfHtml({key:'dim-'+kind,title:'Mais '+d.nome,row:cada(l,function(it){return tile(it)})});
+  var chips='<div class="dim-chips" role="group" aria-label="Trocar a dimensão">'+todas.map(function(x){return '<button type="button" data-dimsel="'+x.i+'" aria-pressed="'+(x.i===di)+'">'+esc(DIMS[x.i].nome)+'</button>'}).join('')+'</div>';
+  if(l.length<3)return shelfHtml({key:'dim-'+kind,title:'Mais '+d.nome,sub:chips,body:'<p class="sh-empty" style="margin:8px var(--gut) 0">Pouca coisa forte em '+esc(d.nome)+' por aqui. Escolha outra.</p>'});
+  return shelfHtml({key:'dim-'+kind,title:'Mais '+d.nome,sub:chips,row:cada(l,function(it){return tile(it)})});
 }
 function shColecoes(){
   var cards=['desligar','repetidos'].map(function(col){
@@ -2251,7 +2264,7 @@ function renderInicio(){
     function poe(id,f){if(esc0.indexOf(id)>-1)return;try{out[id]=f()}catch(e){console.error(e)}}
     var topo='';try{topo=ST.perfil?shCriancas(k,usados):''}catch(e){console.error(e)}
     try{if(WHATCH&&(ST.perfil||dono()))topo=iaCard()+afBanner()+topo}catch(e){console.error(e)}
-    poe('comecar',function(){return ST.perfil?'':shComecar()});
+    poe('comecar',function(){return ST.perfil||dono()?'':shComecar()});
     if(k!=='filmes')poe('cont',shContinuar);
     poe('top',function(){return shTop10(k,usados)});
     poe('hoje',function(){return shHoje(k,usados)});
@@ -3707,6 +3720,7 @@ function ondeAssistir(it,t){
   var lk=linkSeguro(w.link);
   return (h||'<p class="muted">Fora das assinaturas no Brasil agora.</p>')+'<div class="row" style="margin-top:12px">'+(lk?'<a class="btn" href="'+esc(lk)+'" target="_blank" rel="noopener">Ver ofertas no JustWatch ↗</a>':jw)+'</div>';
 }
+function fmtVotos(v){v=+v||0;return v>=1e6?String(Math.round(v/1e5)/10).replace('.',',')+' mi':v>=1e3?Math.round(v/1e3)+' mil':String(v)}
 function notasFora(n,t){
   n=n||{};var m=n.origem==='memoria',ap=m?'≈':'',x='x'+(m?' mem':''),out=[];
   if(n.imdb)out.push('<span class="'+x+'"><span class="imdb">IMDb</span><b class="num">'+ap+esc(n.imdb)+'</b>'+(n.imdb_votos?'<span class="num">'+esc(n.imdb_votos)+'</span>':'')+'</span>');
@@ -3719,11 +3733,23 @@ function notasFora(n,t){
 }
 // Episódios de qualquer série com IMDb: a lista inteira vem do TVmaze quando a folha abre (EPC, só na memória); antes disso,
 // e se o TVmaze falhar, fica a janela do robô (EPI: só as séries que ele acompanha, e só os episódios perto de hoje)
-var EPC={},EPC_P={},SEM_DATA=8.64e15;
+var EPC={},EPC_P={},SEM_DATA=8.64e15,EPC_PROX={};
+// a próxima temporada pelo TVmaze: a primeira com estreia no futuro, ou a anunciada sem episódio com data
+function proxTemporada(temps){
+  var hoje=new Date().toISOString().slice(0,10),fut=null;
+  (temps||[]).forEach(function(t){if(!t||t.number==null)return;var d=t.premiereDate||'';
+    if(d&&d>hoje){if(!fut||d<fut.d)fut={n:t.number,d:d}}else if(!d&&(!fut||!fut.d)&&(!fut||t.number<fut.n))fut={n:t.number,d:''}});
+  if(!fut)return '';
+  if(fut.d){var p=fut.d.split('-');var dt=new Date(+p[0],+p[1]-1,+p[2]);return 'Temporada '+fut.n+': estreia em '+dt.toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'})+' (previsão do TVmaze).'}
+  return 'Temporada '+fut.n+' anunciada, ainda sem data.';
+}
 function epsCompletos(imdb){
   if(!imdb||!/^tt\d{5,10}$/.test(imdb)||EPC[imdb]||EPC_P[imdb])return;EPC_P[imdb]=1;
   var j=function(r){return r.ok?r.json():null};
-  fetch('https://api.tvmaze.com/lookup/shows?imdb='+imdb).then(j).then(function(sh){if(!sh||!sh.id)throw new Error('sem série');return fetch('https://api.tvmaze.com/shows/'+sh.id+'/episodes').then(j)})
+  fetch('https://api.tvmaze.com/lookup/shows?imdb='+imdb).then(j).then(function(sh){if(!sh||!sh.id)throw new Error('sem série');
+      // as temporadas (para a previsão da próxima) vêm em paralelo; se falharem, só fica sem a previsão
+      fetch('https://api.tvmaze.com/shows/'+sh.id+'/seasons').then(j).then(function(ts){EPC_PROX[imdb]=proxTemporada(ts);try{var a=SH.id&&achar(SH.id),box=el('sh-eps');if(a&&a.it.imdb_id===imdb&&box)box.innerHTML=episodiosFolha(a.it)}catch(e){}},function(){});
+      return fetch('https://api.tvmaze.com/shows/'+sh.id+'/episodes').then(j)})
     .then(function(l){if(!Array.isArray(l)||!l.length)throw new Error('sem episódios');
       EPC[imdb]=l.filter(function(e){return e&&e.season!=null&&e.number!=null}).map(function(e){
         var d=e.airstamp?new Date(e.airstamp):(e.airdate?parseYmd(e.airdate):null);return {e:{temporada:e.season,episodio:e.number,titulo:e.name||''},d:d&&!isNaN(d)?d:new Date(SEM_DATA)}})
@@ -3734,7 +3760,7 @@ function epsCompletos(imdb){
 }
 function episodiosFolha(it){
   var l=(it.imdb_id&&(EPC[it.imdb_id]||EPI[it.imdb_id]))||[];
-  var prox=it.proximo?'<p class="muted" style="margin-top:10px">'+esc(it.proximo)+'</p>':'';
+  var pt=it.imdb_id&&EPC_PROX[it.imdb_id],prox=(it.proximo||pt)?'<p class="muted" style="margin-top:10px">'+esc(it.proximo||pt)+'</p>':'';
   if(!l.length)return prox?secao('Próxima temporada',prox):'';
   var temps=uniq(l.map(function(x){return String(x.e.temporada)}));
   var now=new Date(),v=vistoDe(it.imdb_id),algum=false;
@@ -3815,8 +3841,11 @@ function renderFolha(){
     var esp=it.ponte&&it.espelho&&!mp?'<p class="esp"><b>Em você:</b> '+esc(it.espelho)+'</p>':'';
     h.push(secao('Por que conecta','<p class="sum">Mais forte em '+mot.map(function(x){return '<b>'+esc(x)+'</b>'}).join(', ').replace(/, ([^,]*)$/,' e $1')+'.</p>'+esp+dimTable(it)));
   }
-  var nf=notasFora(it.notas,t);
-  h.push(secao('Notas de fora',nf?nf+(it.notas&&it.notas.fonte?'<p class="ext-n">Notas: '+esc(it.notas.fonte)+'</p>':''):''));
+  // as notas pesquisadas à mão (dados.json) valem onde existem; para o resto, a nota do IMDb que o robô traz todo dia
+  var nn=it.notas,ni=it.imdb_id&&NT[it.imdb_id];
+  if((!nn||!nn.imdb)&&Array.isArray(ni)){nn=Object.assign({},nn||{},{imdb:String(ni[0]).replace('.',','),imdb_votos:fmtVotos(ni[1]),fonte:'IMDb, atualizada todo dia',origem:'robo'})}
+  var nf=notasFora(nn,t);
+  h.push(secao('Notas de fora',nf?nf+(nn&&nn.fonte?'<p class="ext-n">Notas: '+esc(nn.fonte)+'</p>':''):''));
   if(it.visao&&it.visao.texto)h.push('<details class="sx-d"><summary>Visão '+(t==='filme'?'do diretor':'de quem criou')+'</summary><div class="more"><p>'+esc(it.visao.texto)+'</p>'+(it.visao.fonte?'<div class="src">'+linkOrText(it.visao.fonte)+'</div>':'')+'</div></details>');
   var cr=(it.criticos||[]).map(critico).join('');
   if(cr)h.push('<details class="sx-d"><summary>Críticos ('+it.criticos.length+')</summary><div class="more">'+cr+'</div></details>');
@@ -4188,6 +4217,11 @@ document.addEventListener('click',function(e){
     if(ST.perfil){ST.perfil.pesos=nv;ST.pesos=null}else{ST.pesosAntes={p:ST.pesos?ST.pesos.slice():null};ST.pesos=nv}
     save();entraModo();toast('Seu gosto foi ajustado com as suas notas.',false);AF.ini=afQualidade();afRender()}catch(err){console.error(err)}return}
 });
+document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('[data-dimsel]');if(!b)return;
+  DIM_SEL=+b.dataset.dimsel;try{renderInicio();var nb=document.querySelector('[data-dimsel="'+DIM_SEL+'"]');if(nb){nb.focus({preventScroll:true});nb.scrollIntoView({block:'nearest',inline:'center'})}}catch(err){console.error(err)}});
+document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('[data-duo]');if(!b)return;
+  if(b.dataset.duo==='par')DUO.par++;else{DUO.base++;DUO.par=0}
+  try{renderInicio();var nb=document.querySelector('[data-duo="'+b.dataset.duo+'"]');if(nb)nb.focus({preventScroll:true})}catch(err){console.error(err)}});
 // o cartão do Início: a pergunta já sai daqui (vai para a tela Perguntar e dispara); os atalhos mostram o tipo de pergunta
 var IA_ATALHOS=['Uma série leve para hoje à noite','Um filme para ver em casal','Algo parecido com o que eu mais amei','O que está no meu streaming e combina comigo'];
 function iaCard(){return '<section class="ia-card" aria-label="Pergunte à IA"><h3>O que ver hoje?</h3><p>Pergunte do seu jeito: a IA responde pelo seu gosto, pelas suas notas e pelo que você assina.</p>'+
