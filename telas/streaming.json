@@ -1,0 +1,4184 @@
+{
+ "pais": "BR",
+ "fonte": "JustWatch, via API do TMDB",
+ "atualizado_em": "2026-10-12",
+ "titulos": {
+  "a-amiga-genial-2018": {
+   "tmdb": "tv/78154",
+   "imdb": "tt7278862",
+   "link": "https://www.themoviedb.org/tv/78154-l-amica-geniale/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-arvore-da-vida-2011": {
+   "tmdb": "movie/8967",
+   "imdb": "tt0478304",
+   "link": "https://www.themoviedb.org/movie/8967-the-tree-of-life/watch?locale=BR",
+   "assinatura": [
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Pluto TV"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-casa-do-dragao-2022": {
+   "tmdb": "tv/94997",
+   "imdb": "tt11198330",
+   "link": "https://www.themoviedb.org/tv/94997-house-of-the-dragon/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-danca-da-realidade-2013": {
+   "tmdb": "movie/132344",
+   "imdb": "tt2209418",
+   "link": "https://www.themoviedb.org/movie/132344-before-midnight/watch?locale=BR",
+   "assinatura": [
+    "Diamond Films (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "a-felicidade-nao-se-compra-1946": {
+   "tmdb": "movie/1585",
+   "imdb": "tt0038650",
+   "link": "https://www.themoviedb.org/movie/1585-it-s-a-wonderful-life/watch?locale=BR",
+   "assinatura": [
+    "Belas Artes à La Carte",
+    "Looke",
+    "Looke (canal na Prime Video)",
+    "Oldflix"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "NetMovies"
+   ],
+   "aluguel": [
+    "Google Play"
+   ],
+   "compra": [
+    "Google Play"
+   ]
+  },
+  "a-fonte-da-vida-2006": {
+   "tmdb": "movie/1381",
+   "imdb": "tt0414993",
+   "link": "https://www.themoviedb.org/movie/1381-the-fountain/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-grande-familia-2001": {
+   "tmdb": "tv/16183",
+   "imdb": "tt0281447",
+   "link": "https://www.themoviedb.org/tv/16183-a-grande-familia/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Multishow (canal na Prime Video)"
+   ],
+   "gratis": [
+    "Globoplay"
+   ],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-historia-sem-fim-1984": {
+   "tmdb": "movie/34584",
+   "imdb": "tt0088323",
+   "link": "https://www.themoviedb.org/movie/34584-die-unendliche-geschichte/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play"
+   ]
+  },
+  "a-lenda-de-korra-2012": {
+   "tmdb": "tv/33880",
+   "imdb": "tt1695360",
+   "link": "https://www.themoviedb.org/tv/33880-the-legend-of-korra/watch?locale=BR",
+   "assinatura": [
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Apple TV)",
+    "Paramount+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-missao-1986": {
+   "tmdb": "movie/11416",
+   "imdb": "tt0091530",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-odisseia-2026": {
+   "tmdb": "movie/1368337",
+   "imdb": "tt33764258",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-place-further-than-the-universe-2018": {
+   "tmdb": "tv/76059",
+   "imdb": "tt7836688",
+   "link": "https://www.themoviedb.org/tv/76059/watch?locale=BR",
+   "assinatura": [
+    "Crunchyroll",
+    "Crunchyroll (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-procura-da-felicidade-2006": {
+   "tmdb": "movie/1402",
+   "imdb": "tt0454921",
+   "link": "https://www.themoviedb.org/movie/1402-the-pursuit-of-happyness/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "a-queda-do-ceu-2024": {
+   "tmdb": "movie/1275250",
+   "imdb": "tt32128962",
+   "link": "https://www.themoviedb.org/movie/1275250-a-queda-do-ceu/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-sete-palmos-2001": {
+   "tmdb": "tv/1274",
+   "imdb": "tt0248654",
+   "link": "https://www.themoviedb.org/tv/1274-six-feet-under/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-ultima-floresta-2021": {
+   "tmdb": "movie/795780",
+   "imdb": "tt14029622",
+   "link": "https://www.themoviedb.org/movie/795780-a-ultima-floresta/watch?locale=BR",
+   "assinatura": [
+    "Doc Canal Brasil (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-viagem-2012": {
+   "tmdb": "movie/83542",
+   "imdb": "tt1371111",
+   "link": "https://www.themoviedb.org/movie/83542-cloud-atlas/watch?locale=BR",
+   "assinatura": [
+    "Adrenalina Pura (canal na Apple TV)",
+    "Adrenalina Pura (canal na Prime Video)",
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Prime Video)",
+    "Sony One (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play",
+    "NetMovies",
+    "Runtime"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "a-viagem-de-chihiro-2001": {
+   "tmdb": "movie/129",
+   "imdb": "tt0245429",
+   "link": "https://www.themoviedb.org/movie/129/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "a-vida-secreta-de-walter-mitty-2013": {
+   "tmdb": "movie/116745",
+   "imdb": "tt0359950",
+   "link": "https://www.themoviedb.org/movie/116745-the-secret-life-of-walter-mitty/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "ahsoka-2023": {
+   "tmdb": "tv/114461",
+   "imdb": "tt13622776",
+   "link": "https://www.themoviedb.org/tv/114461-ahsoka/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "amazon-bruce-parry-2008": {
+   "tmdb": "tv/7785",
+   "imdb": "tt1288682",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "american-dad-2005": {
+   "tmdb": "tv/1433",
+   "imdb": "tt0397306",
+   "link": "https://www.themoviedb.org/tv/1433-american-dad/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "andor-2022": {
+   "tmdb": "tv/83867",
+   "imdb": "tt9253284",
+   "link": "https://www.themoviedb.org/tv/83867-andor/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "andrei-rublev-1966": {
+   "tmdb": "movie/895",
+   "imdb": "tt0060107",
+   "link": "https://www.themoviedb.org/movie/895/watch?locale=BR",
+   "assinatura": [
+    "Looke"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "NetMovies"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "animais-fantasticos-e-onde-habitam-2016": {
+   "tmdb": "movie/259316",
+   "imdb": "tt3183660",
+   "link": "https://www.themoviedb.org/movie/259316-fantastic-beasts-and-where-to-find-them/watch?locale=BR",
+   "assinatura": [
+    "Cartoon Network (canal na Prime Video)",
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "animais-fantasticos-os-crimes-de-grindelwald-2018": {
+   "tmdb": "movie/338952",
+   "imdb": "tt4123430",
+   "link": "https://www.themoviedb.org/movie/338952-fantastic-beasts-the-crimes-of-grindelwald/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "animais-fantasticos-os-segredos-de-dumbledore-2022": {
+   "tmdb": "movie/338953",
+   "imdb": "tt4123432",
+   "link": "https://www.themoviedb.org/movie/338953-fantastic-beasts-the-secrets-of-dumbledore/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "anne-with-an-e-2017": {
+   "tmdb": "tv/70785",
+   "imdb": "tt5421602",
+   "link": "https://www.themoviedb.org/tv/70785-anne-with-an-e/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "anthony-bourdain-parts-unknown-2013": {
+   "tmdb": "tv/56305",
+   "imdb": "tt2845786",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "arcane-2021": {
+   "tmdb": "tv/94605",
+   "imdb": "tt11126994",
+   "link": "https://www.themoviedb.org/tv/94605-arcane/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "archer-2009": {
+   "tmdb": "tv/10283",
+   "imdb": "tt1486217",
+   "link": "https://www.themoviedb.org/tv/10283-archer/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "arrested-development-2003": {
+   "tmdb": "tv/4589",
+   "imdb": "tt0367279",
+   "link": "https://www.themoviedb.org/tv/4589-arrested-development/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "as-aventuras-de-pi-2012": {
+   "tmdb": "movie/87827",
+   "imdb": "tt0454876",
+   "link": "https://www.themoviedb.org/movie/87827-life-of-pi/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "as-branquelas-2004": {
+   "tmdb": "movie/12153",
+   "imdb": "tt0381707",
+   "link": "https://www.themoviedb.org/movie/12153-white-chicks/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Claro tv+",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "as-cronicas-de-narnia-o-leao-a-feiticeira-e-o-guarda-roupa-2005": {
+   "tmdb": "movie/411",
+   "imdb": "tt0363771",
+   "link": "https://www.themoviedb.org/movie/411-the-chronicles-of-narnia-the-lion-the-witch-and-the-wardrobe/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "GOSPEL PLAY"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "ataque-dos-titas-2013": {
+   "tmdb": "tv/1429",
+   "imdb": "tt2560140",
+   "link": "https://www.themoviedb.org/tv/1429/watch?locale=BR",
+   "assinatura": [
+    "Crunchyroll",
+    "Crunchyroll (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "avatar-2009": {
+   "tmdb": "movie/19995",
+   "imdb": "tt0499549",
+   "link": "https://www.themoviedb.org/movie/19995-avatar/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Apple TV (loja)"
+   ]
+  },
+  "avatar-a-lenda-de-aang-2005": {
+   "tmdb": "tv/246",
+   "imdb": "tt0417299",
+   "link": "https://www.themoviedb.org/tv/246-avatar-the-last-airbender/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Netflix",
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Apple TV)",
+    "Paramount+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Pluto TV"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "avatar-o-ultimo-mestre-do-ar-2024": {
+   "tmdb": "tv/82452",
+   "imdb": "tt9018736",
+   "link": "https://www.themoviedb.org/tv/82452-avatar-the-last-airbender/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "avatar-seven-havens-2026": {
+   "tmdb": "tv/284833",
+   "imdb": "tt35854736",
+   "link": "https://www.themoviedb.org/tv/284833-avatar-seven-havens/watch?locale=BR",
+   "assinatura": [
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Apple TV)",
+    "Paramount+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "big-bang-a-teoria-2007": {
+   "tmdb": "tv/1418",
+   "imdb": "tt0898266",
+   "link": "https://www.themoviedb.org/tv/1418-the-big-bang-theory/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "big-mouth-2017": {
+   "tmdb": "tv/74204",
+   "imdb": "tt6524350",
+   "link": "https://www.themoviedb.org/tv/74204-big-mouth/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "bob-esponja-calca-quadrada-1999": {
+   "tmdb": "tv/387",
+   "imdb": "tt0206512",
+   "link": "https://www.themoviedb.org/tv/387-spongebob-squarepants/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix",
+    "Oldflix",
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Apple TV)",
+    "Paramount+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Pluto TV"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "bob-s-burgers-2011": {
+   "tmdb": "tv/32726",
+   "imdb": "tt1561755",
+   "link": "https://www.themoviedb.org/tv/32726-bob-s-burgers/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "bojack-horseman-2014": {
+   "tmdb": "tv/61222",
+   "imdb": "tt3398228",
+   "link": "https://www.themoviedb.org/tv/61222-bojack-horseman/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "brooklyn-nine-nine-2013": {
+   "tmdb": "tv/48891",
+   "imdb": "tt2467372",
+   "link": "https://www.themoviedb.org/tv/48891-brooklyn-nine-nine/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "bye-bye-brasil-1979": {
+   "tmdb": "movie/42167",
+   "imdb": "tt0080482",
+   "link": "https://www.themoviedb.org/movie/42167-bye-bye-brasil/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Looke",
+    "Looke (canal na Prime Video)",
+    "MUBI",
+    "MUBI (canal na Prime Video)",
+    "Prime Video",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "cabra-marcado-para-morrer-1984": {
+   "tmdb": "movie/86320",
+   "imdb": "tt0134402",
+   "link": "https://www.themoviedb.org/movie/86320-cabra-marcado-para-morrer/watch?locale=BR",
+   "assinatura": [
+    "CurtaOn (canal na Prime Video)",
+    "Doc Canal Brasil (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "capitao-fantastico-2016": {
+   "tmdb": "movie/334533",
+   "imdb": "tt3553976",
+   "link": "https://www.themoviedb.org/movie/334533-captain-fantastic/watch?locale=BR",
+   "assinatura": [
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "carnivale-2003": {
+   "tmdb": "tv/185",
+   "imdb": "tt0319969",
+   "link": "https://www.themoviedb.org/tv/185-carnivale/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "cem-anos-de-solidao-2024": {
+   "tmdb": "tv/207333",
+   "imdb": "tt9892936",
+   "link": "https://www.themoviedb.org/tv/207333-cien-anos-de-soledad/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "central-do-brasil-1998": {
+   "tmdb": "movie/666",
+   "imdb": "tt0140888",
+   "link": "https://www.themoviedb.org/movie/666-central-do-brasil/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Netflix",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play"
+   ]
+  },
+  "chapolin-1973": {
+   "tmdb": "tv/13023",
+   "imdb": "tt0229888",
+   "link": "https://www.themoviedb.org/tv/13023-el-chapulin-colorado/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "chaves-1973": {
+   "tmdb": "tv/47",
+   "imdb": "tt0229889",
+   "link": "https://www.themoviedb.org/tv/47-el-chavo-del-ocho/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Multishow (canal na Prime Video)",
+    "Netflix",
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "chefs-table-2015": {
+   "tmdb": "tv/62391",
+   "imdb": "tt4295140",
+   "link": "https://www.themoviedb.org/tv/62391-chef-s-table/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "chernobyl-2019": {
+   "tmdb": "tv/87108",
+   "imdb": "tt7366338",
+   "link": "https://www.themoviedb.org/tv/87108-chernobyl/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "cidade-invisivel-2021": {
+   "tmdb": "tv/110529",
+   "imdb": "tt8878862",
+   "link": "https://www.themoviedb.org/tv/110529-cidade-invisivel/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "coisa-mais-linda-2019": {
+   "tmdb": "tv/86943",
+   "imdb": "tt8001788",
+   "link": "https://www.themoviedb.org/tv/86943-coisa-mais-linda/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "com-amor-van-gogh-2017": {
+   "tmdb": "movie/339877",
+   "imdb": "tt3262342",
+   "link": "https://www.themoviedb.org/movie/339877-loving-vincent/watch?locale=BR",
+   "assinatura": [
+    "Looke",
+    "Looke (canal na Prime Video)",
+    "Prime Video",
+    "Reserva Imovision",
+    "Reserva Imovision (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play",
+    "NetMovies",
+    "Pluto TV",
+    "Runtime"
+   ],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Prime Video (loja)",
+    "Reserva Imovision"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "comer-rezar-amar-2010": {
+   "tmdb": "movie/38167",
+   "imdb": "tt0879870",
+   "link": "https://www.themoviedb.org/movie/38167-eat-pray-love/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix",
+    "Sony One (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "common-side-effects-2025": {
+   "tmdb": "tv/228878",
+   "imdb": "tt28093628",
+   "link": "https://www.themoviedb.org/tv/228878-common-side-effects/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "community-2009": {
+   "tmdb": "tv/18347",
+   "imdb": "tt1439629",
+   "link": "https://www.themoviedb.org/tv/18347-community/watch?locale=BR",
+   "assinatura": [
+    "Netflix",
+    "Sony One (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "como-agua-para-chocolate-2024": {
+   "tmdb": "tv/235635",
+   "imdb": "tt29258436",
+   "link": "https://www.themoviedb.org/tv/235635-como-agua-para-chocolate/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "como-treinar-o-seu-dragao-2010": {
+   "tmdb": "movie/10191",
+   "imdb": "tt0892769",
+   "link": "https://www.themoviedb.org/movie/10191-how-to-train-your-dragon/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Prime Video",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "contato-1997": {
+   "tmdb": "movie/686",
+   "imdb": "tt0118884",
+   "link": "https://www.themoviedb.org/movie/686-contact/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "cosmos-1980": {
+   "tmdb": "tv/1430",
+   "imdb": "tt0081846",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "cosmos-uma-odisseia-do-espaco-tempo-2014": {
+   "tmdb": "tv/58474",
+   "imdb": "tt2395695",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "dark-2017": {
+   "tmdb": "tv/70523",
+   "imdb": "tt5753856",
+   "link": "https://www.themoviedb.org/tv/70523-dark/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "dark-winds-2022": {
+   "tmdb": "tv/128904",
+   "imdb": "tt15017118",
+   "link": "https://www.themoviedb.org/tv/128904-dark-winds/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "de-volta-para-o-futuro-1985": {
+   "tmdb": "movie/105",
+   "imdb": "tt0088763",
+   "link": "https://www.themoviedb.org/movie/105-back-to-the-future/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Telecine (canal na Prime Video)",
+    "Universal+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "debi-loide-dois-idiotas-em-apuros-1994": {
+   "tmdb": "movie/8467",
+   "imdb": "tt0109686",
+   "link": "https://www.themoviedb.org/movie/8467-dumb-and-dumber/watch?locale=BR",
+   "assinatura": [
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "delicious-in-dungeon-2024": {
+   "tmdb": "tv/207784",
+   "imdb": "tt21621494",
+   "link": "https://www.themoviedb.org/tv/207784/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "dersu-uzala-1975": {
+   "tmdb": "movie/9764",
+   "imdb": "tt0071411",
+   "link": "https://www.themoviedb.org/movie/9764/watch?locale=BR",
+   "assinatura": [
+    "Arte (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "desencanto-2018": {
+   "tmdb": "tv/73021",
+   "imdb": "tt5363918",
+   "link": "https://www.themoviedb.org/tv/73021-disenchantment/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "deus-e-o-diabo-na-terra-do-sol-1964": {
+   "tmdb": "movie/67612",
+   "imdb": "tt0058006",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "devs-2020": {
+   "tmdb": "tv/81349",
+   "imdb": "tt8134186",
+   "link": "https://www.themoviedb.org/tv/81349-devs/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "diarios-de-motocicleta-2004": {
+   "tmdb": "movie/1653",
+   "imdb": "tt0318462",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "dickinson-2019": {
+   "tmdb": "tv/89901",
+   "imdb": "tt8518136",
+   "link": "https://www.themoviedb.org/tv/89901-dickinson/watch?locale=BR",
+   "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "dois-homens-e-meio-2003": {
+   "tmdb": "tv/2691",
+   "imdb": "tt0369179",
+   "link": "https://www.themoviedb.org/tv/2691-two-and-a-half-men/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "drive-my-car-2021": {
+   "tmdb": "movie/758866",
+   "imdb": "tt14039582",
+   "link": "https://www.themoviedb.org/movie/758866/watch?locale=BR",
+   "assinatura": [
+    "MUBI",
+    "MUBI (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play"
+   ]
+  },
+  "duna-a-profecia-2024": {
+   "tmdb": "tv/90228",
+   "imdb": "tt10466872",
+   "link": "https://www.themoviedb.org/tv/90228-dune-prophecy/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "duna-parte-dois-2024": {
+   "tmdb": "movie/693134",
+   "imdb": "tt15239678",
+   "link": "https://www.themoviedb.org/movie/693134-dune-part-two/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Universal+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "e-ai-meu-irmao-cade-voce-2000": {
+   "tmdb": "movie/134",
+   "imdb": "tt0190590",
+   "link": "https://www.themoviedb.org/movie/134-o-brother-where-art-thou/watch?locale=BR",
+   "assinatura": [
+    "Cindie (canal na Prime Video)",
+    "Claro tv+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play"
+   ]
+  },
+  "eami-2022": {
+   "tmdb": "movie/924098",
+   "imdb": "tt10865174",
+   "link": "https://www.themoviedb.org/movie/924098-eami/watch?locale=BR",
+   "assinatura": [
+    "Filmicca"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "encontros-no-fim-do-mundo-2007": {
+   "tmdb": "movie/12172",
+   "imdb": "tt1093824",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "enlightened-2011": {
+   "tmdb": "tv/34594",
+   "imdb": "tt1509004",
+   "link": "https://www.themoviedb.org/tv/34594-enlightened/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "esqueceram-de-mim-1990": {
+   "tmdb": "movie/771",
+   "imdb": "tt0099785",
+   "link": "https://www.themoviedb.org/movie/771-home-alone/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "estou-pensando-em-acabar-com-tudo-2020": {
+   "tmdb": "movie/500840",
+   "imdb": "tt7939766",
+   "link": "https://www.themoviedb.org/movie/500840-i-m-thinking-of-ending-things/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "eu-a-patroa-e-as-criancas-2001": {
+   "tmdb": "tv/2692",
+   "imdb": "tt0273855",
+   "link": "https://www.themoviedb.org/tv/2692-my-wife-and-kids/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "filhos-da-esperanca-2006": {
+   "tmdb": "movie/9693",
+   "imdb": "tt0206634",
+   "link": "https://www.themoviedb.org/movie/9693-children-of-men/watch?locale=BR",
+   "assinatura": [
+    "MUBI",
+    "MUBI (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "final-space-2018": {
+   "tmdb": "tv/74387",
+   "imdb": "tt6317068",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "fitzcarraldo-1982": {
+   "tmdb": "movie/9343",
+   "imdb": "tt0083946",
+   "link": "https://www.themoviedb.org/movie/9343-fitzcarraldo/watch?locale=BR",
+   "assinatura": [
+    "Oldflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "flow-2024": {
+   "tmdb": "movie/823219",
+   "imdb": "tt4772188",
+   "link": "https://www.themoviedb.org/movie/823219-straume/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Filmelier Plus (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "frasier-1993": {
+   "tmdb": "tv/3452",
+   "imdb": "tt0106004",
+   "link": "https://www.themoviedb.org/tv/3452-frasier/watch?locale=BR",
+   "assinatura": [
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Apple TV)",
+    "Paramount+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "friends-1994": {
+   "tmdb": "tv/1668",
+   "imdb": "tt0108778",
+   "link": "https://www.themoviedb.org/tv/1668-friends/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "frieren-2023": {
+   "tmdb": "tv/209867",
+   "imdb": "tt22248376",
+   "link": "https://www.themoviedb.org/tv/209867/watch?locale=BR",
+   "assinatura": [
+    "Crunchyroll",
+    "Crunchyroll (canal na Prime Video)",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "frontera-verde-2019": {
+   "tmdb": "tv/91699",
+   "imdb": "tt9641192",
+   "link": "https://www.themoviedb.org/tv/91699-frontera-verde/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "fullmetal-alchemist-brotherhood-2009": {
+   "tmdb": "tv/31911",
+   "imdb": "tt1355642",
+   "link": "https://www.themoviedb.org/tv/31911-fullmetal-alchemist/watch?locale=BR",
+   "assinatura": [
+    "Crunchyroll",
+    "Crunchyroll (canal na Prime Video)",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "futurama-1999": {
+   "tmdb": "tv/615",
+   "imdb": "tt0149460",
+   "link": "https://www.themoviedb.org/tv/615-futurama/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "game-of-thrones-2011": {
+   "tmdb": "tv/1399",
+   "imdb": "tt0944947",
+   "link": "https://www.themoviedb.org/tv/1399-game-of-thrones/watch?locale=BR",
+   "assinatura": [
+    "HBO Max"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "genio-indomavel-1997": {
+   "tmdb": "movie/489",
+   "imdb": "tt0119217",
+   "link": "https://www.themoviedb.org/movie/489-good-will-hunting/watch?locale=BR",
+   "assinatura": [
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [
+    "Google Play"
+   ],
+   "compra": [
+    "Google Play"
+   ]
+  },
+  "gente-grande-2010": {
+   "tmdb": "movie/38365",
+   "imdb": "tt1375670",
+   "link": "https://www.themoviedb.org/movie/38365-grown-ups/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix",
+    "Prime Video",
+    "Sony One (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "georgie-mandy-s-first-marriage-2024": {
+   "tmdb": "tv/243875",
+   "imdb": "tt31589662",
+   "link": "https://www.themoviedb.org/tv/243875-georgie-mandy-s-first-marriage/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "gilmore-girls-tal-mae-tal-filha-2000": {
+   "tmdb": "tv/4586",
+   "imdb": "tt0238784",
+   "link": "https://www.themoviedb.org/tv/4586-gilmore-girls/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "godland-2022": {
+   "tmdb": "movie/960206",
+   "imdb": "tt19623228",
+   "link": "https://www.themoviedb.org/movie/960206-vanskabte-land/watch?locale=BR",
+   "assinatura": [
+    "Arte (canal na Prime Video)",
+    "Filmicca"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "grande-sertao-veredas-1985": {
+   "tmdb": "tv/120277",
+   "imdb": "tt0227904",
+   "link": "https://www.themoviedb.org/tv/120277-grande-sertao-veredas/watch?locale=BR",
+   "assinatura": [
+    "Globoplay"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "gravity-falls-um-verao-de-misterios-2012": {
+   "tmdb": "tv/40075",
+   "imdb": "tt1865718",
+   "link": "https://www.themoviedb.org/tv/40075-gravity-falls/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "guerra-civil-2024": {
+   "tmdb": "movie/929590",
+   "imdb": "tt17279496",
+   "link": "https://www.themoviedb.org/movie/929590-civil-war/watch?locale=BR",
+   "assinatura": [
+    "Diamond Films (canal na Prime Video)",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "haibane-renmei-2002": {
+   "tmdb": "tv/34164",
+   "imdb": "tt0380113",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "harry-potter-2026": {
+   "tmdb": "tv/224377",
+   "imdb": "tt13918446",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "harry-potter-e-a-camara-secreta-2002": {
+   "tmdb": "movie/672",
+   "imdb": "tt0295297",
+   "link": "https://www.themoviedb.org/movie/672-harry-potter-and-the-chamber-of-secrets/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "harry-potter-e-a-ordem-da-fenix-2007": {
+   "tmdb": "movie/675",
+   "imdb": "tt0373889",
+   "link": "https://www.themoviedb.org/movie/675-harry-potter-and-the-order-of-the-phoenix/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "harry-potter-e-a-pedra-filosofal-2001": {
+   "tmdb": "movie/671",
+   "imdb": "tt0241527",
+   "link": "https://www.themoviedb.org/movie/671-harry-potter-and-the-philosopher-s-stone/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "harry-potter-e-as-reliquias-da-morte-parte-1-2010": {
+   "tmdb": "movie/12444",
+   "imdb": "tt0926084",
+   "link": "https://www.themoviedb.org/movie/12444-harry-potter-and-the-deathly-hallows-part-1/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "harry-potter-e-as-reliquias-da-morte-parte-2-2011": {
+   "tmdb": "movie/12445",
+   "imdb": "tt1201607",
+   "link": "https://www.themoviedb.org/movie/12445-harry-potter-and-the-deathly-hallows-part-2/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "harry-potter-e-o-calice-de-fogo-2005": {
+   "tmdb": "movie/674",
+   "imdb": "tt0330373",
+   "link": "https://www.themoviedb.org/movie/674-harry-potter-and-the-goblet-of-fire/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "harry-potter-e-o-enigma-do-principe-2009": {
+   "tmdb": "movie/767",
+   "imdb": "tt0417741",
+   "link": "https://www.themoviedb.org/movie/767-harry-potter-and-the-half-blood-prince/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "harry-potter-e-o-prisioneiro-de-azkaban-2004": {
+   "tmdb": "movie/673",
+   "imdb": "tt0304141",
+   "link": "https://www.themoviedb.org/movie/673-harry-potter-and-the-prisoner-of-azkaban/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "high-on-the-hog-2021": {
+   "tmdb": "tv/124561",
+   "imdb": "tt14540468",
+   "link": "https://www.themoviedb.org/tv/124561-high-on-the-hog-how-african-american-cuisine-transformed-america/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "his-dark-materials-2019": {
+   "tmdb": "tv/68507",
+   "imdb": "tt5607976",
+   "link": "https://www.themoviedb.org/tv/68507-his-dark-materials/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "hoje-e-dia-de-maria-2005": {
+   "tmdb": "tv/67576",
+   "imdb": "tt0447589",
+   "link": "https://www.themoviedb.org/tv/67576-hoje-e-dia-de-maria/watch?locale=BR",
+   "assinatura": [
+    "Globoplay"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "hora-de-aventura-2010": {
+   "tmdb": "tv/15260",
+   "imdb": "tt1305826",
+   "link": "https://www.themoviedb.org/tv/15260-adventure-time/watch?locale=BR",
+   "assinatura": [
+    "Cartoon Network (canal na Prime Video)",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "how-i-met-your-mother-2005": {
+   "tmdb": "tv/1100",
+   "imdb": "tt0460649",
+   "link": "https://www.themoviedb.org/tv/1100-how-i-met-your-mother/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "human-2015": {
+   "tmdb": "movie/359364",
+   "imdb": "tt3327994",
+   "link": "https://www.themoviedb.org/movie/359364-human/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Google Play"
+   ]
+  },
+  "inside-job-2021": {
+   "tmdb": "tv/97727",
+   "imdb": "tt10231312",
+   "link": "https://www.themoviedb.org/tv/97727-inside-job/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "interestelar-2014": {
+   "tmdb": "movie/157336",
+   "imdb": "tt0816692",
+   "link": "https://www.themoviedb.org/movie/157336-interstellar/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "it-s-always-sunny-in-philadelphia-2005": {
+   "tmdb": "tv/2710",
+   "imdb": "tt0472954",
+   "link": "https://www.themoviedb.org/tv/2710-it-s-always-sunny-in-philadelphia/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "janela-da-alma-2001": {
+   "tmdb": "movie/63407",
+   "imdb": "tt0297986",
+   "link": "https://www.themoviedb.org/movie/63407-janela-da-alma/watch?locale=BR",
+   "assinatura": [
+    "Doc Canal Brasil (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "jogos-vorazes-2012": {
+   "tmdb": "movie/70160",
+   "imdb": "tt1392170",
+   "link": "https://www.themoviedb.org/movie/70160-the-hunger-games/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Diamond Films (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "jurassic-park-o-parque-dos-dinossauros-1993": {
+   "tmdb": "movie/329",
+   "imdb": "tt0107290",
+   "link": "https://www.themoviedb.org/movie/329-jurassic-park/watch?locale=BR",
+   "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)",
+    "Disney+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Prime Video",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "kinos-journey-2003": {
+   "tmdb": "tv/34166",
+   "imdb": "tt0433498",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "krapopolis-2023": {
+   "tmdb": "tv/131033",
+   "imdb": "tt14016574",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "kung-fu-1972": {
+   "tmdb": "tv/1472",
+   "imdb": "tt0068093",
+   "link": "https://www.themoviedb.org/tv/1472-kung-fu/watch?locale=BR",
+   "assinatura": [
+    "Oldflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "kung-fu-panda-2008": {
+   "tmdb": "movie/9502",
+   "imdb": "tt0441773",
+   "link": "https://www.themoviedb.org/movie/9502-kung-fu-panda/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Globoplay",
+    "Prime Video",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "lawrence-da-arabia-1962": {
+   "tmdb": "movie/947",
+   "imdb": "tt0056172",
+   "link": "https://www.themoviedb.org/movie/947-lawrence-of-arabia/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "livre-2014": {
+   "tmdb": "movie/228970",
+   "imdb": "tt2305051",
+   "link": "https://www.themoviedb.org/movie/228970-wild/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "los-silencios-2018": {
+   "tmdb": "movie/519121",
+   "imdb": "tt8346446",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "los-viajes-del-viento-2009": {
+   "tmdb": "movie/39378",
+   "imdb": "tt1426374",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "lost-2004": {
+   "tmdb": "tv/4607",
+   "imdb": "tt0411008",
+   "link": "https://www.themoviedb.org/tv/4607-lost/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "Oldflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "mad-men-2007": {
+   "tmdb": "tv/1104",
+   "imdb": "tt0804503",
+   "link": "https://www.themoviedb.org/tv/1104-mad-men/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "Lionsgate+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "malcolm-2000": {
+   "tmdb": "tv/2004",
+   "imdb": "tt0212671",
+   "link": "https://www.themoviedb.org/tv/2004-malcolm-in-the-middle/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "materia-escura-2024": {
+   "tmdb": "tv/196322",
+   "imdb": "tt19231492",
+   "link": "https://www.themoviedb.org/tv/196322-dark-matter/watch?locale=BR",
+   "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)"
+   ],
+   "gratis": [
+    "Apple TV"
+   ],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "matrix-1999": {
+   "tmdb": "movie/603",
+   "imdb": "tt0133093",
+   "link": "https://www.themoviedb.org/movie/603-the-matrix/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "memoria-2021": {
+   "tmdb": "movie/511819",
+   "imdb": "tt8399288",
+   "link": "https://www.themoviedb.org/movie/511819-memoria/watch?locale=BR",
+   "assinatura": [
+    "MUBI",
+    "MUBI (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play"
+   ]
+  },
+  "mike-molly-2010": {
+   "tmdb": "tv/32709",
+   "imdb": "tt1608180",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "minha-mae-e-uma-peca-o-filme-2013": {
+   "tmdb": "movie/203217",
+   "imdb": "tt2464018",
+   "link": "https://www.themoviedb.org/movie/203217-minha-mae-e-uma-peca-o-filme/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Netflix",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "moana-2016": {
+   "tmdb": "movie/277834",
+   "imdb": "tt3521164",
+   "link": "https://www.themoviedb.org/movie/277834-moana/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "modern-family-2009": {
+   "tmdb": "tv/1421",
+   "imdb": "tt1442437",
+   "link": "https://www.themoviedb.org/tv/1421-modern-family/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "mom-2013": {
+   "tmdb": "tv/49011",
+   "imdb": "tt2660806",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "morangos-silvestres-1957": {
+   "tmdb": "movie/614",
+   "imdb": "tt0050986",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "mr-robot-2015": {
+   "tmdb": "tv/62560",
+   "imdb": "tt4158110",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "mrs-davis-2023": {
+   "tmdb": "tv/197548",
+   "imdb": "tt14759574",
+   "link": "https://www.themoviedb.org/tv/197548-mrs-davis/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "mundos-internos-mundos-externos-2012": {
+   "tmdb": "movie/178189",
+   "imdb": "tt2415372",
+   "link": "https://www.themoviedb.org/movie/178189-inner-worlds-outer-worlds/watch?locale=BR",
+   "assinatura": [
+    "Aquarius (canal na Prime Video)",
+    "Claro tv+",
+    "Magellan TV"
+   ],
+   "gratis": [
+    "Filmtap"
+   ],
+   "anuncios": [
+    "Filmzie",
+    "Plex",
+    "Plex Channel"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "mushishi-2005": {
+   "tmdb": "tv/26867",
+   "imdb": "tt0807832",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "na-natureza-selvagem-2007": {
+   "tmdb": "movie/5915",
+   "imdb": "tt0758758",
+   "link": "https://www.themoviedb.org/movie/5915-into-the-wild/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "nada-ortodoxa-2020": {
+   "tmdb": "tv/99581",
+   "imdb": "tt9815454",
+   "link": "https://www.themoviedb.org/tv/99581-unorthodox/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "natsumes-book-of-friends-2008": {
+   "tmdb": "tv/69500",
+   "imdb": "tt1352421",
+   "link": "https://www.themoviedb.org/tv/69500/watch?locale=BR",
+   "assinatura": [
+    "Crunchyroll",
+    "Crunchyroll (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "nausicaa-1984": {
+   "tmdb": "movie/81",
+   "imdb": "tt0087544",
+   "link": "https://www.themoviedb.org/movie/81/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "new-girl-2011": {
+   "tmdb": "tv/1420",
+   "imdb": "tt1826940",
+   "link": "https://www.themoviedb.org/tv/1420-new-girl/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "nise-o-coracao-da-loucura-2015": {
+   "tmdb": "movie/363103",
+   "imdb": "tt2168180",
+   "link": "https://www.themoviedb.org/movie/363103-nise-o-coracao-da-loucura/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Google Play"
+   ],
+   "compra": [
+    "Google Play"
+   ]
+  },
+  "nomadland-2020": {
+   "tmdb": "movie/581734",
+   "imdb": "tt9770150",
+   "link": "https://www.themoviedb.org/movie/581734-nomadland/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "north-of-north-2025": {
+   "tmdb": "tv/249023",
+   "imdb": "tt27370649",
+   "link": "https://www.themoviedb.org/tv/249023-north-of-north/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "northern-exposure-1990": {
+   "tmdb": "tv/4396",
+   "imdb": "tt0098878",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "nostalgia-1983": {
+   "tmdb": "movie/1394",
+   "imdb": "tt0086022",
+   "link": "https://www.themoviedb.org/movie/1394/watch?locale=BR",
+   "assinatura": [
+    "Looke"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "nostalgia-da-luz-2010": {
+   "tmdb": "movie/72721",
+   "imdb": "tt1556190",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-abraco-da-serpente-2015": {
+   "tmdb": "movie/336808",
+   "imdb": "tt4285496",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-auto-da-compadecida-2000": {
+   "tmdb": "movie/40096",
+   "imdb": "tt0271383",
+   "link": "https://www.themoviedb.org/movie/40096-o-auto-da-compadecida/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)"
+   ]
+  },
+  "o-botao-de-perola-2015": {
+   "tmdb": "movie/319994",
+   "imdb": "tt4377864",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-caminho-2010": {
+   "tmdb": "movie/59468",
+   "imdb": "tt1441912",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-cavaleiro-dos-sete-reinos-2026": {
+   "tmdb": "tv/224372",
+   "imdb": "tt27497448",
+   "link": "https://www.themoviedb.org/tv/224372-a-knight-of-the-seven-kingdoms/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-espelho-1975": {
+   "tmdb": "movie/1396",
+   "imdb": "tt0072443",
+   "link": "https://www.themoviedb.org/movie/1396/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [
+    "Plex",
+    "Plex Channel"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-eternauta-2025": {
+   "tmdb": "tv/226362",
+   "imdb": "tt27740241",
+   "link": "https://www.themoviedb.org/tv/226362-el-eternauta/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-hobbit-uma-jornada-inesperada-2012": {
+   "tmdb": "movie/49051",
+   "imdb": "tt0903624",
+   "link": "https://www.themoviedb.org/movie/49051-the-hobbit-an-unexpected-journey/watch?locale=BR",
+   "assinatura": [
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "o-mahabharata-1989": {
+   "tmdb": "movie/150523",
+   "imdb": "tt0097810",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-menino-e-a-garca-2023": {
+   "tmdb": "movie/508883",
+   "imdb": "tt6587046",
+   "link": "https://www.themoviedb.org/movie/508883/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "o-menino-e-o-mundo-2013": {
+   "tmdb": "movie/223706",
+   "imdb": "tt3183630",
+   "link": "https://www.themoviedb.org/movie/223706-o-menino-e-o-mundo/watch?locale=BR",
+   "assinatura": [
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Google Play"
+   ],
+   "compra": [
+    "Google Play"
+   ]
+  },
+  "o-novo-mundo-2005": {
+   "tmdb": "movie/11400",
+   "imdb": "tt0402399",
+   "link": "https://www.themoviedb.org/movie/11400-the-new-world/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "o-pequeno-principe-2015": {
+   "tmdb": "movie/309809",
+   "imdb": "tt1754656",
+   "link": "https://www.themoviedb.org/movie/309809-the-little-prince/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Netflix",
+    "Prime Video",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "o-poder-do-mito-1988": {
+   "tmdb": "tv/4061",
+   "imdb": "tt0296362",
+   "link": "https://www.themoviedb.org/tv/4061-the-power-of-myth/watch?locale=BR",
+   "assinatura": [
+    "Aquarius (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-problema-dos-3-corpos-2024": {
+   "tmdb": "tv/108545",
+   "imdb": "tt13016388",
+   "link": "https://www.themoviedb.org/tv/108545-3-body-problem/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-rei-do-pedaco-1997": {
+   "tmdb": "tv/2122",
+   "imdb": "tt0118375",
+   "link": "https://www.themoviedb.org/tv/2122-king-of-the-hill/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-rei-leao-1994": {
+   "tmdb": "movie/8587",
+   "imdb": "tt0110357",
+   "link": "https://www.themoviedb.org/movie/8587-the-lion-king/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-sal-da-terra-2014": {
+   "tmdb": "movie/265297",
+   "imdb": "tt3674140",
+   "link": "https://www.themoviedb.org/movie/265297-le-sel-de-la-terre/watch?locale=BR",
+   "assinatura": [
+    "Aquarius (canal na Prime Video)",
+    "CurtaOn (canal na Prime Video)",
+    "Reserva Imovision (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)"
+   ]
+  },
+  "o-segredo-alem-do-jardim-2014": {
+   "tmdb": "tv/61617",
+   "imdb": "tt3718778",
+   "link": "https://www.themoviedb.org/tv/61617-over-the-garden-wall/watch?locale=BR",
+   "assinatura": [
+    "Cartoon Network (canal na Prime Video)",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-segredo-de-brokeback-mountain-2005": {
+   "tmdb": "movie/142",
+   "imdb": "tt0388795",
+   "link": "https://www.themoviedb.org/movie/142-brokeback-mountain/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "o-senhor-dos-aneis-a-sociedade-do-anel-2001": {
+   "tmdb": "movie/120",
+   "imdb": "tt0120737",
+   "link": "https://www.themoviedb.org/movie/120-the-lord-of-the-rings-the-fellowship-of-the-ring/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "o-senhor-dos-aneis-as-duas-torres-2002": {
+   "tmdb": "movie/121",
+   "imdb": "tt0167261",
+   "link": "https://www.themoviedb.org/movie/121-the-lord-of-the-rings-the-two-towers/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "o-senhor-dos-aneis-o-retorno-do-rei-2003": {
+   "tmdb": "movie/122",
+   "imdb": "tt0167260",
+   "link": "https://www.themoviedb.org/movie/122-the-lord-of-the-rings-the-return-of-the-king/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "o-setimo-selo-1957": {
+   "tmdb": "movie/490",
+   "imdb": "tt0050976",
+   "link": "https://www.themoviedb.org/movie/490-det-sjunde-inseglet/watch?locale=BR",
+   "assinatura": [
+    "Arte (canal na Prime Video)",
+    "MUBI",
+    "MUBI (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "o-ultimo-azul-2025": {
+   "tmdb": "movie/1172265",
+   "imdb": "tt35340614",
+   "link": "https://www.themoviedb.org/movie/1172265-o-ultimo-azul/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "one-piece-a-serie-2023": {
+   "tmdb": "tv/111110",
+   "imdb": "tt11737520",
+   "link": "https://www.themoviedb.org/tv/111110-one-piece/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "oppenheimer-2023": {
+   "tmdb": "movie/872585",
+   "imdb": "tt15398776",
+   "link": "https://www.themoviedb.org/movie/872585-oppenheimer/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Universal+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "orb-on-the-movements-of-the-earth-2024": {
+   "tmdb": "tv/204635",
+   "imdb": "tt33044444",
+   "link": "https://www.themoviedb.org/tv/204635/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "os-aneis-de-poder-2022": {
+   "tmdb": "tv/84773",
+   "imdb": "tt7631058",
+   "link": "https://www.themoviedb.org/tv/84773-the-lord-of-the-rings-the-rings-of-power/watch?locale=BR",
+   "assinatura": [
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "os-cacadores-da-arca-perdida-1981": {
+   "tmdb": "movie/85",
+   "imdb": "tt0082971",
+   "link": "https://www.themoviedb.org/movie/85-raiders-of-the-lost-ark/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Oldflix",
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "os-goonies-1985": {
+   "tmdb": "movie/9340",
+   "imdb": "tt0089218",
+   "link": "https://www.themoviedb.org/movie/9340-the-goonies/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "os-normais-2001": {
+   "tmdb": "tv/15166",
+   "imdb": "tt0287254",
+   "link": "https://www.themoviedb.org/tv/15166-os-normais/watch?locale=BR",
+   "assinatura": [
+    "Globoplay"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "os-simpsons-1989": {
+   "tmdb": "tv/456",
+   "imdb": "tt0096697",
+   "link": "https://www.themoviedb.org/tv/456-the-simpsons/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "os-simpsons-o-filme-2007": {
+   "tmdb": "movie/35",
+   "imdb": "tt0462538",
+   "link": "https://www.themoviedb.org/movie/35-the-simpsons-movie/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "os-vingadores-the-avengers-2012": {
+   "tmdb": "movie/24428",
+   "imdb": "tt0848228",
+   "link": "https://www.themoviedb.org/movie/24428-the-avengers/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "outlander-2014": {
+   "tmdb": "tv/56570",
+   "imdb": "tt3006802",
+   "link": "https://www.themoviedb.org/tv/56570-outlander/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "pachinko-2022": {
+   "tmdb": "tv/110382",
+   "imdb": "tt8888462",
+   "link": "https://www.themoviedb.org/tv/110382-pachinko/watch?locale=BR",
+   "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "pantanal-2022": {
+   "tmdb": "tv/158415",
+   "imdb": "tt19267756",
+   "link": "https://www.themoviedb.org/tv/158415-pantanal/watch?locale=BR",
+   "assinatura": [
+    "Globoplay"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "pantheon-2022": {
+   "tmdb": "tv/195339",
+   "imdb": "tt11680642",
+   "link": "https://www.themoviedb.org/tv/195339-pantheon/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "parks-and-recreation-2009": {
+   "tmdb": "tv/8592",
+   "imdb": "tt1266020",
+   "link": "https://www.themoviedb.org/tv/8592-parks-and-recreation/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Universal+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "patch-adams-1998": {
+   "tmdb": "movie/10312",
+   "imdb": "tt0129290",
+   "link": "https://www.themoviedb.org/movie/10312-patch-adams/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "percy-jackson-e-os-olimpianos-2023": {
+   "tmdb": "tv/103540",
+   "imdb": "tt12324366",
+   "link": "https://www.themoviedb.org/tv/103540-percy-jackson-and-the-olympians/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "piratas-do-caribe-a-maldicao-do-perola-negra-2003": {
+   "tmdb": "movie/22",
+   "imdb": "tt0325980",
+   "link": "https://www.themoviedb.org/movie/22-pirates-of-the-caribbean-the-curse-of-the-black-pearl/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "pluribus-2025": {
+   "tmdb": "tv/225171",
+   "imdb": "tt22202452",
+   "link": "https://www.themoviedb.org/tv/225171-pluribus/watch?locale=BR",
+   "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "princesa-mononoke-1997": {
+   "tmdb": "movie/128",
+   "imdb": "tt0119698",
+   "link": "https://www.themoviedb.org/movie/128/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "questao-de-tempo-2013": {
+   "tmdb": "movie/122906",
+   "imdb": "tt2194499",
+   "link": "https://www.themoviedb.org/movie/122906-about-time/watch?locale=BR",
+   "assinatura": [
+    "Prime Video",
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "rectify-2013": {
+   "tmdb": "tv/46619",
+   "imdb": "tt2183404",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "reservation-dogs-2021": {
+   "tmdb": "tv/95215",
+   "imdb": "tt13623580",
+   "link": "https://www.themoviedb.org/tv/95215-reservation-dogs/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "rick-and-morty-2013": {
+   "tmdb": "tv/60625",
+   "imdb": "tt2861424",
+   "link": "https://www.themoviedb.org/tv/60625-rick-and-morty/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "robo-selvagem-2024": {
+   "tmdb": "movie/1184918",
+   "imdb": "tt29623480",
+   "link": "https://www.themoviedb.org/movie/1184918-the-wild-robot/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "ruptura-2022": {
+   "tmdb": "tv/95396",
+   "imdb": "tt11280740",
+   "link": "https://www.themoviedb.org/tv/95396-severance/watch?locale=BR",
+   "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "sai-de-baixo-1996": {
+   "tmdb": "tv/20724",
+   "imdb": "tt0142049",
+   "link": "https://www.themoviedb.org/tv/20724-sai-de-baixo/watch?locale=BR",
+   "assinatura": [
+    "Globoplay"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "samsara-2011": {
+   "tmdb": "movie/89708",
+   "imdb": "tt0770802",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "sandman-2022": {
+   "tmdb": "tv/90802",
+   "imdb": "tt1751634",
+   "link": "https://www.themoviedb.org/tv/90802-the-sandman/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "scavengers-reign-2023": {
+   "tmdb": "tv/204154",
+   "imdb": "tt21056886",
+   "link": "https://www.themoviedb.org/tv/204154-scavengers-reign/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "scrubs-2001": {
+   "tmdb": "tv/4556",
+   "imdb": "tt0285403",
+   "link": "https://www.themoviedb.org/tv/4556-scrubs/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "se-a-vida-te-der-tangerinas-2025": {
+   "tmdb": "tv/219246",
+   "imdb": "tt26471411",
+   "link": "https://www.themoviedb.org/tv/219246/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "se-beber-nao-case-2009": {
+   "tmdb": "movie/18785",
+   "imdb": "tt1119646",
+   "link": "https://www.themoviedb.org/movie/18785-the-hangover/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Universal+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "seinfeld-1989": {
+   "tmdb": "tv/1400",
+   "imdb": "tt0098904",
+   "link": "https://www.themoviedb.org/tv/1400-seinfeld/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "sense8-2015": {
+   "tmdb": "tv/61664",
+   "imdb": "tt2431438",
+   "link": "https://www.themoviedb.org/tv/61664-sense8/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "serras-da-desordem-2006": {
+   "tmdb": "movie/173722",
+   "imdb": "tt0922605",
+   "link": "https://www.themoviedb.org/movie/173722-serras-da-desordem/watch?locale=BR",
+   "assinatura": [
+    "CurtaOn (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "sete-anos-no-tibet-1997": {
+   "tmdb": "movie/978",
+   "imdb": "tt0120102",
+   "link": "https://www.themoviedb.org/movie/978-seven-years-in-tibet/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Sony One (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "shrek-2001": {
+   "tmdb": "movie/808",
+   "imdb": "tt0126029",
+   "link": "https://www.themoviedb.org/movie/808-shrek/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Netflix",
+    "Prime Video",
+    "Telecine (canal na Prime Video)",
+    "Universal+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "silencio-2016": {
+   "tmdb": "movie/68730",
+   "imdb": "tt0490215",
+   "link": "https://www.themoviedb.org/movie/68730-silence/watch?locale=BR",
+   "assinatura": [
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "silicon-valley-2014": {
+   "tmdb": "tv/60573",
+   "imdb": "tt2575988",
+   "link": "https://www.themoviedb.org/tv/60573-silicon-valley/watch?locale=BR",
+   "assinatura": [
+    "HBO Max"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "silo-2023": {
+   "tmdb": "tv/125988",
+   "imdb": "tt14688458",
+   "link": "https://www.themoviedb.org/tv/125988-silo/watch?locale=BR",
+   "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)"
+   ],
+   "gratis": [
+    "Apple TV"
+   ],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "silver-spoon-2013": {
+   "tmdb": "tv/58237",
+   "imdb": "tt2909912",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "sirat-2025": {
+   "tmdb": "movie/1151272",
+   "imdb": "tt32298285",
+   "link": "https://www.themoviedb.org/movie/1151272-sirat/watch?locale=BR",
+   "assinatura": [
+    "Telecine (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "smiling-friends-2020": {
+   "tmdb": "tv/126506",
+   "imdb": "tt12074628",
+   "link": "https://www.themoviedb.org/tv/126506-smiling-friends/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "sociedade-dos-poetas-mortos-1989": {
+   "tmdb": "movie/207",
+   "imdb": "tt0097165",
+   "link": "https://www.themoviedb.org/movie/207-dead-poets-society/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "solar-opposites-2020": {
+   "tmdb": "tv/97645",
+   "imdb": "tt8910922",
+   "link": "https://www.themoviedb.org/tv/97645-solar-opposites/watch?locale=BR",
+   "assinatura": [
+    "Disney+",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "sonhos-1990": {
+   "tmdb": "movie/12516",
+   "imdb": "tt0100998",
+   "link": "https://www.themoviedb.org/movie/12516/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "soul-2020": {
+   "tmdb": "movie/508442",
+   "imdb": "tt2948372",
+   "link": "https://www.themoviedb.org/movie/508442-soul/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "south-park-1997": {
+   "tmdb": "tv/2190",
+   "imdb": "tt0121955",
+   "link": "https://www.themoviedb.org/tv/2190-south-park/watch?locale=BR",
+   "assinatura": [
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Apple TV)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "spice-and-wolf-2024": {
+   "tmdb": "tv/229676",
+   "imdb": "tt28534254",
+   "link": "https://www.themoviedb.org/tv/229676-merchant-meets-the-wise-wolf/watch?locale=BR",
+   "assinatura": [
+    "Crunchyroll",
+    "Crunchyroll (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "stalker-1979": {
+   "tmdb": "movie/1398",
+   "imdb": "tt0079944",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "star-wars-episodio-iv-uma-nova-esperanca-1977": {
+   "tmdb": "movie/11",
+   "imdb": "tt0076759",
+   "link": "https://www.themoviedb.org/movie/11-star-wars/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "star-wars-o-imperio-contra-ataca-1980": {
+   "tmdb": "movie/1891",
+   "imdb": "tt0080684",
+   "link": "https://www.themoviedb.org/movie/1891-the-empire-strikes-back/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "station-eleven-2021": {
+   "tmdb": "tv/90972",
+   "imdb": "tt10574236",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "street-food-america-latina-2020": {
+   "tmdb": "tv/105488",
+   "imdb": "tt12742136",
+   "link": "https://www.themoviedb.org/tv/105488-street-food-latin-america/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "stremio-tt0388629": {
+   "tmdb": "tv/37854",
+   "imdb": "tt0388629",
+   "link": "https://www.themoviedb.org/tv/37854/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Crunchyroll",
+    "Crunchyroll (canal na Prime Video)",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Pluto TV"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "stremio-tt12327578": {
+   "tmdb": "tv/103516",
+   "imdb": "tt12327578",
+   "link": "https://www.themoviedb.org/tv/103516-star-trek-strange-new-worlds/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Apple TV)",
+    "Paramount+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "stremio-tt13210838": {
+   "tmdb": "tv/236235",
+   "imdb": "tt13210838",
+   "link": "https://www.themoviedb.org/tv/236235-the-gentlemen/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "stremio-tt26545992": {
+   "tmdb": "tv/95350",
+   "imdb": "tt26545992",
+   "link": "https://www.themoviedb.org/tv/95350-lanterns/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "stremio-tt27497393": {
+   "tmdb": "tv/287620",
+   "imdb": "tt27497393",
+   "link": "https://www.themoviedb.org/tv/287620-stuart-fails-to-save-the-universe/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "stremio-tt31510819": {
+   "tmdb": "tv/247718",
+   "imdb": "tt31510819",
+   "link": "https://www.themoviedb.org/tv/247718-mobland/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Apple TV)",
+    "Paramount+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "ted-lasso-2020": {
+   "tmdb": "tv/97546",
+   "imdb": "tt10986410",
+   "link": "https://www.themoviedb.org/tv/97546-ted-lasso/watch?locale=BR",
+   "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)"
+   ],
+   "gratis": [
+    "Apple TV"
+   ],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "that-70s-show-1998": {
+   "tmdb": "tv/52",
+   "imdb": "tt0165598",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "the-chosen-2017": {
+   "tmdb": "tv/319567",
+   "imdb": "tt9471404",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "the-good-place-2016": {
+   "tmdb": "tv/66573",
+   "imdb": "tt4955642",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "the-last-of-us-2023": {
+   "tmdb": "tv/100088",
+   "imdb": "tt3581920",
+   "link": "https://www.themoviedb.org/tv/100088-the-last-of-us/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "the-leftovers-2014": {
+   "tmdb": "tv/54344",
+   "imdb": "tt2699128",
+   "link": "https://www.themoviedb.org/tv/54344-the-leftovers/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "the-midnight-gospel-2020": {
+   "tmdb": "tv/96713",
+   "imdb": "tt11639414",
+   "link": "https://www.themoviedb.org/tv/96713-the-midnight-gospel/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "the-oa-2016": {
+   "tmdb": "tv/69061",
+   "imdb": "tt4635282",
+   "link": "https://www.themoviedb.org/tv/69061-the-oa/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "the-office-2005": {
+   "tmdb": "tv/2316",
+   "imdb": "tt0386676",
+   "link": "https://www.themoviedb.org/tv/2316-the-office/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix",
+    "Prime Video",
+    "Universal+ (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "the-white-lotus-2021": {
+   "tmdb": "tv/111803",
+   "imdb": "tt13406094",
+   "link": "https://www.themoviedb.org/tv/111803-the-white-lotus/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "to-your-eternity-2021": {
+   "tmdb": "tv/97525",
+   "imdb": "tt12063450",
+   "link": "https://www.themoviedb.org/tv/97525/watch?locale=BR",
+   "assinatura": [
+    "Crunchyroll",
+    "Crunchyroll (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "todo-mundo-em-panico-2000": {
+   "tmdb": "movie/4247",
+   "imdb": "tt0175142",
+   "link": "https://www.themoviedb.org/movie/4247-scary-movie/watch?locale=BR",
+   "assinatura": [
+    "Netflix",
+    "Paramount Plus Premium",
+    "Paramount+"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  },
+  "todo-mundo-odeia-o-chris-2005": {
+   "tmdb": "tv/252",
+   "imdb": "tt0460637",
+   "link": "https://www.themoviedb.org/tv/252-everybody-hates-chris/watch?locale=BR",
+   "assinatura": [
+    "Globoplay",
+    "Netflix",
+    "Paramount Plus Premium",
+    "Paramount+",
+    "Paramount+ (canal na Apple TV)",
+    "Paramount+ (canal na Prime Video)",
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "tornando-se-ninguem-2019": {
+   "tmdb": "movie/626013",
+   "imdb": "tt10534256",
+   "link": "https://www.themoviedb.org/movie/626013-becoming-nobody/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Eventive"
+   ],
+   "compra": []
+  },
+  "toy-story-um-mundo-de-aventuras-1995": {
+   "tmdb": "movie/862",
+   "imdb": "tt0114709",
+   "link": "https://www.themoviedb.org/movie/862-toy-story/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "treme-2010": {
+   "tmdb": "tv/17967",
+   "imdb": "tt1279972",
+   "link": "https://www.themoviedb.org/tv/17967-treme/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "tribe-bruce-parry-2005": {
+   "tmdb": "tv/1278",
+   "imdb": "tt0481448",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "true-detective-2014": {
+   "tmdb": "tv/46648",
+   "imdb": "tt2356777",
+   "link": "https://www.themoviedb.org/tv/46648-true-detective/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "tudo-em-todo-o-lugar-ao-mesmo-tempo-2022": {
+   "tmdb": "movie/545611",
+   "imdb": "tt6710474",
+   "link": "https://www.themoviedb.org/movie/545611-everything-everywhere-all-at-once/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+",
+    "Diamond Films (canal na Prime Video)",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Apple TV (loja)",
+    "Claro tv+",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
+  },
+  "twin-peaks-1990": {
+   "tmdb": "tv/1920",
+   "imdb": "tt0098936",
+   "link": "https://www.themoviedb.org/tv/1920-twin-peaks/watch?locale=BR",
+   "assinatura": [
+    "MUBI",
+    "MUBI (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [
+    "Mercado Play"
+   ],
+   "aluguel": [],
+   "compra": []
+  },
+  "um-maluco-no-pedaco-1990": {
+   "tmdb": "tv/1892",
+   "imdb": "tt0098800",
+   "link": "https://www.themoviedb.org/tv/1892-the-fresh-prince-of-bel-air/watch?locale=BR",
+   "assinatura": [
+    "Cartoon Network (canal na Prime Video)",
+    "Globoplay",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "uma-familia-da-pesada-1999": {
+   "tmdb": "tv/1434",
+   "imdb": "tt0182576",
+   "link": "https://www.themoviedb.org/tv/1434-family-guy/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "uma-vida-oculta-2019": {
+   "tmdb": "movie/403300",
+   "imdb": "tt5827916",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "undone-2019": {
+   "tmdb": "tv/86340",
+   "imdb": "tt8101850",
+   "link": "https://www.themoviedb.org/tv/86340-undone/watch?locale=BR",
+   "assinatura": [
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "velho-chico-2016": {
+   "tmdb": "tv/84580",
+   "imdb": "tt5620074",
+   "link": "https://www.themoviedb.org/tv/84580-velho-chico/watch?locale=BR",
+   "assinatura": [
+    "Globoplay"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "viajo-porque-preciso-volto-porque-te-amo-2009": {
+   "tmdb": "movie/87199",
+   "imdb": "tt1500761",
+   "link": "https://www.themoviedb.org/movie/87199-viajo-porque-preciso-volto-porque-te-amo/watch?locale=BR",
+   "assinatura": [
+    "Reserva Imovision (canal na Prime Video)"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Google Play"
+   ],
+   "compra": [
+    "Google Play"
+   ]
+  },
+  "vinland-saga-2019": {
+   "tmdb": "tv/88803",
+   "imdb": "tt10233448",
+   "link": "https://www.themoviedb.org/tv/88803/watch?locale=BR",
+   "assinatura": [
+    "Crunchyroll",
+    "Crunchyroll (canal na Prime Video)",
+    "Netflix",
+    "Prime Video"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "violet-evergarden-2018": {
+   "tmdb": "tv/75214",
+   "imdb": "tt7078180",
+   "link": "https://www.themoviedb.org/tv/75214/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "viva-a-vida-e-uma-festa-2017": {
+   "tmdb": "movie/354912",
+   "imdb": "tt2380307",
+   "link": "https://www.themoviedb.org/movie/354912-coco/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "westworld-2016": {
+   "tmdb": "tv/63247",
+   "imdb": "tt0475784",
+   "link": "https://www.themoviedb.org/tv/63247-westworld/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "wild-wild-country-2018": {
+   "tmdb": "tv/77601",
+   "imdb": "tt7768848",
+   "link": "https://www.themoviedb.org/tv/77601-wild-wild-country/watch?locale=BR",
+   "assinatura": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "x-men-apocalipse-2016": {
+   "tmdb": "movie/246655",
+   "imdb": "tt3385516",
+   "link": "https://www.themoviedb.org/movie/246655-x-men-apocalypse/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "xingu-2012": {
+   "tmdb": "movie/107203",
+   "imdb": "tt2142055",
+   "link": "",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "xogum-2024": {
+   "tmdb": "tv/126308",
+   "imdb": "tt2788316",
+   "link": "https://www.themoviedb.org/tv/126308-shogun/watch?locale=BR",
+   "assinatura": [
+    "Disney+"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": []
+  },
+  "young-sheldon-2017": {
+   "tmdb": "tv/71728",
+   "imdb": "tt6226232",
+   "link": "https://www.themoviedb.org/tv/71728-young-sheldon/watch?locale=BR",
+   "assinatura": [
+    "HBO Max",
+    "HBO Max (canal na Prime Video)",
+    "Netflix"
+   ],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [],
+   "compra": [
+    "Prime Video (loja)"
+   ]
+  },
+  "z-a-cidade-perdida-2016": {
+   "tmdb": "movie/314095",
+   "imdb": "tt1212428",
+   "link": "https://www.themoviedb.org/movie/314095-the-lost-city-of-z/watch?locale=BR",
+   "assinatura": [],
+   "gratis": [],
+   "anuncios": [],
+   "aluguel": [
+    "Google Play",
+    "Prime Video (loja)"
+   ],
+   "compra": [
+    "Google Play",
+    "Prime Video (loja)"
+   ]
+  }
+ }
+}
