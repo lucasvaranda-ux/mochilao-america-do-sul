@@ -38,13 +38,24 @@ export function trecho(t, max = 360) {
   if (f > max * 0.45) return c.slice(0, f + 1);
   return c.slice(0, c.lastIndexOf(' ')).replace(/[,;:\s]+$/, '') + '…';
 }
+// a língua pelo texto (o TMDB devolve resenhas bilíngues na busca em português); numa bilíngue, fica a parte em português
+const PT = /\b(que|não|uma|com|para|mais|filme|muito|isso|são|também|é)\b/g, EN = /\b(the|and|is|this|that|with|film|movie|very|but|was)\b/g;
+export function linguaDe(t) { t = String(t || '').toLowerCase(); return (t.match(PT) || []).length >= (t.match(EN) || []).length ? 'pt' : 'en'; }
+export function partePt(t) {
+  t = limpa(t);
+  const m = /\bportugu[eê]s\b\s*[:\-–]?\s*/i.exec(t);
+  if (m) { const resto = t.slice(m.index + m[0].length), e = /\benglish\b\s*[:\-–]?/i.exec(resto); const pt = e ? resto.slice(0, e.index) : resto; if (pt.length >= 120) return pt.trim(); }
+  const e = /^\s*english\b\s*[:\-–]?\s*/i.exec(t);
+  return e ? t.slice(e[0].length) : t;
+}
 // escolhe até 3: as em português primeiro, depois as com nota e texto de tamanho bom; se houver uma crítica negativa
 // (nota até 5) entre as boas, ela entra para equilibrar
 export function escolhe(lista) {
   const ok = (lista || []).filter(r => r && r.content && limpa(r.content).length >= 120)
     .map(r => {
       const n = r.author_details && r.author_details.rating != null ? +r.author_details.rating : null, len = limpa(r.content).length;
-      return { r, n: n != null && n >= 0 && n <= 10 ? n : null, s: (r._pt ? 100 : 0) + (n != null ? 20 : 0) + Math.min(len, 2500) / 250 };
+      const txt = partePt(r.content), pt = linguaDe(txt) === 'pt';
+      return { r: { ...r, content: txt, _pt: pt }, n: n != null && n >= 0 && n <= 10 ? n : null, s: (pt ? 100 : 0) + (n != null ? 20 : 0) + Math.min(len, 2500) / 250 };
     }).sort((a, b) => b.s - a.s);
   const out = ok.slice(0, 2), neg = ok.slice(2).find(x => x.n != null && x.n <= 5);
   if (neg && !out.some(x => x.n != null && x.n <= 5)) out.push(neg); else if (ok[2]) out.push(ok[2]);

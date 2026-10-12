@@ -17,6 +17,8 @@ ok(e.length === 3 && e.some(x => x.nota === 3) && !e.some(x => x.autor === 'Pess
 ok(escolhe([rv('1', 9, longo), rv('2', null, longo, true)])[0].lingua === 'pt', 'português primeiro');
 ok(escolhe([{ ...rv('1', 9, longo), url: 'javascript:alert(1)' }])[0].url === null, 'link estranho não entra');
 
+ok(escolhe([rv('1', 9, 'English The good we do is our advocate. This is a film about faith and it was made with care and the cast is great. ' + longo.replace(/Um filme lindo. /g, 'This is the best. '), null, true)])[0].lingua === 'en', 'resenha em inglês que veio na busca em português fica "en"');
+ok(/^Este filme/.test(escolhe([rv('1', 9, 'Português: Este filme é muito bonito e não tem nada igual, uma obra que fica com a gente para sempre, com fotografia e música que são de outro mundo. English: This film is very beautiful and there is nothing like it, a work that stays with us forever.', null, false)])[0].trecho), 'bilíngue: fica a parte em português');
 let pedidos = [];
 const avatar = 'tt0499549';
 const fetchFn = async u => {
