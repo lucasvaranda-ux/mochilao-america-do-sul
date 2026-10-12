@@ -1,7 +1,17 @@
 {
- "gerado_em": "2026-10-12T18:52:12.015Z",
+ "gerado_em": "2026-10-12T19:39:57.776Z",
  "fonte": "TMDB, e a Wikipedia (via Wikidata) para o que faltar",
  "itens": {
+  "007-a-servico-secreto-de-sua-majestade-1969": {
+   "img": "https://image.tmdb.org/t/p/w500/yVzJLLhBwuWJBR9BYEMurShu2WT.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/668",
+   "fonte": "tmdb",
+   "tmdb": "/yVzJLLhBwuWJBR9BYEMurShu2WT.jpg",
+   "imdb": "tt0064757",
+   "local": "/telas/cartazes/c0aa6c8bf3efab4c.webp"
+  },
   "007-cassino-royale-2006": {
    "img": "https://image.tmdb.org/t/p/w500/lMrxYKKhd4lqRzwUHAy5gcx9PSO.jpg",
    "w": 500,
@@ -11,6 +21,216 @@
    "tmdb": "/lMrxYKKhd4lqRzwUHAy5gcx9PSO.jpg",
    "imdb": "tt0381061",
    "local": "/telas/cartazes/99dd46263e800664.webp"
+  },
+  "007-contra-a-chantagem-atomica-1965": {
+   "img": "https://image.tmdb.org/t/p/w500/wCc4qllaTDsQN8zgGkAgQrKO6N9.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/660",
+   "fonte": "tmdb",
+   "tmdb": "/wCc4qllaTDsQN8zgGkAgQrKO6N9.jpg",
+   "imdb": "tt0059800",
+   "local": "/telas/cartazes/00aa6b2a48ac5146.webp"
+  },
+  "007-contra-goldeneye-1995": {
+   "img": "https://image.tmdb.org/t/p/w500/z0ljRnNxIO7CRBhLEO0DvLgAFPR.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/710",
+   "fonte": "tmdb",
+   "tmdb": "/z0ljRnNxIO7CRBhLEO0DvLgAFPR.jpg",
+   "imdb": "tt0113189",
+   "local": "/telas/cartazes/b88150a72257b155.webp"
+  },
+  "007-contra-goldfinger-1964": {
+   "img": "https://image.tmdb.org/t/p/w500/3zqmjujYSkgLSrdvvZ9VnDfaDRV.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/658",
+   "fonte": "tmdb",
+   "tmdb": "/3zqmjujYSkgLSrdvvZ9VnDfaDRV.jpg",
+   "imdb": "tt0058150",
+   "local": "/telas/cartazes/12ab7c0e48afcd52.webp"
+  },
+  "007-contra-o-foguete-da-morte-1979": {
+   "img": "https://image.tmdb.org/t/p/w500/6LrJdXNmu5uHOVALZxVYd44Lva0.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/698",
+   "fonte": "tmdb",
+   "tmdb": "/6LrJdXNmu5uHOVALZxVYd44Lva0.jpg",
+   "imdb": "tt0079574",
+   "local": "/telas/cartazes/9f38021baa1ba635.webp"
+  },
+  "007-contra-o-homem-com-a-pistola-de-ouro-1974": {
+   "img": "https://image.tmdb.org/t/p/w500/xVkbKwGnBVNQ122GN5bCTMyPbWz.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/682",
+   "fonte": "tmdb",
+   "tmdb": "/xVkbKwGnBVNQ122GN5bCTMyPbWz.jpg",
+   "imdb": "tt0071807",
+   "local": "/telas/cartazes/4517c7bdacd7a07f.webp"
+  },
+  "007-contra-o-satanico-dr-no-1962": {
+   "img": "https://image.tmdb.org/t/p/w500/9zCOLJmLNst0sCPZlkW1IRoH65E.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/646",
+   "fonte": "tmdb",
+   "tmdb": "/9zCOLJmLNst0sCPZlkW1IRoH65E.jpg",
+   "imdb": "tt0055928",
+   "local": "/telas/cartazes/f11a0ffeeff9c803.webp"
+  },
+  "007-contra-octopussy-1983": {
+   "img": "https://image.tmdb.org/t/p/w500/yoosZitM9igSk3Sd0sBXIhKlAh1.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/700",
+   "fonte": "tmdb",
+   "tmdb": "/yoosZitM9igSk3Sd0sBXIhKlAh1.jpg",
+   "imdb": "tt0086034",
+   "local": "/telas/cartazes/fe7104989d2cef78.webp"
+  },
+  "007-contra-spectre-2015": {
+   "img": "https://image.tmdb.org/t/p/w500/zj8ongFhtWNsVlfjOGo8pSr7PQg.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/206647",
+   "fonte": "tmdb",
+   "tmdb": "/zj8ongFhtWNsVlfjOGo8pSr7PQg.jpg",
+   "imdb": "tt2379713",
+   "local": "/telas/cartazes/2df3f6bf62e6deda.webp"
+  },
+  "007-marcado-para-a-morte-1987": {
+   "img": "https://image.tmdb.org/t/p/w500/1oRlmWX9hewpn2B44wawBjHd7dx.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/708",
+   "fonte": "tmdb",
+   "tmdb": "/1oRlmWX9hewpn2B44wawBjHd7dx.jpg",
+   "imdb": "tt0093428",
+   "local": "/telas/cartazes/68ef211872bc2d3d.webp"
+  },
+  "007-na-mira-dos-assassinos-1985": {
+   "img": "https://image.tmdb.org/t/p/w500/arJF829RP9cYvh0NU70dC5TtXSa.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/707",
+   "fonte": "tmdb",
+   "tmdb": "/arJF829RP9cYvh0NU70dC5TtXSa.jpg",
+   "imdb": "tt0090264",
+   "local": "/telas/cartazes/bd47d852658ee0b1.webp"
+  },
+  "007-nunca-mais-outra-vez-1983": {
+   "img": "https://image.tmdb.org/t/p/w500/zhoAL4o1STGgLbLxJ9r1ijfyHC9.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/36670",
+   "fonte": "tmdb",
+   "tmdb": "/zhoAL4o1STGgLbLxJ9r1ijfyHC9.jpg",
+   "imdb": "tt0086006",
+   "local": "/telas/cartazes/362cffc2d1de8892.webp"
+  },
+  "007-o-amanha-nunca-morre-1997": {
+   "img": "https://image.tmdb.org/t/p/w500/gZm002w7q9yLOkltxT76TWGfdZX.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/714",
+   "fonte": "tmdb",
+   "tmdb": "/gZm002w7q9yLOkltxT76TWGfdZX.jpg",
+   "imdb": "tt0120347",
+   "local": "/telas/cartazes/9ae34e4148506241.webp"
+  },
+  "007-o-espiao-que-me-amava-1977": {
+   "img": "https://image.tmdb.org/t/p/w500/3ZxHKFxMYvAko680DsRgAZKWcLi.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/691",
+   "fonte": "tmdb",
+   "tmdb": "/3ZxHKFxMYvAko680DsRgAZKWcLi.jpg",
+   "imdb": "tt0076752",
+   "local": "/telas/cartazes/208e217c18fe265f.webp"
+  },
+  "007-o-mundo-nao-e-o-bastante-1999": {
+   "img": "https://image.tmdb.org/t/p/w500/wCb2msgoZPK01WIqry24M4xsM73.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/36643",
+   "fonte": "tmdb",
+   "tmdb": "/wCb2msgoZPK01WIqry24M4xsM73.jpg",
+   "imdb": "tt0143145",
+   "local": "/telas/cartazes/895d020824f4bde7.webp"
+  },
+  "007-operacao-skyfall-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/d0IVecFQvsGdSbnMAHqiYsNYaJT.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/37724",
+   "fonte": "tmdb",
+   "tmdb": "/d0IVecFQvsGdSbnMAHqiYsNYaJT.jpg",
+   "imdb": "tt1074638",
+   "local": "/telas/cartazes/5ebafb7b9e2a2227.webp"
+  },
+  "007-os-diamantes-sao-eternos-1971": {
+   "img": "https://image.tmdb.org/t/p/w500/ooDT0eKrWCxJCsn9JehPkD0QYNj.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/681",
+   "fonte": "tmdb",
+   "tmdb": "/ooDT0eKrWCxJCsn9JehPkD0QYNj.jpg",
+   "imdb": "tt0066995",
+   "local": "/telas/cartazes/49ee9674f70cc6bd.webp"
+  },
+  "007-permissao-para-matar-1989": {
+   "img": "https://image.tmdb.org/t/p/w500/8nzJve63EXA79HGAyidZwivZrQ2.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/709",
+   "fonte": "tmdb",
+   "tmdb": "/8nzJve63EXA79HGAyidZwivZrQ2.jpg",
+   "imdb": "tt0097742",
+   "local": "/telas/cartazes/969954c968823af7.webp"
+  },
+  "007-quantum-of-solace-2008": {
+   "img": "https://image.tmdb.org/t/p/w500/e3DXXLJHGqMx9yYpXsql1XNljmM.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10764",
+   "fonte": "tmdb",
+   "tmdb": "/e3DXXLJHGqMx9yYpXsql1XNljmM.jpg",
+   "imdb": "tt0830515",
+   "local": "/telas/cartazes/f0e85c10c484d366.webp"
+  },
+  "007-sem-tempo-para-morrer-2021": {
+   "img": "https://image.tmdb.org/t/p/w500/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/370172",
+   "fonte": "tmdb",
+   "tmdb": "/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
+   "imdb": "tt2382320",
+   "local": "/telas/cartazes/bb665a405ba2729e.webp"
+  },
+  "007-somente-para-seus-olhos-1981": {
+   "img": "https://image.tmdb.org/t/p/w500/xV4Nnr6DjjERlqNikqDQX8LUgua.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/699",
+   "fonte": "tmdb",
+   "tmdb": "/xV4Nnr6DjjERlqNikqDQX8LUgua.jpg",
+   "imdb": "tt0082398",
+   "local": "/telas/cartazes/3a71abae6a06fd79.webp"
+  },
+  "007-um-novo-dia-para-morrer-2002": {
+   "img": "https://image.tmdb.org/t/p/w500/bZmGqOhMhaLn8AoFMvFDct4tbrL.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/36669",
+   "fonte": "tmdb",
+   "tmdb": "/bZmGqOhMhaLn8AoFMvFDct4tbrL.jpg",
+   "imdb": "tt0246460",
+   "local": "/telas/cartazes/a4364e7592d45ac9.webp"
   },
   "10-coisas-que-eu-odeio-em-voce-1999": {
    "img": "https://image.tmdb.org/t/p/w500/ujERk3aKABXU3NDXOAxEQYTHe9A.jpg",
@@ -102,6 +322,16 @@
    "imdb": "tt0062622",
    "local": "/telas/cartazes/1de7995c8f317a8e.webp"
   },
+  "2010-o-ano-em-que-faremos-contato-1984": {
+   "img": "https://image.tmdb.org/t/p/w500/mEWKXuCMv7mFMxXVSTI3v8UOQuq.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/4437",
+   "fonte": "tmdb",
+   "tmdb": "/mEWKXuCMv7mFMxXVSTI3v8UOQuq.jpg",
+   "imdb": "tt0086837",
+   "local": "/telas/cartazes/73ef964bf244be35.webp"
+  },
   "24-horas-2001": {
    "img": "https://image.tmdb.org/t/p/w500/iq6yrZ5LEDXf1ArCOYLq8PIUBpV.jpg",
    "w": 500,
@@ -121,6 +351,16 @@
    "tmdb": "/h7Lcio0c9ohxPhSZg42eTlKIVVY.jpg",
    "imdb": "tt0416449",
    "local": "/telas/cartazes/f05a3362ae88f71d.webp"
+  },
+  "300-a-ascensao-do-imperio-2014": {
+   "img": "https://image.tmdb.org/t/p/w500/wYDdWN1McB1Sio4z1dPSkb40Z78.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/53182",
+   "fonte": "tmdb",
+   "tmdb": "/wYDdWN1McB1Sio4z1dPSkb40Z78.jpg",
+   "imdb": "tt1253863",
+   "local": "/telas/cartazes/eac053e4640ecdc9.webp"
   },
   "500-dias-com-ela-2009": {
    "img": "https://image.tmdb.org/t/p/w500/qXAuQ9hF30sQRsXf40OfRVl0MJZ.jpg",
@@ -182,6 +422,16 @@
    "imdb": "tt0101414",
    "local": "/telas/cartazes/b8c742339f0adeb8.webp"
   },
+  "a-bela-e-a-fera-o-natal-encantado-1997": {
+   "img": "https://image.tmdb.org/t/p/w500/l1Tb0fvnj9wnCgm5qnTRoO6OxDT.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/13313",
+   "fonte": "tmdb",
+   "tmdb": "/l1Tb0fvnj9wnCgm5qnTRoO6OxDT.jpg",
+   "imdb": "tt0118692",
+   "local": "/telas/cartazes/cab062737c2553cb.webp"
+  },
   "a-bruxa-2015": {
    "img": "https://image.tmdb.org/t/p/w500/zap5hpFCWSvdWSuPGAQyjUv2wAC.jpg",
    "w": 500,
@@ -201,6 +451,16 @@
    "tmdb": "/9050VGrYjYrEjpOvDZVAngLbg1f.jpg",
    "imdb": "tt0185937",
    "local": "/telas/cartazes/53932737445d8d23.webp"
+  },
+  "a-bruxa-de-blair-2-o-livro-das-sombras-2000": {
+   "img": "https://image.tmdb.org/t/p/w500/l1jF93S9FYbzp3Byh5VUA1KApSJ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/11531",
+   "fonte": "tmdb",
+   "tmdb": "/l1jF93S9FYbzp3Byh5VUA1KApSJ.jpg",
+   "imdb": "tt0229260",
+   "local": "/telas/cartazes/b8d0cc5aee75378a.webp"
   },
   "a-cancao-da-estrada-1955": {
    "img": "https://image.tmdb.org/t/p/w500/frZj5djlU9hFEjMcL21RJZVuG5O.jpg",
@@ -292,6 +552,16 @@
    "imdb": "tt0053779",
    "local": "/telas/cartazes/9e8a8150566c1632.webp"
   },
+  "a-era-do-gelo-2-2006": {
+   "img": "https://image.tmdb.org/t/p/w500/zDduhCHasKQ9YOTvlOreHem7Wbi.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/950",
+   "fonte": "tmdb",
+   "tmdb": "/zDduhCHasKQ9YOTvlOreHem7Wbi.jpg",
+   "imdb": "tt0438097",
+   "local": "/telas/cartazes/854b5d50f062d790.webp"
+  },
   "a-era-do-gelo-2002": {
    "img": "https://image.tmdb.org/t/p/w500/gLhHHZUzeseRXShoDyC4VqLgsNv.jpg",
    "w": 500,
@@ -301,6 +571,56 @@
    "tmdb": "/gLhHHZUzeseRXShoDyC4VqLgsNv.jpg",
    "imdb": "tt0268380",
    "local": "/telas/cartazes/db866d753296c2c4.webp"
+  },
+  "a-era-do-gelo-3-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/cXOLaxcNjNAYmEx1trZxOTKhK3Q.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/8355",
+   "fonte": "tmdb",
+   "tmdb": "/cXOLaxcNjNAYmEx1trZxOTKhK3Q.jpg",
+   "imdb": "tt1080016",
+   "local": "/telas/cartazes/5cab9a1f9cce8538.webp"
+  },
+  "a-era-do-gelo-4-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/dfp1BZF7FxbBUyzHvMOI9t8NWDD.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/57800",
+   "fonte": "tmdb",
+   "tmdb": "/dfp1BZF7FxbBUyzHvMOI9t8NWDD.jpg",
+   "imdb": "tt1667889",
+   "local": "/telas/cartazes/4efba5a3c6f6e14d.webp"
+  },
+  "a-era-do-gelo-as-aventuras-de-buck-2022": {
+   "img": "https://image.tmdb.org/t/p/w500/9ginbMWmt9y7PIHW1c9hnbIVWPm.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/774825",
+   "fonte": "tmdb",
+   "tmdb": "/9ginbMWmt9y7PIHW1c9hnbIVWPm.jpg",
+   "imdb": "tt13634480",
+   "local": "/telas/cartazes/0077605797f8e69f.webp"
+  },
+  "a-era-do-gelo-mundo-de-lava-2027": {
+   "img": "https://image.tmdb.org/t/p/w500/mPhAreyZLLcZ9pl4KRyEaqSu1Zv.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1384758",
+   "fonte": "tmdb",
+   "tmdb": "/mPhAreyZLLcZ9pl4KRyEaqSu1Zv.jpg",
+   "imdb": "tt34512981",
+   "local": "/telas/cartazes/0b9b954a52b65096.webp"
+  },
+  "a-era-do-gelo-o-big-bang-2016": {
+   "img": "https://image.tmdb.org/t/p/w500/tFzUkdhPOForVrEfvxydXfPLrZR.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/278154",
+   "fonte": "tmdb",
+   "tmdb": "/tFzUkdhPOForVrEfvxydXfPLrZR.jpg",
+   "imdb": "tt3416828",
+   "local": "/telas/cartazes/55ea2ddf1ed2a280.webp"
   },
   "a-escuta-2002": {
    "img": "https://image.tmdb.org/t/p/w500/4lbclFySvugI51fwsyxBTOm4DqK.jpg",
@@ -432,6 +752,16 @@
    "imdb": "tt0120630",
    "local": "/telas/cartazes/b0fbfc62298da31f.webp"
   },
+  "a-fuga-das-galinhas-a-ameaca-dos-nuggets-2023": {
+   "img": "https://image.tmdb.org/t/p/w500/eImY0cjbH0bll8EXSqxqEZIZcmY.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/520758",
+   "fonte": "tmdb",
+   "tmdb": "/eImY0cjbH0bll8EXSqxqEZIZcmY.jpg",
+   "imdb": "tt8337264",
+   "local": "/telas/cartazes/601f9ee10cf97021.webp"
+  },
   "a-grande-beleza-2013": {
    "img": "https://image.tmdb.org/t/p/w500/7suf0vaQfv5E7X1GVh4HJwK90yo.jpg",
    "w": 500,
@@ -492,6 +822,26 @@
    "imdb": "tt0088323",
    "local": "/telas/cartazes/a034b34bd0ad2826.webp"
   },
+  "a-historia-sem-fim-2-1990": {
+   "img": "https://image.tmdb.org/t/p/w500/5QfUCbgKzWzjHO5X4ANsDmuTxNQ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/34636",
+   "fonte": "tmdb",
+   "tmdb": "/5QfUCbgKzWzjHO5X4ANsDmuTxNQ.jpg",
+   "imdb": "tt0100240",
+   "local": "/telas/cartazes/f4119060cbaa9ac5.webp"
+  },
+  "a-historia-sem-fim-3-1994": {
+   "img": "https://image.tmdb.org/t/p/w500/o75HHfr23sgeqIeUPwjKY0V9Ppi.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/27793",
+   "fonte": "tmdb",
+   "tmdb": "/o75HHfr23sgeqIeUPwjKY0V9Ppi.jpg",
+   "imdb": "tt0110647",
+   "local": "/telas/cartazes/c616642cbd56430d.webp"
+  },
   "a-hora-da-estrela-1985": {
    "img": "https://image.tmdb.org/t/p/w500/wjjq98Og5LTIpfBZri4giCs0xvx.jpg",
    "w": 500,
@@ -512,6 +862,66 @@
    "imdb": "tt0087800",
    "local": "/telas/cartazes/dc29d854ba976ebc.webp"
   },
+  "a-hora-do-pesadelo-2-a-vinganca-de-freddy-1985": {
+   "img": "https://image.tmdb.org/t/p/w500/53kxYw0G3o55yJ23K7s7KMaOyAM.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10014",
+   "fonte": "tmdb",
+   "tmdb": "/53kxYw0G3o55yJ23K7s7KMaOyAM.jpg",
+   "imdb": "tt0089686",
+   "local": "/telas/cartazes/a82f947995424704.webp"
+  },
+  "a-hora-do-pesadelo-3-os-guerreiros-dos-sonhos-1987": {
+   "img": "https://image.tmdb.org/t/p/w500/qbtZewU6EGvxi8yFVzwZ31NijLX.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10072",
+   "fonte": "tmdb",
+   "tmdb": "/qbtZewU6EGvxi8yFVzwZ31NijLX.jpg",
+   "imdb": "tt0093629",
+   "local": "/telas/cartazes/e1f0876c8f056149.webp"
+  },
+  "a-hora-do-pesadelo-4-o-mestre-dos-sonhos-1988": {
+   "img": "https://image.tmdb.org/t/p/w500/boStYG7jKdoIZTduiOOsUVknD13.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10131",
+   "fonte": "tmdb",
+   "tmdb": "/boStYG7jKdoIZTduiOOsUVknD13.jpg",
+   "imdb": "tt0095742",
+   "local": "/telas/cartazes/77dc4bb2193e6140.webp"
+  },
+  "a-hora-do-pesadelo-5-o-maior-horror-de-freddy-1989": {
+   "img": "https://image.tmdb.org/t/p/w500/kizvpgXQfrAgN8FhOd87LbKk6kO.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10160",
+   "fonte": "tmdb",
+   "tmdb": "/kizvpgXQfrAgN8FhOd87LbKk6kO.jpg",
+   "imdb": "tt0097981",
+   "local": "/telas/cartazes/fbb83ad6f26e5df2.webp"
+  },
+  "a-hora-do-pesadelo-6-pesadelo-final-a-morte-de-freddy-1991": {
+   "img": "https://image.tmdb.org/t/p/w500/e4qh58n2WaG4Gyh9VhjOUeN9Mhv.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/11284",
+   "fonte": "tmdb",
+   "tmdb": "/e4qh58n2WaG4Gyh9VhjOUeN9Mhv.jpg",
+   "imdb": "tt0101917",
+   "local": "/telas/cartazes/1571407bdb38b266.webp"
+  },
+  "a-hora-do-pesadelo-7-0-novo-pesadelo-o-retorno-de-freddy-krueger-1994": {
+   "img": "https://image.tmdb.org/t/p/w500/q5BWxfL1x34nyYSvA3Qo5odleGW.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/11596",
+   "fonte": "tmdb",
+   "tmdb": "/q5BWxfL1x34nyYSvA3Qo5odleGW.jpg",
+   "imdb": "tt0111686",
+   "local": "/telas/cartazes/88d5da8bb5315552.webp"
+  },
   "a-hora-do-rush-1998": {
    "img": "https://image.tmdb.org/t/p/w500/nwPhAsfnb7f46bZkWLG7IRP5HXr.jpg",
    "w": 500,
@@ -521,6 +931,26 @@
    "tmdb": "/nwPhAsfnb7f46bZkWLG7IRP5HXr.jpg",
    "imdb": "tt0120812",
    "local": "/telas/cartazes/c042cf591d7f3c93.webp"
+  },
+  "a-hora-do-rush-2-2001": {
+   "img": "https://image.tmdb.org/t/p/w500/aBQf2vMiCINeVC9v6BGVYKXurTh.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/5175",
+   "fonte": "tmdb",
+   "tmdb": "/aBQf2vMiCINeVC9v6BGVYKXurTh.jpg",
+   "imdb": "tt0266915",
+   "local": "/telas/cartazes/e04ca180545170ec.webp"
+  },
+  "a-hora-do-rush-3-2007": {
+   "img": "https://image.tmdb.org/t/p/w500/mp9CzKxLa2i7yblMXUrzVfGqsCo.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/5174",
+   "fonte": "tmdb",
+   "tmdb": "/mp9CzKxLa2i7yblMXUrzVfGqsCo.jpg",
+   "imdb": "tt0293564",
+   "local": "/telas/cartazes/e326cd8f7a43b195.webp"
   },
   "a-identidade-bourne-2002": {
    "img": "https://image.tmdb.org/t/p/w500/aP8swke3gmowbkfZ6lmNidu0y9p.jpg",
@@ -722,6 +1152,16 @@
    "imdb": "tt0120917",
    "local": "/telas/cartazes/5c94c7263ab87828.webp"
   },
+  "a-nova-onda-do-kronk-2005": {
+   "img": "https://image.tmdb.org/t/p/w500/kyMrt0RPVC8LDpdMrk1DjN6Gqdu.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/13417",
+   "fonte": "tmdb",
+   "tmdb": "/kyMrt0RPVC8LDpdMrk1DjN6Gqdu.jpg",
+   "imdb": "tt0401398",
+   "local": "/telas/cartazes/3b66ed3980f0364a.webp"
+  },
   "a-novica-rebelde-1965": {
    "img": "https://image.tmdb.org/t/p/w500/c6CrUZypAsBCaRWX0M3RVRDbhNS.jpg",
    "w": 500,
@@ -791,6 +1231,26 @@
    "tmdb": "/plcZXvI310FkbwIptvd6rqk63LP.jpg",
    "imdb": "tt0097757",
    "local": "/telas/cartazes/d8ffd27a66458460.webp"
+  },
+  "a-pequena-sereia-a-historia-de-ariel-2008": {
+   "img": "https://image.tmdb.org/t/p/w500/6EwcdQH134T4HGr0W3m2FnLjTnc.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/13676",
+   "fonte": "tmdb",
+   "tmdb": "/6EwcdQH134T4HGr0W3m2FnLjTnc.jpg",
+   "imdb": "tt0969647",
+   "local": "/telas/cartazes/c183e479069135ed.webp"
+  },
+  "a-pequena-sereia-ii-o-retorno-para-o-mar-2000": {
+   "img": "https://image.tmdb.org/t/p/w500/k3UHxvYv8ZgWLL0lM45f979OSo7.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10898",
+   "fonte": "tmdb",
+   "tmdb": "/k3UHxvYv8ZgWLL0lM45f979OSo7.jpg",
+   "imdb": "tt0240684",
+   "local": "/telas/cartazes/927d32572657dee5.webp"
   },
   "a-pior-pessoa-do-mundo-2021": {
    "img": "https://image.tmdb.org/t/p/w500/1NxGNQchGBTHXJ6RShLY1IlZqWn.jpg",
@@ -872,6 +1332,46 @@
    "imdb": "tt7462410",
    "local": "/telas/cartazes/6aac8b80755c260e.webp"
   },
+  "a-saga-crepusculo-amanhecer-parte-1-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/qs8LsHKYlVRmJbFUiSUhhRAygwj.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/50619",
+   "fonte": "tmdb",
+   "tmdb": "/qs8LsHKYlVRmJbFUiSUhhRAygwj.jpg",
+   "imdb": "tt1324999",
+   "local": "/telas/cartazes/813997d7bd7298d7.webp"
+  },
+  "a-saga-crepusculo-amanhecer-parte-2-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/7IGdPaKujv0BjI0Zd0m0a4CzEjJ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/50620",
+   "fonte": "tmdb",
+   "tmdb": "/7IGdPaKujv0BjI0Zd0m0a4CzEjJ.jpg",
+   "imdb": "tt1673434",
+   "local": "/telas/cartazes/754561f5c3428a88.webp"
+  },
+  "a-saga-crepusculo-eclipse-2010": {
+   "img": "https://image.tmdb.org/t/p/w500/dK4Gi1UdMiHzHc7r7CZQG4IQ9Sr.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/24021",
+   "fonte": "tmdb",
+   "tmdb": "/dK4Gi1UdMiHzHc7r7CZQG4IQ9Sr.jpg",
+   "imdb": "tt1325004",
+   "local": "/telas/cartazes/00c9e9d34d1b8b96.webp"
+  },
+  "a-saga-crepusculo-lua-nova-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/k2qTooPlHffgNABNWxeJdGMglPK.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/18239",
+   "fonte": "tmdb",
+   "tmdb": "/k2qTooPlHffgNABNWxeJdGMglPK.jpg",
+   "imdb": "tt1259571",
+   "local": "/telas/cartazes/421b25aee8caf96e.webp"
+  },
   "a-semente-do-fruto-sagrado-2024": {
    "img": "https://image.tmdb.org/t/p/w500/ifOazNzv2cNJ5CQjMV7cPXG2Lmy.jpg",
    "w": 500,
@@ -931,6 +1431,16 @@
    "tmdb": "/t57NXzTrwp5rnPXiaX4BThrDxt1.jpg",
    "imdb": "tt0083437",
    "local": "/telas/cartazes/4b2a7f3fedc0c637.webp"
+  },
+  "a-supremacia-bourne-2004": {
+   "img": "https://image.tmdb.org/t/p/w500/jupG9sFT64YwM8PSkwkUD2wHcYD.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2502",
+   "fonte": "tmdb",
+   "tmdb": "/jupG9sFT64YwM8PSkwkUD2wHcYD.jpg",
+   "imdb": "tt0372183",
+   "local": "/telas/cartazes/e0c2307db37f0c9d.webp"
   },
   "a-tartaruga-vermelha-2016": {
    "img": "https://image.tmdb.org/t/p/w500/wOBU3SLjQ9358Km9YWYasPZyebp.jpg",
@@ -1042,6 +1552,16 @@
    "imdb": "tt0359950",
    "local": "/telas/cartazes/64346203fa2cf59a.webp"
   },
+  "a-volta-do-todo-poderoso-2007": {
+   "img": "https://image.tmdb.org/t/p/w500/blI1ioXbgJWOJ3PbcBuSV65Ebwu.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2698",
+   "fonte": "tmdb",
+   "tmdb": "/blI1ioXbgJWOJ3PbcBuSV65Ebwu.jpg",
+   "imdb": "tt0413099",
+   "local": "/telas/cartazes/832c68ee529a2aba.webp"
+  },
   "a-voz-do-coracao-2004": {
    "img": "https://image.tmdb.org/t/p/w500/hUl7gSvkGygyk9wt3zy5NqpC5bb.jpg",
    "w": 500,
@@ -1091,6 +1611,16 @@
    "tmdb": "/mBpWUNGlB66cP6ght7NyT3jXmWN.jpg",
    "imdb": "tt6333098",
    "local": "/telas/cartazes/879315cc9a04c7cd.webp"
+  },
+  "ace-ventura-2-um-maluco-na-africa-1995": {
+   "img": "https://image.tmdb.org/t/p/w500/wcinCf1ov2D6M3P7BBZkzQFOiIb.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9273",
+   "fonte": "tmdb",
+   "tmdb": "/wcinCf1ov2D6M3P7BBZkzQFOiIb.jpg",
+   "imdb": "tt0112281",
+   "local": "/telas/cartazes/97c09e9e3bb7cf30.webp"
   },
   "ace-ventura-um-detetive-diferente-1994": {
    "img": "https://image.tmdb.org/t/p/w500/pqiRuETmuSybfnVZ7qyeoXhQyN1.jpg",
@@ -1252,6 +1782,16 @@
    "imdb": "tt1844624",
    "local": "/telas/cartazes/8d558160d4f55539.webp"
   },
+  "american-pie-2-a-segunda-vez-e-ainda-melhor-2001": {
+   "img": "https://image.tmdb.org/t/p/w500/854ZZxXdeabAs90mrV72NqShJqR.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2770",
+   "fonte": "tmdb",
+   "tmdb": "/854ZZxXdeabAs90mrV72NqShJqR.jpg",
+   "imdb": "tt0252866",
+   "local": "/telas/cartazes/458150a8e3fa3c7a.webp"
+  },
   "american-pie-a-primeira-vez-e-inesquecivel-1999": {
    "img": "https://image.tmdb.org/t/p/w500/5P68by2Thn8wHAziyWGEw2O7hco.jpg",
    "w": 500,
@@ -1261,6 +1801,26 @@
    "tmdb": "/5P68by2Thn8wHAziyWGEw2O7hco.jpg",
    "imdb": "tt0163651",
    "local": "/telas/cartazes/2128d1575cad8d57.webp"
+  },
+  "american-pie-o-casamento-2003": {
+   "img": "https://image.tmdb.org/t/p/w500/pCO3lJv2PzPkJty29APxCVSjyoE.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/8273",
+   "fonte": "tmdb",
+   "tmdb": "/pCO3lJv2PzPkJty29APxCVSjyoE.jpg",
+   "imdb": "tt0328828",
+   "local": "/telas/cartazes/4b2380c7865eb978.webp"
+  },
+  "american-pie-o-reencontro-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/de5QBIdVR4dnkBZ4a0zjkS4lTg.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/71552",
+   "fonte": "tmdb",
+   "tmdb": "/de5QBIdVR4dnkBZ4a0zjkS4lTg.jpg",
+   "imdb": "tt1605630",
+   "local": "/telas/cartazes/7d5c3dee9f9cce6f.webp"
   },
   "amnesia-2000": {
    "img": "https://image.tmdb.org/t/p/w500/nzlv62aC0octS5AklAiWpXLX9Z0.jpg",
@@ -1572,6 +2132,16 @@
    "imdb": "tt0381707",
    "local": "/telas/cartazes/a6e85712d76592e4.webp"
   },
+  "as-cronicas-de-narnia-a-viagem-do-peregrino-da-alvorada-2010": {
+   "img": "https://image.tmdb.org/t/p/w500/pP27zlm9yeKrCeDZLFLP2HKELot.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10140",
+   "fonte": "tmdb",
+   "tmdb": "/pP27zlm9yeKrCeDZLFLP2HKELot.jpg",
+   "imdb": "tt0980970",
+   "local": "/telas/cartazes/e5167e9e6ba0d3b3.webp"
+  },
   "as-cronicas-de-narnia-o-leao-a-feiticeira-e-o-guarda-roupa-2005": {
    "img": "https://image.tmdb.org/t/p/w500/iREd0rNCjYdf5Ar0vfaW32yrkm.jpg",
    "w": 500,
@@ -1581,6 +2151,16 @@
    "tmdb": "/iREd0rNCjYdf5Ar0vfaW32yrkm.jpg",
    "imdb": "tt0363771",
    "local": "/telas/cartazes/f403b2daee568005.webp"
+  },
+  "as-cronicas-de-narnia-principe-caspian-2008": {
+   "img": "https://image.tmdb.org/t/p/w500/qxz3WIyjZiSKUhaTIEJ3c1GcC9z.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2454",
+   "fonte": "tmdb",
+   "tmdb": "/qxz3WIyjZiSKUhaTIEJ3c1GcC9z.jpg",
+   "imdb": "tt0499448",
+   "local": "/telas/cartazes/2f460de1edb012f3.webp"
   },
   "as-oito-montanhas-2022": {
    "img": "https://image.tmdb.org/t/p/w500/ohD87uTlwOgNuUEYaW82ew9Eds7.jpg",
@@ -1682,6 +2262,16 @@
    "imdb": "tt2119532",
    "local": "/telas/cartazes/296bdde9dc6c93db.webp"
   },
+  "ate-que-a-sorte-nos-separe-2-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/DOmK1UXPulQWLj3xdArcHKGQ9C.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/228177",
+   "fonte": "tmdb",
+   "tmdb": "/DOmK1UXPulQWLj3xdArcHKGQ9C.jpg",
+   "imdb": "tt3148528",
+   "local": "/telas/cartazes/bdb85dfabec92d01.webp"
+  },
   "ate-que-a-sorte-nos-separe-2012": {
    "img": "https://image.tmdb.org/t/p/w500/xAd1DeclHsJ0lnrizw4bTYivFqB.jpg",
    "w": 500,
@@ -1691,6 +2281,16 @@
    "tmdb": "/xAd1DeclHsJ0lnrizw4bTYivFqB.jpg",
    "imdb": "tt2332518",
    "local": "/telas/cartazes/c2f606323f2f8eb0.webp"
+  },
+  "ate-que-a-sorte-nos-separe-3-a-falencia-final-2015": {
+   "img": "https://image.tmdb.org/t/p/w500/oStp9ynfr1dFKBrOSf7U8QYocgR.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/324465",
+   "fonte": "tmdb",
+   "tmdb": "/oStp9ynfr1dFKBrOSf7U8QYocgR.jpg",
+   "imdb": "tt4491640",
+   "local": "/telas/cartazes/69a10609be116f52.webp"
   },
   "atlantique-2019": {
    "img": "https://image.tmdb.org/t/p/w500/zRnZM6HqglFK31MYyrTSQVlj1dQ.jpg",
@@ -1721,6 +2321,16 @@
    "tmdb": "/yaGt4GIutpbXHsv48tWceWg6s56.jpg",
    "imdb": "tt0417299",
    "local": "/telas/cartazes/1761d8be4a761378.webp"
+  },
+  "avatar-fogo-e-cinzas-2025": {
+   "img": "https://image.tmdb.org/t/p/w500/bRBeSHfGHwkEpImlhxPmOcUsaeg.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/83533",
+   "fonte": "tmdb",
+   "tmdb": "/bRBeSHfGHwkEpImlhxPmOcUsaeg.jpg",
+   "imdb": "tt1757678",
+   "local": "/telas/cartazes/2f6590ebec8b80d5.webp"
   },
   "avatar-o-caminho-da-agua-2022": {
    "img": "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
@@ -1771,6 +2381,16 @@
    "tmdb": "/zKuQMtnbVTz9DsOnOJmlW71v4qH.jpg",
    "imdb": "tt0112431",
    "local": "/telas/cartazes/1d860efa35e8df86.webp"
+  },
+  "babe-o-porquinho-atrapalhado-na-cidade-1998": {
+   "img": "https://image.tmdb.org/t/p/w500/glO6LcTWUZcbxWT2SB4eRDnFSsP.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9447",
+   "fonte": "tmdb",
+   "tmdb": "/glO6LcTWUZcbxWT2SB4eRDnFSsP.jpg",
+   "imdb": "tt0120595",
+   "local": "/telas/cartazes/60a3ba0aea4fb72e.webp"
   },
   "babylon-berlin-2017": {
    "img": "https://image.tmdb.org/t/p/w500/hr18RHPMQSA0zbCzAZN2asIOqy5.jpg",
@@ -1852,6 +2472,16 @@
    "imdb": "tt0361748",
    "local": "/telas/cartazes/ac0a66637ed5a323.webp"
   },
+  "batman-begins-2005": {
+   "img": "https://image.tmdb.org/t/p/w500/sPX89Td70IDDjVr85jdSBb4rWGr.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/272",
+   "fonte": "tmdb",
+   "tmdb": "/sPX89Td70IDDjVr85jdSBb4rWGr.jpg",
+   "imdb": "tt0372784",
+   "local": "/telas/cartazes/96139e8098ca537f.webp"
+  },
   "batman-o-cavaleiro-das-trevas-2008": {
    "img": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
    "w": 500,
@@ -1861,6 +2491,16 @@
    "tmdb": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
    "imdb": "tt0468569",
    "local": "/telas/cartazes/a93d1b6e2c72fbe9.webp"
+  },
+  "batman-o-cavaleiro-das-trevas-ressurge-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/hr0L2aueqlP2BYUblTTjmtn0hw4.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/49026",
+   "fonte": "tmdb",
+   "tmdb": "/hr0L2aueqlP2BYUblTTjmtn0hw4.jpg",
+   "imdb": "tt1345836",
+   "local": "/telas/cartazes/42f50f09af989831.webp"
   },
   "battlestar-galactica-2004": {
    "img": "https://image.tmdb.org/t/p/w500/99PJSbcO2LeM10uOGWeFihNp77j.jpg",
@@ -2172,6 +2812,26 @@
    "imdb": "tt8740790",
    "local": "/telas/cartazes/3a42c78ec8dfa259.webp"
   },
+  "bridget-jones-louca-pelo-garoto-2025": {
+   "img": "https://image.tmdb.org/t/p/w500/e5VR3nhLYG60znxaqU84wv4VSCb.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1272149",
+   "fonte": "tmdb",
+   "tmdb": "/e5VR3nhLYG60znxaqU84wv4VSCb.jpg",
+   "imdb": "tt32063050",
+   "local": "/telas/cartazes/0a6684c121334c87.webp"
+  },
+  "bridget-jones-no-limite-da-razao-2004": {
+   "img": "https://image.tmdb.org/t/p/w500/zDthRXkGnwFIWI0zWcJyS7h6lUl.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9801",
+   "fonte": "tmdb",
+   "tmdb": "/zDthRXkGnwFIWI0zWcJyS7h6lUl.jpg",
+   "imdb": "tt0317198",
+   "local": "/telas/cartazes/94a3052c7d327fad.webp"
+  },
   "brilho-eterno-de-uma-mente-sem-lembrancas-2004": {
    "img": "https://image.tmdb.org/t/p/w500/5MwkWH9tYHv3mV9OdYTMR5qreIz.jpg",
    "w": 500,
@@ -2212,6 +2872,16 @@
    "imdb": "tt2467372",
    "local": "/telas/cartazes/f77bd65156ef7e08.webp"
   },
+  "bruxa-de-blair-2016": {
+   "img": "https://image.tmdb.org/t/p/w500/Ai73frMEz68bibFGRlPKdWBaIaq.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/351211",
+   "fonte": "tmdb",
+   "tmdb": "/Ai73frMEz68bibFGRlPKdWBaIaq.jpg",
+   "imdb": "tt1540011",
+   "local": "/telas/cartazes/f14c4a9966ef4c25.webp"
+  },
   "buena-vista-social-club-1999": {
    "img": "https://image.tmdb.org/t/p/w500/b8psTDXSelHiab1I7L8rFdYs0IC.jpg",
    "w": 500,
@@ -2232,6 +2902,16 @@
    "imdb": "tt0118276",
    "local": "/telas/cartazes/2874b2ab75546209.webp"
   },
+  "busca-implacavel-2-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/yzAlcuJhpnxRPjaj7AHBRbNPQCJ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/82675",
+   "fonte": "tmdb",
+   "tmdb": "/yzAlcuJhpnxRPjaj7AHBRbNPQCJ.jpg",
+   "imdb": "tt1397280",
+   "local": "/telas/cartazes/16f4017fba49ac07.webp"
+  },
   "busca-implacavel-2008": {
    "img": "https://image.tmdb.org/t/p/w500/ognkaUSNgJe1a2pjB4UNdzEo5jT.jpg",
    "w": 500,
@@ -2241,6 +2921,16 @@
    "tmdb": "/ognkaUSNgJe1a2pjB4UNdzEo5jT.jpg",
    "imdb": "tt0936501",
    "local": "/telas/cartazes/e8ef4ff0273cbc2c.webp"
+  },
+  "busca-implacavel-3-2014": {
+   "img": "https://image.tmdb.org/t/p/w500/vzvMXMypMq7ieDofKThsxjHj9hn.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/260346",
+   "fonte": "tmdb",
+   "tmdb": "/vzvMXMypMq7ieDofKThsxjHj9hn.jpg",
+   "imdb": "tt2446042",
+   "local": "/telas/cartazes/dcf493503a3108ae.webp"
   },
   "butch-cassidy-1969": {
    "img": "https://image.tmdb.org/t/p/w500/gFmmykF1Ym3OGzENo50nZQaD1dx.jpg",
@@ -2352,6 +3042,16 @@
    "imdb": "tt0319969",
    "local": "/telas/cartazes/b55ca9b8172ec4bc.webp"
   },
+  "carros-2-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/okIz1HyxeVOMzYwwHUjH2pHi74I.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/49013",
+   "fonte": "tmdb",
+   "tmdb": "/okIz1HyxeVOMzYwwHUjH2pHi74I.jpg",
+   "imdb": "tt1216475",
+   "local": "/telas/cartazes/37a921041c703ef2.webp"
+  },
   "carros-2006": {
    "img": "https://image.tmdb.org/t/p/w500/2Touk3m5gzsqr1VsvxypdyHY5ci.jpg",
    "w": 500,
@@ -2361,6 +3061,16 @@
    "tmdb": "/2Touk3m5gzsqr1VsvxypdyHY5ci.jpg",
    "imdb": "tt0317219",
    "local": "/telas/cartazes/d00746e140d2f054.webp"
+  },
+  "carros-3-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/zg5RDxvIIAKsucjuU2EZJIHEIvz.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/260514",
+   "fonte": "tmdb",
+   "tmdb": "/zg5RDxvIIAKsucjuU2EZJIHEIvz.jpg",
+   "imdb": "tt3606752",
+   "local": "/telas/cartazes/6da7a8adc3500417.webp"
   },
   "carrossel-1989": {
    "img": "https://image.tmdb.org/t/p/w500/zbGTiTiDvgEoBrj9AMihNa7DCsb.jpg",
@@ -2652,6 +3362,26 @@
    "imdb": "tt8001788",
    "local": "/telas/cartazes/9620bca70e58f968.webp"
   },
+  "com-007-so-se-vive-duas-vezes-1967": {
+   "img": "https://image.tmdb.org/t/p/w500/gIhS0VC7YzI8pj6zfS3KxsxV0dS.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/667",
+   "fonte": "tmdb",
+   "tmdb": "/gIhS0VC7YzI8pj6zfS3KxsxV0dS.jpg",
+   "imdb": "tt0062512",
+   "local": "/telas/cartazes/0cb68e6a3e173d88.webp"
+  },
+  "com-007-viva-e-deixe-morrer-1973": {
+   "img": "https://image.tmdb.org/t/p/w500/39qkrjqMZs6utwNmihVImC3ghas.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/253",
+   "fonte": "tmdb",
+   "tmdb": "/39qkrjqMZs6utwNmihVImC3ghas.jpg",
+   "imdb": "tt0070328",
+   "local": "/telas/cartazes/63a607f1104c3f46.webp"
+  },
   "com-amor-van-gogh-2017": {
    "img": "https://image.tmdb.org/t/p/w500/56sq57kDm7XgyXBYrgJLumo0Jac.jpg",
    "w": 500,
@@ -2742,6 +3472,16 @@
    "imdb": "tt0343660",
    "local": "/telas/cartazes/a012f565c7326e03.webp"
   },
+  "como-treinar-o-seu-dragao-2-2014": {
+   "img": "https://image.tmdb.org/t/p/w500/d13Uj86LdbDLrfDoHR5aDOFYyJC.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/82702",
+   "fonte": "tmdb",
+   "tmdb": "/d13Uj86LdbDLrfDoHR5aDOFYyJC.jpg",
+   "imdb": "tt1646971",
+   "local": "/telas/cartazes/c88477e0e0a807d7.webp"
+  },
   "como-treinar-o-seu-dragao-2010": {
    "img": "https://image.tmdb.org/t/p/w500/ygGmAO60t8GyqUo9xYeYxSZAR3b.jpg",
    "w": 500,
@@ -2751,6 +3491,16 @@
    "tmdb": "/ygGmAO60t8GyqUo9xYeYxSZAR3b.jpg",
    "imdb": "tt0892769",
    "local": "/telas/cartazes/bc945bea9bc185d0.webp"
+  },
+  "como-treinar-o-seu-dragao-3-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/166428",
+   "fonte": "tmdb",
+   "tmdb": "/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg",
+   "imdb": "tt2386490",
+   "local": "/telas/cartazes/1cde3056412737d6.webp"
   },
   "como-vender-drogas-online-rapido-2019": {
    "img": "https://image.tmdb.org/t/p/w500/xg7U76h1DNtwa0eBOIbFdiM80DR.jpg",
@@ -2871,6 +3621,16 @@
    "tmdb": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
    "imdb": "tt7286456",
    "local": "/telas/cartazes/90b4b5909fd95ed8.webp"
+  },
+  "coringa-delirio-a-dois-2024": {
+   "img": "https://image.tmdb.org/t/p/w500/if8QiqCI7WAGImKcJCfzp6VTyKA.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/889737",
+   "fonte": "tmdb",
+   "tmdb": "/if8QiqCI7WAGImKcJCfzp6VTyKA.jpg",
+   "imdb": "tt11315808",
+   "local": "/telas/cartazes/ae8afd38de9045e0.webp"
   },
   "corra-2017": {
    "img": "https://image.tmdb.org/t/p/w500/tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg",
@@ -3012,6 +3772,16 @@
    "imdb": "tt11989890",
    "local": "/telas/cartazes/e2f360363e4f1657.webp"
   },
+  "de-pernas-pro-ar-2-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/9Qd8MSJLAtDHMiPrZ3kgHW63DIc.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/161908",
+   "fonte": "tmdb",
+   "tmdb": "/9Qd8MSJLAtDHMiPrZ3kgHW63DIc.jpg",
+   "imdb": "tt2296709",
+   "local": "/telas/cartazes/205e0d14778837cd.webp"
+  },
   "de-pernas-pro-ar-2010": {
    "img": "https://image.tmdb.org/t/p/w500/m8tcxGK8liu31vj2vwidON5jPWY.jpg",
    "w": 500,
@@ -3021,6 +3791,16 @@
    "tmdb": "/m8tcxGK8liu31vj2vwidON5jPWY.jpg",
    "imdb": "tt1564916",
    "local": "/telas/cartazes/9fcbdb068c51c973.webp"
+  },
+  "de-pernas-pro-ar-3-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/8Mx1d3Gi6NiUGJ78fcs0UOPtwbX.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/562289",
+   "fonte": "tmdb",
+   "tmdb": "/8Mx1d3Gi6NiUGJ78fcs0UOPtwbX.jpg",
+   "imdb": "tt9214310",
+   "local": "/telas/cartazes/6d6e1c3af7a9f643.webp"
   },
   "de-repente-30-2004": {
    "img": "https://image.tmdb.org/t/p/w500/iNZdSIfhSCMtRILDNyhLn8UKeSG.jpg",
@@ -3032,6 +3812,16 @@
    "imdb": "tt0337563",
    "local": "/telas/cartazes/0b35b7b23267763e.webp"
   },
+  "de-volta-a-lagoa-azul-1991": {
+   "img": "https://image.tmdb.org/t/p/w500/jhUTLuPgc3Qcvr5xtji8oiWSfYy.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/13888",
+   "fonte": "tmdb",
+   "tmdb": "/jhUTLuPgc3Qcvr5xtji8oiWSfYy.jpg",
+   "imdb": "tt0102782",
+   "local": "/telas/cartazes/d6401de9f275f469.webp"
+  },
   "de-volta-para-o-futuro-1985": {
    "img": "https://image.tmdb.org/t/p/w500/vN5B5WgYscRGcQpVhHl6p9DDTP0.jpg",
    "w": 500,
@@ -3042,6 +3832,26 @@
    "imdb": "tt0088763",
    "local": "/telas/cartazes/0bb33a85a5458421.webp"
   },
+  "de-volta-para-o-futuro-ii-1989": {
+   "img": "https://image.tmdb.org/t/p/w500/hQq8xZe5uLjFzSBt4LanNP7SQjl.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/165",
+   "fonte": "tmdb",
+   "tmdb": "/hQq8xZe5uLjFzSBt4LanNP7SQjl.jpg",
+   "imdb": "tt0096874",
+   "local": "/telas/cartazes/88baeaa77065efe1.webp"
+  },
+  "de-volta-para-o-futuro-iii-1990": {
+   "img": "https://image.tmdb.org/t/p/w500/crzoVQnMzIrRfHtQw0tLBirNfVg.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/196",
+   "fonte": "tmdb",
+   "tmdb": "/crzoVQnMzIrRfHtQw0tLBirNfVg.jpg",
+   "imdb": "tt0099088",
+   "local": "/telas/cartazes/53891b535ab2aef3.webp"
+  },
   "death-note-2006": {
    "img": "https://image.tmdb.org/t/p/w500/tCZFfYTIwrR7n94J6G14Y4hAFU6.jpg",
    "w": 500,
@@ -3051,6 +3861,26 @@
    "tmdb": "/tCZFfYTIwrR7n94J6G14Y4hAFU6.jpg",
    "imdb": "tt0877057",
    "local": "/telas/cartazes/6d96b2a315eb7270.webp"
+  },
+  "debi-loide-2-2014": {
+   "img": "https://image.tmdb.org/t/p/w500/cvEi0xV7TUkabJGuzulhvbMjrHi.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/100042",
+   "fonte": "tmdb",
+   "tmdb": "/cvEi0xV7TUkabJGuzulhvbMjrHi.jpg",
+   "imdb": "tt2096672",
+   "local": "/telas/cartazes/14cb5e829695ee1c.webp"
+  },
+  "debi-loide-2-quando-debi-conheceu-loide-2003": {
+   "img": "https://image.tmdb.org/t/p/w500/qxD6P3UXASFCdbrVavceZzgOfI9.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10152",
+   "fonte": "tmdb",
+   "tmdb": "/qxD6P3UXASFCdbrVavceZzgOfI9.jpg",
+   "imdb": "tt0329028",
+   "local": "/telas/cartazes/9ba5ad4f1b83a532.webp"
   },
   "debi-loide-dois-idiotas-em-apuros-1994": {
    "img": "https://image.tmdb.org/t/p/w500/4LdpBXiCyGKkR8FGHgjKlphrfUc.jpg",
@@ -3241,6 +4071,16 @@
    "tmdb": "/dDdcAfHBZ6Aalv53iR6o35CSLWA.jpg",
    "imdb": "tt8518136",
    "local": "/telas/cartazes/4360f0d8c6a27fa2.webp"
+  },
+  "dirty-dancing-2-noites-de-havana-2004": {
+   "img": "https://image.tmdb.org/t/p/w500/5FnSCH592YIivbKtotq7YQanvmu.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10677",
+   "fonte": "tmdb",
+   "tmdb": "/5FnSCH592YIivbKtotq7YQanvmu.jpg",
+   "imdb": "tt0338096",
+   "local": "/telas/cartazes/f48d259729d1f16d.webp"
   },
   "dirty-dancing-ritmo-quente-1987": {
    "img": "https://image.tmdb.org/t/p/w500/9Jw6jys7q9gjzVX5zm1z0gC8gY9.jpg",
@@ -3452,6 +4292,16 @@
    "imdb": "tt0103405",
    "local": "/telas/cartazes/c3268e338c1e2811.webp"
   },
+  "dragao-vermelho-2002": {
+   "img": "https://image.tmdb.org/t/p/w500/ou9ZKA2cms02b7CdCdVqGkKu0O0.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9533",
+   "fonte": "tmdb",
+   "tmdb": "/ou9ZKA2cms02b7CdCdVqGkKu0O0.jpg",
+   "imdb": "tt0289765",
+   "local": "/telas/cartazes/a10f7c17ac05999a.webp"
+  },
   "dragon-ball-1986": {
    "img": "https://image.tmdb.org/t/p/w500/onCLyCOgszTIyyVs2XKYSkKPOPG.jpg",
    "w": 500,
@@ -3531,6 +4381,46 @@
    "tmdb": "/7Bjd8kfmDSOzpmhySpEhkUyK2oH.jpg",
    "imdb": "tt0095016",
    "local": "/telas/cartazes/2730b504fcc8fed9.webp"
+  },
+  "duro-de-matar-2-1990": {
+   "img": "https://image.tmdb.org/t/p/w500/ybki0UWO3OPhaM6MSniuKC7sy1R.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1573",
+   "fonte": "tmdb",
+   "tmdb": "/ybki0UWO3OPhaM6MSniuKC7sy1R.jpg",
+   "imdb": "tt0099423",
+   "local": "/telas/cartazes/7a7055c975547d85.webp"
+  },
+  "duro-de-matar-4-0-2007": {
+   "img": "https://image.tmdb.org/t/p/w500/31TT47YjBl7a7uvJ3ff1nrirXhP.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1571",
+   "fonte": "tmdb",
+   "tmdb": "/31TT47YjBl7a7uvJ3ff1nrirXhP.jpg",
+   "imdb": "tt0337978",
+   "local": "/telas/cartazes/a9314646cd239bc8.webp"
+  },
+  "duro-de-matar-a-vinganca-1995": {
+   "img": "https://image.tmdb.org/t/p/w500/buqmCdFQEWwEpL3agGgg2GVjN2d.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1572",
+   "fonte": "tmdb",
+   "tmdb": "/buqmCdFQEWwEpL3agGgg2GVjN2d.jpg",
+   "imdb": "tt0112864",
+   "local": "/telas/cartazes/fe36d3a1ddb629ad.webp"
+  },
+  "duro-de-matar-um-bom-dia-para-morrer-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/qJ0csDXAVFMsNn0cRcjy6W6PxAK.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/47964",
+   "fonte": "tmdb",
+   "tmdb": "/qJ0csDXAVFMsNn0cRcjy6W6PxAK.jpg",
+   "imdb": "tt1606378",
+   "local": "/telas/cartazes/034519eaa505a858.webp"
   },
   "e-ai-meu-irmao-cade-voce-2000": {
    "img": "https://image.tmdb.org/t/p/w500/2YztYilviFCYcEtDAnrOstUWGie.jpg",
@@ -3752,6 +4642,16 @@
    "imdb": "tt0398286",
    "local": "/telas/cartazes/ddccb711c71836d9.webp"
   },
+  "enrolados-outra-vez-o-especial-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/zj82L9maBSW6CAVZltBoFBSuTk1.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/438747",
+   "fonte": "tmdb",
+   "tmdb": "/zj82L9maBSW6CAVZltBoFBSuTk1.jpg",
+   "imdb": "tt5533228",
+   "local": "/telas/cartazes/2ff334428d6921d3.webp"
+  },
   "ensaio-sobre-a-cegueira-2008": {
    "img": "https://image.tmdb.org/t/p/w500/deBsx5IxyqCC217j3VY24TkkE0Z.jpg",
    "w": 500,
@@ -3771,6 +4671,36 @@
    "tmdb": "/5tXJ9ctuyEOMUFLaeqRisbXowWs.jpg",
    "imdb": "tt0212338",
    "local": "/telas/cartazes/e04d38b0495545c7.webp"
+  },
+  "entrando-numa-fria-maior-ainda-2004": {
+   "img": "https://image.tmdb.org/t/p/w500/59fXm6N2x7QSbvt6BaBxTNBXGL8.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/693",
+   "fonte": "tmdb",
+   "tmdb": "/59fXm6N2x7QSbvt6BaBxTNBXGL8.jpg",
+   "imdb": "tt0290002",
+   "local": "/telas/cartazes/84aead5bae8a6150.webp"
+  },
+  "entrando-numa-fria-maior-ainda-com-a-familia-2010": {
+   "img": "https://image.tmdb.org/t/p/w500/90mwPRNMmX9RUGVgKMJMJNQnYX8.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/39451",
+   "fonte": "tmdb",
+   "tmdb": "/90mwPRNMmX9RUGVgKMJMJNQnYX8.jpg",
+   "imdb": "tt0970866",
+   "local": "/telas/cartazes/422bd27dec92e107.webp"
+  },
+  "entrando-numa-grande-fria-2026": {
+   "img": "https://image.tmdb.org/t/p/w500/gPdzdeehaoaYqxH2rA6yayEDSsS.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1400336",
+   "fonte": "tmdb",
+   "tmdb": "/gPdzdeehaoaYqxH2rA6yayEDSsS.jpg",
+   "imdb": "tt34966140",
+   "local": "/telas/cartazes/ac15124da7a47c0c.webp"
   },
   "entre-dois-amores-1985": {
    "img": "https://image.tmdb.org/t/p/w500/6oMKqh08TfxmvnoFR4mm1wZB67P.jpg",
@@ -3812,6 +4742,16 @@
    "imdb": "tt0463998",
    "local": "/telas/cartazes/10cc0a7cb4fe5560.webp"
   },
+  "espiral-o-legado-de-jogos-mortais-2021": {
+   "img": "https://image.tmdb.org/t/p/w500/cTvSDfBuXTZTdRCNduGMANd7VEP.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/602734",
+   "fonte": "tmdb",
+   "tmdb": "/cTvSDfBuXTZTdRCNduGMANd7VEP.jpg",
+   "imdb": "tt10342730",
+   "local": "/telas/cartazes/11143a5e44470e2c.webp"
+  },
   "esquadrao-classe-a-1983": {
    "img": "https://image.tmdb.org/t/p/w500/p2qWJJ7Wyaq2xvgIHuBw4zVNBij.jpg",
    "w": 500,
@@ -3831,6 +4771,36 @@
    "tmdb": "/onTSipZ8R3bliBdKfPtsDuHTdlL.jpg",
    "imdb": "tt0099785",
    "local": "/telas/cartazes/b311f3edc89ed3a3.webp"
+  },
+  "esqueceram-de-mim-2-perdido-em-nova-york-1992": {
+   "img": "https://image.tmdb.org/t/p/w500/uuitWHpJwxD1wruFl2nZHIb4UGN.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/772",
+   "fonte": "tmdb",
+   "tmdb": "/uuitWHpJwxD1wruFl2nZHIb4UGN.jpg",
+   "imdb": "tt0104431",
+   "local": "/telas/cartazes/fc71e0625b93260c.webp"
+  },
+  "esqueceram-de-mim-3-1997": {
+   "img": "https://image.tmdb.org/t/p/w500/6uOadrCfle0n2LOOxHbgWEdnrm2.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9714",
+   "fonte": "tmdb",
+   "tmdb": "/6uOadrCfle0n2LOOxHbgWEdnrm2.jpg",
+   "imdb": "tt0119303",
+   "local": "/telas/cartazes/1b430abf3551bf4c.webp"
+  },
+  "esqueceram-de-mim-4-2002": {
+   "img": "https://image.tmdb.org/t/p/w500/qRktvMOO2QaCL7gvNyvZDoxPOZj.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/12536",
+   "fonte": "tmdb",
+   "tmdb": "/qRktvMOO2QaCL7gvNyvZDoxPOZj.jpg",
+   "imdb": "tt0329200",
+   "local": "/telas/cartazes/73b327ee431d9477.webp"
   },
   "estamira-2004": {
    "img": "https://image.tmdb.org/t/p/w500/kCuyth0xDhSVjp2lPTCFeDDfgvt.jpg",
@@ -4262,6 +5232,16 @@
    "imdb": "tt9641192",
    "local": "/telas/cartazes/e43e512f95fd0931.webp"
   },
+  "frozen-ii-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/mINJaa34MtknCYl5AjtNJzWj8cD.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/330457",
+   "fonte": "tmdb",
+   "tmdb": "/mINJaa34MtknCYl5AjtNJzWj8cD.jpg",
+   "imdb": "tt4520988",
+   "local": "/telas/cartazes/cb40943399d8e5aa.webp"
+  },
   "frozen-uma-aventura-congelante-2013": {
    "img": "https://image.tmdb.org/t/p/w500/itAKcobTYGpYT8Phwjd8c9hleTo.jpg",
    "w": 500,
@@ -4342,6 +5322,16 @@
    "imdb": "tt3915174",
    "local": "/telas/cartazes/e0e9cc4bef42a09d.webp"
   },
+  "gato-de-botas-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/7a5Jzjr9TmffGy76y1SZhn3sCiz.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/417859",
+   "fonte": "tmdb",
+   "tmdb": "/7a5Jzjr9TmffGy76y1SZhn3sCiz.jpg",
+   "imdb": "tt0448694",
+   "local": "/telas/cartazes/af86239a34201003.webp"
+  },
   "genio-indomavel-1997": {
    "img": "https://image.tmdb.org/t/p/w500/z2FnLKpFi1HPO7BEJxdkv6hpJSU.jpg",
    "w": 500,
@@ -4351,6 +5341,16 @@
    "tmdb": "/z2FnLKpFi1HPO7BEJxdkv6hpJSU.jpg",
    "imdb": "tt0119217",
    "local": "/telas/cartazes/0cad51cd3583cd07.webp"
+  },
+  "gente-grande-2-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/hT6ijOtjtYrnyDhN7VA2QWyGFAm.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/109418",
+   "fonte": "tmdb",
+   "tmdb": "/hT6ijOtjtYrnyDhN7VA2QWyGFAm.jpg",
+   "imdb": "tt2191701",
+   "local": "/telas/cartazes/0bff2519b3186314.webp"
   },
   "gente-grande-2010": {
    "img": "https://image.tmdb.org/t/p/w500/cQGM5k1NtU85n4TUlrOrwijSCcm.jpg",
@@ -4382,6 +5382,26 @@
    "imdb": "tt0099653",
    "local": "/telas/cartazes/0980592d5ef1a89e.webp"
   },
+  "ghostbusters-apocalipse-de-gelo-2024": {
+   "img": "https://image.tmdb.org/t/p/w500/e1J2oNzSBdou01sUvriVuoYp0pJ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/967847",
+   "fonte": "tmdb",
+   "tmdb": "/e1J2oNzSBdou01sUvriVuoYp0pJ.jpg",
+   "imdb": "tt21235248",
+   "local": "/telas/cartazes/c2455d4c6bd22cdf.webp"
+  },
+  "ghostbusters-mais-alem-2021": {
+   "img": "https://image.tmdb.org/t/p/w500/sg4xJaufDiQl7caFEskBtQXfD4x.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/425909",
+   "fonte": "tmdb",
+   "tmdb": "/sg4xJaufDiQl7caFEskBtQXfD4x.jpg",
+   "imdb": "tt4513678",
+   "local": "/telas/cartazes/83676a6fef4aa791.webp"
+  },
   "gilmore-girls-tal-mae-tal-filha-2000": {
    "img": "https://image.tmdb.org/t/p/w500/gwtzCwU2wdLLf8oejQu2TINiWfQ.jpg",
    "w": 500,
@@ -4391,6 +5411,16 @@
    "tmdb": "/gwtzCwU2wdLLf8oejQu2TINiWfQ.jpg",
    "imdb": "tt0238784",
    "local": "/telas/cartazes/d088f3df48af65ea.webp"
+  },
+  "gladiador-2-2024": {
+   "img": "https://image.tmdb.org/t/p/w500/2cxhvwyEwRlysAmRH4iodkvo0z5.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/558449",
+   "fonte": "tmdb",
+   "tmdb": "/2cxhvwyEwRlysAmRH4iodkvo0z5.jpg",
+   "imdb": "tt9218128",
+   "local": "/telas/cartazes/651469455fe0dc27.webp"
   },
   "gladiador-2000": {
    "img": "https://image.tmdb.org/t/p/w500/aDb548BOkFfI4nFm0kx8A3Ezh7H.jpg",
@@ -4552,6 +5582,26 @@
    "imdb": "tt2015381",
    "local": "/telas/cartazes/8809790868f7dd98.webp"
   },
+  "guardioes-da-galaxia-vol-2-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/283995",
+   "fonte": "tmdb",
+   "tmdb": "/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg",
+   "imdb": "tt3896198",
+   "local": "/telas/cartazes/55d2c8f5ca55e175.webp"
+  },
+  "guardioes-da-galaxia-vol-3-2023": {
+   "img": "https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/447365",
+   "fonte": "tmdb",
+   "tmdb": "/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
+   "imdb": "tt6791350",
+   "local": "/telas/cartazes/c69bd43287ae98c7.webp"
+  },
   "guerra-civil-2024": {
    "img": "https://image.tmdb.org/t/p/w500/sh7Rg8Er3tFcN9BpKIPOMvALgZd.jpg",
    "w": 500,
@@ -4611,6 +5661,16 @@
    "tmdb": "/usJAQAA7s9lJGGOGehIZdzKPCke.jpg",
    "imdb": "tt0493093",
    "local": "/telas/cartazes/9e6cd2349ec55caf.webp"
+  },
+  "hannibal-2001": {
+   "img": "https://image.tmdb.org/t/p/w500/v5wAZwRqpGWmyAaaJ8BBHYuNXnj.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9740",
+   "fonte": "tmdb",
+   "tmdb": "/v5wAZwRqpGWmyAaaJ8BBHYuNXnj.jpg",
+   "imdb": "tt0212985",
+   "local": "/telas/cartazes/a7023b4eb3c1c0c9.webp"
   },
   "harry-e-sally-feitos-um-para-o-outro-1989": {
    "img": "https://image.tmdb.org/t/p/w500/rFOiFUhTMtDetqCGClC9PIgnC1P.jpg",
@@ -4852,6 +5912,16 @@
    "imdb": "tt1796960",
    "local": "/telas/cartazes/0c8196ce41275a73.webp"
   },
+  "homem-aranha-2-2004": {
+   "img": "https://image.tmdb.org/t/p/w500/aGuvNAaaZuWXYQQ6N2v7DeuP6mB.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/558",
+   "fonte": "tmdb",
+   "tmdb": "/aGuvNAaaZuWXYQQ6N2v7DeuP6mB.jpg",
+   "imdb": "tt0316654",
+   "local": "/telas/cartazes/6871b109e479d078.webp"
+  },
   "homem-aranha-2002": {
    "img": "https://image.tmdb.org/t/p/w500/or6XJBVpcEbIkma0V9zshnbEtx4.jpg",
    "w": 500,
@@ -4861,6 +5931,16 @@
    "tmdb": "/or6XJBVpcEbIkma0V9zshnbEtx4.jpg",
    "imdb": "tt0145487",
    "local": "/telas/cartazes/2ad257a80244400d.webp"
+  },
+  "homem-aranha-3-2007": {
+   "img": "https://image.tmdb.org/t/p/w500/qFmwhVUoUSXjkKRmca5yGDEXBIj.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/559",
+   "fonte": "tmdb",
+   "tmdb": "/qFmwhVUoUSXjkKRmca5yGDEXBIj.jpg",
+   "imdb": "tt0413300",
+   "local": "/telas/cartazes/03f6059b4079e8e6.webp"
   },
   "homem-aranha-atraves-do-aranhaverso-2023": {
    "img": "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
@@ -4892,6 +5972,16 @@
    "imdb": "tt35301431",
    "local": "/telas/cartazes/a3cedbaeae43cf11.webp"
   },
+  "homem-de-ferro-2-2010": {
+   "img": "https://image.tmdb.org/t/p/w500/6WBeq4fCfn7AN0o21W9qNcRF2l9.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10138",
+   "fonte": "tmdb",
+   "tmdb": "/6WBeq4fCfn7AN0o21W9qNcRF2l9.jpg",
+   "imdb": "tt1228705",
+   "local": "/telas/cartazes/392012cfaf1b22e6.webp"
+  },
   "homem-de-ferro-2008": {
    "img": "https://image.tmdb.org/t/p/w500/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
    "w": 500,
@@ -4901,6 +5991,16 @@
    "tmdb": "/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
    "imdb": "tt0371746",
    "local": "/telas/cartazes/0cffce1735c7d536.webp"
+  },
+  "homem-de-ferro-3-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/qhPtAc1TKbMPqNvcdXSOn9Bn7hZ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/68721",
+   "fonte": "tmdb",
+   "tmdb": "/qhPtAc1TKbMPqNvcdXSOn9Bn7hZ.jpg",
+   "imdb": "tt1300854",
+   "local": "/telas/cartazes/56df102a09ba2a59.webp"
   },
   "homens-e-deuses-2010": {
    "img": "https://image.tmdb.org/t/p/w500/rYi5SbrfAQkJzxG82QJkoIPv6iU.jpg",
@@ -5052,6 +6152,26 @@
    "imdb": "tt0116629",
    "local": "/telas/cartazes/186f209e096a34d4.webp"
   },
+  "independence-day-o-ressurgimento-2016": {
+   "img": "https://image.tmdb.org/t/p/w500/9S50foUIYGwiNPWOxi1WJF6IPwI.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/47933",
+   "fonte": "tmdb",
+   "tmdb": "/9S50foUIYGwiNPWOxi1WJF6IPwI.jpg",
+   "imdb": "tt1628841",
+   "local": "/telas/cartazes/27487fde5bc871fc.webp"
+  },
+  "indiana-jones-e-a-reliquia-do-destino-2023": {
+   "img": "https://image.tmdb.org/t/p/w500/Af4bXE63pVsb2FtbW8uYIyPBadD.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/335977",
+   "fonte": "tmdb",
+   "tmdb": "/Af4bXE63pVsb2FtbW8uYIyPBadD.jpg",
+   "imdb": "tt1462764",
+   "local": "/telas/cartazes/1775f52e0d9a795d.webp"
+  },
   "indiana-jones-e-a-ultima-cruzada-1989": {
    "img": "https://image.tmdb.org/t/p/w500/sizg1AU8f8JDZX4QIgE4pjUMBvx.jpg",
    "w": 500,
@@ -5061,6 +6181,26 @@
    "tmdb": "/sizg1AU8f8JDZX4QIgE4pjUMBvx.jpg",
    "imdb": "tt0097576",
    "local": "/telas/cartazes/6ddf65a2f0492704.webp"
+  },
+  "indiana-jones-e-o-reino-da-caveira-de-cristal-2008": {
+   "img": "https://image.tmdb.org/t/p/w500/56As6XEM1flWvprX4LgkPl8ii4K.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/217",
+   "fonte": "tmdb",
+   "tmdb": "/56As6XEM1flWvprX4LgkPl8ii4K.jpg",
+   "imdb": "tt0367882",
+   "local": "/telas/cartazes/6371f51fda3bd67d.webp"
+  },
+  "indiana-jones-e-o-templo-da-perdicao-1984": {
+   "img": "https://image.tmdb.org/t/p/w500/gpdVNUaa4LhRMLfJOPj1AZdhAZ3.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/87",
+   "fonte": "tmdb",
+   "tmdb": "/gpdVNUaa4LhRMLfJOPj1AZdhAZ3.jpg",
+   "imdb": "tt0087469",
+   "local": "/telas/cartazes/75be711f9e1da6dd.webp"
   },
   "infancia-roubada-2005": {
    "img": "https://image.tmdb.org/t/p/w500/r3ebTJFcDZ35GaKcuUQQe243z4f.jpg",
@@ -5112,6 +6252,16 @@
    "imdb": "tt0290223",
    "local": "/telas/cartazes/98622eed96db00cb.webp"
   },
+  "invasao-zumbi-2-peninsula-2020": {
+   "img": "https://image.tmdb.org/t/p/w500/eeqvAzCccAZOhU3RfbvHB3s44S6.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/581392",
+   "fonte": "tmdb",
+   "tmdb": "/eeqvAzCccAZOhU3RfbvHB3s44S6.jpg",
+   "imdb": "tt8850222",
+   "local": "/telas/cartazes/04545b91c5756c4d.webp"
+  },
   "invasao-zumbi-2016": {
    "img": "https://image.tmdb.org/t/p/w500/vNVFt6dtcqnI7hqa6LFBUibuFiw.jpg",
    "w": 500,
@@ -5142,6 +6292,16 @@
    "imdb": "tt8740976",
    "local": "/telas/cartazes/2dff18d446e19d68.webp"
   },
+  "invocacao-do-mal-2-2016": {
+   "img": "https://image.tmdb.org/t/p/w500/zEqyD0SBt6HL7W9JQoWwtd5Do1T.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/259693",
+   "fonte": "tmdb",
+   "tmdb": "/zEqyD0SBt6HL7W9JQoWwtd5Do1T.jpg",
+   "imdb": "tt3065204",
+   "local": "/telas/cartazes/1d464eb1c7076dca.webp"
+  },
   "invocacao-do-mal-2013": {
    "img": "https://image.tmdb.org/t/p/w500/wVYREutTvI2tmxr6ujrHT704wGF.jpg",
    "w": 500,
@@ -5151,6 +6311,36 @@
    "tmdb": "/wVYREutTvI2tmxr6ujrHT704wGF.jpg",
    "imdb": "tt1457767",
    "local": "/telas/cartazes/4e74491bfe1c3e29.webp"
+  },
+  "invocacao-do-mal-3-a-ordem-do-demonio-2021": {
+   "img": "https://image.tmdb.org/t/p/w500/xbSuFiJbbBWCkyCCKIMfuDCA4yV.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/423108",
+   "fonte": "tmdb",
+   "tmdb": "/xbSuFiJbbBWCkyCCKIMfuDCA4yV.jpg",
+   "imdb": "tt7069210",
+   "local": "/telas/cartazes/c593b3a72d7de5bf.webp"
+  },
+  "invocacao-do-mal-4-o-ultimo-ritual-2025": {
+   "img": "https://image.tmdb.org/t/p/w500/byWgphT74ClOVa8EOGzYDkl8DVL.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1038392",
+   "fonte": "tmdb",
+   "tmdb": "/byWgphT74ClOVa8EOGzYDkl8DVL.jpg",
+   "imdb": "tt22898462",
+   "local": "/telas/cartazes/f5576da4b7cb77a9.webp"
+  },
+  "irmao-urso-2-2006": {
+   "img": "https://image.tmdb.org/t/p/w500/yaA8q2zHHUgFWdJNxXyAdU71SzM.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10010",
+   "fonte": "tmdb",
+   "tmdb": "/yaA8q2zHHUgFWdJNxXyAdU71SzM.jpg",
+   "imdb": "tt0465925",
+   "local": "/telas/cartazes/970cab5c24e94ba2.webp"
   },
   "irmao-urso-2003": {
    "img": "https://image.tmdb.org/t/p/w500/otptPbEY0vBostmo95xwiiumMJm.jpg",
@@ -5212,6 +6402,16 @@
    "imdb": "tt0297986",
    "local": "/telas/cartazes/06628a29c7a2b3ec.webp"
   },
+  "jason-bourne-2016": {
+   "img": "https://image.tmdb.org/t/p/w500/xA7N41glw17MBQtcWSm2eBlBRuG.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/324668",
+   "fonte": "tmdb",
+   "tmdb": "/xA7N41glw17MBQtcWSm2eBlBRuG.jpg",
+   "imdb": "tt4196776",
+   "local": "/telas/cartazes/dfa8ee8b648e1c3c.webp"
+  },
   "jeannie-e-um-genio-1965": {
    "img": "https://image.tmdb.org/t/p/w500/ljlyB3C3uU8Hd1krfEsYn2BVyaj.jpg",
    "w": 500,
@@ -5262,6 +6462,86 @@
    "imdb": "tt0387564",
    "local": "/telas/cartazes/f37baadbad104468.webp"
   },
+  "jogos-mortais-ii-2005": {
+   "img": "https://image.tmdb.org/t/p/w500/gTnaTysN8HsvVQqTRUh8m35mmUA.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/215",
+   "fonte": "tmdb",
+   "tmdb": "/gTnaTysN8HsvVQqTRUh8m35mmUA.jpg",
+   "imdb": "tt0432348",
+   "local": "/telas/cartazes/020b1d03090bb4aa.webp"
+  },
+  "jogos-mortais-iii-2006": {
+   "img": "https://image.tmdb.org/t/p/w500/4iO9n24Rb10peXV0JH2EldIOrAp.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/214",
+   "fonte": "tmdb",
+   "tmdb": "/4iO9n24Rb10peXV0JH2EldIOrAp.jpg",
+   "imdb": "tt0489270",
+   "local": "/telas/cartazes/45f191173e854a0f.webp"
+  },
+  "jogos-mortais-iv-2007": {
+   "img": "https://image.tmdb.org/t/p/w500/ku1QdCXOU4ckz3zxLLlis8MIJVm.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/663",
+   "fonte": "tmdb",
+   "tmdb": "/ku1QdCXOU4ckz3zxLLlis8MIJVm.jpg",
+   "imdb": "tt0890870",
+   "local": "/telas/cartazes/c5e8a56a606dbab6.webp"
+  },
+  "jogos-mortais-jigsaw-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/7RwHxhdUNS996JPFNB9a7CJtlwR.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/298250",
+   "fonte": "tmdb",
+   "tmdb": "/7RwHxhdUNS996JPFNB9a7CJtlwR.jpg",
+   "imdb": "tt3348730",
+   "local": "/telas/cartazes/9e6df06a2d788a06.webp"
+  },
+  "jogos-mortais-o-final-2010": {
+   "img": "https://image.tmdb.org/t/p/w500/qHCZ6LjtmqWDfXXN28TlIC9OppK.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/41439",
+   "fonte": "tmdb",
+   "tmdb": "/qHCZ6LjtmqWDfXXN28TlIC9OppK.jpg",
+   "imdb": "tt1477076",
+   "local": "/telas/cartazes/be368b9f64df5a11.webp"
+  },
+  "jogos-mortais-v-2008": {
+   "img": "https://image.tmdb.org/t/p/w500/rKl79KqLXg60KFyKsLe4wSSjQ08.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/11917",
+   "fonte": "tmdb",
+   "tmdb": "/rKl79KqLXg60KFyKsLe4wSSjQ08.jpg",
+   "imdb": "tt1132626",
+   "local": "/telas/cartazes/886c8f465c43467c.webp"
+  },
+  "jogos-mortais-vi-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/jBr7bBPA4PYPaf4O6nfjYViyRWK.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/22804",
+   "fonte": "tmdb",
+   "tmdb": "/jBr7bBPA4PYPaf4O6nfjYViyRWK.jpg",
+   "imdb": "tt1233227",
+   "local": "/telas/cartazes/b3793e0ec5cc33fe.webp"
+  },
+  "jogos-mortais-x-2023": {
+   "img": "https://image.tmdb.org/t/p/w500/u7Lp1Hi8aBS73jv4KRMIv5aK4ax.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/951491",
+   "fonte": "tmdb",
+   "tmdb": "/u7Lp1Hi8aBS73jv4KRMIv5aK4ax.jpg",
+   "imdb": "tt21807222",
+   "local": "/telas/cartazes/239c2bf5607a1429.webp"
+  },
   "jogos-sagrados-2018": {
    "img": "https://image.tmdb.org/t/p/w500/uEbNtFbK4At9WBDGap23lt1qO9n.jpg",
    "w": 500,
@@ -5282,6 +6562,56 @@
    "imdb": "tt1392170",
    "local": "/telas/cartazes/4ead4313d5bb0dfb.webp"
   },
+  "jogos-vorazes-a-esperanca-o-final-2015": {
+   "img": "https://image.tmdb.org/t/p/w500/lImKHDfExAulp16grYm8zD5eONE.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/131634",
+   "fonte": "tmdb",
+   "tmdb": "/lImKHDfExAulp16grYm8zD5eONE.jpg",
+   "imdb": "tt1951266",
+   "local": "/telas/cartazes/d09d0e5c320bfb41.webp"
+  },
+  "jogos-vorazes-a-esperanca-parte-1-2014": {
+   "img": "https://image.tmdb.org/t/p/w500/4FAA18ZIja70d1Tu5hr5cj2q1sB.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/131631",
+   "fonte": "tmdb",
+   "tmdb": "/4FAA18ZIja70d1Tu5hr5cj2q1sB.jpg",
+   "imdb": "tt1951265",
+   "local": "/telas/cartazes/b962ed2efaa1ddd0.webp"
+  },
+  "jogos-vorazes-em-chamas-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/vrQHDXjVmbYzadOXQ0UaObunoy2.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/101299",
+   "fonte": "tmdb",
+   "tmdb": "/vrQHDXjVmbYzadOXQ0UaObunoy2.jpg",
+   "imdb": "tt1951264",
+   "local": "/telas/cartazes/3333ab33e55f9432.webp"
+  },
+  "john-wick-3-parabellum-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/458156",
+   "fonte": "tmdb",
+   "tmdb": "/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg",
+   "imdb": "tt6146586",
+   "local": "/telas/cartazes/c82d20aaaff7b47a.webp"
+  },
+  "john-wick-4-baba-yaga-2023": {
+   "img": "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/603692",
+   "fonte": "tmdb",
+   "tmdb": "/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+   "imdb": "tt10366206",
+   "local": "/telas/cartazes/d9c849036bb6e418.webp"
+  },
   "john-wick-de-volta-ao-jogo-2014": {
    "img": "https://image.tmdb.org/t/p/w500/wXqWR7dHncNRbxoEGybEy7QTe9h.jpg",
    "w": 500,
@@ -5291,6 +6621,16 @@
    "tmdb": "/wXqWR7dHncNRbxoEGybEy7QTe9h.jpg",
    "imdb": "tt2911666",
    "local": "/telas/cartazes/ed323fb81cdae3b3.webp"
+  },
+  "john-wick-um-novo-dia-para-matar-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/hXWBc0ioZP3cN4zCu6SN3YHXZVO.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/324552",
+   "fonte": "tmdb",
+   "tmdb": "/hXWBc0ioZP3cN4zCu6SN3YHXZVO.jpg",
+   "imdb": "tt4425200",
+   "local": "/telas/cartazes/7766cfeb4dcd3b24.webp"
   },
   "joia-rara-2013": {
    "img": "https://image.tmdb.org/t/p/w500/2G45HFPHyGkLSxSNdMY2JQ6AuwD.jpg",
@@ -5352,6 +6692,46 @@
    "imdb": "tt0113497",
    "local": "/telas/cartazes/a3dc268e4b70fd94.webp"
   },
+  "jumanji-bem-vindo-a-selva-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/pSgXKPU5h6U89ipF7HBYajvYt7j.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/353486",
+   "fonte": "tmdb",
+   "tmdb": "/pSgXKPU5h6U89ipF7HBYajvYt7j.jpg",
+   "imdb": "tt2283362",
+   "local": "/telas/cartazes/dd74060bc9c860da.webp"
+  },
+  "jumanji-mundo-real-2026": {
+   "img": "https://image.tmdb.org/t/p/w500/qv0X60rC2SUWVvOkbgixpRoOSoq.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1260649",
+   "fonte": "tmdb",
+   "tmdb": "/qv0X60rC2SUWVvOkbgixpRoOSoq.jpg",
+   "imdb": "tt26735127",
+   "local": "/telas/cartazes/8d7ea09204702686.webp"
+  },
+  "jumanji-proxima-fase-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/jyw8VKYEiM1UDzPB7NsisUgBeJ8.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/512200",
+   "fonte": "tmdb",
+   "tmdb": "/jyw8VKYEiM1UDzPB7NsisUgBeJ8.jpg",
+   "imdb": "tt7975244",
+   "local": "/telas/cartazes/0ca207232e94ba2f.webp"
+  },
+  "jurassic-park-3-2001": {
+   "img": "https://image.tmdb.org/t/p/w500/oQXj4NUfS3r3gHXtDOzcJgj1lLc.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/331",
+   "fonte": "tmdb",
+   "tmdb": "/oQXj4NUfS3r3gHXtDOzcJgj1lLc.jpg",
+   "imdb": "tt0163025",
+   "local": "/telas/cartazes/8ae7a3c150c4b0c0.webp"
+  },
   "jurassic-park-o-parque-dos-dinossauros-1993": {
    "img": "https://image.tmdb.org/t/p/w500/d9mtMGQDLANKieb9PbD3yK7xxzo.jpg",
    "w": 500,
@@ -5361,6 +6741,46 @@
    "tmdb": "/d9mtMGQDLANKieb9PbD3yK7xxzo.jpg",
    "imdb": "tt0107290",
    "local": "/telas/cartazes/30e73ed15fd31c3e.webp"
+  },
+  "jurassic-world-dominio-2022": {
+   "img": "https://image.tmdb.org/t/p/w500/jbAvCACjLf1ZG0unB2tdmx5HAf1.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/507086",
+   "fonte": "tmdb",
+   "tmdb": "/jbAvCACjLf1ZG0unB2tdmx5HAf1.jpg",
+   "imdb": "tt8041270",
+   "local": "/telas/cartazes/369677c7c5bed920.webp"
+  },
+  "jurassic-world-o-mundo-dos-dinossauros-2015": {
+   "img": "https://image.tmdb.org/t/p/w500/rhr4y79GpxQF9IsfJItRXVaoGs4.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/135397",
+   "fonte": "tmdb",
+   "tmdb": "/rhr4y79GpxQF9IsfJItRXVaoGs4.jpg",
+   "imdb": "tt0369610",
+   "local": "/telas/cartazes/ee21c576d382d218.webp"
+  },
+  "jurassic-world-recomeco-2025": {
+   "img": "https://image.tmdb.org/t/p/w500/1RICxzeoNCAO5NpcRMIgg1XT6fm.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1234821",
+   "fonte": "tmdb",
+   "tmdb": "/1RICxzeoNCAO5NpcRMIgg1XT6fm.jpg",
+   "imdb": "tt31036941",
+   "local": "/telas/cartazes/6483314a97745a38.webp"
+  },
+  "jurassic-world-reino-ameacado-2018": {
+   "img": "https://image.tmdb.org/t/p/w500/x2Us3jR6ToMJjbcPbLimYoxf6xr.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/351286",
+   "fonte": "tmdb",
+   "tmdb": "/x2Us3jR6ToMJjbcPbLimYoxf6xr.jpg",
+   "imdb": "tt4881806",
+   "local": "/telas/cartazes/5ff69dd35482b6ac.webp"
   },
   "karate-kid-a-hora-da-verdade-1984": {
    "img": "https://image.tmdb.org/t/p/w500/1mp4ViklKvA0WXXsNvNx0RBuiit.jpg",
@@ -5542,6 +6962,16 @@
    "imdb": "tt0056172",
    "local": "/telas/cartazes/663fc0f6f4f861ee.webp"
   },
+  "legalmente-loira-2-2003": {
+   "img": "https://image.tmdb.org/t/p/w500/4kC0UGTuJgFnlZq2ZM6OiY7nuY8.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10327",
+   "fonte": "tmdb",
+   "tmdb": "/4kC0UGTuJgFnlZq2ZM6OiY7nuY8.jpg",
+   "imdb": "tt0333780",
+   "local": "/telas/cartazes/5a46b35f43a738cf.webp"
+  },
   "legalmente-loira-2001": {
    "img": "https://image.tmdb.org/t/p/w500/9ohlMrJHQqKhfUKh7Zr3JQqHNLZ.jpg",
    "w": 500,
@@ -5572,6 +7002,16 @@
    "imdb": "tt0110322",
    "local": "/telas/cartazes/0ccdc28261796dc2.webp"
   },
+  "leroy-stitch-2006": {
+   "img": "https://image.tmdb.org/t/p/w500/1LCfRArffse3PnqkACooOHkWcry.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/21316",
+   "fonte": "tmdb",
+   "tmdb": "/1LCfRArffse3PnqkACooOHkWcry.jpg",
+   "imdb": "tt0486761",
+   "local": "/telas/cartazes/6ed69c83484c765d.webp"
+  },
   "les-revenants-2012": {
    "img": "https://image.tmdb.org/t/p/w500/x6B2UTMMU06GNzRgbDfaObuWFT6.jpg",
    "w": 500,
@@ -5591,6 +7031,16 @@
    "tmdb": "/tCPIf5f6jUIr8KDMWsfaXwXW0kl.jpg",
    "imdb": "tt13911628",
    "local": "/telas/cartazes/db61cbdb27cb61d5.webp"
+  },
+  "lilo-stitch-2-stitch-deu-defeito-2005": {
+   "img": "https://image.tmdb.org/t/p/w500/p2R4mhZcikWEBlqv80VfJ7M9xql.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/20760",
+   "fonte": "tmdb",
+   "tmdb": "/p2R4mhZcikWEBlqv80VfJ7M9xql.jpg",
+   "imdb": "tt0457993",
+   "local": "/telas/cartazes/2aa21b7615fff937.webp"
   },
   "lilo-stitch-2002": {
    "img": "https://image.tmdb.org/t/p/w500/cFuLvQJPoZpuruAtN3rVnMmLIH8.jpg",
@@ -5802,6 +7252,16 @@
    "imdb": "tt0804503",
    "local": "/telas/cartazes/38548e535ea362cc.webp"
   },
+  "madagascar-2-2008": {
+   "img": "https://image.tmdb.org/t/p/w500/agRbLOHgN46TQO4YdKR462iR7To.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10527",
+   "fonte": "tmdb",
+   "tmdb": "/agRbLOHgN46TQO4YdKR462iR7To.jpg",
+   "imdb": "tt0479952",
+   "local": "/telas/cartazes/c139b52a250a8425.webp"
+  },
   "madagascar-2005": {
    "img": "https://image.tmdb.org/t/p/w500/zMpJY5CJKUufG9OTw0In4eAFqPX.jpg",
    "w": 500,
@@ -5811,6 +7271,16 @@
    "tmdb": "/zMpJY5CJKUufG9OTw0In4eAFqPX.jpg",
    "imdb": "tt0351283",
    "local": "/telas/cartazes/3186c2fb7bcea2eb.webp"
+  },
+  "madagascar-3-os-procurados-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/ekraj4ksvIKeuvQVEevEJkuybZd.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/80321",
+   "fonte": "tmdb",
+   "tmdb": "/ekraj4ksvIKeuvQVEevEJkuybZd.jpg",
+   "imdb": "tt1277953",
+   "local": "/telas/cartazes/8a4bce9f504c17b8.webp"
   },
   "mahabharat-1988": {
    "img": "https://image.tmdb.org/t/p/w500/850vJ2Is5zTYh7lnwhMvwovwRSe.jpg",
@@ -5861,6 +7331,16 @@
    "tmdb": "/bF24r2FxsjzgkJcrbBU8RC9JVoU.jpg",
    "imdb": "tt0144724",
    "local": "/telas/cartazes/a1bbbe3ca1b22a2f.webp"
+  },
+  "mamma-mia-la-vamos-nos-de-novo-2018": {
+   "img": "https://image.tmdb.org/t/p/w500/aWicerX4Y7n7tUwRAVHsVcBBpj2.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/458423",
+   "fonte": "tmdb",
+   "tmdb": "/aWicerX4Y7n7tUwRAVHsVcBBpj2.jpg",
+   "imdb": "tt6911608",
+   "local": "/telas/cartazes/29f79ee2c52306f1.webp"
   },
   "mamma-mia-o-filme-2008": {
    "img": "https://image.tmdb.org/t/p/w500/xYLiCWmAMHJubx5jNZ7HuXKjAbV.jpg",
@@ -5941,6 +7421,16 @@
    "tmdb": "/qOZOOD9t8242G77YA5KoueEcTSm.jpg",
    "imdb": "tt0163464",
    "local": "/telas/cartazes/909bce89fcf6b70c.webp"
+  },
+  "marley-eu-2-filhote-encrenqueiro-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/4mQCF7U07cFkHwG3GKzpbnB8DHS.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/72391",
+   "fonte": "tmdb",
+   "tmdb": "/4mQCF7U07cFkHwG3GKzpbnB8DHS.jpg",
+   "imdb": "tt1704614",
+   "local": "/telas/cartazes/83edf86a81499e14.webp"
   },
   "marley-eu-2008": {
    "img": "https://image.tmdb.org/t/p/w500/pnB6hjTKylb0Ve2nUWt16gzkErr.jpg",
@@ -6092,6 +7582,16 @@
    "imdb": "tt0405159",
    "local": "/telas/cartazes/10a98e1a43225830.webp"
   },
+  "meninas-malvadas-2-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/34zKHT98ZgSCz6ag1ZNBul7f1Wu.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/51481",
+   "fonte": "tmdb",
+   "tmdb": "/34zKHT98ZgSCz6ag1ZNBul7f1Wu.jpg",
+   "imdb": "tt1679235",
+   "local": "/telas/cartazes/3b55a241354d30cd.webp"
+  },
   "meninas-malvadas-2004": {
    "img": "https://image.tmdb.org/t/p/w500/2ZkuQXvVhh45uSvkBej4S7Ix1NJ.jpg",
    "w": 500,
@@ -6132,6 +7632,16 @@
    "imdb": "tt0096283",
    "local": "/telas/cartazes/c01a4f91f7327802.webp"
   },
+  "meu-malvado-favorito-2-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/5Fh4NdoEnCjCK9wLjdJ9DJNFl2b.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/93456",
+   "fonte": "tmdb",
+   "tmdb": "/5Fh4NdoEnCjCK9wLjdJ9DJNFl2b.jpg",
+   "imdb": "tt1690953",
+   "local": "/telas/cartazes/f3102c94b0b074ca.webp"
+  },
   "meu-malvado-favorito-2010": {
    "img": "https://image.tmdb.org/t/p/w500/b1BT309QWjtFUlJPLmXmrcHOWEL.jpg",
    "w": 500,
@@ -6141,6 +7651,26 @@
    "tmdb": "/b1BT309QWjtFUlJPLmXmrcHOWEL.jpg",
    "imdb": "tt1323594",
    "local": "/telas/cartazes/923b3f875e02c67b.webp"
+  },
+  "meu-malvado-favorito-3-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/e72KCMHNkbZ6USRJmABeqwmaJ5n.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/324852",
+   "fonte": "tmdb",
+   "tmdb": "/e72KCMHNkbZ6USRJmABeqwmaJ5n.jpg",
+   "imdb": "tt3469046",
+   "local": "/telas/cartazes/e30b818dc2940c0d.webp"
+  },
+  "meu-malvado-favorito-4-2024": {
+   "img": "https://image.tmdb.org/t/p/w500/wWba3TaojhK7NdycRhoQpsG0FaH.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/519182",
+   "fonte": "tmdb",
+   "tmdb": "/wWba3TaojhK7NdycRhoQpsG0FaH.jpg",
+   "imdb": "tt7510222",
+   "local": "/telas/cartazes/8e57e41dfd7eaa56.webp"
   },
   "meu-nome-nao-e-johnny-2008": {
    "img": "https://image.tmdb.org/t/p/w500/mKDKutX0bCvg401k68U9Nt7EG0y.jpg",
@@ -6171,6 +7701,26 @@
    "tmdb": "/uLOmOF5IzWoyrgIF5MfUnh5pa1X.jpg",
    "imdb": "tt0119654",
    "local": "/telas/cartazes/bb03c3adaa117944.webp"
+  },
+  "mib-homens-de-preto-ii-2002": {
+   "img": "https://image.tmdb.org/t/p/w500/enA22EPyzc2WQ1VVyY7zxresQQr.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/608",
+   "fonte": "tmdb",
+   "tmdb": "/enA22EPyzc2WQ1VVyY7zxresQQr.jpg",
+   "imdb": "tt0120912",
+   "local": "/telas/cartazes/87a9671c3a5e0b2b.webp"
+  },
+  "mib-homens-de-preto-iii-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/90DdoEStzeObs96fsYf4GG544iN.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/41154",
+   "fonte": "tmdb",
+   "tmdb": "/90DdoEStzeObs96fsYf4GG544iN.jpg",
+   "imdb": "tt1409024",
+   "local": "/telas/cartazes/898ac395d4fb589d.webp"
   },
   "midnight-diner-tokyo-stories-2016": {
    "img": "https://image.tmdb.org/t/p/w500/ww6hnnEnV6qM0LWkopDE7rMKAYr.jpg",
@@ -6212,6 +7762,26 @@
    "imdb": "tt5290382",
    "local": "/telas/cartazes/228f6fede683bfa5.webp"
   },
+  "minha-mae-e-uma-peca-2-o-filme-2016": {
+   "img": "https://image.tmdb.org/t/p/w500/eDApDWU6r9zxk9MZLc6rfnBb3vu.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/227932",
+   "fonte": "tmdb",
+   "tmdb": "/eDApDWU6r9zxk9MZLc6rfnBb3vu.jpg",
+   "imdb": "tt3212812",
+   "local": "/telas/cartazes/3a8597a8cca132fd.webp"
+  },
+  "minha-mae-e-uma-peca-3-o-filme-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/zw77BFPGJ73Lig8GwRzYj1XHq53.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/620683",
+   "fonte": "tmdb",
+   "tmdb": "/zw77BFPGJ73Lig8GwRzYj1XHq53.jpg",
+   "imdb": "tt10611372",
+   "local": "/telas/cartazes/b26d76bae75fb12e.webp"
+  },
   "minha-mae-e-uma-peca-o-filme-2013": {
    "img": "https://image.tmdb.org/t/p/w500/veCMD8bzoLuXiSGPCXCFKwJSO9v.jpg",
    "w": 500,
@@ -6251,6 +7821,76 @@
    "tmdb": "/l5uxY5m5OInWpcExIpKG6AR3rgL.jpg",
    "imdb": "tt0117060",
    "local": "/telas/cartazes/b79cfb57855e1085.webp"
+  },
+  "missao-impossivel-2-2000": {
+   "img": "https://image.tmdb.org/t/p/w500/hfnrual76gPeNFduhD4xzHWpfTw.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/955",
+   "fonte": "tmdb",
+   "tmdb": "/hfnrual76gPeNFduhD4xzHWpfTw.jpg",
+   "imdb": "tt0120755",
+   "local": "/telas/cartazes/aa688cb6cac432e9.webp"
+  },
+  "missao-impossivel-3-2006": {
+   "img": "https://image.tmdb.org/t/p/w500/vKGYCpmQyV9uHybWDzXuII8Los5.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/956",
+   "fonte": "tmdb",
+   "tmdb": "/vKGYCpmQyV9uHybWDzXuII8Los5.jpg",
+   "imdb": "tt0317919",
+   "local": "/telas/cartazes/064780299f4c26cc.webp"
+  },
+  "missao-impossivel-acerto-de-contas-parte-1-2023": {
+   "img": "https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/575264",
+   "fonte": "tmdb",
+   "tmdb": "/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
+   "imdb": "tt9603212",
+   "local": "/telas/cartazes/e023de7ca80b9999.webp"
+  },
+  "missao-impossivel-efeito-fallout-2018": {
+   "img": "https://image.tmdb.org/t/p/w500/AkJQpZp9WoNdj7pLYSj1L0RcMMN.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/353081",
+   "fonte": "tmdb",
+   "tmdb": "/AkJQpZp9WoNdj7pLYSj1L0RcMMN.jpg",
+   "imdb": "tt4912910",
+   "local": "/telas/cartazes/fe20c33ae4ee7e7b.webp"
+  },
+  "missao-impossivel-nacao-secreta-2015": {
+   "img": "https://image.tmdb.org/t/p/w500/fRJLXQBHK2wyznK5yZbO7vmsuVK.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/177677",
+   "fonte": "tmdb",
+   "tmdb": "/fRJLXQBHK2wyznK5yZbO7vmsuVK.jpg",
+   "imdb": "tt2381249",
+   "local": "/telas/cartazes/5e476bed959a3466.webp"
+  },
+  "missao-impossivel-o-acerto-final-2025": {
+   "img": "https://image.tmdb.org/t/p/w500/iKPsC9EFUafRP9SrUznI61getVP.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/575265",
+   "fonte": "tmdb",
+   "tmdb": "/iKPsC9EFUafRP9SrUznI61getVP.jpg",
+   "imdb": "tt9603208",
+   "local": "/telas/cartazes/1635e9b21842e3ad.webp"
+  },
+  "missao-impossivel-protocolo-fantasma-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/eRZTGx7GsiKqPch96k27LK005ZL.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/56292",
+   "fonte": "tmdb",
+   "tmdb": "/eRZTGx7GsiKqPch96k27LK005ZL.jpg",
+   "imdb": "tt1229238",
+   "local": "/telas/cartazes/66dbb5c2dab64efd.webp"
   },
   "moana-2016": {
    "img": "https://image.tmdb.org/t/p/w500/4JeejGugONWpJkbnvL12hVoYEDa.jpg",
@@ -6352,6 +7992,16 @@
    "imdb": "tt0050986",
    "local": "/telas/cartazes/a616b1d570b817c4.webp"
   },
+  "moscou-contra-007-1963": {
+   "img": "https://image.tmdb.org/t/p/w500/zx4V17FP8oclNvOpTgs2iCCtiYk.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/657",
+   "fonte": "tmdb",
+   "tmdb": "/zx4V17FP8oclNvOpTgs2iCCtiYk.jpg",
+   "imdb": "tt0057076",
+   "local": "/telas/cartazes/0950ccfcdfc656b2.webp"
+  },
   "moulin-rouge-amor-em-vermelho-2001": {
    "img": "https://image.tmdb.org/t/p/w500/2kjM5CUZRIU5yOANUowrbJcRL9L.jpg",
    "w": 500,
@@ -6411,6 +8061,16 @@
    "tmdb": "/xZvVSZ0RTxIjblLV87vs7ADM12m.jpg",
    "imdb": "tt0105417",
    "local": "/telas/cartazes/fd9e31209fd7b358.webp"
+  },
+  "mudanca-de-habito-2-mais-loucuras-no-convento-1993": {
+   "img": "https://image.tmdb.org/t/p/w500/dlkBp5S6Ei5f54031rAhyb4IwML.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/6279",
+   "fonte": "tmdb",
+   "tmdb": "/dlkBp5S6Ei5f54031rAhyb4IwML.jpg",
+   "imdb": "tt0108147",
+   "local": "/telas/cartazes/6af1bca775aeda6c.webp"
   },
   "mundos-internos-mundos-externos-2012": {
    "img": "https://image.tmdb.org/t/p/w500/7160MQra0CrCivy9qYililLDf9s.jpg",
@@ -6802,6 +8462,16 @@
    "imdb": "tt0482901",
    "local": "/telas/cartazes/fe25d164133724b1.webp"
   },
+  "o-bebe-de-bridget-jones-2016": {
+   "img": "https://image.tmdb.org/t/p/w500/5hHomngoPZrNoXOPlyaHV6eXaQW.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/95610",
+   "fonte": "tmdb",
+   "tmdb": "/5hHomngoPZrNoXOPlyaHV6eXaQW.jpg",
+   "imdb": "tt1473832",
+   "local": "/telas/cartazes/5fb66671a7abd1af.webp"
+  },
   "o-bebe-de-rosemary-1968": {
    "img": "https://image.tmdb.org/t/p/w500/kKvQ0pyMnJweWVz2Pwbyeivq5Zk.jpg",
    "w": 500,
@@ -6892,6 +8562,16 @@
    "imdb": "tt0100594",
    "local": "/telas/cartazes/65a64483714a923f.webp"
   },
+  "o-chamado-2-2005": {
+   "img": "https://image.tmdb.org/t/p/w500/bHbz7z2pecTawhkqLpuC2m0qywe.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10320",
+   "fonte": "tmdb",
+   "tmdb": "/bHbz7z2pecTawhkqLpuC2m0qywe.jpg",
+   "imdb": "tt0377109",
+   "local": "/telas/cartazes/7185b20d614cc5c6.webp"
+  },
   "o-chamado-2002": {
    "img": "https://image.tmdb.org/t/p/w500/AeRpUynJKDpJveklBJipOYrVxCS.jpg",
    "w": 500,
@@ -6901,6 +8581,16 @@
    "tmdb": "/AeRpUynJKDpJveklBJipOYrVxCS.jpg",
    "imdb": "tt0298130",
    "local": "/telas/cartazes/4bda8bf68ff0b9be.webp"
+  },
+  "o-chamado-3-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/yp4CDOVpVmNwiPoZKQeFCpW8CFo.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/14564",
+   "fonte": "tmdb",
+   "tmdb": "/yp4CDOVpVmNwiPoZKQeFCpW8CFo.jpg",
+   "imdb": "tt0498381",
+   "local": "/telas/cartazes/9c3a866ca9d4bcb9.webp"
   },
   "o-cidadao-ilustre-2016": {
    "img": "https://image.tmdb.org/t/p/w500/bH63pZizNIJoYCE6kkVoj1lzkK.jpg",
@@ -6991,6 +8681,16 @@
    "tmdb": "/26wEWZYt6yJkwRVkjcbwJEFh9IS.jpg",
    "imdb": "tt0421715",
    "local": "/telas/cartazes/e6f49de2403891e9.webp"
+  },
+  "o-diabo-veste-prada-2-2026": {
+   "img": "https://image.tmdb.org/t/p/w500/xTI42pmsP5EDnvsNJPEDubwWBQO.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1314481",
+   "fonte": "tmdb",
+   "tmdb": "/xTI42pmsP5EDnvsNJPEDubwWBQO.jpg",
+   "imdb": "tt33612209",
+   "local": "/telas/cartazes/303780f8614f9fc6.webp"
   },
   "o-diabo-veste-prada-2006": {
    "img": "https://image.tmdb.org/t/p/w500/8912AsVuS7Sj915apArUFbv6F9L.jpg",
@@ -7092,6 +8792,16 @@
    "imdb": "tt0070047",
    "local": "/telas/cartazes/8a47f4cc0f7805b4.webp"
   },
+  "o-exterminador-do-futuro-1984": {
+   "img": "https://image.tmdb.org/t/p/w500/qvktm0BHcnmDpul4Hz01GIazWPr.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/218",
+   "fonte": "tmdb",
+   "tmdb": "/qvktm0BHcnmDpul4Hz01GIazWPr.jpg",
+   "imdb": "tt0088247",
+   "local": "/telas/cartazes/6640097a5eda0c92.webp"
+  },
   "o-exterminador-do-futuro-2-o-julgamento-final-1991": {
    "img": "https://image.tmdb.org/t/p/w500/jFTVD4XoWQTcg7wdyJKa8PEds5q.jpg",
    "w": 500,
@@ -7101,6 +8811,46 @@
    "tmdb": "/jFTVD4XoWQTcg7wdyJKa8PEds5q.jpg",
    "imdb": "tt0103064",
    "local": "/telas/cartazes/96dad332445b0223.webp"
+  },
+  "o-exterminador-do-futuro-3-a-rebeliao-das-maquinas-2003": {
+   "img": "https://image.tmdb.org/t/p/w500/vvevzdYIrk2636maNW4qeWmlPFG.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/296",
+   "fonte": "tmdb",
+   "tmdb": "/vvevzdYIrk2636maNW4qeWmlPFG.jpg",
+   "imdb": "tt0181852",
+   "local": "/telas/cartazes/114bbd1a9033dea7.webp"
+  },
+  "o-exterminador-do-futuro-a-salvacao-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/gw6JhlekZgtKUFlDTezq3j5JEPK.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/534",
+   "fonte": "tmdb",
+   "tmdb": "/gw6JhlekZgtKUFlDTezq3j5JEPK.jpg",
+   "imdb": "tt0438488",
+   "local": "/telas/cartazes/9471ee6639fd6a6b.webp"
+  },
+  "o-exterminador-do-futuro-destino-sombrio-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/290859",
+   "fonte": "tmdb",
+   "tmdb": "/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
+   "imdb": "tt6450804",
+   "local": "/telas/cartazes/6cc7e0db99144589.webp"
+  },
+  "o-exterminador-do-futuro-genesis-2015": {
+   "img": "https://image.tmdb.org/t/p/w500/oZRVDpNtmHk8M1VYy1aeOWUXgbC.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/87101",
+   "fonte": "tmdb",
+   "tmdb": "/oZRVDpNtmHk8M1VYy1aeOWUXgbC.jpg",
+   "imdb": "tt1340138",
+   "local": "/telas/cartazes/9935c60c452792cf.webp"
   },
   "o-fabuloso-destino-de-amelie-poulain-2001": {
    "img": "https://image.tmdb.org/t/p/w500/nSxDa3M9aMvGVLoItzWTepQ5h5d.jpg",
@@ -7141,6 +8891,26 @@
    "tmdb": "/zXInKuQ8FW18Ko8CtY9V30qhz1P.jpg",
    "imdb": "tt0292542",
    "local": "/telas/cartazes/1552b01549c3663e.webp"
+  },
+  "o-filho-do-ace-ventura-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/wnLBkPxGn2w8GwHw44MDDFX4R95.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/15338",
+   "fonte": "tmdb",
+   "tmdb": "/wnLBkPxGn2w8GwHw44MDDFX4R95.jpg",
+   "imdb": "tt0844029",
+   "local": "/telas/cartazes/c9ffda60c3c02872.webp"
+  },
+  "o-filho-do-maskara-2005": {
+   "img": "https://image.tmdb.org/t/p/w500/Adgnfhm9B8YAQmC0osuP4zO9SRc.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10214",
+   "fonte": "tmdb",
+   "tmdb": "/Adgnfhm9B8YAQmC0osuP4zO9SRc.jpg",
+   "imdb": "tt0362165",
+   "local": "/telas/cartazes/1d2630ab9fe78951.webp"
   },
   "o-gambito-da-rainha-2020": {
    "img": "https://image.tmdb.org/t/p/w500/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",
@@ -7312,6 +9082,16 @@
    "imdb": "tt3464902",
    "local": "/telas/cartazes/4d613c23dfd17074.webp"
   },
+  "o-legado-bourne-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/1aExL5DTGHj25ZfIC3dDwS84RWi.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/49040",
+   "fonte": "tmdb",
+   "tmdb": "/1aExL5DTGHj25ZfIC3dDwS84RWi.jpg",
+   "imdb": "tt1194173",
+   "local": "/telas/cartazes/92690114de7403f2.webp"
+  },
   "o-lobo-de-wall-street-2013": {
    "img": "https://image.tmdb.org/t/p/w500/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg",
    "w": 500,
@@ -7402,6 +9182,26 @@
    "imdb": "tt1196946",
    "local": "/telas/cartazes/a4343bb539cab149.webp"
   },
+  "o-mundo-magico-da-bela-1998": {
+   "img": "https://image.tmdb.org/t/p/w500/md6BrF3we17ZnPibam9jZDCl5iN.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/20235",
+   "fonte": "tmdb",
+   "tmdb": "/md6BrF3we17ZnPibam9jZDCl5iN.jpg",
+   "imdb": "tt0167038",
+   "local": "/telas/cartazes/235b2b0d0bf3e5f4.webp"
+  },
+  "o-mundo-perdido-jurassic-park-1997": {
+   "img": "https://image.tmdb.org/t/p/w500/s4RkAQWI9hgzctXgNFos8sJUnXJ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/330",
+   "fonte": "tmdb",
+   "tmdb": "/s4RkAQWI9hgzctXgNFos8sJUnXJ.jpg",
+   "imdb": "tt0119567",
+   "local": "/telas/cartazes/b1c7c1bdcd38a1ad.webp"
+  },
   "o-novo-mundo-2005": {
    "img": "https://image.tmdb.org/t/p/w500/dPyWMlQd54r3pK17GKG3iqjvNZ7.jpg",
    "w": 500,
@@ -7411,6 +9211,16 @@
    "tmdb": "/dPyWMlQd54r3pK17GKG3iqjvNZ7.jpg",
    "imdb": "tt0402399",
    "local": "/telas/cartazes/cd30893f91996564.webp"
+  },
+  "o-outro-lado-das-redes-2026": {
+   "img": "https://image.tmdb.org/t/p/w500/7jK6NuxVg1XuEV7UdNa6KO03IgZ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1281331",
+   "fonte": "tmdb",
+   "tmdb": "/7jK6NuxVg1XuEV7UdNa6KO03IgZ.jpg",
+   "imdb": "tt37510326",
+   "local": "/telas/cartazes/416d597f1d075c9c.webp"
   },
   "o-paciente-ingles-1996": {
    "img": "https://image.tmdb.org/t/p/w500/8eHHqMg8qEYtVw8LQLygsHXSR2q.jpg",
@@ -7512,6 +9322,16 @@
    "imdb": "tt0071562",
    "local": "/telas/cartazes/562b6c79d9f45471.webp"
   },
+  "o-poderoso-chefao-parte-iii-1990": {
+   "img": "https://image.tmdb.org/t/p/w500/lm3pQ2QoQ16pextRsmnUbG2onES.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/242",
+   "fonte": "tmdb",
+   "tmdb": "/lm3pQ2QoQ16pextRsmnUbG2onES.jpg",
+   "imdb": "tt0099674",
+   "local": "/telas/cartazes/7c540bddd203da3d.webp"
+  },
   "o-principe-do-egito-1998": {
    "img": "https://image.tmdb.org/t/p/w500/2xUjYwL6Ol7TLJPPKs7sYW5PWLX.jpg",
    "w": 500,
@@ -7571,6 +9391,16 @@
    "tmdb": "/ji3ecJphATlVgWNY0B0RVXZizdf.jpg",
    "imdb": "tt1663202",
    "local": "/telas/cartazes/df0d4fddf4c66e05.webp"
+  },
+  "o-rei-da-escocia-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/e6eNN4EpGtbXAbsR97QgjnjHs6s.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/532812",
+   "fonte": "tmdb",
+   "tmdb": "/e6eNN4EpGtbXAbsR97QgjnjHs6s.jpg",
+   "imdb": "tt8000908",
+   "local": "/telas/cartazes/068575bb8e6a7742.webp"
   },
   "o-rei-do-gado-1996": {
    "img": "https://image.tmdb.org/t/p/w500/qfOMaSn1A6FLgk3qTM7hIhKYtgA.jpg",
@@ -7781,6 +9611,26 @@
    "tmdb": "/iNDVBFNz4XyYzM9Lwip6atSTFqf.jpg",
    "imdb": "tt0190332",
    "local": "/telas/cartazes/3e567cd55977a50a.webp"
+  },
+  "o-tigre-e-o-dragao-a-espada-do-destino-2016": {
+   "img": "https://image.tmdb.org/t/p/w500/te3aeAyhkfqgpa5BSTq3oNxGqQD.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/263341",
+   "fonte": "tmdb",
+   "tmdb": "/te3aeAyhkfqgpa5BSTq3oNxGqQD.jpg",
+   "imdb": "tt2652118",
+   "local": "/telas/cartazes/bcf8109c1e1914e0.webp"
+  },
+  "o-ultimato-bourne-2007": {
+   "img": "https://image.tmdb.org/t/p/w500/15rMz5MRXFp7CP4VxhjYw4y0FUn.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2503",
+   "fonte": "tmdb",
+   "tmdb": "/15rMz5MRXFp7CP4VxhjYw4y0FUn.jpg",
+   "imdb": "tt0440963",
+   "local": "/telas/cartazes/3d9e0972caf486d0.webp"
   },
   "o-ultimo-azul-2025": {
    "img": "https://image.tmdb.org/t/p/w500/ua8XnJ450rhBTxkY2wpD2ITw7BJ.jpg",
@@ -8042,6 +9892,16 @@
    "imdb": "tt0087332",
    "local": "/telas/cartazes/ebbe7e9e736bd95e.webp"
   },
+  "os-caca-fantasmas-2-1989": {
+   "img": "https://image.tmdb.org/t/p/w500/iUZPi31KDP0n5ycpycEsvl51BdV.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2978",
+   "fonte": "tmdb",
+   "tmdb": "/iUZPi31KDP0n5ycpycEsvl51BdV.jpg",
+   "imdb": "tt0097428",
+   "local": "/telas/cartazes/3474faa430c1c842.webp"
+  },
   "os-cacadores-da-arca-perdida-1981": {
    "img": "https://image.tmdb.org/t/p/w500/ceG9VzoRAVGwivFU403Wc3AHRys.jpg",
    "w": 500,
@@ -8091,6 +9951,16 @@
    "tmdb": "/12PuU23kkDLvTd0nb8hMlE3oShB.jpg",
    "imdb": "tt0053198",
    "local": "/telas/cartazes/1751046886390f1e.webp"
+  },
+  "os-incriveis-2-2018": {
+   "img": "https://image.tmdb.org/t/p/w500/9lFKBtaVIhP7E2Pk0IY1CwTKTMZ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/260513",
+   "fonte": "tmdb",
+   "tmdb": "/9lFKBtaVIhP7E2Pk0IY1CwTKTMZ.jpg",
+   "imdb": "tt3606756",
+   "local": "/telas/cartazes/2c32322fd3032833.webp"
   },
   "os-incriveis-2004": {
    "img": "https://image.tmdb.org/t/p/w500/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg",
@@ -8332,6 +10202,66 @@
    "imdb": "tt0117571",
    "local": "/telas/cartazes/dc3a18da2d782f6c.webp"
   },
+  "panico-2-1997": {
+   "img": "https://image.tmdb.org/t/p/w500/dORlVasiaDkJXTqt9bdH7nFNs6C.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/4233",
+   "fonte": "tmdb",
+   "tmdb": "/dORlVasiaDkJXTqt9bdH7nFNs6C.jpg",
+   "imdb": "tt0120082",
+   "local": "/telas/cartazes/9515073b23f6f525.webp"
+  },
+  "panico-2022": {
+   "img": "https://image.tmdb.org/t/p/w500/nD4M4Bx457ryLuKYpxFwQ2IBJ5w.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/646385",
+   "fonte": "tmdb",
+   "tmdb": "/nD4M4Bx457ryLuKYpxFwQ2IBJ5w.jpg",
+   "imdb": "tt11245972",
+   "local": "/telas/cartazes/6e5f5cd5b8f4d889.webp"
+  },
+  "panico-3-2000": {
+   "img": "https://image.tmdb.org/t/p/w500/iFrDIex06Jpgs3dTI8vXlVB1jd.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/4234",
+   "fonte": "tmdb",
+   "tmdb": "/iFrDIex06Jpgs3dTI8vXlVB1jd.jpg",
+   "imdb": "tt0134084",
+   "local": "/telas/cartazes/1a665205682e0d26.webp"
+  },
+  "panico-4-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/3cf8p2qw9qnsaaFWc64AG6U05eT.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/41446",
+   "fonte": "tmdb",
+   "tmdb": "/3cf8p2qw9qnsaaFWc64AG6U05eT.jpg",
+   "imdb": "tt1262416",
+   "local": "/telas/cartazes/9ef57afb21688563.webp"
+  },
+  "panico-7-2026": {
+   "img": "https://image.tmdb.org/t/p/w500/jjyuk0edLiW8vOSnlfwWCCLpbh5.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1159559",
+   "fonte": "tmdb",
+   "tmdb": "/jjyuk0edLiW8vOSnlfwWCCLpbh5.jpg",
+   "imdb": "tt27047903",
+   "local": "/telas/cartazes/0fccf705d01228e9.webp"
+  },
+  "panico-vi-2023": {
+   "img": "https://image.tmdb.org/t/p/w500/wDWwtvkRRlgTiUr6TyLSMX8FCuZ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/934433",
+   "fonte": "tmdb",
+   "tmdb": "/wDWwtvkRRlgTiUr6TyLSMX8FCuZ.jpg",
+   "imdb": "tt17663992",
+   "local": "/telas/cartazes/55882982f762fbf2.webp"
+  },
   "pantanal-2022": {
    "img": "https://image.tmdb.org/t/p/w500/4Ru1BwcAKWtpM345dWe8YgHf35V.jpg",
    "w": 500,
@@ -8351,6 +10281,16 @@
    "tmdb": "/uxzzxijgPIY7slzFvMotPv8wjKA.jpg",
    "imdb": "tt1825683",
    "local": "/telas/cartazes/b67fa11824d76de4.webp"
+  },
+  "pantera-negra-wakanda-para-sempre-2022": {
+   "img": "https://image.tmdb.org/t/p/w500/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/505642",
+   "fonte": "tmdb",
+   "tmdb": "/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
+   "imdb": "tt9114286",
+   "local": "/telas/cartazes/b4308fa94314db1d.webp"
   },
   "pantheon-2022": {
    "img": "https://image.tmdb.org/t/p/w500/28xQt18ryWRcx9tBkK0MBsNNRw5.jpg",
@@ -8552,6 +10492,46 @@
    "imdb": "tt0325980",
    "local": "/telas/cartazes/0696da5a8275c342.webp"
   },
+  "piratas-do-caribe-a-vinganca-de-salazar-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/6lAPOAFYFWIO3SQRemEY2wInQMC.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/166426",
+   "fonte": "tmdb",
+   "tmdb": "/6lAPOAFYFWIO3SQRemEY2wInQMC.jpg",
+   "imdb": "tt1790809",
+   "local": "/telas/cartazes/1dec19015630c7d2.webp"
+  },
+  "piratas-do-caribe-navegando-em-aguas-misteriosas-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/keGfSvCmYj7CvdRx36OdVrAEibE.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1865",
+   "fonte": "tmdb",
+   "tmdb": "/keGfSvCmYj7CvdRx36OdVrAEibE.jpg",
+   "imdb": "tt1298650",
+   "local": "/telas/cartazes/0ad90287ff4e7dcd.webp"
+  },
+  "piratas-do-caribe-no-fim-do-mundo-2007": {
+   "img": "https://image.tmdb.org/t/p/w500/jGWpG4YhpQwVmjyHEGkxEkeRf0S.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/285",
+   "fonte": "tmdb",
+   "tmdb": "/jGWpG4YhpQwVmjyHEGkxEkeRf0S.jpg",
+   "imdb": "tt0449088",
+   "local": "/telas/cartazes/aab01c90ca5e83f0.webp"
+  },
+  "piratas-do-caribe-o-bau-da-morte-2006": {
+   "img": "https://image.tmdb.org/t/p/w500/uXEqmloGyP7UXAiphJUu2v2pcuE.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/58",
+   "fonte": "tmdb",
+   "tmdb": "/uXEqmloGyP7UXAiphJUu2v2pcuE.jpg",
+   "imdb": "tt0383574",
+   "local": "/telas/cartazes/e3d3b5fd46cb3269.webp"
+  },
   "pixote-a-lei-do-mais-fraco-1980": {
    "img": "https://image.tmdb.org/t/p/w500/zaBtclnYKv2JkgRDQ7OiFtWHm4e.jpg",
    "w": 500,
@@ -8672,6 +10652,16 @@
    "imdb": "tt0106064",
    "local": "/telas/cartazes/3da6f42d998d38b5.webp"
   },
+  "premonicao-2-2003": {
+   "img": "https://image.tmdb.org/t/p/w500/vnFgxRlLTA9fDNcGXLiHmgwmIEo.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9358",
+   "fonte": "tmdb",
+   "tmdb": "/vnFgxRlLTA9fDNcGXLiHmgwmIEo.jpg",
+   "imdb": "tt0309593",
+   "local": "/telas/cartazes/e9d0a695f177f790.webp"
+  },
   "premonicao-2000": {
    "img": "https://image.tmdb.org/t/p/w500/1mXhlQMnlfvJ2frxTjZSQNnA9Vp.jpg",
    "w": 500,
@@ -8681,6 +10671,46 @@
    "tmdb": "/1mXhlQMnlfvJ2frxTjZSQNnA9Vp.jpg",
    "imdb": "tt0195714",
    "local": "/telas/cartazes/21194281c3f6e35e.webp"
+  },
+  "premonicao-3-2006": {
+   "img": "https://image.tmdb.org/t/p/w500/p7ARuNKUGPGvkBiDtIDvAzYzonX.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9286",
+   "fonte": "tmdb",
+   "tmdb": "/p7ARuNKUGPGvkBiDtIDvAzYzonX.jpg",
+   "imdb": "tt0414982",
+   "local": "/telas/cartazes/6337649ae0a38a73.webp"
+  },
+  "premonicao-4-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/5vxXrr1MqGsT4NNeRITpfDnl4Rq.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/19912",
+   "fonte": "tmdb",
+   "tmdb": "/5vxXrr1MqGsT4NNeRITpfDnl4Rq.jpg",
+   "imdb": "tt1144884",
+   "local": "/telas/cartazes/23aaca5dfc347e3e.webp"
+  },
+  "premonicao-5-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/Akx1Po4ZLetOWfYJhQf75tbhTtK.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/55779",
+   "fonte": "tmdb",
+   "tmdb": "/Akx1Po4ZLetOWfYJhQf75tbhTtK.jpg",
+   "imdb": "tt1622979",
+   "local": "/telas/cartazes/7b7c263272595db0.webp"
+  },
+  "premonicao-6-lacos-de-sangue-2025": {
+   "img": "https://image.tmdb.org/t/p/w500/6WxhEvFsauuACfv8HyoVX6mZKFj.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/574475",
+   "fonte": "tmdb",
+   "tmdb": "/6WxhEvFsauuACfv8HyoVX6mZKFj.jpg",
+   "imdb": "tt9619824",
+   "local": "/telas/cartazes/2c29413408453a00.webp"
   },
   "prenda-me-se-for-capaz-2002": {
    "img": "https://image.tmdb.org/t/p/w500/ctjEj2xM32OvBXCq8zAdK3ZrsAj.jpg",
@@ -9072,6 +11102,16 @@
    "imdb": "tt0108906",
    "local": "/telas/cartazes/21bc4dafb44c4f93.webp"
   },
+  "rio-2-2014": {
+   "img": "https://image.tmdb.org/t/p/w500/gVNTBrjxh2YRmQFjlaqrNbHVvrd.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/172385",
+   "fonte": "tmdb",
+   "tmdb": "/gVNTBrjxh2YRmQFjlaqrNbHVvrd.jpg",
+   "imdb": "tt2357291",
+   "local": "/telas/cartazes/6d7a66914ca399c1.webp"
+  },
   "rio-2011": {
    "img": "https://image.tmdb.org/t/p/w500/4nJxhUknKV8Gqdhov8pU1YWDYfb.jpg",
    "w": 500,
@@ -9172,6 +11212,136 @@
    "imdb": "tt0115341",
    "local": "/telas/cartazes/ab861435eaaa701d.webp"
   },
+  "saga-300": {
+   "img": "https://image.tmdb.org/t/p/w500/h7Lcio0c9ohxPhSZg42eTlKIVVY.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1271",
+   "fonte": "tmdb",
+   "tmdb": "/h7Lcio0c9ohxPhSZg42eTlKIVVY.jpg",
+   "imdb": "tt0416449",
+   "local": "/telas/cartazes/f05a3362ae88f71d.webp"
+  },
+  "saga-a-bela-e-a-fera-animacao": {
+   "img": "https://image.tmdb.org/t/p/w500/hUJ0UvQ5tgE2Z9WpfuduVSdiCiU.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10020",
+   "fonte": "tmdb",
+   "tmdb": "/hUJ0UvQ5tgE2Z9WpfuduVSdiCiU.jpg",
+   "imdb": "tt0101414",
+   "local": "/telas/cartazes/b8c742339f0adeb8.webp"
+  },
+  "saga-a-bruxa-de-blair": {
+   "img": "https://image.tmdb.org/t/p/w500/9050VGrYjYrEjpOvDZVAngLbg1f.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2667",
+   "fonte": "tmdb",
+   "tmdb": "/9050VGrYjYrEjpOvDZVAngLbg1f.jpg",
+   "imdb": "tt0185937",
+   "local": "/telas/cartazes/53932737445d8d23.webp"
+  },
+  "saga-a-era-do-gelo": {
+   "img": "https://image.tmdb.org/t/p/w500/gLhHHZUzeseRXShoDyC4VqLgsNv.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/425",
+   "fonte": "tmdb",
+   "tmdb": "/gLhHHZUzeseRXShoDyC4VqLgsNv.jpg",
+   "imdb": "tt0268380",
+   "local": "/telas/cartazes/db866d753296c2c4.webp"
+  },
+  "saga-a-fuga-das-galinhas": {
+   "img": "https://image.tmdb.org/t/p/w500/8XgmIsbpVamdhwcNVsYzohFZTtT.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/7443",
+   "fonte": "tmdb",
+   "tmdb": "/8XgmIsbpVamdhwcNVsYzohFZTtT.jpg",
+   "imdb": "tt0120630",
+   "local": "/telas/cartazes/b0fbfc62298da31f.webp"
+  },
+  "saga-a-historia-sem-fim": {
+   "img": "https://image.tmdb.org/t/p/w500/ddYCa91iDXfJCxaqSYzwi2fjfnl.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/34584",
+   "fonte": "tmdb",
+   "tmdb": "/ddYCa91iDXfJCxaqSYzwi2fjfnl.jpg",
+   "imdb": "tt0088323",
+   "local": "/telas/cartazes/a034b34bd0ad2826.webp"
+  },
+  "saga-a-hora-do-pesadelo": {
+   "img": "https://image.tmdb.org/t/p/w500/wGTpGGRMZmyFCcrY2YoxVTIBlli.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/377",
+   "fonte": "tmdb",
+   "tmdb": "/wGTpGGRMZmyFCcrY2YoxVTIBlli.jpg",
+   "imdb": "tt0087800",
+   "local": "/telas/cartazes/dc29d854ba976ebc.webp"
+  },
+  "saga-a-hora-do-rush": {
+   "img": "https://image.tmdb.org/t/p/w500/nwPhAsfnb7f46bZkWLG7IRP5HXr.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2109",
+   "fonte": "tmdb",
+   "tmdb": "/nwPhAsfnb7f46bZkWLG7IRP5HXr.jpg",
+   "imdb": "tt0120812",
+   "local": "/telas/cartazes/c042cf591d7f3c93.webp"
+  },
+  "saga-a-lagoa-azul": {
+   "img": "https://image.tmdb.org/t/p/w500/hg57Zr63A96mpIQKHxOjHYqCVhI.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/5689",
+   "fonte": "tmdb",
+   "tmdb": "/hg57Zr63A96mpIQKHxOjHYqCVhI.jpg",
+   "imdb": "tt0080453",
+   "local": "/telas/cartazes/528a9627879a8865.webp"
+  },
+  "saga-a-nova-onda-do-imperador": {
+   "img": "https://image.tmdb.org/t/p/w500/wwbgkXQBEKtnyIJapk6gUgWkVw8.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/11688",
+   "fonte": "tmdb",
+   "tmdb": "/wwbgkXQBEKtnyIJapk6gUgWkVw8.jpg",
+   "imdb": "tt0120917",
+   "local": "/telas/cartazes/5c94c7263ab87828.webp"
+  },
+  "saga-a-pequena-sereia": {
+   "img": "https://image.tmdb.org/t/p/w500/plcZXvI310FkbwIptvd6rqk63LP.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10144",
+   "fonte": "tmdb",
+   "tmdb": "/plcZXvI310FkbwIptvd6rqk63LP.jpg",
+   "imdb": "tt0097757",
+   "local": "/telas/cartazes/d8ffd27a66458460.webp"
+  },
+  "saga-ace-ventura": {
+   "img": "https://image.tmdb.org/t/p/w500/pqiRuETmuSybfnVZ7qyeoXhQyN1.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/3049",
+   "fonte": "tmdb",
+   "tmdb": "/pqiRuETmuSybfnVZ7qyeoXhQyN1.jpg",
+   "imdb": "tt0109040",
+   "local": "/telas/cartazes/9b06e188a0f39b2b.webp"
+  },
+  "saga-american-pie": {
+   "img": "https://image.tmdb.org/t/p/w500/5P68by2Thn8wHAziyWGEw2O7hco.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2105",
+   "fonte": "tmdb",
+   "tmdb": "/5P68by2Thn8wHAziyWGEw2O7hco.jpg",
+   "imdb": "tt0163651",
+   "local": "/telas/cartazes/2128d1575cad8d57.webp"
+  },
   "saga-animais-fantasticos": {
    "img": "https://image.tmdb.org/t/p/w500/h6NYfVUyM6CDURtZSnBpz647Ldd.jpg",
    "w": 500,
@@ -9202,6 +11372,26 @@
    "imdb": "tt4633694",
    "local": "/telas/cartazes/bbbb62e89f370712.webp"
   },
+  "saga-as-cronicas-de-narnia": {
+   "img": "https://image.tmdb.org/t/p/w500/iREd0rNCjYdf5Ar0vfaW32yrkm.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/411",
+   "fonte": "tmdb",
+   "tmdb": "/iREd0rNCjYdf5Ar0vfaW32yrkm.jpg",
+   "imdb": "tt0363771",
+   "local": "/telas/cartazes/f403b2daee568005.webp"
+  },
+  "saga-ate-que-a-sorte-nos-separe": {
+   "img": "https://image.tmdb.org/t/p/w500/xAd1DeclHsJ0lnrizw4bTYivFqB.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/154441",
+   "fonte": "tmdb",
+   "tmdb": "/xAd1DeclHsJ0lnrizw4bTYivFqB.jpg",
+   "imdb": "tt2332518",
+   "local": "/telas/cartazes/c2f606323f2f8eb0.webp"
+  },
   "saga-avatar": {
    "img": "https://image.tmdb.org/t/p/w500/gKY6q7SjCkAU6FqvqWybDYgUKIF.jpg",
    "w": 500,
@@ -9212,6 +11402,16 @@
    "imdb": "tt0499549",
    "local": "/telas/cartazes/705aa069ed6191aa.webp"
   },
+  "saga-babe-o-porquinho-atrapalhado": {
+   "img": "https://image.tmdb.org/t/p/w500/zKuQMtnbVTz9DsOnOJmlW71v4qH.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9598",
+   "fonte": "tmdb",
+   "tmdb": "/zKuQMtnbVTz9DsOnOJmlW71v4qH.jpg",
+   "imdb": "tt0112431",
+   "local": "/telas/cartazes/1d860efa35e8df86.webp"
+  },
   "saga-blade-runner": {
    "img": "https://image.tmdb.org/t/p/w500/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg",
    "w": 500,
@@ -9221,6 +11421,126 @@
    "tmdb": "/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg",
    "imdb": "tt0083658",
    "local": "/telas/cartazes/46bb96f3f0d2aac7.webp"
+  },
+  "saga-bourne": {
+   "img": "https://image.tmdb.org/t/p/w500/aP8swke3gmowbkfZ6lmNidu0y9p.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2501",
+   "fonte": "tmdb",
+   "tmdb": "/aP8swke3gmowbkfZ6lmNidu0y9p.jpg",
+   "imdb": "tt0258463",
+   "local": "/telas/cartazes/e7fd9cc96cb18d32.webp"
+  },
+  "saga-bridget-jones": {
+   "img": "https://image.tmdb.org/t/p/w500/olMTi7uCaec9Yr3Ar07D2SIja1G.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/634",
+   "fonte": "tmdb",
+   "tmdb": "/olMTi7uCaec9Yr3Ar07D2SIja1G.jpg",
+   "imdb": "tt0243155",
+   "local": "/telas/cartazes/be1704ee6cbdc972.webp"
+  },
+  "saga-busca-implacavel": {
+   "img": "https://image.tmdb.org/t/p/w500/ognkaUSNgJe1a2pjB4UNdzEo5jT.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/8681",
+   "fonte": "tmdb",
+   "tmdb": "/ognkaUSNgJe1a2pjB4UNdzEo5jT.jpg",
+   "imdb": "tt0936501",
+   "local": "/telas/cartazes/e8ef4ff0273cbc2c.webp"
+  },
+  "saga-carros": {
+   "img": "https://image.tmdb.org/t/p/w500/2Touk3m5gzsqr1VsvxypdyHY5ci.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/920",
+   "fonte": "tmdb",
+   "tmdb": "/2Touk3m5gzsqr1VsvxypdyHY5ci.jpg",
+   "imdb": "tt0317219",
+   "local": "/telas/cartazes/d00746e140d2f054.webp"
+  },
+  "saga-como-treinar-o-seu-dragao": {
+   "img": "https://image.tmdb.org/t/p/w500/ygGmAO60t8GyqUo9xYeYxSZAR3b.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10191",
+   "fonte": "tmdb",
+   "tmdb": "/ygGmAO60t8GyqUo9xYeYxSZAR3b.jpg",
+   "imdb": "tt0892769",
+   "local": "/telas/cartazes/bc945bea9bc185d0.webp"
+  },
+  "saga-coracao-valente": {
+   "img": "https://image.tmdb.org/t/p/w500/or1gBugydmjToAEq7OZY0owwFk.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/197",
+   "fonte": "tmdb",
+   "tmdb": "/or1gBugydmjToAEq7OZY0owwFk.jpg",
+   "imdb": "tt0112573",
+   "local": "/telas/cartazes/fbd67ea08e5146e8.webp"
+  },
+  "saga-coringa": {
+   "img": "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/475557",
+   "fonte": "tmdb",
+   "tmdb": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+   "imdb": "tt7286456",
+   "local": "/telas/cartazes/90b4b5909fd95ed8.webp"
+  },
+  "saga-crepusculo": {
+   "img": "https://image.tmdb.org/t/p/w500/3Gkb6jm6962ADUPaCBqzz9CTbn9.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/8966",
+   "fonte": "tmdb",
+   "tmdb": "/3Gkb6jm6962ADUPaCBqzz9CTbn9.jpg",
+   "imdb": "tt1099212",
+   "local": "/telas/cartazes/cc9d738caf6a73a3.webp"
+  },
+  "saga-de-pernas-pro-ar": {
+   "img": "https://image.tmdb.org/t/p/w500/m8tcxGK8liu31vj2vwidON5jPWY.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/62156",
+   "fonte": "tmdb",
+   "tmdb": "/m8tcxGK8liu31vj2vwidON5jPWY.jpg",
+   "imdb": "tt1564916",
+   "local": "/telas/cartazes/9fcbdb068c51c973.webp"
+  },
+  "saga-de-volta-para-o-futuro": {
+   "img": "https://image.tmdb.org/t/p/w500/vN5B5WgYscRGcQpVhHl6p9DDTP0.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/105",
+   "fonte": "tmdb",
+   "tmdb": "/vN5B5WgYscRGcQpVhHl6p9DDTP0.jpg",
+   "imdb": "tt0088763",
+   "local": "/telas/cartazes/0bb33a85a5458421.webp"
+  },
+  "saga-debi-loide": {
+   "img": "https://image.tmdb.org/t/p/w500/4LdpBXiCyGKkR8FGHgjKlphrfUc.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/8467",
+   "fonte": "tmdb",
+   "tmdb": "/4LdpBXiCyGKkR8FGHgjKlphrfUc.jpg",
+   "imdb": "tt0109686",
+   "local": "/telas/cartazes/017f83a0af8f1e42.webp"
+  },
+  "saga-dirty-dancing": {
+   "img": "https://image.tmdb.org/t/p/w500/9Jw6jys7q9gjzVX5zm1z0gC8gY9.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/88",
+   "fonte": "tmdb",
+   "tmdb": "/9Jw6jys7q9gjzVX5zm1z0gC8gY9.jpg",
+   "imdb": "tt0092890",
+   "local": "/telas/cartazes/4e02872da9fbbca6.webp"
   },
   "saga-divertida-mente": {
    "img": "https://image.tmdb.org/t/p/w500/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg",
@@ -9242,6 +11562,96 @@
    "imdb": "tt15239678",
    "local": "/telas/cartazes/27aaf3264c897711.webp"
   },
+  "saga-duro-de-matar": {
+   "img": "https://image.tmdb.org/t/p/w500/7Bjd8kfmDSOzpmhySpEhkUyK2oH.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/562",
+   "fonte": "tmdb",
+   "tmdb": "/7Bjd8kfmDSOzpmhySpEhkUyK2oH.jpg",
+   "imdb": "tt0095016",
+   "local": "/telas/cartazes/2730b504fcc8fed9.webp"
+  },
+  "saga-enrolados": {
+   "img": "https://image.tmdb.org/t/p/w500/ym7Kst6a4uodryxqbGOxmewF235.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/38757",
+   "fonte": "tmdb",
+   "tmdb": "/ym7Kst6a4uodryxqbGOxmewF235.jpg",
+   "imdb": "tt0398286",
+   "local": "/telas/cartazes/ddccb711c71836d9.webp"
+  },
+  "saga-entrando-numa-fria": {
+   "img": "https://image.tmdb.org/t/p/w500/5tXJ9ctuyEOMUFLaeqRisbXowWs.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1597",
+   "fonte": "tmdb",
+   "tmdb": "/5tXJ9ctuyEOMUFLaeqRisbXowWs.jpg",
+   "imdb": "tt0212338",
+   "local": "/telas/cartazes/e04d38b0495545c7.webp"
+  },
+  "saga-esqueceram-de-mim": {
+   "img": "https://image.tmdb.org/t/p/w500/onTSipZ8R3bliBdKfPtsDuHTdlL.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/771",
+   "fonte": "tmdb",
+   "tmdb": "/onTSipZ8R3bliBdKfPtsDuHTdlL.jpg",
+   "imdb": "tt0099785",
+   "local": "/telas/cartazes/b311f3edc89ed3a3.webp"
+  },
+  "saga-frozen": {
+   "img": "https://image.tmdb.org/t/p/w500/itAKcobTYGpYT8Phwjd8c9hleTo.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/109445",
+   "fonte": "tmdb",
+   "tmdb": "/itAKcobTYGpYT8Phwjd8c9hleTo.jpg",
+   "imdb": "tt2294629",
+   "local": "/telas/cartazes/2952c6e66fa84367.webp"
+  },
+  "saga-gato-de-botas": {
+   "img": "https://image.tmdb.org/t/p/w500/7a5Jzjr9TmffGy76y1SZhn3sCiz.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/417859",
+   "fonte": "tmdb",
+   "tmdb": "/7a5Jzjr9TmffGy76y1SZhn3sCiz.jpg",
+   "imdb": "tt0448694",
+   "local": "/telas/cartazes/af86239a34201003.webp"
+  },
+  "saga-gente-grande": {
+   "img": "https://image.tmdb.org/t/p/w500/cQGM5k1NtU85n4TUlrOrwijSCcm.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/38365",
+   "fonte": "tmdb",
+   "tmdb": "/cQGM5k1NtU85n4TUlrOrwijSCcm.jpg",
+   "imdb": "tt1375670",
+   "local": "/telas/cartazes/a0be935b92742325.webp"
+  },
+  "saga-gladiador": {
+   "img": "https://image.tmdb.org/t/p/w500/aDb548BOkFfI4nFm0kx8A3Ezh7H.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/98",
+   "fonte": "tmdb",
+   "tmdb": "/aDb548BOkFfI4nFm0kx8A3Ezh7H.jpg",
+   "imdb": "tt0172495",
+   "local": "/telas/cartazes/9b8ed3d5cbf7f962.webp"
+  },
+  "saga-hannibal-lecter": {
+   "img": "https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/274",
+   "fonte": "tmdb",
+   "tmdb": "/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
+   "imdb": "tt0102926",
+   "local": "/telas/cartazes/179cd6316dd2da77.webp"
+  },
   "saga-harry-potter": {
    "img": "https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg",
    "w": 500,
@@ -9252,6 +11662,246 @@
    "imdb": "tt0241527",
    "local": "/telas/cartazes/2c34ccec4a3f81d2.webp"
   },
+  "saga-homem-aranha": {
+   "img": "https://image.tmdb.org/t/p/w500/or6XJBVpcEbIkma0V9zshnbEtx4.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/557",
+   "fonte": "tmdb",
+   "tmdb": "/or6XJBVpcEbIkma0V9zshnbEtx4.jpg",
+   "imdb": "tt0145487",
+   "local": "/telas/cartazes/2ad257a80244400d.webp"
+  },
+  "saga-independence-day": {
+   "img": "https://image.tmdb.org/t/p/w500/p0BPQGSPoSa8Ml0DAf2mB2kCU0R.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/602",
+   "fonte": "tmdb",
+   "tmdb": "/p0BPQGSPoSa8Ml0DAf2mB2kCU0R.jpg",
+   "imdb": "tt0116629",
+   "local": "/telas/cartazes/186f209e096a34d4.webp"
+  },
+  "saga-indiana-jones": {
+   "img": "https://image.tmdb.org/t/p/w500/ceG9VzoRAVGwivFU403Wc3AHRys.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/85",
+   "fonte": "tmdb",
+   "tmdb": "/ceG9VzoRAVGwivFU403Wc3AHRys.jpg",
+   "imdb": "tt0082971",
+   "local": "/telas/cartazes/0d99100d0f3cc87c.webp"
+  },
+  "saga-invasao-zumbi": {
+   "img": "https://image.tmdb.org/t/p/w500/vNVFt6dtcqnI7hqa6LFBUibuFiw.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/396535",
+   "fonte": "tmdb",
+   "tmdb": "/vNVFt6dtcqnI7hqa6LFBUibuFiw.jpg",
+   "imdb": "tt5700672",
+   "local": "/telas/cartazes/776cc241d5a77da7.webp"
+  },
+  "saga-invocacao-do-mal": {
+   "img": "https://image.tmdb.org/t/p/w500/wVYREutTvI2tmxr6ujrHT704wGF.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/138843",
+   "fonte": "tmdb",
+   "tmdb": "/wVYREutTvI2tmxr6ujrHT704wGF.jpg",
+   "imdb": "tt1457767",
+   "local": "/telas/cartazes/4e74491bfe1c3e29.webp"
+  },
+  "saga-irmao-urso": {
+   "img": "https://image.tmdb.org/t/p/w500/otptPbEY0vBostmo95xwiiumMJm.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10009",
+   "fonte": "tmdb",
+   "tmdb": "/otptPbEY0vBostmo95xwiiumMJm.jpg",
+   "imdb": "tt0328880",
+   "local": "/telas/cartazes/54f7fc76319d3391.webp"
+  },
+  "saga-james-bond": {
+   "img": "https://image.tmdb.org/t/p/w500/9zCOLJmLNst0sCPZlkW1IRoH65E.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/646",
+   "fonte": "tmdb",
+   "tmdb": "/9zCOLJmLNst0sCPZlkW1IRoH65E.jpg",
+   "imdb": "tt0055928",
+   "local": "/telas/cartazes/f11a0ffeeff9c803.webp"
+  },
+  "saga-jogos-mortais": {
+   "img": "https://image.tmdb.org/t/p/w500/rLNSOudrayDBo1uqXjrhxcjODIC.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/176",
+   "fonte": "tmdb",
+   "tmdb": "/rLNSOudrayDBo1uqXjrhxcjODIC.jpg",
+   "imdb": "tt0387564",
+   "local": "/telas/cartazes/f37baadbad104468.webp"
+  },
+  "saga-jogos-vorazes": {
+   "img": "https://image.tmdb.org/t/p/w500/apa5G43Hha7kH7wJG0gkkHT7FA9.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/70160",
+   "fonte": "tmdb",
+   "tmdb": "/apa5G43Hha7kH7wJG0gkkHT7FA9.jpg",
+   "imdb": "tt1392170",
+   "local": "/telas/cartazes/4ead4313d5bb0dfb.webp"
+  },
+  "saga-john-wick": {
+   "img": "https://image.tmdb.org/t/p/w500/wXqWR7dHncNRbxoEGybEy7QTe9h.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/245891",
+   "fonte": "tmdb",
+   "tmdb": "/wXqWR7dHncNRbxoEGybEy7QTe9h.jpg",
+   "imdb": "tt2911666",
+   "local": "/telas/cartazes/ed323fb81cdae3b3.webp"
+  },
+  "saga-jumanji": {
+   "img": "https://image.tmdb.org/t/p/w500/bdHG5Mo83VPobeZZdlSz0Y7HQHB.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/8844",
+   "fonte": "tmdb",
+   "tmdb": "/bdHG5Mo83VPobeZZdlSz0Y7HQHB.jpg",
+   "imdb": "tt0113497",
+   "local": "/telas/cartazes/a3dc268e4b70fd94.webp"
+  },
+  "saga-jurassic-park": {
+   "img": "https://image.tmdb.org/t/p/w500/d9mtMGQDLANKieb9PbD3yK7xxzo.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/329",
+   "fonte": "tmdb",
+   "tmdb": "/d9mtMGQDLANKieb9PbD3yK7xxzo.jpg",
+   "imdb": "tt0107290",
+   "local": "/telas/cartazes/30e73ed15fd31c3e.webp"
+  },
+  "saga-legalmente-loira": {
+   "img": "https://image.tmdb.org/t/p/w500/9ohlMrJHQqKhfUKh7Zr3JQqHNLZ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/8835",
+   "fonte": "tmdb",
+   "tmdb": "/9ohlMrJHQqKhfUKh7Zr3JQqHNLZ.jpg",
+   "imdb": "tt0250494",
+   "local": "/telas/cartazes/89648a9b34073314.webp"
+  },
+  "saga-lilo-stitch": {
+   "img": "https://image.tmdb.org/t/p/w500/cFuLvQJPoZpuruAtN3rVnMmLIH8.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/11544",
+   "fonte": "tmdb",
+   "tmdb": "/cFuLvQJPoZpuruAtN3rVnMmLIH8.jpg",
+   "imdb": "tt0275847",
+   "local": "/telas/cartazes/eda7aed752a1fde9.webp"
+  },
+  "saga-madagascar": {
+   "img": "https://image.tmdb.org/t/p/w500/zMpJY5CJKUufG9OTw0In4eAFqPX.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/953",
+   "fonte": "tmdb",
+   "tmdb": "/zMpJY5CJKUufG9OTw0In4eAFqPX.jpg",
+   "imdb": "tt0351283",
+   "local": "/telas/cartazes/3186c2fb7bcea2eb.webp"
+  },
+  "saga-mamma-mia": {
+   "img": "https://image.tmdb.org/t/p/w500/xYLiCWmAMHJubx5jNZ7HuXKjAbV.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/11631",
+   "fonte": "tmdb",
+   "tmdb": "/xYLiCWmAMHJubx5jNZ7HuXKjAbV.jpg",
+   "imdb": "tt0795421",
+   "local": "/telas/cartazes/4b5bd68ed5d9336d.webp"
+  },
+  "saga-marley-eu": {
+   "img": "https://image.tmdb.org/t/p/w500/pnB6hjTKylb0Ve2nUWt16gzkErr.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/14306",
+   "fonte": "tmdb",
+   "tmdb": "/pnB6hjTKylb0Ve2nUWt16gzkErr.jpg",
+   "imdb": "tt0822832",
+   "local": "/telas/cartazes/510a8feea4e0c00f.webp"
+  },
+  "saga-meninas-malvadas": {
+   "img": "https://image.tmdb.org/t/p/w500/2ZkuQXvVhh45uSvkBej4S7Ix1NJ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10625",
+   "fonte": "tmdb",
+   "tmdb": "/2ZkuQXvVhh45uSvkBej4S7Ix1NJ.jpg",
+   "imdb": "tt0377092",
+   "local": "/telas/cartazes/64ed56b7b1cb780f.webp"
+  },
+  "saga-meu-malvado-favorito": {
+   "img": "https://image.tmdb.org/t/p/w500/b1BT309QWjtFUlJPLmXmrcHOWEL.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/20352",
+   "fonte": "tmdb",
+   "tmdb": "/b1BT309QWjtFUlJPLmXmrcHOWEL.jpg",
+   "imdb": "tt1323594",
+   "local": "/telas/cartazes/923b3f875e02c67b.webp"
+  },
+  "saga-mib-homens-de-preto": {
+   "img": "https://image.tmdb.org/t/p/w500/uLOmOF5IzWoyrgIF5MfUnh5pa1X.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/607",
+   "fonte": "tmdb",
+   "tmdb": "/uLOmOF5IzWoyrgIF5MfUnh5pa1X.jpg",
+   "imdb": "tt0119654",
+   "local": "/telas/cartazes/bb03c3adaa117944.webp"
+  },
+  "saga-minha-mae-e-uma-peca": {
+   "img": "https://image.tmdb.org/t/p/w500/veCMD8bzoLuXiSGPCXCFKwJSO9v.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/203217",
+   "fonte": "tmdb",
+   "tmdb": "/veCMD8bzoLuXiSGPCXCFKwJSO9v.jpg",
+   "imdb": "tt2464018",
+   "local": "/telas/cartazes/0ded3e95471b6fbb.webp"
+  },
+  "saga-missao-impossivel": {
+   "img": "https://image.tmdb.org/t/p/w500/l5uxY5m5OInWpcExIpKG6AR3rgL.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/954",
+   "fonte": "tmdb",
+   "tmdb": "/l5uxY5m5OInWpcExIpKG6AR3rgL.jpg",
+   "imdb": "tt0117060",
+   "local": "/telas/cartazes/b79cfb57855e1085.webp"
+  },
+  "saga-monstros-s-a": {
+   "img": "https://image.tmdb.org/t/p/w500/wFSpyMsp7H0ttERbxY7Trlv8xry.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/585",
+   "fonte": "tmdb",
+   "tmdb": "/wFSpyMsp7H0ttERbxY7Trlv8xry.jpg",
+   "imdb": "tt0198781",
+   "local": "/telas/cartazes/51942c1256fad3e8.webp"
+  },
+  "saga-mudanca-de-habito": {
+   "img": "https://image.tmdb.org/t/p/w500/xZvVSZ0RTxIjblLV87vs7ADM12m.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/2005",
+   "fonte": "tmdb",
+   "tmdb": "/xZvVSZ0RTxIjblLV87vs7ADM12m.jpg",
+   "imdb": "tt0105417",
+   "local": "/telas/cartazes/fd9e31209fd7b358.webp"
+  },
   "saga-o-auto-da-compadecida": {
    "img": "https://image.tmdb.org/t/p/w500/z9Au9XtK0ARzkKGsZCzMkmKgMPf.jpg",
    "w": 500,
@@ -9261,6 +11911,56 @@
    "tmdb": "/z9Au9XtK0ARzkKGsZCzMkmKgMPf.jpg",
    "imdb": "tt0271383",
    "local": "/telas/cartazes/79349039ae0b5da3.webp"
+  },
+  "saga-o-cavaleiro-das-trevas": {
+   "img": "https://image.tmdb.org/t/p/w500/sPX89Td70IDDjVr85jdSBb4rWGr.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/272",
+   "fonte": "tmdb",
+   "tmdb": "/sPX89Td70IDDjVr85jdSBb4rWGr.jpg",
+   "imdb": "tt0372784",
+   "local": "/telas/cartazes/96139e8098ca537f.webp"
+  },
+  "saga-o-chamado": {
+   "img": "https://image.tmdb.org/t/p/w500/AeRpUynJKDpJveklBJipOYrVxCS.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/565",
+   "fonte": "tmdb",
+   "tmdb": "/AeRpUynJKDpJveklBJipOYrVxCS.jpg",
+   "imdb": "tt0298130",
+   "local": "/telas/cartazes/4bda8bf68ff0b9be.webp"
+  },
+  "saga-o-diabo-veste-prada": {
+   "img": "https://image.tmdb.org/t/p/w500/8912AsVuS7Sj915apArUFbv6F9L.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/350",
+   "fonte": "tmdb",
+   "tmdb": "/8912AsVuS7Sj915apArUFbv6F9L.jpg",
+   "imdb": "tt0458352",
+   "local": "/telas/cartazes/2cb8a492a24c1ba0.webp"
+  },
+  "saga-o-exterminador-do-futuro": {
+   "img": "https://image.tmdb.org/t/p/w500/qvktm0BHcnmDpul4Hz01GIazWPr.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/218",
+   "fonte": "tmdb",
+   "tmdb": "/qvktm0BHcnmDpul4Hz01GIazWPr.jpg",
+   "imdb": "tt0088247",
+   "local": "/telas/cartazes/6640097a5eda0c92.webp"
+  },
+  "saga-o-maskara": {
+   "img": "https://image.tmdb.org/t/p/w500/jPC2eYub74zwf2tPGVtzSlBW6Oy.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/854",
+   "fonte": "tmdb",
+   "tmdb": "/jPC2eYub74zwf2tPGVtzSlBW6Oy.jpg",
+   "imdb": "tt0110475",
+   "local": "/telas/cartazes/0f6230996e83bf67.webp"
   },
   "saga-o-poderoso-chefao": {
    "img": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
@@ -9282,6 +11982,76 @@
    "imdb": "tt0120737",
    "local": "/telas/cartazes/8c9280e780592e0f.webp"
   },
+  "saga-o-tigre-e-o-dragao": {
+   "img": "https://image.tmdb.org/t/p/w500/iNDVBFNz4XyYzM9Lwip6atSTFqf.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/146",
+   "fonte": "tmdb",
+   "tmdb": "/iNDVBFNz4XyYzM9Lwip6atSTFqf.jpg",
+   "imdb": "tt0190332",
+   "local": "/telas/cartazes/3e567cd55977a50a.webp"
+  },
+  "saga-odisseia-espacial": {
+   "img": "https://image.tmdb.org/t/p/w500/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/62",
+   "fonte": "tmdb",
+   "tmdb": "/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg",
+   "imdb": "tt0062622",
+   "local": "/telas/cartazes/1de7995c8f317a8e.webp"
+  },
+  "saga-os-caca-fantasmas": {
+   "img": "https://image.tmdb.org/t/p/w500/7E8nLijS9AwwUEPu2oFYOVKhdFA.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/620",
+   "fonte": "tmdb",
+   "tmdb": "/7E8nLijS9AwwUEPu2oFYOVKhdFA.jpg",
+   "imdb": "tt0087332",
+   "local": "/telas/cartazes/ebbe7e9e736bd95e.webp"
+  },
+  "saga-os-incriveis": {
+   "img": "https://image.tmdb.org/t/p/w500/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9806",
+   "fonte": "tmdb",
+   "tmdb": "/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg",
+   "imdb": "tt0317705",
+   "local": "/telas/cartazes/10422d58a382d8f1.webp"
+  },
+  "saga-panico": {
+   "img": "https://image.tmdb.org/t/p/w500/lr9ZIrmuwVmZhpZuTCW8D9g0ZJe.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/4232",
+   "fonte": "tmdb",
+   "tmdb": "/lr9ZIrmuwVmZhpZuTCW8D9g0ZJe.jpg",
+   "imdb": "tt0117571",
+   "local": "/telas/cartazes/dc3a18da2d782f6c.webp"
+  },
+  "saga-piratas-do-caribe": {
+   "img": "https://image.tmdb.org/t/p/w500/poHwCZeWzJCShH7tOjg8RIoyjcw.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/22",
+   "fonte": "tmdb",
+   "tmdb": "/poHwCZeWzJCShH7tOjg8RIoyjcw.jpg",
+   "imdb": "tt0325980",
+   "local": "/telas/cartazes/0696da5a8275c342.webp"
+  },
+  "saga-premonicao": {
+   "img": "https://image.tmdb.org/t/p/w500/1mXhlQMnlfvJ2frxTjZSQNnA9Vp.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9532",
+   "fonte": "tmdb",
+   "tmdb": "/1mXhlQMnlfvJ2frxTjZSQNnA9Vp.jpg",
+   "imdb": "tt0195714",
+   "local": "/telas/cartazes/21194281c3f6e35e.webp"
+  },
   "saga-procurando-nemo": {
    "img": "https://image.tmdb.org/t/p/w500/eHuGQ10FUzK1mdOY69wF5pGgEf5.jpg",
    "w": 500,
@@ -9291,6 +12061,36 @@
    "tmdb": "/eHuGQ10FUzK1mdOY69wF5pGgEf5.jpg",
    "imdb": "tt0266543",
    "local": "/telas/cartazes/afdeffffd6b39f34.webp"
+  },
+  "saga-rio": {
+   "img": "https://image.tmdb.org/t/p/w500/4nJxhUknKV8Gqdhov8pU1YWDYfb.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/46195",
+   "fonte": "tmdb",
+   "tmdb": "/4nJxhUknKV8Gqdhov8pU1YWDYfb.jpg",
+   "imdb": "tt1436562",
+   "local": "/telas/cartazes/44f40aee7b7119ef.webp"
+  },
+  "saga-se-beber-nao-case": {
+   "img": "https://image.tmdb.org/t/p/w500/A0uS9rHR56FeBtpjVki16M5xxSW.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/18785",
+   "fonte": "tmdb",
+   "tmdb": "/A0uS9rHR56FeBtpjVki16M5xxSW.jpg",
+   "imdb": "tt1119646",
+   "local": "/telas/cartazes/41cf110702f55591.webp"
+  },
+  "saga-se-eu-fosse-voce": {
+   "img": "https://image.tmdb.org/t/p/w500/6ZQCy9TSZr1lhJqLtt6hSEDaxH6.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/34588",
+   "fonte": "tmdb",
+   "tmdb": "/6ZQCy9TSZr1lhJqLtt6hSEDaxH6.jpg",
+   "imdb": "tt0448927",
+   "local": "/telas/cartazes/fcc78a09a534c81a.webp"
   },
   "saga-shrek": {
    "img": "https://image.tmdb.org/t/p/w500/iB64vpL3dIObOtMZgX3RqdVdQDc.jpg",
@@ -9312,6 +12112,46 @@
    "imdb": "tt0076759",
    "local": "/telas/cartazes/94d4e6af632ee5b1.webp"
   },
+  "saga-tarzan-disney": {
+   "img": "https://image.tmdb.org/t/p/w500/bTvHlcqiOjGa3lFtbrTLTM3zasY.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/37135",
+   "fonte": "tmdb",
+   "tmdb": "/bTvHlcqiOjGa3lFtbrTLTM3zasY.jpg",
+   "imdb": "tt0120855",
+   "local": "/telas/cartazes/b3c2cabc357c7c3e.webp"
+  },
+  "saga-the-social-network": {
+   "img": "https://image.tmdb.org/t/p/w500/n0ybibhJtQ5icDqTp8eRytcIHJx.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/37799",
+   "fonte": "tmdb",
+   "tmdb": "/n0ybibhJtQ5icDqTp8eRytcIHJx.jpg",
+   "imdb": "tt1285016",
+   "local": "/telas/cartazes/4e49cb56d87a6021.webp"
+  },
+  "saga-todo-mundo-em-panico": {
+   "img": "https://image.tmdb.org/t/p/w500/fVQFPRuw3yWXojYDJvA5EoFjUOY.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/4247",
+   "fonte": "tmdb",
+   "tmdb": "/fVQFPRuw3yWXojYDJvA5EoFjUOY.jpg",
+   "imdb": "tt0175142",
+   "local": "/telas/cartazes/e9dd1ad1781a3e17.webp"
+  },
+  "saga-todo-poderoso": {
+   "img": "https://image.tmdb.org/t/p/w500/wqkWrOFtYnZSvIMu8Lsmz7WIvKC.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/310",
+   "fonte": "tmdb",
+   "tmdb": "/wqkWrOFtYnZSvIMu8Lsmz7WIvKC.jpg",
+   "imdb": "tt0315327",
+   "local": "/telas/cartazes/ad49b8f50d9da731.webp"
+  },
   "saga-top-gun": {
    "img": "https://image.tmdb.org/t/p/w500/xUuHj3CgmZQ9P2cMaqQs4J0d4Zc.jpg",
    "w": 500,
@@ -9332,6 +12172,16 @@
    "imdb": "tt0114709",
    "local": "/telas/cartazes/714a42665d0ffc42.webp"
   },
+  "saga-transformers": {
+   "img": "https://image.tmdb.org/t/p/w500/lkZ9gqCEjzX85lKR6Jjd1uGAXNp.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1858",
+   "fonte": "tmdb",
+   "tmdb": "/lkZ9gqCEjzX85lKR6Jjd1uGAXNp.jpg",
+   "imdb": "tt0418279",
+   "local": "/telas/cartazes/db35c5d6bfbad8b8.webp"
+  },
   "saga-tropa-de-elite": {
    "img": "https://image.tmdb.org/t/p/w500/lwIXz785N2fXi8hsBr1IXciFlkM.jpg",
    "w": 500,
@@ -9341,6 +12191,46 @@
    "tmdb": "/lwIXz785N2fXi8hsBr1IXciFlkM.jpg",
    "imdb": "tt0861739",
    "local": "/telas/cartazes/69b379d16b6dbaaa.webp"
+  },
+  "saga-tubarao": {
+   "img": "https://image.tmdb.org/t/p/w500/lxM6kqilAdpdhqUl2biYp5frUxE.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/578",
+   "fonte": "tmdb",
+   "tmdb": "/lxM6kqilAdpdhqUl2biYp5frUxE.jpg",
+   "imdb": "tt0073195",
+   "local": "/telas/cartazes/30734de16f5c2ad2.webp"
+  },
+  "saga-um-principe-em-nova-york": {
+   "img": "https://image.tmdb.org/t/p/w500/djRAvxyvvN2yqlJKDbT3uy4vOBw.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9602",
+   "fonte": "tmdb",
+   "tmdb": "/djRAvxyvvN2yqlJKDbT3uy4vOBw.jpg",
+   "imdb": "tt0094898",
+   "local": "/telas/cartazes/03d18e61d78bee7c.webp"
+  },
+  "saga-uma-noite-no-museu": {
+   "img": "https://image.tmdb.org/t/p/w500/pDsAAYf6Zn0yiAGJ6lYGs6hoZ4E.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1593",
+   "fonte": "tmdb",
+   "tmdb": "/pDsAAYf6Zn0yiAGJ6lYGs6hoZ4E.jpg",
+   "imdb": "tt0477347",
+   "local": "/telas/cartazes/112a0e796bf2a016.webp"
+  },
+  "saga-velocidade-maxima": {
+   "img": "https://image.tmdb.org/t/p/w500/82PkCE4R95KhHICUDF7G4Ly2z3l.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1637",
+   "fonte": "tmdb",
+   "tmdb": "/82PkCE4R95KhHICUDF7G4Ly2z3l.jpg",
+   "imdb": "tt0111257",
+   "local": "/telas/cartazes/1366847f91f1a00f.webp"
   },
   "saga-velozes-e-furiosos": {
    "img": "https://image.tmdb.org/t/p/w500/gqY0ITBgT7A82poL9jv851qdnIb.jpg",
@@ -9361,6 +12251,16 @@
    "tmdb": "/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
    "imdb": "tt0371746",
    "local": "/telas/cartazes/0cffce1735c7d536.webp"
+  },
+  "saga-zootopia": {
+   "img": "https://image.tmdb.org/t/p/w500/hlK0e0wAQ3VLuJcsfIYPvb4JVud.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/269149",
+   "fonte": "tmdb",
+   "tmdb": "/hlK0e0wAQ3VLuJcsfIYPvb4JVud.jpg",
+   "imdb": "tt2948356",
+   "local": "/telas/cartazes/9eb0034d22fb94b7.webp"
   },
   "sai-de-baixo-1996": {
    "img": "https://image.tmdb.org/t/p/w500/s5ZehoCj2uuHGHn9Xz1lZ3KfkmZ.jpg",
@@ -9502,6 +12402,36 @@
    "imdb": "tt1119646",
    "local": "/telas/cartazes/41cf110702f55591.webp"
   },
+  "se-beber-nao-case-parte-ii-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/cKZu0Fdkj7dmwbfMpgDqVVCkLJQ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/45243",
+   "fonte": "tmdb",
+   "tmdb": "/cKZu0Fdkj7dmwbfMpgDqVVCkLJQ.jpg",
+   "imdb": "tt1411697",
+   "local": "/telas/cartazes/35b99532a97d5915.webp"
+  },
+  "se-beber-nao-case-parte-iii-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/vtxuPWkdllLNLVyGjKYa267ntuH.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/109439",
+   "fonte": "tmdb",
+   "tmdb": "/vtxuPWkdllLNLVyGjKYa267ntuH.jpg",
+   "imdb": "tt1951261",
+   "local": "/telas/cartazes/5bb7012bb700cdfe.webp"
+  },
+  "se-eu-fosse-voce-2-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/jruDMExMKeUz7PHgkk4ROlWwCFO.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/21752",
+   "fonte": "tmdb",
+   "tmdb": "/jruDMExMKeUz7PHgkk4ROlWwCFO.jpg",
+   "imdb": "tt1099227",
+   "local": "/telas/cartazes/a8851ad78d520f90.webp"
+  },
   "se-eu-fosse-voce-2006": {
    "img": "https://image.tmdb.org/t/p/w500/6ZQCy9TSZr1lhJqLtt6hSEDaxH6.jpg",
    "w": 500,
@@ -9511,6 +12441,16 @@
    "tmdb": "/6ZQCy9TSZr1lhJqLtt6hSEDaxH6.jpg",
    "imdb": "tt0448927",
    "local": "/telas/cartazes/fcc78a09a534c81a.webp"
+  },
+  "se-eu-fosse-voce-3-2026": {
+   "img": "https://image.tmdb.org/t/p/w500/blMdOSGF1Q9cfHoWYzSkPtY91ts.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1523898",
+   "fonte": "tmdb",
+   "tmdb": "/blMdOSGF1Q9cfHoWYzSkPtY91ts.jpg",
+   "imdb": "tt2216550",
+   "local": "/telas/cartazes/436d7e670a6b132b.webp"
   },
   "see-2019": {
    "img": "https://image.tmdb.org/t/p/w500/lKDIhc9FQibDiBQ57n3ELfZCyZg.jpg",
@@ -9691,6 +12631,26 @@
    "tmdb": "/iB64vpL3dIObOtMZgX3RqdVdQDc.jpg",
    "imdb": "tt0126029",
    "local": "/telas/cartazes/807f4f29e4e34938.webp"
+  },
+  "shrek-para-sempre-2010": {
+   "img": "https://image.tmdb.org/t/p/w500/6HrfPZtKcGmX2tUWW3cnciZTaSD.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/10192",
+   "fonte": "tmdb",
+   "tmdb": "/6HrfPZtKcGmX2tUWW3cnciZTaSD.jpg",
+   "imdb": "tt0892791",
+   "local": "/telas/cartazes/9a913d18ef2b120b.webp"
+  },
+  "shrek-terceiro-2007": {
+   "img": "https://image.tmdb.org/t/p/w500/n4SexGGQzI26E269tfpa80MZaGV.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/810",
+   "fonte": "tmdb",
+   "tmdb": "/n4SexGGQzI26E269tfpa80MZaGV.jpg",
+   "imdb": "tt0413267",
+   "local": "/telas/cartazes/efbae78f279f7d8d.webp"
   },
   "shtisel-2013": {
    "img": "https://image.tmdb.org/t/p/w500/rzzhyWdTqLSzgOuVYoBLKPXLtXN.jpg",
@@ -10032,6 +12992,46 @@
    "imdb": "tt0079944",
    "local": "/telas/cartazes/31961d60a22fd0e0.webp"
   },
+  "star-wars-a-ascensao-skywalker-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/db32LaOibwEliAmSL2jjDF6oDdj.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/181812",
+   "fonte": "tmdb",
+   "tmdb": "/db32LaOibwEliAmSL2jjDF6oDdj.jpg",
+   "imdb": "tt2527338",
+   "local": "/telas/cartazes/127c93a58a690e73.webp"
+  },
+  "star-wars-episodio-i-a-ameaca-fantasma-1999": {
+   "img": "https://image.tmdb.org/t/p/w500/6wkfovpn7Eq8dYNKaG5PY3q2oq6.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1893",
+   "fonte": "tmdb",
+   "tmdb": "/6wkfovpn7Eq8dYNKaG5PY3q2oq6.jpg",
+   "imdb": "tt0120915",
+   "local": "/telas/cartazes/7c47e0beba8d474d.webp"
+  },
+  "star-wars-episodio-ii-ataque-dos-clones-2002": {
+   "img": "https://image.tmdb.org/t/p/w500/oZNPzxqM2s5DyVWab09NTQScDQt.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1894",
+   "fonte": "tmdb",
+   "tmdb": "/oZNPzxqM2s5DyVWab09NTQScDQt.jpg",
+   "imdb": "tt0121765",
+   "local": "/telas/cartazes/862fc6eec71b3d5a.webp"
+  },
+  "star-wars-episodio-iii-a-vinganca-dos-sith-2005": {
+   "img": "https://image.tmdb.org/t/p/w500/xfSAoBEm9MNBjmlNcDYLvLSMlnq.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1895",
+   "fonte": "tmdb",
+   "tmdb": "/xfSAoBEm9MNBjmlNcDYLvLSMlnq.jpg",
+   "imdb": "tt0121766",
+   "local": "/telas/cartazes/e6574c5ede69c9fb.webp"
+  },
   "star-wars-episodio-iv-uma-nova-esperanca-1977": {
    "img": "https://image.tmdb.org/t/p/w500/fai0rspsNeJCS69wHNjOdWxcI7P.jpg",
    "w": 500,
@@ -10052,6 +13052,16 @@
    "imdb": "tt0086190",
    "local": "/telas/cartazes/b90c60010fcee451.webp"
   },
+  "star-wars-o-despertar-da-forca-2015": {
+   "img": "https://image.tmdb.org/t/p/w500/wqnLdwVXoBjKibFRR5U3y0aDUhs.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/140607",
+   "fonte": "tmdb",
+   "tmdb": "/wqnLdwVXoBjKibFRR5U3y0aDUhs.jpg",
+   "imdb": "tt2488496",
+   "local": "/telas/cartazes/cd665463baa13fff.webp"
+  },
   "star-wars-o-imperio-contra-ataca-1980": {
    "img": "https://image.tmdb.org/t/p/w500/nNAeTmF4CtdSgMDplXTDPOpYzsX.jpg",
    "w": 500,
@@ -10062,6 +13072,16 @@
    "imdb": "tt0080684",
    "local": "/telas/cartazes/4cda8e8663fdda26.webp"
   },
+  "star-wars-os-ultimos-jedi-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/181808",
+   "fonte": "tmdb",
+   "tmdb": "/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
+   "imdb": "tt2527336",
+   "local": "/telas/cartazes/adb9d5ac243735f5.webp"
+  },
   "station-eleven-2021": {
    "img": "https://image.tmdb.org/t/p/w500/xWlhMOzRxUpu4uzkWcDQOaESCE.jpg",
    "w": 500,
@@ -10071,6 +13091,16 @@
    "tmdb": "/xWlhMOzRxUpu4uzkWcDQOaESCE.jpg",
    "imdb": "tt10574236",
    "local": "/telas/cartazes/9bc7d7ebc83ec728.webp"
+  },
+  "stitch-o-filme-2003": {
+   "img": "https://image.tmdb.org/t/p/w500/flwMGZcOO80lqsnZ6lIwsKja5N.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/15567",
+   "fonte": "tmdb",
+   "tmdb": "/flwMGZcOO80lqsnZ6lIwsKja5N.jpg",
+   "imdb": "tt0348124",
+   "local": "/telas/cartazes/0ffc0c79a684be2e.webp"
   },
   "stranger-things-2016": {
    "img": "https://image.tmdb.org/t/p/w500/uOOtwVbSr4QDjAGIifLDwpb2Pdl.jpg",
@@ -10221,6 +13251,26 @@
    "tmdb": "/bTvHlcqiOjGa3lFtbrTLTM3zasY.jpg",
    "imdb": "tt0120855",
    "local": "/telas/cartazes/b3c2cabc357c7c3e.webp"
+  },
+  "tarzan-2-a-lenda-comeca-2005": {
+   "img": "https://image.tmdb.org/t/p/w500/dI0ANmiLaqUuBrX4v8V3ZywkyZ0.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/15657",
+   "fonte": "tmdb",
+   "tmdb": "/dI0ANmiLaqUuBrX4v8V3ZywkyZ0.jpg",
+   "imdb": "tt0437503",
+   "local": "/telas/cartazes/5e4a2c6965968a03.webp"
+  },
+  "tarzan-e-jane-2002": {
+   "img": "https://image.tmdb.org/t/p/w500/wsYC01jgqFCVUKPXV9KdAEwkJEQ.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/13683",
+   "fonte": "tmdb",
+   "tmdb": "/wsYC01jgqFCVUKPXV9KdAEwkJEQ.jpg",
+   "imdb": "tt0313680",
+   "local": "/telas/cartazes/8b1c6f7bdc959f1b.webp"
   },
   "taxi-driver-motorista-de-taxi-1976": {
    "img": "https://image.tmdb.org/t/p/w500/ekstpH614fwDX8DUln1a2Opz0N8.jpg",
@@ -10620,6 +13670,16 @@
    "imdb": "tt15320362",
    "local": "/telas/cartazes/8f3fed400c3de7b9.webp"
   },
+  "todo-mundo-em-panico-2-2001": {
+   "img": "https://image.tmdb.org/t/p/w500/7Eb1JWK0Cb0rbfsYjwfc9g0PbQH.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/4248",
+   "fonte": "tmdb",
+   "tmdb": "/7Eb1JWK0Cb0rbfsYjwfc9g0PbQH.jpg",
+   "imdb": "tt0257106",
+   "local": "/telas/cartazes/5eab95c5a3383a2d.webp"
+  },
   "todo-mundo-em-panico-2000": {
    "img": "https://image.tmdb.org/t/p/w500/fVQFPRuw3yWXojYDJvA5EoFjUOY.jpg",
    "w": 500,
@@ -10629,6 +13689,46 @@
    "tmdb": "/fVQFPRuw3yWXojYDJvA5EoFjUOY.jpg",
    "imdb": "tt0175142",
    "local": "/telas/cartazes/e9dd1ad1781a3e17.webp"
+  },
+  "todo-mundo-em-panico-2026": {
+   "img": "https://image.tmdb.org/t/p/w500/znHT8peERZRWG1ME3r0Db0EV8k8.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1273221",
+   "fonte": "tmdb",
+   "tmdb": "/znHT8peERZRWG1ME3r0Db0EV8k8.jpg",
+   "imdb": "tt32093575",
+   "local": "/telas/cartazes/1c9609d92c204e81.webp"
+  },
+  "todo-mundo-em-panico-3-2003": {
+   "img": "https://image.tmdb.org/t/p/w500/8dLsax5KSwlCY5uWXETKjud5k6U.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/4256",
+   "fonte": "tmdb",
+   "tmdb": "/8dLsax5KSwlCY5uWXETKjud5k6U.jpg",
+   "imdb": "tt0306047",
+   "local": "/telas/cartazes/5b74ca06b3459dad.webp"
+  },
+  "todo-mundo-em-panico-4-2006": {
+   "img": "https://image.tmdb.org/t/p/w500/dEwlu8S0z1AibuX1weLwUyiRWFl.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/4257",
+   "fonte": "tmdb",
+   "tmdb": "/dEwlu8S0z1AibuX1weLwUyiRWFl.jpg",
+   "imdb": "tt0362120",
+   "local": "/telas/cartazes/e0dab094ac7fcac2.webp"
+  },
+  "todo-mundo-em-panico-5-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/vBqLLxE6GaAPhO6v9EFvFbLZ7Ap.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/4258",
+   "fonte": "tmdb",
+   "tmdb": "/vBqLLxE6GaAPhO6v9EFvFbLZ7Ap.jpg",
+   "imdb": "tt0795461",
+   "local": "/telas/cartazes/891354067beb9eb6.webp"
   },
   "todo-mundo-odeia-o-chris-2005": {
    "img": "https://image.tmdb.org/t/p/w500/zX0xZnyReJxtGAqDOS3WcsgpOgx.jpg",
@@ -10700,6 +13800,26 @@
    "imdb": "tt0435761",
    "local": "/telas/cartazes/1dac4e15b274c44c.webp"
   },
+  "toy-story-4-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/301528",
+   "fonte": "tmdb",
+   "tmdb": "/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg",
+   "imdb": "tt1979376",
+   "local": "/telas/cartazes/fbf2d49bd2f40ba8.webp"
+  },
+  "toy-story-5-2026": {
+   "img": "https://image.tmdb.org/t/p/w500/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1084244",
+   "fonte": "tmdb",
+   "tmdb": "/sfQtVlIHljToOwYjhe21KPGzZWK.jpg",
+   "imdb": "tt29355505",
+   "local": "/telas/cartazes/d87ce03ae2fec97c.webp"
+  },
   "toy-story-um-mundo-de-aventuras-1995": {
    "img": "https://image.tmdb.org/t/p/w500/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg",
    "w": 500,
@@ -10729,6 +13849,46 @@
    "tmdb": "/lkZ9gqCEjzX85lKR6Jjd1uGAXNp.jpg",
    "imdb": "tt0418279",
    "local": "/telas/cartazes/db35c5d6bfbad8b8.webp"
+  },
+  "transformers-a-era-da-extincao-2014": {
+   "img": "https://image.tmdb.org/t/p/w500/jyzrfx2WaeY60kYZpPYepSjGz4S.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/91314",
+   "fonte": "tmdb",
+   "tmdb": "/jyzrfx2WaeY60kYZpPYepSjGz4S.jpg",
+   "imdb": "tt2109248",
+   "local": "/telas/cartazes/09997360d895a27a.webp"
+  },
+  "transformers-a-vinganca-dos-derrotados-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/pLBb0whOzVDtJvyD4DPeQyQNOqp.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/8373",
+   "fonte": "tmdb",
+   "tmdb": "/pLBb0whOzVDtJvyD4DPeQyQNOqp.jpg",
+   "imdb": "tt1055369",
+   "local": "/telas/cartazes/5e0335f06529bbfe.webp"
+  },
+  "transformers-o-lado-oculto-da-lua-2011": {
+   "img": "https://image.tmdb.org/t/p/w500/28YlCLrFhONteYSs9hKjD1Km0Cj.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/38356",
+   "fonte": "tmdb",
+   "tmdb": "/28YlCLrFhONteYSs9hKjD1Km0Cj.jpg",
+   "imdb": "tt1399103",
+   "local": "/telas/cartazes/a71122e4eb50f706.webp"
+  },
+  "transformers-o-ultimo-cavaleiro-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/s5HQf2Gb3lIO2cRcFwNL9sn1o1o.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/335988",
+   "fonte": "tmdb",
+   "tmdb": "/s5HQf2Gb3lIO2cRcFwNL9sn1o1o.jpg",
+   "imdb": "tt3371366",
+   "local": "/telas/cartazes/4733a244ac7a8e0e.webp"
   },
   "treme-2010": {
    "img": "https://image.tmdb.org/t/p/w500/k4pV1FUccFmmbz9DwUON7KWT0gi.jpg",
@@ -10839,6 +13999,36 @@
    "tmdb": "/lxM6kqilAdpdhqUl2biYp5frUxE.jpg",
    "imdb": "tt0073195",
    "local": "/telas/cartazes/30734de16f5c2ad2.webp"
+  },
+  "tubarao-2-1978": {
+   "img": "https://image.tmdb.org/t/p/w500/cN3ijEwsn4kBaRuHfcJpAQJbeWe.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/579",
+   "fonte": "tmdb",
+   "tmdb": "/cN3ijEwsn4kBaRuHfcJpAQJbeWe.jpg",
+   "imdb": "tt0077766",
+   "local": "/telas/cartazes/ad26011c0ab0a705.webp"
+  },
+  "tubarao-3-1983": {
+   "img": "https://image.tmdb.org/t/p/w500/kqDXj53F9paqVGJLGfHtz7giJ3s.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/17692",
+   "fonte": "tmdb",
+   "tmdb": "/kqDXj53F9paqVGJLGfHtz7giJ3s.jpg",
+   "imdb": "tt0085750",
+   "local": "/telas/cartazes/9bd895d5a1058da6.webp"
+  },
+  "tubarao-87-a-vinganca-1987": {
+   "img": "https://image.tmdb.org/t/p/w500/ebYw9tR0iqBzDGA6HVBhtd2xJM3.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/580",
+   "fonte": "tmdb",
+   "tmdb": "/ebYw9tR0iqBzDGA6HVBhtd2xJM3.jpg",
+   "imdb": "tt0093300",
+   "local": "/telas/cartazes/653cd9d2eb82e69d.webp"
   },
   "tudo-bem-nao-ser-normal-2020": {
    "img": "https://image.tmdb.org/t/p/w500/8XSJfLeImX8NszDUFnK1lbseCi8.jpg",
@@ -10980,6 +14170,16 @@
    "imdb": "tt0094898",
    "local": "/telas/cartazes/03d18e61d78bee7c.webp"
   },
+  "um-principe-em-nova-york-2-2021": {
+   "img": "https://image.tmdb.org/t/p/w500/nWBPLkqNApY5pgrJFMiI9joSI30.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/484718",
+   "fonte": "tmdb",
+   "tmdb": "/nWBPLkqNApY5pgrJFMiI9joSI30.jpg",
+   "imdb": "tt6802400",
+   "local": "/telas/cartazes/13a55895b7edf023.webp"
+  },
   "um-sonho-de-liberdade-1994": {
    "img": "https://image.tmdb.org/t/p/w500/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg",
    "w": 500,
@@ -11080,6 +14280,16 @@
    "imdb": "tt6792282",
    "local": "/telas/cartazes/f39c9fc62f7bc4f6.webp"
   },
+  "uma-noite-no-museu-2-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/l9yAQn6TyrA3gv5xZZkiMMoZsiw.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/18360",
+   "fonte": "tmdb",
+   "tmdb": "/l9yAQn6TyrA3gv5xZZkiMMoZsiw.jpg",
+   "imdb": "tt1078912",
+   "local": "/telas/cartazes/8214259026afaddf.webp"
+  },
   "uma-noite-no-museu-2006": {
    "img": "https://image.tmdb.org/t/p/w500/pDsAAYf6Zn0yiAGJ6lYGs6hoZ4E.jpg",
    "w": 500,
@@ -11089,6 +14299,16 @@
    "tmdb": "/pDsAAYf6Zn0yiAGJ6lYGs6hoZ4E.jpg",
    "imdb": "tt0477347",
    "local": "/telas/cartazes/112a0e796bf2a016.webp"
+  },
+  "uma-noite-no-museu-3-o-segredo-da-tumba-2014": {
+   "img": "https://image.tmdb.org/t/p/w500/xwgy305K6qDs3D20xUO4OZu1HPY.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/181533",
+   "fonte": "tmdb",
+   "tmdb": "/xwgy305K6qDs3D20xUO4OZu1HPY.jpg",
+   "imdb": "tt2692250",
+   "local": "/telas/cartazes/2efdcbb0be97f822.webp"
   },
   "uma-vida-oculta-2019": {
    "img": "https://image.tmdb.org/t/p/w500/taUkn5MsZIq5kpTABsF2563j5zp.jpg",
@@ -11109,6 +14329,16 @@
    "tmdb": "/s1TZYhSTk6Bv7qqGc0233P3KQrA.jpg",
    "imdb": "tt8101850",
    "local": "/telas/cartazes/543cc2fd1a94b419.webp"
+  },
+  "universidade-monstros-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/y7thwJ7z5Bplv6vwl6RI0yteaDD.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/62211",
+   "fonte": "tmdb",
+   "tmdb": "/y7thwJ7z5Bplv6vwl6RI0yteaDD.jpg",
+   "imdb": "tt1453405",
+   "local": "/telas/cartazes/d6393f78aedce053.webp"
   },
   "up-altas-aventuras-2009": {
    "img": "https://image.tmdb.org/t/p/w500/mFvoEwSfLqbcWwFsDjQebn9bzFe.jpg",
@@ -11190,6 +14420,16 @@
    "imdb": "tt0111257",
    "local": "/telas/cartazes/1366847f91f1a00f.webp"
   },
+  "velocidade-maxima-2-1997": {
+   "img": "https://image.tmdb.org/t/p/w500/gnK1ocpwUTj24zAktzomOJsD2bu.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1639",
+   "fonte": "tmdb",
+   "tmdb": "/gnK1ocpwUTj24zAktzomOJsD2bu.jpg",
+   "imdb": "tt0120179",
+   "local": "/telas/cartazes/181be78c1c35651f.webp"
+  },
   "velozes-e-furiosos-2001": {
    "img": "https://image.tmdb.org/t/p/w500/gqY0ITBgT7A82poL9jv851qdnIb.jpg",
    "w": 500,
@@ -11200,6 +14440,16 @@
    "imdb": "tt0232500",
    "local": "/telas/cartazes/2e02937ce9368a20.webp"
   },
+  "velozes-e-furiosos-4-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/lUtVoRukW7WNtUySwd8hWlByBds.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/13804",
+   "fonte": "tmdb",
+   "tmdb": "/lUtVoRukW7WNtUySwd8hWlByBds.jpg",
+   "imdb": "tt1013752",
+   "local": "/telas/cartazes/8d75758dba007673.webp"
+  },
   "velozes-e-furiosos-5-operacao-rio-2011": {
    "img": "https://image.tmdb.org/t/p/w500/gEfQjjQwY7fh5bI4GlG0RrBu7Pz.jpg",
    "w": 500,
@@ -11209,6 +14459,86 @@
    "tmdb": "/gEfQjjQwY7fh5bI4GlG0RrBu7Pz.jpg",
    "imdb": "tt1596343",
    "local": "/telas/cartazes/409880d704ebf57c.webp"
+  },
+  "velozes-e-furiosos-desafio-em-toquio-2006": {
+   "img": "https://image.tmdb.org/t/p/w500/46xqGOwHbh2TH2avWSw3SMXph4E.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/9615",
+   "fonte": "tmdb",
+   "tmdb": "/46xqGOwHbh2TH2avWSw3SMXph4E.jpg",
+   "imdb": "tt0463985",
+   "local": "/telas/cartazes/b778fec1992f0bed.webp"
+  },
+  "velozes-furiosos-10-2023": {
+   "img": "https://image.tmdb.org/t/p/w500/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/385687",
+   "fonte": "tmdb",
+   "tmdb": "/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
+   "imdb": "tt5433140",
+   "local": "/telas/cartazes/ac88b491967137a3.webp"
+  },
+  "velozes-furiosos-2003": {
+   "img": "https://image.tmdb.org/t/p/w500/6nDZExrDKIXvSAghsFKVFRVJuSf.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/584",
+   "fonte": "tmdb",
+   "tmdb": "/6nDZExrDKIXvSAghsFKVFRVJuSf.jpg",
+   "imdb": "tt0322259",
+   "local": "/telas/cartazes/8f10fd13e776e5d8.webp"
+  },
+  "velozes-furiosos-6-2013": {
+   "img": "https://image.tmdb.org/t/p/w500/thSmnRdrzPBBospIOJjLZBReqzo.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/82992",
+   "fonte": "tmdb",
+   "tmdb": "/thSmnRdrzPBBospIOJjLZBReqzo.jpg",
+   "imdb": "tt1905041",
+   "local": "/telas/cartazes/2cffa5d67058dcc5.webp"
+  },
+  "velozes-furiosos-7-2015": {
+   "img": "https://image.tmdb.org/t/p/w500/ktofZ9Htrjiy0P6LEowsDaxd3Ri.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/168259",
+   "fonte": "tmdb",
+   "tmdb": "/ktofZ9Htrjiy0P6LEowsDaxd3Ri.jpg",
+   "imdb": "tt2820852",
+   "local": "/telas/cartazes/41b52c9b5bb4458d.webp"
+  },
+  "velozes-furiosos-8-2017": {
+   "img": "https://image.tmdb.org/t/p/w500/dImWM7GJqryWJO9LHa3XQ8DD5NH.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/337339",
+   "fonte": "tmdb",
+   "tmdb": "/dImWM7GJqryWJO9LHa3XQ8DD5NH.jpg",
+   "imdb": "tt4630562",
+   "local": "/telas/cartazes/feeeaa135acf6c8d.webp"
+  },
+  "velozes-furiosos-9-2021": {
+   "img": "https://image.tmdb.org/t/p/w500/deEmLILTPejEb6OGsXRJ5MCvyDW.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/385128",
+   "fonte": "tmdb",
+   "tmdb": "/deEmLILTPejEb6OGsXRJ5MCvyDW.jpg",
+   "imdb": "tt5433138",
+   "local": "/telas/cartazes/0bf820b748533754.webp"
+  },
+  "velozes-furiosos-hobbs-shaw-2019": {
+   "img": "https://image.tmdb.org/t/p/w500/qRyy2UmjC5ur9bDi3kpNNRCc5nc.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/384018",
+   "fonte": "tmdb",
+   "tmdb": "/qRyy2UmjC5ur9bDi3kpNNRCc5nc.jpg",
+   "imdb": "tt6806448",
+   "local": "/telas/cartazes/1e4a5542b2de71e4.webp"
   },
   "veneno-2020": {
    "img": "https://image.tmdb.org/t/p/w500/rSMgruoizGda8Rqe9DsgD2Ln8Uq.jpg",
@@ -11279,6 +14609,26 @@
    "tmdb": "/bQLrHIRNEkE3PdIWQrZHynQZazu.jpg",
    "imdb": "tt2306299",
    "local": "/telas/cartazes/04a1d353c767a482.webp"
+  },
+  "vingadores-doutor-destino-2026": {
+   "img": "https://image.tmdb.org/t/p/w500/gDkCXdxOrKRRa6t7uwOHDDj1Riu.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1003596",
+   "fonte": "tmdb",
+   "tmdb": "/gDkCXdxOrKRRa6t7uwOHDDj1Riu.jpg",
+   "imdb": "tt21357150",
+   "local": "/telas/cartazes/27e65429044910ee.webp"
+  },
+  "vingadores-era-de-ultron-2015": {
+   "img": "https://image.tmdb.org/t/p/w500/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/99861",
+   "fonte": "tmdb",
+   "tmdb": "/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",
+   "imdb": "tt2395427",
+   "local": "/telas/cartazes/72f4732823faee6d.webp"
   },
   "vingadores-guerra-infinita-2018": {
    "img": "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
@@ -11679,6 +15029,16 @@
    "tmdb": "/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg",
    "imdb": "tt7160372",
    "local": "/telas/cartazes/42f7448303721bbd.webp"
+  },
+  "zootopia-2-2025": {
+   "img": "https://image.tmdb.org/t/p/w500/oJ7g2CifqpStmoYQyaLQgEU32qO.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/1084242",
+   "fonte": "tmdb",
+   "tmdb": "/oJ7g2CifqpStmoYQyaLQgEU32qO.jpg",
+   "imdb": "tt26443597",
+   "local": "/telas/cartazes/3b960209445e74f1.webp"
   },
   "zootopia-essa-cidade-e-o-bicho-2016": {
    "img": "https://image.tmdb.org/t/p/w500/hlK0e0wAQ3VLuJcsfIYPvb4JVud.jpg",
