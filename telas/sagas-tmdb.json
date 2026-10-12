@@ -1,0 +1,5420 @@
+{
+ "sobre": "Coleção do TMDB de cada filme (scripts/telas-sagas.mjs). null = não pertence a nenhuma.",
+ "filmes": {
+  "2-filhos-de-francisco-2005": {
+   "tmdb": 49367,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-bela-e-a-fera-1991": {
+   "tmdb": 10020,
+   "colecao": 153010,
+   "em": "2026-10-12"
+  },
+  "a-culpa-e-das-estrelas-2014": {
+   "tmdb": 222935,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-era-do-gelo-2002": {
+   "tmdb": 425,
+   "colecao": 8354,
+   "em": "2026-10-12"
+  },
+  "a-fantastica-fabrica-de-chocolate-2005": {
+   "tmdb": 118,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-fuga-das-galinhas-2000": {
+   "tmdb": 7443,
+   "colecao": 718551,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-rush-1998": {
+   "tmdb": 2109,
+   "colecao": 90863,
+   "em": "2026-10-12"
+  },
+  "a-mumia-1999": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-origem-2010": {
+   "tmdb": 27205,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-pequena-sereia-1989": {
+   "tmdb": 10144,
+   "colecao": 33085,
+   "em": "2026-10-12"
+  },
+  "a-proposta-2009": {
+   "tmdb": 18240,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ace-ventura-um-detetive-diferente-1994": {
+   "tmdb": 3049,
+   "colecao": 3167,
+   "em": "2026-10-12"
+  },
+  "ainda-estou-aqui-2024": {
+   "tmdb": 1000837,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "aladdin-1992": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "american-pie-a-primeira-vez-e-inesquecivel-1999": {
+   "tmdb": 2105,
+   "colecao": 2806,
+   "em": "2026-10-12"
+  },
+  "armageddon-1998": {
+   "tmdb": 95,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "as-branquelas-2004": {
+   "tmdb": 12153,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "avatar-o-caminho-da-agua-2022": {
+   "tmdb": 76600,
+   "colecao": 87096,
+   "em": "2026-10-12"
+  },
+  "barbie-2023": {
+   "tmdb": 346698,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "batman-o-cavaleiro-das-trevas-2008": {
+   "tmdb": 155,
+   "colecao": 263,
+   "em": "2026-10-12"
+  },
+  "busca-implacavel-2008": {
+   "tmdb": 8681,
+   "colecao": 135483,
+   "em": "2026-10-12"
+  },
+  "carros-2006": {
+   "tmdb": 920,
+   "colecao": 87118,
+   "em": "2026-10-12"
+  },
+  "cidade-de-deus-2002": {
+   "tmdb": 598,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "click-2006": {
+   "tmdb": 9339,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "clube-da-luta-1999": {
+   "tmdb": 550,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "como-eu-era-antes-de-voce-2016": {
+   "tmdb": 296096,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "como-perder-um-homem-em-10-dias-2003": {
+   "tmdb": 9919,
+   "colecao": 1755842,
+   "em": "2026-10-12"
+  },
+  "como-se-fosse-a-primeira-vez-2004": {
+   "tmdb": 1824,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "como-treinar-o-seu-dragao-2010": {
+   "tmdb": 10191,
+   "colecao": 89137,
+   "em": "2026-10-12"
+  },
+  "coracao-valente-1995": {
+   "tmdb": 197,
+   "colecao": 1432360,
+   "em": "2026-10-12"
+  },
+  "coringa-2019": {
+   "tmdb": 475557,
+   "colecao": 987044,
+   "em": "2026-10-12"
+  },
+  "crepusculo-2008": {
+   "tmdb": 8966,
+   "colecao": 33514,
+   "em": "2026-10-12"
+  },
+  "de-repente-30-2004": {
+   "tmdb": 10096,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "de-volta-para-o-futuro-1985": {
+   "tmdb": 105,
+   "colecao": 264,
+   "em": "2026-10-12"
+  },
+  "debi-loide-dois-idiotas-em-apuros-1994": {
+   "tmdb": 8467,
+   "colecao": 96665,
+   "em": "2026-10-12"
+  },
+  "diario-de-uma-paixao-2004": {
+   "tmdb": 11036,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "divertida-mente-2015": {
+   "tmdb": 150540,
+   "colecao": 1022790,
+   "em": "2026-10-12"
+  },
+  "divertida-mente-2-2024": {
+   "tmdb": 1022789,
+   "colecao": 1022790,
+   "em": "2026-10-12"
+  },
+  "e-t-o-extraterrestre-1982": {
+   "tmdb": 601,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "enrolados-2010": {
+   "tmdb": 38757,
+   "colecao": 1268789,
+   "em": "2026-10-12"
+  },
+  "entrando-numa-fria-2000": {
+   "tmdb": 1597,
+   "colecao": 51509,
+   "em": "2026-10-12"
+  },
+  "escola-de-rock-2003": {
+   "tmdb": 1584,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "esqueceram-de-mim-1990": {
+   "tmdb": 771,
+   "colecao": 9888,
+   "em": "2026-10-12"
+  },
+  "forrest-gump-o-contador-de-historias-1994": {
+   "tmdb": 13,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "frozen-uma-aventura-congelante-2013": {
+   "tmdb": 109445,
+   "colecao": 386382,
+   "em": "2026-10-12"
+  },
+  "gente-grande-2010": {
+   "tmdb": 38365,
+   "colecao": 180546,
+   "em": "2026-10-12"
+  },
+  "ghost-do-outro-lado-da-vida-1990": {
+   "tmdb": 251,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "gladiador-2000": {
+   "tmdb": 98,
+   "colecao": 1069584,
+   "em": "2026-10-12"
+  },
+  "hercules-1997": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "hitch-conselheiro-amoroso-2005": {
+   "tmdb": 8488,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "homem-aranha-2002": {
+   "tmdb": 557,
+   "colecao": 556,
+   "em": "2026-10-12"
+  },
+  "homem-de-ferro-2008": {
+   "tmdb": 1726,
+   "colecao": 131292,
+   "em": "2026-10-12"
+  },
+  "independence-day-1996": {
+   "tmdb": 602,
+   "colecao": 304378,
+   "em": "2026-10-12"
+  },
+  "invocacao-do-mal-2013": {
+   "tmdb": 138843,
+   "colecao": 313086,
+   "em": "2026-10-12"
+  },
+  "it-a-coisa-2017": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "jogos-mortais-2004": {
+   "tmdb": 176,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "jogos-vorazes-2012": {
+   "tmdb": 70160,
+   "colecao": 131635,
+   "em": "2026-10-12"
+  },
+  "jumanji-1995": {
+   "tmdb": 8844,
+   "colecao": 495527,
+   "em": "2026-10-12"
+  },
+  "jurassic-park-o-parque-dos-dinossauros-1993": {
+   "tmdb": 329,
+   "colecao": 328,
+   "em": "2026-10-12"
+  },
+  "legalmente-loira-2001": {
+   "tmdb": 8835,
+   "colecao": 86024,
+   "em": "2026-10-12"
+  },
+  "lilo-stitch-2002": {
+   "tmdb": 11544,
+   "colecao": 97461,
+   "em": "2026-10-12"
+  },
+  "madagascar-2005": {
+   "tmdb": 953,
+   "colecao": 14740,
+   "em": "2026-10-12"
+  },
+  "mamma-mia-o-filme-2008": {
+   "tmdb": 11631,
+   "colecao": 458558,
+   "em": "2026-10-12"
+  },
+  "marley-eu-2008": {
+   "tmdb": 14306,
+   "colecao": 230532,
+   "em": "2026-10-12"
+  },
+  "meninas-malvadas-2004": {
+   "tmdb": 10625,
+   "colecao": 99606,
+   "em": "2026-10-12"
+  },
+  "meu-malvado-favorito-2010": {
+   "tmdb": 20352,
+   "colecao": 86066,
+   "em": "2026-10-12"
+  },
+  "mib-homens-de-preto-1997": {
+   "tmdb": 607,
+   "colecao": 86055,
+   "em": "2026-10-12"
+  },
+  "minha-mae-e-uma-peca-o-filme-2013": {
+   "tmdb": 203217,
+   "colecao": 455278,
+   "em": "2026-10-12"
+  },
+  "missao-impossivel-1996": {
+   "tmdb": 954,
+   "colecao": 87359,
+   "em": "2026-10-12"
+  },
+  "monstros-s-a-2001": {
+   "tmdb": 585,
+   "colecao": 137696,
+   "em": "2026-10-12"
+  },
+  "mudanca-de-habito-1992": {
+   "tmdb": 2005,
+   "colecao": 103573,
+   "em": "2026-10-12"
+  },
+  "mulan-1998": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "naufrago-2000": {
+   "tmdb": 8358,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-amor-nao-tira-ferias-2006": {
+   "tmdb": 1581,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-chamado-2002": {
+   "tmdb": 565,
+   "colecao": 14563,
+   "em": "2026-10-12"
+  },
+  "o-diabo-veste-prada-2006": {
+   "tmdb": 350,
+   "colecao": 1314623,
+   "em": "2026-10-12"
+  },
+  "o-diario-de-bridget-jones-2001": {
+   "tmdb": 634,
+   "colecao": 8936,
+   "em": "2026-10-12"
+  },
+  "o-exterminador-do-futuro-2-o-julgamento-final-1991": {
+   "tmdb": 280,
+   "colecao": 528,
+   "em": "2026-10-12"
+  },
+  "o-lobo-de-wall-street-2013": {
+   "tmdb": 106646,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-maskara-1994": {
+   "tmdb": 854,
+   "colecao": 43072,
+   "em": "2026-10-12"
+  },
+  "o-poderoso-chefao-1972": {
+   "tmdb": 238,
+   "colecao": 230,
+   "em": "2026-10-12"
+  },
+  "o-sexto-sentido-1999": {
+   "tmdb": 745,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-silencio-dos-inocentes-1991": {
+   "tmdb": 274,
+   "colecao": 9743,
+   "em": "2026-10-12"
+  },
+  "o-tigre-e-o-dragao-2000": {
+   "tmdb": 146,
+   "colecao": 290973,
+   "em": "2026-10-12"
+  },
+  "os-caca-fantasmas-1984": {
+   "tmdb": 620,
+   "colecao": 2980,
+   "em": "2026-10-12"
+  },
+  "os-incriveis-2004": {
+   "tmdb": 9806,
+   "colecao": 468222,
+   "em": "2026-10-12"
+  },
+  "os-vingadores-the-avengers-2012": {
+   "tmdb": 24428,
+   "colecao": 86311,
+   "em": "2026-10-12"
+  },
+  "p-s-eu-te-amo-2007": {
+   "tmdb": 6023,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "panico-1996": {
+   "tmdb": 4232,
+   "colecao": 2602,
+   "em": "2026-10-12"
+  },
+  "pantera-negra-2018": {
+   "tmdb": 284054,
+   "colecao": 529892,
+   "em": "2026-10-12"
+  },
+  "piratas-do-caribe-a-maldicao-do-perola-negra-2003": {
+   "tmdb": 22,
+   "colecao": 295,
+   "em": "2026-10-12"
+  },
+  "premonicao-2000": {
+   "tmdb": 9532,
+   "colecao": 8864,
+   "em": "2026-10-12"
+  },
+  "procurando-nemo-2003": {
+   "tmdb": 12,
+   "colecao": 137697,
+   "em": "2026-10-12"
+  },
+  "pulp-fiction-tempo-de-violencia-1994": {
+   "tmdb": 680,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "rio-2011": {
+   "tmdb": 46195,
+   "colecao": 229932,
+   "em": "2026-10-12"
+  },
+  "rocky-um-lutador-1976": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "se-beber-nao-case-2009": {
+   "tmdb": 18785,
+   "colecao": 86119,
+   "em": "2026-10-12"
+  },
+  "se-eu-fosse-voce-2006": {
+   "tmdb": 34588,
+   "colecao": 369380,
+   "em": "2026-10-12"
+  },
+  "shrek-2001": {
+   "tmdb": 808,
+   "colecao": 2150,
+   "em": "2026-10-12"
+  },
+  "shrek-2-2004": {
+   "tmdb": 809,
+   "colecao": 2150,
+   "em": "2026-10-12"
+  },
+  "sr-e-sra-smith-2005": {
+   "tmdb": 787,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "star-wars-episodio-iv-uma-nova-esperanca-1977": {
+   "tmdb": 11,
+   "colecao": 10,
+   "em": "2026-10-12"
+  },
+  "tarzan-1999": {
+   "tmdb": 37135,
+   "colecao": 106768,
+   "em": "2026-10-12"
+  },
+  "titanic-1997": {
+   "tmdb": 597,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "todo-mundo-em-panico-2000": {
+   "tmdb": 4247,
+   "colecao": 4246,
+   "em": "2026-10-12"
+  },
+  "todo-poderoso-2003": {
+   "tmdb": 310,
+   "colecao": 124949,
+   "em": "2026-10-12"
+  },
+  "top-gun-ases-indomaveis-1986": {
+   "tmdb": 744,
+   "colecao": 531330,
+   "em": "2026-10-12"
+  },
+  "top-gun-maverick-2022": {
+   "tmdb": 361743,
+   "colecao": 531330,
+   "em": "2026-10-12"
+  },
+  "toy-story-2-1999": {
+   "tmdb": 863,
+   "colecao": 10194,
+   "em": "2026-10-12"
+  },
+  "toy-story-3-2010": {
+   "tmdb": 10193,
+   "colecao": 10194,
+   "em": "2026-10-12"
+  },
+  "toy-story-um-mundo-de-aventuras-1995": {
+   "tmdb": 862,
+   "colecao": 10194,
+   "em": "2026-10-12"
+  },
+  "transformers-2007": {
+   "tmdb": 1858,
+   "colecao": 8650,
+   "em": "2026-10-12"
+  },
+  "tropa-de-elite-2007": {
+   "tmdb": 7347,
+   "colecao": 119581,
+   "em": "2026-10-12"
+  },
+  "tropa-de-elite-2-o-inimigo-agora-e-outro-2010": {
+   "tmdb": 47931,
+   "colecao": 119581,
+   "em": "2026-10-12"
+  },
+  "tubarao-1975": {
+   "tmdb": 578,
+   "colecao": 2366,
+   "em": "2026-10-12"
+  },
+  "um-amor-para-recordar-2002": {
+   "tmdb": 10229,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "um-lugar-chamado-notting-hill-1999": {
+   "tmdb": 509,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "um-principe-em-nova-york-1988": {
+   "tmdb": 9602,
+   "colecao": 647077,
+   "em": "2026-10-12"
+  },
+  "uma-baba-quase-perfeita-1993": {
+   "tmdb": 788,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "uma-linda-mulher-1990": {
+   "tmdb": 114,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "uma-noite-no-museu-2006": {
+   "tmdb": 1593,
+   "colecao": 85943,
+   "em": "2026-10-12"
+  },
+  "up-altas-aventuras-2009": {
+   "tmdb": 14160,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "velocidade-maxima-1994": {
+   "tmdb": 1637,
+   "colecao": 43064,
+   "em": "2026-10-12"
+  },
+  "velozes-e-furiosos-2001": {
+   "tmdb": 9799,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "velozes-e-furiosos-5-operacao-rio-2011": {
+   "tmdb": 51497,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "vingadores-guerra-infinita-2018": {
+   "tmdb": 299536,
+   "colecao": 86311,
+   "em": "2026-10-12"
+  },
+  "vingadores-ultimato-2019": {
+   "tmdb": 299534,
+   "colecao": 86311,
+   "em": "2026-10-12"
+  },
+  "zootopia-essa-cidade-e-o-bicho-2016": {
+   "tmdb": 269149,
+   "colecao": 1084247,
+   "em": "2026-10-12"
+  },
+  "007-cassino-royale-2006": {
+   "tmdb": 36557,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "10-coisas-que-eu-odeio-em-voce-1999": {
+   "tmdb": 4951,
+   "colecao": 1477103,
+   "em": "2026-10-12"
+  },
+  "1917-2019": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "2001-uma-odisseia-no-espaco-1968": {
+   "tmdb": 62,
+   "colecao": 4438,
+   "em": "2026-10-12"
+  },
+  "300-2006": {
+   "tmdb": 1271,
+   "colecao": 125570,
+   "em": "2026-10-12"
+  },
+  "500-dias-com-ela-2009": {
+   "tmdb": 19913,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-bruxa-de-blair-1999": {
+   "tmdb": 2667,
+   "colecao": 64750,
+   "em": "2026-10-12"
+  },
+  "a-chegada-2016": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-espera-de-um-milagre-1999": {
+   "tmdb": 497,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-grande-familia-o-filme-2007": {
+   "tmdb": 56049,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-historia-sem-fim-1984": {
+   "tmdb": 34584,
+   "colecao": 91430,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-pesadelo-1984": {
+   "tmdb": 377,
+   "colecao": 8581,
+   "em": "2026-10-12"
+  },
+  "a-identidade-bourne-2002": {
+   "tmdb": 2501,
+   "colecao": 31562,
+   "em": "2026-10-12"
+  },
+  "a-lagoa-azul-1980": {
+   "tmdb": 5689,
+   "colecao": 59586,
+   "em": "2026-10-12"
+  },
+  "a-lista-de-schindler-1993": {
+   "tmdb": 424,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-noiva-cadaver-2005": {
+   "tmdb": 3933,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-nova-onda-do-imperador-2000": {
+   "tmdb": 11688,
+   "colecao": 178117,
+   "em": "2026-10-12"
+  },
+  "a-novica-rebelde-1965": {
+   "tmdb": 15121,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-rede-social-2010": {
+   "tmdb": 37799,
+   "colecao": 1504252,
+   "em": "2026-10-12"
+  },
+  "a-sociedade-da-neve-2023": {
+   "tmdb": 906126,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-substancia-2024": {
+   "tmdb": 933260,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-teoria-de-tudo-2014": {
+   "tmdb": 266856,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-vida-e-bela-1997": {
+   "tmdb": 637,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "akira-1988": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "alien-o-oitavo-passageiro-1979": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "amores-brutos-2000": {
+   "tmdb": 55,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "apocalypse-now-1979": {
+   "tmdb": 28,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "as-cronicas-de-narnia-o-leao-a-feiticeira-e-o-guarda-roupa-2005": {
+   "tmdb": 411,
+   "colecao": 420,
+   "em": "2026-10-12"
+  },
+  "as-vantagens-de-ser-invisivel-2012": {
+   "tmdb": 84892,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ate-o-ultimo-homem-2016": {
+   "tmdb": 324786,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ate-que-a-sorte-nos-separe-2012": {
+   "tmdb": 154441,
+   "colecao": 342577,
+   "em": "2026-10-12"
+  },
+  "atividade-paranormal-2007": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "babe-o-porquinho-atrapalhado-1995": {
+   "tmdb": 9598,
+   "colecao": 9435,
+   "em": "2026-10-12"
+  },
+  "bacurau-2019": {
+   "tmdb": 446159,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "bastardos-inglorios-2009": {
+   "tmdb": 16869,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "beleza-americana-1999": {
+   "tmdb": 14,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "billy-elliot-2000": {
+   "tmdb": 71,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "blade-runner-o-cacador-de-androides-1982": {
+   "tmdb": 78,
+   "colecao": 422837,
+   "em": "2026-10-12"
+  },
+  "bohemian-rhapsody-2018": {
+   "tmdb": 424694,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "brilho-eterno-de-uma-mente-sem-lembrancas-2004": {
+   "tmdb": 38,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cantando-na-chuva-1952": {
+   "tmdb": 872,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "carandiru-2003": {
+   "tmdb": 8440,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "casablanca-1942": {
+   "tmdb": 289,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "castelo-ra-tim-bum-o-filme-1999": {
+   "tmdb": 82142,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cazuza-o-tempo-nao-para-2004": {
+   "tmdb": 59474,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "chico-xavier-2010": {
+   "tmdb": 41520,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cisne-negro-2010": {
+   "tmdb": 44214,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "conta-comigo-1986": {
+   "tmdb": 235,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "coraline-e-o-mundo-secreto-2009": {
+   "tmdb": 14836,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "corra-2017": {
+   "tmdb": 419430,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "curtindo-a-vida-adoidado-1986": {
+   "tmdb": 9377,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "danca-com-lobos-1990": {
+   "tmdb": 581,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "de-pernas-pro-ar-2010": {
+   "tmdb": 62156,
+   "colecao": 743415,
+   "em": "2026-10-12"
+  },
+  "diamante-de-sangue-2006": {
+   "tmdb": 1372,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "dirty-dancing-ritmo-quente-1987": {
+   "tmdb": 88,
+   "colecao": 86058,
+   "em": "2026-10-12"
+  },
+  "django-livre-2012": {
+   "tmdb": 68718,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "dona-flor-e-seus-dois-maridos-1976": {
+   "tmdb": 42234,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "duna-2021": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "duro-de-matar-1988": {
+   "tmdb": 562,
+   "colecao": 1570,
+   "em": "2026-10-12"
+  },
+  "e-sua-mae-tambem-2001": {
+   "tmdb": 1391,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "edward-maos-de-tesoura-1990": {
+   "tmdb": 162,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "encanto-2021": {
+   "tmdb": 568124,
+   "colecao": 1451277,
+   "em": "2026-10-12"
+  },
+  "escritores-da-liberdade-2007": {
+   "tmdb": 1646,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "eu-sou-a-lenda-2007": {
+   "tmdb": 6479,
+   "colecao": 945984,
+   "em": "2026-10-12"
+  },
+  "extraordinario-2017": {
+   "tmdb": 406997,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "feitico-do-tempo-1993": {
+   "tmdb": 137,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "gato-de-botas-2-o-ultimo-pedido-2022": {
+   "tmdb": 315162,
+   "colecao": 94602,
+   "em": "2026-10-12"
+  },
+  "gran-torino-2008": {
+   "tmdb": 13223,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "gravidade-2013": {
+   "tmdb": 49047,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "green-book-o-guia-2018": {
+   "tmdb": 490132,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "guardioes-da-galaxia-2014": {
+   "tmdb": 118340,
+   "colecao": 284433,
+   "em": "2026-10-12"
+  },
+  "guerreiras-do-k-pop-2025": {
+   "tmdb": 803796,
+   "colecao": 1738564,
+   "em": "2026-10-12"
+  },
+  "heroi-2002": {
+   "tmdb": 79,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "homem-aranha-atraves-do-aranhaverso-2023": {
+   "tmdb": 569094,
+   "colecao": 573436,
+   "em": "2026-10-12"
+  },
+  "homem-aranha-no-aranhaverso-2018": {
+   "tmdb": 324857,
+   "colecao": 573436,
+   "em": "2026-10-12"
+  },
+  "ilha-do-medo-2010": {
+   "tmdb": 11324,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "indiana-jones-e-a-ultima-cruzada-1989": {
+   "tmdb": 89,
+   "colecao": 84,
+   "em": "2026-10-12"
+  },
+  "intocaveis-2011": {
+   "tmdb": 77338,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "invasao-zumbi-2016": {
+   "tmdb": 396535,
+   "colecao": 619537,
+   "em": "2026-10-12"
+  },
+  "irmao-urso-2003": {
+   "tmdb": 10009,
+   "colecao": 96472,
+   "em": "2026-10-12"
+  },
+  "john-wick-de-volta-ao-jogo-2014": {
+   "tmdb": 245891,
+   "colecao": 404609,
+   "em": "2026-10-12"
+  },
+  "karate-kid-a-hora-da-verdade-1984": {
+   "tmdb": 1885,
+   "colecao": 8580,
+   "em": "2026-10-12"
+  },
+  "kill-bill-volume-1-2003": {
+   "tmdb": 24,
+   "colecao": 2883,
+   "em": "2026-10-12"
+  },
+  "la-la-land-cantando-estacoes-2016": {
+   "tmdb": 313369,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "laranja-mecanica-1971": {
+   "tmdb": 185,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "lisbela-e-o-prisioneiro-2003": {
+   "tmdb": 52345,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "logan-2017": {
+   "tmdb": 263115,
+   "colecao": 453993,
+   "em": "2026-10-12"
+  },
+  "luca-2021": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "mad-max-estrada-da-furia-2015": {
+   "tmdb": 76341,
+   "colecao": 8945,
+   "em": "2026-10-12"
+  },
+  "maquina-mortifera-1987": {
+   "tmdb": 941,
+   "colecao": 945,
+   "em": "2026-10-12"
+  },
+  "mary-poppins-1964": {
+   "tmdb": 433,
+   "colecao": 527439,
+   "em": "2026-10-12"
+  },
+  "matilda-1996": {
+   "tmdb": 10830,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "menina-de-ouro-2004": {
+   "tmdb": 70,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "menino-maluquinho-o-filme-1995": {
+   "tmdb": 51184,
+   "colecao": 567630,
+   "em": "2026-10-12"
+  },
+  "meu-amigo-totoro-1988": {
+   "tmdb": 8392,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "meu-nome-nao-e-johnny-2008": {
+   "tmdb": 17358,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "mogli-o-menino-lobo-2016": {
+   "tmdb": 278927,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "moulin-rouge-amor-em-vermelho-2001": {
+   "tmdb": 824,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nasce-uma-estrela-2018": {
+   "tmdb": 332562,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nosso-lar-2010": {
+   "tmdb": 52333,
+   "colecao": 1247087,
+   "em": "2026-10-12"
+  },
+  "o-agente-secreto-2025": {
+   "tmdb": 1220564,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-auto-da-compadecida-2-2024": {
+   "tmdb": 1099413,
+   "colecao": 1219938,
+   "em": "2026-10-12"
+  },
+  "o-caminho-para-el-dorado-2000": {
+   "tmdb": 10501,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-castelo-animado-2004": {
+   "tmdb": 4935,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-clube-dos-cinco-1985": {
+   "tmdb": 2108,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-curioso-caso-de-benjamin-button-2008": {
+   "tmdb": 4922,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-dilema-das-redes-2020": {
+   "tmdb": 656690,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-exorcista-1973": {
+   "tmdb": 9552,
+   "colecao": 12263,
+   "em": "2026-10-12"
+  },
+  "o-fabuloso-destino-de-amelie-poulain-2001": {
+   "tmdb": 194,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-grande-truque-2006": {
+   "tmdb": 1124,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-hobbit-uma-jornada-inesperada-2012": {
+   "tmdb": 49051,
+   "colecao": 121938,
+   "em": "2026-10-12"
+  },
+  "o-iluminado-1980": {
+   "tmdb": 694,
+   "colecao": 530064,
+   "em": "2026-10-12"
+  },
+  "o-jogo-da-imitacao-2014": {
+   "tmdb": 205596,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-labirinto-do-fauno-2006": {
+   "tmdb": 1417,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-palhaco-2011": {
+   "tmdb": 79934,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-pianista-2002": {
+   "tmdb": 423,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-poderoso-chefao-parte-ii-1974": {
+   "tmdb": 240,
+   "colecao": 230,
+   "em": "2026-10-12"
+  },
+  "o-principe-do-egito-1998": {
+   "tmdb": 9837,
+   "colecao": 1734218,
+   "em": "2026-10-12"
+  },
+  "o-regresso-2015": {
+   "tmdb": 281957,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-resgate-do-soldado-ryan-1998": {
+   "tmdb": 857,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-segredo-dos-seus-olhos-2009": {
+   "tmdb": 25376,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-show-de-truman-o-show-da-vida-1998": {
+   "tmdb": 37165,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-ultimo-samurai-2003": {
+   "tmdb": 616,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "oldboy-2003": {
+   "tmdb": 670,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "olga-2004": {
+   "tmdb": 34671,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "operacao-big-hero-2014": {
+   "tmdb": 177572,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "orgulho-e-preconceito-2005": {
+   "tmdb": 4348,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-bons-companheiros-1990": {
+   "tmdb": 769,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-cacadores-da-arca-perdida-1981": {
+   "tmdb": 85,
+   "colecao": 84,
+   "em": "2026-10-12"
+  },
+  "os-goonies-1985": {
+   "tmdb": 9340,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-infiltrados-2006": {
+   "tmdb": 1422,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-miseraveis-2012": {
+   "tmdb": 82695,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-normais-o-filme-2003": {
+   "tmdb": 37050,
+   "colecao": 646622,
+   "em": "2026-10-12"
+  },
+  "os-outros-2001": {
+   "tmdb": 1933,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-saltimbancos-trapalhoes-1981": {
+   "tmdb": 88730,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-sete-samurais-1954": {
+   "tmdb": 346,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-simpsons-o-filme-2007": {
+   "tmdb": 35,
+   "colecao": 1554359,
+   "em": "2026-10-12"
+  },
+  "parasita-2019": {
+   "tmdb": 496243,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "pecadores-2025": {
+   "tmdb": 1233413,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "pequena-miss-sunshine-2006": {
+   "tmdb": 773,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "perdido-em-marte-2015": {
+   "tmdb": 286217,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "pocahontas-1995": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ponte-para-terabitia-2007": {
+   "tmdb": 1265,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "prenda-me-se-for-capaz-2002": {
+   "tmdb": 640,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "procurando-dory-2016": {
+   "tmdb": 127380,
+   "colecao": 137697,
+   "em": "2026-10-12"
+  },
+  "psicose-1960": {
+   "tmdb": 539,
+   "colecao": 119674,
+   "em": "2026-10-12"
+  },
+  "que-horas-ela-volta-2015": {
+   "tmdb": 310569,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "quem-quer-ser-um-milionario-2008": {
+   "tmdb": 12405,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "quero-ser-grande-1988": {
+   "tmdb": 2280,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "rain-man-1988": {
+   "tmdb": 380,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ratatouille-2007": {
+   "tmdb": 2062,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "relatos-selvagens-2014": {
+   "tmdb": 265195,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "rogue-one-uma-historia-star-wars-2016": {
+   "tmdb": 330459,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sempre-ao-seu-lado-2009": {
+   "tmdb": 28178,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "senna-2010": {
+   "tmdb": 58496,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "seven-os-sete-crimes-capitais-1995": {
+   "tmdb": 807,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sim-senhor-2008": {
+   "tmdb": 10201,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "simplesmente-amor-2003": {
+   "tmdb": 508,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sinais-2002": {
+   "tmdb": 2675,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "spirit-o-corcel-indomavel-2002": {
+   "tmdb": 9023,
+   "colecao": 806483,
+   "em": "2026-10-12"
+  },
+  "star-wars-episodio-vi-o-retorno-de-jedi-1983": {
+   "tmdb": 1892,
+   "colecao": 10,
+   "em": "2026-10-12"
+  },
+  "taina-uma-aventura-na-amazonia-2000": {
+   "tmdb": 294161,
+   "colecao": 429231,
+   "em": "2026-10-12"
+  },
+  "taxi-driver-motorista-de-taxi-1976": {
+   "tmdb": 103,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "thelma-louise-1991": {
+   "tmdb": 1541,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "trainspotting-sem-limites-1996": {
+   "tmdb": 627,
+   "colecao": 424202,
+   "em": "2026-10-12"
+  },
+  "um-estranho-no-ninho-1975": {
+   "tmdb": 510,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "um-lugar-silencioso-2018": {
+   "tmdb": 447332,
+   "colecao": 521226,
+   "em": "2026-10-12"
+  },
+  "um-sonho-de-liberdade-1994": {
+   "tmdb": 278,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "uma-mente-brilhante-2001": {
+   "tmdb": 453,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "valente-2012": {
+   "tmdb": 62177,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "vida-de-inseto-1998": {
+   "tmdb": 9487,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "walle-2008": {
+   "tmdb": 10681,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "whiplash-em-busca-da-perfeicao-2014": {
+   "tmdb": 244786,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "wicked-2024": {
+   "tmdb": 402431,
+   "colecao": 968080,
+   "em": "2026-10-12"
+  },
+  "your-name-2016": {
+   "tmdb": 372058,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "zumbilandia-2009": {
+   "tmdb": 19908,
+   "colecao": 537982,
+   "em": "2026-10-12"
+  },
+  "12-anos-de-escravidao-2013": {
+   "tmdb": 76203,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "12-homens-e-uma-sentenca-1957": {
+   "tmdb": 389,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-caca-2012": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-criada-2016": {
+   "tmdb": 290098,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-doce-vida-1960": {
+   "tmdb": 439,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-espinha-do-diabo-2001": {
+   "tmdb": 1433,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-forma-da-agua-2017": {
+   "tmdb": 399055,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-invencao-de-hugo-cabret-2011": {
+   "tmdb": 44826,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-marcha-dos-pinguins-2005": {
+   "tmdb": 1667,
+   "colecao": 513585,
+   "em": "2026-10-12"
+  },
+  "a-vida-dos-outros-2006": {
+   "tmdb": 582,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-vida-invisivel-2019": {
+   "tmdb": 548544,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-voz-do-coracao-2004": {
+   "tmdb": 5528,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "abril-despedacado-2001": {
+   "tmdb": 36093,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "adeus-lenin-2003": {
+   "tmdb": 338,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "amadeus-1984": {
+   "tmdb": 279,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "amnesia-2000": {
+   "tmdb": 77,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "amor-a-flor-da-pele-2000": {
+   "tmdb": 843,
+   "colecao": 1775197,
+   "em": "2026-10-12"
+  },
+  "anatomia-de-uma-queda-2023": {
+   "tmdb": 915935,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "antes-do-amanhecer-1995": {
+   "tmdb": 76,
+   "colecao": 123800,
+   "em": "2026-10-12"
+  },
+  "apocalypto-2006": {
+   "tmdb": 1579,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "aquarius-2016": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "argentina-1985-2022": {
+   "tmdb": 714888,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "as-vinhas-da-ira-1940": {
+   "tmdb": 596,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "assassinos-da-lua-das-flores-2023": {
+   "tmdb": 466420,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "assunto-de-familia-2018": {
+   "tmdb": 505192,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ataque-dos-caes-2021": {
+   "tmdb": 600583,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "azul-e-a-cor-mais-quente-2013": {
+   "tmdb": 152584,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ben-hur-1959": {
+   "tmdb": 665,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "bicho-de-sete-cabecas-2001": {
+   "tmdb": 53961,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "bingo-o-rei-das-manhas-2017": {
+   "tmdb": 429210,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "birdman-ou-a-inesperada-virtude-da-ignorancia-2014": {
+   "tmdb": 194662,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "blade-runner-2049-2017": {
+   "tmdb": 335984,
+   "colecao": 422837,
+   "em": "2026-10-12"
+  },
+  "boyhood-da-infancia-a-juventude-2014": {
+   "tmdb": 85350,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "butch-cassidy-1969": {
+   "tmdb": 642,
+   "colecao": 625812,
+   "em": "2026-10-12"
+  },
+  "carruagens-de-fogo-1981": {
+   "tmdb": 9443,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cidadao-kane-1941": {
+   "tmdb": 15,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cidade-dos-sonhos-2001": {
+   "tmdb": 1018,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cine-holliudy-2013": {
+   "tmdb": 214355,
+   "colecao": 1161210,
+   "em": "2026-10-12"
+  },
+  "cinema-paradiso-1988": {
+   "tmdb": 11216,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "como-agua-para-chocolate-1992": {
+   "tmdb": 18183,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "conclave-2024": {
+   "tmdb": 974576,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "contatos-imediatos-do-terceiro-grau-1977": {
+   "tmdb": 840,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "corra-lola-corra-1998": {
+   "tmdb": 104,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "david-attenborough-e-nosso-planeta-2020": {
+   "tmdb": 664280,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "democracia-em-vertigem-2019": {
+   "tmdb": 566221,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "deus-e-brasileiro-2003": {
+   "tmdb": 34196,
+   "colecao": 1231094,
+   "em": "2026-10-12"
+  },
+  "dias-perfeitos-2023": {
+   "tmdb": 976893,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "donnie-darko-2001": {
+   "tmdb": 141,
+   "colecao": 178106,
+   "em": "2026-10-12"
+  },
+  "dor-e-gloria-2019": {
+   "tmdb": 519010,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "druk-mais-uma-rodada-2020": {
+   "tmdb": 580175,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "eduardo-e-monica-2022": {
+   "tmdb": 540734,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ela-2013": {
+   "tmdb": 152601,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "elis-2016": {
+   "tmdb": 360139,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "encontros-e-desencontros-2003": {
+   "tmdb": 153,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ensaio-sobre-a-cegueira-2008": {
+   "tmdb": 8338,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "entre-dois-amores-1985": {
+   "tmdb": 606,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "estomago-2007": {
+   "tmdb": 69335,
+   "colecao": 1229894,
+   "em": "2026-10-12"
+  },
+  "ex-machina-instinto-artificial-2014": {
+   "tmdb": 264660,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "expresso-do-amanha-2013": {
+   "tmdb": 110415,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "fale-com-ela-2002": {
+   "tmdb": 64,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "fargo-uma-comedia-de-erros-1996": {
+   "tmdb": 275,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "faroeste-caboclo-2013": {
+   "tmdb": 195423,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "free-solo-2018": {
+   "tmdb": 515042,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "gandhi-1982": {
+   "tmdb": 783,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "gonzaga-de-pai-pra-filho-2012": {
+   "tmdb": 129705,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "harry-e-sally-feitos-um-para-o-outro-1989": {
+   "tmdb": 639,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "hereditario-2018": {
+   "tmdb": 493922,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "hoje-eu-quero-voltar-sozinho-2014": {
+   "tmdb": 237791,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "homem-com-h-2025": {
+   "tmdb": 1212121,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "hotel-ruanda-2004": {
+   "tmdb": 205,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ilha-das-flores-1989": {
+   "tmdb": 45318,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "kiriku-e-a-feiticeira-1998": {
+   "tmdb": 21348,
+   "colecao": 338416,
+   "em": "2026-10-12"
+  },
+  "klaus-2019": {
+   "tmdb": 508965,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "kubo-e-as-cordas-magicas-2016": {
+   "tmdb": 313297,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "lendas-da-paixao-1994": {
+   "tmdb": 4476,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "lixo-extraordinario-2010": {
+   "tmdb": 46689,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "macunaima-1969": {
+   "tmdb": 68173,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "manchester-a-beira-mar-2016": {
+   "tmdb": 334541,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "mar-adentro-2004": {
+   "tmdb": 1913,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "maria-cheia-de-graca-2004": {
+   "tmdb": 436,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "me-chame-pelo-seu-nome-2017": {
+   "tmdb": 398818,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "medida-provisoria-2022": {
+   "tmdb": 614282,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "memorias-de-um-assassino-2003": {
+   "tmdb": 11423,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "midsommar-o-mal-nao-espera-a-noite-2019": {
+   "tmdb": 530385,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "moonrise-kingdom-2012": {
+   "tmdb": 83666,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "morango-e-chocolate-1993": {
+   "tmdb": 12527,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nada-de-novo-no-front-2022": {
+   "tmdb": 49046,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nao-aceitamos-devolucoes-2013": {
+   "tmdb": 211954,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "no-2012": {
+   "tmdb": 110398,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "no-ritmo-do-coracao-2021": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nove-rainhas-2000": {
+   "tmdb": 18079,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-ano-em-que-meus-pais-sairam-de-ferias-2006": {
+   "tmdb": 14421,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-artista-2011": {
+   "tmdb": 74643,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-bebe-de-rosemary-1968": {
+   "tmdb": 805,
+   "colecao": 264338,
+   "em": "2026-10-12"
+  },
+  "o-brutalista-2024": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-carteiro-e-o-poeta-1994": {
+   "tmdb": 11010,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-castelo-no-ceu-1986": {
+   "tmdb": 10515,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-cidadao-ilustre-2016": {
+   "tmdb": 408537,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-cla-2015": {
+   "tmdb": 352161,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-cla-das-adagas-voadoras-2004": {
+   "tmdb": 9550,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-crime-do-padre-amaro-2002": {
+   "tmdb": 542,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-estranho-mundo-de-jack-1993": {
+   "tmdb": 9479,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-fantastico-sr-raposo-2009": {
+   "tmdb": 10315,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-filho-da-noiva-2001": {
+   "tmdb": 19460,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-gigante-de-ferro-1999": {
+   "tmdb": 10386,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-grande-ditador-1940": {
+   "tmdb": 914,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-grande-hotel-budapeste-2014": {
+   "tmdb": 120467,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-grande-lebowski-1998": {
+   "tmdb": 115,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-homem-que-copiava-2003": {
+   "tmdb": 40823,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-paciente-ingles-1996": {
+   "tmdb": 409,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-pagador-de-promessas-1962": {
+   "tmdb": 59990,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-piano-1993": {
+   "tmdb": 713,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-quatrilho-1995": {
+   "tmdb": 67617,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-que-e-isso-companheiro-1997": {
+   "tmdb": 21253,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-servico-de-entregas-da-kiki-1989": {
+   "tmdb": 16859,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-sol-e-para-todos-1962": {
+   "tmdb": 595,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-ultimo-dos-moicanos-1992": {
+   "tmdb": 9361,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-ultimo-imperador-1987": {
+   "tmdb": 746,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "oito-e-meio-1963": {
+   "tmdb": 422,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "okja-2017": {
+   "tmdb": 387426,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "onde-os-fracos-nao-tem-vez-2007": {
+   "tmdb": 6977,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "onibus-174-2002": {
+   "tmdb": 8439,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-banshees-de-inisherin-2022": {
+   "tmdb": 674324,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-farofeiros-2018": {
+   "tmdb": 494493,
+   "colecao": 1262888,
+   "em": "2026-10-12"
+  },
+  "paddington-2-2017": {
+   "tmdb": 346648,
+   "colecao": 488924,
+   "em": "2026-10-12"
+  },
+  "peixe-grande-e-suas-historias-maravilhosas-2003": {
+   "tmdb": 587,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "persepolis-2007": {
+   "tmdb": 2011,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "pinoquio-por-guillermo-del-toro-2022": {
+   "tmdb": 555604,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "pixote-a-lei-do-mais-fraco-1980": {
+   "tmdb": 42148,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "pobres-criaturas-2023": {
+   "tmdb": 792307,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ponyo-uma-amizade-que-veio-do-mar-2008": {
+   "tmdb": 12429,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "professor-polvo-2020": {
+   "tmdb": 682110,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "quase-famosos-2000": {
+   "tmdb": 786,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "rashomon-1950": {
+   "tmdb": 548,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "red-crescer-e-uma-fera-2022": {
+   "tmdb": 508947,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "roma-2018": {
+   "tmdb": 426426,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sangue-negro-2007": {
+   "tmdb": 7345,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "somos-tao-jovens-2013": {
+   "tmdb": 191034,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sr-ninguem-2009": {
+   "tmdb": 31011,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "suzume-2022": {
+   "tmdb": 916224,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "tim-maia-2014": {
+   "tmdb": 286256,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "tres-homens-em-conflito-1966": {
+   "tmdb": 429,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "triangulo-da-tristeza-2022": {
+   "tmdb": 497828,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "tudo-sobre-minha-mae-1999": {
+   "tmdb": 99,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "tumulo-dos-vagalumes-1988": {
+   "tmdb": 12477,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "turma-da-monica-lacos-2019": {
+   "tmdb": 459670,
+   "colecao": 809460,
+   "em": "2026-10-12"
+  },
+  "um-conto-chines-2011": {
+   "tmdb": 67884,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "uma-batalha-apos-a-outra-2025": {
+   "tmdb": 1054867,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "uma-mulher-fantastica-2017": {
+   "tmdb": 429191,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "vidas-ao-vento-2013": {
+   "tmdb": 149870,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "vidas-passadas-2023": {
+   "tmdb": 666277,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "vidas-secas-1963": {
+   "tmdb": 836,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "volver-2006": {
+   "tmdb": 219,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "wallace-gromit-a-batalha-dos-vegetais-2005": {
+   "tmdb": 533,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "zona-de-interesse-2023": {
+   "tmdb": 467244,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-bruxa-2015": {
+   "tmdb": 310131,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-cancao-do-oceano-2014": {
+   "tmdb": 110416,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-estrada-da-vida-1954": {
+   "tmdb": 405,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-festa-de-babette-1987": {
+   "tmdb": 11832,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-grande-beleza-2013": {
+   "tmdb": 179144,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-historia-oficial-1985": {
+   "tmdb": 29263,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-hora-da-estrela-1985": {
+   "tmdb": 42031,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-lenda-do-pianista-do-mar-1998": {
+   "tmdb": 10376,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-liberdade-e-azul-1993": {
+   "tmdb": 108,
+   "colecao": 131,
+   "em": "2026-10-12"
+  },
+  "a-mao-de-deus-2021": {
+   "tmdb": 722778,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-memoria-infinita-2023": {
+   "tmdb": 1032760,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-montanha-sagrada-1973": {
+   "tmdb": 8327,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-partida-2008": {
+   "tmdb": 16804,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-pior-pessoa-do-mundo-2021": {
+   "tmdb": 660120,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-semente-do-fruto-sagrado-2024": {
+   "tmdb": 1278263,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-separacao-2011": {
+   "tmdb": 60243,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-teta-assustada-2009": {
+   "tmdb": 28644,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-voz-do-silencio-2016": {
+   "tmdb": 378064,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "adeus-minha-concubina-1993": {
+   "tmdb": 10997,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "aftersun-2022": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "agente-duplo-2020": {
+   "tmdb": 653756,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "aguirre-a-colera-dos-deuses-1972": {
+   "tmdb": 2000,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "amor-2012": {
+   "tmdb": 86837,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "amores-expressos-1994": {
+   "tmdb": 11104,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "antes-do-por-do-sol-2004": {
+   "tmdb": 80,
+   "colecao": 123800,
+   "em": "2026-10-12"
+  },
+  "as-bicicletas-de-belleville-2003": {
+   "tmdb": 9662,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "asas-do-desejo-1987": {
+   "tmdb": 144,
+   "colecao": 582828,
+   "em": "2026-10-12"
+  },
+  "baraka-1992": {
+   "tmdb": 14002,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "bardo-falsa-cronica-de-algumas-verdades-2022": {
+   "tmdb": 685691,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "boi-neon-2015": {
+   "tmdb": 314029,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "buena-vista-social-club-1999": {
+   "tmdb": 11779,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cafarnaum-2018": {
+   "tmdb": 517814,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cidade-baixa-2005": {
+   "tmdb": 8443,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cinco-gracas-2015": {
+   "tmdb": 336804,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "dancando-no-escuro-2000": {
+   "tmdb": 16,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "divino-amor-2019": {
+   "tmdb": 504592,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "dogville-2003": {
+   "tmdb": 553,
+   "colecao": 1952,
+   "em": "2026-10-12"
+  },
+  "edificio-master-2002": {
+   "tmdb": 60142,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "elena-2012": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "eles-nao-usam-black-tie-1981": {
+   "tmdb": 203158,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "em-chamas-2018": {
+   "tmdb": 491584,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "era-uma-vez-em-toquio-1953": {
+   "tmdb": 18148,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "estamira-2004": {
+   "tmdb": 73915,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "eu-daniel-blake-2016": {
+   "tmdb": 374473,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "fanny-e-alexander-1982": {
+   "tmdb": 5961,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "filhos-do-paraiso-1997": {
+   "tmdb": 21334,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "foi-apenas-um-acidente-2025": {
+   "tmdb": 1456349,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "gosto-de-cereja-1997": {
+   "tmdb": 30020,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "guantanamera-1995": {
+   "tmdb": 43775,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "guerra-fria-2018": {
+   "tmdb": 440298,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "historia-real-1999": {
+   "tmdb": 404,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "historias-minimas-2002": {
+   "tmdb": 51378,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "imensidao-azul-1988": {
+   "tmdb": 175,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "infancia-roubada-2005": {
+   "tmdb": 868,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "jiro-sonha-com-sushi-2011": {
+   "tmdb": 80767,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ladroes-de-bicicleta-1948": {
+   "tmdb": 5156,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "lavoura-arcaica-2001": {
+   "tmdb": 60141,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "machuca-2004": {
+   "tmdb": 12086,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "marte-um-2022": {
+   "tmdb": 913816,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "mary-e-max-uma-amizade-diferente-2009": {
+   "tmdb": 24238,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "medianeras-buenos-aires-na-era-do-amor-virtual-2011": {
+   "tmdb": 76696,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "melancolia-2011": {
+   "tmdb": 62215,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "memorias-do-subdesenvolvimento-1968": {
+   "tmdb": 47576,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "monos-2019": {
+   "tmdb": 417466,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "narradores-de-jave-2003": {
+   "tmdb": 165545,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nebraska-2013": {
+   "tmdb": 129670,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-anjo-exterminador-1962": {
+   "tmdb": 29264,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-banheiro-do-papa-2007": {
+   "tmdb": 8267,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-conto-da-princesa-kaguya-2013": {
+   "tmdb": 149871,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-escafandro-e-a-borboleta-2007": {
+   "tmdb": 2013,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-grande-mestre-2013": {
+   "tmdb": 44865,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-homem-urso-2005": {
+   "tmdb": 501,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-lagosta-2015": {
+   "tmdb": 254320,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-menino-que-descobriu-o-vento-2019": {
+   "tmdb": 491480,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-pequeno-buda-1993": {
+   "tmdb": 1689,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-som-ao-redor-2012": {
+   "tmdb": 97989,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "os-incompreendidos-1959": {
+   "tmdb": 147,
+   "colecao": 185682,
+   "em": "2026-10-12"
+  },
+  "paris-texas-1984": {
+   "tmdb": 655,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "passaros-de-verao-2018": {
+   "tmdb": 438146,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "pedro-paramo-2024": {
+   "tmdb": 1069387,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "persona-quando-duas-mulheres-pecam-1966": {
+   "tmdb": 797,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "primavera-verao-outono-inverno-e-primavera-2003": {
+   "tmdb": 113,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "procurando-sugar-man-2012": {
+   "tmdb": 84334,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ran-1985": {
+   "tmdb": 11645,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "retrato-de-uma-jovem-em-chamas-2019": {
+   "tmdb": 531428,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sem-destino-1969": {
+   "tmdb": 624,
+   "colecao": 956687,
+   "em": "2026-10-12"
+  },
+  "solaris-1972": {
+   "tmdb": 593,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "terra-em-transe-1967": {
+   "tmdb": 67062,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "uma-historia-de-amor-e-furia-2013": {
+   "tmdb": 173443,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "uma-noite-de-12-anos-2018": {
+   "tmdb": 514575,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "va-e-veja-1985": {
+   "tmdb": 25237,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "valor-sentimental-2025": {
+   "tmdb": 1124566,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "valsa-com-bashir-2008": {
+   "tmdb": 8885,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "violeta-foi-para-o-ceu-2011": {
+   "tmdb": 80717,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "viver-1952": {
+   "tmdb": 3782,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "waking-life-2001": {
+   "tmdb": 9081,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "whisky-2004": {
+   "tmdb": 36971,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "wolfwalkers-2020": {
+   "tmdb": 441130,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "zorba-o-grego-1964": {
+   "tmdb": 10604,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-arvore-dos-tamancos-1978": {
+   "tmdb": 31542,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-balada-de-narayama-1983": {
+   "tmdb": 42113,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-cancao-da-estrada-1955": {
+   "tmdb": 5801,
+   "colecao": 158391,
+   "em": "2026-10-12"
+  },
+  "a-cor-da-roma-1969": {
+   "tmdb": 26302,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-felicidade-das-pequenas-coisas-2019": {
+   "tmdb": 627087,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-jaula-de-ouro-2013": {
+   "tmdb": 186976,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-palavra-1955": {
+   "tmdb": 48035,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-tartaruga-vermelha-2016": {
+   "tmdb": 337703,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "alcarras-2022": {
+   "tmdb": 804251,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "as-oito-montanhas-2022": {
+   "tmdb": 803700,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "atlantique-2019": {
+   "tmdb": 496967,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "camelos-tambem-choram-2003": {
+   "tmdb": 1114,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "contos-da-lua-vaga-1953": {
+   "tmdb": 14696,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "depois-da-vida-1998": {
+   "tmdb": 17962,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ex-paje-2018": {
+   "tmdb": 493661,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "feliz-como-lazaro-2018": {
+   "tmdb": 481432,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "flee-nenhum-lugar-para-chamar-de-lar-2021": {
+   "tmdb": 680813,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "fungos-fantasticos-2019": {
+   "tmdb": 612654,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "himalaia-1999": {
+   "tmdb": 26813,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "homens-e-deuses-2010": {
+   "tmdb": 46332,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "honeyland-2019": {
+   "tmdb": 566213,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "iracema-uma-transa-amazonica-1974": {
+   "tmdb": null,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "ixcanul-2015": {
+   "tmdb": 320001,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "la-cordillera-de-los-suenos-2019": {
+   "tmdb": 582944,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "lunchbox-2013": {
+   "tmdb": 191714,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "luz-silenciosa-2007": {
+   "tmdb": 2012,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "macario-1960": {
+   "tmdb": 122019,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "minha-vida-de-abobrinha-2016": {
+   "tmdb": 393559,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-ceu-que-nos-protege-1990": {
+   "tmdb": 24016,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-evangelho-segundo-sao-mateus-1964": {
+   "tmdb": 24192,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-grande-silencio-2005": {
+   "tmdb": 11225,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-magico-2010": {
+   "tmdb": 41201,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-mal-nao-existe-2023": {
+   "tmdb": 1156125,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-retorno-2003": {
+   "tmdb": 11190,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-sabor-da-vida-2023": {
+   "tmdb": 964960,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "paisagem-na-neblina-1988": {
+   "tmdb": 47795,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "pina-2011": {
+   "tmdb": 57276,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "que-tan-lejos-2006": {
+   "tmdb": 118895,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "retablo-2017": {
+   "tmdb": 499394,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sabor-da-vida-2015": {
+   "tmdb": 319373,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "santiago-2007": {
+   "tmdb": 86324,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sono-de-inverno-2014": {
+   "tmdb": 265169,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "tampopo-os-brutos-tambem-comem-spaghetti-1985": {
+   "tmdb": 11830,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "timbuktu-2014": {
+   "tmdb": 265228,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "tio-boonmee-que-pode-recordar-suas-vidas-passadas-2010": {
+   "tmdb": 38368,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "tudo-que-imaginamos-como-luz-2024": {
+   "tmdb": 927547,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "utama-2022": {
+   "tmdb": 913820,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "visages-villages-2017": {
+   "tmdb": 451995,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "winaypacha-2017": {
+   "tmdb": 511425,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "yeelen-1987": {
+   "tmdb": 71329,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "yomeddine-em-busca-de-um-lar-2018": {
+   "tmdb": 517286,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "zama-2017": {
+   "tmdb": 326382,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-sal-da-terra-2014": {
+   "tmdb": 265297,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-viagem-de-chihiro-2001": {
+   "tmdb": 129,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-abraco-da-serpente-2015": {
+   "tmdb": 336808,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nostalgia-da-luz-2010": {
+   "tmdb": 72721,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-senhor-dos-aneis-o-retorno-do-rei-2003": {
+   "tmdb": 122,
+   "colecao": 119,
+   "em": "2026-10-12"
+  },
+  "princesa-mononoke-1997": {
+   "tmdb": 128,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-senhor-dos-aneis-a-sociedade-do-anel-2001": {
+   "tmdb": 120,
+   "colecao": 119,
+   "em": "2026-10-12"
+  },
+  "diarios-de-motocicleta-2004": {
+   "tmdb": 1653,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-viagem-2012": {
+   "tmdb": 83542,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-mahabharata-1989": {
+   "tmdb": 150523,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "z-a-cidade-perdida-2016": {
+   "tmdb": 314095,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sirat-2025": {
+   "tmdb": 1151272,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-menino-e-a-garca-2023": {
+   "tmdb": 508883,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "moana-2016": {
+   "tmdb": 277834,
+   "colecao": 1241984,
+   "em": "2026-10-12"
+  },
+  "central-do-brasil-1998": {
+   "tmdb": 666,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-rei-leao-1994": {
+   "tmdb": 8587,
+   "colecao": 94032,
+   "em": "2026-10-12"
+  },
+  "na-natureza-selvagem-2007": {
+   "tmdb": 5915,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "interestelar-2014": {
+   "tmdb": 157336,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "los-viajes-del-viento-2009": {
+   "tmdb": 39378,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "fitzcarraldo-1982": {
+   "tmdb": 9343,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nomadland-2020": {
+   "tmdb": 581734,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "human-2015": {
+   "tmdb": 359364,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-missao-1986": {
+   "tmdb": 11416,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "capitao-fantastico-2016": {
+   "tmdb": 334533,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "star-wars-o-imperio-contra-ataca-1980": {
+   "tmdb": 1891,
+   "colecao": 10,
+   "em": "2026-10-12"
+  },
+  "andrei-rublev-1966": {
+   "tmdb": 895,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "godland-2022": {
+   "tmdb": 960206,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nausicaa-1984": {
+   "tmdb": 81,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "duna-parte-dois-2024": {
+   "tmdb": 693134,
+   "colecao": 726871,
+   "em": "2026-10-12"
+  },
+  "a-fonte-da-vida-2006": {
+   "tmdb": 1381,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "as-aventuras-de-pi-2012": {
+   "tmdb": 87827,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-caminho-2010": {
+   "tmdb": 59468,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-senhor-dos-aneis-as-duas-torres-2002": {
+   "tmdb": 121,
+   "colecao": 119,
+   "em": "2026-10-12"
+  },
+  "a-ultima-floresta-2021": {
+   "tmdb": 795780,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-botao-de-perola-2015": {
+   "tmdb": 319994,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-arvore-da-vida-2011": {
+   "tmdb": 8967,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-novo-mundo-2005": {
+   "tmdb": 11400,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-odisseia-2026": {
+   "tmdb": 1368337,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-felicidade-nao-se-compra-1946": {
+   "tmdb": 1585,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sete-anos-no-tibet-1997": {
+   "tmdb": 978,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "xingu-2012": {
+   "tmdb": 107203,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "avatar-2009": {
+   "tmdb": 19995,
+   "colecao": 87096,
+   "em": "2026-10-12"
+  },
+  "dersu-uzala-1975": {
+   "tmdb": 9764,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-ultimo-azul-2025": {
+   "tmdb": 1172265,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "serras-da-desordem-2006": {
+   "tmdb": 173722,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sonhos-1990": {
+   "tmdb": 12516,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "stalker-1979": {
+   "tmdb": 1398,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "los-silencios-2018": {
+   "tmdb": 519121,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "robo-selvagem-2024": {
+   "tmdb": 1184918,
+   "colecao": 1370345,
+   "em": "2026-10-12"
+  },
+  "uma-vida-oculta-2019": {
+   "tmdb": 403300,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "drive-my-car-2021": {
+   "tmdb": 758866,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-queda-do-ceu-2024": {
+   "tmdb": 1275250,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "samsara-2011": {
+   "tmdb": 89708,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nostalgia-1983": {
+   "tmdb": 1394,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-menino-e-o-mundo-2013": {
+   "tmdb": 223706,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "eami-2022": {
+   "tmdb": 924098,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "viajo-porque-preciso-volto-porque-te-amo-2009": {
+   "tmdb": 87199,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "viva-a-vida-e-uma-festa-2017": {
+   "tmdb": 354912,
+   "colecao": 1451578,
+   "em": "2026-10-12"
+  },
+  "o-setimo-selo-1957": {
+   "tmdb": 490,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-danca-da-realidade-2013": {
+   "tmdb": 132344,
+   "colecao": 123800,
+   "em": "2026-10-12"
+  },
+  "encontros-no-fim-do-mundo-2007": {
+   "tmdb": 12172,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "harry-potter-e-as-reliquias-da-morte-parte-2-2011": {
+   "tmdb": 12445,
+   "colecao": 1241,
+   "em": "2026-10-12"
+  },
+  "livre-2014": {
+   "tmdb": 228970,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "cabra-marcado-para-morrer-1984": {
+   "tmdb": 86320,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "memoria-2021": {
+   "tmdb": 511819,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "lawrence-da-arabia-1962": {
+   "tmdb": 947,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "silencio-2016": {
+   "tmdb": 68730,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "tudo-em-todo-o-lugar-ao-mesmo-tempo-2022": {
+   "tmdb": 545611,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "bye-bye-brasil-1979": {
+   "tmdb": 42167,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-espelho-1975": {
+   "tmdb": 1396,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "nise-o-coracao-da-loucura-2015": {
+   "tmdb": 363103,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "contato-1997": {
+   "tmdb": 686,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "morangos-silvestres-1957": {
+   "tmdb": 614,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-vida-secreta-de-walter-mitty-2013": {
+   "tmdb": 116745,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "flow-2024": {
+   "tmdb": 823219,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "com-amor-van-gogh-2017": {
+   "tmdb": 339877,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "soul-2020": {
+   "tmdb": 508442,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "deus-e-o-diabo-na-terra-do-sol-1964": {
+   "tmdb": 67612,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-segredo-de-brokeback-mountain-2005": {
+   "tmdb": 142,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "genio-indomavel-1997": {
+   "tmdb": 489,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "sociedade-dos-poetas-mortos-1989": {
+   "tmdb": 207,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "comer-rezar-amar-2010": {
+   "tmdb": 38167,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "e-ai-meu-irmao-cade-voce-2000": {
+   "tmdb": 134,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "a-procura-da-felicidade-2006": {
+   "tmdb": 1402,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-pequeno-principe-2015": {
+   "tmdb": 309809,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "filhos-da-esperanca-2006": {
+   "tmdb": 9693,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "harry-potter-e-o-prisioneiro-de-azkaban-2004": {
+   "tmdb": 673,
+   "colecao": 1241,
+   "em": "2026-10-12"
+  },
+  "patch-adams-1998": {
+   "tmdb": 10312,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "o-auto-da-compadecida-2000": {
+   "tmdb": 40096,
+   "colecao": 1219938,
+   "em": "2026-10-12"
+  },
+  "kung-fu-panda-2008": {
+   "tmdb": 9502,
+   "colecao": 77816,
+   "em": "2026-10-12"
+  },
+  "oppenheimer-2023": {
+   "tmdb": 872585,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "matrix-1999": {
+   "tmdb": 603,
+   "colecao": 2344,
+   "em": "2026-10-12"
+  },
+  "harry-potter-e-a-pedra-filosofal-2001": {
+   "tmdb": 671,
+   "colecao": 1241,
+   "em": "2026-10-12"
+  },
+  "questao-de-tempo-2013": {
+   "tmdb": 122906,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "guerra-civil-2024": {
+   "tmdb": 929590,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "tornando-se-ninguem-2019": {
+   "tmdb": 626013,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "janela-da-alma-2001": {
+   "tmdb": 63407,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "estou-pensando-em-acabar-com-tudo-2020": {
+   "tmdb": 500840,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "mundos-internos-mundos-externos-2012": {
+   "tmdb": 178189,
+   "colecao": null,
+   "em": "2026-10-12"
+  },
+  "x-men-apocalipse-2016": {
+   "tmdb": 246655,
+   "colecao": 748,
+   "em": "2026-10-12"
+  },
+  "a-bela-e-a-fera-o-natal-encantado-1997": {
+   "tmdb": 13313,
+   "colecao": 153010,
+   "em": "2026-10-12"
+  },
+  "o-mundo-magico-da-bela-1998": {
+   "tmdb": 20235,
+   "colecao": 153010,
+   "em": "2026-10-12"
+  },
+  "a-era-do-gelo-2-2006": {
+   "tmdb": 950,
+   "colecao": 8354,
+   "em": "2026-10-12"
+  },
+  "a-era-do-gelo-3-2009": {
+   "tmdb": 8355,
+   "colecao": 8354,
+   "em": "2026-10-12"
+  },
+  "a-era-do-gelo-4-2012": {
+   "tmdb": 57800,
+   "colecao": 8354,
+   "em": "2026-10-12"
+  },
+  "a-era-do-gelo-o-big-bang-2016": {
+   "tmdb": 278154,
+   "colecao": 8354,
+   "em": "2026-10-12"
+  },
+  "a-era-do-gelo-as-aventuras-de-buck-2022": {
+   "tmdb": 774825,
+   "colecao": 8354,
+   "em": "2026-10-12"
+  },
+  "a-era-do-gelo-mundo-de-lava-2027": {
+   "tmdb": 1384758,
+   "colecao": 8354,
+   "em": "2026-10-12"
+  },
+  "a-fuga-das-galinhas-a-ameaca-dos-nuggets-2023": {
+   "tmdb": 520758,
+   "colecao": 718551,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-rush-2-2001": {
+   "tmdb": 5175,
+   "colecao": 90863,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-rush-3-2007": {
+   "tmdb": 5174,
+   "colecao": 90863,
+   "em": "2026-10-12"
+  },
+  "a-pequena-sereia-ii-o-retorno-para-o-mar-2000": {
+   "tmdb": 10898,
+   "colecao": 33085,
+   "em": "2026-10-12"
+  },
+  "a-pequena-sereia-a-historia-de-ariel-2008": {
+   "tmdb": 13676,
+   "colecao": 33085,
+   "em": "2026-10-12"
+  },
+  "ace-ventura-2-um-maluco-na-africa-1995": {
+   "tmdb": 9273,
+   "colecao": 3167,
+   "em": "2026-10-12"
+  },
+  "o-filho-do-ace-ventura-2009": {
+   "tmdb": 15338,
+   "colecao": 3167,
+   "em": "2026-10-12"
+  },
+  "american-pie-2-a-segunda-vez-e-ainda-melhor-2001": {
+   "tmdb": 2770,
+   "colecao": 2806,
+   "em": "2026-10-12"
+  },
+  "american-pie-o-casamento-2003": {
+   "tmdb": 8273,
+   "colecao": 2806,
+   "em": "2026-10-12"
+  },
+  "american-pie-o-reencontro-2012": {
+   "tmdb": 71552,
+   "colecao": 2806,
+   "em": "2026-10-12"
+  },
+  "avatar-fogo-e-cinzas-2025": {
+   "tmdb": 83533,
+   "colecao": 87096,
+   "em": "2026-10-12"
+  },
+  "batman-begins-2005": {
+   "tmdb": 272,
+   "colecao": 263,
+   "em": "2026-10-12"
+  },
+  "batman-o-cavaleiro-das-trevas-ressurge-2012": {
+   "tmdb": 49026,
+   "colecao": 263,
+   "em": "2026-10-12"
+  },
+  "busca-implacavel-2-2012": {
+   "tmdb": 82675,
+   "colecao": 135483,
+   "em": "2026-10-12"
+  },
+  "busca-implacavel-3-2014": {
+   "tmdb": 260346,
+   "colecao": 135483,
+   "em": "2026-10-12"
+  },
+  "carros-2-2011": {
+   "tmdb": 49013,
+   "colecao": 87118,
+   "em": "2026-10-12"
+  },
+  "carros-3-2017": {
+   "tmdb": 260514,
+   "colecao": 87118,
+   "em": "2026-10-12"
+  },
+  "como-treinar-o-seu-dragao-2-2014": {
+   "tmdb": 82702,
+   "colecao": 89137,
+   "em": "2026-10-12"
+  },
+  "como-treinar-o-seu-dragao-3-2019": {
+   "tmdb": 166428,
+   "colecao": 89137,
+   "em": "2026-10-12"
+  },
+  "o-rei-da-escocia-2019": {
+   "tmdb": 532812,
+   "colecao": 1432360,
+   "em": "2026-10-12"
+  },
+  "coringa-delirio-a-dois-2024": {
+   "tmdb": 889737,
+   "colecao": 987044,
+   "em": "2026-10-12"
+  },
+  "a-saga-crepusculo-lua-nova-2009": {
+   "tmdb": 18239,
+   "colecao": 33514,
+   "em": "2026-10-12"
+  },
+  "a-saga-crepusculo-eclipse-2010": {
+   "tmdb": 24021,
+   "colecao": 33514,
+   "em": "2026-10-12"
+  },
+  "a-saga-crepusculo-amanhecer-parte-1-2011": {
+   "tmdb": 50619,
+   "colecao": 33514,
+   "em": "2026-10-12"
+  },
+  "a-saga-crepusculo-amanhecer-parte-2-2012": {
+   "tmdb": 50620,
+   "colecao": 33514,
+   "em": "2026-10-12"
+  },
+  "de-volta-para-o-futuro-ii-1989": {
+   "tmdb": 165,
+   "colecao": 264,
+   "em": "2026-10-12"
+  },
+  "de-volta-para-o-futuro-iii-1990": {
+   "tmdb": 196,
+   "colecao": 264,
+   "em": "2026-10-12"
+  },
+  "debi-loide-2-quando-debi-conheceu-loide-2003": {
+   "tmdb": 10152,
+   "colecao": 96665,
+   "em": "2026-10-12"
+  },
+  "debi-loide-2-2014": {
+   "tmdb": 100042,
+   "colecao": 96665,
+   "em": "2026-10-12"
+  },
+  "enrolados-outra-vez-o-especial-2017": {
+   "tmdb": 438747,
+   "colecao": 1268789,
+   "em": "2026-10-12"
+  },
+  "entrando-numa-fria-maior-ainda-2004": {
+   "tmdb": 693,
+   "colecao": 51509,
+   "em": "2026-10-12"
+  },
+  "entrando-numa-fria-maior-ainda-com-a-familia-2010": {
+   "tmdb": 39451,
+   "colecao": 51509,
+   "em": "2026-10-12"
+  },
+  "entrando-numa-grande-fria-2026": {
+   "tmdb": 1400336,
+   "colecao": 51509,
+   "em": "2026-10-12"
+  },
+  "esqueceram-de-mim-2-perdido-em-nova-york-1992": {
+   "tmdb": 772,
+   "colecao": 9888,
+   "em": "2026-10-12"
+  },
+  "esqueceram-de-mim-3-1997": {
+   "tmdb": 9714,
+   "colecao": 9888,
+   "em": "2026-10-12"
+  },
+  "esqueceram-de-mim-4-2002": {
+   "tmdb": 12536,
+   "colecao": 9888,
+   "em": "2026-10-12"
+  },
+  "frozen-ii-2019": {
+   "tmdb": 330457,
+   "colecao": 386382,
+   "em": "2026-10-12"
+  },
+  "gente-grande-2-2013": {
+   "tmdb": 109418,
+   "colecao": 180546,
+   "em": "2026-10-12"
+  },
+  "gladiador-2-2024": {
+   "tmdb": 558449,
+   "colecao": 1069584,
+   "em": "2026-10-12"
+  },
+  "homem-aranha-2-2004": {
+   "tmdb": 558,
+   "colecao": 556,
+   "em": "2026-10-12"
+  },
+  "homem-aranha-3-2007": {
+   "tmdb": 559,
+   "colecao": 556,
+   "em": "2026-10-12"
+  },
+  "homem-de-ferro-2-2010": {
+   "tmdb": 10138,
+   "colecao": 131292,
+   "em": "2026-10-12"
+  },
+  "homem-de-ferro-3-2013": {
+   "tmdb": 68721,
+   "colecao": 131292,
+   "em": "2026-10-12"
+  },
+  "independence-day-o-ressurgimento-2016": {
+   "tmdb": 47933,
+   "colecao": 304378,
+   "em": "2026-10-12"
+  },
+  "invocacao-do-mal-2-2016": {
+   "tmdb": 259693,
+   "colecao": 313086,
+   "em": "2026-10-12"
+  },
+  "invocacao-do-mal-3-a-ordem-do-demonio-2021": {
+   "tmdb": 423108,
+   "colecao": 313086,
+   "em": "2026-10-12"
+  },
+  "invocacao-do-mal-4-o-ultimo-ritual-2025": {
+   "tmdb": 1038392,
+   "colecao": 313086,
+   "em": "2026-10-12"
+  },
+  "jogos-mortais-ii-2005": {
+   "tmdb": 215,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "jogos-mortais-iii-2006": {
+   "tmdb": 214,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "jogos-mortais-iv-2007": {
+   "tmdb": 663,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "jogos-mortais-v-2008": {
+   "tmdb": 11917,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "jogos-mortais-vi-2009": {
+   "tmdb": 22804,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "jogos-mortais-o-final-2010": {
+   "tmdb": 41439,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "jogos-mortais-jigsaw-2017": {
+   "tmdb": 298250,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "espiral-o-legado-de-jogos-mortais-2021": {
+   "tmdb": 602734,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "jogos-mortais-x-2023": {
+   "tmdb": 951491,
+   "colecao": 656,
+   "em": "2026-10-12"
+  },
+  "jogos-vorazes-em-chamas-2013": {
+   "tmdb": 101299,
+   "colecao": 131635,
+   "em": "2026-10-12"
+  },
+  "jogos-vorazes-a-esperanca-parte-1-2014": {
+   "tmdb": 131631,
+   "colecao": 131635,
+   "em": "2026-10-12"
+  },
+  "jogos-vorazes-a-esperanca-o-final-2015": {
+   "tmdb": 131634,
+   "colecao": 131635,
+   "em": "2026-10-12"
+  },
+  "jumanji-bem-vindo-a-selva-2017": {
+   "tmdb": 353486,
+   "colecao": 495527,
+   "em": "2026-10-12"
+  },
+  "jumanji-proxima-fase-2019": {
+   "tmdb": 512200,
+   "colecao": 495527,
+   "em": "2026-10-12"
+  },
+  "jumanji-mundo-real-2026": {
+   "tmdb": 1260649,
+   "colecao": 495527,
+   "em": "2026-10-12"
+  },
+  "o-mundo-perdido-jurassic-park-1997": {
+   "tmdb": 330,
+   "colecao": 328,
+   "em": "2026-10-12"
+  },
+  "jurassic-park-3-2001": {
+   "tmdb": 331,
+   "colecao": 328,
+   "em": "2026-10-12"
+  },
+  "jurassic-world-o-mundo-dos-dinossauros-2015": {
+   "tmdb": 135397,
+   "colecao": 328,
+   "em": "2026-10-12"
+  },
+  "jurassic-world-reino-ameacado-2018": {
+   "tmdb": 351286,
+   "colecao": 328,
+   "em": "2026-10-12"
+  },
+  "jurassic-world-dominio-2022": {
+   "tmdb": 507086,
+   "colecao": 328,
+   "em": "2026-10-12"
+  },
+  "jurassic-world-recomeco-2025": {
+   "tmdb": 1234821,
+   "colecao": 328,
+   "em": "2026-10-12"
+  },
+  "legalmente-loira-2-2003": {
+   "tmdb": 10327,
+   "colecao": 86024,
+   "em": "2026-10-12"
+  },
+  "stitch-o-filme-2003": {
+   "tmdb": 15567,
+   "colecao": 97461,
+   "em": "2026-10-12"
+  },
+  "lilo-stitch-2-stitch-deu-defeito-2005": {
+   "tmdb": 20760,
+   "colecao": 97461,
+   "em": "2026-10-12"
+  },
+  "leroy-stitch-2006": {
+   "tmdb": 21316,
+   "colecao": 97461,
+   "em": "2026-10-12"
+  },
+  "madagascar-2-2008": {
+   "tmdb": 10527,
+   "colecao": 14740,
+   "em": "2026-10-12"
+  },
+  "madagascar-3-os-procurados-2012": {
+   "tmdb": 80321,
+   "colecao": 14740,
+   "em": "2026-10-12"
+  },
+  "mamma-mia-la-vamos-nos-de-novo-2018": {
+   "tmdb": 458423,
+   "colecao": 458558,
+   "em": "2026-10-12"
+  },
+  "marley-eu-2-filhote-encrenqueiro-2011": {
+   "tmdb": 72391,
+   "colecao": 230532,
+   "em": "2026-10-12"
+  },
+  "meninas-malvadas-2-2011": {
+   "tmdb": 51481,
+   "colecao": 99606,
+   "em": "2026-10-12"
+  },
+  "meu-malvado-favorito-2-2013": {
+   "tmdb": 93456,
+   "colecao": 86066,
+   "em": "2026-10-12"
+  },
+  "meu-malvado-favorito-3-2017": {
+   "tmdb": 324852,
+   "colecao": 86066,
+   "em": "2026-10-12"
+  },
+  "meu-malvado-favorito-4-2024": {
+   "tmdb": 519182,
+   "colecao": 86066,
+   "em": "2026-10-12"
+  },
+  "mib-homens-de-preto-ii-2002": {
+   "tmdb": 608,
+   "colecao": 86055,
+   "em": "2026-10-12"
+  },
+  "mib-homens-de-preto-iii-2012": {
+   "tmdb": 41154,
+   "colecao": 86055,
+   "em": "2026-10-12"
+  },
+  "minha-mae-e-uma-peca-2-o-filme-2016": {
+   "tmdb": 227932,
+   "colecao": 455278,
+   "em": "2026-10-12"
+  },
+  "minha-mae-e-uma-peca-3-o-filme-2019": {
+   "tmdb": 620683,
+   "colecao": 455278,
+   "em": "2026-10-12"
+  },
+  "missao-impossivel-2-2000": {
+   "tmdb": 955,
+   "colecao": 87359,
+   "em": "2026-10-12"
+  },
+  "missao-impossivel-3-2006": {
+   "tmdb": 956,
+   "colecao": 87359,
+   "em": "2026-10-12"
+  },
+  "missao-impossivel-protocolo-fantasma-2011": {
+   "tmdb": 56292,
+   "colecao": 87359,
+   "em": "2026-10-12"
+  },
+  "missao-impossivel-nacao-secreta-2015": {
+   "tmdb": 177677,
+   "colecao": 87359,
+   "em": "2026-10-12"
+  },
+  "missao-impossivel-efeito-fallout-2018": {
+   "tmdb": 353081,
+   "colecao": 87359,
+   "em": "2026-10-12"
+  },
+  "missao-impossivel-acerto-de-contas-parte-1-2023": {
+   "tmdb": 575264,
+   "colecao": 87359,
+   "em": "2026-10-12"
+  },
+  "missao-impossivel-o-acerto-final-2025": {
+   "tmdb": 575265,
+   "colecao": 87359,
+   "em": "2026-10-12"
+  },
+  "universidade-monstros-2013": {
+   "tmdb": 62211,
+   "colecao": 137696,
+   "em": "2026-10-12"
+  },
+  "mudanca-de-habito-2-mais-loucuras-no-convento-1993": {
+   "tmdb": 6279,
+   "colecao": 103573,
+   "em": "2026-10-12"
+  },
+  "o-chamado-2-2005": {
+   "tmdb": 10320,
+   "colecao": 14563,
+   "em": "2026-10-12"
+  },
+  "o-chamado-3-2017": {
+   "tmdb": 14564,
+   "colecao": 14563,
+   "em": "2026-10-12"
+  },
+  "o-diabo-veste-prada-2-2026": {
+   "tmdb": 1314481,
+   "colecao": 1314623,
+   "em": "2026-10-12"
+  },
+  "bridget-jones-no-limite-da-razao-2004": {
+   "tmdb": 9801,
+   "colecao": 8936,
+   "em": "2026-10-12"
+  },
+  "o-bebe-de-bridget-jones-2016": {
+   "tmdb": 95610,
+   "colecao": 8936,
+   "em": "2026-10-12"
+  },
+  "bridget-jones-louca-pelo-garoto-2025": {
+   "tmdb": 1272149,
+   "colecao": 8936,
+   "em": "2026-10-12"
+  },
+  "o-exterminador-do-futuro-1984": {
+   "tmdb": 218,
+   "colecao": 528,
+   "em": "2026-10-12"
+  },
+  "o-exterminador-do-futuro-3-a-rebeliao-das-maquinas-2003": {
+   "tmdb": 296,
+   "colecao": 528,
+   "em": "2026-10-12"
+  },
+  "o-exterminador-do-futuro-a-salvacao-2009": {
+   "tmdb": 534,
+   "colecao": 528,
+   "em": "2026-10-12"
+  },
+  "o-exterminador-do-futuro-genesis-2015": {
+   "tmdb": 87101,
+   "colecao": 528,
+   "em": "2026-10-12"
+  },
+  "o-exterminador-do-futuro-destino-sombrio-2019": {
+   "tmdb": 290859,
+   "colecao": 528,
+   "em": "2026-10-12"
+  },
+  "o-filho-do-maskara-2005": {
+   "tmdb": 10214,
+   "colecao": 43072,
+   "em": "2026-10-12"
+  },
+  "o-poderoso-chefao-parte-iii-1990": {
+   "tmdb": 242,
+   "colecao": 230,
+   "em": "2026-10-12"
+  },
+  "hannibal-2001": {
+   "tmdb": 9740,
+   "colecao": 9743,
+   "em": "2026-10-12"
+  },
+  "dragao-vermelho-2002": {
+   "tmdb": 9533,
+   "colecao": 9743,
+   "em": "2026-10-12"
+  },
+  "o-tigre-e-o-dragao-a-espada-do-destino-2016": {
+   "tmdb": 263341,
+   "colecao": 290973,
+   "em": "2026-10-12"
+  },
+  "os-caca-fantasmas-2-1989": {
+   "tmdb": 2978,
+   "colecao": 2980,
+   "em": "2026-10-12"
+  },
+  "ghostbusters-mais-alem-2021": {
+   "tmdb": 425909,
+   "colecao": 2980,
+   "em": "2026-10-12"
+  },
+  "ghostbusters-apocalipse-de-gelo-2024": {
+   "tmdb": 967847,
+   "colecao": 2980,
+   "em": "2026-10-12"
+  },
+  "os-incriveis-2-2018": {
+   "tmdb": 260513,
+   "colecao": 468222,
+   "em": "2026-10-12"
+  },
+  "vingadores-era-de-ultron-2015": {
+   "tmdb": 99861,
+   "colecao": 86311,
+   "em": "2026-10-12"
+  },
+  "vingadores-doutor-destino-2026": {
+   "tmdb": 1003596,
+   "colecao": 86311,
+   "em": "2026-10-12"
+  },
+  "panico-2-1997": {
+   "tmdb": 4233,
+   "colecao": 2602,
+   "em": "2026-10-12"
+  },
+  "panico-3-2000": {
+   "tmdb": 4234,
+   "colecao": 2602,
+   "em": "2026-10-12"
+  },
+  "panico-4-2011": {
+   "tmdb": 41446,
+   "colecao": 2602,
+   "em": "2026-10-12"
+  },
+  "panico-2022": {
+   "tmdb": 646385,
+   "colecao": 2602,
+   "em": "2026-10-12"
+  },
+  "panico-vi-2023": {
+   "tmdb": 934433,
+   "colecao": 2602,
+   "em": "2026-10-12"
+  },
+  "panico-7-2026": {
+   "tmdb": 1159559,
+   "colecao": 2602,
+   "em": "2026-10-12"
+  },
+  "pantera-negra-wakanda-para-sempre-2022": {
+   "tmdb": 505642,
+   "colecao": 529892,
+   "em": "2026-10-12"
+  },
+  "piratas-do-caribe-o-bau-da-morte-2006": {
+   "tmdb": 58,
+   "colecao": 295,
+   "em": "2026-10-12"
+  },
+  "piratas-do-caribe-no-fim-do-mundo-2007": {
+   "tmdb": 285,
+   "colecao": 295,
+   "em": "2026-10-12"
+  },
+  "piratas-do-caribe-navegando-em-aguas-misteriosas-2011": {
+   "tmdb": 1865,
+   "colecao": 295,
+   "em": "2026-10-12"
+  },
+  "piratas-do-caribe-a-vinganca-de-salazar-2017": {
+   "tmdb": 166426,
+   "colecao": 295,
+   "em": "2026-10-12"
+  },
+  "premonicao-2-2003": {
+   "tmdb": 9358,
+   "colecao": 8864,
+   "em": "2026-10-12"
+  },
+  "premonicao-3-2006": {
+   "tmdb": 9286,
+   "colecao": 8864,
+   "em": "2026-10-12"
+  },
+  "premonicao-4-2009": {
+   "tmdb": 19912,
+   "colecao": 8864,
+   "em": "2026-10-12"
+  },
+  "premonicao-5-2011": {
+   "tmdb": 55779,
+   "colecao": 8864,
+   "em": "2026-10-12"
+  },
+  "premonicao-6-lacos-de-sangue-2025": {
+   "tmdb": 574475,
+   "colecao": 8864,
+   "em": "2026-10-12"
+  },
+  "rio-2-2014": {
+   "tmdb": 172385,
+   "colecao": 229932,
+   "em": "2026-10-12"
+  },
+  "se-beber-nao-case-parte-ii-2011": {
+   "tmdb": 45243,
+   "colecao": 86119,
+   "em": "2026-10-12"
+  },
+  "se-beber-nao-case-parte-iii-2013": {
+   "tmdb": 109439,
+   "colecao": 86119,
+   "em": "2026-10-12"
+  },
+  "se-eu-fosse-voce-2-2009": {
+   "tmdb": 21752,
+   "colecao": 369380,
+   "em": "2026-10-12"
+  },
+  "se-eu-fosse-voce-3-2026": {
+   "tmdb": 1523898,
+   "colecao": 369380,
+   "em": "2026-10-12"
+  },
+  "shrek-terceiro-2007": {
+   "tmdb": 810,
+   "colecao": 2150,
+   "em": "2026-10-12"
+  },
+  "shrek-para-sempre-2010": {
+   "tmdb": 10192,
+   "colecao": 2150,
+   "em": "2026-10-12"
+  },
+  "star-wars-episodio-i-a-ameaca-fantasma-1999": {
+   "tmdb": 1893,
+   "colecao": 10,
+   "em": "2026-10-12"
+  },
+  "star-wars-episodio-ii-ataque-dos-clones-2002": {
+   "tmdb": 1894,
+   "colecao": 10,
+   "em": "2026-10-12"
+  },
+  "star-wars-episodio-iii-a-vinganca-dos-sith-2005": {
+   "tmdb": 1895,
+   "colecao": 10,
+   "em": "2026-10-12"
+  },
+  "star-wars-o-despertar-da-forca-2015": {
+   "tmdb": 140607,
+   "colecao": 10,
+   "em": "2026-10-12"
+  },
+  "star-wars-os-ultimos-jedi-2017": {
+   "tmdb": 181808,
+   "colecao": 10,
+   "em": "2026-10-12"
+  },
+  "star-wars-a-ascensao-skywalker-2019": {
+   "tmdb": 181812,
+   "colecao": 10,
+   "em": "2026-10-12"
+  },
+  "tarzan-e-jane-2002": {
+   "tmdb": 13683,
+   "colecao": 106768,
+   "em": "2026-10-12"
+  },
+  "tarzan-2-a-lenda-comeca-2005": {
+   "tmdb": 15657,
+   "colecao": 106768,
+   "em": "2026-10-12"
+  },
+  "todo-mundo-em-panico-2-2001": {
+   "tmdb": 4248,
+   "colecao": 4246,
+   "em": "2026-10-12"
+  },
+  "todo-mundo-em-panico-3-2003": {
+   "tmdb": 4256,
+   "colecao": 4246,
+   "em": "2026-10-12"
+  },
+  "todo-mundo-em-panico-4-2006": {
+   "tmdb": 4257,
+   "colecao": 4246,
+   "em": "2026-10-12"
+  },
+  "todo-mundo-em-panico-5-2013": {
+   "tmdb": 4258,
+   "colecao": 4246,
+   "em": "2026-10-12"
+  },
+  "todo-mundo-em-panico-2026": {
+   "tmdb": 1273221,
+   "colecao": 4246,
+   "em": "2026-10-12"
+  },
+  "a-volta-do-todo-poderoso-2007": {
+   "tmdb": 2698,
+   "colecao": 124949,
+   "em": "2026-10-12"
+  },
+  "toy-story-4-2019": {
+   "tmdb": 301528,
+   "colecao": 10194,
+   "em": "2026-10-12"
+  },
+  "toy-story-5-2026": {
+   "tmdb": 1084244,
+   "colecao": 10194,
+   "em": "2026-10-12"
+  },
+  "transformers-a-vinganca-dos-derrotados-2009": {
+   "tmdb": 8373,
+   "colecao": 8650,
+   "em": "2026-10-12"
+  },
+  "transformers-o-lado-oculto-da-lua-2011": {
+   "tmdb": 38356,
+   "colecao": 8650,
+   "em": "2026-10-12"
+  },
+  "transformers-a-era-da-extincao-2014": {
+   "tmdb": 91314,
+   "colecao": 8650,
+   "em": "2026-10-12"
+  },
+  "transformers-o-ultimo-cavaleiro-2017": {
+   "tmdb": 335988,
+   "colecao": 8650,
+   "em": "2026-10-12"
+  },
+  "tubarao-2-1978": {
+   "tmdb": 579,
+   "colecao": 2366,
+   "em": "2026-10-12"
+  },
+  "tubarao-3-1983": {
+   "tmdb": 17692,
+   "colecao": 2366,
+   "em": "2026-10-12"
+  },
+  "tubarao-87-a-vinganca-1987": {
+   "tmdb": 580,
+   "colecao": 2366,
+   "em": "2026-10-12"
+  },
+  "um-principe-em-nova-york-2-2021": {
+   "tmdb": 484718,
+   "colecao": 647077,
+   "em": "2026-10-12"
+  },
+  "uma-noite-no-museu-2-2009": {
+   "tmdb": 18360,
+   "colecao": 85943,
+   "em": "2026-10-12"
+  },
+  "uma-noite-no-museu-3-o-segredo-da-tumba-2014": {
+   "tmdb": 181533,
+   "colecao": 85943,
+   "em": "2026-10-12"
+  },
+  "velocidade-maxima-2-1997": {
+   "tmdb": 1639,
+   "colecao": 43064,
+   "em": "2026-10-12"
+  },
+  "velozes-furiosos-2003": {
+   "tmdb": 584,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "velozes-e-furiosos-desafio-em-toquio-2006": {
+   "tmdb": 9615,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "velozes-e-furiosos-4-2009": {
+   "tmdb": 13804,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "velozes-furiosos-6-2013": {
+   "tmdb": 82992,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "velozes-furiosos-7-2015": {
+   "tmdb": 168259,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "velozes-furiosos-8-2017": {
+   "tmdb": 337339,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "velozes-furiosos-hobbs-shaw-2019": {
+   "tmdb": 384018,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "velozes-furiosos-9-2021": {
+   "tmdb": 385128,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "velozes-furiosos-10-2023": {
+   "tmdb": 385687,
+   "colecao": 9485,
+   "em": "2026-10-12"
+  },
+  "zootopia-2-2025": {
+   "tmdb": 1084242,
+   "colecao": 1084247,
+   "em": "2026-10-12"
+  },
+  "007-contra-o-satanico-dr-no-1962": {
+   "tmdb": 646,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "moscou-contra-007-1963": {
+   "tmdb": 657,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-contra-goldfinger-1964": {
+   "tmdb": 658,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-contra-a-chantagem-atomica-1965": {
+   "tmdb": 660,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "com-007-so-se-vive-duas-vezes-1967": {
+   "tmdb": 667,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-a-servico-secreto-de-sua-majestade-1969": {
+   "tmdb": 668,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-os-diamantes-sao-eternos-1971": {
+   "tmdb": 681,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "com-007-viva-e-deixe-morrer-1973": {
+   "tmdb": 253,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-contra-o-homem-com-a-pistola-de-ouro-1974": {
+   "tmdb": 682,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-o-espiao-que-me-amava-1977": {
+   "tmdb": 691,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-contra-o-foguete-da-morte-1979": {
+   "tmdb": 698,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-somente-para-seus-olhos-1981": {
+   "tmdb": 699,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-contra-octopussy-1983": {
+   "tmdb": 700,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-nunca-mais-outra-vez-1983": {
+   "tmdb": 36670,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-na-mira-dos-assassinos-1985": {
+   "tmdb": 707,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-marcado-para-a-morte-1987": {
+   "tmdb": 708,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-permissao-para-matar-1989": {
+   "tmdb": 709,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-contra-goldeneye-1995": {
+   "tmdb": 710,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-o-amanha-nunca-morre-1997": {
+   "tmdb": 714,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-o-mundo-nao-e-o-bastante-1999": {
+   "tmdb": 36643,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-um-novo-dia-para-morrer-2002": {
+   "tmdb": 36669,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-quantum-of-solace-2008": {
+   "tmdb": 10764,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-operacao-skyfall-2012": {
+   "tmdb": 37724,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-contra-spectre-2015": {
+   "tmdb": 206647,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "007-sem-tempo-para-morrer-2021": {
+   "tmdb": 370172,
+   "colecao": 645,
+   "em": "2026-10-12"
+  },
+  "2010-o-ano-em-que-faremos-contato-1984": {
+   "tmdb": 4437,
+   "colecao": 4438,
+   "em": "2026-10-12"
+  },
+  "300-a-ascensao-do-imperio-2014": {
+   "tmdb": 53182,
+   "colecao": 125570,
+   "em": "2026-10-12"
+  },
+  "a-bruxa-de-blair-2-o-livro-das-sombras-2000": {
+   "tmdb": 11531,
+   "colecao": 64750,
+   "em": "2026-10-12"
+  },
+  "bruxa-de-blair-2016": {
+   "tmdb": 351211,
+   "colecao": 64750,
+   "em": "2026-10-12"
+  },
+  "a-historia-sem-fim-2-1990": {
+   "tmdb": 34636,
+   "colecao": 91430,
+   "em": "2026-10-12"
+  },
+  "a-historia-sem-fim-3-1994": {
+   "tmdb": 27793,
+   "colecao": 91430,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-pesadelo-2-a-vinganca-de-freddy-1985": {
+   "tmdb": 10014,
+   "colecao": 8581,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-pesadelo-3-os-guerreiros-dos-sonhos-1987": {
+   "tmdb": 10072,
+   "colecao": 8581,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-pesadelo-4-o-mestre-dos-sonhos-1988": {
+   "tmdb": 10131,
+   "colecao": 8581,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-pesadelo-5-o-maior-horror-de-freddy-1989": {
+   "tmdb": 10160,
+   "colecao": 8581,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-pesadelo-6-pesadelo-final-a-morte-de-freddy-1991": {
+   "tmdb": 11284,
+   "colecao": 8581,
+   "em": "2026-10-12"
+  },
+  "a-hora-do-pesadelo-7-0-novo-pesadelo-o-retorno-de-freddy-krueger-1994": {
+   "tmdb": 11596,
+   "colecao": 8581,
+   "em": "2026-10-12"
+  },
+  "a-supremacia-bourne-2004": {
+   "tmdb": 2502,
+   "colecao": 31562,
+   "em": "2026-10-12"
+  },
+  "o-ultimato-bourne-2007": {
+   "tmdb": 2503,
+   "colecao": 31562,
+   "em": "2026-10-12"
+  },
+  "o-legado-bourne-2012": {
+   "tmdb": 49040,
+   "colecao": 31562,
+   "em": "2026-10-12"
+  },
+  "jason-bourne-2016": {
+   "tmdb": 324668,
+   "colecao": 31562,
+   "em": "2026-10-12"
+  },
+  "de-volta-a-lagoa-azul-1991": {
+   "tmdb": 13888,
+   "colecao": 59586,
+   "em": "2026-10-12"
+  },
+  "a-nova-onda-do-kronk-2005": {
+   "tmdb": 13417,
+   "colecao": 178117,
+   "em": "2026-10-12"
+  },
+  "o-outro-lado-das-redes-2026": {
+   "tmdb": 1281331,
+   "colecao": 1504252,
+   "em": "2026-10-12"
+  },
+  "as-cronicas-de-narnia-principe-caspian-2008": {
+   "tmdb": 2454,
+   "colecao": 420,
+   "em": "2026-10-12"
+  },
+  "as-cronicas-de-narnia-a-viagem-do-peregrino-da-alvorada-2010": {
+   "tmdb": 10140,
+   "colecao": 420,
+   "em": "2026-10-12"
+  },
+  "ate-que-a-sorte-nos-separe-2-2013": {
+   "tmdb": 228177,
+   "colecao": 342577,
+   "em": "2026-10-12"
+  },
+  "ate-que-a-sorte-nos-separe-3-a-falencia-final-2015": {
+   "tmdb": 324465,
+   "colecao": 342577,
+   "em": "2026-10-12"
+  },
+  "babe-o-porquinho-atrapalhado-na-cidade-1998": {
+   "tmdb": 9447,
+   "colecao": 9435,
+   "em": "2026-10-12"
+  },
+  "de-pernas-pro-ar-2-2012": {
+   "tmdb": 161908,
+   "colecao": 743415,
+   "em": "2026-10-12"
+  },
+  "de-pernas-pro-ar-3-2019": {
+   "tmdb": 562289,
+   "colecao": 743415,
+   "em": "2026-10-12"
+  },
+  "dirty-dancing-2-noites-de-havana-2004": {
+   "tmdb": 10677,
+   "colecao": 86058,
+   "em": "2026-10-12"
+  },
+  "duro-de-matar-2-1990": {
+   "tmdb": 1573,
+   "colecao": 1570,
+   "em": "2026-10-12"
+  },
+  "duro-de-matar-a-vinganca-1995": {
+   "tmdb": 1572,
+   "colecao": 1570,
+   "em": "2026-10-12"
+  },
+  "duro-de-matar-4-0-2007": {
+   "tmdb": 1571,
+   "colecao": 1570,
+   "em": "2026-10-12"
+  },
+  "duro-de-matar-um-bom-dia-para-morrer-2013": {
+   "tmdb": 47964,
+   "colecao": 1570,
+   "em": "2026-10-12"
+  },
+  "gato-de-botas-2011": {
+   "tmdb": 417859,
+   "colecao": 94602,
+   "em": "2026-10-12"
+  },
+  "guardioes-da-galaxia-vol-2-2017": {
+   "tmdb": 283995,
+   "colecao": 284433,
+   "em": "2026-10-12"
+  },
+  "guardioes-da-galaxia-vol-3-2023": {
+   "tmdb": 447365,
+   "colecao": 284433,
+   "em": "2026-10-12"
+  },
+  "indiana-jones-e-o-templo-da-perdicao-1984": {
+   "tmdb": 87,
+   "colecao": 84,
+   "em": "2026-10-12"
+  },
+  "indiana-jones-e-o-reino-da-caveira-de-cristal-2008": {
+   "tmdb": 217,
+   "colecao": 84,
+   "em": "2026-10-12"
+  },
+  "indiana-jones-e-a-reliquia-do-destino-2023": {
+   "tmdb": 335977,
+   "colecao": 84,
+   "em": "2026-10-12"
+  },
+  "invasao-zumbi-2-peninsula-2020": {
+   "tmdb": 581392,
+   "colecao": 619537,
+   "em": "2026-10-12"
+  },
+  "irmao-urso-2-2006": {
+   "tmdb": 10010,
+   "colecao": 96472,
+   "em": "2026-10-12"
+  },
+  "john-wick-um-novo-dia-para-matar-2017": {
+   "tmdb": 324552,
+   "colecao": 404609,
+   "em": "2026-10-12"
+  },
+  "john-wick-3-parabellum-2019": {
+   "tmdb": 458156,
+   "colecao": 404609,
+   "em": "2026-10-12"
+  },
+  "john-wick-4-baba-yaga-2023": {
+   "tmdb": 603692,
+   "colecao": 404609,
+   "em": "2026-10-12"
+  },
+  "karate-kid-2-a-hora-da-verdade-continua-1986": {
+   "tmdb": 8856,
+   "colecao": 8580,
+   "em": "2026-10-12"
+  },
+  "karate-kid-3-o-desafio-final-1989": {
+   "tmdb": 10495,
+   "colecao": 8580,
+   "em": "2026-10-12"
+  },
+  "karate-kid-4-a-nova-aventura-1994": {
+   "tmdb": 11231,
+   "colecao": 8580,
+   "em": "2026-10-12"
+  },
+  "karate-kid-2010": {
+   "tmdb": 38575,
+   "colecao": 8580,
+   "em": "2026-10-12"
+  },
+  "karate-kid-lendas-2025": {
+   "tmdb": 1011477,
+   "colecao": 8580,
+   "em": "2026-10-12"
+  },
+  "kill-bill-volume-2-2004": {
+   "tmdb": 393,
+   "colecao": 2883,
+   "em": "2026-10-12"
+  },
+  "x-men-origens-wolverine-2009": {
+   "tmdb": 2080,
+   "colecao": 453993,
+   "em": "2026-10-12"
+  },
+  "wolverine-imortal-2013": {
+   "tmdb": 76170,
+   "colecao": 453993,
+   "em": "2026-10-12"
+  },
+  "mad-max-1979": {
+   "tmdb": 9659,
+   "colecao": 8945,
+   "em": "2026-10-12"
+  },
+  "mad-max-2-a-cacada-continua-1981": {
+   "tmdb": 8810,
+   "colecao": 8945,
+   "em": "2026-10-12"
+  },
+  "mad-max-alem-da-cupula-do-trovao-1985": {
+   "tmdb": 9355,
+   "colecao": 8945,
+   "em": "2026-10-12"
+  },
+  "furiosa-uma-saga-mad-max-2024": {
+   "tmdb": 786892,
+   "colecao": 8945,
+   "em": "2026-10-12"
+  },
+  "maquina-mortifera-2-1989": {
+   "tmdb": 942,
+   "colecao": 945,
+   "em": "2026-10-12"
+  },
+  "maquina-mortifera-3-1992": {
+   "tmdb": 943,
+   "colecao": 945,
+   "em": "2026-10-12"
+  },
+  "maquina-mortifera-4-1998": {
+   "tmdb": 944,
+   "colecao": 945,
+   "em": "2026-10-12"
+  },
+  "o-retorno-de-mary-poppins-2018": {
+   "tmdb": 400650,
+   "colecao": 527439,
+   "em": "2026-10-12"
+  },
+  "menino-maluquinho-2-a-aventura-1998": {
+   "tmdb": 240855,
+   "colecao": 567630,
+   "em": "2026-10-12"
+  },
+  "nosso-lar-2-os-mensageiros-2024": {
+   "tmdb": 1004284,
+   "colecao": 1247087,
+   "em": "2026-10-12"
+  },
+  "nosso-lar-3-vida-eterna-2027": {
+   "tmdb": 1508855,
+   "colecao": 1247087,
+   "em": "2026-10-12"
+  },
+  "o-exorcista-ii-o-herege-1977": {
+   "tmdb": 11586,
+   "colecao": 12263,
+   "em": "2026-10-12"
+  },
+  "o-exorcista-iii-1990": {
+   "tmdb": 11587,
+   "colecao": 12263,
+   "em": "2026-10-12"
+  },
+  "o-exorcista-o-inicio-2004": {
+   "tmdb": 11026,
+   "colecao": 12263,
+   "em": "2026-10-12"
+  },
+  "dominio-prequela-do-exorcista-2005": {
+   "tmdb": 12700,
+   "colecao": 12263,
+   "em": "2026-10-12"
+  },
+  "o-exorcista-o-devoto-2023": {
+   "tmdb": 807172,
+   "colecao": 12263,
+   "em": "2026-10-12"
+  },
+  "o-hobbit-a-desolacao-de-smaug-2013": {
+   "tmdb": 57158,
+   "colecao": 121938,
+   "em": "2026-10-12"
+  },
+  "o-hobbit-a-batalha-dos-cinco-exercitos-2014": {
+   "tmdb": 122917,
+   "colecao": 121938,
+   "em": "2026-10-12"
+  },
+  "doutor-sono-2019": {
+   "tmdb": 501170,
+   "colecao": 530064,
+   "em": "2026-10-12"
+  },
+  "jose-o-rei-dos-sonhos-2000": {
+   "tmdb": 16366,
+   "colecao": 1734218,
+   "em": "2026-10-12"
+  },
+  "os-normais-2-a-noite-mais-maluca-de-todas-2009": {
+   "tmdb": 34277,
+   "colecao": 646622,
+   "em": "2026-10-12"
+  },
+  "na-onda-do-ie-ie-ie-1966": {
+   "tmdb": 143544,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "adoravel-trapalhao-1967": {
+   "tmdb": 286426,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "dois-na-lona-1968": {
+   "tmdb": 190204,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "bonga-o-vagabundo-1969": {
+   "tmdb": 189883,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "ali-baba-e-os-quarenta-ladroes-1972": {
+   "tmdb": 143558,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "aladim-e-a-lampada-maravilhosa-1973": {
+   "tmdb": 143559,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "robin-hood-o-trapalhao-da-floresta-1974": {
+   "tmdb": 407528,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-trapalhao-na-ilha-do-tesouro-1975": {
+   "tmdb": 172519,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-trapalhao-no-planalto-dos-macacos-1976": {
+   "tmdb": 248230,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "simbad-o-marujo-trapalhao-1976": {
+   "tmdb": 409232,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-trapalhao-nas-minas-do-rei-salomao-1977": {
+   "tmdb": 143550,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-trapalhoes-na-guerra-dos-planetas-1978": {
+   "tmdb": 42209,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-cinderelo-trapalhao-1979": {
+   "tmdb": 172497,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-rei-e-os-trapalhoes-1979": {
+   "tmdb": 303651,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-incrivel-monstro-trapalhao-1980": {
+   "tmdb": 143535,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-tres-mosqueteiros-trapalhoes-1980": {
+   "tmdb": 172501,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-mundo-magico-dos-trapalhoes-1981": {
+   "tmdb": 334179,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-vagabundos-trapalhoes-1982": {
+   "tmdb": 172514,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-trapalhoes-na-serra-pelada-1982": {
+   "tmdb": 143552,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "atrapalhando-a-suate-1983": {
+   "tmdb": 191238,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-cangaceiro-trapalhao-1983": {
+   "tmdb": 251356,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-trapalhao-na-arca-de-noe-1983": {
+   "tmdb": 274847,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "a-filha-dos-trapalhoes-1984": {
+   "tmdb": 309310,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-trapalhoes-e-o-magico-de-oroz-1984": {
+   "tmdb": 123568,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-trapalhoes-no-reino-da-fantasia-1985": {
+   "tmdb": 133005,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-trapalhoes-e-o-rei-do-futebol-1986": {
+   "tmdb": 181191,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-trapalhoes-no-rabo-do-cometa-1986": {
+   "tmdb": 146536,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-trapalhoes-no-auto-da-compadecida-1987": {
+   "tmdb": 133009,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-fantasmas-trapalhoes-1987": {
+   "tmdb": 133007,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-herois-trapalhoes-uma-aventura-na-selva-1988": {
+   "tmdb": 100988,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-casamento-dos-trapalhoes-1988": {
+   "tmdb": 88697,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "a-princesa-xuxa-e-os-trapalhoes-1989": {
+   "tmdb": 123571,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-trapalhoes-na-terra-dos-monstros-1989": {
+   "tmdb": 172435,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "uma-escola-atrapalhada-1990": {
+   "tmdb": 144060,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-misterio-de-robin-hood-1990": {
+   "tmdb": 146541,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-trapalhoes-e-a-arvore-da-juventude-1991": {
+   "tmdb": 133012,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-novico-rebelde-1997": {
+   "tmdb": 254384,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "simao-o-fantasma-trapalhao-1998": {
+   "tmdb": 128449,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "o-trapalhao-e-a-luz-azul-1999": {
+   "tmdb": 128454,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "os-saltimbancos-trapalhoes-rumo-a-hollywood-2017": {
+   "tmdb": 430840,
+   "colecao": 123588,
+   "em": "2026-10-12"
+  },
+  "psicose-2-1983": {
+   "tmdb": 10576,
+   "colecao": 119674,
+   "em": "2026-10-12"
+  },
+  "psicose-3-1986": {
+   "tmdb": 12662,
+   "colecao": 119674,
+   "em": "2026-10-12"
+  },
+  "psicose-4-a-revelacao-1990": {
+   "tmdb": 40377,
+   "colecao": 119674,
+   "em": "2026-10-12"
+  },
+  "spirit-o-indomavel-2021": {
+   "tmdb": 637693,
+   "colecao": 806483,
+   "em": "2026-10-12"
+  },
+  "taina-2-a-aventura-continua-2004": {
+   "tmdb": 51186,
+   "colecao": 429231,
+   "em": "2026-10-12"
+  },
+  "taina-3-a-origem-2011": {
+   "tmdb": 173214,
+   "colecao": 429231,
+   "em": "2026-10-12"
+  },
+  "t2-trainspotting-2017": {
+   "tmdb": 180863,
+   "colecao": 424202,
+   "em": "2026-10-12"
+  },
+  "um-lugar-silencioso-parte-ii-2021": {
+   "tmdb": 520763,
+   "colecao": 521226,
+   "em": "2026-10-12"
+  },
+  "wicked-parte-ii-2025": {
+   "tmdb": 967941,
+   "colecao": 968080,
+   "em": "2026-10-12"
+  },
+  "zumbilandia-atire-duas-vezes-2019": {
+   "tmdb": 338967,
+   "colecao": 537982,
+   "em": "2026-10-12"
+  },
+  "a-marcha-dos-pinguins-2-2017": {
+   "tmdb": 405931,
+   "colecao": 513585,
+   "em": "2026-10-12"
+  },
+  "dias-selvagens-1990": {
+   "tmdb": 18311,
+   "colecao": 1775197,
+   "em": "2026-10-12"
+  },
+  "2046-os-segredos-do-amor-2004": {
+   "tmdb": 844,
+   "colecao": 1775197,
+   "em": "2026-10-12"
+  },
+  "a-juventude-de-butch-cassidy-1979": {
+   "tmdb": 37598,
+   "colecao": 625812,
+   "em": "2026-10-12"
+  },
+  "cine-holliudy-2-a-chibata-sideral-2019": {
+   "tmdb": 555793,
+   "colecao": 1161210,
+   "em": "2026-10-12"
+  },
+  "deus-ainda-e-brasileiro-2026": {
+   "tmdb": 1172343,
+   "colecao": 1231094,
+   "em": "2026-10-12"
+  },
+  "s-darko-um-conto-de-donnie-darko-2009": {
+   "tmdb": 17532,
+   "colecao": 178106,
+   "em": "2026-10-12"
+  },
+  "estomago-ii-o-poderoso-chef-2024": {
+   "tmdb": 1225683,
+   "colecao": 1229894,
+   "em": "2026-10-12"
+  },
+  "kiriku-os-animais-selvagens-2005": {
+   "tmdb": 13679,
+   "colecao": 338416,
+   "em": "2026-10-12"
+  },
+  "kiriku-os-homens-e-as-mulheres-2012": {
+   "tmdb": 139649,
+   "colecao": 338416,
+   "em": "2026-10-12"
+  },
+  "veja-o-que-aconteceu-ao-bebe-de-rosemary-1976": {
+   "tmdb": 117258,
+   "colecao": 264338,
+   "em": "2026-10-12"
+  },
+  "apartamento-7a-2024": {
+   "tmdb": 807339,
+   "colecao": 264338,
+   "em": "2026-10-12"
+  },
+  "os-farofeiros-2-2024": {
+   "tmdb": 1136897,
+   "colecao": 1262888,
+   "em": "2026-10-12"
+  },
+  "os-farofeiros-3-2026": {
+   "tmdb": 1260263,
+   "colecao": 1262888,
+   "em": "2026-10-12"
+  },
+  "as-aventuras-de-paddington-2014": {
+   "tmdb": 116149,
+   "colecao": 488924,
+   "em": "2026-10-12"
+  },
+  "paddington-uma-aventura-na-floresta-2024": {
+   "tmdb": 516729,
+   "colecao": 488924,
+   "em": "2026-10-12"
+  },
+  "turma-da-monica-licoes-2021": {
+   "tmdb": 662745,
+   "colecao": 809460,
+   "em": "2026-10-12"
+  },
+  "a-igualdade-e-branca-1994": {
+   "tmdb": 109,
+   "colecao": 131,
+   "em": "2026-10-12"
+  },
+  "a-fraternidade-e-vermelha-1994": {
+   "tmdb": 110,
+   "colecao": 131,
+   "em": "2026-10-12"
+  },
+  "tao-longe-tao-perto-1993": {
+   "tmdb": 10434,
+   "colecao": 582828,
+   "em": "2026-10-12"
+  },
+  "manderlay-2005": {
+   "tmdb": 1951,
+   "colecao": 1952,
+   "em": "2026-10-12"
+  },
+  "antoine-e-colette-1962": {
+   "tmdb": 256,
+   "colecao": 185682,
+   "em": "2026-10-12"
+  },
+  "beijos-proibidos-1968": {
+   "tmdb": 255,
+   "colecao": 185682,
+   "em": "2026-10-12"
+  },
+  "domicilio-conjugal-1970": {
+   "tmdb": 258,
+   "colecao": 185682,
+   "em": "2026-10-12"
+  },
+  "o-amor-em-fuga-1979": {
+   "tmdb": 259,
+   "colecao": 185682,
+   "em": "2026-10-12"
+  },
+  "sem-destino-novamente-2012": {
+   "tmdb": 156062,
+   "colecao": 956687,
+   "em": "2026-10-12"
+  },
+  "o-invencivel-1956": {
+   "tmdb": 897,
+   "colecao": 158391,
+   "em": "2026-10-12"
+  },
+  "o-mundo-de-apu-1959": {
+   "tmdb": 896,
+   "colecao": 158391,
+   "em": "2026-10-12"
+  },
+  "moana-2-2024": {
+   "tmdb": 1241982,
+   "colecao": 1241984,
+   "em": "2026-10-12"
+  },
+  "o-rei-leao-ii-o-reino-de-simba-1998": {
+   "tmdb": 9732,
+   "colecao": 94032,
+   "em": "2026-10-12"
+  },
+  "o-rei-leao-3-hakuna-matata-2004": {
+   "tmdb": 11430,
+   "colecao": 94032,
+   "em": "2026-10-12"
+  },
+  "duna-parte-tres-2026": {
+   "tmdb": 1170608,
+   "colecao": 726871,
+   "em": "2026-10-12"
+  },
+  "kung-fu-panda-2-2011": {
+   "tmdb": 49444,
+   "colecao": 77816,
+   "em": "2026-10-12"
+  },
+  "kung-fu-panda-3-2016": {
+   "tmdb": 140300,
+   "colecao": 77816,
+   "em": "2026-10-12"
+  },
+  "kung-fu-panda-4-2024": {
+   "tmdb": 1011985,
+   "colecao": 77816,
+   "em": "2026-10-12"
+  },
+  "matrix-reloaded-2003": {
+   "tmdb": 604,
+   "colecao": 2344,
+   "em": "2026-10-12"
+  },
+  "matrix-revolutions-2003": {
+   "tmdb": 605,
+   "colecao": 2344,
+   "em": "2026-10-12"
+  },
+  "matrix-resurrections-2021": {
+   "tmdb": 624860,
+   "colecao": 2344,
+   "em": "2026-10-12"
+  },
+  "x-men-o-filme-2000": {
+   "tmdb": 36657,
+   "colecao": 748,
+   "em": "2026-10-12"
+  },
+  "x-men-2-2003": {
+   "tmdb": 36658,
+   "colecao": 748,
+   "em": "2026-10-12"
+  },
+  "x-men-o-confronto-final-2006": {
+   "tmdb": 36668,
+   "colecao": 748,
+   "em": "2026-10-12"
+  },
+  "x-men-primeira-classe-2011": {
+   "tmdb": 49538,
+   "colecao": 748,
+   "em": "2026-10-12"
+  },
+  "x-men-dias-de-um-futuro-esquecido-2014": {
+   "tmdb": 127585,
+   "colecao": 748,
+   "em": "2026-10-12"
+  },
+  "x-men-fenix-negra-2019": {
+   "tmdb": 320288,
+   "colecao": 748,
+   "em": "2026-10-12"
+  }
+ }
+}

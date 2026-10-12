@@ -17,6 +17,9 @@ on:
       - 'scripts/telas-episodios.mjs'
       - 'scripts/telas-streaming.mjs'
       - 'scripts/telas-posteres.mjs'
+      - 'scripts/telas-ids.mjs'
+      - 'scripts/telas-sagas.mjs'
+      - 'scripts/telas-notas.mjs'
       - 'telas/catalogo.json'
 
 permissions:
@@ -51,6 +54,31 @@ jobs:
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: node scripts/telas-streaming.mjs
+      - name: IDs do IMDb e do TMDB para o que não tem (catálogo e dados.json)
+        id: ids
+        # roda também no "Só os pôsteres": é o IMDb ID que dá cartaz e onde assistir aos títulos do catálogo.
+        # Só aceita casamento seguro (título igual e ano ±1); as dúvidas vão para telas/ids-pendentes.json.
+        # Sem o segredo TMDB_API_KEY, não faz nada. Se falhar, o resto do dia segue.
+        continue-on-error: true
+        timeout-minutes: 8
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node scripts/telas-ids.mjs
+      - name: Sagas completas pelas coleções do TMDB (o filme que faltava entra no catálogo)
+        id: sagas
+        # roda também no "Só os pôsteres", antes deles: os filmes novos já ganham cartaz na mesma execução.
+        # Sem o segredo TMDB_API_KEY, não faz nada. Se falhar, o resto do dia segue.
+        continue-on-error: true
+        timeout-minutes: 8
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node scripts/telas-sagas.mjs
+      - name: Notas do IMDb de todo o catálogo (base pública do IMDb)
+        id: notas
+        # nota e votos do IMDb para todo título com imdb_id (telas/notas.json); só regrava quando muda
+        continue-on-error: true
+        timeout-minutes: 5
+        run: node scripts/telas-notas.mjs
       - name: Pôsteres (TMDB; Wikipedia via Wikidata para o que faltar)
         id: posteres
         # mesma regra do onde assistir: se o TMDB e a Wikimedia falharem, o resto do dia ainda é
@@ -72,7 +100,11 @@ jobs:
             if [ -f telas/streaming.json ]; then git add telas/streaming.json; fi
             if [ -f telas/posteres.json ]; then git add telas/posteres.json; fi
             if [ -d telas/cartazes ]; then git add -A telas/cartazes; fi
-            git commit -m "telas: robô atualizou episódios, onde assistir e pôsteres"
+            git add telas/catalogo.json telas/dados.json
+            if [ -f telas/ids-pendentes.json ]; then git add telas/ids-pendentes.json; fi
+            if [ -f telas/sagas-tmdb.json ]; then git add telas/sagas-tmdb.json; fi
+            if [ -f telas/notas.json ]; then git add telas/notas.json; fi
+            git commit -m "telas: robô atualizou episódios, onde assistir, IDs e pôsteres"
             git push
           else
             echo "sem mudanças"
@@ -81,6 +113,11 @@ jobs:
         if: steps.streaming.outcome == 'failure'
         run: |
           echo "::error::Onde assistir não foi atualizado — veja o passo do TMDB (chave TMDB_API_KEY ou TMDB fora do ar)"
+          exit 1
+      - name: Avisar se os IDs falharam
+        if: ${{ !cancelled() && steps.ids.outcome == 'failure' }}
+        run: |
+          echo "::error::IDs do IMDb não foram procurados — veja o passo dos IDs (chave TMDB_API_KEY ou TMDB fora do ar)"
           exit 1
       - name: Avisar se os pôsteres falharam
         if: ${{ !cancelled() && steps.posteres.outcome == 'failure' }}
