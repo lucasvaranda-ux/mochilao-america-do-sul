@@ -126,17 +126,5 @@
       "destination": "/",
       "permanent": false
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "(whatch|whattowatch)(\\.madeinbr\\.app|[a-z0-9-]*\\.vercel\\.app)"
-        }
-      ],
-      "destination": "/telas"
-    }
   ]
 }
