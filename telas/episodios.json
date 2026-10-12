@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-11T19:20:01.665Z",
+ "gerado_em": "2026-10-12T10:39:37.140Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -244,18 +244,6 @@
   }
  ],
  "episodios": [
-  {
-   "imdb_id": "tt26545992",
-   "tvmaze_id": 3695366,
-   "serie": "Lanterns",
-   "temporada": 1,
-   "episodio": 8,
-   "titulo": "Dirt and Stars",
-   "data": "2026-10-04",
-   "airstamp": "2026-10-05T01:00:00+00:00",
-   "plataforma": "HBO",
-   "alerta": true
-  },
   {
    "imdb_id": "tt10986410",
    "tvmaze_id": 3605516,
