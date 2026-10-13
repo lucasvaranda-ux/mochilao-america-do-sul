@@ -141,6 +141,7 @@ Tudo em `index.html`:
 
 ## Ideias de próximos passos (pendências/possíveis)
 - **Whatch: comentários do Reddit e críticos famosos.** O Reddit exige um app registrado (grátis, uso não comercial, OAuth); críticos famosos não têm API aberta e citar trechos pede cuidado com direito autoral. Hoje: resenhas do TMDB.
+- **Whatch: ver o filme dentro do app, a custo baixo** (ideia do Lucas, 12/10/2026, para depois): estudar como funcionaria — de abrir o título direto no app do serviço que a pessoa assina (links profundos) a trailers e filmes de domínio público ou com licença gratuita tocando na própria página, e o que exigiria licenciar catálogo.
 - **OMDb:** pôr o segredo `OMDB_API_KEY` no GitHub para o robô do Rotten e do Metacritic começar.
 - **Whatch: mudar para o repositório próprio** (`lucasvaranda-ux/whatch`; o Lucas pediu para lembrar). Criar o repo e liberar o app do Claude em claude.ai/connect-github; passar página, dados, cartazes, robôs, funções, middleware e `supabase/whatch`; religar o projeto `whatch` da Vercel; recadastrar `TMDB_API_KEY`, `RESEND_API_KEY` e `ALERT_EMAIL`; decidir onde fica a página do Lucas (sugestão: `whatch.madeinbr.app/lucas`).
 - **Whatch: limite de "Outro par" na Sessão dupla** (pedido do Lucas, 12/10/2026, para conversar): quando a pessoa pede muitos pares para o mesmo filme de origem e as sugestões começam a se afastar dele (a semelhança cai), parar o rodízio e fazer perguntas curtas sobre o que ela quer daquele filme (o tema? o tom? o diretor?) para afinar o cálculo e voltar a trazer sugestões mais próximas da origem.
