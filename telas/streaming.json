@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-12",
+ "atualizado_em": "2026-10-14",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -963,6 +963,7 @@
    "link": "https://www.themoviedb.org/movie/10191-how-to-train-your-dragon/watch?locale=BR",
    "assinatura": [
     "Claro tv+",
+    "Netflix",
     "Prime Video",
     "Telecine (canal na Prime Video)"
    ],
@@ -1076,12 +1077,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1487,6 +1486,7 @@
    "imdb": "tt0119217",
    "link": "https://www.themoviedb.org/movie/489-good-will-hunting/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Paramount Plus Premium",
     "Paramount+",
     "Paramount+ (canal na Prime Video)"
@@ -1684,7 +1684,6 @@
    "imdb": "tt0241527",
    "link": "https://www.themoviedb.org/movie/671-harry-potter-and-the-philosopher-s-stone/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -1748,7 +1747,6 @@
    "imdb": "tt0330373",
    "link": "https://www.themoviedb.org/movie/674-harry-potter-and-the-goblet-of-fire/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -2282,7 +2280,6 @@
    "link": "https://www.themoviedb.org/movie/178189-inner-worlds-outer-worlds/watch?locale=BR",
    "assinatura": [
     "Aquarius (canal na Prime Video)",
-    "Claro tv+",
     "Magellan TV"
    ],
    "gratis": [
@@ -2567,7 +2564,6 @@
    "imdb": "tt6587046",
    "link": "https://www.themoviedb.org/movie/508883/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Netflix"
    ],
    "gratis": [],
@@ -3352,12 +3348,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3417,9 +3411,7 @@
     "Apple TV",
     "Apple TV (canal na Prime Video)"
    ],
-   "gratis": [
-    "Apple TV"
-   ],
+   "gratis": [],
    "anuncios": [],
    "aluguel": [],
    "compra": []
