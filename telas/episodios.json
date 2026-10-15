@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-12T10:39:37.140Z",
+ "gerado_em": "2026-10-15T10:30:48.255Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -245,18 +245,6 @@
  ],
  "episodios": [
   {
-   "imdb_id": "tt10986410",
-   "tvmaze_id": 3605516,
-   "serie": "Ted Lasso",
-   "temporada": 4,
-   "episodio": 10,
-   "titulo": "Being Alive",
-   "data": "2026-10-07",
-   "airstamp": "2026-10-07T12:00:00+00:00",
-   "plataforma": "Apple TV",
-   "alerta": true
-  },
-  {
    "imdb_id": "tt19231492",
    "tvmaze_id": 3591070,
    "serie": "Dark Matter",
@@ -358,7 +346,7 @@
    "serie": "MobLand",
    "temporada": 2,
    "episodio": 8,
-   "titulo": "Episode 8",
+   "titulo": "We Don't Talk Anymore",
    "data": "2026-11-06",
    "airstamp": "2026-11-06T12:00:00+00:00",
    "plataforma": "Paramount+",

@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-14",
+ "atualizado_em": "2026-10-15",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -55,12 +55,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -78,12 +76,8 @@
    "anuncios": [
     "NetMovies"
    ],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "a-fonte-da-vida-2006": {
    "tmdb": "movie/1381",
@@ -124,12 +118,10 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ],
    "compra": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ]
   },
   "a-lenda-de-korra-2012": {
@@ -193,12 +185,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -366,12 +356,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -389,12 +377,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -412,12 +398,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -507,7 +491,6 @@
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -728,12 +711,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -767,6 +748,7 @@
    "imdb": "tt0140888",
    "link": "https://www.themoviedb.org/movie/666-central-do-brasil/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Globoplay",
     "Netflix",
     "Telecine (canal na Prime Video)"
@@ -774,12 +756,10 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ],
    "compra": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ]
   },
   "chapolin-1973": {
@@ -906,12 +886,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -972,12 +950,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -992,11 +968,9 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1057,12 +1031,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1193,8 +1165,7 @@
     "Apple TV (loja)"
    ],
    "compra": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ]
   },
   "duna-a-profecia-2024": {
@@ -1225,12 +1196,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1245,12 +1214,10 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ],
    "compra": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ]
   },
   "eami-2022": {
@@ -1337,12 +1304,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1495,12 +1460,8 @@
    "anuncios": [
     "Mercado Play"
    ],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "gente-grande-2010": {
    "tmdb": "movie/38365",
@@ -1608,12 +1569,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1649,12 +1608,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1670,12 +1627,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1691,12 +1646,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1712,12 +1665,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1733,12 +1684,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1754,12 +1703,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1775,12 +1722,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1796,12 +1741,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1871,14 +1814,12 @@
   "human-2015": {
    "tmdb": "movie/359364",
    "imdb": "tt3327994",
-   "link": "https://www.themoviedb.org/movie/359364-human/watch?locale=BR",
+   "link": "",
    "assinatura": [],
    "gratis": [],
    "anuncios": [],
    "aluguel": [],
-   "compra": [
-    "Google Play"
-   ]
+   "compra": []
   },
   "inside-job-2021": {
    "tmdb": "tv/97727",
@@ -1905,12 +1846,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1976,12 +1915,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2049,12 +1986,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2155,12 +2090,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2175,12 +2108,10 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ],
    "compra": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ]
   },
   "mike-molly-2010": {
@@ -2254,12 +2185,14 @@
   "mr-robot-2015": {
    "tmdb": "tv/62560",
    "imdb": "tt4158110",
-   "link": "",
+   "link": "https://www.themoviedb.org/tv/62560-mr-robot/watch?locale=BR",
    "assinatura": [],
    "gratis": [],
    "anuncios": [],
    "aluguel": [],
-   "compra": []
+   "compra": [
+    "Prime Video (loja)"
+   ]
   },
   "mrs-davis-2023": {
    "tmdb": "tv/197548",
@@ -2314,12 +2247,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2381,12 +2312,8 @@
    ],
    "gratis": [],
    "anuncios": [],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "nomadland-2020": {
    "tmdb": "movie/581734",
@@ -2540,12 +2467,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2569,12 +2494,10 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2587,12 +2510,8 @@
    ],
    "gratis": [],
    "anuncios": [],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "o-novo-mundo-2005": {
    "tmdb": "movie/11400",
@@ -2623,11 +2542,9 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2741,12 +2658,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2763,12 +2678,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2785,12 +2698,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2851,12 +2762,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2899,12 +2808,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2920,12 +2827,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3124,12 +3029,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3183,12 +3086,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3290,12 +3191,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3370,12 +3269,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3841,12 +3738,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -4036,12 +3931,8 @@
    ],
    "gratis": [],
    "anuncios": [],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "vinland-saga-2019": {
    "tmdb": "tv/88803",
@@ -4164,11 +4055,9 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
-    "Google Play",
     "Prime Video (loja)"
    ]
   }
