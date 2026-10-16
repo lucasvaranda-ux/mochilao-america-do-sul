@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-15",
+ "atualizado_em": "2026-10-16",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -2953,7 +2953,9 @@
    "tmdb": "movie/10312",
    "imdb": "tt0129290",
    "link": "https://www.themoviedb.org/movie/10312-patch-adams/watch?locale=BR",
-   "assinatura": [],
+   "assinatura": [
+    "Claro tv+"
+   ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
