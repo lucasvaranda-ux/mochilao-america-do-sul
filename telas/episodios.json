@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-15T10:30:48.255Z",
+ "gerado_em": "2026-10-17T10:26:39.505Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -244,30 +244,6 @@
   }
  ],
  "episodios": [
-  {
-   "imdb_id": "tt19231492",
-   "tvmaze_id": 3591070,
-   "serie": "Dark Matter",
-   "temporada": 2,
-   "episodio": 7,
-   "titulo": "The Pyramid",
-   "data": "2026-10-09",
-   "airstamp": "2026-10-09T12:00:00+00:00",
-   "plataforma": "Apple TV",
-   "alerta": true
-  },
-  {
-   "imdb_id": "tt31510819",
-   "tvmaze_id": 3708483,
-   "serie": "MobLand",
-   "temporada": 2,
-   "episodio": 4,
-   "titulo": "Blank Curtain",
-   "data": "2026-10-09",
-   "airstamp": "2026-10-09T12:00:00+00:00",
-   "plataforma": "Paramount+",
-   "alerta": true
-  },
   {
    "imdb_id": "tt19231492",
    "tvmaze_id": 3591071,
