@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-12T19:54:39.635Z",
+ "gerado_em": "2026-10-18T10:29:29.142Z",
  "fonte": "TMDB, e a Wikipedia (via Wikidata) para o que faltar",
  "itens": {
   "007-a-servico-secreto-de-sua-majestade-1969": {
@@ -43,14 +43,14 @@
    "local": "/telas/cartazes/b88150a72257b155.webp"
   },
   "007-contra-goldfinger-1964": {
-   "img": "https://image.tmdb.org/t/p/w500/3zqmjujYSkgLSrdvvZ9VnDfaDRV.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/aKNFzaqQgPzsGXnsMc4kJH5hFIV.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/658",
    "fonte": "tmdb",
-   "tmdb": "/3zqmjujYSkgLSrdvvZ9VnDfaDRV.jpg",
+   "tmdb": "/aKNFzaqQgPzsGXnsMc4kJH5hFIV.jpg",
    "imdb": "tt0058150",
-   "local": "/telas/cartazes/12ab7c0e48afcd52.webp"
+   "local": "/telas/cartazes/a86eda4c21e6da89.webp"
   },
   "007-contra-o-foguete-da-morte-1979": {
    "img": "https://image.tmdb.org/t/p/w500/6LrJdXNmu5uHOVALZxVYd44Lva0.jpg",
