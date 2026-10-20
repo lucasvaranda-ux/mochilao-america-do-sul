@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-18T10:29:29.142Z",
+ "gerado_em": "2026-10-20T10:32:16.556Z",
  "fonte": "TMDB, e a Wikipedia (via Wikidata) para o que faltar",
  "itens": {
   "007-a-servico-secreto-de-sua-majestade-1969": {
@@ -7362,15 +7362,25 @@
    "imdb": "tt0250494",
    "local": "/telas/cartazes/89648a9b34073314.webp"
   },
+  "legalmente-loiras-2009": {
+   "img": "https://image.tmdb.org/t/p/w500/wZnEw0avASZwBWcJo5F1pdJnmO2.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/16985",
+   "fonte": "tmdb",
+   "tmdb": "/wZnEw0avASZwBWcJo5F1pdJnmO2.jpg",
+   "imdb": "tt1015999",
+   "local": "/telas/cartazes/020482cda217c6ca.webp"
+  },
   "lei-ordem-unidade-de-vitimas-especiais-1999": {
-   "img": "https://image.tmdb.org/t/p/w500/iofokHZoUB4Qhik4PflvJl8TT6a.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/pHNhUwSXuDQ9jPZOCb8SgJaQZsc.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/tv/2734",
    "fonte": "tmdb",
-   "tmdb": "/iofokHZoUB4Qhik4PflvJl8TT6a.jpg",
+   "tmdb": "/pHNhUwSXuDQ9jPZOCb8SgJaQZsc.jpg",
    "imdb": "tt0203259",
-   "local": "/telas/cartazes/81e865bab874d280.webp"
+   "local": "/telas/cartazes/f186ad156e2c8997.webp"
   },
   "lendas-da-paixao-1994": {
    "img": "https://image.tmdb.org/t/p/w500/89DRDb6mmNkIekqSeAzz13faQDt.jpg",
