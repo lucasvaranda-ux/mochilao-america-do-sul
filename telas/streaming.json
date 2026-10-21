@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-17",
+ "atualizado_em": "2026-10-21",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -1337,7 +1337,6 @@
    "imdb": "tt4772188",
    "link": "https://www.themoviedb.org/movie/823219-straume/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Filmelier Plus (canal na Prime Video)"
    ],
    "gratis": [],
@@ -1958,7 +1957,6 @@
    "link": "https://www.themoviedb.org/movie/9502-kung-fu-panda/watch?locale=BR",
    "assinatura": [
     "Claro tv+",
-    "Globoplay",
     "Prime Video",
     "Telecine (canal na Prime Video)"
    ],
@@ -2600,6 +2598,7 @@
    "link": "https://www.themoviedb.org/movie/265297-le-sel-de-la-terre/watch?locale=BR",
    "assinatura": [
     "Aquarius (canal na Prime Video)",
+    "Claro tv+",
     "CurtaOn (canal na Prime Video)",
     "Reserva Imovision (canal na Prime Video)"
    ],
@@ -3238,7 +3237,6 @@
    "imdb": "tt0120102",
    "link": "https://www.themoviedb.org/movie/978-seven-years-in-tibet/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Sony One (canal na Prime Video)"
    ],
    "gratis": [],
