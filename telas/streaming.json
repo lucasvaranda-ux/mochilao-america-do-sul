@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-21",
+ "atualizado_em": "2026-10-22",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -570,6 +570,7 @@
    "imdb": "tt35854736",
    "link": "https://www.themoviedb.org/tv/284833-avatar-seven-havens/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Paramount Plus Premium",
     "Paramount+",
     "Paramount+ (canal na Apple TV)",
