@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-22",
+ "atualizado_em": "2026-10-23",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -3748,6 +3748,7 @@
    "imdb": "tt0460637",
    "link": "https://www.themoviedb.org/tv/252-everybody-hates-chris/watch?locale=BR",
    "assinatura": [
+    "Disney+",
     "Globoplay",
     "Netflix",
     "Paramount Plus Premium",
