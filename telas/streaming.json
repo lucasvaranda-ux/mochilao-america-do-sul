@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-23",
+ "atualizado_em": "2026-10-24",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -1214,10 +1214,12 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)"
+    "Apple TV (loja)",
+    "Prime Video (loja)"
    ],
    "compra": [
-    "Apple TV (loja)"
+    "Apple TV (loja)",
+    "Prime Video (loja)"
    ]
   },
   "eami-2022": {
@@ -1619,6 +1621,7 @@
    "imdb": "tt0373889",
    "link": "https://www.themoviedb.org/movie/675-harry-potter-and-the-order-of-the-phoenix/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -1638,6 +1641,7 @@
    "imdb": "tt0241527",
    "link": "https://www.themoviedb.org/movie/671-harry-potter-and-the-philosopher-s-stone/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],

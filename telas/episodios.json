@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-17T10:26:39.505Z",
+ "gerado_em": "2026-10-24T10:27:53.455Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -244,30 +244,6 @@
   }
  ],
  "episodios": [
-  {
-   "imdb_id": "tt19231492",
-   "tvmaze_id": 3591071,
-   "serie": "Dark Matter",
-   "temporada": 2,
-   "episodio": 8,
-   "titulo": "The Basic Oneness of Everything",
-   "data": "2026-10-16",
-   "airstamp": "2026-10-16T12:00:00+00:00",
-   "plataforma": "Apple TV",
-   "alerta": true
-  },
-  {
-   "imdb_id": "tt31510819",
-   "tvmaze_id": 3708484,
-   "serie": "MobLand",
-   "temporada": 2,
-   "episodio": 5,
-   "titulo": "Birdland",
-   "data": "2026-10-16",
-   "airstamp": "2026-10-16T12:00:00+00:00",
-   "plataforma": "Paramount+",
-   "alerta": true
-  },
   {
    "imdb_id": "tt19231492",
    "tvmaze_id": 3591072,
