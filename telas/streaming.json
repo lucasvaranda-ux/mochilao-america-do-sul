@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-24",
+ "atualizado_em": "2026-10-25",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -941,6 +941,7 @@
    "imdb": "tt0892769",
    "link": "https://www.themoviedb.org/movie/10191-how-to-train-your-dragon/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Netflix",
     "Prime Video",
     "Telecine (canal na Prime Video)"
@@ -3283,6 +3284,7 @@
    "imdb": "tt0490215",
    "link": "https://www.themoviedb.org/movie/68730-silence/watch?locale=BR",
    "assinatura": [
+    "MUBI (canal na Prime Video)",
     "Prime Video"
    ],
    "gratis": [],
