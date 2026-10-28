@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-25",
+ "atualizado_em": "2026-10-28",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -2655,7 +2655,8 @@
     "Disney+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
-    "Netflix"
+    "Netflix",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
@@ -2675,7 +2676,8 @@
    "assinatura": [
     "Disney+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
@@ -2695,7 +2697,8 @@
    "assinatura": [
     "Disney+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
