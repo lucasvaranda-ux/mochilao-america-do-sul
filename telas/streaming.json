@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-28",
+ "atualizado_em": "2026-10-29",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -2071,7 +2071,8 @@
    "link": "https://www.themoviedb.org/tv/196322-dark-matter/watch?locale=BR",
    "assinatura": [
     "Apple TV",
-    "Apple TV (canal na Prime Video)"
+    "Apple TV (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [
     "Apple TV"
