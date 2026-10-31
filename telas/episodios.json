@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-27T10:32:33.571Z",
+ "gerado_em": "2026-10-31T10:22:22.773Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -174,7 +174,7 @@
    "imdb_id": "tt19231492",
    "tvmaze_id": 61315,
    "nome": "Dark Matter",
-   "status": "Running",
+   "status": "To Be Determined",
    "plataforma": "Apple TV",
    "alerta": true
   },
@@ -244,30 +244,6 @@
   }
  ],
  "episodios": [
-  {
-   "imdb_id": "tt19231492",
-   "tvmaze_id": 3591072,
-   "serie": "Dark Matter",
-   "temporada": 2,
-   "episodio": 9,
-   "titulo": "How to Build the Box",
-   "data": "2026-10-23",
-   "airstamp": "2026-10-23T12:00:00+00:00",
-   "plataforma": "Apple TV",
-   "alerta": true
-  },
-  {
-   "imdb_id": "tt31510819",
-   "tvmaze_id": 3708485,
-   "serie": "MobLand",
-   "temporada": 2,
-   "episodio": 6,
-   "titulo": "A Different Corner",
-   "data": "2026-10-23",
-   "airstamp": "2026-10-23T12:00:00+00:00",
-   "plataforma": "Paramount+",
-   "alerta": true
-  },
   {
    "imdb_id": "tt19231492",
    "tvmaze_id": 3591073,

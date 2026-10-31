@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-30T10:26:50.112Z",
+ "gerado_em": "2026-10-31T10:24:38.590Z",
  "fonte": "TMDB, e a Wikipedia (via Wikidata) para o que faltar",
  "itens": {
   "007-a-servico-secreto-de-sua-majestade-1969": {
@@ -3473,14 +3473,14 @@
    "local": "/telas/cartazes/ff97b1b1843b9932.webp"
   },
   "cinema-paradiso-1988": {
-   "img": "https://image.tmdb.org/t/p/w500/9JhfVOveaY00o8njQu2Xrp4YWud.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/aRgPnx4aPS96f7CnhJH7IG5dN1A.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/11216",
    "fonte": "tmdb",
-   "tmdb": "/9JhfVOveaY00o8njQu2Xrp4YWud.jpg",
+   "tmdb": "/aRgPnx4aPS96f7CnhJH7IG5dN1A.jpg",
    "imdb": "tt0095765",
-   "local": "/telas/cartazes/6b97dcd0c5b647e0.webp"
+   "local": "/telas/cartazes/3e89289d686e2d9b.webp"
   },
   "cisne-negro-2010": {
    "img": "https://image.tmdb.org/t/p/w500/viWheBd44bouiLCHgNMvahLThqx.jpg",
