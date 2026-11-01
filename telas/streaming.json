@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-31",
+ "atualizado_em": "2026-11-01",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -930,7 +930,6 @@
    "imdb": "tt29258436",
    "link": "https://www.themoviedb.org/tv/235635-como-agua-para-chocolate/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -944,7 +943,6 @@
    "imdb": "tt0892769",
    "link": "https://www.themoviedb.org/movie/10191-how-to-train-your-dragon/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Netflix",
     "Prime Video",
     "Telecine (canal na Prime Video)"
@@ -1627,7 +1625,6 @@
    "imdb": "tt0373889",
    "link": "https://www.themoviedb.org/movie/675-harry-potter-and-the-order-of-the-phoenix/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1648,7 +1645,6 @@
    "imdb": "tt0241527",
    "link": "https://www.themoviedb.org/movie/671-harry-potter-and-the-philosopher-s-stone/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1728,6 +1724,7 @@
    "imdb": "tt0417741",
    "link": "https://www.themoviedb.org/movie/767-harry-potter-and-the-half-blood-prince/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -2230,9 +2227,7 @@
     "Aquarius (canal na Prime Video)",
     "Magellan TV"
    ],
-   "gratis": [
-    "Filmtap"
-   ],
+   "gratis": [],
    "anuncios": [
     "Filmzie",
     "Plex",
@@ -2816,7 +2811,6 @@
    "imdb": "tt0082971",
    "link": "https://www.themoviedb.org/movie/85-raiders-of-the-lost-ark/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Oldflix",
     "Paramount Plus Premium",
     "Paramount+",
@@ -3719,7 +3713,6 @@
    "imdb": "tt13406094",
    "link": "https://www.themoviedb.org/tv/111803-the-white-lotus/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
