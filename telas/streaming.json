@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-01",
+ "atualizado_em": "2026-11-02",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -2811,6 +2811,7 @@
    "imdb": "tt0082971",
    "link": "https://www.themoviedb.org/movie/85-raiders-of-the-lost-ark/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Oldflix",
     "Paramount Plus Premium",
     "Paramount+",
