@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-02",
+ "atualizado_em": "2026-11-03",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -112,8 +112,7 @@
    "imdb": "tt0088323",
    "link": "https://www.themoviedb.org/movie/34584-die-unendliche-geschichte/watch?locale=BR",
    "assinatura": [
-    "Globoplay",
-    "Telecine (canal na Prime Video)"
+    "Globoplay"
    ],
    "gratis": [],
    "anuncios": [],
@@ -579,7 +578,9 @@
     "Paramount+ (canal na Apple TV)",
     "Paramount+ (canal na Prime Video)"
    ],
-   "gratis": [],
+   "gratis": [
+    "Prime Video"
+   ],
    "anuncios": [],
    "aluguel": [],
    "compra": []
@@ -880,6 +881,8 @@
    "imdb": "tt0879870",
    "link": "https://www.themoviedb.org/movie/38167-eat-pray-love/watch?locale=BR",
    "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Netflix",
@@ -1915,7 +1918,6 @@
    "link": "https://www.themoviedb.org/movie/329-jurassic-park/watch?locale=BR",
    "assinatura": [
     "Apple TV",
-    "Apple TV (canal na Prime Video)",
     "Disney+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
@@ -2095,8 +2097,7 @@
    "imdb": "tt0133093",
    "link": "https://www.themoviedb.org/movie/603-the-matrix/watch?locale=BR",
    "assinatura": [
-    "Globoplay",
-    "Telecine (canal na Prime Video)"
+    "Globoplay"
    ],
    "gratis": [],
    "anuncios": [],
@@ -2198,7 +2199,9 @@
    "tmdb": "tv/62560",
    "imdb": "tt4158110",
    "link": "https://www.themoviedb.org/tv/62560-mr-robot/watch?locale=BR",
-   "assinatura": [],
+   "assinatura": [
+    "Universal+ (canal na Prime Video)"
+   ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [],
@@ -2396,8 +2399,7 @@
    "imdb": "tt0271383",
    "link": "https://www.themoviedb.org/movie/40096-o-auto-da-compadecida/watch?locale=BR",
    "assinatura": [
-    "Globoplay",
-    "Telecine (canal na Prime Video)"
+    "Globoplay"
    ],
    "gratis": [],
    "anuncios": [],
@@ -3240,10 +3242,8 @@
   "serras-da-desordem-2006": {
    "tmdb": "movie/173722",
    "imdb": "tt0922605",
-   "link": "https://www.themoviedb.org/movie/173722-serras-da-desordem/watch?locale=BR",
-   "assinatura": [
-    "CurtaOn (canal na Prime Video)"
-   ],
+   "link": "",
+   "assinatura": [],
    "gratis": [],
    "anuncios": [],
    "aluguel": [],
