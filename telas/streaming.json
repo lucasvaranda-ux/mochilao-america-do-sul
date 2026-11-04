@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-03",
+ "atualizado_em": "2026-11-04",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -3295,6 +3295,7 @@
    "imdb": "tt0490215",
    "link": "https://www.themoviedb.org/movie/68730-silence/watch?locale=BR",
    "assinatura": [
+    "MUBI",
     "MUBI (canal na Prime Video)",
     "Prime Video"
    ],
