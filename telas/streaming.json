@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-04",
+ "atualizado_em": "2026-11-05",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -2233,8 +2233,7 @@
    "gratis": [],
    "anuncios": [
     "Filmzie",
-    "Plex",
-    "Plex Channel"
+    "Plex"
    ],
    "aluguel": [],
    "compra": []
@@ -2450,8 +2449,7 @@
    "assinatura": [],
    "gratis": [],
    "anuncios": [
-    "Plex",
-    "Plex Channel"
+    "Plex"
    ],
    "aluguel": [],
    "compra": []
@@ -2770,6 +2768,7 @@
    "imdb": "tt15398776",
    "link": "https://www.themoviedb.org/movie/872585-oppenheimer/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Universal+ (canal na Prime Video)"
    ],
    "gratis": [],
