@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-05T10:26:12.017Z",
+ "gerado_em": "2026-11-06T10:24:32.637Z",
  "fonte": "TMDB, e a Wikipedia (via Wikidata) para o que faltar",
  "itens": {
   "007-a-servico-secreto-de-sua-majestade-1969": {
@@ -1001,6 +1001,16 @@
    "tmdb": "/6r09mQLfJmQes0uFD4yTa8NAKPj.jpg",
    "imdb": "tt0111507",
    "local": "/telas/cartazes/c3ae5980dadc316b.webp"
+  },
+  "a-ilha-dos-paqueras-1970": {
+   "img": "https://image.tmdb.org/t/p/w500/qs5fTbGLtztMoUbO4iPngCOx9Gs.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/movie/190257",
+   "fonte": "tmdb",
+   "tmdb": "/qs5fTbGLtztMoUbO4iPngCOx9Gs.jpg",
+   "imdb": "tt0139374",
+   "local": "/telas/cartazes/45d942921a6a6099.webp"
   },
   "a-invencao-de-hugo-cabret-2011": {
    "img": "https://image.tmdb.org/t/p/w500/1dxRq3o3l3bVWNRvvSb7rRf68qp.jpg",
@@ -12033,14 +12043,14 @@
    "local": "/telas/cartazes/7c19b3abb806496d.webp"
   },
   "renascer-2024": {
-   "img": "https://image.tmdb.org/t/p/w500/kUWvvMkNIf21UUDmHjYw55v6o7C.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/jz3ZDhX0XRZogqDUt2i8I5mY9jr.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/tv/223365",
    "fonte": "tmdb",
-   "tmdb": "/kUWvvMkNIf21UUDmHjYw55v6o7C.jpg",
+   "tmdb": "/jz3ZDhX0XRZogqDUt2i8I5mY9jr.jpg",
    "imdb": "tt29259067",
-   "local": "/telas/cartazes/32369bbdeb5eeabf.webp"
+   "local": "/telas/cartazes/18cb452043f5c517.webp"
   },
   "reply-1988-2015": {
    "img": "https://image.tmdb.org/t/p/w500/655MownSWwplhvVlXERRJ4OSOG2.jpg",

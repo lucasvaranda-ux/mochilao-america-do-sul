@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-05",
+ "atualizado_em": "2026-11-06",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -1213,8 +1213,7 @@
    "imdb": "tt0190590",
    "link": "https://www.themoviedb.org/movie/134-o-brother-where-art-thou/watch?locale=BR",
    "assinatura": [
-    "Cindie (canal na Prime Video)",
-    "Claro tv+"
+    "Cindie (canal na Prime Video)"
    ],
    "gratis": [],
    "anuncios": [],
@@ -1458,7 +1457,6 @@
    "imdb": "tt0119217",
    "link": "https://www.themoviedb.org/movie/489-good-will-hunting/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Paramount Plus Premium",
     "Paramount+",
     "Paramount+ (canal na Prime Video)"
@@ -1667,6 +1665,7 @@
    "imdb": "tt0926084",
    "link": "https://www.themoviedb.org/movie/12444-harry-potter-and-the-deathly-hallows-part-1/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -2097,7 +2096,9 @@
    "imdb": "tt0133093",
    "link": "https://www.themoviedb.org/movie/603-the-matrix/watch?locale=BR",
    "assinatura": [
-    "Globoplay"
+    "Globoplay",
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
    ],
    "gratis": [],
    "anuncios": [],
