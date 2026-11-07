@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-06",
+ "atualizado_em": "2026-11-07",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -1646,6 +1646,7 @@
    "imdb": "tt0241527",
    "link": "https://www.themoviedb.org/movie/671-harry-potter-and-the-philosopher-s-stone/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1747,6 +1748,7 @@
    "imdb": "tt0304141",
    "link": "https://www.themoviedb.org/movie/673-harry-potter-and-the-prisoner-of-azkaban/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -3743,6 +3745,7 @@
    "imdb": "tt0175142",
    "link": "https://www.themoviedb.org/movie/4247-scary-movie/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Netflix",
     "Paramount Plus Premium",
     "Paramount+"

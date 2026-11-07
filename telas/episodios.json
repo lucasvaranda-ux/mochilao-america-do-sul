@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-31T10:22:22.773Z",
+ "gerado_em": "2026-11-07T10:22:18.568Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -244,30 +244,6 @@
   }
  ],
  "episodios": [
-  {
-   "imdb_id": "tt19231492",
-   "tvmaze_id": 3591073,
-   "serie": "Dark Matter",
-   "temporada": 2,
-   "episodio": 10,
-   "titulo": "No Quiet Life",
-   "data": "2026-10-30",
-   "airstamp": "2026-10-30T12:00:00+00:00",
-   "plataforma": "Apple TV",
-   "alerta": true
-  },
-  {
-   "imdb_id": "tt31510819",
-   "tvmaze_id": 3708487,
-   "serie": "MobLand",
-   "temporada": 2,
-   "episodio": 7,
-   "titulo": "Ace of Spades",
-   "data": "2026-10-30",
-   "airstamp": "2026-10-30T12:00:00+00:00",
-   "plataforma": "Paramount+",
-   "alerta": true
-  },
   {
    "imdb_id": "tt31510819",
    "tvmaze_id": 3708488,
