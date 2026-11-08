@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-07",
+ "atualizado_em": "2026-11-08",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -1626,6 +1626,7 @@
    "imdb": "tt0373889",
    "link": "https://www.themoviedb.org/movie/675-harry-potter-and-the-order-of-the-phoenix/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1687,6 +1688,7 @@
    "imdb": "tt1201607",
    "link": "https://www.themoviedb.org/movie/12445-harry-potter-and-the-deathly-hallows-part-2/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1707,6 +1709,7 @@
    "imdb": "tt0330373",
    "link": "https://www.themoviedb.org/movie/674-harry-potter-and-the-goblet-of-fire/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -2405,12 +2408,8 @@
    ],
    "gratis": [],
    "anuncios": [],
-   "aluguel": [
-    "Apple TV (loja)"
-   ],
-   "compra": [
-    "Apple TV (loja)"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "o-botao-de-perola-2015": {
    "tmdb": "movie/319994",
@@ -2706,6 +2705,7 @@
    "imdb": "tt0167260",
    "link": "https://www.themoviedb.org/movie/122-the-lord-of-the-rings-the-return-of-the-king/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Disney+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
