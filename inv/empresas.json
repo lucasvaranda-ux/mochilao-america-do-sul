@@ -1,0 +1,1168 @@
+{
+ "versao": 1,
+ "atualizado_em": "2026-11-08",
+ "criterio": "Para cada mercado, as 10 empresas que mais vezes estiveram entre as 10 maiores por valor de mercado nos fechamentos de ano de 2016 a 2025 (curadoria manual, a partir de rankings públicos: Economatica/Elos Ayta e B3 para o Brasil; companiesmarketcap.com, Statista e listas da Bloomberg/Reuters citadas na imprensa para os demais). Ordem = anos no top 10 (estimativa); empate = valor de mercado em 2025. 'certeza' diz quanto a posição está confirmada por fonte dessa época.",
+ "mercados": [
+  {
+   "id": "br",
+   "nome": "Brasil",
+   "bandeira": "🇧🇷",
+   "bolsa": "B3 (São Paulo)",
+   "moeda": "BRL",
+   "sufixo_yahoo": ".SA",
+   "padrao": true,
+   "empresas": [
+    {
+     "nome": "Petrobras",
+     "simbolo": "PETR4.SA",
+     "pais": "BR",
+     "setor": "Petróleo e gás",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "nota": "PN, a classe mais negociada"
+    },
+    {
+     "nome": "Vale",
+     "simbolo": "VALE3.SA",
+     "pais": "BR",
+     "setor": "Mineração",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Itaú Unibanco",
+     "simbolo": "ITUB4.SA",
+     "pais": "BR",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "nota": "PN"
+    },
+    {
+     "nome": "Bradesco",
+     "simbolo": "BBDC4.SA",
+     "pais": "BR",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "nota": "PN"
+    },
+    {
+     "nome": "Ambev",
+     "simbolo": "ABEV3.SA",
+     "pais": "BR",
+     "setor": "Bebidas",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Banco do Brasil",
+     "simbolo": "BBAS3.SA",
+     "pais": "BR",
+     "setor": "Bancos",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Santander Brasil",
+     "simbolo": "SANB11.SA",
+     "pais": "BR",
+     "setor": "Bancos",
+     "anos_top10": 9,
+     "certeza": "alta",
+     "nota": "unit"
+    },
+    {
+     "nome": "WEG",
+     "simbolo": "WEGE3.SA",
+     "pais": "BR",
+     "setor": "Bens de capital",
+     "anos_top10": 6,
+     "certeza": "media",
+     "nota": "no top 10 desde cerca de 2020"
+    },
+    {
+     "nome": "Itaúsa",
+     "simbolo": "ITSA4.SA",
+     "pais": "BR",
+     "setor": "Holding",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "B3",
+     "simbolo": "B3SA3.SA",
+     "pais": "BR",
+     "setor": "Serviços financeiros",
+     "anos_top10": 5,
+     "certeza": "media",
+     "nota": "2019 a 2022"
+    }
+   ],
+   "reservas": [
+    "BTG Pactual (BPAC11.SA), no top 10 desde 2021",
+    "Axia Energia, ex-Eletrobras (ELET3.SA)",
+    "Suzano (SUZB3.SA)",
+    "JBS (hoje JBS N.V., JBS na NYSE; BDR JBSS32.SA)",
+    "Localiza (RENT3.SA)",
+    "Cielo (2015 a 2017; fechou o capital em 2024)",
+    "Ultrapar (UGPA3.SA), 2015 a 2017",
+    "BRF (BRFS3.SA), 2015 e 2016",
+    "Nu Holdings (NU, NYSE): sede fora do Brasil, por isso fora da lista"
+   ],
+   "fontes": "Economatica (out/2016), Elos Ayta/Poder360 (dez/2025), B3 Bora Investir, Exame"
+  },
+  {
+   "id": "eua",
+   "nome": "EUA",
+   "bandeira": "🇺🇸",
+   "bolsa": "NYSE e Nasdaq",
+   "moeda": "USD",
+   "sufixo_yahoo": "",
+   "padrao": true,
+   "empresas": [
+    {
+     "nome": "Apple",
+     "simbolo": "AAPL",
+     "pais": "US",
+     "setor": "Tecnologia",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Microsoft",
+     "simbolo": "MSFT",
+     "pais": "US",
+     "setor": "Software",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Alphabet (Google)",
+     "simbolo": "GOOGL",
+     "pais": "US",
+     "setor": "Internet",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "nota": "classe A"
+    },
+    {
+     "nome": "Amazon",
+     "simbolo": "AMZN",
+     "pais": "US",
+     "setor": "Comércio eletrônico e nuvem",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Berkshire Hathaway",
+     "simbolo": "BRK-B",
+     "pais": "US",
+     "setor": "Holding",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "nota": "classe B"
+    },
+    {
+     "nome": "Meta (Facebook)",
+     "simbolo": "META",
+     "pais": "US",
+     "setor": "Redes sociais",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "JPMorgan Chase",
+     "simbolo": "JPM",
+     "pais": "US",
+     "setor": "Bancos",
+     "anos_top10": 8,
+     "certeza": "media"
+    },
+    {
+     "nome": "Johnson & Johnson",
+     "simbolo": "JNJ",
+     "pais": "US",
+     "setor": "Saúde",
+     "anos_top10": 7,
+     "certeza": "media",
+     "nota": "2016 a 2022"
+    },
+    {
+     "nome": "Nvidia",
+     "simbolo": "NVDA",
+     "pais": "US",
+     "setor": "Semicondutores",
+     "anos_top10": 6,
+     "certeza": "alta",
+     "nota": "2020 a 2025"
+    },
+    {
+     "nome": "Tesla",
+     "simbolo": "TSLA",
+     "pais": "US",
+     "setor": "Automóveis",
+     "anos_top10": 6,
+     "certeza": "media",
+     "nota": "2020 a 2025"
+    }
+   ],
+   "reservas": [
+    "Exxon Mobil (XOM), 2016 a 2018 e 2022",
+    "Visa (V)",
+    "UnitedHealth (UNH)",
+    "Walmart (WMT)",
+    "Eli Lilly (LLY), 2023 a 2025",
+    "Broadcom (AVGO), 2024 e 2025",
+    "Wells Fargo (WFC), 2016 e 2017",
+    "Procter & Gamble (PG)",
+    "General Electric (2016)",
+    "AT&T (2016)"
+   ],
+   "fontes": "Wikipedia, List of public corporations by market capitalization (tabelas trimestrais); CNBC (2017)"
+  },
+  {
+   "id": "europa",
+   "nome": "Europa",
+   "bandeira": "🇪🇺",
+   "bolsa": "Zurique, Paris, Xetra, Londres, Amsterdã, Copenhague",
+   "moeda": "varias",
+   "padrao": true,
+   "empresas": [
+    {
+     "nome": "Nestlé",
+     "simbolo": "NESN.SW",
+     "pais": "CH",
+     "setor": "Alimentos",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "moeda": "CHF"
+    },
+    {
+     "nome": "Roche",
+     "simbolo": "ROG.SW",
+     "pais": "CH",
+     "setor": "Farmacêutica",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "moeda": "CHF"
+    },
+    {
+     "nome": "Novartis",
+     "simbolo": "NOVN.SW",
+     "pais": "CH",
+     "setor": "Farmacêutica",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "moeda": "CHF"
+    },
+    {
+     "nome": "LVMH",
+     "simbolo": "MC.PA",
+     "pais": "FR",
+     "setor": "Luxo",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "moeda": "EUR"
+    },
+    {
+     "nome": "SAP",
+     "simbolo": "SAP.DE",
+     "pais": "DE",
+     "setor": "Software",
+     "anos_top10": 9,
+     "certeza": "alta",
+     "moeda": "EUR"
+    },
+    {
+     "nome": "Shell",
+     "simbolo": "SHEL.L",
+     "pais": "GB",
+     "setor": "Petróleo e gás",
+     "anos_top10": 9,
+     "certeza": "alta",
+     "moeda": "GBp",
+     "nota": "maior da Europa em 2018"
+    },
+    {
+     "nome": "ASML",
+     "simbolo": "ASML.AS",
+     "pais": "NL",
+     "setor": "Semicondutores",
+     "anos_top10": 7,
+     "certeza": "alta",
+     "moeda": "EUR",
+     "nota": "2019 a 2025; a maior em 2021 e 2025"
+    },
+    {
+     "nome": "Novo Nordisk",
+     "simbolo": "NOVO-B.CO",
+     "pais": "DK",
+     "setor": "Farmacêutica",
+     "anos_top10": 7,
+     "certeza": "alta",
+     "moeda": "DKK"
+    },
+    {
+     "nome": "AstraZeneca",
+     "simbolo": "AZN.L",
+     "pais": "GB",
+     "setor": "Farmacêutica",
+     "anos_top10": 6,
+     "certeza": "media",
+     "moeda": "GBp"
+    },
+    {
+     "nome": "L'Oréal",
+     "simbolo": "OR.PA",
+     "pais": "FR",
+     "setor": "Cosméticos",
+     "anos_top10": 6,
+     "certeza": "media",
+     "moeda": "EUR"
+    }
+   ],
+   "reservas": [
+    "TotalEnergies (TTE.PA)",
+    "HSBC (HSBA.L)",
+    "Unilever (ULVR.L)",
+    "Siemens (SIE.DE)",
+    "Hermès (RMS.PA)",
+    "AB InBev (ABI.BR), 2016 a 2018",
+    "British American Tobacco (BATS.L), 2017",
+    "BP (BP.L)",
+    "Linde (LIN, NYSE; era de Frankfurt até 2023)",
+    "Prosus (PRX.AS)",
+    "Sanofi (SAN.PA)",
+    "Allianz (ALV.DE)",
+    "Schneider Electric (SU.PA)"
+   ],
+   "fontes": "Le News/Bloomberg (jan/2019), Anadolu (set/2021), Admiral Markets (nov/2025), Reuters (jun/2025)"
+  },
+  {
+   "id": "china",
+   "nome": "China e Hong Kong",
+   "bandeira": "🇨🇳",
+   "bolsa": "Hong Kong e Xangai",
+   "moeda": "varias",
+   "padrao": true,
+   "nota": "Bancos estatais e PetroChina têm ações em Xangai (A) e Hong Kong (H); a lista usa as de Hong Kong. A Moutai só tem ação em Xangai.",
+   "empresas": [
+    {
+     "nome": "Tencent",
+     "simbolo": "0700.HK",
+     "pais": "CN",
+     "setor": "Internet e jogos",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "moeda": "HKD",
+     "nota": "a maior em quase todos os anos"
+    },
+    {
+     "nome": "Alibaba",
+     "simbolo": "9988.HK",
+     "pais": "CN",
+     "setor": "Comércio eletrônico e nuvem",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "moeda": "HKD",
+     "nota": "em Hong Kong desde nov/2019 (antes só BABA, NYSE)"
+    },
+    {
+     "nome": "ICBC",
+     "simbolo": "1398.HK",
+     "pais": "CN",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "moeda": "HKD"
+    },
+    {
+     "nome": "China Construction Bank",
+     "simbolo": "0939.HK",
+     "pais": "CN",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "moeda": "HKD"
+    },
+    {
+     "nome": "Agricultural Bank of China",
+     "simbolo": "1288.HK",
+     "pais": "CN",
+     "setor": "Bancos",
+     "anos_top10": 9,
+     "certeza": "alta",
+     "moeda": "HKD"
+    },
+    {
+     "nome": "China Mobile",
+     "simbolo": "0941.HK",
+     "pais": "CN",
+     "setor": "Telecom",
+     "anos_top10": 9,
+     "certeza": "alta",
+     "moeda": "HKD"
+    },
+    {
+     "nome": "Ping An",
+     "simbolo": "2318.HK",
+     "pais": "CN",
+     "setor": "Seguros",
+     "anos_top10": 9,
+     "certeza": "alta",
+     "moeda": "HKD"
+    },
+    {
+     "nome": "Kweichow Moutai",
+     "simbolo": "600519.SS",
+     "pais": "CN",
+     "setor": "Bebidas (baijiu)",
+     "anos_top10": 8,
+     "certeza": "alta",
+     "moeda": "CNY",
+     "nota": "2ª ou 3ª desde 2019"
+    },
+    {
+     "nome": "Bank of China",
+     "simbolo": "3988.HK",
+     "pais": "CN",
+     "setor": "Bancos",
+     "anos_top10": 8,
+     "certeza": "media",
+     "moeda": "HKD"
+    },
+    {
+     "nome": "PetroChina",
+     "simbolo": "0857.HK",
+     "pais": "CN",
+     "setor": "Petróleo e gás",
+     "anos_top10": 7,
+     "certeza": "media",
+     "moeda": "HKD"
+    }
+   ],
+   "reservas": [
+    "China Merchants Bank (3968.HK)",
+    "Meituan (3690.HK), 2020 e 2021",
+    "CATL (300750.SZ; em Hong Kong 3750.HK desde 2025)",
+    "BYD (1211.HK)",
+    "PDD Holdings (PDD, Nasdaq)",
+    "China Life (2628.HK)",
+    "Sinopec (0386.HK)",
+    "Xiaomi (1810.HK)",
+    "Wuliangye (000858.SZ)"
+   ],
+   "fontes": "China Daily (dez/2020), Yicai (jun/2019), rankings de 2024 a 2026"
+  },
+  {
+   "id": "japao",
+   "nome": "Japão",
+   "bandeira": "🇯🇵",
+   "bolsa": "Bolsa de Tóquio",
+   "moeda": "JPY",
+   "sufixo_yahoo": ".T",
+   "padrao": true,
+   "empresas": [
+    {
+     "nome": "Toyota",
+     "simbolo": "7203.T",
+     "pais": "JP",
+     "setor": "Automóveis",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "NTT",
+     "simbolo": "9432.T",
+     "pais": "JP",
+     "setor": "Telecom",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Sony Group",
+     "simbolo": "6758.T",
+     "pais": "JP",
+     "setor": "Eletrônicos e entretenimento",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Keyence",
+     "simbolo": "6861.T",
+     "pais": "JP",
+     "setor": "Automação industrial",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Mitsubishi UFJ Financial",
+     "simbolo": "8306.T",
+     "pais": "JP",
+     "setor": "Bancos",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "SoftBank Group",
+     "simbolo": "9984.T",
+     "pais": "JP",
+     "setor": "Investimentos e telecom",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "KDDI",
+     "simbolo": "9433.T",
+     "pais": "JP",
+     "setor": "Telecom",
+     "anos_top10": 8,
+     "certeza": "media"
+    },
+    {
+     "nome": "Fast Retailing (Uniqlo)",
+     "simbolo": "9983.T",
+     "pais": "JP",
+     "setor": "Varejo",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Tokyo Electron",
+     "simbolo": "8035.T",
+     "pais": "JP",
+     "setor": "Semicondutores",
+     "anos_top10": 6,
+     "certeza": "media",
+     "nota": "2021 a 2025"
+    },
+    {
+     "nome": "Sumitomo Mitsui Financial",
+     "simbolo": "8316.T",
+     "pais": "JP",
+     "setor": "Bancos",
+     "anos_top10": 6,
+     "certeza": "media",
+     "nota": "2016 a 2019 e 2024 e 2025"
+    }
+   ],
+   "reservas": [
+    "Recruit (6098.T)",
+    "Mitsubishi Corp (8058.T)",
+    "Hitachi (6501.T), 2024 e 2025",
+    "Shin-Etsu Chemical (4063.T)",
+    "Nintendo (7974.T)",
+    "Honda (7267.T)",
+    "Daiichi Sankyo (4568.T)",
+    "Chugai (4519.T)",
+    "Takeda (4502.T)",
+    "Oriental Land (4661.T)",
+    "Japan Tobacco (2914.T)",
+    "NTT Docomo (fechou o capital em 2020)",
+    "Advantest (6857.T), 2025"
+   ],
+   "fontes": "Statista (mar/2024), Visual Capitalist/CompaniesMarketCap (fev/2024), listas de 2020 a 2023"
+  },
+  {
+   "id": "india",
+   "nome": "Índia",
+   "bandeira": "🇮🇳",
+   "bolsa": "NSE (Mumbai)",
+   "moeda": "INR",
+   "sufixo_yahoo": ".NS",
+   "padrao": true,
+   "empresas": [
+    {
+     "nome": "Reliance Industries",
+     "simbolo": "RELIANCE.NS",
+     "pais": "IN",
+     "setor": "Conglomerado",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "nota": "petroquímica, telecom e varejo"
+    },
+    {
+     "nome": "Tata Consultancy Services",
+     "simbolo": "TCS.NS",
+     "pais": "IN",
+     "setor": "TI",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "HDFC Bank",
+     "simbolo": "HDFCBANK.NS",
+     "pais": "IN",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Infosys",
+     "simbolo": "INFY.NS",
+     "pais": "IN",
+     "setor": "TI",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "ICICI Bank",
+     "simbolo": "ICICIBANK.NS",
+     "pais": "IN",
+     "setor": "Bancos",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Hindustan Unilever",
+     "simbolo": "HINDUNILVR.NS",
+     "pais": "IN",
+     "setor": "Bens de consumo",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "ITC",
+     "simbolo": "ITC.NS",
+     "pais": "IN",
+     "setor": "Conglomerado (consumo)",
+     "anos_top10": 8,
+     "certeza": "media"
+    },
+    {
+     "nome": "State Bank of India",
+     "simbolo": "SBIN.NS",
+     "pais": "IN",
+     "setor": "Bancos",
+     "anos_top10": 8,
+     "certeza": "media"
+    },
+    {
+     "nome": "Bharti Airtel",
+     "simbolo": "BHARTIARTL.NS",
+     "pais": "IN",
+     "setor": "Telecom",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Kotak Mahindra Bank",
+     "simbolo": "KOTAKBANK.NS",
+     "pais": "IN",
+     "setor": "Bancos",
+     "anos_top10": 7,
+     "certeza": "media"
+    }
+   ],
+   "reservas": [
+    "HDFC Ltd (fundiu-se ao HDFC Bank em 2023)",
+    "Bajaj Finance (BAJFINANCE.NS)",
+    "LIC (LICI.NS), estreou em 2022",
+    "Larsen & Toubro (LT.NS)",
+    "HCL Tech (HCLTECH.NS)",
+    "ONGC (ONGC.NS), 2016 a 2018",
+    "Maruti Suzuki (MARUTI.NS)",
+    "Sun Pharma (SUNPHARMA.NS)",
+    "Axis Bank (AXISBANK.NS)"
+   ],
+   "fontes": "Wikipedia, List of most valuable companies in India; WION (2025); 5paisa (2024)"
+  },
+  {
+   "id": "coreia",
+   "nome": "Coreia do Sul",
+   "bandeira": "🇰🇷",
+   "bolsa": "KRX (Seul)",
+   "moeda": "KRW",
+   "sufixo_yahoo": ".KS",
+   "padrao": true,
+   "empresas": [
+    {
+     "nome": "Samsung Electronics",
+     "simbolo": "005930.KS",
+     "pais": "KR",
+     "setor": "Eletrônicos e semicondutores",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "SK Hynix",
+     "simbolo": "000660.KS",
+     "pais": "KR",
+     "setor": "Semicondutores",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Hyundai Motor",
+     "simbolo": "005380.KS",
+     "pais": "KR",
+     "setor": "Automóveis",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "LG Chem",
+     "simbolo": "051910.KS",
+     "pais": "KR",
+     "setor": "Química e baterias",
+     "anos_top10": 8,
+     "certeza": "media"
+    },
+    {
+     "nome": "Samsung Biologics",
+     "simbolo": "207940.KS",
+     "pais": "KR",
+     "setor": "Biofarmacêutica",
+     "anos_top10": 8,
+     "certeza": "media",
+     "nota": "desde 2017"
+    },
+    {
+     "nome": "NAVER",
+     "simbolo": "035420.KS",
+     "pais": "KR",
+     "setor": "Internet",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Celltrion",
+     "simbolo": "068270.KS",
+     "pais": "KR",
+     "setor": "Biofarmacêutica",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Kia",
+     "simbolo": "000270.KS",
+     "pais": "KR",
+     "setor": "Automóveis",
+     "anos_top10": 6,
+     "certeza": "media"
+    },
+    {
+     "nome": "POSCO Holdings",
+     "simbolo": "005490.KS",
+     "pais": "KR",
+     "setor": "Siderurgia",
+     "anos_top10": 6,
+     "certeza": "media"
+    },
+    {
+     "nome": "KB Financial",
+     "simbolo": "105560.KS",
+     "pais": "KR",
+     "setor": "Bancos",
+     "anos_top10": 5,
+     "certeza": "media"
+    }
+   ],
+   "reservas": [
+    "LG Energy Solution (373220.KS), desde 2022",
+    "Samsung SDI (006400.KS)",
+    "Hyundai Mobis (012330.KS)",
+    "Kakao (035720.KS)",
+    "Shinhan Financial (055550.KS)",
+    "Samsung C&T (028260.KS)",
+    "Hanwha Aerospace (012450.KS), 2025",
+    "HD Hyundai Heavy (329180.KS)",
+    "Korea Electric Power (015760.KS), 2016"
+   ],
+   "fontes": "Forbes Global 2000, Simply Wall St (2025), Bloomberg (mai/2026)"
+  },
+  {
+   "id": "canada",
+   "nome": "Canadá",
+   "bandeira": "🇨🇦",
+   "bolsa": "TSX (Toronto)",
+   "moeda": "CAD",
+   "sufixo_yahoo": ".TO",
+   "padrao": true,
+   "empresas": [
+    {
+     "nome": "Royal Bank of Canada",
+     "simbolo": "RY.TO",
+     "pais": "CA",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Toronto-Dominion Bank",
+     "simbolo": "TD.TO",
+     "pais": "CA",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Enbridge",
+     "simbolo": "ENB.TO",
+     "pais": "CA",
+     "setor": "Energia (dutos)",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Canadian National Railway",
+     "simbolo": "CNR.TO",
+     "pais": "CA",
+     "setor": "Ferrovias",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Bank of Nova Scotia",
+     "simbolo": "BNS.TO",
+     "pais": "CA",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Bank of Montreal",
+     "simbolo": "BMO.TO",
+     "pais": "CA",
+     "setor": "Bancos",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Shopify",
+     "simbolo": "SHOP.TO",
+     "pais": "CA",
+     "setor": "Comércio eletrônico",
+     "anos_top10": 7,
+     "certeza": "media",
+     "nota": "desde 2019"
+    },
+    {
+     "nome": "Brookfield Corp",
+     "simbolo": "BN.TO",
+     "pais": "CA",
+     "setor": "Gestão de ativos",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Canadian Natural Resources",
+     "simbolo": "CNQ.TO",
+     "pais": "CA",
+     "setor": "Petróleo e gás",
+     "anos_top10": 6,
+     "certeza": "media"
+    },
+    {
+     "nome": "Canadian Pacific Kansas City",
+     "simbolo": "CP.TO",
+     "pais": "CA",
+     "setor": "Ferrovias",
+     "anos_top10": 6,
+     "certeza": "media"
+    }
+   ],
+   "reservas": [
+    "Suncor (SU.TO)",
+    "Constellation Software (CSU.TO)",
+    "Thomson Reuters (TRI.TO)",
+    "CIBC (CM.TO)",
+    "Manulife (MFC.TO)",
+    "Nutrien (NTR.TO)",
+    "TC Energy (TRP.TO)",
+    "Alimentation Couche-Tard (ATD.TO)",
+    "BCE (BCE.TO), 2016 a 2019"
+   ],
+   "fontes": "rankings públicos do TSX"
+  },
+  {
+   "id": "australia",
+   "nome": "Austrália",
+   "bandeira": "🇦🇺",
+   "bolsa": "ASX (Sydney)",
+   "moeda": "AUD",
+   "sufixo_yahoo": ".AX",
+   "padrao": true,
+   "empresas": [
+    {
+     "nome": "BHP",
+     "simbolo": "BHP.AX",
+     "pais": "AU",
+     "setor": "Mineração",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Commonwealth Bank",
+     "simbolo": "CBA.AX",
+     "pais": "AU",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "CSL",
+     "simbolo": "CSL.AX",
+     "pais": "AU",
+     "setor": "Biofarmacêutica",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Westpac",
+     "simbolo": "WBC.AX",
+     "pais": "AU",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "National Australia Bank",
+     "simbolo": "NAB.AX",
+     "pais": "AU",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "ANZ",
+     "simbolo": "ANZ.AX",
+     "pais": "AU",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Wesfarmers",
+     "simbolo": "WES.AX",
+     "pais": "AU",
+     "setor": "Varejo e conglomerado",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Macquarie",
+     "simbolo": "MQG.AX",
+     "pais": "AU",
+     "setor": "Serviços financeiros",
+     "anos_top10": 8,
+     "certeza": "media"
+    },
+    {
+     "nome": "Rio Tinto",
+     "simbolo": "RIO.AX",
+     "pais": "AU",
+     "setor": "Mineração",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Woodside Energy",
+     "simbolo": "WDS.AX",
+     "pais": "AU",
+     "setor": "Petróleo e gás",
+     "anos_top10": 6,
+     "certeza": "media"
+    }
+   ],
+   "reservas": [
+    "Telstra (TLS.AX)",
+    "Fortescue (FMG.AX)",
+    "Goodman Group (GMG.AX)",
+    "Woolworths (WOW.AX)",
+    "Transurban (TCL.AX)",
+    "Aristocrat (ALL.AX)"
+   ],
+   "fontes": "rankings públicos da ASX"
+  },
+  {
+   "id": "taiwan",
+   "nome": "Taiwan",
+   "bandeira": "🇹🇼",
+   "bolsa": "TWSE (Taipé)",
+   "moeda": "TWD",
+   "sufixo_yahoo": ".TW",
+   "padrao": false,
+   "empresas": [
+    {
+     "nome": "TSMC",
+     "simbolo": "2330.TW",
+     "pais": "TW",
+     "setor": "Semicondutores",
+     "anos_top10": 10,
+     "certeza": "alta",
+     "nota": "a maior empresa da Ásia"
+    },
+    {
+     "nome": "Hon Hai (Foxconn)",
+     "simbolo": "2317.TW",
+     "pais": "TW",
+     "setor": "Eletrônicos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "MediaTek",
+     "simbolo": "2454.TW",
+     "pais": "TW",
+     "setor": "Semicondutores",
+     "anos_top10": 9,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Chunghwa Telecom",
+     "simbolo": "2412.TW",
+     "pais": "TW",
+     "setor": "Telecom",
+     "anos_top10": 9,
+     "certeza": "media"
+    },
+    {
+     "nome": "Formosa Plastics",
+     "simbolo": "1301.TW",
+     "pais": "TW",
+     "setor": "Química",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Delta Electronics",
+     "simbolo": "2308.TW",
+     "pais": "TW",
+     "setor": "Eletrônicos",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Fubon Financial",
+     "simbolo": "2881.TW",
+     "pais": "TW",
+     "setor": "Serviços financeiros",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Cathay Financial",
+     "simbolo": "2882.TW",
+     "pais": "TW",
+     "setor": "Serviços financeiros",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "CTBC Financial",
+     "simbolo": "2891.TW",
+     "pais": "TW",
+     "setor": "Bancos",
+     "anos_top10": 5,
+     "certeza": "baixa"
+    },
+    {
+     "nome": "Quanta Computer",
+     "simbolo": "2382.TW",
+     "pais": "TW",
+     "setor": "Computadores",
+     "anos_top10": 5,
+     "certeza": "baixa"
+    }
+   ],
+   "reservas": [],
+   "fontes": "rankings públicos da TWSE"
+  },
+  {
+   "id": "arabia",
+   "nome": "Arábia Saudita",
+   "bandeira": "🇸🇦",
+   "bolsa": "Tadawul (Riad)",
+   "moeda": "SAR",
+   "sufixo_yahoo": ".SR",
+   "padrao": false,
+   "empresas": [
+    {
+     "nome": "Saudi Aramco",
+     "simbolo": "2222.SR",
+     "pais": "SA",
+     "setor": "Petróleo e gás",
+     "anos_top10": 7,
+     "certeza": "alta",
+     "nota": "estreou na bolsa em dez/2019"
+    },
+    {
+     "nome": "Al Rajhi Bank",
+     "simbolo": "1120.SR",
+     "pais": "SA",
+     "setor": "Bancos",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "Saudi National Bank",
+     "simbolo": "1180.SR",
+     "pais": "SA",
+     "setor": "Bancos",
+     "anos_top10": 9,
+     "certeza": "media"
+    },
+    {
+     "nome": "SABIC",
+     "simbolo": "2010.SR",
+     "pais": "SA",
+     "setor": "Química",
+     "anos_top10": 10,
+     "certeza": "alta"
+    },
+    {
+     "nome": "stc",
+     "simbolo": "7010.SR",
+     "pais": "SA",
+     "setor": "Telecom",
+     "anos_top10": 9,
+     "certeza": "media"
+    },
+    {
+     "nome": "Ma'aden",
+     "simbolo": "1211.SR",
+     "pais": "SA",
+     "setor": "Mineração",
+     "anos_top10": 7,
+     "certeza": "media"
+    },
+    {
+     "nome": "Riyad Bank",
+     "simbolo": "1010.SR",
+     "pais": "SA",
+     "setor": "Bancos",
+     "anos_top10": 6,
+     "certeza": "baixa"
+    },
+    {
+     "nome": "Alinma Bank",
+     "simbolo": "1150.SR",
+     "pais": "SA",
+     "setor": "Bancos",
+     "anos_top10": 6,
+     "certeza": "baixa"
+    },
+    {
+     "nome": "ACWA Power",
+     "simbolo": "2082.SR",
+     "pais": "SA",
+     "setor": "Energia",
+     "anos_top10": 4,
+     "certeza": "baixa"
+    },
+    {
+     "nome": "Saudi Electricity",
+     "simbolo": "5110.SR",
+     "pais": "SA",
+     "setor": "Energia",
+     "anos_top10": 6,
+     "certeza": "baixa"
+    }
+   ],
+   "reservas": [],
+   "fontes": "rankings públicos da Tadawul"
+  }
+ ]
+}
