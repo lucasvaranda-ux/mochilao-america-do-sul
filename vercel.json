@@ -104,6 +104,51 @@
           "value": "application/manifest+json; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/inv",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/inv.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/inv/(.*).json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/inv/(.*).(png|svg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/inv/manifest.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json; charset=utf-8"
+        }
+      ]
     }
   ],
   "functions": {
@@ -115,11 +160,17 @@
     },
     "api/whatch-avisos.mjs": {
       "maxDuration": 300
+    },
+    "api/inv-cotacao.mjs": {
+      "maxDuration": 15
+    },
+    "api/inv-busca.mjs": {
+      "maxDuration": 15
     }
   },
   "redirects": [
     {
-      "source": "/(index|peru|telas)(\\.html)?",
+      "source": "/(index|peru|telas|inv)(\\.html)?",
       "has": [
         {
           "type": "host",
@@ -132,6 +183,23 @@
         {
           "type": "header",
           "key": "x-whatch-interno"
+        }
+      ]
+    },
+    {
+      "source": "/(index|peru|telas|inv)(\\.html)?",
+      "has": [
+        {
+          "type": "host",
+          "value": "inv(\\.madeinbr\\.app|-[a-z0-9-]*\\.vercel\\.app)"
+        }
+      ],
+      "destination": "/",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-inv-interno"
         }
       ]
     }
