@@ -931,7 +931,7 @@ function cardEmpresa(sym,grande){var st=statsDe(sym);var x=empIx()[sym];var slot
     h('span',{class:'pil '+cls,text:difTx(st.dif)})));
   var sp=st.serie.length>130?st.serie.filter(function(p,i,a){return i%Math.ceil(a.length/104)===0||i===a.length-1}):st.serie;
   c.appendChild(h('div',{class:'ec-sp'},sparkline(sp,st.media,slot,grande?600:240,grande?56:40)));
-  c.appendChild(h('small',{class:'ec-pe'},'fech. '+fmtData(st.data).slice(0,5)+' · '+haDias(st.data)+(st.erro?' · não atualizou hoje':'')));
+  var v1=cot(sym)&&cot(sym).var_1a_pct;c.appendChild(h('small',{class:'ec-pe'},'fech. '+fmtData(st.data).slice(0,5)+' · '+haDias(st.data)+(v1!=null?' · em 1 ano '+fmtPct(v1,1,true):'')+(st.erro?' · não atualizou hoje':'')));
   return c}
 
 // ----- gráfico de comparação (base 100) -----
