@@ -138,6 +138,7 @@ Tudo em `index.html`:
 - Sem frameworks: JS puro (vanilla). Manter assim.
 - Câmbio base usado nas estimativas: US$ 1 ≈ R$ 5,00 (maio/2026). Preços são estimativas 2025–2026.
 - Datas/idioma: tudo em pt-BR.
+- **Como o Lucas escreve (pedido dele, 08/11/2026, vale em todos os chats):** duas linhas em branco antes de uma linha = essa linha é título (começa um item novo); `_x` = quebra de assunto; `_qb` = quebra de linha dentro do mesmo assunto; uma linha em branco só separa parágrafos. Ler a mensagem com essa estrutura e responder item por item, na ordem dele; quando duas leituras mudam o sentido de um item, perguntar.
 
 ## Ideias de próximos passos (pendências/possíveis)
 - **Whatch: comentários do Reddit e críticos famosos.** O Reddit exige um app registrado (grátis, uso não comercial, OAuth); críticos famosos não têm API aberta e citar trechos pede cuidado com direito autoral. Hoje: resenhas do TMDB.
