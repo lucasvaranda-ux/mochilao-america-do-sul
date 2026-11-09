@@ -45,6 +45,7 @@ git commit -m "Mochilão América do Sul — versão inicial migrada do Cowork"
 
 ```
 index.html   # o app inteiro
+inv.html     # Inv (inv.madeinbr.app): IPCA, Selic, CDI com metas e projeções, e as maiores empresas de cada bolsa
 CLAUDE.md                       # contexto pro Claude Code
 README.md                       # este arquivo
 .gitignore

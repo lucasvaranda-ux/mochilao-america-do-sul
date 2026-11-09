@@ -1,0 +1,71 @@
+name: Inv · indicadores e cotações
+
+on:
+  schedule:
+    - cron: '35 1 * * 2-6'    # 22h35 em Brasília, de segunda a sexta (os fechamentos do dia já saíram em todas as bolsas)
+    - cron: '20 12 * * 1-5'   # 09h20 em Brasília: pega o IPCA (sai por volta das 9h) e o Focus (segunda, por volta das 8h25)
+  workflow_dispatch:
+    inputs:
+      somente_macro:
+        description: 'Só os indicadores do Banco Central (sem cotações)'
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - 'inv/empresas.json'
+      - 'scripts/inv-macro.mjs'
+      - 'scripts/inv-cotacoes.mjs'
+      - 'api/_inv-yahoo.mjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: inv-dados
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Indicadores do Banco Central, metas e Focus
+        id: macro
+        continue-on-error: true
+        timeout-minutes: 6
+        run: node scripts/inv-macro.mjs
+      - name: Cotações das empresas (Yahoo Finance)
+        id: cotacoes
+        if: ${{ !inputs.somente_macro }}
+        continue-on-error: true
+        timeout-minutes: 12
+        env:
+          TWELVE_DATA_KEY: ${{ secrets.TWELVE_DATA_KEY }}   # opcional: plano B
+        run: node scripts/inv-cotacoes.mjs
+      - name: Salvar se mudou
+        run: |
+          if [ -n "$(git status --porcelain inv/)" ]; then
+            git config user.name "inv-robo"
+            git config user.email "inv-robo@users.noreply.github.com"
+            git add inv/macro.json inv/cotacoes.json
+            git commit -m "inv: robô atualizou indicadores e cotações"
+            git pull --rebase origin main   # o robô do Telas também empurra para o main
+            git push
+          else
+            echo "sem mudanças"
+          fi
+      - name: Avisar se os indicadores falharam
+        if: ${{ !cancelled() && steps.macro.outcome == 'failure' }}
+        run: |
+          echo "::error::Indicadores não foram atualizados: veja o passo do Banco Central (API fora do ar ou formato mudou)"
+          exit 1
+      - name: Avisar se as cotações falharam
+        if: ${{ !cancelled() && steps.cotacoes.outcome == 'failure' }}
+        run: |
+          echo "::error::Cotações não foram atualizadas: veja o passo do Yahoo (bloqueio ou formato mudou); a página segue com os números do último dia"
+          exit 1
