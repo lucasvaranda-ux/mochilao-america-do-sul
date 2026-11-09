@@ -3,6 +3,13 @@
   "itens": [
     {
       "quando": "2026-11-09",
+      "secao": "Início › cada indicador",
+      "pedido_resumo": "Botão explicando como cada indicador é calculado, e em que anos a conta mudou.",
+      "o_que_mudou": "Cada gráfico ganhou o botão \"Como é calculado\" (ícone i), que abre uma folha com: o que é, quem calcula e como, a conta que o site faz e o que ela esconde, a linha do tempo de quando o método mudou (com o documento e o link), armadilhas de leitura e fontes. O IPCA tem também a aba Meta de inflação. Os anos das mudanças aparecem como marcas no eixo do gráfico (dá para desligar na folha). A lista completa está em Mais › Como os números são calculados.",
+      "pr": "#18"
+    },
+    {
+      "quando": "2026-11-09",
       "secao": "Início › Juntos",
       "pedido_resumo": "Juntar todos no mesmo gráfico; por que o dólar não foi para a mesma escala.",
       "o_que_mudou": "Novo controle \"Separados · Juntos · Os dois\". Juntos: um gráfico só com todos os indicadores ligados, cada um com a sua cor fixa, legenda, nome no fim da linha, valores do ano ao tocar e tabela; o dólar e as bolsas entram pela variação no ano; só o realizado. \"Teto de 30%\" corta o que passa de 30% e escreve o valor. \"Mesma escala\" nos separados passou a incluir o dólar e as bolsas.",
