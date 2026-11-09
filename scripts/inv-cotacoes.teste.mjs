@@ -26,6 +26,7 @@ const srv = http.createServer((req, res) => {
     if (m === 'ok') return txt(200, csv, 'text/csv');
     if (m === 'limite') return txt(200, 'Exceeded the daily hits limit');
     if (m === '500') return txt(500, 'erro');
+    if (m === '403') return txt(403, '<html><title>Stooq</title>Odmowa dostępu</html>', 'text/html');
     return txt(200, 'No data');
   }
   if (k.startsWith('brapi:')) {
@@ -34,6 +35,8 @@ const srv = http.createServer((req, res) => {
     return txt(404, '{"error":true,"message":"Não encontramos a ação"}', 'application/json');
   }
   if (m === 'ok') return txt(200, td, 'application/json');
+  if (m === 'plano') return txt(200, '{"code":403,"message":"This symbol is available starting with Grow plan","status":"error"}', 'application/json');
+  if (m === 'minuto') { modo[k] = 'ok'; return txt(200, '{"code":429,"message":"You have run out of API credits for the current minute","status":"error"}', 'application/json'); }
   if (m === '429') return txt(200, '{"code":429,"message":"You have run out of API credits for the day","status":"error"}', 'application/json');
   return txt(200, '{"code":404,"message":"symbol not found","status":"error"}', 'application/json');
 });
@@ -119,6 +122,15 @@ ok(r4.gravou && !depois.some(c => c.startsWith('stooq:') || c.startsWith('td:'))
 ok(r4.estado.twelve.fora && /limite/.test(r4.estado.stooq.fora) && j4.itens.AMZN.erro === 'Sem dados hoje', 'os dois saem da rodada');
 ok(j4.itens['7203.T'].erro === 'Sem dados hoje' && j4.itens['7203.T'].atual === j2.itens['7203.T'].atual && j4.itens['7203.T'].atualizado_em === '2026-11-08', 'falhou hoje: mantém o número de ontem, com erro e a data antiga');
 ok(j4.itens['PETR4.SA'].atualizado_em === '2026-11-09', 'os que deram certo ganham a data de hoje');
+
+// stooq bloqueia este servidor (403): sai na 1ª; Twelve Data fora do plano num símbolo não derruba a fonte; limite por minuto espera e tenta de novo
+process.env.INV_ESPERA_MINUTO_MS = '1';
+modo = { 'brapi:PETR4': 'ok', 'brapi:VALE3': 'ok', 'brapi:ITUB4': 'ok', 'stooq:petr4.br': '403', 'td:AAPL': 'plano', 'td:MSFT': 'minuto', 'td:NVDA': 'ok', 'td:GOOGL': 'ok', 'td:AMZN': 'ok', 'td:0700': 'ok', 'td:BAD': 'ok', 'td:7203': 'ok' }; chamadas = []; logs.length = 0;
+const r6 = await R.main({ raiz: dir, hoje: '2026-11-11', log: L });
+ok(!chamadas.slice(chamadas.indexOf('stooq:petr4.br') + 1).some(c => c.startsWith('stooq:')) && /acesso negado/.test(r6.estado.stooq.fora), 'stooq 403: sai da rodada na hora');
+ok(r6.itens.AAPL.erro === 'Sem dados hoje' && !r6.estado.twelve.fora && r6.itens.NVDA.fonte === 'twelve', 'Twelve Data fora do plano em AAPL: só esse símbolo fica sem');
+ok(r6.itens.MSFT.fonte === 'twelve' && logs.some(l => /esperar um minuto/.test(l)), 'Twelve Data por minuto: espera e tenta de novo');
+ok(Object.keys(JSON.parse(await readFile(join(dir, 'inv/cotacoes.json'), 'utf8')).itens)[0] === 'PETR4.SA', 'o arquivo segue a ordem das listas, qualquer que seja a ordem das chamadas');
 
 // prazo estourado: quem falta fica com o de ontem
 process.env.INV_PRAZO_MS = '0'; logs.length = 0;

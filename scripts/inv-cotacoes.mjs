@@ -2,6 +2,7 @@
 // Por empresa: atual, média dos 2 anos, diferença em %, mínimo, máximo, variação em 1 ano, o fechamento de cada semana e a fonte.
 // Cada fonte que falha 3 vezes seguidas (ou bate no limite, ou pede token) sai da rodada e a cadeia segue na próxima.
 // Falhou hoje: fica o número de ontem, com "erro". Mais da metade falhou: não grava nada e sai com erro.
+// Ordem: os mais desatualizados primeiro; quem não coube no prazo fica para a próxima rodada (não conta como falha).
 // Segredos opcionais: BRAPI_TOKEN (B3 inteira na brapi) e TWELVE_DATA_KEY (plano C). Sem eles, grava o que o stooq cobriu.
 // Node 20, sem dependências. Teste: node scripts/inv-cotacoes.teste.mjs
 import { readFile, writeFile } from 'node:fs/promises';
@@ -44,6 +45,10 @@ export async function main({ raiz = process.cwd(), hoje, log = console.log } = {
   try { antes = JSON.parse(await readFile(join(raiz, 'inv/cotacoes.json'), 'utf8')); } catch { }
   const lista = []; const visto = new Set();
   for (const m of emp.mercados) for (const e of m.empresas) if (!visto.has(e.simbolo)) { visto.add(e.simbolo); lista.push(e); }
+  const ordemArq = lista.map(e => e.simbolo);
+  // os mais desatualizados primeiro (sem número antes de todos): se o prazo acabar, a próxima rodada continua de onde parou
+  const idade = e => { const a = antes.itens && antes.itens[e.simbolo]; return a && a.atual != null && a.atualizado_em ? a.atualizado_em : ''; };
+  lista.sort((x, y) => (idade(x) < idade(y) ? -1 : idade(x) > idade(y) ? 1 : 0));
   const estado = novoEstado();
   const P = PAUSAS(); const usou = {};
   const pausa = async f => { if (usou[f]) await dorme(P[f] + Math.random() * P[f] * .3); usou[f] = 1; };
@@ -55,10 +60,10 @@ export async function main({ raiz = process.cwd(), hoje, log = console.log } = {
     if (Date.now() - t0 > PRAZO()) {
       estourou = true;
       itens[s] = ant && ant.atual != null ? { ...ant, erro: 'Sem tempo nesta rodada' } : { erro: 'Sem tempo nesta rodada', atualizado_em: hoje };
-      cont.sem.push(`${s}: sem tempo`); continue;
+      cont.tempo = (cont.tempo || 0) + 1; continue;
     }
     try {
-      const r = await cotacaoEmCadeia(s, { range: '2y', stooq: e.stooq, estado, pausa, log, hoje: new Date(hoje + 'T23:00:00Z') });
+      const r = await cotacaoEmCadeia(s, { range: '2y', stooq: e.stooq, estado, pausa, esperaMinuto: () => dorme(num(process.env.INV_ESPERA_MINUTO_MS, 61e3)), log, hoje: new Date(hoje + 'T23:00:00Z') });
       const st = estatisticas(r.pontos);
       if (!st) throw Object.assign(new Error('sem pontos'), { status: 502 });
       const [moeda0, bolsa] = BOLSAS[partes(s).suf] || [null, null];
@@ -77,17 +82,19 @@ export async function main({ raiz = process.cwd(), hoje, log = console.log } = {
     }
   }
   const fontes = Object.keys(estado).map(f => `${NOMES[f]} ${cont.por[f]}${estado[f].fora ? ' (saiu da rodada: ' + estado[f].fora + ')' : ''}`).join(', ');
-  const resumo = `${lista.length} símbolos: ${cont.ok} ok, ${cont.sem.length} sem dados, ${cont.nao.length} não encontrado${cont.nao.length === 1 ? '' : 's'} · por fonte: ${fontes} · ${Math.round((Date.now() - t0) / 1000)} s${estourou ? ' (prazo estourado)' : ''}`;
+  const resumo = `${lista.length} símbolos: ${cont.ok} ok, ${cont.sem.length} sem dados,${cont.tempo ? ' ' + cont.tempo + ' para a próxima rodada (prazo),' : ''} ${cont.nao.length} não encontrado${cont.nao.length === 1 ? '' : 's'} · por fonte: ${fontes} · ${Math.round((Date.now() - t0) / 1000)} s${estourou ? ' (prazo estourado)' : ''}`;
   log(resumo);
   if (cont.sem.length) log('Sem dados: ' + cont.sem.join(' | '));
   if (cont.nao.length) log('Não encontrados: ' + cont.nao.join(' | '));
   if (Object.keys(descobertos).length) log('Símbolos do stooq diferentes do padrão (pôr em "stooq" no empresas.json): ' + JSON.stringify(descobertos));
+  // os que ficaram para a próxima rodada (prazo) não contam: a rodada só não grava quando as fontes falharam de verdade
   const falhou = cont.sem.length + cont.nao.length;
-  if (falhou > lista.length / 2) {
+  if (falhou > (lista.length - (cont.tempo || 0)) / 2 || !cont.ok) {
     log('Mais da metade falhou: nada gravado; a página segue com o arquivo anterior.');
     return { gravou: false, bloqueado: true, cont, estado, descobertos, itens };
   }
-  const novo = { versao: 2, gerado_em: new Date().toISOString().replace(/\.\d+Z$/, 'Z'), fonte: 'stooq, brapi.dev (B3) e Twelve Data, em cadeia; o campo "fonte" de cada item diz de onde veio', janela: '2 anos (≈ 500 pregões)', itens };
+  const itensOrd = {}; for (const k of ordemArq) itensOrd[k] = itens[k];
+  const novo = { versao: 2, gerado_em: new Date().toISOString().replace(/\.\d+Z$/, 'Z'), fonte: 'stooq, brapi.dev (B3) e Twelve Data, em cadeia; o campo "fonte" de cada item diz de onde veio', janela: '2 anos (≈ 500 pregões)', itens: itensOrd };
   const gravou = semData(novo) !== semData({ ...antes, itens: antes.itens || {} }) || antes.versao !== 2;
   if (gravou) await writeFile(join(raiz, 'inv/cotacoes.json'), formatoItens(novo));
   log(gravou ? 'cotacoes.json gravado.' : 'cotacoes.json sem mudanças.');

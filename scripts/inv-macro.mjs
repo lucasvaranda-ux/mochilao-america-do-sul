@@ -226,7 +226,7 @@ export async function main({ raiz = process.cwd(), hoje, log = console.log } = {
     const b = await tenta(`stooq ${s}`, async () => { try { return await bolsa(s); } catch (e) { nao = e.status === 404; throw e; } });
     if (b) Object.assign(I[k], b);
     else Object.assign(I[k], { nivel: (ant[k] && ant[k].nivel) || {}, realizado: (ant[k] && ant[k].realizado) || {}, parcial: (ant[k] && ant[k].parcial) || {} });
-    if (!b && nao && !Object.keys(I[k].nivel).length) I[k].notas = [`O stooq não tem o índice (${s}); a série fica vazia até haver uma fonte aberta.`];
+    if (!b && !Object.keys(I[k].nivel).length) I[k].notas = [nao ? `O stooq não tem o índice (${s}); a série fica vazia até haver uma fonte aberta.` : `O stooq não respondeu ao robô (${s}); a série fica vazia até haver uma fonte aberta.`];
   }
 
   const novo = {

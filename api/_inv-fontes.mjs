@@ -87,6 +87,7 @@ export async function stooqSerie(sim, { range = '2y', hoje = new Date(), tempoMs
   }
   if (/daily hits limit/i.test(t)) throw erro(429, 'stooq: limite diário', { limite: true });
   if (r.status === 404) throw erro(404, 'stooq: não encontrado');
+  if (r.status === 403) throw erro(403, 'stooq: acesso negado a este servidor (HTTP 403)', { limite: true });
   if (!r.ok) throw erro(r.status === 429 ? 429 : 502, 'stooq: HTTP ' + r.status + ' (' + String(t || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 100) + ')', { limite: r.status === 429 });
   if (/apikey/i.test(t) && !/^date,/i.test(t.trim())) throw erro(401, 'stooq: pede chave (' + t.replace(/\s+/g, ' ').trim().slice(0, 100) + ')', { semToken: true });
   const linhas = t.trim().split(/\r?\n/);
@@ -143,6 +144,8 @@ export async function twelveSerie(simbolo, { range = '2y', chave = process.env.T
   if (j.status !== 'ok' || !Array.isArray(j.values)) {
     const c = Number(j.code) || r.status, m = String(j.message || '').slice(0, 120);
     if (c === 429) throw erro(429, 'Twelve Data: limite (' + m + ')', { limite: /day|daily|dia/i.test(m), porMinuto: !/day|daily/i.test(m) });
+    // símbolo fora do plano grátis (bolsas fora dos EUA, em geral): não é falha da fonte, só desse símbolo
+    if (/plan|upgrade|grow|venture|enterprise|available starting/i.test(m)) throw erro(404, 'Twelve Data: fora do plano (' + m.slice(0, 60) + ')');
     if (c === 401 || c === 403) throw erro(c, 'Twelve Data: ' + m, { semToken: true });
     if (c === 400 || c === 404) throw erro(404, 'Twelve Data: ' + (m || 'não encontrado'));
     throw erro(502, 'Twelve Data: ' + (m || c));
@@ -165,7 +168,7 @@ function anota(est, f, e) {
 }
 
 // tenta cada fonte em ordem; devolve { pontos, fonte, simbolo_fonte, nome?, moeda } ou lança o melhor erro (404 se ninguém tem)
-export async function cotacaoEmCadeia(simbolo, { range = '2y', stooq, estado = novoEstado(), pausa = async () => {}, log = () => {}, fontes = ['stooq', 'brapi', 'twelve'], hoje } = {}) {
+export async function cotacaoEmCadeia(simbolo, { range = '2y', stooq, estado = novoEstado(), pausa = async () => {}, esperaMinuto = null, log = () => {}, fontes = ['stooq', 'brapi', 'twelve'], hoje } = {}) {
   const { suf } = partes(simbolo);
   const moedaSuf = (BOLSAS[suf] || [null])[0];
   const motivos = [];
@@ -182,7 +185,10 @@ export async function cotacaoEmCadeia(simbolo, { range = '2y', stooq, estado = n
         let out;
         if (f === 'stooq') out = { pontos: await stooqSerie(c, { range, hoje }), moeda: moedaSuf };
         else if (f === 'brapi') out = await brapiSerie(simbolo, { range });
-        else out = await twelveSerie(simbolo, { range });
+        else {
+          try { out = await twelveSerie(simbolo, { range }); }
+          catch (e) { if (!e.porMinuto || !esperaMinuto) throw e; log(`${simbolo}: Twelve Data pediu para esperar um minuto`); await esperaMinuto(); out = await twelveSerie(simbolo, { range }); }
+        }
         anota(estado, f, null);
         return { ...out, moeda: out.moeda || moedaSuf, fonte: f, simbolo_fonte: f === 'stooq' ? c : simbolo };
       } catch (e) {
