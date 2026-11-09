@@ -78,10 +78,17 @@ export async function stooqSerie(sim, { range = '2y', hoje = new Date(), tempoMs
   u.searchParams.set('s', sim); u.searchParams.set('i', iv);
   if (DIAS[range]) { u.searchParams.set('d1', ymd(new Date(hoje - DIAS[range] * 864e5))); u.searchParams.set('d2', ymd(hoje)); }
   let r, t;
-  try { r = await pega(u, tempoMs, 'text/csv,text/plain,*/*'); t = await r.text(); } catch (e) { throw erro(502, 'stooq: rede (' + (e.name || e.message) + ')'); }
+  // stooq.com e stooq.pl são o mesmo serviço; se um recusar (403), tenta o outro uma vez
+  const hosts = process.env.INV_STOOQ_BASE ? [u.origin] : ['https://stooq.com', 'https://stooq.pl'];
+  for (const h of hosts) {
+    const uu = new URL(u.pathname + u.search, h);
+    try { r = await pega(uu, tempoMs, 'text/csv,text/plain,*/*'); t = await r.text(); } catch (e) { throw erro(502, 'stooq: rede (' + (e.name || e.message) + ')'); }
+    if (r.status !== 403) break;
+  }
   if (/daily hits limit/i.test(t)) throw erro(429, 'stooq: limite diário', { limite: true });
   if (r.status === 404) throw erro(404, 'stooq: não encontrado');
-  if (!r.ok) throw erro(r.status === 429 ? 429 : 502, 'stooq: HTTP ' + r.status, { limite: r.status === 429 });
+  if (!r.ok) throw erro(r.status === 429 ? 429 : 502, 'stooq: HTTP ' + r.status + ' (' + String(t || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 100) + ')', { limite: r.status === 429 });
+  if (/apikey/i.test(t) && !/^date,/i.test(t.trim())) throw erro(401, 'stooq: pede chave (' + t.replace(/\s+/g, ' ').trim().slice(0, 100) + ')', { semToken: true });
   const linhas = t.trim().split(/\r?\n/);
   const cab = (linhas[0] || '').toLowerCase().split(',');
   const iD = cab.indexOf('date'), iC = cab.indexOf('close');

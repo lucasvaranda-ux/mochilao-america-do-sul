@@ -1,6 +1,7 @@
 // Inv · robô do índice de busca: inv/busca.json = [[símbolo, nome]] de B3 e EUA (o grupo sai do sufixo: .SA = Brasil, sem sufixo = EUA).
 // Fontes: as empresas de inv/empresas.json; a lista da brapi.dev (/api/quote/list, ou /api/available sem os nomes; BRAPI_TOKEN opcional);
-// uma lista fixa de ações conhecidas da B3 (para quando a brapi não abre); e o arquivo público da SEC (company_tickers.json) para os EUA.
+// uma lista fixa de ações conhecidas da B3 (para quando a brapi não abre); e o arquivo público da SEC (company_tickers.json) para os EUA,
+// ou, se a SEC recusar, os arquivos públicos de símbolos da Nasdaq Trader.
 // A SEC pede um User-Agent que identifique quem chama: vai o nome do robô e do repositório, nunca um e-mail pessoal.
 // Se uma fonte falhar, ficam os itens dela do arquivo anterior. Com as duas fontes em dia, refaz no máximo uma vez por semana (INV_INDICE_FORCA=1 força).
 // Node 20, sem dependências. Teste: node scripts/inv-api.teste.mjs
@@ -10,6 +11,7 @@ import { pathToFileURL } from 'node:url';
 import { UA, simboloOk, grupoDe } from '../api/_inv-fontes.mjs';
 
 const SEC = () => process.env.INV_SEC_URL || 'https://www.sec.gov/files/company_tickers.json';
+const NASDAQ = () => (process.env.INV_NASDAQ_BASE || 'https://www.nasdaqtrader.com/dynamic/SymDir').replace(/\/$/, '');
 const BRAPI = () => (process.env.INV_BRAPI_BASE || 'https://brapi.dev').replace(/\/$/, '');
 
 // ações conhecidas da B3 (código e nome), para a busca funcionar mesmo sem a brapi
@@ -51,6 +53,26 @@ export async function daSec() {
   if (out.length < 1000) throw new Error('SEC: só ' + out.length + ' itens');
   return out;
 }
+// plano B dos EUA: arquivos públicos de símbolos da Nasdaq Trader (Nasdaq e outras bolsas americanas), separados por "|"
+export async function daNasdaq() {
+  const out = [];
+  for (const [arq, iS, iN] of [['nasdaqlisted.txt', 0, 1], ['otherlisted.txt', 0, 1]]) {
+    const r = await fetch(NASDAQ() + '/' + arq, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30000) });
+    if (!r.ok) throw new Error(arq + ': HTTP ' + r.status);
+    const linhas = (await r.text()).split(/\r?\n/);
+    const cab = linhas[0].split('|');
+    const iTest = cab.indexOf('Test Issue'), iEtf = cab.indexOf('ETF');
+    for (const l of linhas.slice(1)) {
+      const c = l.split('|'); if (c.length < 3 || /^File Creation Time/.test(l)) continue;
+      if (iTest >= 0 && c[iTest] === 'Y') continue;
+      const s = simboloOk(String(c[iS]).replace(/[.$]/g, '-')); if (!s) continue;
+      const nome = String(c[iN] || '').replace(/ - (Common Stock|Class [A-Z] Common Stock|Ordinary Shares|American Depositary Shares).*$/i, '').replace(/\s+(Common Stock|Ordinary Shares)$/i, '').trim();
+      out.push([s, nome || s]);
+    }
+  }
+  if (out.length < 1000) throw new Error('Nasdaq Trader: só ' + out.length + ' itens');
+  return out;
+}
 export async function daBrapi() {
   const tok = process.env.BRAPI_TOKEN;
   const q = tok ? '&token=' + encodeURIComponent(tok) : '';
@@ -82,7 +104,10 @@ export async function main({ raiz = process.cwd(), log = console.log, agora = ne
   listas.push(B3_CONHECIDAS);
   if (br) listas.push(br.itens); else listas.push(ant.filter(x => grupoDe(x[0]) === 'br'));
   let us = null;
-  try { us = await daSec(); fontes.push('SEC company_tickers.json'); } catch (e) { falhas.push('SEC: ' + e.message); log('SEC: falhou (' + e.message + ')'); }
+  try { us = await daSec(); fontes.push('SEC company_tickers.json'); } catch (e) {
+    log('SEC: falhou (' + e.message + '); tentando a Nasdaq Trader');
+    try { us = await daNasdaq(); fontes.push('Nasdaq Trader (nasdaqlisted e otherlisted)'); } catch (e2) { falhas.push('SEC: ' + e.message + '; Nasdaq Trader: ' + e2.message); log('Nasdaq Trader: falhou (' + e2.message + ')'); }
+  }
   listas.push(us || ant.filter(x => grupoDe(x[0]) === 'eua'));
   // o primeiro nome de cada símbolo vence (as listas curadas vêm antes); só Brasil e EUA, fora as empresas das listas
   const vistos = new Map();
