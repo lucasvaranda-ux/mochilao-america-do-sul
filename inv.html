@@ -36,7 +36,7 @@ try{var T=JSON.parse(localStorage.getItem('inv_v1')||'{}').tema;if(T==='claro')d
   --font:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",Roboto,sans-serif;
   --gut:16px; --toph:52px;
   /* gráficos (paleta validada nos dois fundos) */
-  --c1:#09714b; --c2:#2457c5; --c3:#c2410c; --c4:#b0268a; --c5:#6250d6; --c6:#d13b3b;
+  --c1:#09714b; --c2:#2457c5; --c3:#c2410c; --c4:#b0268a; --c5:#6250d6; --c6:#d13b3b; --c7:#138db1; --c8:#767700;
   --c-tol:rgba(36,87,197,.14); --grid:#e2e2e8; --zero:#b9bcc6; --up:#09714b; --down:#c2410c; --neutro:#6b6b77;
 }
 @media (prefers-color-scheme: dark){
@@ -46,7 +46,7 @@ try{var T=JSON.parse(localStorage.getItem('inv_v1')||'{}').tema;if(T==='claro')d
     --acc:#3ddc97; --acc-soft:rgba(61,220,151,.13); --on-acc:#04140c; --warm-soft:rgba(255,122,89,.13);
     --scrim:rgba(0,0,0,.62); --sheet:#111116; --barbg:#111116; --lift:none;
     --ring:inset 0 0 0 1px rgba(255,255,255,.07); --seg-on:#3a3a46;
-    --c1:#17a86b; --c2:#4f86e6; --c3:#c8832a; --c4:#c94d7a; --c5:#8d7fe6; --c6:#d95c5c;
+    --c1:#17a86b; --c2:#4f86e6; --c3:#c8832a; --c4:#c94d7a; --c5:#8d7fe6; --c6:#d95c5c; --c7:#1aa1c9; --c8:#989912;
     --c-tol:rgba(79,134,230,.16); --grid:#2a2a33; --zero:#4a4a55; --up:#3ddc97; --down:#ff7a59; --neutro:#7f7f8b;
   }
 }
@@ -56,7 +56,7 @@ try{var T=JSON.parse(localStorage.getItem('inv_v1')||'{}').tema;if(T==='claro')d
   --acc:#3ddc97; --acc-soft:rgba(61,220,151,.13); --on-acc:#04140c; --warm-soft:rgba(255,122,89,.13);
   --scrim:rgba(0,0,0,.62); --sheet:#111116; --barbg:#111116; --lift:none;
   --ring:inset 0 0 0 1px rgba(255,255,255,.07); --seg-on:#3a3a46;
-  --c1:#17a86b; --c2:#4f86e6; --c3:#c8832a; --c4:#c94d7a; --c5:#8d7fe6; --c6:#d95c5c;
+  --c1:#17a86b; --c2:#4f86e6; --c3:#c8832a; --c4:#c94d7a; --c5:#8d7fe6; --c6:#d95c5c; --c7:#1aa1c9; --c8:#989912;
   --c-tol:rgba(79,134,230,.16); --grid:#2a2a33; --zero:#4a4a55; --up:#3ddc97; --down:#ff7a59; --neutro:#7f7f8b;
 }
 *{box-sizing:border-box}
@@ -201,6 +201,22 @@ table.tab th{color:var(--tx2);font-weight:700;position:sticky;top:0;background:v
 #tip .ano{font-weight:800;font-size:14px;margin-bottom:2px}
 #tip .sw{display:inline-block;width:12px;height:0;border-top:2px solid;margin-right:6px;vertical-align:middle}
 #tip .nota{color:var(--tx2);font-size:12px;margin-top:3px}
+/* gráfico junto (todos os indicadores no mesmo eixo) */
+.vista{grid-template-columns:repeat(3,auto);max-width:none;flex:0 0 auto}
+.vista button{height:32px;padding:0 12px;font-size:13.5px}
+.junto-box{padding:0 var(--gut) 14px}
+.junto-box:empty{display:none}
+.j-ops{display:flex;align-items:center;gap:6px 14px;flex-wrap:wrap;margin-top:4px}
+.j-ops .sw-t{min-height:36px}
+.leg.lj span{white-space:nowrap}
+.leg.lj i{border-top-width:3px}
+.ch path.lj{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ch circle.lj{stroke:var(--s1);stroke-width:1.5}
+.ch circle.lj.parcial{fill:var(--s1)!important;stroke-width:2}
+.ch .rj{font-size:11.5px;font-family:var(--font);font-weight:800;paint-order:stroke;stroke:var(--s1);stroke-width:3.5px;stroke-linejoin:round}
+.ch .corte{font-size:11px;font-family:var(--font);font-weight:800;paint-order:stroke;stroke:var(--s1);stroke-width:3.5px;stroke-linejoin:round}
+.ch .teto{stroke:var(--tx3);stroke-width:1;stroke-dasharray:3 3}
+.nota-j,.nota-esc{font-size:12.5px;color:var(--tx2);margin-top:6px;line-height:1.45}
 .rodape{padding:22px var(--gut) 8px;font-size:12.5px;color:var(--tx3);line-height:1.5;max-width:80ch}
 
 /* ---------- sobretela de indicadores ---------- */
@@ -401,6 +417,7 @@ a.btn{text-decoration:none}
   .regua-box .r-rot{order:-1;flex:0 0 auto;gap:6px}
   .regua-box .atalhos{flex:1 1 100%}
   .ihead{padding-top:16px}
+  .vista button{height:34px}
   #ind-pop.pop{width:440px;border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.4),0 0 0 1px var(--line)}
   .mp-catch.claro{background:transparent}
   .pghead h2{font-size:30px}
@@ -429,13 +446,18 @@ a.btn{text-decoration:none}
     <div class="filtros" id="filtros">
       <div class="f-l1">
         <button class="chip indbt" id="bt-ind" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="ind-pop">Indicadores <span class="n num" id="ind-n">3</span> <span aria-hidden="true">▾</span></button>
+        <div class="seg vista" id="vista" role="group" aria-label="Como mostrar os gráficos">
+          <button type="button" data-vista="sep" aria-pressed="true">Separados</button>
+          <button type="button" data-vista="juntos" aria-pressed="false">Juntos</button>
+          <button type="button" data-vista="ambos" aria-pressed="false">Os dois</button>
+        </div>
         <button class="chip anosbt" id="bt-anos" type="button" aria-expanded="false" aria-controls="regua-box"><span>Anos <span class="num" id="anos-tx">1995–2026</span></span> <span aria-hidden="true">▾</span></button>
       </div>
       <div class="f-vals" role="group" aria-label="Valores">
         <button class="chip" type="button" data-val="real" aria-pressed="true"><span class="sw" aria-hidden="true"></span>Realizado</button>
         <button class="chip" type="button" data-val="meta" aria-pressed="true"><span class="sw tr" aria-hidden="true"></span>Meta</button>
         <button class="chip" type="button" data-val="proj" aria-pressed="true"><span class="sw pt" aria-hidden="true"></span>Projeção</button>
-        <label class="sw-t" title="Os gráficos em % ao ano dividem o mesmo eixo"><input type="checkbox" id="esc-igual">Mesma escala</label>
+        <label class="sw-t" id="esc-box" title="Os gráficos em % dividem o mesmo eixo (inflação, juros e a variação do dólar e das bolsas)"><input type="checkbox" id="esc-igual">Mesma escala</label>
         <button class="chip sm f-rec" id="bt-rec-ini" type="button">Recolher tudo</button>
       </div>
       <div class="regua-box" id="regua-box">
@@ -456,6 +478,7 @@ a.btn{text-decoration:none}
     </div>
     <div class="ihead"><h2>Indicadores do Brasil</h2><p id="ind-fonte">Dados do Banco Central (SGS e Focus) · <button class="linkbt" type="button" data-copia>Copiar link</button></p></div>
     <p class="aviso" id="aviso" hidden></p>
+    <div class="junto-box" id="junto"></div>
     <div class="grade" id="graficos"><p class="vazio">Carregando os indicadores…</p></div>
     <div id="ini-emp"></div>
     <p class="rodape">Não é recomendação de investimento. Preços de fechamento. Ações pelo stooq, pela brapi (B3) e pela Twelve Data; indicadores pelo Banco Central. <button class="linkbt" type="button" data-ir="mais">Mais</button></p>
@@ -575,7 +598,7 @@ var REC_RE=/^[a-z]+:[\w.^=\- ]{0,40}$/;   // ids estáveis do que está recolhid
 var ORDEM=['ipca','igpm','selic','cdi','poupanca','dolar','ibovespa','sp500'];
 var GRUPOS=[['Inflação',['ipca','igpm']],['Juros',['selic','cdi','poupanca']],['Câmbio',['dolar']],['Bolsa',['ibovespa','sp500']]];
 function maxAno(){return UI.val.proj?ANO+3:ANO}
-function uiPadrao(){return {anos:[MIN_ANO,ANO+3],ind:['ipca','selic','cdi'],val:{real:true,meta:true,proj:true},emp:[],esc:'livre',recolhidos:[]}}
+function uiPadrao(){return {anos:[MIN_ANO,ANO+3],ind:['ipca','selic','cdi'],val:{real:true,meta:true,proj:true},emp:[],esc:'livre',vista:'sep',teto:true,recolhidos:[]}}
 var UI=uiPadrao();
 var PREF={v:1,tema:'sistema',fixadas:[],cores:{},pedidos:[],pedidosPendentes:[],ultEnvio:0};
 function lePref(){try{var j=JSON.parse(localStorage.getItem('inv_v1')||'null');if(!j||typeof j!=='object'||j.v!==1)return;
@@ -591,6 +614,8 @@ function aplicaUi(u){try{
   if(u.val&&typeof u.val==='object'){UI.val={real:!!u.val.real,meta:!!u.val.meta,proj:!!u.val.proj};if(!UI.val.real&&!UI.val.meta&&!UI.val.proj)UI.val.real=true}
   if(Array.isArray(u.emp))UI.emp=u.emp.filter(function(x){return typeof x==='string'&&/^[A-Z0-9^][A-Z0-9.\-=^]{0,14}$/.test(x)}).filter(function(k,i,l){return l.indexOf(k)===i}).slice(0,6);
   if(u.esc==='igual'||u.esc==='livre')UI.esc=u.esc;
+  if(u.vista==='sep'||u.vista==='juntos'||u.vista==='ambos')UI.vista=u.vista;
+  if(typeof u.teto==='boolean')UI.teto=u.teto;
   if(Array.isArray(u.recolhidos))UI.recolhidos=u.recolhidos.filter(function(x){return typeof x==='string'&&REC_RE.test(x)}).filter(function(k,i,l){return l.indexOf(k)===i}).slice(-300);
   if(UI.anos[1]>maxAno())UI.anos[1]=maxAno();if(UI.anos[1]-UI.anos[0]<1)UI.anos[0]=UI.anos[1]-1;
 }catch(e){}}
@@ -603,10 +628,10 @@ function lerHash(){var hs=decodeURIComponent(location.hash.slice(1));var r={tela
     if('ind' in q)u.ind=q.ind?q.ind.split(','):[];
     if(q.val!=null){var v=q.val.split(',');u.val={real:v.indexOf('real')>=0,meta:v.indexOf('meta')>=0,proj:v.indexOf('proj')>=0}}
     if('emp' in q)u.emp=q.emp?q.emp.split(',').map(function(x){return x.toUpperCase()}):[];
-    if(q.esc)u.esc=q.esc;r.ui=u}
+    if(q.esc)u.esc=q.esc;if(q.vista)u.vista=q.vista;if(q.teto==='30'||q.teto==='0')u.teto=q.teto==='30';r.ui=u}
   return r}
 function hashDe(tela){var v=['real','meta','proj'].filter(function(k){return UI.val[k]}).join(',');
-  return '#'+tela+'?anos='+UI.anos[0]+'-'+UI.anos[1]+'&ind='+UI.ind.join(',')+'&val='+v+'&emp='+UI.emp.join(',')+'&esc='+UI.esc}
+  return '#'+tela+'?anos='+UI.anos[0]+'-'+UI.anos[1]+'&ind='+UI.ind.join(',')+'&val='+v+'&emp='+UI.emp.join(',')+'&esc='+UI.esc+'&vista='+UI.vista+'&teto='+(UI.teto?'30':'0')}
 function gravaHash(){try{if(TELA==='empresa')return;history.replaceState(history.state,'',hashDe(TELA))}catch(e){}salva()}
 
 // ---------- DADOS ----------
@@ -771,7 +796,7 @@ function tipLinhas(ind,o,a){var L=[{t:String(a),c:'ano'}];
   if(ind.meta_ajustada&&ind.meta_ajustada[a]!=null&&UI.val.meta)L.push({t:'O BC perseguiu uma meta ajustada de '+fmtPct(ind.meta_ajustada[a],1)+' neste ano.',c:'nota'});
   if(L.length===1)L.push({t:'sem dado neste ano',c:'nota'});return L}
 function tipNo(L,linha){var f=document.createDocumentFragment();L.forEach(function(l,i){if(linha){if(i)f.appendChild(document.createTextNode(i===1?': ':' · '));var sp=h('span',{text:l.t});if(l.c==='ano')sp.style.fontWeight='800';f.appendChild(sp);return}
-  var d=h('div',{class:l.c||''});if(l.cor)d.appendChild(h('span',{class:'sw',style:'border-color:'+CORES[l.cor]+';border-top-style:'+(l.cor==='meta'?'dashed':l.cor==='proj'?'dotted':'solid')}));d.appendChild(document.createTextNode(l.t));f.appendChild(d)});return f}
+  var d=h('div',{class:l.c||''});if(l.cor||l.css)d.appendChild(h('span',{class:'sw',style:'border-color:'+(l.css||CORES[l.cor])+';border-top-style:'+(l.cor==='meta'?'dashed':l.cor==='proj'?'dotted':'solid')}));d.appendChild(document.createTextNode(l.t));f.appendChild(d)});return f}
 function tipMostra(L,ev){var t=el('tip');t.textContent='';t.appendChild(tipNo(L,false));t.hidden=false;
   var w=t.offsetWidth,hh=t.offsetHeight,x=ev.clientX+14,y=ev.clientY-hh-12;if(x+w>innerWidth-8)x=ev.clientX-w-14;if(y<8)y=ev.clientY+16;t.style.left=Math.max(8,x)+'px';t.style.top=y+'px'}
 function tipEsconde(){el('tip').hidden=true}
@@ -805,6 +830,7 @@ function cartao(k){var ind=MACRO.indicadores[k];if(!ind)return null;
     [['var','Variação'],['nivel','Nível']].forEach(function(m){seg.appendChild(h('button',{class:'chip sm',type:'button','aria-pressed':String(modo===m[0]),onclick:function(){MODO[k]=m[0];renderAll()},text:m[1]}))});card.appendChild(seg)}
   card.appendChild(h('div',{class:'ch-svg'}));
   card.appendChild(legenda(k,ind,o,modo==='var'&&ehNivel));
+  if(ehNivel&&modo==='var'&&UI.esc==='igual')card.appendChild(h('p',{class:'nota-esc',text:'Variação no ano; a inflação e os juros são acumulados.'}));
   card.appendChild(h('p',{class:'tl num','aria-hidden':'true'}));
   var aberto=!!VERTAB[k];
   var tabBox=h('div',{class:'tabbox'});if(aberto)tabBox.appendChild(tabela(ind,o,anosDoCartao(o)));
@@ -813,15 +839,120 @@ function cartao(k){var ind=MACRO.indicadores[k];if(!ind)return null;
     h('small',{text:ind.serie?'Fonte: BCB, série '+ind.serie:ind.fonte?'Fonte: stooq':''})));
   return top}
 
+// ---------- JUNTOS ----------
+// todos os indicadores ligados num gráfico só, em % no ano (dólar e bolsas pela variação no ano).
+// Cada indicador tem a sua cor, a mesma em qualquer combinação (paleta validada nos dois temas).
+var COR_IND={ipca:'var(--c1)',igpm:'var(--c5)',selic:'var(--c3)',cdi:'var(--c7)',poupanca:'var(--c6)',dolar:'var(--c2)',ibovespa:'var(--c8)',sp500:'var(--c4)'};
+var TETO=30;
+function nomeInd(k){var i=MACRO.indicadores[k];return i?i.nome:k}
+function seriesJunto(){return ORDEM.filter(function(k){return UI.ind.indexOf(k)>=0&&MACRO.indicadores[k]}).map(function(k){var ind=MACRO.indicadores[k];
+  var o=valoresDe(k,ind,ind.unidade==='pct_ano'?'linha':'var');return {k:k,nome:nomeInd(k),cor:COR_IND[k]||'var(--tx2)',real:o.real||{},parcial:o.parcial||{},ehVar:ind.unidade!=='pct_ano'}})}
+function anosJunto(se){var a0=UI.anos[0],a1=Math.min(UI.anos[1],ANO),ult=a0;
+  se.forEach(function(x){Object.keys(x.real).forEach(function(a){a=+a;if(a>=a0&&a<=a1&&x.real[a]!=null&&a>ult)ult=a})});
+  if(ult-a0<1)ult=a0+1;var r=[];for(var a=a0;a<=ult;a++)r.push(a);return r}
+function fmtJ(x,v){return fmtPct(v,1,x.ehVar)}
+function tipJunto(se,a){var L=[{t:String(a),c:'ano'}];
+  se.filter(function(x){return x.real[a]!=null}).sort(function(p,q){return q.real[a]-p.real[a]}).forEach(function(x){L.push({t:x.nome+' '+fmtJ(x,x.real[a])+(x.parcial[a]?' (até '+String(x.parcial[a]).split('–').pop()+')':''),css:x.cor})});
+  if(L.length===1)L.push({t:'sem dado neste ano',c:'nota'});return L}
+function tabelaJunto(se,anos){var t=h('table',{class:'tab num'},h('thead',null,h('tr',null,[h('th',{scope:'col',text:'Ano'})].concat(se.map(function(x){return h('th',{scope:'col',text:x.nome})})))));var tb=h('tbody');
+  anos.forEach(function(a){if(!se.some(function(x){return x.real[a]!=null}))return;
+    tb.appendChild(h('tr',null,[h('td',{text:a+(se.some(function(x){return x.parcial[a]&&x.real[a]!=null})?' (parcial)':'')})].concat(se.map(function(x){return h('td',{text:x.real[a]!=null?fmtJ(x,x.real[a]):'–'})}))))});
+  t.appendChild(tb);return h('div',{class:'tabwrap'},t)}
+function cartaoJunto(){var se=seriesJunto();
+  var card=caixa(h('article',{class:'card ch junto','data-k':'junto'},
+    h('div',{class:'ch-top'},h('div',{class:'ch-tit'},h('h3',{text:'Todos juntos'}),h('p',{class:'sub',text:'% no ano: inflação e juros acumulados; dólar e bolsas pela variação no ano'})),ctl('ind:junto','Início › Juntos','Todos juntos'))),'ind:junto');
+  var top=card;var cb=corpoRec();card.appendChild(cb.cx);card=cb.inn;
+  if(!se.length){card.appendChild(h('p',{class:'vazio'},'Nenhum indicador ligado. ',h('button',{class:'linkbt',type:'button',onclick:function(){abrePop(true)},text:'Escolher indicadores'})));return top}
+  var ops=h('div',{class:'j-ops'});
+  var tt=h('input',{type:'checkbox',id:'teto'});tt.checked=!!UI.teto;tt.addEventListener('change',function(){UI.teto=tt.checked;renderAll();gravaHash()});
+  ops.appendChild(h('label',{class:'sw-t',title:'Ligado, o eixo vai até 30% e o que passar fica cortado, com o valor escrito'},tt,'Teto de 30%'));
+  card.appendChild(ops);
+  var leg=h('div',{class:'leg lj'});se.forEach(function(x){leg.appendChild(h('span',{'data-k':x.k},h('i',{style:'border-color:'+x.cor}),x.nome))});card.appendChild(leg);
+  card.appendChild(h('div',{class:'ch-svg'}));
+  card.appendChild(h('p',{class:'tl num','aria-hidden':'true'}));
+  card.appendChild(h('p',{class:'nota-j',text:'Aqui só o realizado: a meta e a projeção ficam nos gráficos separados.'}));
+  var aberto=!!VERTAB.junto;var tabBox=h('div',{class:'tabbox'});if(aberto)tabBox.appendChild(tabelaJunto(se,anosJunto(se)));card.appendChild(tabBox);
+  card.appendChild(h('div',{class:'ch-pe'},h('button',{class:'linkbt',type:'button','aria-expanded':String(aberto),onclick:function(){VERTAB.junto=!VERTAB.junto;renderAll()},text:aberto?'Esconder tabela':'Ver tabela'}),
+    h('small',{text:'Fonte: BCB'+(se.some(function(x){return x.k==='ibovespa'||x.k==='sp500'})?' e stooq':'')})));
+  return top}
+function renderJunto(card){
+  var se=seriesJunto();var box=card.querySelector('.ch-svg');if(!box)return;box.textContent='';
+  var anos=anosJunto(se);var n=anos.length;
+  var vals=[];se.forEach(function(x){anos.forEach(function(a){if(x.real[a]!=null&&isFinite(x.real[a]))vals.push(x.real[a])})});
+  if(!vals.length){box.appendChild(h('p',{class:'vazio',text:'Sem dados neste período.'}));return}
+  var W=Math.max(280,box.clientWidth||card.clientWidth-28),H=largo()?400:320;
+  var maxNome=Math.max.apply(null,se.map(function(x){return x.nome.length}));
+  var P={l:42,r:Math.min(78,10+maxNome*6.6),t:18,b:28};
+  var iw=W-P.l-P.r,ih=H-P.t-P.b,bw=iw/n;
+  var X=function(a){return P.l+(a-anos[0]+.5)*bw};
+  var mx=Math.max.apply(null,vals);var corta=UI.teto&&mx>TETO;
+  var d=dominioY(vals);if(corta)d[1]=TETO;
+  var tk=ticksBonitos(d[0],d[1],6);if(corta){tk=tk.filter(function(v){return v<=TETO});if(tk[tk.length-1]!==TETO)tk.push(TETO)}
+  var y0=tk[0],y1=tk[tk.length-1];var Y=function(v){return P.t+ih-(v-y0)/(y1-y0)*ih};
+  var nomes=se.map(function(x){return x.nome}).join(', ');
+  var svg=s('svg',{class:'ch junto',width:W,height:H,viewBox:'0 0 '+W+' '+H,role:'img',tabindex:'0','aria-label':'Todos juntos, % no ano, '+anos[0]+' a '+anos[n-1]+': '+nomes+(corta?'. Eixo com teto de 30%; os valores acima estão escritos':'')+'. Use as setas para ver cada ano.'});
+  var cid='cj'+Math.random().toString(36).slice(2,8);
+  var defs=s('defs');var cp=s('clipPath',{id:cid});cp.appendChild(s('rect',{x:0,y:P.t,width:W,height:ih+P.b}));defs.appendChild(cp);svg.appendChild(defs);
+  var g=s('g');svg.appendChild(g);
+  tk.forEach(function(v){var y=Y(v);g.appendChild(s('line',{class:'grid'+(v===0?' zero':''),x1:P.l,x2:P.l+iw,y1:y,y2:y}));
+    g.appendChild(s('text',{class:'eixo',x:P.l-7,y:y+4,'text-anchor':'end',text:fmtEixo(v,'pct')}))});
+  if(corta)g.appendChild(s('line',{class:'teto',x1:P.l,x2:P.l+iw,y1:Y(TETO),y2:Y(TETO)}));
+  var passo=[1,2,5,10,20].find(function(p){return bw*p>=48})||20;var ult=-1e9;
+  anos.forEach(function(a,i){if(!(i===0||i===n-1||a%passo===0))return;var x=X(a);if(x-ult<34)return;if(i<n-1&&i>0&&X(anos[n-1])-x<34)return;g.appendChild(s('text',{class:'eixo ano',x:x,y:H-8,'text-anchor':'middle',text:String(a)}));ult=x});
+  // linhas, cortadas no teto
+  var gl=s('g',{'clip-path':'url(#'+cid+')'});g.appendChild(gl);
+  se.forEach(function(x){try{
+    gl.appendChild(s('path',{class:'lj','data-k':x.k,d:caminho(anos.map(function(a){return x.real[a]!=null?[X(a),Y(x.real[a])]:null})),style:'stroke:'+x.cor}));
+    anos.forEach(function(a){if(x.real[a]!=null&&x.parcial[a])gl.appendChild(s('circle',{class:'lj parcial','data-k':x.k,cx:X(a),cy:Y(x.real[a]),r:3.5,style:'stroke:'+x.cor}))})}catch(e){console.warn('junto',x.k,e)}});
+  // o que passou do teto: marca na borda e o valor escrito ao lado
+  if(corta){var cortes=[];se.forEach(function(x){anos.forEach(function(a){var v=x.real[a];if(v!=null&&v>TETO)cortes.push({x:x,a:a,v:v})})});
+    cortes.sort(function(p,q){return p.a-q.a||q.v-p.v});var filas=[];var MAXF=largo()?3:2;   // sem lugar, fica só a seta (o valor está no toque e na tabela)
+    cortes.forEach(function(c){try{var cx=X(c.a);
+      g.appendChild(s('path',{class:'seta','data-k':c.x.k,d:'M'+(cx-4)+' '+(P.t+1)+'L'+cx+' '+(P.t-5)+'L'+(cx+4)+' '+(P.t+1)+'Z',style:'fill:'+c.x.cor}));
+      var tx=fmtPct(c.v,Math.round(c.v)<=TETO?1:0,c.x.ehVar);var lw=tx.length*6.4+4;var anc='start',lx=cx+6;if(lx+lw>P.l+iw){anc='end';lx=cx-6}
+      var x0=anc==='start'?lx:lx-lw,x1=x0+lw;var f=0;while(filas[f]!=null&&filas[f]>x0-2)f++;if(f>=MAXF)return;filas[f]=x1;
+      g.appendChild(s('text',{class:'corte','data-k':c.x.k,'data-ano':c.a,x:lx,y:P.t+11+f*12,'text-anchor':anc,style:'fill:'+c.x.cor,text:tx}))}catch(e){}})}
+  // rótulo direto no fim de cada linha, sem se encostarem
+  var fins=[];se.forEach(function(x){var ua=anos.filter(function(a){return x.real[a]!=null}).pop();if(ua==null)return;var v=x.real[ua];fins.push({x:x,a:ua,y:Y(corta?Math.min(v,TETO):v)})});
+  fins.sort(function(p,q){return p.y-q.y});var GAP=13;
+  for(var it=0;it<2;it++){for(var i=1;i<fins.length;i++)if(fins[i].y-fins[i-1].y<GAP)fins[i].y=fins[i-1].y+GAP;
+    var fundo=P.t+ih;if(fins.length&&fins[fins.length-1].y>fundo){fins[fins.length-1].y=fundo;for(var j=fins.length-2;j>=0;j--)if(fins[j+1].y-fins[j].y<GAP)fins[j].y=fins[j+1].y-GAP}}
+  fins.forEach(function(f){g.appendChild(s('text',{class:'rj','data-k':f.x.k,x:X(f.a)+7,y:f.y+4,style:'fill:'+f.x.cor,text:f.x.nome}))});
+  // crosshair e teclado, como nos cartões
+  var cross=s('line',{class:'cross',y1:P.t,y2:P.t+ih,visibility:'hidden'});g.appendChild(cross);
+  var gf=s('g',{'clip-path':'url(#'+cid+')'});g.appendChild(gf);
+  var alvo=s('rect',{class:'alvo',x:P.l,y:P.t,width:iw,height:ih});svg.appendChild(alvo);
+  var mostra=function(a,ev){if(a==null){esconde();return}cross.setAttribute('x1',X(a));cross.setAttribute('x2',X(a));cross.setAttribute('visibility','visible');
+    gf.textContent='';se.forEach(function(x){if(x.real[a]!=null)gf.appendChild(s('circle',{class:'lj foco',cx:X(a),cy:Y(x.real[a]),r:4.5,style:'fill:'+x.cor}))});
+    var L=tipJunto(se,a);var tl=card.querySelector('.tl');if(largo()&&ev){tipMostra(L,ev)}else if(tl){tl.textContent='';tl.appendChild(tipNo(L,true))}FOCO.junto=a};
+  var esconde=function(){cross.setAttribute('visibility','hidden');gf.textContent='';tipEsconde()};
+  var anoEm=function(ev){var r=svg.getBoundingClientRect();var x=(ev.clientX-r.left)*(W/r.width);var i=Math.floor((x-P.l)/bw);return anos[Math.max(0,Math.min(n-1,i))]};
+  alvo.addEventListener('pointermove',function(ev){mostra(anoEm(ev),ev)});
+  alvo.addEventListener('pointerdown',function(ev){mostra(anoEm(ev),ev)});
+  alvo.addEventListener('pointerleave',function(){if(largo())esconde()});
+  svg.addEventListener('keydown',function(ev){if(ev.key!=='ArrowLeft'&&ev.key!=='ArrowRight')return;ev.preventDefault();
+    var a=FOCO.junto!=null&&anos.indexOf(FOCO.junto)>=0?FOCO.junto:anos[n-1];a+=ev.key==='ArrowRight'?1:-1;a=Math.max(anos[0],Math.min(anos[n-1],a));
+    var r=svg.getBoundingClientRect();mostra(a,{clientX:r.left+X(a)*(r.width/W),clientY:r.top+P.t+20});
+    avisa(tipJunto(se,a).map(function(l){return l.t}).join('. '))});
+  svg.addEventListener('blur',function(){esconde()});
+  box.appendChild(svg)}
+
 // ---------- INICIO ----------
 function renderAll(){try{
   if(!MACRO)return;var g=el('graficos');g.textContent='';
   var lista=ORDEM.filter(function(k){return UI.ind.indexOf(k)>=0});
-  if(!lista.length&&!UI.emp.length)g.appendChild(h('div',{class:'card'},h('p',{class:'vazio'},'Nenhum indicador ligado. ',h('button',{class:'linkbt',type:'button',onclick:function(){abrePop(true)},text:'Escolher indicadores'}))));
+  // vista: separados, juntos (um gráfico só) ou os dois
+  var jb=el('junto');jb.textContent='';
+  if(UI.vista!=='sep'){try{var jc=cartaoJunto();jb.appendChild(jc);renderJunto(jc)}catch(e){console.warn('junto',e)}}
+  g.hidden=UI.vista==='juntos';
+  if(UI.vista==='juntos')lista=[];
+  if(!lista.length&&!UI.emp.length&&UI.vista!=='juntos')g.appendChild(h('div',{class:'card'},h('p',{class:'vazio'},'Nenhum indicador ligado. ',h('button',{class:'linkbt',type:'button',onclick:function(){abrePop(true)},text:'Escolher indicadores'}))));
   var cards=[];lista.forEach(function(k){try{var c=cartao(k);if(c){g.appendChild(c);cards.push(c)}}catch(e){console.warn(k,e)}});
   // escala: livre (cada um com a sua) ou a mesma para os gráficos em % ao ano
-  var dom=null;if(UI.esc==='igual'){var tudo=[];cards.forEach(function(c){var k=c.dataset.k,ind=MACRO.indicadores[k];if(ind.unidade!=='pct_ano')return;var o=valoresDe(k,ind,'linha');tudo=tudo.concat(visiveis(o,anosDoCartao(o)))});dom=tudo.length?dominioY(tudo):null}
-  cards.forEach(function(c){try{var k=c.dataset.k;renderGrafico(k,c,MACRO.indicadores[k].unidade==='pct_ano'?dom:null)}catch(e){console.warn('grafico',e)}});
+  // (inclui o dólar e as bolsas pela variação no ano; o dólar em "Nível" fica livre)
+  var emPct=function(k){var ind=MACRO.indicadores[k];return ind.unidade==='pct_ano'||(MODO[k]||'var')==='var'};
+  var dom=null;if(UI.esc==='igual'){var tudo=[];cards.forEach(function(c){var k=c.dataset.k,ind=MACRO.indicadores[k];if(!emPct(k))return;var o=valoresDe(k,ind,ind.unidade==='pct_ano'?'linha':'var');tudo=tudo.concat(visiveis(o,anosDoCartao(o)))});dom=tudo.length?dominioY(tudo):null}
+  cards.forEach(function(c){try{var k=c.dataset.k;renderGrafico(k,c,emPct(k)?dom:null)}catch(e){console.warn('grafico',e)}});
   try{renderEmpInicio()}catch(e){}
   atualizaFiltros();
   try{recTudoRotulos()}catch(e){}
@@ -835,8 +966,9 @@ function atualizaFiltros(){try{
   var ligados=['real','meta','proj'].filter(function(v){return UI.val[v]});
   var tem={real:true,meta:false,proj:false};if(MACRO)UI.ind.forEach(function(k){var i=MACRO.indicadores[k];if(!i)return;if(i.meta&&Object.keys(i.meta).length)tem.meta=true;if(i.projecao&&Object.keys(i.projecao).length)tem.proj=true});
   $$('[data-val]').forEach(function(b){var v=b.dataset.val;b.setAttribute('aria-pressed',String(!!UI.val[v]));var unico=UI.val[v]&&ligados.length===1;b.disabled=unico;b.title=unico?'Ao menos um valor fica ligado':'';
-    b.classList.toggle('fraco',!tem[v])});
-  el('esc-igual').checked=UI.esc==='igual';
+    var soJ=UI.vista==='juntos'&&v!=='real';b.classList.toggle('fraco',!tem[v]||soJ);if(soJ&&!unico)b.title='No gráfico junto só aparece o realizado';});
+  el('esc-igual').checked=UI.esc==='igual';el('esc-box').hidden=UI.vista==='juntos';
+  $$('[data-vista]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.vista===UI.vista))});
   var n=UI.ind.length+UI.emp.length;el('ind-n').textContent=n;el('bt-ind').setAttribute('aria-label','Indicadores ('+n+' ligados)');
 }catch(e){console.warn(e)}}
 var raf=0;function renderDepois(){if(raf)return;raf=requestAnimationFrame(function(){raf=0;renderAll()})}
@@ -859,6 +991,8 @@ function initRegua(){
     if(v==='proj'){if(UI.val.proj&&UI.anos[1]>=ANO)UI.anos[1]=ANO+3;else if(!UI.val.proj&&UI.anos[1]>ANO){UI.anos[1]=ANO;if(UI.anos[0]>=ANO)UI.anos[0]=ANO-1}}
     renderAll();gravaHash()})});
   el('esc-igual').addEventListener('change',function(){UI.esc=el('esc-igual').checked?'igual':'livre';renderAll();gravaHash()});
+  $$('[data-vista]').forEach(function(b){b.addEventListener('click',function(){if(UI.vista===b.dataset.vista)return;UI.vista=b.dataset.vista;renderAll();gravaHash();
+    avisa(b.dataset.vista==='juntos'?'Todos os indicadores num gráfico só':b.dataset.vista==='ambos'?'O gráfico junto e os separados':'Um gráfico por indicador')})});
 }
 </script>
 <script>
@@ -1360,7 +1494,7 @@ function renderPedidos(){var box=el('mais-pedidos-l');if(!box)return;box.textCon
     h('button',{class:'linkbt',type:'button',id:'ped-reenvia',onclick:function(){reenviaPendentes().then(function(n){if(!n)toast('Ainda não deu para enviar');renderPedidos()})},text:'Tentar enviar agora'})))}
 // Mais › O que mudou (inv/mudancas.json, preenchido por quem implementa os pedidos)
 var MUD=null;
-function prUrl(pr){var x=String(pr==null?'':pr).trim();if(/^\d{1,6}$/.test(x))return 'https://github.com/lucasvaranda-ux/mochilao-america-do-sul/pull/'+x;
+function prUrl(pr){var x=String(pr==null?'':pr).trim().replace(/^#/,'');if(/^\d{1,6}$/.test(x))return 'https://github.com/lucasvaranda-ux/mochilao-america-do-sul/pull/'+x;
   if(/^https:\/\/github\.com\/lucasvaranda-ux\/[\w.-]{1,80}\/pull\/\d{1,6}$/.test(x))return x;return null}
 function renderMudou(){var box=el('mais-mudou-l');if(!box)return;if(!box.firstChild)box.appendChild(h('p',{text:'Carregando…'}));
   if(!MUD){MUD=pegaJson('/inv/mudancas.json');MUD.catch(function(){MUD=null})}
@@ -1399,7 +1533,7 @@ function initPedidos(){
   try{initNav()}catch(e){console.warn(e)}
   try{initPedidos()}catch(e){console.warn(e)}
   try{atualizaFiltros()}catch(e){}
-  try{if('ResizeObserver' in window){var lw=0;new ResizeObserver(function(en){var w=en[0].contentRect.width;if(Math.abs(w-lw)>2){lw=w;renderDepois()}}).observe(el('graficos'))}}catch(e){}
+  try{if('ResizeObserver' in window){var lw=0;new ResizeObserver(function(en){var w=en[0].contentRect.width;if(Math.abs(w-lw)>2){lw=w;renderDepois()}}).observe(el('graficos'));var lj=0;new ResizeObserver(function(en){var w=en[0].contentRect.width;if(Math.abs(w-lj)>2){lj=w;renderDepois()}}).observe(el('junto'))}}catch(e){}
   Promise.all([carregaMacro().catch(function(){return null}),carregaEmpresas(),carregaCotacoes()]).then(function(res){
     MACRO=res[0];EMP=res[1];COT=res[2];
     try{if(MACRO&&MACRO.hoje){var a=+MACRO.hoje.slice(0,4);if(a>=2020&&a<=ANO+1)ANO=a}}catch(e){}
