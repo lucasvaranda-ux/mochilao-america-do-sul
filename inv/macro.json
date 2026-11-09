@@ -1,10 +1,10 @@
 {
  "versao": 1,
- "gerado_em": "2026-11-09T00:12:49Z",
+ "gerado_em": "2026-11-09T00:47:05Z",
  "fontes": {
   "sgs": "Banco Central do Brasil — Sistema Gerenciador de Séries Temporais (api.bcb.gov.br), licença ODbL",
   "focus": "Banco Central do Brasil — Expectativas de mercado (Focus), API Olinda",
-  "bolsa": "Yahoo Finance (não oficial) — ^BVSP e ^GSPC"
+  "bolsa": "stooq (stooq.com) — ^bvp (Ibovespa) e ^spx (S&P 500), fechamento mensal"
  },
  "hoje": "2026-11-08",
  "indicadores": {
@@ -464,27 +464,33 @@
    "nome": "Ibovespa",
    "tipo": "bolsa",
    "unidade": "pontos",
-   "fonte": "yahoo:^BVSP",
+   "fonte": "stooq:^bvp",
    "desde": 1995,
    "descricao": "Fechamento do índice no fim do ano; a variação é nominal, em reais",
    "meta": null,
    "projecao": null,
    "nivel": {},
    "realizado": {},
-   "parcial": {}
+   "parcial": {},
+   "notas": [
+    "O stooq não respondeu ao robô (^bvp); a série fica vazia até haver uma fonte aberta."
+   ]
   },
   "sp500": {
    "nome": "S&P 500",
    "tipo": "bolsa",
    "unidade": "pontos",
-   "fonte": "yahoo:^GSPC",
+   "fonte": "stooq:^spx",
    "desde": 1995,
    "descricao": "Fechamento do índice no fim do ano; a variação é nominal, em dólares",
    "meta": null,
    "projecao": null,
    "nivel": {},
    "realizado": {},
-   "parcial": {}
+   "parcial": {},
+   "notas": [
+    "O stooq não respondeu ao robô (^spx); a série fica vazia até haver uma fonte aberta."
+   ]
   }
  }
 }
