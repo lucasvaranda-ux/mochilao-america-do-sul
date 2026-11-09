@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-08",
+ "atualizado_em": "2026-11-09",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -84,8 +84,7 @@
    "imdb": "tt0414993",
    "link": "https://www.themoviedb.org/movie/1381-the-fountain/watch?locale=BR",
    "assinatura": [
-    "Disney+",
-    "Prime Video"
+    "Disney+"
    ],
    "gratis": [],
    "anuncios": [],
@@ -111,9 +110,7 @@
    "tmdb": "movie/34584",
    "imdb": "tt0088323",
    "link": "https://www.themoviedb.org/movie/34584-die-unendliche-geschichte/watch?locale=BR",
-   "assinatura": [
-    "Globoplay"
-   ],
+   "assinatura": [],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
@@ -1730,7 +1727,6 @@
    "imdb": "tt0417741",
    "link": "https://www.themoviedb.org/movie/767-harry-potter-and-the-half-blood-prince/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1921,7 +1917,6 @@
    "imdb": "tt0107290",
    "link": "https://www.themoviedb.org/movie/329-jurassic-park/watch?locale=BR",
    "assinatura": [
-    "Apple TV",
     "Disney+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
@@ -2101,7 +2096,6 @@
    "imdb": "tt0133093",
    "link": "https://www.themoviedb.org/movie/603-the-matrix/watch?locale=BR",
    "assinatura": [
-    "Globoplay",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -2708,8 +2702,7 @@
     "Claro tv+",
     "Disney+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)",
-    "Prime Video"
+    "HBO Max (canal na Prime Video)"
    ],
    "gratis": [],
    "anuncios": [],
@@ -2815,7 +2808,6 @@
    "imdb": "tt0082971",
    "link": "https://www.themoviedb.org/movie/85-raiders-of-the-lost-ark/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Oldflix",
     "Paramount Plus Premium",
     "Paramount+",
