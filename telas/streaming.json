@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-10-12",
+ "atualizado_em": "2026-11-08",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -55,12 +55,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -78,12 +76,8 @@
    "anuncios": [
     "NetMovies"
    ],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "a-fonte-da-vida-2006": {
    "tmdb": "movie/1381",
@@ -118,18 +112,15 @@
    "imdb": "tt0088323",
    "link": "https://www.themoviedb.org/movie/34584-die-unendliche-geschichte/watch?locale=BR",
    "assinatura": [
-    "Globoplay",
-    "Telecine (canal na Prime Video)"
+    "Globoplay"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ],
    "compra": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ]
   },
   "a-lenda-de-korra-2012": {
@@ -193,12 +184,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -358,7 +347,8 @@
     "Cartoon Network (canal na Prime Video)",
     "Claro tv+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [
@@ -366,12 +356,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -381,7 +369,8 @@
    "link": "https://www.themoviedb.org/movie/338952-fantastic-beasts-the-crimes-of-grindelwald/watch?locale=BR",
    "assinatura": [
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [
@@ -389,12 +378,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -404,7 +391,8 @@
    "link": "https://www.themoviedb.org/movie/338953-fantastic-beasts-the-secrets-of-dumbledore/watch?locale=BR",
    "assinatura": [
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [
@@ -412,12 +400,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -507,7 +493,6 @@
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -587,12 +572,15 @@
    "imdb": "tt35854736",
    "link": "https://www.themoviedb.org/tv/284833-avatar-seven-havens/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Paramount Plus Premium",
     "Paramount+",
     "Paramount+ (canal na Apple TV)",
     "Paramount+ (canal na Prime Video)"
    ],
-   "gratis": [],
+   "gratis": [
+    "Prime Video"
+   ],
    "anuncios": [],
    "aluguel": [],
    "compra": []
@@ -728,12 +716,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -767,6 +753,7 @@
    "imdb": "tt0140888",
    "link": "https://www.themoviedb.org/movie/666-central-do-brasil/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Globoplay",
     "Netflix",
     "Telecine (canal na Prime Video)"
@@ -774,12 +761,10 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ],
    "compra": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ]
   },
   "chapolin-1973": {
@@ -896,6 +881,8 @@
    "imdb": "tt0879870",
    "link": "https://www.themoviedb.org/movie/38167-eat-pray-love/watch?locale=BR",
    "assinatura": [
+    "Apple TV",
+    "Apple TV (canal na Prime Video)",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Netflix",
@@ -906,12 +893,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -948,7 +933,6 @@
    "imdb": "tt29258436",
    "link": "https://www.themoviedb.org/tv/235635-como-agua-para-chocolate/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -962,7 +946,7 @@
    "imdb": "tt0892769",
    "link": "https://www.themoviedb.org/movie/10191-how-to-train-your-dragon/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
+    "Netflix",
     "Prime Video",
     "Telecine (canal na Prime Video)"
    ],
@@ -971,12 +955,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -991,11 +973,9 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1056,12 +1036,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1076,12 +1054,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1194,8 +1170,7 @@
     "Apple TV (loja)"
    ],
    "compra": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ]
   },
   "duna-a-profecia-2024": {
@@ -1226,12 +1201,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1240,18 +1213,17 @@
    "imdb": "tt0190590",
    "link": "https://www.themoviedb.org/movie/134-o-brother-where-art-thou/watch?locale=BR",
    "assinatura": [
-    "Cindie (canal na Prime Video)",
-    "Claro tv+"
+    "Cindie (canal na Prime Video)"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play"
+    "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play"
+    "Prime Video (loja)"
    ]
   },
   "eami-2022": {
@@ -1338,12 +1310,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1495,12 +1465,8 @@
    "anuncios": [
     "Mercado Play"
    ],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "gente-grande-2010": {
    "tmdb": "movie/38365",
@@ -1608,12 +1574,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1643,18 +1607,17 @@
    "link": "https://www.themoviedb.org/movie/672-harry-potter-and-the-chamber-of-secrets/watch?locale=BR",
    "assinatura": [
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1663,19 +1626,19 @@
    "imdb": "tt0373889",
    "link": "https://www.themoviedb.org/movie/675-harry-potter-and-the-order-of-the-phoenix/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1686,18 +1649,16 @@
    "assinatura": [
     "Claro tv+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)",
-    "Google Play",
-    "Prime Video (loja)"
+    "Apple TV (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1706,19 +1667,19 @@
    "imdb": "tt0926084",
    "link": "https://www.themoviedb.org/movie/12444-harry-potter-and-the-deathly-hallows-part-1/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1727,19 +1688,19 @@
    "imdb": "tt1201607",
    "link": "https://www.themoviedb.org/movie/12445-harry-potter-and-the-deathly-hallows-part-2/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1750,18 +1711,17 @@
    "assinatura": [
     "Claro tv+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1770,19 +1730,19 @@
    "imdb": "tt0417741",
    "link": "https://www.themoviedb.org/movie/767-harry-potter-and-the-half-blood-prince/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1791,19 +1751,19 @@
    "imdb": "tt0304141",
    "link": "https://www.themoviedb.org/movie/673-harry-potter-and-the-prisoner-of-azkaban/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1873,14 +1833,12 @@
   "human-2015": {
    "tmdb": "movie/359364",
    "imdb": "tt3327994",
-   "link": "https://www.themoviedb.org/movie/359364-human/watch?locale=BR",
+   "link": "",
    "assinatura": [],
    "gratis": [],
    "anuncios": [],
    "aluguel": [],
-   "compra": [
-    "Google Play"
-   ]
+   "compra": []
   },
   "inside-job-2021": {
    "tmdb": "tv/97727",
@@ -1907,12 +1865,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -1966,7 +1922,6 @@
    "link": "https://www.themoviedb.org/movie/329-jurassic-park/watch?locale=BR",
    "assinatura": [
     "Apple TV",
-    "Apple TV (canal na Prime Video)",
     "Disney+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
@@ -1978,12 +1933,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2025,7 +1978,6 @@
    "link": "https://www.themoviedb.org/movie/9502-kung-fu-panda/watch?locale=BR",
    "assinatura": [
     "Claro tv+",
-    "Globoplay",
     "Prime Video",
     "Telecine (canal na Prime Video)"
    ],
@@ -2051,12 +2003,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2136,7 +2086,8 @@
    "link": "https://www.themoviedb.org/tv/196322-dark-matter/watch?locale=BR",
    "assinatura": [
     "Apple TV",
-    "Apple TV (canal na Prime Video)"
+    "Apple TV (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [
     "Apple TV"
@@ -2151,18 +2102,17 @@
    "link": "https://www.themoviedb.org/movie/603-the-matrix/watch?locale=BR",
    "assinatura": [
     "Globoplay",
-    "Telecine (canal na Prime Video)"
+    "HBO Max",
+    "HBO Max (canal na Prime Video)"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2177,12 +2127,10 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ],
    "compra": [
-    "Apple TV (loja)",
-    "Google Play"
+    "Apple TV (loja)"
    ]
   },
   "mike-molly-2010": {
@@ -2256,12 +2204,16 @@
   "mr-robot-2015": {
    "tmdb": "tv/62560",
    "imdb": "tt4158110",
-   "link": "",
-   "assinatura": [],
+   "link": "https://www.themoviedb.org/tv/62560-mr-robot/watch?locale=BR",
+   "assinatura": [
+    "Universal+ (canal na Prime Video)"
+   ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [],
-   "compra": []
+   "compra": [
+    "Prime Video (loja)"
+   ]
   },
   "mrs-davis-2023": {
    "tmdb": "tv/197548",
@@ -2282,16 +2234,12 @@
    "link": "https://www.themoviedb.org/movie/178189-inner-worlds-outer-worlds/watch?locale=BR",
    "assinatura": [
     "Aquarius (canal na Prime Video)",
-    "Claro tv+",
     "Magellan TV"
    ],
-   "gratis": [
-    "Filmtap"
-   ],
+   "gratis": [],
    "anuncios": [
     "Filmzie",
-    "Plex",
-    "Plex Channel"
+    "Plex"
    ],
    "aluguel": [],
    "compra": []
@@ -2317,12 +2265,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2384,12 +2330,8 @@
    ],
    "gratis": [],
    "anuncios": [],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "nomadland-2020": {
    "tmdb": "movie/581734",
@@ -2462,17 +2404,12 @@
    "imdb": "tt0271383",
    "link": "https://www.themoviedb.org/movie/40096-o-auto-da-compadecida/watch?locale=BR",
    "assinatura": [
-    "Globoplay",
-    "Telecine (canal na Prime Video)"
+    "Globoplay"
    ],
    "gratis": [],
    "anuncios": [],
-   "aluguel": [
-    "Apple TV (loja)"
-   ],
-   "compra": [
-    "Apple TV (loja)"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "o-botao-de-perola-2015": {
    "tmdb": "movie/319994",
@@ -2514,8 +2451,7 @@
    "assinatura": [],
    "gratis": [],
    "anuncios": [
-    "Plex",
-    "Plex Channel"
+    "Plex"
    ],
    "aluguel": [],
    "compra": []
@@ -2543,12 +2479,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2567,18 +2501,15 @@
    "imdb": "tt6587046",
    "link": "https://www.themoviedb.org/movie/508883/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Netflix"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2591,12 +2522,8 @@
    ],
    "gratis": [],
    "anuncios": [],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "o-novo-mundo-2005": {
    "tmdb": "movie/11400",
@@ -2627,11 +2554,9 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2689,6 +2614,7 @@
    "link": "https://www.themoviedb.org/movie/265297-le-sel-de-la-terre/watch?locale=BR",
    "assinatura": [
     "Aquarius (canal na Prime Video)",
+    "Claro tv+",
     "CurtaOn (canal na Prime Video)",
     "Reserva Imovision (canal na Prime Video)"
    ],
@@ -2739,18 +2665,17 @@
     "Disney+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
-    "Netflix"
+    "Netflix",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2761,18 +2686,17 @@
    "assinatura": [
     "Disney+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2781,20 +2705,20 @@
    "imdb": "tt0167260",
    "link": "https://www.themoviedb.org/movie/122-the-lord-of-the-rings-the-return-of-the-king/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Disney+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2855,12 +2779,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2903,12 +2825,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -2924,12 +2844,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3052,7 +2970,9 @@
    "tmdb": "movie/10312",
    "imdb": "tt0129290",
    "link": "https://www.themoviedb.org/movie/10312-patch-adams/watch?locale=BR",
-   "assinatura": [],
+   "assinatura": [
+    "Claro tv+"
+   ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
@@ -3128,12 +3048,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3187,12 +3105,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3294,12 +3210,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3330,10 +3244,8 @@
   "serras-da-desordem-2006": {
    "tmdb": "movie/173722",
    "imdb": "tt0922605",
-   "link": "https://www.themoviedb.org/movie/173722-serras-da-desordem/watch?locale=BR",
-   "assinatura": [
-    "CurtaOn (canal na Prime Video)"
-   ],
+   "link": "",
+   "assinatura": [],
    "gratis": [],
    "anuncios": [],
    "aluguel": [],
@@ -3344,7 +3256,6 @@
    "imdb": "tt0120102",
    "link": "https://www.themoviedb.org/movie/978-seven-years-in-tibet/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Sony One (canal na Prime Video)"
    ],
    "gratis": [],
@@ -3352,12 +3263,10 @@
    "aluguel": [
     "Apple TV (loja)",
     "Claro tv+",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3376,12 +3285,10 @@
    "anuncios": [],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3390,6 +3297,8 @@
    "imdb": "tt0490215",
    "link": "https://www.themoviedb.org/movie/68730-silence/watch?locale=BR",
    "assinatura": [
+    "MUBI",
+    "MUBI (canal na Prime Video)",
     "Prime Video"
    ],
    "gratis": [],
@@ -3417,9 +3326,7 @@
     "Apple TV",
     "Apple TV (canal na Prime Video)"
    ],
-   "gratis": [
-    "Apple TV"
-   ],
+   "gratis": [],
    "anuncios": [],
    "aluguel": [],
    "compra": []
@@ -3810,7 +3717,6 @@
    "imdb": "tt13406094",
    "link": "https://www.themoviedb.org/tv/111803-the-white-lotus/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -3839,6 +3745,7 @@
    "imdb": "tt0175142",
    "link": "https://www.themoviedb.org/movie/4247-scary-movie/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Netflix",
     "Paramount Plus Premium",
     "Paramount+"
@@ -3849,12 +3756,10 @@
    ],
    "aluguel": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
-    "Google Play",
     "Prime Video (loja)"
    ]
   },
@@ -3863,6 +3768,7 @@
    "imdb": "tt0460637",
    "link": "https://www.themoviedb.org/tv/252-everybody-hates-chris/watch?locale=BR",
    "assinatura": [
+    "Disney+",
     "Globoplay",
     "Netflix",
     "Paramount Plus Premium",
@@ -4044,12 +3950,8 @@
    ],
    "gratis": [],
    "anuncios": [],
-   "aluguel": [
-    "Google Play"
-   ],
-   "compra": [
-    "Google Play"
-   ]
+   "aluguel": [],
+   "compra": []
   },
   "vinland-saga-2019": {
    "tmdb": "tv/88803",
@@ -4172,11 +4074,9 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Google Play",
     "Prime Video (loja)"
    ],
    "compra": [
-    "Google Play",
     "Prime Video (loja)"
    ]
   }

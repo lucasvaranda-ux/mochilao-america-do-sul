@@ -224,6 +224,13 @@
    "tipo": "serie",
    "motivo": "nenhum resultado com o mesmo título e ano (±1)",
    "tentado_em": "2026-10-12"
+  },
+  "wasington-2026": {
+   "titulo": "Wasington",
+   "ano": "2026",
+   "tipo": "filme",
+   "motivo": "TMDB movie/1808017 sem IMDb",
+   "tentado_em": "2026-10-28"
   }
  }
 }
