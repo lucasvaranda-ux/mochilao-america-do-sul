@@ -3,6 +3,13 @@
   "itens": [
     {
       "quando": "2026-11-09",
+      "secao": "Início › Juntos",
+      "pedido_resumo": "Juntar todos no mesmo gráfico; por que o dólar não foi para a mesma escala.",
+      "o_que_mudou": "Novo controle \"Separados · Juntos · Os dois\". Juntos: um gráfico só com todos os indicadores ligados, cada um com a sua cor fixa, legenda, nome no fim da linha, valores do ano ao tocar e tabela; o dólar e as bolsas entram pela variação no ano; só o realizado. \"Teto de 30%\" corta o que passa de 30% e escreve o valor. \"Mesma escala\" nos separados passou a incluir o dólar e as bolsas.",
+      "pr": "#18"
+    },
+    {
+      "quando": "2026-11-09",
       "secao": "Todo o Inv",
       "pedido_resumo": "Um lugar no próprio site para falar com o Claude (com microfone) e poder recolher ou expandir cada quadro.",
       "o_que_mudou": "Cada cartão e bloco ganhou um chevron para recolher ou expandir (fica guardado no aparelho) e o balão \"Pedir mudança\", que abre uma folha com a seção já preenchida, campo grande e microfone. \"Recolher tudo\" no Início e em Empresas. No Mais: \"Meus pedidos\" e esta lista.",
