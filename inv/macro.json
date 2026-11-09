@@ -1,6 +1,6 @@
 {
  "versao": 1,
- "gerado_em": "2026-11-09T00:39:24Z",
+ "gerado_em": "2026-11-09T00:47:05Z",
  "fontes": {
   "sgs": "Banco Central do Brasil — Sistema Gerenciador de Séries Temporais (api.bcb.gov.br), licença ODbL",
   "focus": "Banco Central do Brasil — Expectativas de mercado (Focus), API Olinda",
@@ -471,7 +471,10 @@
    "projecao": null,
    "nivel": {},
    "realizado": {},
-   "parcial": {}
+   "parcial": {},
+   "notas": [
+    "O stooq não respondeu ao robô (^bvp); a série fica vazia até haver uma fonte aberta."
+   ]
   },
   "sp500": {
    "nome": "S&P 500",
@@ -484,7 +487,10 @@
    "projecao": null,
    "nivel": {},
    "realizado": {},
-   "parcial": {}
+   "parcial": {},
+   "notas": [
+    "O stooq não respondeu ao robô (^spx); a série fica vazia até haver uma fonte aberta."
+   ]
   }
  }
 }
