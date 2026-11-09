@@ -399,7 +399,7 @@ a.btn{text-decoration:none}
     <p class="aviso" id="aviso" hidden></p>
     <div class="grade" id="graficos"><p class="vazio">Carregando os indicadores…</p></div>
     <div id="ini-emp"></div>
-    <p class="rodape">Não é recomendação de investimento. Preços de fechamento, sem ajuste por dividendos. Yahoo Finance (não oficial) para ações; Banco Central para os indicadores. <button class="linkbt" type="button" data-ir="mais">Mais</button></p>
+    <p class="rodape">Não é recomendação de investimento. Preços de fechamento. Ações pelo stooq, pela brapi (B3) e pela Twelve Data; indicadores pelo Banco Central. <button class="linkbt" type="button" data-ir="mais">Mais</button></p>
   </section>
 
   <section class="panel" id="p-empresas" aria-label="Empresas"><div class="pad"><div class="pghead"><h2>Empresas</h2></div><div id="emp-corpo"></div></div></section>
@@ -420,7 +420,8 @@ a.btn{text-decoration:none}
         <ul>
           <li><b>Indicadores:</b> Banco Central do Brasil, Sistema Gerenciador de Séries Temporais: IPCA (série 433), Selic (4390), CDI (4391), IGP-M (189), poupança (7828), dólar PTAX de fim de mês (3696), meta de inflação do CMN (13521) e meta Selic (432).</li>
           <li><b>Projeções:</b> mediana do boletim Focus (expectativas de mercado do Banco Central).</li>
-          <li><b>Ibovespa, S&amp;P 500 e ações:</b> Yahoo Finance (não oficial). Os números podem atrasar e o serviço pode mudar sem aviso.</li>
+          <li><b>Ibovespa, S&amp;P 500 e ações:</b> stooq (stooq.com), com a brapi (brapi.dev) para a B3 e a Twelve Data quando faltar algo. São preços de fechamento, atualizados uma vez por dia útil; podem vir ajustados por desdobramentos e proventos, conforme a fonte. Cada empresa mostra de onde veio o número.</li>
+          <li><b>Busca:</b> lista de ações da B3 (brapi e uma lista fixa das mais conhecidas) e dos EUA (arquivo público da SEC, o órgão regulador americano), atualizada uma vez por semana.</li>
           <li><b>Acumulado no ano:</b> as variações de cada mês multiplicadas: (1 + m₁) × (1 + m₂) × … − 1. O ano corrente usa só os meses já fechados.</li>
           <li><b>Média, atual e diferença:</b> média simples dos fechamentos dos últimos 2 anos; o último fechamento; e quanto o atual está acima ou abaixo da média, em %.</li>
           <li id="mais-crit"><b>As 10 empresas de cada bolsa:</b> as que mais vezes estiveram entre as 10 maiores por valor de mercado nos fins de ano de 2016 a 2025 (curadoria a partir de rankings públicos; "certeza" diz quanto cada posição está confirmada).</li>
@@ -713,7 +714,7 @@ function cartao(k){var ind=MACRO.indicadores[k];if(!ind)return null;
   var tabBox=h('div',{class:'tabbox'});if(aberto)tabBox.appendChild(tabela(ind,o,anosDoCartao(o)));
   card.appendChild(tabBox);
   card.appendChild(h('div',{class:'ch-pe'},h('button',{class:'linkbt',type:'button','aria-expanded':String(aberto),onclick:function(){VERTAB[k]=!VERTAB[k];renderAll()},text:aberto?'Esconder tabela':'Ver tabela'}),
-    h('small',{text:ind.serie?'Fonte: BCB, série '+ind.serie:ind.fonte?'Fonte: Yahoo Finance':''})));
+    h('small',{text:ind.serie?'Fonte: BCB, série '+ind.serie:ind.fonte?'Fonte: stooq':''})));
   return card}
 
 // ---------- INICIO ----------
@@ -856,7 +857,7 @@ var PEDINDO={};
 var CMP_RANGE='2y',CMP_ENFASE=null;
 var ES={mercado:'br',ord:null,dir:-1};
 var DET={range:'2y'};
-var SIM_RE=/^[A-Z0-9^][A-Z0-9.\-=^]{0,14}$/;
+var SIM_RE=/^[A-Z0-9^][A-Z0-9.\-=^]{0,14}$/;var FONTE_NOME={stooq:'stooq',brapi:'brapi.dev',twelve:'Twelve Data'};
 function mercados(){return (EMP&&Array.isArray(EMP.mercados))?EMP.mercados:[]}
 var EMPIX=null;
 function empIx(){if(EMPIX&&EMP)return EMPIX;EMPIX={};mercados().forEach(function(m){(m.empresas||[]).forEach(function(e){if(e&&e.simbolo)EMPIX[e.simbolo]={e:e,m:m}})});return EMPIX}
@@ -868,8 +869,8 @@ function fmtPreco(v,m){return v==null?'–':fmtNum(v,casasDe(m))}
 function difTx(d){if(d==null||!isFinite(d))return '–';return fmtPct(d,1,true)+' '+(d>0?'▲':d<0?'▼':'')}
 function bandeira(p){try{if(!/^[A-Z]{2}$/.test(p))return '';return String.fromCodePoint(127397+p.charCodeAt(0),127397+p.charCodeAt(1))}catch(e){return ''}}
 // números de uma empresa: do robô (cotacoes.json) ou da função (busca); null se ainda não há
-function statsDe(sym){var c=cot(sym);if(c&&c.atual!=null)return {atual:c.atual,media:c.media_2a,dif:c.dif_pct,data:c.data_atual,moeda:c.moeda,serie:c.semanal||[],min:c.min_2a,max:c.max_2a,erro:c.erro,fonte:'robo'};
-  var f=FUNC[sym+'|2y'];if(f&&!f.erro)return {atual:f.atual,media:f.media,dif:f.dif_pct,data:f.data_atual,moeda:f.moeda,serie:f.serie||[],min:f.min,max:f.max,fonte:'funcao'};return null}
+function statsDe(sym){var c=cot(sym);if(c&&c.atual!=null)return {atual:c.atual,media:c.media_2a,dif:c.dif_pct,data:c.data_atual,moeda:c.moeda,serie:c.semanal||[],min:c.min_2a,max:c.max_2a,erro:c.erro,fonte:'robo',de:FONTE_NOME[c.fonte]||''};
+  var f=FUNC[sym+'|2y'];if(f&&!f.erro)return {atual:f.atual,media:f.media,dif:f.dif_pct,data:f.data_atual,moeda:f.moeda,serie:f.serie||[],min:f.min,max:f.max,fonte:'funcao',de:typeof f.fonte==='string'&&/^[\w. -]{1,30}$/.test(f.fonte)?f.fonte:''};return null}
 function pedeFuncao(sym,range,depois){var k=sym+'|'+range;if(FUNC[k]||PEDINDO[k])return;PEDINDO[k]=1;
   var o={};try{o.signal=AbortSignal.timeout(20000)}catch(e){}
   fetch('/api/inv-cotacao?s='+encodeURIComponent(sym)+'&range='+range,o).then(function(r){return r.json().then(function(j){if(!r.ok)throw {status:r.status,erro:j&&j.erro};return j})})
@@ -1050,7 +1051,7 @@ function abreDetalhe(sym){var c=el('det-corpo');c.textContent='';sym=String(sym|
     if(serie.length){var vs=serie.map(function(p){return p[1]});var v0=vs[0],vu=vs[vs.length-1];
       rod.appendChild(h('span',null,'Mínimo ',h('b',{text:fmtMoeda(Math.min.apply(null,vs),moe)})));rod.appendChild(h('span',null,'Máximo ',h('b',{text:fmtMoeda(Math.max.apply(null,vs),moe)})));
       rod.appendChild(h('span',null,'No período ',h('b',{text:fmtPct((vu/v0-1)*100,1,true)})))}}
-  c.appendChild(h('p',{class:'emp-info',text:'Fechamento de '+fmtData(st.data)+' · Yahoo Finance (não oficial) · preços sem ajuste por dividendos'+(st.serie&&st.fonte==='robo'?' · gráfico de 2 anos com o fechamento de cada semana':'')}));
+  c.appendChild(h('p',{class:'emp-info',text:'Fechamento de '+fmtData(st.data)+(st.de?' · fonte: '+st.de:'')+(st.serie&&st.fonte==='robo'?' · gráfico de 2 anos com o fechamento de cada semana':'')}));
   var noCmp=UI.emp.indexOf(sym)>=0,fix=PREF.fixadas.indexOf(sym)>=0;
   c.appendChild(h('div',{class:'det-bts'},
     h('button',{class:'btn'+(noCmp?' pri':''),type:'button','aria-pressed':String(noCmp),onclick:function(){ligaEmp(sym,!noCmp);abreDetalhe(sym)},text:noCmp?'Na comparação ✓':'Comparar'}),
@@ -1092,7 +1093,20 @@ function fazBusca(q){q=String(q||'').trim();BQ.q=q;var box=el('bres');if(!box)re
   var seq=++BQ.seq;
   if(BCACHE[q.toLowerCase()]){mostraBusca(q,BCACHE[q.toLowerCase()]);return}
   box.textContent='';var lc=locais(q);if(lc.length)box.appendChild(blocoLocais(lc));box.appendChild(h('p',{class:'vazio',text:'Procurando…'}));
-  var o={};try{o.signal=AbortSignal.timeout(15000)}catch(e){}
+  carregaIndice().then(function(ix){if(seq!==BQ.seq)return;var lx=empIx();var itens=buscaNoIndice(ix,q).filter(function(x){return !lx[x.simbolo]});BCACHE[q.toLowerCase()]={itens:itens};mostraBusca(q,{itens:itens})},function(){if(seq===BQ.seq)buscaFuncao(q,seq)})}
+// índice local (inv/busca.json, do robô): [[símbolo, nome]]; o grupo sai do sufixo (.SA = Brasil, sem sufixo = EUA)
+var INDICE=null;
+function carregaIndice(){if(INDICE)return INDICE;var o={};try{o.signal=AbortSignal.timeout(15000)}catch(e){}
+  INDICE=fetch('/inv/busca.json',o).then(function(r){if(!r.ok)throw new Error('índice '+r.status);return r.json()}).then(function(j){if(!j||!Array.isArray(j.itens)||!j.itens.length)throw new Error('índice vazio');return j});
+  INDICE.catch(function(){INDICE=null});return INDICE}
+function normBusca(t){return String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9.^ -]+/g,' ').replace(/\s+/g,' ').trim()}
+function grupoSim(sy){return /\.SA$/.test(sy)?'br':/\./.test(sy)||sy.charAt(0)==='^'?'outro':'eua'}
+function buscaNoIndice(ix,q){var n=normBusca(q);if(!n)return [];var ord={br:0,eua:1,outro:2};var ac=[];
+  ix.itens.forEach(function(x,i){if(!Array.isArray(x)||typeof x[0]!=='string'||!SIM_RE.test(x[0]))return;var sim=x[0].toLowerCase(),raiz=sim.replace(/\.[a-z]+$/,''),nome=normBusca(x[1]);var p=null;
+    if(sim===n||raiz===n)p=0;else if(sim.indexOf(n)===0||raiz.indexOf(n)===0)p=1;else if((' '+nome).indexOf(' '+n)>=0)p=2;else if(n.length>=3&&nome.indexOf(n)>=0)p=3;
+    if(p!==null){var g=grupoSim(x[0]);ac.push([p,ord[g],i,{simbolo:x[0],nome:String(x[1]||x[0]),bolsa_nome:g==='br'?'B3':g==='eua'?'EUA':'',grupo:g}])}});
+  ac.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]||a[2]-b[2]});return ac.slice(0,12).map(function(a){return a[3]})}
+function buscaFuncao(q,seq){var o={};try{o.signal=AbortSignal.timeout(15000)}catch(e){}
   fetch('/api/inv-busca?q='+encodeURIComponent(q),o).then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok)throw {status:r.status};return j})})
     .then(function(j){var itens=(j&&Array.isArray(j.itens)?j.itens:[]).filter(function(x){return x&&SIM_RE.test(String(x.simbolo||''))});BCACHE[q.toLowerCase()]={itens:itens};if(seq===BQ.seq)mostraBusca(q,{itens:itens})})
     .catch(function(e){if(seq!==BQ.seq)return;mostraBusca(q,{erro:e&&e.status===429?'Muitas buscas nesta hora; espere um pouco.':'A busca não respondeu. Tente de novo.'})})}

@@ -162,10 +162,12 @@
       "maxDuration": 300
     },
     "api/inv-cotacao.mjs": {
-      "maxDuration": 15
+      "maxDuration": 30,
+      "includeFiles": "inv/empresas.json"
     },
     "api/inv-busca.mjs": {
-      "maxDuration": 15
+      "maxDuration": 15,
+      "includeFiles": "inv/busca.json"
     }
   },
   "redirects": [

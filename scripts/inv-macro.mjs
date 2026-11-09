@@ -1,11 +1,11 @@
 // Inv · robô dos indicadores: IPCA, Selic, CDI, IGP-M, poupança e dólar (SGS do Banco Central), metas (CMN e Copom),
-// projeções do Focus (API Olinda do BC) e Ibovespa e S&P 500 (Yahoo) → inv/macro.json.
+// projeções do Focus (API Olinda do BC) e Ibovespa e S&P 500 (stooq, ^bvp e ^spx) → inv/macro.json.
 // Node 20, sem dependências. Só regrava o arquivo quando algo além de gerado_em/hoje mudou.
-// Testes: node scripts/inv-macro.teste.mjs (servidor falso por INV_BCB_BASE, INV_OLINDA_BASE e INV_YAHOO_BASE).
+// Testes: node scripts/inv-macro.teste.mjs (servidor falso por INV_BCB_BASE, INV_OLINDA_BASE e INV_STOOQ_BASE).
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { yahooChart } from '../api/_inv-yahoo.mjs';
+import { stooqSerie } from '../api/_inv-fontes.mjs';
 
 const BCB = () => process.env.INV_BCB_BASE || 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.';
 const OLINDA = () => process.env.INV_OLINDA_BASE || 'https://olinda.bcb.gov.br/olinda/servico/Expectativas/versao/v1/odata/';
@@ -146,17 +146,18 @@ export async function focus(indicador, hoje) {
   return { projecao, projecao_data: data };
 }
 
-// ---------- bolsas (Yahoo) ----------
+// ---------- bolsas (stooq, mensal) ----------
+// o Yahoo saiu em 09/11/2026 (responde 429 a servidores); o stooq dá o fechamento de cada mês, e o último mês é o parcial
+export const BOLSAS_STOOQ = { ibovespa: '^bvp', sp500: '^spx' };
 export async function bolsa(simbolo, desde = 1995) {
-  const { meta, pontos } = await yahooChart(simbolo, { range: 'max', interval: '1mo' });
+  const pontos = await stooqSerie(simbolo, { range: 'max' });
   if (!pontos.length) throw new Error(simbolo + ': sem pontos');
   const nivel = {}, parcial = {};
   for (const [d, v] of pontos) if (d.slice(5, 7) === '12') nivel[Number(d.slice(0, 4))] = r2(v);
-  const anoAtual = meta.data_atual ? Number(meta.data_atual.slice(0, 4)) : Number(pontos[pontos.length - 1][0].slice(0, 4));
-  const atual = meta.atual ?? pontos[pontos.length - 1][1];
+  const [dt, atual] = pontos[pontos.length - 1];
+  const anoAtual = Number(dt.slice(0, 4));
   if (!nivel[anoAtual]) {
     nivel[anoAtual] = r2(atual);
-    const dt = meta.data_atual || pontos[pontos.length - 1][0];
     parcial[anoAtual] = 'até ' + dt.slice(8, 10) + '/' + dt.slice(5, 7);
   }
   const realizado = {};
@@ -177,8 +178,8 @@ export function base() {
     cdi: { nome: 'CDI', tipo: 'juros', unidade: 'pct_ano', serie: 4391, desde: 1995, descricao: 'Taxa DI (B3) acumulada no ano', meta: null, projecao: null, notas: ['O CDI não tem meta nem projeção do Focus; ele acompanha a Selic.'] },
     poupanca: { nome: 'Poupança', tipo: 'juros', unidade: 'pct_ano', serie: 7828, desde: 1995, descricao: 'Rendimento da caderneta acumulado no ano (regra nova desde maio de 2012)', meta: null, projecao: null },
     dolar: { nome: 'Dólar', tipo: 'cambio', unidade: 'brl', serie: 3696, desde: 1995, descricao: 'Cotação de venda (PTAX) no fim do ano; a variação é sobre o fim do ano anterior', meta: null, projecao_unidade: 'brl', notas: ['A projeção do Focus é a cotação no fim do ano, em reais.'] },
-    ibovespa: { nome: 'Ibovespa', tipo: 'bolsa', unidade: 'pontos', fonte: 'yahoo:^BVSP', desde: 1995, descricao: 'Fechamento do índice no fim do ano; a variação é nominal, em reais', meta: null, projecao: null },
-    sp500: { nome: 'S&P 500', tipo: 'bolsa', unidade: 'pontos', fonte: 'yahoo:^GSPC', desde: 1995, descricao: 'Fechamento do índice no fim do ano; a variação é nominal, em dólares', meta: null, projecao: null }
+    ibovespa: { nome: 'Ibovespa', tipo: 'bolsa', unidade: 'pontos', fonte: 'stooq:^bvp', desde: 1995, descricao: 'Fechamento do índice no fim do ano; a variação é nominal, em reais', meta: null, projecao: null },
+    sp500: { nome: 'S&P 500', tipo: 'bolsa', unidade: 'pontos', fonte: 'stooq:^spx', desde: 1995, descricao: 'Fechamento do índice no fim do ano; a variação é nominal, em dólares', meta: null, projecao: null }
   };
 }
 
@@ -220,10 +221,12 @@ export async function main({ raiz = process.cwd(), hoje, log = console.log } = {
     else { I[k].projecao = (ant[k] && ant[k].projecao) || null; if (ant[k] && ant[k].projecao_data) I[k].projecao_data = ant[k].projecao_data; }
   }
   // bolsas
-  for (const [k, s] of [['ibovespa', '^BVSP'], ['sp500', '^GSPC']]) {
-    const b = await tenta(`Yahoo ${s}`, () => bolsa(s));
+  for (const [k, s] of Object.entries(BOLSAS_STOOQ)) {
+    let nao = false;
+    const b = await tenta(`stooq ${s}`, async () => { try { return await bolsa(s); } catch (e) { nao = e.status === 404; throw e; } });
     if (b) Object.assign(I[k], b);
     else Object.assign(I[k], { nivel: (ant[k] && ant[k].nivel) || {}, realizado: (ant[k] && ant[k].realizado) || {}, parcial: (ant[k] && ant[k].parcial) || {} });
+    if (!b && nao && !Object.keys(I[k].nivel).length) I[k].notas = [`O stooq não tem o índice (${s}); a série fica vazia até haver uma fonte aberta.`];
   }
 
   const novo = {
@@ -231,7 +234,7 @@ export async function main({ raiz = process.cwd(), hoje, log = console.log } = {
     fontes: {
       sgs: 'Banco Central do Brasil — Sistema Gerenciador de Séries Temporais (api.bcb.gov.br), licença ODbL',
       focus: 'Banco Central do Brasil — Expectativas de mercado (Focus), API Olinda',
-      bolsa: 'Yahoo Finance (não oficial) — ^BVSP e ^GSPC'
+      bolsa: 'stooq (stooq.com) — ^bvp (Ibovespa) e ^spx (S&P 500), fechamento mensal'
     },
     hoje, indicadores: I
   };

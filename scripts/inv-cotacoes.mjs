@@ -1,15 +1,20 @@
-// Inv · robô das cotações: inv/empresas.json → Yahoo Finance (2 anos, diário) → inv/cotacoes.json.
-// Por empresa: atual, média dos 2 anos, diferença em %, mínimo, máximo, variação em 1 ano e o fechamento de cada semana.
-// Falhou hoje: fica o número de ontem, com "erro". Mais da metade falhou (o Yahoo bloqueou): não grava nada e sai com erro.
+// Inv · robô das cotações: inv/empresas.json → stooq, brapi.dev (B3) e Twelve Data, em cadeia (2 anos, diário) → inv/cotacoes.json.
+// Por empresa: atual, média dos 2 anos, diferença em %, mínimo, máximo, variação em 1 ano, o fechamento de cada semana e a fonte.
+// Cada fonte que falha 3 vezes seguidas (ou bate no limite, ou pede token) sai da rodada e a cadeia segue na próxima.
+// Falhou hoje: fica o número de ontem, com "erro". Mais da metade falhou: não grava nada e sai com erro.
+// Segredos opcionais: BRAPI_TOKEN (B3 inteira na brapi) e TWELVE_DATA_KEY (plano C). Sem eles, grava o que o stooq cobriu.
 // Node 20, sem dependências. Teste: node scripts/inv-cotacoes.teste.mjs
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { yahooChart, estatisticas, semanal } from '../api/_inv-yahoo.mjs';
+import { cotacaoEmCadeia, estatisticas, semanal, novoEstado, stooqCandidatos, partes, BOLSAS, NOMES } from '../api/_inv-fontes.mjs';
 
 const dorme = ms => new Promise(r => setTimeout(r, ms));
-const PAUSA = () => Number(process.env.INV_PAUSA_MS ?? 500);
-const ESPERAS = () => (process.env.INV_ESPERAS_MS || '2000,6000,15000').split(',').map(Number);
+const num = (v, p) => { const n = Number(v); return isFinite(n) ? n : p; };
+// pausa antes de cada chamada, por fonte (ms); Twelve Data grátis = 8 por minuto
+const PAUSAS = () => ({ stooq: num(process.env.INV_PAUSA_STOOQ_MS, 1000), brapi: num(process.env.INV_PAUSA_BRAPI_MS, 600), twelve: num(process.env.INV_PAUSA_TD_MS, 8000) });
+// prazo da rodada: o passo do workflow tem 12 min; depois disso, quem falta fica com o número de ontem
+const PRAZO = () => num(process.env.INV_PRAZO_MS, 10 * 60e3);
 
 // fechamento mais próximo de 365 dias antes do último
 export function var1a(pontos) {
@@ -20,48 +25,6 @@ export function var1a(pontos) {
   for (const [d, v] of pontos) { const x = Math.abs(Date.parse(d) - alvo); if (x < dist) { dist = x; melhor = v; } }
   if (!melhor || dist > 15 * 864e5) return null;
   return Math.round((vu / melhor - 1) * 1000) / 10;
-}
-
-export async function cotaUm(simbolo, { log = () => {} } = {}) {
-  const esperas = ESPERAS();
-  let ult;
-  for (let t = 0; t <= esperas.length; t++) {
-    try {
-      const { meta, pontos } = await yahooChart(simbolo, { range: '2y', interval: '1d' });
-      const e = estatisticas(pontos);
-      if (!e) throw Object.assign(new Error('sem pontos'), { status: 502 });
-      return {
-        nome: meta.nome, moeda: meta.moeda, bolsa: meta.bolsa, bolsa_nome: meta.bolsa_nome,
-        atual: e.atual, data_atual: e.data_atual, media_2a: e.media, dif_pct: e.dif_pct, min_2a: e.min, max_2a: e.max, n: e.n,
-        var_1a_pct: var1a(pontos), semanal: semanal(pontos)
-      };
-    } catch (e) {
-      ult = e;
-      if (e.status === 404 || e.status === 400) throw e; // símbolo errado: não adianta tentar de novo
-      if (t < esperas.length) { log(`${simbolo}: ${e.motivo || e.message}, nova tentativa`); await dorme(esperas[t]); }
-    }
-  }
-  ult.tentativas = esperas.length + 1;
-  throw ult;
-}
-
-
-// plano B (opcional): Twelve Data, só com o segredo TWELVE_DATA_KEY e só para quem falhou por bloqueio (não 404).
-// Plano grátis: 8 pedidos por minuto, por isso a pausa de 8 s. Sem a chave, não faz nada.
-const TD_BOLSA = { '.SA': 'BVMF', '.L': 'LSE', '.PA': 'Euronext', '.DE': 'XETR', '.AS': 'Euronext', '.SW': 'SIX', '.CO': 'OMXC', '.HK': 'HKEX', '.SS': 'XSHG', '.SZ': 'XSHE', '.T': 'JPX', '.NS': 'NSE', '.KS': 'KRX', '.TO': 'TSX', '.AX': 'ASX', '.TW': 'TWSE', '.SR': 'Tadawul' };
-export async function twelveData(simbolo, chave) {
-  const m = simbolo.match(/^(.+?)(\.[A-Z]+)?$/); const base = m[1], suf = m[2] || '';
-  if (suf && !TD_BOLSA[suf]) throw new Error('bolsa sem par no Twelve Data');
-  const u = new URL('https://api.twelvedata.com/time_series');
-  u.searchParams.set('symbol', base.replace('-', '.')); if (suf) u.searchParams.set('exchange', TD_BOLSA[suf]);
-  u.searchParams.set('interval', '1day'); u.searchParams.set('outputsize', '520'); u.searchParams.set('apikey', chave);
-  const r = await fetch(u, { signal: AbortSignal.timeout(20000) });
-  const j = await r.json();
-  if (j.status !== 'ok' || !Array.isArray(j.values)) throw new Error('Twelve Data: ' + (j.message || r.status));
-  const pontos = j.values.map(v => [v.datetime.slice(0, 10), Number(v.close)]).filter(p => isFinite(p[1])).reverse();
-  const e = estatisticas(pontos); if (!e) throw new Error('Twelve Data: sem pontos');
-  return { nome: simbolo, moeda: (j.meta && j.meta.currency) || null, bolsa: (j.meta && j.meta.exchange) || null, bolsa_nome: (j.meta && j.meta.exchange) || null,
-    atual: e.atual, data_atual: e.data_atual, media_2a: e.media, dif_pct: e.dif_pct, min_2a: e.min, max_2a: e.max, n: e.n, var_1a_pct: var1a(pontos), semanal: semanal(pontos), fonte: 'Twelve Data' };
 }
 
 // um item por linha, para o diff diário ser legível
@@ -75,48 +38,60 @@ const semData = o => JSON.stringify({ ...o, gerado_em: null });
 
 export async function main({ raiz = process.cwd(), hoje, log = console.log } = {}) {
   hoje = hoje || process.env.INV_HOJE || new Date().toLocaleDateString('en-CA', { timeZone: 'America/Sao_Paulo' });
+  const t0 = Date.now();
   const emp = JSON.parse(await readFile(join(raiz, 'inv/empresas.json'), 'utf8'));
   let antes = { itens: {} };
   try { antes = JSON.parse(await readFile(join(raiz, 'inv/cotacoes.json'), 'utf8')); } catch { }
-  const simbolos = [...new Set(emp.mercados.flatMap(m => m.empresas.map(e => e.simbolo)))];
-  const itens = {}; const cont = { ok: 0, sem: [], nao: [] };
-  for (let i = 0; i < simbolos.length; i++) {
-    const s = simbolos[i];
-    if (i) await dorme(PAUSA() + Math.random() * PAUSA() * .6);
+  const lista = []; const visto = new Set();
+  for (const m of emp.mercados) for (const e of m.empresas) if (!visto.has(e.simbolo)) { visto.add(e.simbolo); lista.push(e); }
+  const estado = novoEstado();
+  const P = PAUSAS(); const usou = {};
+  const pausa = async f => { if (usou[f]) await dorme(P[f] + Math.random() * P[f] * .3); usou[f] = 1; };
+  const itens = {}; const cont = { ok: 0, sem: [], nao: [], por: { stooq: 0, brapi: 0, twelve: 0 } };
+  const descobertos = {}; let estourou = false;
+  for (const e of lista) {
+    const s = e.simbolo;
+    const ant = antes.itens && antes.itens[s];
+    if (Date.now() - t0 > PRAZO()) {
+      estourou = true;
+      itens[s] = ant && ant.atual != null ? { ...ant, erro: 'Sem tempo nesta rodada' } : { erro: 'Sem tempo nesta rodada', atualizado_em: hoje };
+      cont.sem.push(`${s}: sem tempo`); continue;
+    }
     try {
-      itens[s] = { ...(await cotaUm(s, { log })), atualizado_em: hoje, erro: null };
-      cont.ok++;
-    } catch (e) {
-      const nao = e.status === 404;
-      const motivo = nao ? 'Símbolo não encontrado' : `${e.motivo || e.message}${e.tentativas ? ' em ' + e.tentativas + ' tentativas' : ''}`;
-      const ant = antes.itens && antes.itens[s];
+      const r = await cotacaoEmCadeia(s, { range: '2y', stooq: e.stooq, estado, pausa, log, hoje: new Date(hoje + 'T23:00:00Z') });
+      const st = estatisticas(r.pontos);
+      if (!st) throw Object.assign(new Error('sem pontos'), { status: 502 });
+      const [moeda0, bolsa] = BOLSAS[partes(s).suf] || [null, null];
+      itens[s] = {
+        nome: e.nome || r.nome || s, moeda: r.moeda || moeda0, bolsa: bolsa,
+        atual: st.atual, data_atual: st.data_atual, media_2a: st.media, dif_pct: st.dif_pct, min_2a: st.min, max_2a: st.max, n: st.n,
+        var_1a_pct: var1a(r.pontos), semanal: semanal(r.pontos), fonte: r.fonte, atualizado_em: hoje, erro: null
+      };
+      if (r.fonte === 'stooq' && r.simbolo_fonte !== stooqCandidatos(s)[0]) descobertos[s] = r.simbolo_fonte;
+      cont.ok++; cont.por[r.fonte]++;
+    } catch (err) {
+      const nao = err.status === 404;
+      const motivo = nao ? 'Símbolo não encontrado nas fontes' : 'Sem dados hoje';
       itens[s] = ant && ant.atual != null ? { ...ant, erro: motivo } : { erro: motivo, atualizado_em: hoje };
-      (nao ? cont.nao : cont.sem).push(`${s}: ${motivo}`);
+      (nao ? cont.nao : cont.sem).push(`${s}: ${err.motivo || err.message}`);
     }
   }
-  const CHAVE = process.env.TWELVE_DATA_KEY;
-  if (CHAVE && cont.sem.length) {
-    for (const linha of [...cont.sem]) {
-      const s = linha.split(':')[0];
-      try {
-        await dorme(8000);
-        itens[s] = { ...(await twelveData(s, CHAVE)), atualizado_em: hoje, erro: null };
-        cont.sem.splice(cont.sem.indexOf(linha), 1); cont.ok++;
-      } catch (e) { log(`${s}: plano B falhou (${e.message})`); }
-    }
-  }
-  const resumo = `${simbolos.length} símbolos: ${cont.ok} ok, ${cont.sem.length} sem dados${cont.sem.length ? ' (' + cont.sem.join('; ') + ')' : ''}, ${cont.nao.length} não encontrado${cont.nao.length === 1 ? '' : 's'}${cont.nao.length ? ' (' + cont.nao.join('; ') + ')' : ''}`;
+  const fontes = Object.keys(estado).map(f => `${NOMES[f]} ${cont.por[f]}${estado[f].fora ? ' (saiu da rodada: ' + estado[f].fora + ')' : ''}`).join(', ');
+  const resumo = `${lista.length} símbolos: ${cont.ok} ok, ${cont.sem.length} sem dados, ${cont.nao.length} não encontrado${cont.nao.length === 1 ? '' : 's'} · por fonte: ${fontes} · ${Math.round((Date.now() - t0) / 1000)} s${estourou ? ' (prazo estourado)' : ''}`;
   log(resumo);
+  if (cont.sem.length) log('Sem dados: ' + cont.sem.join(' | '));
+  if (cont.nao.length) log('Não encontrados: ' + cont.nao.join(' | '));
+  if (Object.keys(descobertos).length) log('Símbolos do stooq diferentes do padrão (pôr em "stooq" no empresas.json): ' + JSON.stringify(descobertos));
   const falhou = cont.sem.length + cont.nao.length;
-  if (falhou > simbolos.length / 2) {
-    log('Mais da metade falhou (a fonte deve ter bloqueado): nada gravado; a página segue com o arquivo anterior.');
-    return { gravou: false, bloqueado: true, cont };
+  if (falhou > lista.length / 2) {
+    log('Mais da metade falhou: nada gravado; a página segue com o arquivo anterior.');
+    return { gravou: false, bloqueado: true, cont, estado, descobertos, itens };
   }
-  const novo = { versao: 1, gerado_em: new Date().toISOString().replace(/\.\d+Z$/, 'Z'), fonte: 'Yahoo Finance (não oficial); preços de fechamento não ajustados', janela: '2 anos (≈ 500 pregões)', itens };
-  const gravou = semData(novo) !== semData({ ...antes, itens: antes.itens || {} }) || !antes.versao;
+  const novo = { versao: 2, gerado_em: new Date().toISOString().replace(/\.\d+Z$/, 'Z'), fonte: 'stooq, brapi.dev (B3) e Twelve Data, em cadeia; o campo "fonte" de cada item diz de onde veio', janela: '2 anos (≈ 500 pregões)', itens };
+  const gravou = semData(novo) !== semData({ ...antes, itens: antes.itens || {} }) || antes.versao !== 2;
   if (gravou) await writeFile(join(raiz, 'inv/cotacoes.json'), formatoItens(novo));
   log(gravou ? 'cotacoes.json gravado.' : 'cotacoes.json sem mudanças.');
-  return { gravou, bloqueado: false, cont };
+  return { gravou, bloqueado: false, cont, estado, descobertos, itens };
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {
