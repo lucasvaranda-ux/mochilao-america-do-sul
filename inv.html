@@ -417,6 +417,9 @@ ol.cm-tl::before{content:"";position:absolute;left:27px;top:8px;bottom:8px;width
 .cm-tl li{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;padding:8px 0}
 .cm-ano{position:relative;z-index:1;align-self:start;justify-self:start;min-width:56px;padding:3px 0;border-radius:999px;background:var(--acc-soft);color:var(--tx);font-size:15px;font-weight:800;text-align:center;box-shadow:0 0 0 4px var(--sheet)}
 .cm-tl .cm-dt{display:block;font-size:12.5px;font-weight:700;color:var(--tx2);margin-bottom:2px}
+.cm-tl li.atual .cm-ano{background:var(--acc);color:#0b0b0f;border-color:var(--acc)}
+.cm-tl li.atual>div{border-left:3px solid var(--acc);padding-left:10px;margin-left:-13px}
+.cm-vigor{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;color:var(--acc);margin:0 0 3px}
 .cm-tl p{font-size:14.5px}
 .cm-tl .cm-fo{display:block;font-size:12.5px;color:var(--tx3);margin-top:4px;line-height:1.45}
 .cm-tl .cm-fo a,.cm-fontes a{color:var(--acc);font-weight:700;text-underline-offset:2px}
@@ -1665,9 +1668,12 @@ function comoRender(erro){var c=el('como-corpo');c.textContent='';c.scrollTop=0;
       pn.appendChild(h('label',{class:'sw-t cm-sw',title:'Um tracinho no eixo do gráfico em cada ano em que o método mudou'},sw,'Mostrar mudanças de método no gráfico'))}
     else if(k==='meta')par('As mudanças da meta aparecem no próprio gráfico do IPCA, na linha tracejada e na faixa.');
     if(!x.mudancas.length)par('Nenhuma mudança com data confirmada.');
-    else{var ol=h('ol',{class:'cm-tl'});x.mudancas.forEach(function(m){try{
+    else{var ol=h('ol',{class:'cm-tl',reversed:'reversed'});
+      // do mais novo para o mais velho (pedido do Lucas, 09/11/2026); a mais recente é a conta em vigor e ganha destaque
+      var lista=x.mudancas.slice().sort(function(a,b){return (+b.ano-+a.ano)||String(b.data||'').localeCompare(String(a.data||''))});
+      lista.forEach(function(m,i){try{
       var fo=h('span',{class:'cm-fo'},'Documento: '+(m.fonte||'–'));if(m.url){fo.appendChild(document.createTextNode(' · '));fo.appendChild(h('a',{href:m.url,target:'_blank',rel:'noopener',text:'abrir'}))}
-      ol.appendChild(h('li',{'data-ano':m.ano},h('span',{class:'cm-ano num',text:String(m.ano)}),h('div',null,m.data?h('span',{class:'cm-dt num',text:m.data}):null,h('p',{text:m.o_que_mudou}),
+      ol.appendChild(h('li',{'data-ano':m.ano,class:i===0?'atual':null},h('span',{class:'cm-ano num',text:String(m.ano)}),h('div',null,i===0?h('span',{class:'cm-vigor',text:'Em vigor hoje'}):null,m.data?h('span',{class:'cm-dt num',text:m.data}):null,h('p',{text:m.o_que_mudou}),
         m.ressalva?h('p',{class:'cm-res cm-ressalva',text:'Ressalva: '+m.ressalva}):null,fo)))}catch(e){}});pn.appendChild(ol)}}catch(e){console.warn(e)}
   try{if(x.armadilhas.length){sec('Armadilhas de leitura');pn.appendChild(h('ul',{class:'cm-arm'},x.armadilhas.map(function(a){return h('li',{text:a})})))}}catch(e){}
   try{if(x.fontes.length){sec('Fontes');pn.appendChild(h('ul',{class:'cm-fontes'},x.fontes.map(function(f){return h('li',null,f.url?h('a',{href:f.url,target:'_blank',rel:'noopener',text:f.titulo}):f.titulo)})))}}catch(e){}
