@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-10T10:26:08.303Z",
+ "gerado_em": "2026-11-11T10:27:29.069Z",
  "fonte": "TMDB, e a Wikipedia (via Wikidata) para o que faltar",
  "itens": {
   "007-a-servico-secreto-de-sua-majestade-1969": {
@@ -2511,6 +2511,16 @@
    "tmdb": "/u62d0BPqsdv2TUDifcMmoePbHPL.jpg",
    "imdb": "tt35854736",
    "local": "/telas/cartazes/927bfe6bb0bf5e7c.webp"
+  },
+  "avenida-brasil-2012": {
+   "img": "https://image.tmdb.org/t/p/w500/3wH4kZ0hdoizAcgqCgp3gUD1fFq.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/tv/45815",
+   "fonte": "tmdb",
+   "tmdb": "/3wH4kZ0hdoizAcgqCgp3gUD1fFq.jpg",
+   "imdb": "tt2303077",
+   "local": "/telas/cartazes/a16c0edf5a380c66.webp"
   },
   "azul-e-a-cor-mais-quente-2013": {
    "img": "https://image.tmdb.org/t/p/w500/kgUk1wti2cvrptIgUz0VTAtSF6w.jpg",
@@ -9102,6 +9112,16 @@
    "imdb": "tt0139102",
    "local": "/telas/cartazes/8f50b05ce63a98d7.webp"
   },
+  "o-caso-evandro-2021": {
+   "img": "https://image.tmdb.org/t/p/w500/90xXYiJ8BxCVsJkt3r8b0KVFZaM.jpg",
+   "w": 500,
+   "h": 750,
+   "pagina": "https://www.themoviedb.org/tv/124407",
+   "fonte": "tmdb",
+   "tmdb": "/90xXYiJ8BxCVsJkt3r8b0KVFZaM.jpg",
+   "imdb": "tt12402000",
+   "local": "/telas/cartazes/3fc10d124ddbda3b.webp"
+  },
   "o-castelo-animado-2004": {
    "img": "https://image.tmdb.org/t/p/w500/13kOl2v0nD2OLbVSHnHk8GUFEhO.jpg",
    "w": 500,
@@ -9413,14 +9433,14 @@
    "local": "/telas/cartazes/612d2ecd86e271ce.webp"
   },
   "o-exorcista-o-inicio-2004": {
-   "img": "https://image.tmdb.org/t/p/w500/4b7Mhc4HZN7XzMMLukaQ9C0x1Dx.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/dwqVrJfAVHqhJSa1sKBsbttFUcU.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/11026",
    "fonte": "tmdb",
-   "tmdb": "/4b7Mhc4HZN7XzMMLukaQ9C0x1Dx.jpg",
+   "tmdb": "/dwqVrJfAVHqhJSa1sKBsbttFUcU.jpg",
    "imdb": "tt0204313",
-   "local": "/telas/cartazes/366f195411a93b38.webp"
+   "local": "/telas/cartazes/6e2f9136b4c79153.webp"
   },
   "o-exterminador-do-futuro-1984": {
    "img": "https://image.tmdb.org/t/p/w500/qvktm0BHcnmDpul4Hz01GIazWPr.jpg",
@@ -10903,14 +10923,14 @@
    "local": "/telas/cartazes/a81f88b035cbf4e2.webp"
   },
   "os-saltimbancos-trapalhoes-rumo-a-hollywood-2017": {
-   "img": "https://image.tmdb.org/t/p/w500/yacasOzhUrO08YLwJxjk6oh0hIO.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/3nu5f2bLodsfnRe1bwyTesY4Orm.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/430840",
    "fonte": "tmdb",
-   "tmdb": "/yacasOzhUrO08YLwJxjk6oh0hIO.jpg",
+   "tmdb": "/3nu5f2bLodsfnRe1bwyTesY4Orm.jpg",
    "imdb": "tt5709620",
-   "local": "/telas/cartazes/98b9f568a29931a6.webp"
+   "local": "/telas/cartazes/17a7c93540cc7249.webp"
   },
   "os-sete-samurais-1954": {
    "img": "https://image.tmdb.org/t/p/w500/lOMGc8bnSwQhS4XyE1S99uH8NXf.jpg",

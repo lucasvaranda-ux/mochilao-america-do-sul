@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-09",
+ "atualizado_em": "2026-11-11",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -575,9 +575,7 @@
     "Paramount+ (canal na Apple TV)",
     "Paramount+ (canal na Prime Video)"
    ],
-   "gratis": [
-    "Prime Video"
-   ],
+   "gratis": [],
    "anuncios": [],
    "aluguel": [],
    "compra": []
@@ -1603,6 +1601,7 @@
    "imdb": "tt0295297",
    "link": "https://www.themoviedb.org/movie/672-harry-potter-and-the-chamber-of-secrets/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1727,6 +1726,7 @@
    "imdb": "tt0417741",
    "link": "https://www.themoviedb.org/movie/767-harry-potter-and-the-half-blood-prince/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -2200,6 +2200,7 @@
    "imdb": "tt4158110",
    "link": "https://www.themoviedb.org/tv/62560-mr-robot/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Universal+ (canal na Prime Video)"
    ],
    "gratis": [],
