@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-11",
+ "atualizado_em": "2026-11-13",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -1187,7 +1187,6 @@
    "imdb": "tt15239678",
    "link": "https://www.themoviedb.org/movie/693134-dune-part-two/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Universal+ (canal na Prime Video)"
@@ -1339,7 +1338,6 @@
    "imdb": "tt4772188",
    "link": "https://www.themoviedb.org/movie/823219-straume/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Filmelier Plus (canal na Prime Video)"
    ],
    "gratis": [],
@@ -2700,7 +2698,6 @@
    "imdb": "tt0167260",
    "link": "https://www.themoviedb.org/movie/122-the-lord-of-the-rings-the-return-of-the-king/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Disney+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
@@ -2765,7 +2762,6 @@
    "imdb": "tt15398776",
    "link": "https://www.themoviedb.org/movie/872585-oppenheimer/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Universal+ (canal na Prime Video)"
    ],
    "gratis": [],
@@ -3194,7 +3190,6 @@
    "imdb": "tt1119646",
    "link": "https://www.themoviedb.org/movie/18785-the-hangover/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Universal+ (canal na Prime Video)"
@@ -3598,9 +3593,7 @@
     "Apple TV",
     "Apple TV (canal na Prime Video)"
    ],
-   "gratis": [
-    "Apple TV"
-   ],
+   "gratis": [],
    "anuncios": [],
    "aluguel": [],
    "compra": []
@@ -3738,7 +3731,6 @@
    "imdb": "tt0175142",
    "link": "https://www.themoviedb.org/movie/4247-scary-movie/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Netflix",
     "Paramount Plus Premium",
     "Paramount+"
