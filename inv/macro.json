@@ -1,12 +1,12 @@
 {
  "versao": 1,
- "gerado_em": "2026-11-09T12:30:27Z",
+ "gerado_em": "2026-11-13T01:42:38Z",
  "fontes": {
   "sgs": "Banco Central do Brasil — Sistema Gerenciador de Séries Temporais (api.bcb.gov.br), licença ODbL",
   "focus": "Banco Central do Brasil — Expectativas de mercado (Focus), API Olinda",
   "bolsa": "Yahoo Finance (não oficial) — ^BVSP e ^GSPC"
  },
- "hoje": "2026-11-09",
+ "hoje": "2026-11-12",
  "indicadores": {
   "ipca": {
    "nome": "IPCA",
@@ -57,10 +57,10 @@
     "2023": 4.62,
     "2024": 4.83,
     "2025": 4.26,
-    "2026": 3.95
+    "2026": 4.1
    },
    "parcial": {
-    "2026": "jan–set"
+    "2026": "jan–out"
    },
    "meta": {
     "1999": 8,
