@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-11T10:22:58.540Z",
+ "gerado_em": "2026-11-14T10:22:33.818Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -244,18 +244,6 @@
   }
  ],
  "episodios": [
-  {
-   "imdb_id": "tt31510819",
-   "tvmaze_id": 3708488,
-   "serie": "MobLand",
-   "temporada": 2,
-   "episodio": 8,
-   "titulo": "We Don't Talk Anymore",
-   "data": "2026-11-06",
-   "airstamp": "2026-11-06T12:00:00+00:00",
-   "plataforma": "Paramount+",
-   "alerta": true
-  },
   {
    "imdb_id": "tt7631058",
    "tvmaze_id": 3615601,

@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-13",
+ "atualizado_em": "2026-11-14",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -158,7 +158,7 @@
   "a-place-further-than-the-universe-2018": {
    "tmdb": "tv/76059",
    "imdb": "tt7836688",
-   "link": "https://www.themoviedb.org/tv/76059/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/76059-yu-zhou-yorimo-yuan-i-chang-suo/watch?locale=BR",
    "assinatura": [
     "Crunchyroll",
     "Crunchyroll (canal na Prime Video)"
@@ -249,7 +249,7 @@
   "a-viagem-de-chihiro-2001": {
    "tmdb": "movie/129",
    "imdb": "tt0245429",
-   "link": "https://www.themoviedb.org/movie/129/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/129-qian-to-qian-xun-no-shen-yin-shi/watch?locale=BR",
    "assinatura": [
     "Netflix"
    ],
@@ -325,7 +325,7 @@
   "andrei-rublev-1966": {
    "tmdb": "movie/895",
    "imdb": "tt0060107",
-   "link": "https://www.themoviedb.org/movie/895/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/895-andrey-rublyov/watch?locale=BR",
    "assinatura": [
     "Looke"
    ],
@@ -509,7 +509,7 @@
   "ataque-dos-titas-2013": {
    "tmdb": "tv/1429",
    "imdb": "tt2560140",
-   "link": "https://www.themoviedb.org/tv/1429/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/1429-jin-ji-no-ju-ren/watch?locale=BR",
    "assinatura": [
     "Crunchyroll",
     "Crunchyroll (canal na Prime Video)"
@@ -691,6 +691,7 @@
    "imdb": "tt0134402",
    "link": "https://www.themoviedb.org/movie/86320-cabra-marcado-para-morrer/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "CurtaOn (canal na Prime Video)",
     "Doc Canal Brasil (canal na Prime Video)"
    ],
@@ -1059,7 +1060,7 @@
   "delicious-in-dungeon-2024": {
    "tmdb": "tv/207784",
    "imdb": "tt21621494",
-   "link": "https://www.themoviedb.org/tv/207784/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/207784-danjiyon-fan/watch?locale=BR",
    "assinatura": [
     "Netflix"
    ],
@@ -1071,7 +1072,7 @@
   "dersu-uzala-1975": {
    "tmdb": "movie/9764",
    "imdb": "tt0071411",
-   "link": "https://www.themoviedb.org/movie/9764/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/9764-dersu-uzala/watch?locale=BR",
    "assinatura": [
     "Arte (canal na Prime Video)"
    ],
@@ -1154,7 +1155,7 @@
   "drive-my-car-2021": {
    "tmdb": "movie/758866",
    "imdb": "tt14039582",
-   "link": "https://www.themoviedb.org/movie/758866/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/758866-doraibu-mai-ka/watch?locale=BR",
    "assinatura": [
     "MUBI",
     "MUBI (canal na Prime Video)"
@@ -1382,7 +1383,7 @@
   "frieren-2023": {
    "tmdb": "tv/209867",
    "imdb": "tt22248376",
-   "link": "https://www.themoviedb.org/tv/209867/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/209867-zang-song-nofuriren/watch?locale=BR",
    "assinatura": [
     "Crunchyroll",
     "Crunchyroll (canal na Prime Video)",
@@ -2280,7 +2281,7 @@
   "natsumes-book-of-friends-2008": {
    "tmdb": "tv/69500",
    "imdb": "tt1352421",
-   "link": "https://www.themoviedb.org/tv/69500/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/69500-xia-mu-you-ren-zhang/watch?locale=BR",
    "assinatura": [
     "Crunchyroll",
     "Crunchyroll (canal na Prime Video)"
@@ -2293,7 +2294,7 @@
   "nausicaa-1984": {
    "tmdb": "movie/81",
    "imdb": "tt0087544",
-   "link": "https://www.themoviedb.org/movie/81/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/81-feng-no-gu-nonaushika/watch?locale=BR",
    "assinatura": [
     "Netflix"
    ],
@@ -2363,7 +2364,7 @@
   "nostalgia-1983": {
    "tmdb": "movie/1394",
    "imdb": "tt0086022",
-   "link": "https://www.themoviedb.org/movie/1394/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/1394-nostalgiya/watch?locale=BR",
    "assinatura": [
     "Looke"
    ],
@@ -2440,7 +2441,7 @@
   "o-espelho-1975": {
    "tmdb": "movie/1396",
    "imdb": "tt0072443",
-   "link": "https://www.themoviedb.org/movie/1396/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/1396-zerkalo/watch?locale=BR",
    "assinatura": [],
    "gratis": [],
    "anuncios": [
@@ -2492,7 +2493,7 @@
   "o-menino-e-a-garca-2023": {
    "tmdb": "movie/508883",
    "imdb": "tt6587046",
-   "link": "https://www.themoviedb.org/movie/508883/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/508883-jun-tachihadou-sheng-kiruka/watch?locale=BR",
    "assinatura": [
     "Netflix"
    ],
@@ -2779,7 +2780,7 @@
   "orb-on-the-movements-of-the-earth-2024": {
    "tmdb": "tv/204635",
    "imdb": "tt33044444",
-   "link": "https://www.themoviedb.org/tv/204635/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/204635-chi-de-qiu-no-yun-dong-nitsuite/watch?locale=BR",
    "assinatura": [
     "Netflix"
    ],
@@ -3015,7 +3016,7 @@
   "princesa-mononoke-1997": {
    "tmdb": "movie/128",
    "imdb": "tt0119698",
-   "link": "https://www.themoviedb.org/movie/128/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/128-mononoke-ji/watch?locale=BR",
    "assinatura": [
     "Netflix"
    ],
@@ -3176,7 +3177,7 @@
   "se-a-vida-te-der-tangerinas-2025": {
    "tmdb": "tv/219246",
    "imdb": "tt26471411",
-   "link": "https://www.themoviedb.org/tv/219246/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/219246-pogssag-sogasssuda/watch?locale=BR",
    "assinatura": [
     "Netflix"
    ],
@@ -3388,7 +3389,7 @@
   "sonhos-1990": {
    "tmdb": "movie/12516",
    "imdb": "tt0100998",
-   "link": "https://www.themoviedb.org/movie/12516/watch?locale=BR",
+   "link": "https://www.themoviedb.org/movie/12516-meng/watch?locale=BR",
    "assinatura": [],
    "gratis": [],
    "anuncios": [],
@@ -3498,7 +3499,7 @@
   "stremio-tt0388629": {
    "tmdb": "tv/37854",
    "imdb": "tt0388629",
-   "link": "https://www.themoviedb.org/tv/37854/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/37854-wanpisu/watch?locale=BR",
    "assinatura": [
     "Claro tv+",
     "Crunchyroll",
@@ -3716,7 +3717,7 @@
   "to-your-eternity-2021": {
    "tmdb": "tv/97525",
    "imdb": "tt12063450",
-   "link": "https://www.themoviedb.org/tv/97525/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/97525-bu-mie-noanatahe/watch?locale=BR",
    "assinatura": [
     "Crunchyroll",
     "Crunchyroll (canal na Prime Video)"
@@ -3941,7 +3942,7 @@
   "vinland-saga-2019": {
    "tmdb": "tv/88803",
    "imdb": "tt10233448",
-   "link": "https://www.themoviedb.org/tv/88803/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/88803-vuinrando-saga/watch?locale=BR",
    "assinatura": [
     "Crunchyroll",
     "Crunchyroll (canal na Prime Video)",
@@ -3956,7 +3957,7 @@
   "violet-evergarden-2018": {
    "tmdb": "tv/75214",
    "imdb": "tt7078180",
-   "link": "https://www.themoviedb.org/tv/75214/watch?locale=BR",
+   "link": "https://www.themoviedb.org/tv/75214-vuaioretto-evuagaden/watch?locale=BR",
    "assinatura": [
     "Netflix"
    ],
