@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-14",
+ "atualizado_em": "2026-11-16",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -1339,6 +1339,7 @@
    "imdb": "tt4772188",
    "link": "https://www.themoviedb.org/movie/823219-straume/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Filmelier Plus (canal na Prime Video)"
    ],
    "gratis": [],
@@ -1642,7 +1643,6 @@
    "imdb": "tt0241527",
    "link": "https://www.themoviedb.org/movie/671-harry-potter-and-the-philosopher-s-stone/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1704,7 +1704,6 @@
    "imdb": "tt0330373",
    "link": "https://www.themoviedb.org/movie/674-harry-potter-and-the-goblet-of-fire/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1896,7 +1895,6 @@
    "imdb": "tt1392170",
    "link": "https://www.themoviedb.org/movie/70160-the-hunger-games/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Diamond Films (canal na Prime Video)"
    ],
    "gratis": [],
@@ -2608,7 +2606,6 @@
    "link": "https://www.themoviedb.org/movie/265297-le-sel-de-la-terre/watch?locale=BR",
    "assinatura": [
     "Aquarius (canal na Prime Video)",
-    "Claro tv+",
     "CurtaOn (canal na Prime Video)",
     "Reserva Imovision (canal na Prime Video)"
    ],
@@ -2701,7 +2698,8 @@
    "assinatura": [
     "Disney+",
     "HBO Max",
-    "HBO Max (canal na Prime Video)"
+    "HBO Max (canal na Prime Video)",
+    "Prime Video"
    ],
    "gratis": [],
    "anuncios": [],
