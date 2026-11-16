@@ -1,12 +1,12 @@
 {
  "versao": 1,
- "gerado_em": "2026-11-13T01:42:38Z",
+ "gerado_em": "2026-11-16T12:38:28Z",
  "fontes": {
   "sgs": "Banco Central do Brasil — Sistema Gerenciador de Séries Temporais (api.bcb.gov.br), licença ODbL",
   "focus": "Banco Central do Brasil — Expectativas de mercado (Focus), API Olinda",
   "bolsa": "Yahoo Finance (não oficial) — ^BVSP e ^GSPC"
  },
- "hoje": "2026-11-12",
+ "hoje": "2026-11-16",
  "indicadores": {
   "ipca": {
    "nome": "IPCA",
@@ -123,12 +123,12 @@
     "2026": 1.5
    },
    "projecao": {
-    "2026": 5.22,
-    "2027": 4.9,
+    "2026": 5.11,
+    "2027": 5,
     "2028": 4,
     "2029": 4
    },
-   "projecao_data": "2026-11-06"
+   "projecao_data": "2026-11-13"
   },
   "igpm": {
    "nome": "IGP-M",
@@ -179,12 +179,12 @@
     "2026": "jan–out"
    },
    "projecao": {
-    "2026": 6.1,
-    "2027": 4.2,
+    "2026": 6.22,
+    "2027": 4.35,
     "2028": 4,
-    "2029": 3.9
+    "2029": 3.92
    },
-   "projecao_data": "2026-11-06"
+   "projecao_data": "2026-11-13"
   },
   "selic": {
    "nome": "Selic",
@@ -267,11 +267,11 @@
    },
    "projecao": {
     "2026": 13.75,
-    "2027": 12.5,
+    "2027": 12.75,
     "2028": 11,
-    "2029": 10.25
+    "2029": 10.5
    },
-   "projecao_data": "2026-11-06"
+   "projecao_data": "2026-11-13"
   },
   "cdi": {
    "nome": "CDI",
@@ -453,12 +453,12 @@
     "2026": "até out"
    },
    "projecao": {
-    "2026": 5.35,
-    "2027": 5.4,
-    "2028": 5.45,
+    "2026": 5.4,
+    "2027": 5.45,
+    "2028": 5.48,
     "2029": 5.5
    },
-   "projecao_data": "2026-11-06"
+   "projecao_data": "2026-11-13"
   },
   "ibovespa": {
    "nome": "Ibovespa",
