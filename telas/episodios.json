@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-14T10:22:33.818Z",
+ "gerado_em": "2026-11-17T10:23:19.657Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -374,6 +374,18 @@
    "data": "2026-12-25",
    "airstamp": "2026-12-25T17:00:00+00:00",
    "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13016388",
+   "tvmaze_id": 3823004,
+   "serie": "3 Body Problem",
+   "temporada": 2,
+   "episodio": 1,
+   "titulo": "TBA",
+   "data": "2027-01-14",
+   "airstamp": "2027-01-14T12:00:00+00:00",
+   "plataforma": "Netflix",
    "alerta": false
   },
   {
