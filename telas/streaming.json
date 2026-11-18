@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-16",
+ "atualizado_em": "2026-11-18",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -1643,6 +1643,7 @@
    "imdb": "tt0241527",
    "link": "https://www.themoviedb.org/movie/671-harry-potter-and-the-philosopher-s-stone/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -1704,6 +1705,7 @@
    "imdb": "tt0330373",
    "link": "https://www.themoviedb.org/movie/674-harry-potter-and-the-goblet-of-fire/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Prime Video"
@@ -2093,6 +2095,7 @@
    "imdb": "tt0133093",
    "link": "https://www.themoviedb.org/movie/603-the-matrix/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -2825,6 +2828,7 @@
    "imdb": "tt0089218",
    "link": "https://www.themoviedb.org/movie/9340-the-goonies/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Globoplay",
     "Telecine (canal na Prime Video)"
    ],
@@ -2944,7 +2948,6 @@
    "imdb": "tt1266020",
    "link": "https://www.themoviedb.org/tv/8592-parks-and-recreation/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Universal+ (canal na Prime Video)"
    ],
    "gratis": [],
