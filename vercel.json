@@ -340,6 +340,16 @@
         }
       ],
       "destination": "/estudos/ler"
+    },
+    {
+      "source": "/:slug([a-z0-9][a-z0-9-]+)",
+      "has": [
+        {
+          "type": "host",
+          "value": "estudos(\\.madeinbr\\.app|-[a-z0-9-]*\\.vercel\\.app)"
+        }
+      ],
+      "destination": "/estudos/ler.html"
     }
   ],
   "crons": [

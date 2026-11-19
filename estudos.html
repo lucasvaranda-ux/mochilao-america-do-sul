@@ -226,8 +226,19 @@ function mostra(id){['espera','porta','app'].forEach(function(x){var e=$('#'+x);
 var NUM=['','Um','Dois','Três','Quatro','Cinco','Seis','Sete','Oito','Nove','Dez','Onze','Doze'];
 function num(n){return NUM[n]||String(n)}
 // no endereço do app, cada estudo tem o seu caminho (/slug); em qualquer outro lugar (teste, prévia), o leitor recebe ?e=slug
-var HOST_APP=/^estudos\./.test(location.hostname), INICIO=HOST_APP?'/':location.pathname;
-function urlEstudo(slug,anc){return (HOST_APP?'/'+slug:'/estudos/ler?e='+slug)+(anc?'#'+anc:'')}
+var HOST_APP=/^estudos\./.test(location.hostname), INICIO=HOST_APP?'/':location.pathname, CURTO=HOST_APP;
+function urlEstudo(slug,anc){return (CURTO?'/'+slug:'/estudos/ler?e='+slug)+(anc?'#'+anc:'')}
+// /slug depende de uma regra da hospedagem (vercel.json). Uma vez por sessão a página confere se ela responde;
+// se não responder, os links usam o leitor com ?e=, que é um arquivo e abre sempre.
+async function confereRota(){
+  if(!HOST_APP)return;
+  try{
+    var v=sessionStorage.getItem('estudos_rota');
+    if(v==='1'||v==='0'){CURTO=v==='1';return}
+    var r=await fetch('/rota-de-teste',{method:'HEAD',cache:'no-store'});
+    CURTO=r.ok;sessionStorage.setItem('estudos_rota',CURTO?'1':'0');
+  }catch(e){}
+}
 var SETA_FORA='<path d="M5 11l6-6M6 5h5v5"/>', SETA='<path d="M6 3l5 5-5 5"/>';
 function svg(caminhos,vb){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb||'0 0 16 16');s.setAttribute('aria-hidden','true');s.innerHTML=caminhos;return s}
 
@@ -243,6 +254,7 @@ async function tenta(chaveTxt){
     var K=await Cofre.deriva(chaveTxt);
     var cat=JSON.parse(await Cofre.busca(K,'catalogo'));
     await Cofre.guarda(chaveTxt);
+    await confereRota();
     entra(cat);
     return '';
   }catch(e){
@@ -427,7 +439,7 @@ window.addEventListener('hashchange',function(){
     }
     var K=await Cofre.le();
     if(!K){mostraPorta(avLink);return}
-    try{entra(JSON.parse(await Cofre.busca(K,'catalogo')))}
+    try{var cat0=JSON.parse(await Cofre.busca(K,'catalogo'));await confereRota();entra(cat0)}
     catch(e){
       var m=String(e&&e.message||'');
       if(m==='rede'){mostraPorta(AVISOS.rede+' A chave continua guardada: é só recarregar a página.');return}
