@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-18",
+ "atualizado_em": "2026-11-19",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -341,7 +341,6 @@
    "imdb": "tt3183660",
    "link": "https://www.themoviedb.org/movie/259316-fantastic-beasts-and-where-to-find-them/watch?locale=BR",
    "assinatura": [
-    "Cartoon Network (canal na Prime Video)",
     "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
@@ -1805,7 +1804,6 @@
    "imdb": "tt1305826",
    "link": "https://www.themoviedb.org/tv/15260-adventure-time/watch?locale=BR",
    "assinatura": [
-    "Cartoon Network (canal na Prime Video)",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -1897,6 +1895,7 @@
    "imdb": "tt1392170",
    "link": "https://www.themoviedb.org/movie/70160-the-hunger-games/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Diamond Films (canal na Prime Video)"
    ],
    "gratis": [],
@@ -2626,7 +2625,6 @@
    "imdb": "tt3718778",
    "link": "https://www.themoviedb.org/tv/61617-over-the-garden-wall/watch?locale=BR",
    "assinatura": [
-    "Cartoon Network (canal na Prime Video)",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -3872,7 +3870,6 @@
    "imdb": "tt0098800",
    "link": "https://www.themoviedb.org/tv/1892-the-fresh-prince-of-bel-air/watch?locale=BR",
    "assinatura": [
-    "Cartoon Network (canal na Prime Video)",
     "Globoplay",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
