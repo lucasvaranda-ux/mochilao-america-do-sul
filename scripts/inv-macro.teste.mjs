@@ -1,4 +1,4 @@
-// Teste do robô dos indicadores com um servidor falso (BCB, Olinda e Yahoo) servindo scripts/fixtures/inv.
+// Teste do robô dos indicadores com um servidor falso (BCB, Olinda e stooq) servindo scripts/fixtures/inv.
 import http from 'node:http';
 import { mkdtemp, mkdir, readFile, stat } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const FIX = join(dirname(fileURLToPath(import.meta.url)), 'fixtures/inv');
 let falhas = 0; const ok = (c, m) => { if (!c) falhas++; console.log((c ? 'OK   ' : 'FALHA') + ' ' + m); };
 
-const modo = { olinda: 200, yahoo: 200 };
+const modo = { olinda: 200, stooq: 200 };
 const chamadas = [];
 const srv = http.createServer(async (req, res) => {
   const u = new URL(req.url, 'http://x'); chamadas.push(u.pathname + u.search);
@@ -24,9 +24,11 @@ const srv = http.createServer(async (req, res) => {
     if (f.includes("'IPCA'")) return manda('olinda-ipca.json');
     res.writeHead(200, { 'content-type': 'application/json' }); return res.end('{"value":[]}');
   }
-  if (u.pathname.startsWith('/yahoo/v8/finance/chart/')) {
-    if (modo.yahoo !== 200) { res.writeHead(modo.yahoo); return res.end('Too Many Requests'); }
-    return manda('yahoo-chart-bvsp.json');
+  if (u.pathname === '/stooq/q/d/l/') {
+    if (modo.stooq === 'limite') { res.writeHead(200, { 'content-type': 'text/plain' }); return res.end('Exceeded the daily hits limit'); }
+    if (modo.stooq !== 200) { res.writeHead(modo.stooq); return res.end('erro'); }
+    if (u.searchParams.get('i') !== 'm') { res.writeHead(400); return res.end('esperava mensal'); }
+    res.writeHead(200, { 'content-type': 'text/csv' }); return res.end(await readFile(join(FIX, 'stooq-bvp-m.csv')));
   }
   res.writeHead(404); res.end();
 });
@@ -34,7 +36,7 @@ await new Promise(r => srv.listen(0, '127.0.0.1', r));
 const B = `http://127.0.0.1:${srv.address().port}`;
 process.env.INV_BCB_BASE = B + '/sgs/bcdata.sgs.';
 process.env.INV_OLINDA_BASE = B + '/olinda/';
-process.env.INV_YAHOO_BASE = B + '/yahoo';
+process.env.INV_STOOQ_BASE = B + '/stooq';
 process.env.INV_ESPERA_MS = '1';
 const R = await import('./inv-macro.mjs');
 
@@ -67,7 +69,9 @@ ok(I.ipca.projecao && I.ipca.projecao['2026'] === 4.21 && I.ipca.projecao['2029'
 ok(I.ipca.projecao_data === '2026-11-06', 'Focus: data guardada');
 ok(I.selic.projecao === null, 'Focus vazio para a Selic: sem projeção (e sem anterior)');
 ok(I.ibovespa.nivel['2025'] === 136281 && I.ibovespa.realizado['2025'] === Math.round((136281 / 116965 - 1) * 1000) / 10, 'Ibovespa: nível de dezembro e variação');
-ok(I.ibovespa.parcial['2026'] === 'até 07/11' && I.ibovespa.nivel['2026'] === 151234.5, 'Ibovespa 2026: valor de hoje, até 07/11');
+ok(I.ibovespa.parcial['2026'] === 'até 06/11' && I.ibovespa.nivel['2026'] === 151227, 'Ibovespa 2026: último fechamento do mês corrente, até 06/11');
+ok(chamadas.some(c => c === '/stooq/q/d/l/?s=%5Ebvp&i=m') && chamadas.some(c => c === '/stooq/q/d/l/?s=%5Espx&i=m'), 'stooq: ^bvp e ^spx, mensal, sem janela');
+ok(/stooq/.test(j.fontes.bolsa) && I.ibovespa.fonte === 'stooq:^bvp', 'fonte das bolsas: stooq');
 ok(!('1994' in I.ibovespa.nivel) && '1995' in I.ibovespa.realizado, 'Ibovespa a partir de 1995 (1994 só para a variação)');
 ok(j.hoje === '2026-11-08' && j.versao === 1, 'cabeçalho do arquivo');
 
@@ -78,13 +82,20 @@ const r2 = await R.main({ raiz: dir, hoje: '2026-11-08', log: L });
 ok(!r2.gravou && (await stat(join(dir, 'inv/macro.json'))).mtimeMs === m1, 'sem mudança, não regrava');
 ok(!R.mudou({ a: 1, gerado_em: 'x', hoje: 'y' }, { a: 1, gerado_em: 'z', hoje: 'w' }) && R.mudou({ a: 1 }, { a: 2 }), 'mudou() ignora gerado_em e hoje');
 
-// Focus e Yahoo fora: mantém o anterior
-modo.olinda = 500; modo.yahoo = 502;
+// Focus fora e stooq no limite diário: mantém o anterior
+modo.olinda = 500; modo.stooq = 'limite';
 const r3 = await R.main({ raiz: dir, hoje: '2026-11-08', log: L });
 const j3 = JSON.parse(await readFile(join(dir, 'inv/macro.json'), 'utf8'));
 ok(j3.indicadores.ipca.projecao['2026'] === 4.21 && j3.indicadores.ipca.projecao_data === '2026-11-06', 'Focus 500: mantém a projeção anterior');
-ok(j3.indicadores.ibovespa.nivel['2025'] === 136281, 'Yahoo 502: mantém o Ibovespa anterior');
-ok(r3.falhas.includes('Focus IPCA') && r3.falhas.includes('Yahoo ^BVSP') && !r3.gravou, 'falhas registradas e nada mudou');
+ok(j3.indicadores.ibovespa.nivel['2025'] === 136281, 'stooq no limite: mantém o Ibovespa anterior');
+ok(r3.falhas.includes('Focus IPCA') && r3.falhas.includes('stooq ^bvp') && !r3.gravou, 'falhas registradas e nada mudou');
+
+// stooq sem o índice (404 em tudo, sem anterior): série vazia com nota
+modo.stooq = 404;
+const dir2 = await mkdtemp(join(tmpdir(), 'inv-macro-')); await mkdir(join(dir2, 'inv'));
+await R.main({ raiz: dir2, hoje: '2026-11-08', log: L });
+const j4 = JSON.parse(await readFile(join(dir2, 'inv/macro.json'), 'utf8'));
+ok(!Object.keys(j4.indicadores.ibovespa.nivel).length && /não tem o índice/.test((j4.indicadores.ibovespa.notas || [])[0]), 'stooq sem o índice: série vazia e nota no JSON');
 
 srv.close();
 console.log(falhas ? `\n${falhas} FALHA(S)` : '\nTUDO OK'); process.exit(falhas ? 1 : 0);

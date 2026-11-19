@@ -1,0 +1,780 @@
+{
+ "versao": 1,
+ "atualizado_em": "2026-11-09",
+ "sobre": "Como cada indicador é calculado e quando a conta mudou. Só entra o que foi visto em documento oficial; o resto vem com a ressalva escrita.",
+ "ordem": [
+  "ipca",
+  "igpm",
+  "selic",
+  "cdi",
+  "poupanca",
+  "dolar",
+  "meta",
+  "ibovespa",
+  "sp500",
+  "ouro"
+ ],
+ "indicadores": {
+  "ipca": {
+   "nome": "IPCA",
+   "o_que_e": "É a inflação oficial do Brasil. Mostra quanto subiram, em média, os preços do que as famílias compram: comida, aluguel, transporte, remédio, escola. É o número que a meta de inflação usa e que o Banco Central olha para decidir os juros.",
+   "quem_calcula": "O IBGE.",
+   "como": "Todo mês, o IBGE anota os preços de 377 produtos e serviços em 16 áreas urbanas: 10 regiões metropolitanas, mais Brasília, Goiânia, Campo Grande, Rio Branco, São Luís e Aracaju. Vale para famílias que ganham de 1 a 40 salários mínimos. Cada item pesa conforme o quanto as famílias gastam com ele, segundo a Pesquisa de Orçamentos Familiares (POF) de 2017-2018. O número do mês sai por volta do dia 10 do mês seguinte.",
+   "conta_do_site": "O site junta os meses do ano: (1 + jan) × (1 + fev) × … − 1. No ano corrente, só entram os meses que já fecharam. A meta é a do Conselho Monetário Nacional, com a faixa de tolerância em volta.",
+   "o_que_esconde": "A inflação \"do ano\" do noticiário costuma ser a dos últimos 12 meses, não a de janeiro a dezembro. E, desde 2025, a meta é medida mês a mês nos últimos 12 meses, não no ano fechado.",
+   "mudancas": [
+    {
+     "ano": 1980,
+     "data": "jan/1980",
+     "curto": "o IPCA começa",
+     "o_que_mudou": "O IBGE começa a calcular o IPCA, já para famílias de 1 a 40 salários mínimos.",
+     "fonte": "IBGE, livro de método do sistema de índices de preços",
+     "certeza": "media",
+     "ressalva": "Vem de fonte secundária; o documento oficial não foi aberto."
+    },
+    {
+     "ano": 1991,
+     "data": "jan/1991",
+     "curto": "Goiânia entra",
+     "o_que_mudou": "Goiânia entra no cálculo.",
+     "fonte": "IBGE, livro de método do sistema de índices de preços",
+     "certeza": "media",
+     "ressalva": "Vem de fonte secundária; o documento oficial não foi aberto."
+    },
+    {
+     "ano": 1999,
+     "data": "jan/1999",
+     "curto": "cesta nova (POF 1995-96)",
+     "o_que_mudou": "Pesos novos, da POF de 1995-1996.",
+     "fonte": "IBGE, \"Para compreender o IPCA\"",
+     "certeza": "media",
+     "ressalva": "O IBGE fala em janeiro de 1999; algumas fontes citam agosto de 1999. A data exata não foi conferida no documento oficial."
+    },
+    {
+     "ano": 2006,
+     "data": "jul/2006",
+     "curto": "cesta nova (POF 2002-03)",
+     "o_que_mudou": "Pesos e métodos novos, da POF de 2002-2003.",
+     "fonte": "IBGE, Nota Técnica 02/2005",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2012,
+     "data": "jan/2012",
+     "curto": "cesta nova (POF 2008-09)",
+     "o_que_mudou": "Pesos novos, da POF de 2008-2009.",
+     "fonte": "IBGE, relatório de método, 6ª edição",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2014,
+     "data": "jan/2014",
+     "curto": "entram Vitória e Campo Grande",
+     "o_que_mudou": "Entram a região metropolitana de Vitória e Campo Grande.",
+     "fonte": "IBGE, Nota Técnica 03/2013",
+     "url": "https://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/Sistema_de_Indices_de_Precos_ao_Consumidor/Notas_Tecnicas/snipc_nota_tecnica_2013_03.pdf",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2018,
+     "data": "jan/2018",
+     "curto": "entram Rio Branco, São Luís e Aracaju",
+     "o_que_mudou": "Entram Rio Branco, São Luís e Aracaju.",
+     "fonte": "IBGE, Nota Técnica 01/2018",
+     "url": "https://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/Sistema_de_Indices_de_Precos_ao_Consumidor/Notas_Tecnicas/snipc_nota_tecnica_2018_01_20180321.pdf",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2020,
+     "data": "jan/2020",
+     "curto": "cesta nova (POF 2017-18)",
+     "o_que_mudou": "Pesos novos, da POF de 2017-2018: 377 itens. Transporte vira o grupo que mais pesa, e comida cai de 24,6% para 19,0% da cesta.",
+     "fonte": "IBGE, Agência de Notícias, dez/2019",
+     "url": "https://www.ibge.gov.br/novo-portal-destaques/26583-janeiro-de-2020-ipca-e-inpc-terao-estruturas-de-pesos-atualizadas-2.html",
+     "certeza": "alta"
+    }
+   ],
+   "armadilhas": [
+    "O \"IPCA do ano\" na imprensa quase sempre é o dos últimos 12 meses, não o de janeiro a dezembro.",
+    "É a média das famílias de 1 a 40 salários mínimos. A sua inflação pode ser outra.",
+    "Quando a cesta muda, os pesos mudam dali para a frente. O passado não é recalculado.",
+    "Cobre 16 áreas urbanas, não o país inteiro.",
+    "1995 (22,4%) ainda é o fim da inflação alta de antes do Plano Real. Cuidado ao comparar com anos recentes."
+   ],
+   "fontes": [
+    {
+     "titulo": "IBGE: página do IPCA",
+     "url": "https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9256-indice-nacional-de-precos-ao-consumidor-amplo.html"
+    },
+    {
+     "titulo": "IBGE: Nota Técnica 03/2013 (Vitória e Campo Grande)",
+     "url": "https://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/Sistema_de_Indices_de_Precos_ao_Consumidor/Notas_Tecnicas/snipc_nota_tecnica_2013_03.pdf"
+    },
+    {
+     "titulo": "IBGE: Nota Técnica 01/2018 (Rio Branco, São Luís e Aracaju)",
+     "url": "https://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/Sistema_de_Indices_de_Precos_ao_Consumidor/Notas_Tecnicas/snipc_nota_tecnica_2018_01_20180321.pdf"
+    },
+    {
+     "titulo": "IBGE: em janeiro de 2020, IPCA e INPC com pesos novos",
+     "url": "https://www.ibge.gov.br/novo-portal-destaques/26583-janeiro-de-2020-ipca-e-inpc-terao-estruturas-de-pesos-atualizadas-2.html"
+    },
+    {
+     "titulo": "Banco Central: estudo sobre as trocas de pesos do IPCA",
+     "url": "https://www.bcb.gov.br/conteudo/relatorioinflacao/EstudosEspeciais/EE069_Atualizacoes_da_estrutura_de_ponderacao_do_IPCA_e_repercussao_nas_suas_classificacoes.pdf"
+    }
+   ]
+  },
+  "igpm": {
+   "nome": "IGP-M",
+   "o_que_e": "É uma inflação que mistura preços do atacado, do consumidor e da construção. Ficou conhecida por corrigir aluguéis e contas de luz. Sobe e desce bem mais que o IPCA.",
+   "quem_calcula": "A FGV (Instituto Brasileiro de Economia, o IBRE).",
+   "como": "É uma média de três índices da própria FGV: 60% de preços do atacado e do produtor, 30% de preços ao consumidor (famílias de 1 a 33 salários mínimos, em 7 capitais) e 10% do custo da construção. Os preços são anotados do dia 21 do mês anterior ao dia 20 do mês do índice.",
+   "conta_do_site": "O site junta os 12 meses do ano: (1 + jan) × (1 + fev) × … − 1. Não há meta. A projeção é a mediana do boletim Focus do Banco Central.",
+   "o_que_esconde": "O \"ano\" do IGP-M vai, na prática, de 21 de dezembro a 20 de dezembro. E não é o índice que o Banco Central persegue.",
+   "mudancas": [
+    {
+     "ano": 1989,
+     "data": "mai–jun/1989",
+     "curto": "o IGP-M começa",
+     "o_que_mudou": "A FGV começa a calcular o IGP-M, a pedido do mercado financeiro, para corrigir títulos e contratos. Os outros índices gerais de preços da FGV existem desde 1947.",
+     "fonte": "FGV IBRE e fontes secundárias",
+     "certeza": "media",
+     "ressalva": "A data exata não foi conferida no documento oficial."
+    },
+    {
+     "ano": 1989,
+     "data": "desde o início",
+     "curto": "pesos 60/30/10",
+     "o_que_mudou": "A mistura 60% atacado, 30% consumidor e 10% construção, com coleta do dia 21 ao dia 20, vale desde o início.",
+     "fonte": "FGV IBRE, Portal da Inflação",
+     "url": "https://portal-da-inflacao-ibre.fgv.br",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2021,
+     "data": "set/2021",
+     "curto": "detalhe passa a ser pago",
+     "o_que_mudou": "Os índices que formam o IGP-M deixam de ser abertos em detalhe e passam a uma base paga da FGV. O IGP-M cheio continua público.",
+     "fonte": "FGV IBRE",
+     "certeza": "media",
+     "ressalva": "A data exata não foi conferida no documento oficial."
+    }
+   ],
+   "armadilhas": [
+    "Puxado pelo atacado, pelo dólar e pelas matérias-primas: em 2020 o IGP-M passou de 20% e o IPCA ficou em 4,5%. Em 2023, o IGP-M foi negativo.",
+    "A parte \"consumidor\" da FGV não é o IPCA: outra cesta, outra faixa de renda, outras cidades.",
+    "Como a coleta vai do dia 21 ao dia 20, o IGP-M pega um choque de preços antes do IPCA do mesmo mês.",
+    "A FGV também revê de tempos em tempos os pesos dos índices que formam o IGP-M; as datas dessas revisões não foram achadas em fonte pública."
+   ],
+   "fontes": [
+    {
+     "titulo": "FGV IBRE: Portal da Inflação",
+     "url": "https://portal-da-inflacao-ibre.fgv.br"
+    },
+    {
+     "titulo": "FGV IBRE: portal",
+     "url": "https://portalibre.fgv.br/"
+    },
+    {
+     "titulo": "B3 Bora Investir: IPCA, IGP-M, INPC e IPC",
+     "url": "https://borainvestir.b3.com.br/noticias/ipca-igp-m-inpc-ipc-conheca-os-indices-de-inflacao-do-brasil/"
+    }
+   ]
+  },
+  "selic": {
+   "nome": "Selic",
+   "o_que_e": "É a taxa básica de juros do país: quanto rendem, por dia, os empréstimos de um dia entre bancos que dão títulos do governo como garantia. O Copom, do Banco Central, fixa uma meta para ela 8 vezes por ano. O CDI, a poupança e o crédito andam junto.",
+   "quem_calcula": "O Banco Central calcula a taxa de cada dia. O Copom decide a meta.",
+   "como": "A Selic de cada dia é a média das taxas dos empréstimos de um dia entre bancos, com títulos públicos como garantia; cada empréstimo pesa pelo seu valor. Ficam de fora os negócios fora das regras e as taxas muito fora da curva, e há uma conta reserva para dias com poucos negócios (Resolução BCB 46, de 2020). A taxa sai até as 19h. A meta é decidida nas 8 reuniões do Copom, em % ao ano.",
+   "conta_do_site": "Realizado: o site junta os 12 meses do ano (série 4390 do Banco Central). É quanto R$ 1 rendeu na Selic de janeiro a dezembro. Meta: a que estava valendo em 31 de dezembro (no ano corrente, a de hoje; série 432).",
+   "o_que_esconde": "A Selic de cada dia fica um pouco abaixo da meta, perto de 0,1 ponto. E a meta em 31/12 é a foto de um dia, enquanto o realizado é o ano inteiro: em anos de alta ou de queda forte as duas linhas se afastam.",
+   "mudancas": [
+    {
+     "ano": 1979,
+     "data": "1979",
+     "curto": "criação do sistema Selic",
+     "o_que_mudou": "Nasce o sistema Selic, de onde sai a taxa.",
+     "fonte": "Banco Central",
+     "certeza": "media",
+     "ressalva": "Vem de fonte secundária; o documento oficial não foi aberto."
+    },
+    {
+     "ano": 1996,
+     "data": "20/06/1996",
+     "curto": "nasce o Copom",
+     "o_que_mudou": "A Circular 2.698 cria o Copom. Até março de 1999 ele fixava outras duas taxas, a TBC e a TBAN.",
+     "fonte": "Circular BCB 2.698",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Circular&numero=2698",
+     "certeza": "alta"
+    },
+    {
+     "ano": 1999,
+     "data": "05/03/1999",
+     "curto": "começa a meta Selic",
+     "o_que_mudou": "O Copom passa a fixar uma meta para a Selic (Circular 2.868, de 04/03/1999). TBC e TBAN acabam.",
+     "fonte": "Circular BCB 2.868",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Circular&numero=2868",
+     "certeza": "alta"
+    },
+    {
+     "ano": 1999,
+     "data": "21 e 24/06/1999",
+     "curto": "metas de inflação",
+     "o_que_mudou": "O Decreto 3.088 cria o sistema de metas para a inflação, e a Circular 2.900 faz da meta Selic o instrumento para cumpri-lo.",
+     "fonte": "Decreto 3.088; Circular BCB 2.900",
+     "url": "https://planalto.gov.br/ccivil_03/decreto/D3088.htm",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2006,
+     "data": "2006",
+     "curto": "Copom 8 vezes por ano",
+     "o_que_mudou": "As reuniões do Copom deixam de ser mensais e passam a 8 por ano (Circular 3.297, de 31/10/2005).",
+     "fonte": "Circular BCB 3.297",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Circular&numero=3297",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2013,
+     "data": "18/10/2013",
+     "curto": "regra da taxa em norma",
+     "o_que_mudou": "A Circular 3.671 escreve em norma como a taxa do dia é calculada: que negócios entram, o que sai, e o que fazer em dia com poucos negócios.",
+     "fonte": "Circular BCB 3.671",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Circular&numero=3671",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2020,
+     "data": "24/11/2020",
+     "curto": "regra atual do cálculo",
+     "o_que_mudou": "A Resolução BCB 46 substitui a regra de 2013: quais negócios entram, como tirar as taxas fora da curva, a conta reserva e a divulgação até as 19h.",
+     "fonte": "Resolução BCB 46",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20BCB&numero=46",
+     "certeza": "alta"
+    }
+   ],
+   "armadilhas": [
+    "A Selic de cada dia não é a meta: fica cerca de 0,1 ponto abaixo.",
+    "\"Selic de 13,75%\" é uma taxa ao ano. O gráfico mostra quanto rendeu de janeiro a dezembro.",
+    "Antes de março de 1999 não havia meta Selic. Por isso a linha da meta começa em 1999.",
+    "Juro real é a Selic menos a inflação. O gráfico mostra a Selic sem descontar a inflação."
+   ],
+   "fontes": [
+    {
+     "titulo": "Banco Central: Taxa Selic",
+     "url": "https://www.bcb.gov.br/controleinflacao/taxaselic"
+    },
+    {
+     "titulo": "Resolução BCB 46/2020 (como a taxa é calculada)",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20BCB&numero=46"
+    },
+    {
+     "titulo": "Circular BCB 2.868/1999 (meta Selic)",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Circular&numero=2868"
+    },
+    {
+     "titulo": "Circular BCB 2.900/1999",
+     "url": "https://www.bcb.gov.br/pre/normativos/circ/1999/pdf/circ_2900_v2_l.pdf"
+    },
+    {
+     "titulo": "Decreto 3.088/1999 (metas para a inflação)",
+     "url": "https://planalto.gov.br/ccivil_03/decreto/D3088.htm"
+    }
+   ]
+  },
+  "cdi": {
+   "nome": "CDI",
+   "o_que_e": "É o juro dos empréstimos de um dia entre bancos, sem títulos do governo como garantia. Virou a régua da renda fixa: \"100% do CDI\" quer dizer render o mesmo que essa taxa.",
+   "quem_calcula": "A B3 (antes, a Cetip).",
+   "como": "A Taxa DI é calculada todo dia útil com os empréstimos de um dia entre bancos de grupos diferentes, e dada ao ano, contando 252 dias úteis. Desde 01/10/2018, ela só sai dos negócios do dia se houver ao menos 100 operações somando R$ 30 bilhões; se não houver, a taxa do dia é igual à Selic do dia.",
+   "conta_do_site": "O site junta os 12 meses do ano (série 4391 do Banco Central). Não há meta nem projeção.",
+   "o_que_esconde": "O CDI acompanha a Selic de perto. Desde 2018, em dia de poucos negócios, ele é a própria Selic do dia.",
+   "mudancas": [
+    {
+     "ano": 2018,
+     "data": "01/10/2018",
+     "curto": "mínimo de negócios",
+     "o_que_mudou": "A B3 passa a exigir pelo menos 100 operações e R$ 30 bilhões no dia. Abaixo disso, a Taxa DI do dia é igual à Selic.",
+     "fonte": "B3, como a Taxa DI é calculada",
+     "url": "https://b3.com.br/pt_br/market-data-e-indices/indices/indices-de-segmentos-e-setoriais/di/metodologia-de-apuracao-da-taxa/",
+     "certeza": "alta"
+    }
+   ],
+   "armadilhas": [
+    "O CDI ao ano conta 252 dias úteis, não 360 nem 365 dias.",
+    "O CDI do gráfico é a soma dos meses de janeiro a dezembro, não a taxa ao ano que sai no noticiário.",
+    "\"100% do CDI\" é antes do imposto de renda e das taxas.",
+    "As regras anteriores a 2018 não entram aqui: as datas não foram achadas em documento oficial."
+   ],
+   "fontes": [
+    {
+     "titulo": "B3: como a Taxa DI é calculada",
+     "url": "https://b3.com.br/pt_br/market-data-e-indices/indices/indices-de-segmentos-e-setoriais/di/metodologia-de-apuracao-da-taxa/"
+    },
+    {
+     "titulo": "B3: Depósito Interfinanceiro",
+     "url": "https://b3.com.br/pt_br/produtos-e-servicos/registro/renda-fixa-e-valores-mobiliarios/deposito-interfinanceiro.htm"
+    }
+   ]
+  },
+  "poupanca": {
+   "nome": "Poupança",
+   "o_que_e": "É o investimento mais popular do país e não paga imposto de renda. Rende 0,5% ao mês mais a TR quando a Selic está alta; com a meta Selic em 8,5% ao ano ou menos, rende 70% da Selic mais a TR.",
+   "quem_calcula": "A regra está em lei (Lei 8.177, de 1991, e Lei 12.703, de 2012). O Banco Central publica o rendimento e a TR.",
+   "como": "Para depósitos feitos a partir de 04/05/2012: com a meta Selic acima de 8,5% ao ano, rende 0,5% ao mês mais a TR; com a meta em 8,5% ou menos, rende 70% da meta Selic (passada para o mês) mais a TR. Depósitos mais antigos rendem sempre 0,5% mais a TR. O rendimento cai uma vez por mês, na data de aniversário do depósito. A TR é uma taxa calculada pelo Banco Central; desde fevereiro de 2018 sai dos juros dos títulos do governo.",
+   "conta_do_site": "O site junta os 12 meses do ano da série 7828 do Banco Central (depósitos a partir de 04/05/2012).",
+   "o_que_esconde": "Antes de maio de 2012 só existia a regra antiga, e o site mostra uma linha só. Quando a Selic passa de 8,5%, as duas regras rendem igual. E a soma por mês do calendário não é exatamente o que cada pessoa recebe, porque o rendimento cai na data de aniversário.",
+   "mudancas": [
+    {
+     "ano": 1991,
+     "data": "mar/1991",
+     "curto": "nasce a TR",
+     "o_que_mudou": "A Lei 8.177 cria a TR, e a poupança passa a render TR mais 0,5% ao mês.",
+     "fonte": "Lei 8.177/1991",
+     "certeza": "media",
+     "ressalva": "Vem de fonte secundária; o documento oficial não foi aberto."
+    },
+    {
+     "ano": 2012,
+     "data": "04/05/2012",
+     "curto": "regra dos 70% da Selic",
+     "o_que_mudou": "Medida Provisória 567, depois Lei 12.703: com a meta Selic em 8,5% ou menos, a poupança nova rende 70% da meta mais a TR. A poupança antiga continua com 0,5% mais a TR.",
+     "fonte": "Lei 12.703/2012",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12703.htm",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2017,
+     "data": "set/2017 a nov/2021",
+     "curto": "TR em zero",
+     "o_que_mudou": "Com a Selic baixa, a TR fica em zero, e a poupança nova rende só 70% da Selic.",
+     "fonte": "Banco Central, série da TR",
+     "certeza": "media",
+     "ressalva": "O período é aproximado; os meses exatos não foram conferidos."
+    },
+    {
+     "ano": 2018,
+     "data": "01/02/2018",
+     "curto": "TR sai dos títulos do governo",
+     "o_que_mudou": "A Resolução CMN 4.624 muda a base da TR: ela passa a sair dos juros de títulos do governo.",
+     "fonte": "Resolução CMN 4.624/2018",
+     "url": "https://www.bcb.gov.br/htms/normativ/Resolucao4624.pdf",
+     "certeza": "alta"
+    }
+   ],
+   "armadilhas": [
+    "Poupança \"antiga\" e \"nova\" só rendem diferente quando a Selic está em 8,5% ou menos.",
+    "O rendimento cai na data de aniversário: quem saca antes perde o mês.",
+    "Em 2020 e 2021, rendeu menos que a inflação.",
+    "Não paga imposto de renda. Para comparar com o CDI, desconte o imposto do outro lado.",
+    "TR não é inflação. Pode ficar em zero por anos."
+   ],
+   "fontes": [
+    {
+     "titulo": "Lei 12.703/2012 (Planalto)",
+     "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12703.htm"
+    },
+    {
+     "titulo": "Câmara: a medida provisória que mudou a poupança",
+     "url": "https://www.camara.leg.br/noticias/372758-mp-sobre-mudanca-nas-regras-da-poupanca-esta-na-camara/"
+    },
+    {
+     "titulo": "Resolução CMN 4.624/2018 (TR)",
+     "url": "https://www.bcb.gov.br/htms/normativ/Resolucao4624.pdf"
+    },
+    {
+     "titulo": "Banco Central: rendimento da poupança",
+     "url": "https://www.bcb.gov.br/estatisticas/remuneradepositospoupanca"
+    }
+   ]
+  },
+  "dolar": {
+   "nome": "Dólar",
+   "o_que_e": "É quanto custa um dólar americano em reais. O número oficial do dia é a PTAX, do Banco Central. É a referência de contratos, balanços e do mercado futuro.",
+   "quem_calcula": "O Banco Central.",
+   "como": "Quatro vezes por dia (em janelas de 10 minutos a partir das 10h, 11h, 12h e 13h), o Banco Central consulta os bancos que operam câmbio. Em cada consulta, tira as cotações mais altas e mais baixas; a PTAX do dia é a média das quatro. A regra atual está na Resolução BCB 45, de 2020. O valor é em reais por dólar.",
+   "conta_do_site": "Nível: a cotação de venda do último dia do ano (série 3696 do Banco Central). Variação: o nível do ano dividido pelo do ano anterior, menos 1. Projeção: a mediana do boletim Focus para o fim do ano.",
+   "o_que_esconde": "A PTAX não é o dólar turismo (que tem margem do banco e imposto) nem a cotação do app. 31 de dezembro é a foto de um dia só. E de 1995 a 1998 o câmbio era controlado pelo Banco Central.",
+   "mudancas": [
+    {
+     "ano": 1994,
+     "data": "01/07/1994",
+     "curto": "Plano Real",
+     "o_que_mudou": "Nasce o real, valendo perto de 1 dólar (Medida Provisória 542, depois Lei 9.069, de 1995).",
+     "fonte": "Lei 9.069/1995",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/l9069.htm",
+     "certeza": "alta"
+    },
+    {
+     "ano": 1995,
+     "data": "mar/1995 a jan/1999",
+     "curto": "câmbio em bandas",
+     "o_que_mudou": "O Banco Central fixa um piso e um teto para o dólar e os ajusta devagar.",
+     "fonte": "Banco Central",
+     "certeza": "media",
+     "ressalva": "A data exata não foi conferida no documento oficial."
+    },
+    {
+     "ano": 1999,
+     "data": "jan/1999",
+     "curto": "o real passa a flutuar",
+     "o_que_mudou": "Fim das bandas: o dólar passa a ter preço livre. Sai de cerca de R$ 1,21 para cerca de R$ 2,06 em fevereiro.",
+     "fonte": "Banco Central, Comunicado 6.565",
+     "certeza": "media",
+     "ressalva": "Os dias exatos (entre 13 e 18 de janeiro) e os valores aproximados não foram conferidos no documento oficial."
+    },
+    {
+     "ano": 2007,
+     "data": "12/12/2007",
+     "curto": "PTAX pelos negócios do dia",
+     "o_que_mudou": "A Circular 3.372 faz da PTAX a média dos negócios entre bancos no dia, cada um pesando pelo seu valor.",
+     "fonte": "Circular BCB 3.372",
+     "certeza": "media",
+     "ressalva": "Vem de fonte secundária; o documento oficial não foi aberto."
+    },
+    {
+     "ano": 2011,
+     "data": "01/07/2011",
+     "curto": "PTAX por consultas",
+     "o_que_mudou": "A PTAX passa a vir de quatro consultas aos bancos em horários fixos, e não mais dos negócios (Circulares 3.506 e 3.537).",
+     "fonte": "Circulares BCB 3.506 e 3.537",
+     "url": "https://www.bcb.gov.br/pre/normativos/circ/2010/pdf/circ_3506_v3_p.pdf",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2021,
+     "data": "01/01/2021",
+     "curto": "regra atual",
+     "o_que_mudou": "A Resolução BCB 45 junta a regra num texto só e revoga as circulares anteriores.",
+     "fonte": "Resolução BCB 45/2020",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20BCB&numero=45",
+     "certeza": "alta"
+    }
+   ],
+   "armadilhas": [
+    "A PTAX não é o dólar turismo nem o do app do banco.",
+    "A variação do dólar não é a inflação: compare com o IPCA e com a inflação dos EUA.",
+    "O fim do ano é um dia só. A média do ano pode contar outra história.",
+    "Saltos grandes (1999, 2002, 2008, 2015, 2020) achatam a escala dos anos calmos."
+   ],
+   "fontes": [
+    {
+     "titulo": "Banco Central: cotações e boletins (PTAX)",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes"
+    },
+    {
+     "titulo": "Circular BCB 3.506/2010 (PTAX por consultas)",
+     "url": "https://www.bcb.gov.br/pre/normativos/circ/2010/pdf/circ_3506_v3_p.pdf"
+    },
+    {
+     "titulo": "Resolução BCB 45/2020",
+     "url": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20BCB&numero=45"
+    },
+    {
+     "titulo": "Lei 9.069/1995 (Plano Real)",
+     "url": "https://www.planalto.gov.br/ccivil_03/leis/l9069.htm"
+    }
+   ]
+  },
+  "meta": {
+   "nome": "Meta de inflação",
+   "o_que_e": "É o número que o governo, pelo Conselho Monetário Nacional (CMN), manda o Banco Central perseguir para o IPCA, com uma margem para cima e para baixo. Desde 2025 a meta é contínua: 3% ao ano, medida todo mês nos 12 meses anteriores.",
+   "quem_calcula": "O CMN decide. O Banco Central persegue.",
+   "como": "Até 2024, o CMN fixava em junho a meta e a margem de tolerância de um ano-calendário dois ou três anos à frente. Desde 01/01/2025 (Decreto 12.079, de 2024), a meta não tem data para acabar: vale a inflação dos últimos 12 meses, medida todo mês, e a meta só conta como descumprida depois de seis meses seguidos fora da faixa. Qualquer mudança precisa ser anunciada com 36 meses de antecedência. A meta de hoje é 3%, com margem de 1,5 ponto (Resolução CMN 5.141, de 2024).",
+   "conta_do_site": "A linha da meta é a série 13521 do Banco Central. A faixa é a meta mais e menos a tolerância: 2 pontos de 1999 a 2002, 2,5 de 2003 a 2005, 2 de 2006 a 2016 e 1,5 desde 2017.",
+   "o_que_esconde": "Desde 2025, a regra oficial olha os 12 meses, mês a mês, e não o ano-calendário do gráfico. E em 2003 e 2004 o Banco Central perseguiu uma meta ajustada (8,5% e 5,5%), diferente da oficial.",
+   "mudancas": [
+    {
+     "ano": 1999,
+     "data": "jun/1999",
+     "curto": "começam as metas",
+     "o_que_mudou": "O Decreto 3.088 cria o sistema de metas. As primeiras: 8% (1999), 6% (2000) e 4% (2001), com tolerância de 2 pontos.",
+     "fonte": "Decreto 3.088/1999",
+     "url": "https://planalto.gov.br/ccivil_03/decreto/D3088.htm",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2002,
+     "data": "jun/2000",
+     "curto": "meta de 3,5%",
+     "o_que_mudou": "Meta de 3,5% para 2002.",
+     "fonte": "Banco Central, histórico das metas",
+     "url": "https://www.bcb.gov.br/controleinflacao/historicometas",
+     "certeza": "media",
+     "ressalva": "O número e a data da resolução não foram conferidos no documento oficial; o valor da meta, sim."
+    },
+    {
+     "ano": 2003,
+     "data": "jun/2002 e jan/2003",
+     "curto": "tolerância 2,5 e meta ajustada",
+     "o_que_mudou": "A meta de 2003 sobe de 3,25% para 4%, com tolerância de 2,5 pontos (Resolução 2.972). Em janeiro de 2003, o Banco Central passa a perseguir metas ajustadas de 8,5% (2003) e 5,5% (2004) e explica isso em carta aberta.",
+     "fonte": "Resolução CMN 2.972; carta aberta de 21/01/2003",
+     "url": "https://www.bcb.gov.br/content/controleinflacao/controleinflacao_docs/carta_aberta/carta2003.pdf",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2004,
+     "data": "jun/2003",
+     "curto": "metas revistas",
+     "o_que_mudou": "A meta de 2004 sobe de 3,75% para 5,5%, e a de 2005 fica em 4,5%, com tolerância de 2,5 pontos.",
+     "fonte": "Banco Central, histórico das metas",
+     "url": "https://www.bcb.gov.br/controleinflacao/historicometas",
+     "certeza": "media",
+     "ressalva": "O número e a data da resolução não foram conferidos no documento oficial; o valor da meta, sim."
+    },
+    {
+     "ano": 2006,
+     "data": "2006 a 2016",
+     "curto": "meta de 4,5%",
+     "o_que_mudou": "Meta de 4,5% com tolerância de 2 pontos, repetida todo ano de 2006 a 2016.",
+     "fonte": "Banco Central, histórico das metas",
+     "url": "https://www.bcb.gov.br/controleinflacao/historicometas",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2017,
+     "data": "30/06/2016",
+     "curto": "tolerância cai para 1,5",
+     "o_que_mudou": "A tolerância cai para 1,5 ponto (meta de 4,5% em 2017 e 2018).",
+     "fonte": "Resolução CMN 4.499",
+     "url": "https://www.bcb.gov.br/controleinflacao/historicometas",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2019,
+     "data": "2019 a 2024",
+     "curto": "meta começa a cair",
+     "o_que_mudou": "A meta cai ano a ano: 4,25% (2019), 4% (2020), 3,75% (2021), 3,5% (2022), 3,25% (2023) e 3% (2024).",
+     "fonte": "Banco Central, histórico das metas",
+     "url": "https://www.bcb.gov.br/controleinflacao/historicometas",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2025,
+     "data": "26/06/2024",
+     "curto": "meta contínua",
+     "o_que_mudou": "Meta contínua de 3%, com tolerância de 1,5 ponto, medida nos últimos 12 meses, mês a mês. Só conta como descumprida depois de seis meses seguidos fora da faixa (Decreto 12.079 e Resolução CMN 5.141). Vale desde 01/01/2025.",
+     "fonte": "Decreto 12.079/2024; Resolução CMN 5.141/2024",
+     "url": "https://planalto.gov.br/ccivil_03/_Ato2023-2026/2024/Decreto/D12079.htm",
+     "certeza": "alta"
+    }
+   ],
+   "armadilhas": [
+    "Desde 2025 a regra olha os 12 meses e seis meses seguidos fora da faixa. O gráfico por ano é uma leitura aproximada.",
+    "Em 2003 e 2004 havia duas metas: a oficial e a ajustada do Banco Central.",
+    "A faixa não é a meta: o alvo é o centro.",
+    "Até 2016 a tolerância era 2 pontos; depois, 1,5. O mesmo desvio pode ter passado de \"dentro\" para \"fora\".",
+    "A meta é para o IPCA, não para o IGP-M."
+   ],
+   "fontes": [
+    {
+     "titulo": "Banco Central: histórico das metas para a inflação",
+     "url": "https://www.bcb.gov.br/controleinflacao/historicometas"
+    },
+    {
+     "titulo": "Decreto 12.079/2024 (Planalto)",
+     "url": "https://planalto.gov.br/ccivil_03/_Ato2023-2026/2024/Decreto/D12079.htm"
+    },
+    {
+     "titulo": "Decreto 3.088/1999 (Planalto)",
+     "url": "https://planalto.gov.br/ccivil_03/decreto/D3088.htm"
+    },
+    {
+     "titulo": "Banco Central: carta aberta de 2003 (metas ajustadas)",
+     "url": "https://www.bcb.gov.br/content/controleinflacao/controleinflacao_docs/carta_aberta/carta2003.pdf"
+    }
+   ]
+  },
+  "ibovespa": {
+   "nome": "Ibovespa",
+   "o_que_e": "É o principal índice da bolsa brasileira: uma carteira de mentira com as ações mais negociadas, que sobe e desce com os preços delas. Quando se diz \"a bolsa subiu 2%\", é o Ibovespa.",
+   "quem_calcula": "A B3.",
+   "como": "A carteira é refeita a cada quatro meses (janeiro, maio e setembro). Entram as ações mais negociadas, que somam 85% dos negócios, foram negociadas em 95% dos pregões e custam mais de R$ 1. Cada empresa pesa pelo valor das suas ações que estão livres no mercado, com um limite ligado ao quanto ela é negociada. Os dividendos são reinvestidos no índice. O valor é em pontos.",
+   "conta_do_site": "Nível: o fechamento do último dia do ano. Variação: o nível do ano dividido pelo do ano anterior, menos 1, em reais, sem descontar a inflação. O site lê os fechamentos no stooq, porque a série do Banco Central parou em 2019.",
+   "o_que_esconde": "Não desconta a inflação nem o dólar. E a carteira de hoje não é a de 1995.",
+   "mudancas": [
+    {
+     "ano": 1968,
+     "data": "02/01/1968",
+     "curto": "o índice começa",
+     "o_que_mudou": "O Ibovespa começa, valendo 100 pontos.",
+     "fonte": "B3",
+     "certeza": "media",
+     "ressalva": "Vem de fonte secundária; o documento oficial não foi aberto."
+    },
+    {
+     "ano": 2013,
+     "data": "11/09/2013",
+     "curto": "método novo",
+     "o_que_mudou": "A B3 muda a regra: cada empresa passa a pesar pelo valor das ações livres no mercado, com limite pela negociação, e ações abaixo de R$ 1 saem.",
+     "fonte": "B3, histórico das mudanças de método",
+     "url": "https://www.b3.com.br/data/files/6A/D6/BE/66/AC2238101E311E28AC094EA8/PT%20Historico-das-Adequacoes-Metodologicas%20Port%20Ago172022.pdf",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2014,
+     "data": "jan e mai/2014",
+     "curto": "fim da transição",
+     "o_que_mudou": "Em janeiro, a carteira usa meio a meio a regra velha e a nova; em maio, só a nova.",
+     "fonte": "B3, histórico das mudanças de método",
+     "url": "https://www.b3.com.br/data/files/6A/D6/BE/66/AC2238101E311E28AC094EA8/PT%20Historico-das-Adequacoes-Metodologicas%20Port%20Ago172022.pdf",
+     "certeza": "alta"
+    }
+   ],
+   "armadilhas": [
+    "Pontos não são reais: 100 mil pontos não dizem quanto vale a bolsa.",
+    "Já inclui os dividendos, ao contrário do S&P 500 do noticiário.",
+    "Poucas empresas (Vale, Petrobras, bancos) pesam muito no índice.",
+    "É em reais: num ano de dólar em alta, o que subiu em reais pode ter caído em dólares.",
+    "Antes de 2014, o peso de cada empresa vinha de quanto ela era negociada, não do seu tamanho."
+   ],
+   "fontes": [
+    {
+     "titulo": "B3: método do Ibovespa (PDF)",
+     "url": "https://www.b3.com.br/data/files/9C/15/76/F6/3F6947102255C247AC094EA8/IBOV-Metodologia-pt-br__Novo_.pdf"
+    },
+    {
+     "titulo": "B3: histórico das mudanças de método (ago/2022)",
+     "url": "https://www.b3.com.br/data/files/6A/D6/BE/66/AC2238101E311E28AC094EA8/PT%20Historico-das-Adequacoes-Metodologicas%20Port%20Ago172022.pdf"
+    },
+    {
+     "titulo": "B3 Bora Investir: Ibovespa",
+     "url": "https://borainvestir.b3.com.br/glossario/ibovespa/"
+    }
+   ]
+  },
+  "sp500": {
+   "nome": "S&P 500",
+   "o_que_e": "Reúne cerca de 500 das maiores empresas da bolsa dos Estados Unidos. É a referência do mundo para dizer \"como foi a bolsa americana\". Cada empresa pesa pelo valor das suas ações livres no mercado.",
+   "quem_calcula": "A S&P Dow Jones Indices.",
+   "como": "Um comitê escolhe as empresas: americanas, valendo ao menos US$ 22,7 bilhões (desde julho de 2025), com lucro no último trimestre e na soma dos últimos quatro, e com ações bastante negociadas. Cada uma pesa pelo valor das ações livres no mercado. O índice do noticiário não inclui os dividendos. O valor é em pontos.",
+   "conta_do_site": "Nível: o fechamento do último dia do ano. Variação: o nível do ano dividido pelo do ano anterior, menos 1, em dólares. O site lê os fechamentos no stooq.",
+   "o_que_esconde": "Não inclui os dividendos (de 1,5 a 2 pontos por ano a menos que o retorno com eles). Em reais, entra também o dólar. E o Ibovespa ao lado inclui os dividendos.",
+   "mudancas": [
+    {
+     "ano": 1957,
+     "data": "04/03/1957",
+     "curto": "passa a 500 ações",
+     "o_que_mudou": "O índice passa a ter 500 ações e a ser calculado todo dia.",
+     "fonte": "S&P Dow Jones Indices",
+     "certeza": "media",
+     "ressalva": "Vem de fonte secundária; o documento oficial não foi aberto."
+    },
+    {
+     "ano": 2005,
+     "data": "18/03 e 16/09/2005",
+     "curto": "só ações livres",
+     "o_que_mudou": "Em duas etapas (metade em março, o resto em setembro), o peso de cada empresa passa a contar só as ações livres no mercado. A mudança tinha sido anunciada em 2004.",
+     "fonte": "Comunicados da S&P",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2017,
+     "data": "jul/2017",
+     "curto": "regra das classes de ações",
+     "o_que_mudou": "Empresas novas com ações sem direito a voto deixam de poder entrar. As que já estavam ficam.",
+     "fonte": "S&P Dow Jones Indices",
+     "certeza": "media",
+     "ressalva": "Vem de fonte secundária; o documento oficial não foi aberto."
+    },
+    {
+     "ano": 2025,
+     "data": "01/07/2025",
+     "curto": "piso de US$ 22,7 bilhões",
+     "o_que_mudou": "O valor mínimo para entrar sobe para US$ 22,7 bilhões.",
+     "fonte": "S&P Dow Jones Indices, comunicado",
+     "url": "https://press.spglobal.com/2025-07-01-S-P-Dow-Jones-Indices-Announces-Update-to-S-P-Composite-1500-Market-Cap-Guidelines",
+     "certeza": "alta"
+    }
+   ],
+   "armadilhas": [
+    "O índice não tem os dividendos.",
+    "É em dólares: para quem está no Brasil, o dólar soma ou tira.",
+    "As 10 maiores empresas passam de 30% do índice.",
+    "\"500\" é aproximado: algumas empresas têm duas classes de ações no índice.",
+    "Para comparar com o Ibovespa, use a mesma moeda e o mesmo tipo (com ou sem dividendos)."
+   ],
+   "fontes": [
+    {
+     "titulo": "S&P Dow Jones Indices: S&P 500 (método e documentos)",
+     "url": "https://www.spglobal.com/spdji/en/indices/equity/sp-500/"
+    },
+    {
+     "titulo": "S&P Dow Jones Indices: novo valor mínimo (01/07/2025)",
+     "url": "https://press.spglobal.com/2025-07-01-S-P-Dow-Jones-Indices-Announces-Update-to-S-P-Composite-1500-Market-Cap-Guidelines"
+    }
+   ]
+  },
+  "ouro": {
+   "nome": "Ouro",
+   "o_que_e": "O preço de referência do ouro no mundo é o da onça (31,1 gramas), em dólares, formado em leilão eletrônico em Londres duas vezes por dia. No Brasil, o preço em reais por grama segue esse valor, convertido pelo dólar.",
+   "quem_calcula": "A LBMA, associação do mercado de ouro de Londres, com o cálculo feito pela ICE Benchmark Administration desde 20/03/2015.",
+   "como": "Leilão eletrônico às 10h30 e às 15h de Londres, em dólares por onça. De 1919 a 2015, o preço era combinado entre bancos. No Brasil, a série do Banco Central (ouro em reais por grama) parou em 30/09/2019, e a B3 encerrou os contratos de ouro em 2024.",
+   "conta_do_site": "Ainda não entra no site. Plano: o preço no fim de cada ano, com a variação em dólares; em reais por grama = dólares por onça × dólar PTAX ÷ 31,1035.",
+   "o_que_esconde": "Em reais, a variação mistura ouro e dólar. O ouro não paga juros: a comparação justa é com a inflação, não com o CDI.",
+   "mudancas": [
+    {
+     "ano": 1919,
+     "data": "12/09/1919",
+     "curto": "primeiro preço em Londres",
+     "o_que_mudou": "Primeiro preço do ouro combinado entre bancos em Londres.",
+     "fonte": "LBMA",
+     "certeza": "media",
+     "ressalva": "Vem de fonte secundária; o documento oficial não foi aberto."
+    },
+    {
+     "ano": 2015,
+     "data": "20/03/2015",
+     "curto": "leilão eletrônico",
+     "o_que_mudou": "O leilão eletrônico da ICE Benchmark Administration substitui o preço combinado entre bancos.",
+     "fonte": "ICE e LBMA",
+     "url": "https://www.lbma.org.uk/articles/the-new-lbma-gold-price-successfully-launched-on-20th-march-2015",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2019,
+     "data": "30/09/2019",
+     "curto": "fim da série do BC",
+     "o_que_mudou": "Último dado da série do Banco Central do ouro em reais por grama.",
+     "fonte": "Banco Central, série 4",
+     "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.4/dados/ultimos/1?formato=json",
+     "certeza": "alta"
+    },
+    {
+     "ano": 2024,
+     "data": "28/03/2024",
+     "curto": "B3 encerra o ouro",
+     "o_que_mudou": "Último dia de negócio dos contratos de ouro na B3.",
+     "fonte": "B3, Ofícios 169/2023 e 030/2024",
+     "url": "https://b3.com.br/data/files/C7/94/58/93/86751910812F0F09AC094EA8/OC%20169-2023%20PRE%20Descontinuacao%20dos%20Contratos%20de%20Ouro%20Ativo%20Financeiro%20na%20B3%20_PT_.pdf",
+     "certeza": "alta"
+    }
+   ],
+   "armadilhas": [
+    "Onça do ouro tem 31,1 gramas, não 28,3.",
+    "Em reais por grama, o preço muda com o dólar mesmo com o ouro parado.",
+    "O preço da manhã e o da tarde são diferentes. Use sempre o mesmo.",
+    "Fundos de ouro cobram taxa; o preço de referência não.",
+    "Não há preço oficial do ouro no Brasil desde 2019."
+   ],
+   "fontes": [
+    {
+     "titulo": "LBMA: LBMA Gold Price",
+     "url": "https://www.lbma.org.uk/prices-and-data/lbma-gold-price/lbma-gold-price"
+    },
+    {
+     "titulo": "LBMA: início do leilão eletrônico em 20/03/2015",
+     "url": "https://www.lbma.org.uk/articles/the-new-lbma-gold-price-successfully-launched-on-20th-march-2015"
+    },
+    {
+     "titulo": "ICE: comunicado de 19/02/2015",
+     "url": "https://ir.theice.com/press/news-details/2015/ICE-Benchmark-Administration-to-Administer-the-LBMA-Gold-Price-from-20-March-2015/default.aspx"
+    },
+    {
+     "titulo": "B3: fim dos contratos de ouro",
+     "url": "https://b3.com.br/data/files/C7/94/58/93/86751910812F0F09AC094EA8/OC%20169-2023%20PRE%20Descontinuacao%20dos%20Contratos%20de%20Ouro%20Ativo%20Financeiro%20na%20B3%20_PT_.pdf"
+    }
+   ]
+  }
+ }
+}

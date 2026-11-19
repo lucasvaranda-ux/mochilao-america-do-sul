@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Esta política vale também para a página do estudo, que é escrita por cima desta: nada de script de fora, nada de envio para fora. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self'; worker-src blob:; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Estudos</title>
+<link rel="icon" type="image/svg+xml" href="/estudos/icone.svg">
+<link rel="apple-touch-icon" href="/estudos/icone-180.png">
+<style>
+/* Leitor do Estudos: busca o estudo cifrado, decifra com a chave do aparelho e escreve a página no lugar desta.
+   Sem a chave, manda para a porta. Esta página é pública e não traz nenhum título. */
+:root{--bg:#F2F4F3;--ink:#101614;--muted:#66716C;--line:#D7DDD9;--on:#F2F4F3}
+@media (prefers-color-scheme:dark){:root{--bg:#0B0B0F;--ink:#ECEEF0;--muted:#8D949C;--line:#2A2C34;--on:#0B0B0F}}
+body{margin:0;min-height:100vh;min-height:100dvh;display:grid;place-items:center;background:var(--bg);color:var(--ink);font:16px/1.5 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:24px}
+.cx{max-width:380px;display:grid;gap:12px;justify-items:start}
+.cx p{margin:0;color:var(--muted)}
+.cx b{color:var(--ink);font-size:1.2rem}
+.cx a{display:inline-flex;align-items:center;min-height:46px;padding:0 16px;border-radius:12px;background:var(--ink);color:var(--on);text-decoration:none;font-weight:700}
+</style>
+</head>
+<body>
+<div class="cx" id="cx"><p>Abrindo…</p></div>
+<script src="/estudos/cofre.js"></script>
+<script>
+(async function(){
+  'use strict';
+  var HOST_APP=/^estudos\./.test(location.hostname), INICIO=HOST_APP?'/':'/estudos';
+  function diz(titulo,texto){
+    var cx=document.getElementById('cx');cx.textContent='';
+    var b=document.createElement('b');b.textContent=titulo;cx.appendChild(b);
+    var p=document.createElement('p');p.textContent=texto;cx.appendChild(p);
+    var a=document.createElement('a');a.href=INICIO;a.textContent='Voltar à estante';cx.appendChild(a);
+  }
+  try{
+    // qual estudo: /slug no endereço do app, ?e=slug nos outros
+    var slug=new URLSearchParams(location.search).get('e')||'';
+    if(!slug){var p=location.pathname.replace(/^\/+|\/+$/g,'');if(p&&p.indexOf('/')<0&&p!=='ler')slug=p}
+    if(!/^[a-z0-9][a-z0-9-]{1,60}$/.test(slug)){diz('Não achei esse estudo.','O endereço não aponta para nenhum estudo da estante.');return}
+    var K=await Cofre.le();
+    if(!K){
+      // sem chave: vai para a porta e, depois de abrir, volta para cá
+      try{sessionStorage.setItem('estudos_ir',slug+(/^#[\w-]*$/.test(location.hash)?location.hash:''))}catch(e){}
+      location.replace(INICIO);return;
+    }
+    var html;
+    try{html=await Cofre.busca(K,'estudo:'+slug)}
+    catch(e){
+      var m=String(e&&e.message||'');
+      if(m==='rede'){diz('Sem conexão agora.','Recarregue a página quando a internet voltar.');return}
+      if(m==='navegador'){diz('Navegador antigo demais.','Atualize o sistema ou use outro navegador para abrir a estante.');return}
+      // não achou ou não abriu: ou o estudo não existe, ou a chave deste aparelho foi trocada
+      var chaveBoa=true;try{await Cofre.busca(K,'catalogo')}catch(e2){if(String(e2&&e2.message)!=='rede')chaveBoa=false}
+      if(!chaveBoa){await Cofre.apaga();try{sessionStorage.setItem('estudos_ir',slug)}catch(e3){}location.replace(INICIO);return}
+      diz('Não achei esse estudo.','Ele pode ter mudado de nome ou saído da estante.');return;
+    }
+    // guarda qual foi o último aberto, para a estante oferecer "Continuar"
+    try{var ui=JSON.parse(localStorage.getItem('estudos_ui')||'{}');ui.ultimo={slug:slug,quando:Date.now()};localStorage.setItem('estudos_ui',JSON.stringify(ui))}catch(e){}
+    // botão de volta à estante: canto de baixo à esquerda, ou o canto que a página pedir em <meta name="estudos:volta" content="be|bd|te|td|nao">
+    var canto=(html.match(/<meta\s+name=["']estudos:volta["']\s+content=["'](be|bd|te|td|nao)["']/i)||[])[1]||'be';
+    var pos=(canto.charAt(0)==='t'?'top:max(12px,env(safe-area-inset-top,0px));':'bottom:max(12px,env(safe-area-inset-bottom,0px));')+(canto.charAt(1)==='d'?'right:max(12px,env(safe-area-inset-right,0px));':'left:max(12px,env(safe-area-inset-left,0px));');
+    var extra=canto==='nao'?'':
+      '<style>#estudos-volta{all:initial;position:fixed;z-index:2147483646;'+pos+'width:44px;height:44px;border-radius:50%;background:rgba(16,22,20,.84);display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 2px 12px rgba(0,0,0,.28);-webkit-tap-highlight-color:transparent}#estudos-volta:focus-visible{outline:3px solid #3ddc97;outline-offset:2px}#estudos-volta svg{display:block;width:21px;height:21px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}@media print{#estudos-volta{display:none!important}}</style>'+
+      '<a id="estudos-volta" href="'+INICIO+'" aria-label="Voltar à estante" title="Voltar à estante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v13M11 5v13M15.500 6.500l3.500 11.500M3.500 19h17"/></svg></a>';
+    // a página foi escrita depois do carregamento, então a rolagem até a âncora (#parte) é feita à mão
+    extra+='<script>(function(){function vai(){try{var h=decodeURIComponent(location.hash.slice(1));if(!h)return;var e=document.getElementById(h);if(e)e.scrollIntoView()}catch(e){}}if(document.readyState==="complete")setTimeout(vai,80);else window.addEventListener("load",function(){setTimeout(vai,80)})})();<\/script>';
+    var i=html.toLowerCase().lastIndexOf('</body>');
+    html=i>=0?html.slice(0,i)+extra+html.slice(i):html+extra;
+    document.open();document.write(html);document.close();
+  }catch(e){diz('O estudo não abriu.','Tente recarregar a página.')}
+})();
+</script>
+</body>
+</html>

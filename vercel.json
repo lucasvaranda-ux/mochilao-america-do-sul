@@ -149,6 +149,113 @@
           "value": "application/manifest+json; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/estudos",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/estudos.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/estudos/ler",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/estudos/cofre.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/estudos/dados/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/estudos/lib/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/estudos/(.*).(png|svg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/estudos/manifest.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "estudos(\\.madeinbr\\.app|-[a-z0-9-]*\\.vercel\\.app)"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self'; worker-src blob:; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+        }
+      ]
     }
   ],
   "functions": {
@@ -162,15 +269,17 @@
       "maxDuration": 300
     },
     "api/inv-cotacao.mjs": {
-      "maxDuration": 15
+      "maxDuration": 30,
+      "includeFiles": "inv/empresas.json"
     },
     "api/inv-busca.mjs": {
-      "maxDuration": 15
+      "maxDuration": 15,
+      "includeFiles": "inv/busca.json"
     }
   },
   "redirects": [
     {
-      "source": "/(index|peru|telas|inv)(\\.html)?",
+      "source": "/(index|peru|telas|inv|estudos)(\\.html)?",
       "has": [
         {
           "type": "host",
@@ -187,7 +296,7 @@
       ]
     },
     {
-      "source": "/(index|peru|telas|inv)(\\.html)?",
+      "source": "/(index|peru|telas|inv|estudos)(\\.html)?",
       "has": [
         {
           "type": "host",
@@ -202,6 +311,45 @@
           "key": "x-inv-interno"
         }
       ]
+    },
+    {
+      "source": "/(index|peru|telas|inv|estudos)(\\.html)?",
+      "has": [
+        {
+          "type": "host",
+          "value": "estudos(\\.madeinbr\\.app|-[a-z0-9-]*\\.vercel\\.app)"
+        }
+      ],
+      "destination": "/",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-estudos-interno"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/:slug([a-z0-9][a-z0-9-]+)",
+      "has": [
+        {
+          "type": "host",
+          "value": "estudos(\\.madeinbr\\.app|-[a-z0-9-]*\\.vercel\\.app)"
+        }
+      ],
+      "destination": "/estudos/ler"
+    },
+    {
+      "source": "/:slug([a-z0-9][a-z0-9-]+)",
+      "has": [
+        {
+          "type": "host",
+          "value": "estudos(\\.madeinbr\\.app|-[a-z0-9-]*\\.vercel\\.app)"
+        }
+      ],
+      "destination": "/estudos/ler.html"
     }
   ],
   "crons": [

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f2f4f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)">
+<title>Estudos</title>
+<meta name="description" content="Estante particular.">
+<meta name="apple-mobile-web-app-title" content="Estudos">
+<link rel="icon" type="image/svg+xml" href="/estudos/icone.svg">
+<link rel="apple-touch-icon" href="/estudos/icone-180.png">
+<link rel="manifest" href="/estudos/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* =========================================================================
+   Estudos (estudos.madeinbr.app) — estante particular.
+   Esta página é pública e não traz nenhum título nem texto de estudo: sem a chave, só existe a porta.
+   Com a chave (link-chave #k=… ou colada na porta), o catálogo e cada estudo são decifrados no navegador
+   (estudos/cofre.js). Visual: estante de fichas, Plus Jakarta Sans, claro e escuro.
+   ========================================================================= */
+:root{
+  --bg:#F2F4F3; --surface:#FFFFFF; --ink:#101614; --ink2:#414C47; --muted:#66716C; --line:#D7DDD9; --shelf:#BFC8C3;
+  --accent:#09714B; --accent-soft:#E0F0E8; --chip:#E7ECE9; --on-ink:#F2F4F3; --erro:#A3262C;
+  --ui:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0B0B0F; --surface:#15161B; --ink:#ECEEF0; --ink2:#B9BFC4; --muted:#8D949C; --line:#2A2C34; --shelf:#3A3D47;
+  --accent:#3DDC97; --accent-soft:#10271D; --chip:#1E2027; --on-ink:#0B0B0F; --erro:#EE8078 }}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--ui);min-height:100vh;min-height:100dvh;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-top:max(28px,env(safe-area-inset-top,0px));padding-bottom:max(72px,env(safe-area-inset-bottom,0px))}
+[hidden]{display:none!important}
+a{color:inherit}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* espera e porta */
+.centro{min-height:calc(100dvh - 120px);display:grid;place-items:center}
+.espera{color:var(--muted);font:500 15px/1.4 var(--ui)}
+.porta{width:100%;max-width:400px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;justify-items:start}
+.porta svg.marca{width:64px;height:64px;border-radius:15px}
+.porta h1{font:800 2.6rem/1 var(--ui);letter-spacing:-.035em;margin:6px 0 0}
+.porta p{margin:0;color:var(--ink2)}
+.porta form{width:100%;display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-top:6px}
+.porta label{font:600 13px/1.3 var(--ui);color:var(--ink2)}
+.porta input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:500 16px/1.2 var(--mono);padding:0 14px}
+.porta input::placeholder{font-family:var(--ui);color:var(--muted)}
+.bt{min-height:48px;padding:0 18px;border-radius:12px;border:1px solid var(--ink);background:var(--ink);color:var(--on-ink);font:700 15px/1 var(--ui);cursor:pointer}
+.bt[disabled]{opacity:.55;cursor:default}
+.bt.leve{background:transparent;color:var(--ink);border-color:var(--line);font-weight:600}
+.aviso{margin:0;color:var(--erro);font:600 14px/1.4 var(--ui);min-height:1.4em}
+.miudo{font-size:.86rem;color:var(--muted)}
+
+/* estante */
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:40px}
+.topo{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.sobre{font:600 12px/1.2 var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+.topo h1{font:800 clamp(2.5rem,10vw,4.4rem)/.96 var(--ui);letter-spacing:-.035em;margin:0;text-wrap:balance}
+.lede{max-width:58ch;color:var(--ink2);margin:0;font-size:1.05rem}
+.seguir{justify-self:start;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:12px;background:var(--accent-soft);color:var(--ink);text-decoration:none;font:600 14px/1.25 var(--ui);max-width:100%}
+.seguir b{color:var(--accent);white-space:nowrap}
+.seguir span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.filtros{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-top:6px}
+.busca{position:relative;max-width:520px}
+.busca input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:500 16px/1 var(--ui);padding:0 14px 0 42px}
+.busca input::placeholder{color:var(--muted)}
+.busca svg{position:absolute;left:13px;top:50%;width:19px;height:19px;margin-top:-9.5px;color:var(--muted);pointer-events:none}
+.temas{display:flex;gap:8px;flex-wrap:wrap}
+.tema{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);font:600 14px/1 var(--ui);cursor:pointer}
+.tema b{font:500 12px/1 var(--mono);color:var(--muted);margin-left:5px}
+.tema[aria-pressed="true"]{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.tema[aria-pressed="true"] b{color:var(--on-ink);opacity:.7}
+.conta{font:500 13px/1.4 var(--ui);color:var(--muted);margin:0;min-height:1.4em}
+
+.estante{display:grid;grid-template-columns:minmax(0,1fr);gap:34px}
+.prat{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.prat-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:3px solid var(--shelf);padding-bottom:8px}
+.prat-h h2{font:700 1.2rem/1.2 var(--ui);margin:0;letter-spacing:-.015em}
+.prat-h span{font:500 12px/1 var(--mono);color:var(--muted);white-space:nowrap}
+.livros{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:940px){.livros{grid-template-columns:repeat(2,minmax(0,1fr))}.livros>.est:last-child:nth-child(odd){grid-column:1/-1}}
+.est{display:grid;grid-template-columns:116px minmax(0,1fr);grid-template-areas:"capa cab" "corpo corpo";gap:12px 14px;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;align-content:start}
+@media (min-width:560px){.est{grid-template-columns:136px minmax(0,1fr);grid-template-areas:"capa cab" "capa corpo";grid-template-rows:auto 1fr;padding:14px;gap:10px 18px}}
+.capa{grid-area:capa;container-type:inline-size;display:grid;grid-template-rows:auto 1fr auto;aspect-ratio:3/4;border-radius:3px 8px 8px 3px;
+  padding:9% 8% 7% 12%;text-decoration:none;background:var(--cb);color:var(--cf);position:relative;overflow:hidden;align-self:start;
+  box-shadow:inset 6px 0 0 rgba(0,0,0,.2),inset 7px 0 0 rgba(255,255,255,.09)}
+.capa-tipo{font:600 9.5px/1.25 var(--ui);letter-spacing:.09em;text-transform:uppercase;color:var(--ca)}
+.capa-tit{align-self:center;font-size:15px;font-size:min(calc(var(--k,12) * 1cqw),19cqw);line-height:1.04;text-wrap:balance;overflow-wrap:normal;word-break:normal;hyphens:none}
+.capa-tit.alta{text-transform:uppercase;letter-spacing:.01em;line-height:.98}
+.capa-emb{width:24%;min-width:24px;height:auto;aspect-ratio:1;color:var(--ca);justify-self:end;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.cab{grid-area:cab;display:grid;grid-template-columns:minmax(0,1fr);gap:6px;align-content:start;min-width:0}
+.cota{font:500 11.5px/1.35 var(--mono);color:var(--muted);margin:0;display:flex;gap:4px 7px;flex-wrap:wrap;align-items:center}
+.novo{font:700 10px/1 var(--ui);letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--on-ink);border-radius:999px;padding:4px 7px}
+.cab h3{font:700 1.16rem/1.18 var(--ui);margin:0;letter-spacing:-.015em;text-wrap:balance}
+.cab h3 a{text-decoration:none}
+.cab h3 a:hover{text-decoration:underline}
+.med{margin:0;font:500 12.5px/1.4 var(--ui);color:var(--muted)}
+.abrir{justify-self:start;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;margin-top:2px;border-radius:10px;background:var(--ink);color:var(--on-ink);font:600 14px/1 var(--ui);text-decoration:none}
+.abrir svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.corpo{grid-area:corpo;display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-content:start;min-width:0}
+.res{margin:0;color:var(--ink2);font-size:.95rem;max-width:62ch}
+.dentro{border-top:1px solid var(--line);padding-top:2px}
+.dentro summary{cursor:pointer;font:500 13.5px/1.4 var(--ui);color:var(--ink2);list-style:none;min-height:40px;display:flex;align-items:center;gap:8px}
+.dentro summary::-webkit-details-marker{display:none}
+.dentro summary b{font-weight:700;color:var(--accent);white-space:nowrap}
+.dentro summary span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dentro summary::after{content:"+";margin-left:auto;font:500 18px/1 var(--mono);color:var(--muted)}
+.dentro[open] summary::after{content:"–"}
+.dentro[open] summary span{display:none}
+.dentro ul{margin:0 0 4px;padding:0;list-style:none;display:grid}
+.dentro li+li{border-top:1px dashed var(--line)}
+.dentro li a,.dentro li span{display:block;padding:9px 0;font-size:.93rem;color:var(--ink)}
+.dentro li a{text-decoration:underline;text-decoration-color:var(--shelf);text-underline-offset:3px}
+.dentro li span{color:var(--ink2)}
+.falta{margin:0;font-size:.86rem;line-height:1.45;color:var(--ink2);background:var(--chip);border-radius:8px;padding:8px 10px}
+.falta b{font-weight:700;color:var(--ink)}
+.vazio{margin:0;padding:22px;border:1px dashed var(--shelf);border-radius:14px;color:var(--ink2)}
+
+.sec-h{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;margin-bottom:14px}
+.sec-h h2{font:800 1.5rem/1.1 var(--ui);letter-spacing:-.02em;margin:0}
+.sec-h p{margin:0;color:var(--ink2);max-width:58ch}
+.fios{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:760px){.fios{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fio{border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-content:start;background:var(--surface)}
+.fio h3{font:700 1.02rem/1.25 var(--ui);margin:0}
+.fio p{margin:0;color:var(--ink2);font-size:.95rem}
+.fio-l{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font:600 13px/1.3 var(--ui)}
+.fio-l a{display:inline-flex;align-items:center;min-height:34px;padding:0 11px;border-radius:999px;background:var(--chip);text-decoration:none;color:var(--ink)}
+.fio-l i{font-style:normal;color:var(--muted)}
+
+.pe{border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:.86rem;display:grid;grid-template-columns:minmax(0,1fr);gap:10px;max-width:70ch}
+.pe p{margin:0}
+.pe details summary{cursor:pointer;font-weight:600;color:var(--ink2);min-height:40px;display:flex;align-items:center}
+.pe ol{margin:4px 0 0;padding-left:1.3em;display:grid;gap:4px}
+.pe .linha{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+@media (prefers-reduced-motion:no-preference){.capa{transition:transform .15s ease}.capa:hover{transform:translateY(-2px)}}
+</style>
+</head>
+<body>
+
+<div class="centro" id="espera"><p class="espera">Abrindo…</p></div>
+
+<!-- A PORTA: é tudo o que existe para quem não tem a chave -->
+<div class="centro" id="porta" hidden>
+  <div class="porta">
+    <svg class="marca" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" fill="#0b0b0f"/><path d="M150 148v216M218 148v216M286 172l66 190M112 388h288" fill="none" stroke="#3ddc97" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h1>Estudos</h1>
+    <p>Esta estante é particular. Para abrir, cole a chave.</p>
+    <form id="f-chave" autocomplete="off">
+      <label for="chave">Chave ou link-chave</label>
+      <input id="chave" name="chave" type="text" inputmode="text" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="Cole aqui" aria-describedby="porta-aviso">
+      <button class="bt" type="submit" id="bt-abrir">Abrir</button>
+      <p class="aviso" id="porta-aviso" role="alert"></p>
+    </form>
+    <p class="miudo">A chave fica só neste aparelho. Sem ela, não dá para ver nem os títulos.</p>
+  </div>
+</div>
+
+<!-- A ESTANTE: montada no navegador, depois de decifrar o catálogo -->
+<div class="wrap" id="app" hidden>
+  <header class="topo">
+    <p class="sobre" id="sobre"></p>
+    <h1>Meus Estudos</h1>
+    <p class="lede" id="lede"></p>
+    <a class="seguir" id="seguir" hidden><b>Continuar</b><span></span></a>
+    <div class="filtros">
+      <div class="busca">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+        <input id="q" type="search" placeholder="Procurar na estante" aria-label="Procurar nos estudos" autocomplete="off">
+      </div>
+      <div class="temas" id="temas" role="group" aria-label="Filtrar por prateleira"></div>
+      <p class="conta" id="conta" aria-live="polite"></p>
+    </div>
+  </header>
+
+  <main class="estante" id="estante">
+    <p class="vazio" id="vazio" hidden>Nada na estante com esse nome. <button type="button" class="tema" id="limpa">Ver todos</button></p>
+  </main>
+
+  <section aria-labelledby="fios-h" id="sec-fios" hidden>
+    <div class="sec-h">
+      <h2 id="fios-h">Fios entre os estudos</h2>
+      <p>Onde um estudo encosta no outro.</p>
+    </div>
+    <div class="fios" id="fios"></div>
+  </section>
+
+  <footer class="pe">
+    <p>Esta estante é particular. Os estudos ficam cifrados no site e só abrem nos aparelhos que têm a chave.</p>
+    <details>
+      <summary>Pôr na tela de início do celular</summary>
+      <ol>
+        <li>No iPhone, abra esta página no Safari, toque em Compartilhar e em “Adicionar à Tela de Início”. No Android, no menu do Chrome, “Adicionar à tela inicial”.</li>
+        <li>Abra o ícone novo. Na primeira vez ele pede a chave: cole a mesma.</li>
+      </ol>
+    </details>
+    <div class="linha">
+      <button type="button" class="bt leve" id="trancar">Trancar este aparelho</button>
+      <span id="trancar-aviso" aria-live="polite"></span>
+    </div>
+  </footer>
+</div>
+
+<script src="/estudos/cofre.js"></script>
+<script>
+(function(){
+'use strict';
+// ---------- UTIL ----------
+function $(s,r){return (r||document).querySelector(s)}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+function el(tag,attrs,kids){var e=document.createElement(tag);for(var k in (attrs||{})){var v=attrs[k];if(v==null||v===false)continue;if(k==='text')e.textContent=v;else if(k==='class')e.className=v;else e.setAttribute(k,v===true?'':v)}(kids||[]).forEach(function(c){if(c!=null)e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
+function semAcento(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()}
+function dataBr(d){var p=String(d||'').split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:''}
+function mostra(id){['espera','porta','app'].forEach(function(x){var e=$('#'+x);if(e)e.hidden=x!==id})}
+var NUM=['','Um','Dois','Três','Quatro','Cinco','Seis','Sete','Oito','Nove','Dez','Onze','Doze'];
+function num(n){return NUM[n]||String(n)}
+// no endereço do app, cada estudo tem o seu caminho (/slug); em qualquer outro lugar (teste, prévia), o leitor recebe ?e=slug
+var HOST_APP=/^estudos\./.test(location.hostname), INICIO=HOST_APP?'/':location.pathname, CURTO=HOST_APP;
+function urlEstudo(slug,anc){return (CURTO?'/'+slug:'/estudos/ler?e='+slug)+(anc?'#'+anc:'')}
+// /slug depende de uma regra da hospedagem (vercel.json). Uma vez por sessão a página confere se ela responde;
+// se não responder, os links usam o leitor com ?e=, que é um arquivo e abre sempre.
+async function confereRota(){
+  if(!HOST_APP)return;
+  try{
+    var v=sessionStorage.getItem('estudos_rota');
+    if(v==='1'||v==='0'){CURTO=v==='1';return}
+    var r=await fetch('/rota-de-teste',{method:'HEAD',cache:'no-store'});
+    CURTO=r.ok;sessionStorage.setItem('estudos_rota',CURTO?'1':'0');
+  }catch(e){}
+}
+var SETA_FORA='<path d="M5 11l6-6M6 5h5v5"/>', SETA='<path d="M6 3l5 5-5 5"/>';
+function svg(caminhos,vb){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb||'0 0 16 16');s.setAttribute('aria-hidden','true');s.innerHTML=caminhos;return s}
+
+// ---------- PORTA ----------
+var AVISOS={chave:'Essa chave não abre a estante.',formato:'A chave tem 43 letras e números. Cole a chave inteira ou o link-chave.',rede:'Sem conexão agora. Tente de novo.',navegador:'Este navegador é antigo demais para abrir a estante. Atualize o sistema ou use outro navegador.'};
+function portaAviso(t){var a=$('#porta-aviso');if(a)a.textContent=t||''}
+function mostraPorta(aviso){mostra('porta');portaAviso(aviso);try{if(!('ontouchstart' in window))$('#chave').focus()}catch(e){}}
+function ocupado(sim){var b=$('#bt-abrir');if(b){b.disabled=!!sim;b.textContent=sim?'Abrindo…':'Abrir'}}
+
+// tenta uma chave nova: só guarda no aparelho se ela abrir o catálogo. Devolve '' se abriu, ou o aviso do que deu errado.
+async function tenta(chaveTxt){
+  try{
+    var K=await Cofre.deriva(chaveTxt);
+    var cat=JSON.parse(await Cofre.busca(K,'catalogo'));
+    await Cofre.guarda(chaveTxt);
+    await confereRota();
+    entra(cat);
+    return '';
+  }catch(e){
+    var m=String(e&&e.message||'');
+    // chave errada dá outro nome de arquivo: o servidor responde que não achou
+    return m==='rede'?AVISOS.rede:m==='navegador'?AVISOS.navegador:AVISOS.chave;
+  }
+}
+try{
+  $('#f-chave').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var k=Cofre.limpaChave($('#chave').value);
+    if(!k){portaAviso(AVISOS.formato);return}
+    $('#chave').value='';
+    ocupado(true);portaAviso('');
+    tenta(k).then(function(av){ocupado(false);if(av)mostraPorta(av)});
+  });
+}catch(e){}
+
+// ---------- ESTANTE ----------
+var CAT=null;
+function emblema(cat,nome){
+  // os desenhos das capas vêm do catálogo; só passam formas simples
+  var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('class','capa-emb');s.setAttribute('viewBox','0 0 48 48');s.setAttribute('aria-hidden','true');
+  try{
+    var fonte=(cat.emblemas||{})[nome]||(cat.emblemas||{}).livro||'';
+    var doc=new DOMParser().parseFromString('<svg xmlns="http://www.w3.org/2000/svg">'+fonte+'</svg>','image/svg+xml');
+    var OK={path:['d','fill'],circle:['cx','cy','r','fill'],rect:['x','y','width','height','rx','fill'],line:['x1','y1','x2','y2'],polyline:['points'],polygon:['points']};
+    Array.prototype.forEach.call(doc.documentElement.children,function(n){
+      var t=n.tagName.toLowerCase();if(!OK[t])return;
+      var c=document.createElementNS('http://www.w3.org/2000/svg',t);
+      OK[t].forEach(function(a){var v=n.getAttribute(a);if(v!=null&&/^[\w\s.,#-]*$/.test(v))c.setAttribute(a,v)});
+      s.appendChild(c);
+    });
+  }catch(e){}
+  return s;
+}
+function capa(cat,e,href,fora){
+  var c=e.capa||{}, maior=Math.max.apply(null,e.titulo.split(/\s+/).map(function(p){return p.length}));
+  var k=Math.round(860/(maior*(c.larg||0.55)))/10;
+  var a=el('a',{class:'capa',href:href,target:fora?'_blank':null,rel:fora?'noopener':null,'aria-label':'Abrir '+e.titulo});
+  a.style.setProperty('--cb',c.bg||'#333');a.style.setProperty('--cf',c.fg||'#fff');a.style.setProperty('--ca',c.ac||c.fg||'#fff');a.style.setProperty('--k',String(k));
+  var t=el('span',{class:'capa-tit'+(c.caixa==='alta'?' alta':''),text:e.titulo});
+  if(c.pilha)t.style.fontFamily=c.pilha; if(c.peso)t.style.fontWeight=String(c.peso); if(c.estilo==='italic')t.style.fontStyle='italic';
+  a.appendChild(el('span',{class:'capa-tipo',text:e.tipo}));a.appendChild(t);a.appendChild(emblema(cat,c.emblema));
+  return a;
+}
+function ficha(cat,e,temas){
+  var fora=e.onde==='claude', href=fora?e.url:urlEstudo(e.slug);
+  var alvo=function(extra){var o={href:href};if(fora){o.target='_blank';o.rel='noopener'}for(var k in (extra||{}))o[k]=extra[k];return o};
+  var busca=semAcento([e.titulo,e.tipo,(temas[e.tema]||{}).nome,e.resumo,e.medida,(e.dentro||[]).map(function(x){return x.t}).join(' ')].join(' '));
+  var cota=el('p',{class:'cota'},[el('span',{text:e.cota}),el('span',{text:'·'}),el('span',{text:e.tipo}),el('span',{text:'·'}),el('span',{text:dataBr(e.data)}),e.novo?el('span',{class:'novo',text:'novo'}):null]);
+  var abrir=el('a',alvo({class:'abrir'}),[fora?'Abrir no Claude ':'Abrir ',svg(fora?SETA_FORA:SETA)]);
+  var cab=el('div',{class:'cab'},[cota,el('h3',null,[el('a',alvo(),[e.titulo])]),e.medida?el('p',{class:'med',text:e.medida}):null,abrir,e.nota?el('p',{class:'med',text:e.nota}):null]);
+  var corpo=el('div',{class:'corpo'});
+  if(e.resumo)corpo.appendChild(el('p',{class:'res',text:e.resumo}));
+  var den=e.dentro||[];
+  if(den.length){
+    var amostra=den.slice(0,3).map(function(x){return x.t.split(':')[0]}).join(', ')+(den.length>3?' e mais '+(den.length-3):'');
+    var ul=el('ul',null,den.map(function(x){
+      if(!x.h)return el('li',null,[el('span',{text:x.t})]);
+      var o={href:fora?e.url+'#'+x.h:urlEstudo(e.slug,x.h),text:x.t};if(fora){o.target='_blank';o.rel='noopener'}
+      return el('li',null,[el('a',o)]);
+    }));
+    corpo.appendChild(el('details',{class:'dentro'},[el('summary',null,[el('b',{text:'Dentro'}),el('span',{text:amostra})]),ul]));
+  }
+  if(e.falta)corpo.appendChild(el('p',{class:'falta'},[el('b',{text:'Falta: '}),e.falta]));
+  return el('article',{class:'est',id:'e-'+e.slug,'data-tema':e.tema,'data-busca':busca},[capa(cat,e,href,fora),cab,corpo]);
+}
+function entra(cat){
+  CAT=cat;
+  try{
+    var temas={};(cat.temas||[]).forEach(function(t){temas[t.id]=t});
+    var est=(cat.estudos||[]).slice(), porSlug={};est.forEach(function(e){porSlug[e.slug]=e});
+    // cota: sigla da prateleira + ordem de entrada (do mais antigo para o mais novo)
+    (cat.temas||[]).forEach(function(t){est.filter(function(e){return e.tema===t.id}).sort(function(a,b){return a.data<b.data?-1:a.data>b.data?1:0}).forEach(function(e,i){e.cota=t.cota+'·'+(i<9?'0':'')+(i+1)})});
+    // fontes das capas
+    if(cat.fontes_url&&/^https:\/\/fonts\.googleapis\.com\/css2\?/.test(cat.fontes_url)&&!$('#fontes-capas')){var l=el('link',{rel:'stylesheet',href:cat.fontes_url,id:'fontes-capas'});document.head.appendChild(l)}
+    // topo
+    var comLivros=(cat.temas||[]).filter(function(t){return est.some(function(e){return e.tema===t.id})});
+    $('#sobre').textContent='Estante · atualizada em '+dataBr(cat.atualizada_em);
+    var novo=est.slice().sort(function(a,b){return (a.data+(a.novo?'1':'0'))<(b.data+(b.novo?'1':'0'))?1:-1})[0];
+    var lede=$('#lede');lede.textContent='';
+    lede.appendChild(document.createTextNode(num(est.length)+(est.length===1?' estudo em ':' estudos em ')+num(comLivros.length).toLowerCase()+(comLivros.length===1?' prateleira. ':' prateleiras. ')+(novo?'O mais novo é ':'')));
+    if(novo){lede.appendChild(el('b',{text:novo.titulo}));lede.appendChild(document.createTextNode('.'))}
+    if(cat.busca_dica)$('#q').setAttribute('placeholder',cat.busca_dica);
+    // prateleiras
+    var estante=$('#estante');$$('.prat',estante).forEach(function(p){p.remove()});
+    var vazio=$('#vazio');
+    comLivros.forEach(function(t){
+      var doTema=est.filter(function(e){return e.tema===t.id}).sort(function(a,b){return a.data<b.data?1:a.data>b.data?-1:0});
+      var livros=el('div',{class:'livros'});
+      doTema.forEach(function(e){try{livros.appendChild(ficha(cat,e,temas))}catch(err){if(window.console)console.error('ficha',err)}});
+      estante.insertBefore(el('section',{class:'prat','data-tema':t.id,'aria-labelledby':'p-'+t.id},[el('div',{class:'prat-h'},[el('h2',{id:'p-'+t.id,text:t.nome}),el('span',{text:t.cota+' · '+doTema.length})]),livros]),vazio);
+    });
+    // filtros
+    var bx=$('#temas');bx.textContent='';
+    bx.appendChild(el('button',{type:'button',class:'tema','data-tema':'todos','aria-pressed':'true'},['Todos',el('b',{text:String(est.length)})]));
+    comLivros.forEach(function(t){bx.appendChild(el('button',{type:'button',class:'tema','data-tema':t.id,'aria-pressed':'false'},[t.nome,el('b',{text:String(est.filter(function(e){return e.tema===t.id}).length)})]))});
+    // fios
+    var fios=$('#fios');fios.textContent='';
+    (cat.fios||[]).forEach(function(f){
+      var liga=function(slug){var e=porSlug[slug];if(!e)return null;var fora=e.onde==='claude',o={href:fora?e.url:urlEstudo(e.slug),text:e.titulo};if(fora){o.target='_blank';o.rel='noopener'}return el('a',o)};
+      fios.appendChild(el('article',{class:'fio'},[el('h3',{text:f.titulo}),el('p',{text:f.texto}),el('div',{class:'fio-l'},[liga(f.de),el('i',{text:'e'}),liga(f.para)])]));
+    });
+    $('#sec-fios').hidden=!(cat.fios||[]).length;
+    // continuar de onde parou
+    try{
+      var ui=JSON.parse(localStorage.getItem('estudos_ui')||'{}'), u=ui.ultimo&&porSlug[ui.ultimo.slug], s=$('#seguir');
+      if(u&&u.onde==='app'){s.href=urlEstudo(u.slug);$('span',s).textContent=u.titulo;s.hidden=false}else s.hidden=true;
+    }catch(e){}
+    ligaFiltros();
+    mostra('app');
+    // se a pessoa chegou por um estudo e caiu na porta, segue para ele
+    try{var ir=sessionStorage.getItem('estudos_ir');if(ir){sessionStorage.removeItem('estudos_ir');var m=ir.match(/^([a-z0-9][a-z0-9-]{1,60})(#[\w-]*)?$/);if(m&&porSlug[m[1]]&&porSlug[m[1]].onde==='app'){location.href=urlEstudo(m[1],(m[2]||'').slice(1));return}}}catch(e){}
+  }catch(e){if(window.console)console.error('estante',e);mostraPorta('A estante não abriu neste aparelho. Tente de novo.')}
+}
+
+// ---------- BUSCA E FILTRO ----------
+var tema='todos', ligado=false;
+function aplica(){
+  try{
+    var q=$('#q'),termo=semAcento(q&&q.value).trim().split(/\s+/).filter(Boolean),n=0,total=$$('.est').length;
+    $$('.prat').forEach(function(p){
+      var vis=0;
+      $$('.est',p).forEach(function(e){
+        var ok=(tema==='todos'||e.getAttribute('data-tema')===tema)&&termo.every(function(t){return (e.getAttribute('data-busca')||'').indexOf(t)>=0});
+        e.hidden=!ok;if(ok){vis++;n++}
+      });
+      p.hidden=vis===0;
+    });
+    $('#vazio').hidden=n!==0;
+    var filtrando=termo.length||tema!=='todos';
+    $('#conta').textContent=filtrando?(n===0?'Nenhum estudo com esse filtro.':(n===1?'1 estudo de '+total+'.':n+' estudos de '+total+'.')):'';
+  }catch(e){}
+}
+function ligaFiltros(){
+  tema='todos';
+  $$('#temas .tema').forEach(function(b){b.addEventListener('click',function(){tema=b.getAttribute('data-tema');$$('#temas .tema').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});aplica()})});
+  if(!ligado){
+    ligado=true;
+    var q=$('#q'),t=null;q.addEventListener('input',function(){clearTimeout(t);t=setTimeout(aplica,120)});
+    $('#limpa').addEventListener('click',function(){q.value='';tema='todos';$$('#temas .tema').forEach(function(x){x.setAttribute('aria-pressed',String(x.getAttribute('data-tema')==='todos'))});aplica();q.focus()});
+  }
+  aplica();
+}
+
+// ---------- TRANCAR ----------
+try{
+  var armado=0;
+  $('#trancar').addEventListener('click',function(){
+    var b=this,av=$('#trancar-aviso');
+    if(Date.now()-armado>6000){armado=Date.now();b.textContent='Toque de novo para trancar';av.textContent='Para abrir de novo, vai precisar da chave.';setTimeout(function(){if(Date.now()-armado>=6000){b.textContent='Trancar este aparelho';av.textContent=''}},6100);return}
+    armado=0;b.textContent='Trancar este aparelho';av.textContent='';
+    Cofre.apaga().then(function(){CAT=null;$$('.prat').forEach(function(p){p.remove()});$('#fios').textContent='';try{localStorage.removeItem('estudos_ui')}catch(e){}mostraPorta('')});
+  });
+}catch(e){}
+
+// ---------- INÍCIO ----------
+// link-chave: a chave vem depois do # (não vai para o servidor) e sai do endereço na hora
+function chaveDoLink(){
+  if(!/[#&]k=/.test(location.hash))return null;
+  var k=Cofre.limpaChave(location.hash);
+  try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+  return k;
+}
+// o link-chave colado no endereço com a página já aberta só troca o #: a página não recarrega, então é lido aqui
+window.addEventListener('hashchange',function(){
+  try{
+    var k=chaveDoLink();if(!k)return;
+    var aberta=!!CAT;if(!aberta)mostra('espera');
+    tenta(k).then(function(av){if(av&&!aberta)mostraPorta(av)});
+  }catch(e){}
+});
+(async function(){
+  try{
+    var doLink=chaveDoLink(), avLink='';
+    if(doLink){
+      mostra('espera');avLink=await tenta(doLink);
+      if(!avLink)return;
+      // o link não abriu: se este aparelho já tem uma chave, segue com ela
+    }
+    var K=await Cofre.le();
+    if(!K){mostraPorta(avLink);return}
+    try{var cat0=JSON.parse(await Cofre.busca(K,'catalogo'));await confereRota();entra(cat0)}
+    catch(e){
+      var m=String(e&&e.message||'');
+      if(m==='rede'){mostraPorta(AVISOS.rede+' A chave continua guardada: é só recarregar a página.');return}
+      if(m==='navegador'){mostraPorta(AVISOS.navegador);return}
+      // a chave guardada não serve mais (foi trocada)
+      await Cofre.apaga();mostraPorta('A chave deste aparelho não abre mais a estante. Cole a chave nova.');
+    }
+  }catch(e){mostraPorta('')}
+})();
+})();
+</script>
+</body>
+</html>

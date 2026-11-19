@@ -16,7 +16,7 @@ on:
       - 'inv/empresas.json'
       - 'scripts/inv-macro.mjs'
       - 'scripts/inv-cotacoes.mjs'
-      - 'api/_inv-yahoo.mjs'
+      - 'api/_inv-fontes.mjs'
 
 permissions:
   contents: write
@@ -39,23 +39,31 @@ jobs:
         continue-on-error: true
         timeout-minutes: 6
         run: node scripts/inv-macro.mjs
-      - name: Cotações das empresas (Yahoo Finance)
+      - name: Índice da busca (B3 pela brapi, EUA pela SEC)
+        if: ${{ !inputs.somente_macro }}
+        continue-on-error: true
+        timeout-minutes: 3
+        env:
+          BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}           # opcional
+        run: node scripts/inv-indice.mjs
+      - name: Cotações das empresas (stooq, brapi e Twelve Data)
         id: cotacoes
         if: ${{ !inputs.somente_macro }}
         continue-on-error: true
         timeout-minutes: 12
         env:
-          TWELVE_DATA_KEY: ${{ secrets.TWELVE_DATA_KEY }}   # opcional: plano B
+          BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}           # opcional: B3 inteira na brapi
+          TWELVE_DATA_KEY: ${{ secrets.TWELVE_DATA_KEY }}   # opcional: plano C
         run: node scripts/inv-cotacoes.mjs
       - name: Salvar se mudou
         run: |
           if [ -n "$(git status --porcelain inv/)" ]; then
             git config user.name "inv-robo"
             git config user.email "inv-robo@users.noreply.github.com"
-            git add inv/macro.json inv/cotacoes.json
+            git add inv/macro.json inv/cotacoes.json inv/busca.json
             git commit -m "inv: robô atualizou indicadores e cotações"
-            git pull --rebase origin main   # o robô do Telas também empurra para o main
-            git push
+            git pull --rebase origin "$GITHUB_REF_NAME"   # o robô do Telas também empurra para o main
+            git push origin "HEAD:$GITHUB_REF_NAME"
           else
             echo "sem mudanças"
           fi
@@ -67,5 +75,5 @@ jobs:
       - name: Avisar se as cotações falharam
         if: ${{ !cancelled() && steps.cotacoes.outcome == 'failure' }}
         run: |
-          echo "::error::Cotações não foram atualizadas: veja o passo do Yahoo (bloqueio ou formato mudou); a página segue com os números do último dia"
+          echo "::error::Cotações não foram atualizadas: veja o passo das cotações (o log diz quais fontes saíram da rodada); a página segue com os números do último dia"
           exit 1

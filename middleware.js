@@ -1,5 +1,6 @@
 // Apps com endereço próprio saídos deste repositório: na raiz do endereço, abre a página do app.
-// Whatch (whatch.madeinbr.app e os endereços de teste) → /telas; Inv (inv.madeinbr.app) → /inv.
+// Whatch (whatch.madeinbr.app e os endereços de teste) → /telas; Inv (inv.madeinbr.app) → /inv;
+// Estudos (estudos.madeinbr.app) → /estudos (estante particular: a página é só a porta, o conteúdo é cifrado).
 // A regra de reescrita do vercel.json não basta: na raiz, o index.html do mochilão vence. Aqui roda antes dos arquivos.
 // O HTML sai com o título, a descrição e a imagem do app já no código, para a prévia do link (WhatsApp, iMessage),
 // que não roda o JavaScript da página. Nos outros endereços (mochilao.madeinbr.app), não faz nada.
@@ -17,6 +18,14 @@ const APPS = [
     titulo: 'Inv · indicadores e ações',
     desc: 'IPCA, Selic, CDI e as maiores empresas de cada bolsa, com metas, projeções e gráficos para escolher o que ver.',
     icone: '/inv/icone.svg', apple: '/inv/icone-180.png', og: '/inv/icone-512.png'
+  },
+  {
+    re: /^estudos(\.|-|$)/, path: '/estudos', interno: 'x-estudos-interno',
+    titulo: 'Estudos',
+    desc: 'Estante particular.',
+    icone: '/estudos/icone.svg', apple: '/estudos/icone-180.png', og: '/estudos/icone-512.png',
+    // cabeçalhos a mais na resposta: fora dos buscadores, sem poder ser embutida em outro site, sem mandar o endereço adiante
+    cab: { 'x-robots-tag': 'noindex, nofollow', 'x-frame-options': 'DENY', 'referrer-policy': 'no-referrer', 'x-content-type-options': 'nosniff' }
   }
 ];
 
@@ -38,7 +47,7 @@ export default async function middleware(request) {
       .replace(/<title>[^<]*<\/title>/, `<title>${A.titulo}</title>${meta}`)
       .replace(/<link rel="icon"[^>]*>/, `<link rel="icon" type="image/svg+xml" href="${A.icone}">`)
       .replace(/<link rel="apple-touch-icon" href="[^"]*">/, `<link rel="apple-touch-icon" href="${A.apple}">`);
-    return new Response(html, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=0, must-revalidate' } });
+    return new Response(html, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=0, must-revalidate', ...(A.cab || {}) } });
   } catch {
     // se a busca falhar, o app abre do mesmo jeito (sem a prévia certa)
     return new Response(null, { headers: { 'x-middleware-rewrite': app.toString() } });
