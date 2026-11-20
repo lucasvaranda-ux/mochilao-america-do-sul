@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Egito, de hoje para trás</title>
+<meta name="description" content="O Egito lido como se escava: de cima para baixo. De 2026 até antes de existir o Nilo, camada por camada, com fotos, mapas e fontes.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#060a14">
+<meta property="og:title" content="Egito, de hoje para trás">
+<meta property="og:description" content="De 2026 até antes de existir o Nilo, camada por camada.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://mochilao.madeinbr.app/egito/og.jpg">
+<link rel="apple-touch-icon" href="/egito/icone-180.png">
+<link rel="icon" href="/egito/icone.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/egito/egito.css">
+</head>
+<body>
+<a class="pula" href="#conteudo">Pular para o estudo</a>
+
+<header id="capa">
+  <img class="capa-foto" alt="" decoding="async">
+  <div class="capa-in miolo">
+    <p class="sobre">Um estudo em camadas</p>
+    <h1>Egito <em>de hoje para trás</em></h1>
+    <p class="linha-fina">Um país lido como se escava: de cima para baixo. Começa em novembro de 2026 e desce, camada por camada, até quando ainda não havia gente, nem pirâmide, nem Nilo.</p>
+    <a class="descer" href="#abre">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15"/><path d="m6 13 6 6 6-6"/></svg>
+      Começar a descer
+    </a>
+  </div>
+  <p class="capa-cred"></p>
+</header>
+
+<section id="abre">
+  <div class="miolo abre-g">
+    <div>
+      <h2>Como ler</h2>
+      <p>Cada camada é um tempo. Quanto mais você desce, mais antigo. Em cada uma há um resumo, o que aconteceu (do mais novo para o mais velho), os números, a gente, a vida de quem não era rei, e onde ver aquilo hoje, se você for ao Egito.</p>
+      <ul class="como">
+        <li>Todo fato traz a fonte. Uma marca avisa quando ele só foi conferido em parte, ou quando vem de memória.</li>
+        <li>Datas antigas são aproximadas: "c." quer dizer "cerca de". "a.C." é antes de Cristo.</li>
+        <li>A régua ao lado mostra em que ano você está e quantos anos faltam até hoje.</li>
+      </ul>
+    </div>
+    <nav id="estratos" aria-label="As eras, de cima para baixo"></nav>
+  </div>
+</section>
+
+<nav id="regua" aria-label="Linha do tempo" data-era="moderno">
+  <button type="button" class="rg-ind" id="rg-ind" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+    <span>Índice</span>
+  </button>
+  <div class="rg-onde" aria-live="off">
+    <span class="rg-ano" id="rg-ano">2026</span>
+    <span class="rg-nome" id="rg-nome">Hoje</span>
+  </div>
+  <span class="rg-atras" id="rg-atras"></span>
+  <ol id="rg-pontos"></ol>
+  <div class="rg-barra" id="rg-barra"></div>
+</nav>
+
+<dialog id="indice" aria-labelledby="ind-t">
+  <div class="ind-topo"><h2 id="ind-t">Índice</h2><button type="button" class="fecha" aria-label="Fechar">×</button></div>
+  <div id="ind-corpo"></div>
+</dialog>
+
+<main id="conteudo">
+  <div id="camadas">
+    <div class="miolo" style="padding:60px 0;color:#aab4c6">Carregando o estudo…</div>
+  </div>
+  <div id="fim">
+    <div class="miolo" id="fim-corpo"></div>
+    <div class="miolo"><p class="rodape">Egito, de hoje para trás · estudo de novembro de 2026.</p></div>
+  </div>
+</main>
+<noscript><div class="miolo" style="padding:40px 0;color:#eef2f8">Este estudo precisa de JavaScript para montar as camadas.</div></noscript>
+
+<script src="/egito/base.js"></script>
+<script src="/egito/pecas/mapa.js"></script>
+<script src="/egito/pecas/graficos.js"></script>
+<script src="/egito/pecas/cenas.js"></script>
+<script src="/egito/pecas/profundo.js"></script>
+<script src="/egito/pagina.js"></script>
+</body>
+</html>

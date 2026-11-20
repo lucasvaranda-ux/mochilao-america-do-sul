@@ -227,6 +227,51 @@
       ]
     },
     {
+      "source": "/egito",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/egito.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/egito/(.*).(json|js|css|html)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/egito/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/egito/(.*).(png|svg|jpg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "has": [
         {
@@ -279,7 +324,7 @@
   },
   "redirects": [
     {
-      "source": "/(index|peru|telas|inv|estudos)(\\.html)?",
+      "source": "/(index|peru|telas|inv|estudos|egito)(\\.html)?",
       "has": [
         {
           "type": "host",
@@ -296,7 +341,7 @@
       ]
     },
     {
-      "source": "/(index|peru|telas|inv|estudos)(\\.html)?",
+      "source": "/(index|peru|telas|inv|estudos|egito)(\\.html)?",
       "has": [
         {
           "type": "host",
@@ -313,7 +358,7 @@
       ]
     },
     {
-      "source": "/(index|peru|telas|inv|estudos)(\\.html)?",
+      "source": "/(index|peru|telas|inv|estudos|egito)(\\.html)?",
       "has": [
         {
           "type": "host",
@@ -326,6 +371,23 @@
         {
           "type": "header",
           "key": "x-estudos-interno"
+        }
+      ]
+    },
+    {
+      "source": "/(index|peru|telas|inv|estudos|egito)(\\.html)?",
+      "has": [
+        {
+          "type": "host",
+          "value": "egito(\\.madeinbr\\.app|-[a-z0-9-]*\\.vercel\\.app)"
+        }
+      ],
+      "destination": "/",
+      "permanent": false,
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-egito-interno"
         }
       ]
     }
