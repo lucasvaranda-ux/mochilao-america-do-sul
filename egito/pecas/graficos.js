@@ -1468,4 +1468,268 @@
     el.appendChild(hoje);
     if (U.reduz) hoje.classList.add(K('hv')); else U.aoVer(gr, function () { hoje.classList.add(K('hv')); });
   });
+
+  // =====================================================================================================
+  // 5. NILO EM NÚMEROS — "Cinco mil anos medindo a cheia"
+  // De onde vem cada número (lido em tempo de execução de dados.series.nilo):
+  //   (a) nilômetro
+  //       marcas de 12 a 16 côvados e o que cada uma queria dizer ... pontos[], item "A escala de Plínio", campo valor_txt
+  //                                                                   ("12 côvados: fome; 13: escassez; …"), com a marca de certeza do item
+  //       o poço com a coluna ......................................... pontos[], item "Nilômetro de Roda, no Cairo" (ano e valor_txt)
+  //       quanto mede um côvado ....................................... texto do item "Pedra de Palermo" ("cerca de 52 cm")
+  //   (b) água por pessoa ............................................. agua_por_pessoa_calc[] (ano, populacao, m3_por_pessoa) e agua_por_pessoa_calc_nota;
+  //       a linha dos 500 m³ .......................................... texto do item "Água por pessoa hoje" ("limite de 500 m³, usado para falar em escassez absoluta")
+  //   (c) marcos ...................................................... os demais pontos[] (ano_txt, rotulo, valor_txt, texto, fonte, url, certeza, ressalva)
+  // O desenho do nilômetro é um esquema, sem medidas de obra: só as marcas e as palavras vêm dos dados.
+  // =====================================================================================================
+  var CSS_NIL =
+    '&{--pc-agua:#5aa6d8}&-claro{--pc-agua:#2a6fa8}' +
+    '&-bloco{margin:0 0 clamp(40px,7vh,64px)}&-bloco:last-of-type{margin-bottom:0}' +
+    '&-bloco>h3,&-lado>h3{font-size:clamp(22px,3vw,28px);margin:0 0 8px;text-wrap:balance}' +
+    '&-sub{margin:0 0 16px;font-size:14.5px;line-height:1.5;color:var(--tinta2);max-width:42em}' +
+    '&-a{display:grid;gap:18px 40px;align-items:start}@media (min-width:820px){&-a{grid-template-columns:minmax(0,470px) minmax(0,1fr)}&-lado{padding-top:6px}}' +
+    '&-svg{display:block;width:100%;height:auto;overflow:visible}' +
+    '&-terra{stroke:var(--tinta2);stroke-width:1;opacity:.7}' +
+    '&-muro{fill:var(--s2);stroke:var(--tinta2);stroke-width:1;stroke-linejoin:round}' +
+    '&-vao{fill:var(--s1)}' +
+    '&-col{fill:var(--fundo);stroke:var(--tinta);stroke-width:1.2}&-grad{stroke:var(--tinta);stroke-width:1;opacity:.75}' +
+    '&-agua{fill:var(--pc-agua);opacity:.5}&-tona{stroke:var(--pc-agua);stroke-width:2}' +
+    '&-nivel{will-change:transform}' +
+    '&-guia{stroke:var(--tinta2);stroke-width:1;opacity:.45;shape-rendering:crispEdges}' +
+    '&-mn{font:600 15px var(--serifa);fill:var(--tinta2);text-anchor:end}&-mt{font:500 13px var(--sem);fill:var(--tinta2)}' +
+    '&-cab{font:500 11px var(--sem);fill:var(--tinta2)}' +
+    '&-m&-alc &-mn,&-m&-alc &-mt{fill:var(--tinta)}' +
+    '&-m&-atual &-mn{fill:var(--acento)}&-m&-atual &-mt{font-weight:700;fill:var(--tinta)}&-m&-atual &-guia{stroke:var(--acento);opacity:1;stroke-width:1.5}' +
+    '&-seta{fill:var(--acento);opacity:0}&-m&-atual &-seta{opacity:1}' +
+    '&-rio{font:italic 400 11.5px var(--serifa);fill:var(--tinta2)}' +
+    '&-ctl{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;margin:4px 0 0}' +
+    '&-ctl small{font-size:12.5px;color:var(--tinta2);flex-basis:100%}' +
+    '&-auto{min-height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--linha);background:var(--s1);font-size:13.5px;font-weight:600;cursor:pointer;color:var(--tinta)}&-auto:hover{border-color:var(--tinta2)}' +
+    '&-diz{margin:14px 0 0;font-family:var(--serifa);font-size:clamp(21px,2.8vw,26px);line-height:1.2;min-height:1.3em}&-diz b{color:var(--acento);font-weight:600}' +
+    '&-pe{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;margin-top:10px;font-size:12.5px;color:var(--tinta2)}&-pe a{color:inherit}' +
+    '& .nota{background:var(--s1)}' +
+    '&-gr{max-width:860px}' +
+    '&-ln{display:grid;gap:6px 26px;padding:12px 0;border-top:1px solid var(--linha)}&-ln:first-child{border-top:0;padding:0 0 4px}' +
+    '&-tk{position:relative;height:15px;font-size:11px;color:var(--tinta2);font-variant-numeric:tabular-nums}' +
+    '&-tk span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}&-tk span:first-child{transform:none}' +
+    '&-tk b{font-weight:700;color:var(--tinta)}' +
+    '&-bt{display:flex;justify-content:space-between;gap:14px;align-items:baseline}' +
+    '&-bt b{font-family:var(--serifa);font-weight:600;font-size:19px}&-bt span{font-size:13px;color:var(--tinta2);margin-left:10px}' +
+    '&-bv{font-family:var(--serifa);font-weight:600;font-size:19px;white-space:nowrap;font-variant-numeric:tabular-nums}&-bv small{font-family:var(--sem);font-size:12px;font-weight:500;color:var(--tinta2);margin-left:4px}' +
+    '&-tr{position:relative;height:20px;align-self:center}' +
+    '&-gd{position:absolute;top:0;bottom:0;width:1px;background:var(--linha)}&-lim{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:var(--tinta);z-index:1}' +
+    '&-ba{position:absolute;left:0;top:4px;height:12px;border-radius:0 4px 4px 0;background:var(--pc-agua);transform-origin:left center;transform:scaleX(0);transition:transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}' +
+    '&-bvis &-ba{transform:none}' +
+    '@media (min-width:760px){&-ln{grid-template-columns:minmax(0,300px) minmax(0,1fr)}&-tk{grid-column:2}}' +
+    '&-chave{display:flex;gap:9px;align-items:center;margin:10px 0 0;font-size:12.5px;line-height:1.4;color:var(--tinta2)}&-chave i{flex:none;width:2px;height:16px;background:var(--tinta)}' +
+    '&-lista{list-style:none;margin:0;padding:0;max-width:46em;border-top:1px solid var(--linha)}' +
+    '&-lista li{border-bottom:1px solid var(--linha)}' +
+    '&-lista summary{cursor:pointer;list-style:none;display:grid;grid-template-columns:minmax(0,1fr) 20px;gap:2px 12px;align-items:center;padding:12px 0;min-height:48px}' +
+    '&-lista summary::-webkit-details-marker{display:none}' +
+    '&-lista summary::after{content:"+";grid-column:2;grid-row:1 / span 3;font-size:22px;line-height:1;color:var(--acento);text-align:center}' +
+    '&-lista details[open] summary::after{content:"–"}' +
+    '&-qd{grid-column:1;font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--tinta2);font-variant-numeric:tabular-nums}' +
+    '&-rt{grid-column:1;font-family:var(--serifa);font-size:19px;font-weight:600;line-height:1.2}' +
+    '&-vl{grid-column:1;font-size:14.5px;line-height:1.4}' +
+    '&-corpo{padding:0 0 14px}&-corpo p{margin:0 0 8px;max-width:40em;font-size:15.5px}' +
+    '&-mais{margin-top:14px;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--linha);background:var(--s1);font-weight:600;font-size:14.5px;cursor:pointer;color:var(--tinta)}&-mais:hover{border-color:var(--acento)}' +
+    '& .pc-nota{margin:12px 0 0}' +
+    '@media (prefers-reduced-motion: reduce){&-ba{transform:none;transition:none}}';
+
+  E.peca('nilo-numeros', function (el, dados, U, args) {
+    var s = U.s, h = U.h, K = fabrica('nilo-numeros');
+    var serie = args && args.serie;
+    if (!serie || !Array.isArray(serie.pontos)) return;
+    var pontos = serie.pontos.filter(function (p) { return p && p.rotulo; });
+    function ponto(re) { return pontos.filter(function (p) { return re.test(txt(p.rotulo)); })[0] || null; }
+    var pPlinio = ponto(/Plínio/i), pRoda = ponto(/Nilômetro de Roda/i), pPalermo = ponto(/Palermo/i), pHoje = ponto(/Água por pessoa hoje/i);
+    // as marcas da escala: "12 côvados: fome; 13: escassez; …"
+    var marcas = [];
+    if (pPlinio) txt(pPlinio.valor_txt).split(';').forEach(function (parte) {
+      var m = /(\d{1,2})(?:\s*côvados?)?\s*:\s*(.+)/.exec(parte);
+      if (m) marcas.push({ n: +m[1], t: m[2].trim() });
+    });
+    marcas.sort(function (a, b) { return a.n - b.n; });
+    var calc = (Array.isArray(serie.agua_por_pessoa_calc) ? serie.agua_por_pessoa_calc : []).filter(function (q) { return q && typeof q.ano === 'number' && typeof q.m3_por_pessoa === 'number' && q.m3_por_pessoa > 0; })
+      .slice().sort(function (a, b) { return a.ano - b.ano; });
+    var usados = [pPlinio].filter(Boolean), marcos = pontos.filter(function (p) { return usados.indexOf(p) < 0; });
+    if (marcas.length < 2 && calc.length < 2 && !marcos.length) return;
+    poeEstilo('nilo-numeros', CSS_NIL);
+    el.classList.add(K()); if (fundoClaro(el, U)) el.classList.add(K('claro'));
+
+    // ================= (a) o nilômetro em corte =================
+    if (marcas.length >= 2) (function () {
+      var nMin = marcas[0].n, nMax = marcas[marcas.length - 1].n;
+      var auto = !U.reduz, naTela = false, nivel = U.reduz ? nMax : nMin, quadro = 0, fase = 0, ultimo = 0, PERIODO = 18000, atual = -1;
+      var palco = h('div'), diz = h('p', { class: K('diz') });
+      var covado = pPalermo ? /côvado real media cerca de (\d+) cm/.exec(txt(pPalermo.texto)) : null;
+      var grupo = U.botoes(marcas.map(function (m) { return { id: String(m.n), rotulo: String(m.n) }; }), U.reduz ? String(nMax) : null, function (id) { vaiPara(+id); }, 'Altura da cheia, em côvados');
+      var bAuto = U.reduz ? null : h('button', { type: 'button', class: K('auto'), 'aria-pressed': 'true', onclick: function () { if (auto) para(); else { auto = true; marcaAuto(); if (naTela) anda(); } } }, 'Parar a água');
+      function marcaAuto() { if (bAuto) { bAuto.textContent = auto ? 'Parar a água' : 'Deixar subir e descer'; bAuto.setAttribute('aria-pressed', auto ? 'true' : 'false'); } diz.setAttribute('aria-live', auto ? 'off' : 'polite'); }
+      var sl = pPlinio ? selo(U, pPlinio) : null;
+      var lado = h('div', { class: K('lado') },
+        h('h3', null, 'O nilômetro: a cheia lida numa coluna'),
+        h('p', { class: K('sub') }, 'Um poço ligado ao rio, com uma coluna marcada em côvados' + (pRoda && typeof pRoda.ano === 'number' ? ', como o da ilha de Roda, no Cairo (' + pRoda.ano + ')' : '') +
+          '. A água sobe no poço junto com o Nilo. ' + (pPlinio ? 'Ao lado de cada marca, o que aquela altura queria dizer para o Egito, nas palavras de Plínio, o Velho (' + txt(pPlinio.ano_txt) + ').' : '')),
+        h('div', { class: K('ctl') }, h('small', null, 'Altura da cheia, em côvados'), grupo, bAuto),
+        diz,
+        h('div', { class: K('pe') }, pPlinio && pPlinio.fonte ? h('span', null, 'Fonte da escala: ', U.link(txt(pPlinio.fonte), pPlinio.url)) : null, sl ? sl.marca : null),
+        sl ? sl.nota : null,
+        h('p', { class: 'pc-nota' }, 'O que ver: quatro côvados separam a fome da fartura. ' + (covado ? 'O côvado real media cerca de ' + covado[1] + ' cm. ' : '') + 'O desenho é um esquema, sem as medidas da obra.'));
+      el.appendChild(h('div', { class: K('bloco') + ' ' + K('a') }, palco, lado));
+
+      var W = 0, u, yChao, gNivel, linhasM = [];
+      function yDe(c) { return yChao - c * u; }
+      function desenha(larg) {
+        W = Math.min(larg, 470);
+        u = W < 330 ? 15.5 : 17.5;
+        var topoC = nMax + 1.6, yTopo = 14, esp = 10, xPE = 24, xI0 = xPE + esp, largI = Math.round(limita(W * 0.36, 104, 168)), xI1 = xI0 + largI, xPD = xI1 + esp;
+        yChao = yTopo + topoC * u;
+        var Hh = Math.round(yChao + 30), xCol = xI1 - Math.round(largI * 0.26), lc = 13, xRot = xPD + 14, idC = unico(K('c'));
+        var svg = s('svg', { class: K('svg'), width: W, height: Hh, viewBox: '0 0 ' + W + ' ' + Hh, role: 'img', style: { 'max-width': W + 'px' },
+          'aria-label': 'Desenho de um nilômetro em corte: um poço com escada e uma coluna graduada. As marcas vão de ' + nMin + ' a ' + nMax + ' côvados: ' +
+            marcas.map(function (m) { return m.n + ', ' + m.t; }).join('; ') + '. A água sobe e desce entre essas marcas.' });
+        svg.appendChild(s('defs', null, s('clipPath', { id: idC }, s('rect', { x: xI0, y: yTopo, width: largI, height: yChao - yTopo }))));
+        // o chão, o vão do poço e a coluna
+        svg.appendChild(s('rect', { class: K('vao'), x: xI0, y: yTopo, width: largI, height: yChao - yTopo }));
+        svg.appendChild(s('rect', { class: K('col'), x: xCol - lc / 2, y: yDe(nMax + 1.1), width: lc, height: yChao - yDe(nMax + 1.1) }));
+        svg.appendChild(s('rect', { class: K('col'), x: xCol - lc / 2 - 4, y: yDe(nMax + 1.1) - 5, width: lc + 8, height: 5 }));
+        var c;
+        for (c = 1; c <= nMax; c++) svg.appendChild(s('line', { class: K('grad'), x1: xCol - lc / 2, x2: xCol + (c >= nMin ? lc / 2 : -lc / 2 + 5), y1: Math.round(yDe(c)) + 0.5, y2: Math.round(yDe(c)) + 0.5 }));
+        // a água: um bloco que sobe e desce dentro do vão
+        gNivel = s('g', { class: K('nivel') }, s('rect', { class: K('agua'), x: xI0, y: 0, width: largI, height: yChao - yTopo + 40 }), s('line', { class: K('tona'), x1: xI0, x2: xI1, y1: 0, y2: 0 }));
+        svg.appendChild(s('g', { 'clip-path': 'url(#' + idC + ')' }, gNivel));
+        // a escada, encostada na parede da esquerda
+        var dx = Math.round((xCol - lc / 2 - 12 - xI0) / 7), dy = Math.round(u * 0.62), d = 'M' + xI0 + ' ' + yTopo, i, px = xI0, py = yTopo;
+        for (i = 0; i < 7; i++) { px += dx; d += 'H' + px; py += dy; d += 'V' + py; }
+        d += 'V' + (py + 9) + 'L' + xI0 + ' ' + (yTopo + dy + 9) + 'Z';
+        svg.appendChild(s('path', { class: K('muro'), d: d }));
+        // paredes, piso e a entrada da água, embaixo
+        var yEnt = yChao - 16;
+        svg.appendChild(s('path', { class: K('muro'), d: 'M' + xPE + ' ' + yTopo + 'H' + xI0 + 'V' + yEnt + 'H' + xPE + 'Z' }));
+        svg.appendChild(s('path', { class: K('muro'), d: 'M' + xI1 + ' ' + yTopo + 'H' + xPD + 'V' + (yChao + 9) + 'H' + xPE + 'V' + (yChao - 4) + 'H' + xI0 + 'V' + yChao + 'H' + xI1 + 'Z' }));
+        svg.appendChild(s('rect', { class: K('agua'), x: 0, y: yEnt, width: xI0, height: 12 }));
+        svg.appendChild(s('line', { class: K('terra'), x1: 0, x2: xPE, y1: yEnt, y2: yEnt })); svg.appendChild(s('line', { class: K('terra'), x1: 0, x2: xPE, y1: yChao - 4, y2: yChao - 4 }));
+        svg.appendChild(s('path', { class: K('tona'), d: 'M5 ' + (yEnt + 6) + 'h11m-4 -3.5l4 3.5l-4 3.5', fill: 'none', 'stroke-width': 1.4 }));
+        svg.appendChild(s('text', { class: K('rio'), x: 0, y: yChao + 22 }, 'a água do rio entra por baixo'));
+        // o chão em volta do poço
+        svg.appendChild(s('line', { class: K('terra'), x1: 0, x2: xPE, y1: yTopo + 0.5, y2: yTopo + 0.5 }));
+        svg.appendChild(s('line', { class: K('terra'), x1: xPD, x2: xPD + 10, y1: yTopo + 0.5, y2: yTopo + 0.5 }));
+        for (i = 0; i < 3; i++) svg.appendChild(s('line', { class: K('terra'), x1: 3 + i * 8, x2: 8 + i * 8, y1: yTopo + 7, y2: yTopo + 2 }));
+        // as marcas e o que cada uma queria dizer
+        linhasM = [];
+        svg.appendChild(s('text', { class: K('cab'), x: xRot + 22, y: yDe(nMax) - 15, 'text-anchor': 'end' }, 'côvados'));
+        marcas.forEach(function (m) {
+          var y = Math.round(yDe(m.n)) + 0.5;
+          var g = s('g', { class: K('m') },
+            s('line', { class: K('guia'), x1: xCol + lc / 2, x2: xRot - 4, y1: y, y2: y }),
+            s('path', { class: K('seta'), d: 'M' + (xRot - 2) + ' ' + y + 'l-7 -4.5v9z' }),
+            s('text', { class: K('mn'), x: xRot + 22, y: y + 5 }, String(m.n)),
+            s('text', { class: K('mt'), x: xRot + 31, y: y + 4.5 }, m.t));
+          svg.appendChild(g); linhasM.push({ m: m, g: g });
+        });
+        palco.textContent = ''; palco.appendChild(svg);
+        atual = -2; poe();
+      }
+      function poe() {
+        if (!gNivel) return;
+        gNivel.setAttribute('transform', 'translate(0 ' + yDe(nivel).toFixed(2) + ')');
+        var a = -1; marcas.forEach(function (m, i) { if (nivel >= m.n - 0.04) a = i; });
+        if (a === atual) return;
+        atual = a;
+        linhasM.forEach(function (o, i) { o.g.setAttribute('class', K('m') + (i <= a ? ' ' + K('alc') : '') + (i === a ? ' ' + K('atual') : '')); });
+        Array.prototype.forEach.call(grupo.children, function (b, i) { b.setAttribute('aria-pressed', i === a ? 'true' : 'false'); });
+        diz.textContent = '';
+        if (a < 0) { diz.appendChild(document.createTextNode('Abaixo de ' + nMin + ' côvados.')); return; }
+        diz.appendChild(document.createTextNode('Com ' + marcas[a].n + ' côvados: ')); diz.appendChild(h('b', null, marcas[a].t)); diz.appendChild(document.createTextNode('.'));
+      }
+      function anda() {
+        cancelAnimationFrame(quadro); ultimo = 0;
+        function passo(agora) {
+          if (!auto || !naTela) return;
+          if (ultimo) fase += agora - ultimo;
+          ultimo = agora;
+          nivel = nMin + (nMax - nMin) * (1 - Math.cos(2 * Math.PI * fase / PERIODO)) / 2;
+          poe(); quadro = requestAnimationFrame(passo);
+        }
+        quadro = requestAnimationFrame(passo);
+      }
+      function para() { auto = false; cancelAnimationFrame(quadro); marcaAuto(); }
+      function vaiPara(alvo) {
+        para();
+        if (U.reduz) { nivel = alvo; poe(); return; }
+        var de = nivel, ini = null, dur = 900;
+        function passo(agora) {
+          if (ini == null) ini = agora;
+          var f = Math.min(1, (agora - ini) / dur), e = f < 0.5 ? 2 * f * f : 1 - Math.pow(-2 * f + 2, 2) / 2;
+          nivel = de + (alvo - de) * e; poe();
+          if (f < 1) quadro = requestAnimationFrame(passo);
+          else { // a água volta a andar a partir daqui, se o leitor pedir
+            fase = Math.acos(limita(1 - 2 * (alvo - nMin) / (nMax - nMin), -1, 1)) / (2 * Math.PI) * PERIODO;
+          }
+        }
+        quadro = requestAnimationFrame(passo);
+      }
+      marcaAuto();
+      U.aoMedir(palco, desenha);
+      aoChegarFontes(function () { if (W) desenha(palco.getBoundingClientRect().width); });
+      U.aoVer(palco, function (dentro) { naTela = dentro; if (dentro && auto) anda(); else cancelAnimationFrame(quadro); }, { uma: false, margem: '0px' });
+    })();
+
+    // ================= (b) a mesma água, mais gente =================
+    if (calc.length >= 2) (function () {
+      var maior = Math.max.apply(null, calc.map(function (q) { return q.m3_por_pessoa; })), teto = maior * 1.06, passo = maior > 1200 ? 500 : maior > 500 ? 250 : 100, v, i;
+      var lim = null, mm = pHoje ? /limite de ([\d.]+) m³, usado para falar em ([^.,;]+)/.exec(txt(pHoje.texto)) : null;
+      if (mm) { lim = { v: +mm[1].replace(/\./g, ''), nome: mm[2].trim() }; if (!(lim.v > 0 && lim.v < teto)) lim = null; }
+      var gr = h('div', { class: K('gr') }), tk = h('div', { class: K('tk'), 'aria-hidden': 'true' });
+      for (v = 0; v <= teto; v += passo) tk.appendChild(h('span', { style: { left: (v / teto * 100) + '%' } }, lim && v === lim.v ? h('b', null, U.int(v)) : U.int(v)));
+      gr.appendChild(h('div', { class: K('ln') }, tk));
+      calc.forEach(function (q, k) {
+        var tr = h('div', { class: K('tr'), 'aria-hidden': 'true' });
+        for (v = 0; v <= teto; v += passo) tr.appendChild(h('span', { class: K('gd'), style: { left: (v / teto * 100) + '%' } }));
+        tr.appendChild(h('span', { class: K('ba'), style: { width: (q.m3_por_pessoa / teto * 100) + '%', '--d': (0.1 + k * 0.14).toFixed(2) + 's' } }));
+        if (lim) tr.appendChild(h('span', { class: K('lim'), style: { left: (lim.v / teto * 100) + '%' } }));
+        gr.appendChild(h('div', { class: K('ln') },
+          h('div', { class: K('bt') }, h('div', null, h('b', null, String(q.ano)), typeof q.populacao === 'number' ? h('span', null, U.compacto(q.populacao) + ' de pessoas') : null),
+            h('span', { class: K('bv') }, U.int(q.m3_por_pessoa), h('small', null, 'm³'))),
+          tr));
+      });
+      var prim = calc[0], ultm = calc[calc.length - 1];
+      var bloco = h('section', { class: K('bloco') },
+        h('h3', null, 'A mesma água, dividida por mais gente'),
+        h('p', { class: K('sub') }, 'Água do Nilo por pessoa, por ano, em metros cúbicos. É uma conta nossa, não uma estatística oficial: a mesma cota de água dividida pela população de cada ano. De ' +
+          prim.ano + ' a ' + ultm.ano + ' a parte de cada um caiu de ' + U.int(prim.m3_por_pessoa) + ' para ' + U.int(ultm.m3_por_pessoa) + ' m³.'),
+        gr,
+        lim ? h('p', { class: K('chave') }, h('i', { 'aria-hidden': 'true' }), 'Linha dos ' + U.int(lim.v) + ' m³ por pessoa: abaixo dela, fala-se em ' + lim.nome + ' de água.') : null,
+        serie.agua_por_pessoa_calc_nota ? h('p', { class: 'pc-nota' }, txt(serie.agua_por_pessoa_calc_nota).replace(/^Conta nossa, para o gráfico:\s*/, 'Como foi feita a conta: ')) : null,
+        tabela(U, 'Ver os números', ['Ano', 'População', 'Água por pessoa, por ano'], calc.map(function (q) { return [String(q.ano), typeof q.populacao === 'number' ? U.int(q.populacao) : '', U.int(q.m3_por_pessoa) + ' m³']; })));
+      el.appendChild(bloco);
+      if (U.reduz) bloco.classList.add(K('bvis')); else U.aoVer(gr, function () { bloco.classList.add(K('bvis')); });
+    })();
+
+    // ================= (c) os outros marcos =================
+    if (marcos.length) (function () {
+      var PRIMEIROS = 6, lista = h('ol', { class: K('lista') }), pe = h('div');
+      function item(p) {
+        var sl = selo(U, p);
+        return h('li', null, h('details', null,
+          h('summary', null, h('span', { class: K('qd') }, txt(p.ano_txt) || U.ano(p.ano)), h('span', { class: K('rt') }, txt(p.rotulo)), p.valor_txt ? h('span', { class: K('vl') }, txt(p.valor_txt)) : null),
+          h('div', { class: K('corpo') }, p.texto ? h('p', null, txt(p.texto)) : null,
+            h('div', { class: K('pe') }, p.fonte ? h('span', null, 'Fonte: ', U.link(txt(p.fonte), p.url)) : null, sl ? sl.marca : null), sl ? sl.nota : null)));
+      }
+      var corte = marcos.length > PRIMEIROS + 2 ? PRIMEIROS : marcos.length;
+      marcos.slice(0, corte).forEach(function (p) { lista.appendChild(item(p)); });
+      if (corte < marcos.length) {
+        var resto = marcos.slice(corte), b = h('button', { type: 'button', class: K('mais'), onclick: function () {
+          var prim = null; resto.forEach(function (p) { var li = item(p); if (!prim) prim = li; lista.appendChild(li); });
+          b.remove(); if (prim) { var sm = prim.querySelector('summary'); if (sm) sm.focus(); }
+        } }, 'Mostrar mais ' + resto.length + (resto.length === 1 ? ' marco' : ' marcos'));
+        pe.appendChild(b);
+      }
+      el.appendChild(h('section', { class: K('bloco') },
+        h('h3', null, 'Outros marcos, da pedra gravada à represa'),
+        h('p', { class: K('sub') }, 'Do registro mais antigo ao mais novo. Toque num marco para ler o que ele conta e de onde vem.'),
+        lista, pe));
+    })();
+  });
 })();
