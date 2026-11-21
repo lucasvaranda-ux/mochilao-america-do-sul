@@ -1339,11 +1339,10 @@
     '&-blocos{opacity:1;transition:opacity .35s ease}' +
     '&-e0 &-blocos{opacity:0;transition-delay:1.6s}' +
     // cada bloco são dois grupos, um anda de lado (bx) e o outro na altura (by), com ritmos diferentes:
-    // na ida o bloco sobe primeiro e recua depois; na volta, anda de lado primeiro e desce depois
-    '&-bx,&-by{transition:transform 1.4s}' +
-    '&-bx{transition-timing-function:cubic-bezier(.12,.6,.4,1)}' +
+    // na ida o bloco sobe logo e recua em seguida; na volta, faz o mesmo caminho ao contrário (só desce no fim)
+    '&-bx,&-by{transition:transform 1.4s cubic-bezier(.7,0,.3,1)}' +
     '&-by{transition-timing-function:cubic-bezier(.6,0,.88,.4)}' +
-    '&-e1 &-bx,&-e2 &-bx{transform:translateX(var(--pc-dx));transition-timing-function:cubic-bezier(.6,0,.88,.4)}' +
+    '&-e1 &-bx,&-e2 &-bx{transform:translateX(var(--pc-dx))}' +
     '&-e1 &-by,&-e2 &-by{transform:translateY(var(--pc-dy));transition-timing-function:cubic-bezier(.12,.6,.4,1)}' +
     '&-e1 &-bx,&-e1 &-by{transition-delay:var(--pc-d)}' +
     '&-jato &-bx,&-jato &-by,&-jato &-agua,&-jato &-inteiro,&-jato &-blocos,&-jato [class*="pc-abu-simbel-so"]{transition:none!important}' +
@@ -1355,7 +1354,7 @@
     '&-fio{stroke:var(--tinta2);stroke-width:.9}' +
     '&-so0,&-so1,&-so2,&-so01,&-so12{opacity:0;transition:opacity .6s ease}' +
     '&-e0 &-so0,&-e1 &-so1,&-e2 &-so2,&-e0 &-so01,&-e1 &-so01,&-e1 &-so12,&-e2 &-so12{opacity:1}' +
-    '&-e2 &-so2{transition-delay:1.5s}' +
+    '&-e2 &-so2,&-e0 &-so0{transition-delay:1.5s}' +
     '&-leg{font-size:14.5px;line-height:1.5;margin:12px 0 0;min-height:4.6em;max-width:40em}' +
     '&-leg b{font-family:var(--serifa);font-size:18px;font-weight:600}' +
     '&-ficha{margin:0}' +
@@ -1441,7 +1440,7 @@
       svg.appendChild(s('g', { class: C('so1') }, s('path', { class: C('guia'), d: 'M' + f1(g0[0]) + ' ' + f1(g0[1]) + 'Q' + f1(gc[0]) + ' ' + f1(gc[1]) + ' ' + f1(g1[0]) + ' ' + f1(g1[1]) }),
         s('path', { class: C('seta'), d: 'M2 0L-8 -4.4V4.4Z', transform: 'translate(' + f1(g1[0]) + ' ' + f1(g1[1]) + ') rotate(' + f1(Math.atan2(g1[1] - gc[1], g1[0] - gc[0]) * 180 / Math.PI) + ')' })));
       // o templo: o colosso sentado na frente (cabeça, tronco, pernas e trono) e o corpo cavado na rocha, com as salas por dentro.
-      // Antes, aparece inteiro; no corte, em blocos que saem da frente para o fundo.
+      // Antes, aparece inteiro; no corte, em blocos que saem um a um, da frente para o fundo: sobem e depois recuam.
       var COLOSSO = [[[0, 14.9], [-5.3, 14.9], [-5.9, 15.1], [-5.4, 16], [-5.9, 16.7], [-5.3, 17.7], [-5.6, 18.1], [-4.6, 21.3], [-2.4, 21.7], [-1.8, 18.3], [-0.9, 17.3], [0, 15.6]],
         [[0, 9.8], [-5, 9.8], [-5.2, 14.5], [-5.3, 14.9], [0, 14.9]],
         [[0, 0], [-10.5, 0], [-10.5, 1.4], [-8.8, 1.4], [-8.8, 8.4], [-9.2, 8.8], [-9.2, 9.8], [0, 9.8]]];
