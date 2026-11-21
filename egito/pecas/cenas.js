@@ -412,7 +412,7 @@
     var f = (c.fatos || []).filter(function (x) { return /nasc/i.test(txt(x.titulo)) && /cle[óo]patra/i.test(txt(x.titulo)) && typeof x.ano === 'number'; })[0];
     if (f) return { ano: f.ano, tipo: 'nasc', fato: f };
     if ((m = /nasc\w*\s+(?:em\s+)?(?:c\.\s*)?(\d{1,4})\s*a\.C\./i.exec(anos))) return { ano: -m[1], tipo: 'nasc' };
-    if ((m = /^\s*(?:c\.\s*)?(\d{1,4})\s*(?:a|–|-)\s*(\d{1,4})\s*a\.C\./.exec(anos))) return { ano: -m[1], tipo: 'nasc' };
+    if ((m = /^\s*(?:c\.\s*)?(\d{1,4})\s*(?:a\.C\.)?\s*(?:a|–|—|-)\s*(?:c\.\s*)?(\d{1,4})\s*a\.C\./.exec(anos))) return { ano: -m[1], tipo: 'nasc' };
     if ((m = /(?:rainha|rein\w*)\s+de\s+(?:c\.\s*)?(\d{1,4})\s+a\s+(\d{1,4})\s*a\.C\./i.exec(anos))) {
       return { ano: -m[1], tipo: 'trono', fato: acha(c.fatos, 'texto', new RegExp('reinava desde ' + m[1] + ' a\\.C\\.', 'i')) };
     }

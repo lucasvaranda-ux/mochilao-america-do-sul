@@ -19,7 +19,7 @@
     populacao:   { rot: 'Um fio pelo tempo', titulo: 'Quanta gente coube à beira do rio' },
     descobertas: { rot: 'Como sabemos', titulo: 'Quase tudo o que se sabe foi aprendido nos últimos 200 anos' },
     religioes:   { rot: 'Um fio pelo tempo', titulo: 'Três maiorias em dois mil anos' },
-    cleopatra:   { rot: 'Para medir o tempo', titulo: 'Cleópatra viveu mais perto de nós do que das pirâmides', intro: 'O Egito antigo já era antigo para os próprios egípcios. Quando Cleópatra nasceu, a Grande Pirâmide tinha quase 2.500 anos.' },
+    cleopatra:   { rot: 'Para medir o tempo', titulo: 'Cleópatra viveu mais perto de nós do que das pirâmides', intro: 'O Egito antigo já era antigo para os próprios egípcios. Quando Cleópatra virou rainha, em 51 a.C., a Grande Pirâmide já tinha mais de 2.500 anos.' },
     escritas:    { rot: 'Um fio pelo tempo', titulo: 'A mesma língua, escrita de quatro jeitos' },
     'nilo-numeros': { rot: 'O rio medido', titulo: 'Cinco mil anos medindo a cheia' }
   };
