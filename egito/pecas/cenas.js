@@ -47,10 +47,23 @@
     } catch (e) {}
   }
   function f1(n) { return (Math.round(n * 10) / 10).toString(); }
-  /** fração do elemento que precisa estar na tela para a animação começar (menos, se ele for mais alto que a janela) */
-  function limiarDe(host, fracao) {
-    var a = host.getBoundingClientRect().height || 1, j = window.innerHeight || 700;
-    return Math.max(0.05, Math.min(fracao, j * 0.7 / a));
+  /** avisa quando o elemento está bem à vista: pelo menos `fracao` dele na tela (ou 70% da altura da janela, se ele for
+   *  mais alto que ela). A conta usa as medidas do momento, então continua valendo depois de girar o aparelho ou de mudar
+   *  a janela. fracao pode ser uma função (o desenho muda de forma com a largura). Chama fn uma vez só. */
+  var PASSOS = []; (function () { for (var i = 0; i <= 20; i++) PASSOS.push(i / 20); })();
+  function aoVerBem(host, U, fracao, fn) {
+    var feito = false, obs = null;
+    obs = U.aoVer(host, function (dentroDaTela, e) {
+      if (feito || !dentroDaTela) return;
+      if (e && e.boundingClientRect && e.intersectionRect) {
+        var a = e.boundingClientRect.height || 1, j = (e.rootBounds && e.rootBounds.height) || window.innerHeight || 700;
+        var f = typeof fracao === 'function' ? fracao() : fracao;
+        if (e.intersectionRect.height < Math.min(f * a, 0.7 * j) - 1) return;
+      }
+      feito = true; if (obs) obs.parar();
+      fn();
+    }, { uma: false, limiar: PASSOS });
+    if (feito && obs) obs.parar();
   }
   /** relógio de uma animação de entrada: quando o desenho é refeito (largura, fontes), ela segue de onde estava */
   function relogio() {
@@ -327,7 +340,7 @@
     var fo = fontes(U, [fato ? [txt(fato.fonte), fato.url] : (nOrig ? [txt(nOrig.fonte), nOrig.url] : null), nHer ? [txt(nHer.fonte), nHer.url] : null]);
     if (fo) el.appendChild(fo);
 
-    U.aoVer(hostD, function () { rel.liga(); el.classList.add(C('vis')); }, { limiar: limiarDe(hostD, 0.8) });
+    aoVerBem(hostD, U, 0.8, function () { rel.liga(); el.classList.add(C('vis')); });
     if (quem) U.aoVer(quem, function () { relG.liga(); el.classList.add(C('gente-vis')); });
   });
 
@@ -550,7 +563,7 @@
 
     medir(host, U, desenha);
     // deitada, começa com a régua quase toda à vista; em pé, assim que o alto (hoje) aparece
-    U.aoVer(host, function () { rel.liga(); el.classList.add(C('vis')); }, { limiar: host.getBoundingClientRect().height > 400 ? 0 : limiarDe(host, 0.7) });
+    aoVerBem(host, U, function () { return host.getBoundingClientRect().height > 400 ? 0 : 0.7; }, function () { rel.liga(); el.classList.add(C('vis')); });
   });
 
   // =====================================================================================================
@@ -646,7 +659,7 @@
     U.aoMedir(el, function (w) { el.classList.toggle(C('largo'), w >= 820); });
 
     // começa espalhado por igual; ao entrar na tela, os pontos se juntam (com movimento reduzido, já começa no fim)
-    var estado = U.reduz ? 'real' : 'igual', prog = U.reduz ? 1 : 0, alvo = prog, raf = 0, visto = false, mexeu = false, naTela = false, tUlt = 0, k = 1, ctx = null, cores = null;
+    var estado = U.reduz ? 'real' : 'igual', prog = U.reduz ? 1 : 0, alvo = prog, raf = 0, mexeu = false, naTela = false, tUlt = 0, k = 1, ctx = null, cores = null;
     var apoio = h('p', { class: C('apoio'), 'aria-live': 'polite' });
     var TEXTO = {
       igual: (pop > 1e7 ? 'Cada ponto vale cerca de ' + U.int(CADA / 1000) + ' mil pessoas. ' : '') + 'Se a população se espalhasse por igual, os pontos cobririam o mapa inteiro' +
@@ -726,19 +739,21 @@
     if (fo) el.appendChild(fo);
 
     medir(mapa, U, desenha);
-    U.aoVer(mapa, function (dentroDaTela) {
+    U.aoVer(mapa, function (dentroDaTela) { // o movimento só anda com o mapa na tela
       naTela = dentroDaTela;
       if (!naTela) { if (raf) { cancelAnimationFrame(raf); raf = 0; } return; }
-      if (!visto && !U.reduz) { visto = true; setTimeout(function () { if (!mexeu) vai('real'); }, 800); }
-      else anda();
-    }, { uma: false, limiar: limiarDe(mapa, 0.45) });
+      anda();
+    }, { uma: false });
+    // na primeira vez em que o mapa aparece quase inteiro, os pontos se juntam (a não ser que a pessoa já tenha escolhido)
+    if (!U.reduz) aoVerBem(mapa, U, 0.45, function () { setTimeout(function () { if (!mexeu) vai('real'); }, 800); });
   });
 
   // =====================================================================================================
   // estacoes — "O ano do Nilo" (camada nilo)
   // De onde vem cada coisa:
-  //   as três estações, o que eram e os meses . camada nilo, fato "Três estações: akhet, peret e shemu" (lido do texto;
-  //                                             o fato tem certeza baixa: a peça diz "segundo os manuais")
+  //   as três estações, o que eram e os meses . camada nilo, fato "Três estações: akhet, peret e shemu" (lido do texto).
+  //                                             Se o fato tiver certeza baixa, a peça diz "segundo os manuais"; se a
+  //                                             ressalva disser que os meses não foram confirmados, a peça avisa
   //   4 meses de 30 dias, 5 dias extras, 365 .. o mesmo fato
   //   a cheia sobe no verão e baixa no outono . camada nilo, fato "A cheia anual"
   //   1964 e 1970 ............................. dados.series.nilo, ponto "A cheia anual deixa de chegar ao Egito"
@@ -766,7 +781,8 @@
     '& svg text&-nome{font-family:var(--serifa);font-weight:600;font-size:21px;fill:var(--tinta)}' +
     '& svg text&-forte{fill:var(--tinta);font-weight:600}' +
     '& svg text&-it{font-family:var(--serifa);font-style:italic;font-size:12px}' +
-    '&-arco{stroke:var(--fundo);stroke-width:2;cursor:pointer;transition:opacity .5s ease}' +
+    '&-arco{stroke:var(--fundo);stroke-width:2;transition:opacity .5s ease}' +
+    '&-anel svg{cursor:pointer}' +
     '&-arco0{fill:color-mix(in srgb,var(--pc-agua) 34%,var(--s1))}' +
     '&-arco1{fill:color-mix(in srgb,var(--pc-verde) 30%,var(--s1))}' +
     '&-arco2{fill:color-mix(in srgb,var(--pc-ouro) 38%,var(--s1))}' +
@@ -891,7 +907,6 @@
       EST.forEach(function (e, i) {
         var g0 = i * porEst / ANO * 360, g1 = (i + 1) * porEst / ANO * 360, gm = (g0 + g1) / 2, baixo = gm > 100 && gm < 260, rt = (rE + rI) / 2 + (baixo ? 4.2 : -4.2);
         var a = s('path', { class: C('arco') + ' ' + C('arco' + i), d: setor(rI, rE, g0, g1) });
-        a.addEventListener('click', function () { escolhe(i, true); });
         svg.appendChild(a); R.arcos.push(a);
         var pa = pol(rt, baixo ? g1 - 3 : g0 + 3), pb = pol(rt, baixo ? g0 + 3 : g1 - 3);
         defs.appendChild(s('path', { id: uid + '-a' + i, d: 'M' + pt(pa) + 'A' + f1(rt) + ' ' + f1(rt) + ' 0 0 ' + (baixo ? 0 : 1) + ' ' + pt(pb) }));
@@ -899,7 +914,7 @@
         svg.appendChild(s('text', { class: C('est'), 'text-anchor': 'middle', style: 'pointer-events:none' }, tp));
       });
       if (extras) {
-        svg.appendChild(s('path', { class: C('arco') + ' ' + C('arco3'), d: setor(rI, rE, 3 * porEst / ANO * 360, 360), style: 'cursor:default' }, s('title', null, extras + ' dias extras fecham o ano')));
+        svg.appendChild(s('path', { class: C('arco') + ' ' + C('arco3'), d: setor(rI, rE, 3 * porEst / ANO * 360, 360) }, s('title', null, extras + ' dias extras fecham o ano')));
         var pe = pol(rI - 3, 360 - extras / ANO * 180);
         svg.appendChild(s('line', { class: C('tique'), x1: f1(pe[0]), y1: f1(pe[1]), x2: f1(pe[0]), y2: f1(pe[1] + 5) }));
         svg.appendChild(s('text', { x: f1(pe[0]), y: f1(pe[1] + 16), 'text-anchor': 'middle' }, '+' + extras + ' dias'));
@@ -914,6 +929,11 @@
       R.pont = s('g', { class: C('pont') }, s('line', { x1: cx, y1: f1(cy - rB - 3), x2: cx, y2: f1(cy - rTic + 3) }), s('circle', { cx: cx, cy: f1(cy - rTic), r: 5 }));
       R.cx = cx; R.cy = cy;
       svg.appendChild(R.pont);
+      svg.addEventListener('click', function (ev) { // tocar no anel leva o ponteiro para aquele momento do ano
+        var q = svg.getBoundingClientRect(), dx = ev.clientX - (q.left + q.width / 2), dy = ev.clientY - (q.top + q.height / 2), d = Math.sqrt(dx * dx + dy * dy);
+        if (d < rB || d > RR + 6) return;
+        vaiPara((Math.atan2(dx, -dy) / (2 * Math.PI) + 1) % 1);
+      });
       hostA.appendChild(svg);
       onda(); estAtual = -1; pinta();
     }
@@ -1016,10 +1036,10 @@
     }
     function anda() { if (!raf && naTela && (tocando || alvoU != null || b !== bAlvo)) { tUlt = 0; raf = requestAnimationFrame(passo); } }
     function tocar(sim) { tocando = sim; btTocar.textContent = sim ? 'Pausar' : 'Continuar'; btTocar.setAttribute('aria-pressed', sim ? 'false' : 'true'); if (sim) anda(); }
-    function escolhe(i, daPessoa) {
+    function vaiPara(v) { // para o laço e leva o ponteiro até um momento do ano (0 a 1)
       tocar(false);
-      if (U.reduz) { u = MEIO[i]; alvoU = null; pinta(); } else { alvoU = MEIO[i]; anda(); }
-      if (daPessoa) { var t = textoDe(i, bAlvo > 0.5); fala.textContent = t[0] + '. ' + t[1]; }
+      if (U.reduz) { u = v; alvoU = null; pinta(); } else { alvoU = v; anda(); }
+      var t = textoDe(estacaoDe(v), bAlvo > 0.5); fala.textContent = t[0] + '. ' + t[1];
     }
     function represa(depois) {
       bAlvo = depois ? 1 : 0;
@@ -1029,7 +1049,7 @@
 
     // ---- montagem ----
     var btRep = U.botoes([{ id: 'antes', rotulo: 'antes da represa' }, { id: 'depois', rotulo: 'depois da represa' }], 'antes', function (id) { represa(id === 'depois'); }, 'Antes ou depois da represa');
-    var btEst = U.botoes(EST.map(function (e, i) { return { id: String(i), rotulo: e.nome }; }), U.reduz ? '0' : '', function (id) { escolhe(+id, true); }, 'Estação do ano');
+    var btEst = U.botoes(EST.map(function (e, i) { return { id: String(i), rotulo: e.nome }; }), U.reduz ? '0' : '', function (id) { vaiPara(MEIO[+id]); }, 'Estação do ano');
     var btTocar = h('button', { type: 'button', class: C('tocar'), 'aria-pressed': 'false', onclick: function () { tocar(!tocando); } }, 'Pausar');
     if (U.reduz) { btTocar.textContent = 'Continuar'; btTocar.setAttribute('aria-pressed', 'true'); }
     el.appendChild(h('h3', { class: C('tit') }, 'O ano do Nilo'));
@@ -1037,7 +1057,7 @@
       (incerto ? ' Os nomes e os meses vêm dos manuais.' : '') + (quandoFim ? ' ' + quandoFim : '')));
     el.appendChild(h('div', { class: C('ctl') }, btRep, btEst, btTocar));
     el.appendChild(h('div', { class: C('g') }, hostA, h('div', { class: C('lado') }, hostC, leg,
-      h('p', { class: C('chave') }, 'No anel, a faixa azul mostra o nível do rio ao longo do ano. No corte, a mesma água vista de lado.'))));
+      h('p', { class: C('chave') }, 'No anel, a faixa azul mostra o nível do rio ao longo do ano; toque nele para ir a outro mês. No corte, a mesma água vista de lado.'))));
     el.appendChild(fala);
     el.appendChild(h('p', { class: 'pc-nota ' + C('nota') }, 'O que ver aqui: a cheia fazia duas coisas de uma vez, regava e adubava os campos. ' +
       (incerto ? 'Os nomes das estações e os meses são os dos manuais: esta pesquisa não os conferiu em fonte, e os meses de hoje são aproximados. '
@@ -1085,6 +1105,7 @@
     '&-sub{color:var(--tinta2);font-size:15px;max-width:42em;margin:0 0 22px}' +
     '&-g{display:grid;gap:26px 48px;align-items:start}' +
     '&-largo &-g{grid-template-columns:minmax(0,430px) minmax(0,1fr)}' +
+    '&-medio &-g{grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:26px 36px}' +
     '&-mapa{border-radius:14px;overflow:hidden;border:1px solid var(--linha);max-width:460px}' +
     '&-mapa svg{display:block}' +
     '&-mar{fill:color-mix(in srgb,var(--pc-agua) 32%,var(--fundo))}' +
@@ -1141,7 +1162,7 @@
 
     estilo('suez', CSS_SUEZ);
     el.classList.add(C()); if (ehClaro(el, U)) el.classList.add(C('claro'));
-    U.aoMedir(el, function (w) { el.classList.toggle(C('largo'), w >= 820); });
+    U.aoMedir(el, function (w) { el.classList.toggle(C('largo'), w >= 820); el.classList.toggle(C('medio'), w >= 640 && w < 820); });
     el.appendChild(h('h3', { class: C('tit') }, 'O canal'));
     el.appendChild(h('p', { class: C('sub') }, 'Um corte no istmo de Suez liga o Mediterrâneo ao Mar Vermelho' + (mo ? ' desde ' + mo[2] : '') + '. Os navios deixaram de contornar a África.'));
 
@@ -1196,7 +1217,7 @@
     }
 
     // ---- números da obra ----
-    var ficha = h('dl', { class: C('ficha') });
+    var ficha = h('dl', { class: C('ficha') }), extrasT = [];
     if (anos > 0) ficha.appendChild(h('div', null, h('dt', null, 'Tempo de obra'), h('dd', null, h('b', null, anos + ' anos'), 'de ' + mo[1] + ' a ' + mo[2] + '.' +
       (fInaug && fInaug.ano_txt ? ' O canal abriu em ' + txt(fInaug.ano_txt) + (nConv ? ', numa festa com ' + txt(nConv.valor) + ' convidados' : '') + '.' : ''))));
     if (gasto > 0) {
@@ -1212,10 +1233,14 @@
       var vs = txt(nMortos.valor).split(';').map(function (x) { return x.trim(); }).filter(Boolean), duas = h('div', { class: C('duas') });
       vs.slice(0, 2).forEach(function (v) {
         var m = /^(.*?)\s*,?\s*segundo\s+(.*)$/i.exec(v);
-        if (m) duas.appendChild(h('div', null, h('b', null, m[1].replace(/^n[úu]meros\s+/i, '')), 'segundo ' + m[2]));
+        if (m) duas.appendChild(h('div', null, h('b', null, m[1]), 'segundo ' + m[2]));
       });
       if (duas.children.length) ficha.appendChild(h('div', null, h('dt', null, 'Mortos na obra: não há número certo'), h('dd', null, duas)));
     }
+    [[/comprimento[^;]*canal|canal[^;]*comprimento|extens[ãa]o do canal/i, 'Comprimento'], [/trabalhadores[^;]*canal|gente na obra do canal/i, 'Gente na obra']].forEach(function (x) {
+      var n = acha(N, 'rotulo', x[0]), q = n && !/amplia/i.test(txt(n.rotulo)) && parte(n.valor); // hoje os dados não trazem nenhum dos dois
+      if (q) { ficha.appendChild(h('div', null, h('dt', null, x[1]), h('dd', null, q.aprox ? q.aprox + ' ' : '', h('b', null, q.grande), q.resto))); extrasT.push(n); }
+    });
     if (nConc) { var pc = parte(nConc.valor); if (pc) ficha.appendChild(h('div', null, h('dt', null, 'Concessão'), h('dd', null, h('b', null, pc.grande + (pc.resto ? ' ' + pc.resto : '')), 'era o prazo da concessão dada em ' + txt(nConc.ano) + ' para cavar e explorar o canal.'))); }
 
     var pe = null, btNav = null;
@@ -1252,7 +1277,7 @@
       (barras.length >= 2 ? ' E o que ele rende depende do que acontece no Mar Vermelho.' : '')));
     var linhasT = [];
     if (anos > 0) linhasT.push(['Obra', txt(fObra.ano_txt), txt(fObra.fonte)]);
-    [nCusto, nMortos, nConc, nConv].forEach(function (n) { if (n) linhasT.push([txt(n.rotulo), txt(n.valor), txt(n.fonte)]); });
+    [nCusto, nMortos, nConc, nConv].concat(extrasT).forEach(function (n) { if (n) linhasT.push([txt(n.rotulo), txt(n.valor), txt(n.fonte)]); });
     barras.forEach(function (x) { linhasT.push([txt(x.n.rotulo) + ' (' + txt(x.n.ano) + ')', txt(x.n.valor), txt(x.n.fonte)]); });
     el.appendChild(U.tabela('Ver os números', ['O quê', 'Valor', 'Fonte'], linhasT));
     var fo = fontes(U, [fObra ? [txt(fObra.fonte), fObra.url] : null, nUlt ? [txt(nUlt.fonte), nUlt.url] : (nRec ? [txt(nRec.fonte), nRec.url] : null)]);
@@ -1303,9 +1328,16 @@
     '&-tona{stroke:color-mix(in srgb,var(--pc-agua) 55%,#fff);stroke-width:1.2}' +
     '&-agua{transform:translateY(var(--pc-y0));transition:transform 2.4s cubic-bezier(.4,0,.2,1)}' +
     '&-e2 &-agua{transform:translateY(var(--pc-y2))}' +
+    '&-pedra{fill:var(--pc-pedra);stroke:var(--pc-junta);stroke-width:.9;stroke-linejoin:round}' +
+    '&-sala{fill:var(--pc-oco)}' +
+    '&-inteiro &-pedra{stroke:none}' +
+    '&-inteiro &-pedra&-col{stroke:var(--pc-junta)}' +
+    // antes: o templo inteiro, sem emendas; no corte, os blocos tomam o lugar dele e só então saem
+    '&-inteiro{opacity:0;transition:opacity .35s ease}' +
+    '&-e0 &-inteiro{opacity:1;transition-delay:1.1s}' +
+    '&-blocos{opacity:1;transition:opacity .35s ease}' +
+    '&-e0 &-blocos{opacity:0;transition-delay:1.25s}' +
     '&-bloco{transition:transform 1.15s cubic-bezier(.45,0,.2,1)}' +
-    '&-bloco path,&-bloco rect{fill:var(--pc-pedra);stroke:var(--pc-pedra);stroke-width:.9;stroke-linejoin:round;transition:stroke .5s ease}' +
-    '&-e1 &-bloco path,&-e1 &-bloco rect,&-e2 &-bloco path,&-e2 &-bloco rect,&-bloco&-col path{stroke:var(--pc-junta)}' +
     '&-e1 &-bloco,&-e2 &-bloco{transform:translate(var(--pc-dx),var(--pc-dy))}' +
     '&-e1 &-bloco{transition-delay:var(--pc-d)}' +
     '&-novo{fill:none;stroke:var(--tinta2);stroke-width:1;stroke-dasharray:3 3}' +
@@ -1326,7 +1358,7 @@
     '&-ficha dd{margin:0;font-size:14px;color:var(--tinta2);line-height:1.45}' +
     '&-ficha dd b{font-family:var(--serifa);font-size:clamp(23px,2.5vw,29px);font-weight:600;color:var(--tinta);letter-spacing:-.01em;margin-right:7px;white-space:nowrap;line-height:1.15}' +
     '&-nota{margin-top:20px}' +
-    '@media (prefers-reduced-motion:reduce){&-bloco,&-agua,&-so0,&-so1,&-so2,&-so01,&-so12,&-bloco path,&-bloco rect{transition:none!important}}';
+    '@media (prefers-reduced-motion:reduce){&-bloco,&-agua,&-so0,&-so1,&-so2,&-so01,&-so12,&-inteiro,&-blocos{transition:none!important}}';
   var nAbu = 0;
 
   E.peca('abu-simbel', function (el, dados, U, args) {
@@ -1392,17 +1424,25 @@
       var g0 = [X(-4), Y(25)], g1 = [X(dX - 5), Y(dZ + 26)], gc = [X(dX * 0.36), Y(dZ + A + 46)];
       svg.appendChild(s('g', { class: C('so1') }, s('path', { class: C('guia'), d: 'M' + f1(g0[0]) + ' ' + f1(g0[1]) + 'Q' + f1(gc[0]) + ' ' + f1(gc[1]) + ' ' + f1(g1[0]) + ' ' + f1(g1[1]) }),
         s('path', { class: C('seta'), d: 'M2 0L-8 -4.4V4.4Z', transform: 'translate(' + f1(g1[0]) + ' ' + f1(g1[1]) + ') rotate(' + f1(Math.atan2(g1[1] - gc[1], g1[0] - gc[0]) * 180 / Math.PI) + ')' })));
-      // blocos: o colosso sentado (cabeça, tronco, pernas e trono) e o corpo do templo, da frente para o fundo
-      var n = 0, gB = s('g'), nc = 6, nr = 3, i, j;
-      function bloco(no, cl) { var g = s('g', { class: C('bloco') + (cl ? ' ' + C(cl) : ''), style: '--pc-d:' + (600 + n * 150) + 'ms' }, no); n++; return g; }
-      function poli(pts) { return s('path', { d: pts.map(function (p, q) { return (q ? 'L' : 'M') + f1(X(p[0])) + ' ' + f1(Y(p[1])); }).join('') + 'Z' }); }
-      [[[0, 14.9], [-5.3, 14.9], [-5.9, 15.1], [-5.4, 16], [-5.9, 16.7], [-5.3, 17.7], [-5.6, 18.1], [-4.6, 21.3], [-2.4, 21.7], [-1.8, 18.3], [-0.9, 17.3], [0, 15.6]],
+      // o templo: o colosso sentado na frente (cabeça, tronco, pernas e trono) e o corpo cavado na rocha, com as salas por dentro.
+      // Antes, aparece inteiro; no corte, em blocos que saem da frente para o fundo.
+      var COLOSSO = [[[0, 14.9], [-5.3, 14.9], [-5.9, 15.1], [-5.4, 16], [-5.9, 16.7], [-5.3, 17.7], [-5.6, 18.1], [-4.6, 21.3], [-2.4, 21.7], [-1.8, 18.3], [-0.9, 17.3], [0, 15.6]],
         [[0, 9.8], [-5, 9.8], [-5.2, 14.5], [-5.3, 14.9], [0, 14.9]],
-        [[0, 0], [-10.5, 0], [-10.5, 1.4], [-8.8, 1.4], [-8.8, 8.4], [-9.2, 8.8], [-9.2, 9.8], [0, 9.8]]].forEach(function (pp) { gB.appendChild(bloco(poli(pp), 'col')); });
+        [[0, 0], [-10.5, 0], [-10.5, 1.4], [-8.8, 1.4], [-8.8, 8.4], [-9.2, 8.8], [-9.2, 9.8], [0, 9.8]]];
+      var SALAS = [[0, 0], [0, 9], [4, 9], [4, 20], [30, 20], [30, 15], [44, 15], [44, 11], [54, 11], [54, 2.5], [44, 2.5], [44, 1.2], [30, 1.2], [30, 0]];
+      function dPoli(pts) { return pts.map(function (p, q) { return (q ? 'L' : 'M') + f1(X(p[0])) + ' ' + f1(Y(p[1])); }).join('') + 'Z'; }
+      var dSalas = dPoli(SALAS), defs = svg.querySelector('defs'), n = 0, nc = 6, nr = 3, i, j;
+      var gI = s('g', { class: C('inteiro') }, s('rect', { class: C('pedra'), x: oco.x, y: oco.y, width: oco.width, height: oco.height }), s('path', { class: C('sala'), d: dSalas }));
+      COLOSSO.forEach(function (pp) { gI.appendChild(s('path', { class: C('pedra') + ' ' + C('col'), d: dPoli(pp) })); });
+      var gB = s('g', { class: C('blocos') });
+      function bloco() { var g = s('g', { class: C('bloco'), style: '--pc-d:' + (700 + n * 150) + 'ms' }, Array.prototype.slice.call(arguments)); n++; return g; }
+      COLOSSO.forEach(function (pp) { gB.appendChild(bloco(s('path', { class: C('pedra'), d: dPoli(pp) }))); });
       for (i = 0; i < nc; i++) for (j = nr - 1; j >= 0; j--) {
-        gB.appendChild(bloco(s('rect', { x: f1(X(i * P / nc)), y: f1(Y((j + 1) * A / nr)), width: f1(P / nc * k), height: f1(A / nr * k) })));
+        var r = { x: f1(X(i * P / nc)), y: f1(Y((j + 1) * A / nr)), width: f1(P / nc * k), height: f1(A / nr * k) }, idc = uid + '-b' + i + j;
+        defs.appendChild(s('clipPath', { id: idc }, s('rect', r)));
+        gB.appendChild(bloco(s('rect', { class: C('pedra'), x: r.x, y: r.y, width: r.width, height: r.height }), s('path', { class: C('sala'), d: dSalas, 'clip-path': 'url(#' + idc + ')' })));
       }
-      svg.appendChild(gB);
+      svg.appendChild(gB); svg.appendChild(gI);
       // cotas (só no fim, e só se a camada confirma as medidas)
       if (medidas) {
         var xV = X(dX + 14), risco = function (x, y) { return 'M' + f1(x - 3.5) + ' ' + f1(y + 3.5) + 'L' + f1(x + 3.5) + ' ' + f1(y - 3.5); };

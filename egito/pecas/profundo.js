@@ -26,6 +26,9 @@
     for (var i = 0; i < lista.length; i++) if (lista[i] && re.test(txt(lista[i][campo || 'titulo']))) return lista[i];
     return null;
   }
+  /** o grau de conferência de um fato, nas palavras da página ('' quando a fonte confirma tudo) */
+  function seloDe(f) { return f && f.certeza === 'baixa' ? 'de memória, sem fonte conferida' : f && f.certeza === 'media' ? 'conferido em parte' : ''; }
+  function enumera(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' e ' + a[a.length - 1]; }
   function camadaDe(dados, id) { return acha(dados && dados.camadas, new RegExp('^' + id + '$'), 'id'); }
   /** a camada da peça: a que a página passou, se for a certa; senão, a que tem esse id nos dados */
   function camadaCerta(dados, args, id) { var c = args && args.camada; return c && c.id === id ? c : camadaDe(dados, id); }
@@ -83,7 +86,15 @@
       '.' + p + '-topo{margin:0 0 22px}' +
       '.' + p + '-sub{font:700 12px var(--sem);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta2);margin:0 0 12px}' +
       '.' + p + ' svg{display:block;max-width:100%}' +
-      '.' + p + ' .pc-nota{margin:14px 0 0}';
+      '.' + p + ' .pc-nota{margin:14px 0 0}' +
+      '.' + p + '-rolo{overflow-x:auto}' +
+      '.' + p + '-rolo small{display:block;font-size:12px;line-height:1.4;color:var(--tinta2);margin-top:2px}';
+  }
+  /** a tabela de U.tabela, com proteção: se um dia não couber na tela, rola dentro da própria caixa, e não a página */
+  function tabelaSegura(U, pre, titulo, colunas, linhas) {
+    var t = U.tabela(titulo, colunas, linhas), tb = t.querySelector('table');
+    if (tb) t.appendChild(U.h('div', { class: pre + '-rolo' }, tb));
+    return t;
   }
 
   // ---------- bichos: silhuetas simples, de lado, olhando para a direita ----------
@@ -342,6 +353,11 @@
     }
     itens.sort(function (a, b) { return (a.m.de + a.m.a) - (b.m.de + b.m.a); });
     var fTet = acha(c.fatos, /T[ée]tis cobria/i), mTet = milhoes(fTet);
+    // o que a pesquisa não conferiu por inteiro e aparece na coluna do tempo: a peça avisa embaixo dela
+    var emParte = [], deMemoria = [];
+    function anota(f, nome) { if (f && f.certeza === 'baixa') deMemoria.push(nome); else if (f && f.certeza === 'media') emParte.push(nome); }
+    if (mTet) anota(fTet, 'mar de Tétis');
+    itens.forEach(function (it) { anota(it.f, it.nome); });
 
     poeEstilo('pc-baleias-css', cssBaleias());
     el.classList.add(P);
@@ -356,7 +372,9 @@
     }
     if (itens.length > 1) {
       colB.appendChild(h('section', { class: P + '-bloco' }, h('h4', { class: P + '-sub' }, 'Quem viveu aqui, e quando'),
-        h('p', { class: P + '-leg', style: { margin: '-4px 0 14px' } }, 'A régua desce no tempo, em milhões de anos: quanto mais embaixo, mais antigo.'), colBox));
+        h('p', { class: P + '-leg', style: { margin: '-4px 0 14px' } }, 'A régua desce no tempo, em milhões de anos: quanto mais embaixo, mais antigo.'), colBox,
+        emParte.length || deMemoria.length ? h('p', { class: P + '-ast' }, (emParte.length ? 'Conferido só em parte na pesquisa: ' + enumera(emParte) + '. ' : '') +
+          (deMemoria.length ? 'De memória, sem fonte conferida: ' + enumera(deMemoria) + '.' : '')) : null));
     }
     el.appendChild(topo(U, P, maiuscula(fBal.ano_txt), 'Baleias no deserto',
       'Onde hoje é o deserto do Fayum havia uma baía rasa do mar de Tétis. Nela nadavam baleias que ainda tinham pernas.'));
@@ -527,13 +545,16 @@
     }
 
     // ----- tabela e fonte -----
+    // duas colunas só: a fonte vai embaixo do nome, para a tabela caber num celular estreito sem partir palavra
     var linhas = [];
-    if (nBas) linhas.push([txt(nBas.rotulo), txt(nBas.valor), U.link(txt(nBas.fonte), nBas.url)]);
-    if (mDor) linhas.push(['Comprimento do Dorudon', 'cerca de ' + U.dec(mDor) + ' m', dorMemoria ? 'de memória, sem fonte conferida' : '']);
-    if (mTet) linhas.push([txt(fTet.titulo), txt(fTet.ano_txt), U.link(txt(fTet.fonte), fTet.url)]);
-    itens.slice().reverse().forEach(function (it) { if (it.f) linhas.push([txt(it.f.titulo), txt(it.f.ano_txt), U.link(txt(it.f.fonte), it.f.url)]); });
-    if (pal && typeof pal.inicio === 'number' && pal.inicio < 0) linhas.push(['Gente no Egito (camada ' + txt(pal.titulo) + ')', txt(pal.periodo_txt), '']);
-    el.appendChild(U.tabela('Ver os números', ['O quê', 'Medida ou data', 'Fonte'], linhas));
+    function comFonte(nome, f) { return f && f.fonte ? [nome, h('small', null, 'Fonte: ', U.link(txt(f.fonte), f.url))] : nome; }
+    function dataCom(f) { var selo = seloDe(f); return txt(f.ano_txt) + (selo ? ' (' + selo + ')' : ''); }
+    if (nBas) linhas.push([comFonte(txt(nBas.rotulo), nBas), txt(nBas.valor)]);
+    if (mDor) linhas.push([dorMemoria ? ['Comprimento do Dorudon', h('small', null, 'de memória, sem fonte conferida')] : 'Comprimento do Dorudon', 'cerca de ' + U.dec(mDor) + ' m']);
+    if (mTet) linhas.push([comFonte(txt(fTet.titulo), fTet), dataCom(fTet)]);
+    itens.slice().reverse().forEach(function (it) { if (it.f) linhas.push([comFonte(txt(it.f.titulo), it.f), dataCom(it.f)]); });
+    if (pal && typeof pal.inicio === 'number' && pal.inicio < 0) linhas.push(['Gente no Egito (camada ' + txt(pal.titulo) + ')', txt(pal.periodo_txt)]);
+    el.appendChild(tabelaSegura(U, P, 'Ver os números', ['O quê', 'Medida ou data'], linhas));
     if (fBal.fonte) el.appendChild(U.fonte(txt(fBal.fonte), fBal.url));
 
     U.aoMedir(el, function (larg) {
@@ -561,6 +582,10 @@
   //   começo do recuo da chuva ......... fim da camada (c. 5000 a.C.); o resumo diz só "depois as chuvas recuaram"
   //   lugares com rótulo ............... onde da camada (lat, lon), sem os museus
   //   frase da tese .................... fato "A tese: a seca empurrou gente para o Nilo" (ano_txt e autores)
+  //   quando o gado se espalha ......... entre o ano do fato "Jebel Uweinat: rebanhos pintados na fronteira" e o do fato
+  //                                      "Ovelhas e cabras chegam do Oriente Próximo"; antes disso só há gado perto de
+  //                                      Nabta Playa, porque a ressalva do fato das chuvas diz que o gado tão cedo é
+  //                                      discutido e restrito ao sul (a peça repete esse aviso na nota de leitura)
   //   O avanço e o recuo do verde, os lagos (fora Nabta Playa) e os pontos de gente e de gado são um esquema: os dados
   //   dão as datas do começo e do fim e dizem que a seca chegou antes ao norte. Os oásis vêm de EGITO.geo (mapa.js).
   // =====================================================================================================
@@ -661,6 +686,13 @@
       .forEach(function (x) { var u = grupos[grupos.length - 1]; if (u && u.t === x.t) u.fs.push(x.f); else grupos.push({ t: x.t, fs: [x.f] }); });
     if (!grupos.length) return;
     var nUmido = acha(c.numeros, /Dura[çc][ãa]o do Per[íi]odo [ÚU]mido/i, 'rotulo');
+    // quando o gado se espalha pelo deserto (sem esses fatos, o gado acompanha a gente desde o começo)
+    var fReb = acha(c.fatos, /rebanhos/i), fOv = acha(c.fatos, /ovelhas e cabras/i);
+    var tG0 = fReb && typeof fReb.ano === 'number' ? fReb.ano : null, tG1 = fOv && typeof fOv.ano === 'number' ? fOv.ano : null;
+    if (tG0 == null) tG0 = tG1; if (tG1 == null) tG1 = tG0;
+    if (tG0 == null || tG0 < T0 || tG1 > T1) tG0 = tG1 = T0;
+    if (tG0 > tG1) { var tGx = tG0; tG0 = tG1; tG1 = tGx; }
+    var gadoDiscutido = !!fChuva && /gado[^.]*(discutid|controvers)/i.test(txt(fChuva.ressalva));
 
     // ----- o modelo do desenho: até onde vai o verde em cada ano -----
     var FAIXA = 1.25, FMAX = 31.6, FMIN = 21.55 - FAIXA - .25, POT = 1.7;
@@ -725,6 +757,8 @@
         else { d = lim(lat + (R() * 2 - .5), 22.4, 30.05); g.rio = d; }
       }
       g.entra = quandoPassa(lat, .6, true) + R() * 420;
+      // o gado: desde a chegada só perto de Nabta Playa; nos outros grupos, mais tarde (sem sorteio novo, para não mexer no resto)
+      g.tGado = nabta && typeof nabta.lat === 'number' && Math.hypot((lon - nabta.lon) * .9, lat - nabta.lat) < 2.2 ? T0 : mix(tG0, tG1, g.fase / 6.2832);
       g.sai = quandoPassa(lat, .42, false) + R() * 160;
       g.dura = 280 + R() * 200;
       if (g.sai + g.dura > T1) g.sai = Math.max(tRe, T1 - g.dura);
@@ -793,7 +827,8 @@
     el.appendChild(grade);
     var nota = h('p', { class: 'pc-nota' }, 'O que ver aqui: o verde some do norte para o sul, e os pontos, antes espalhados, acabam junto ao rio. ' +
       (nUmido ? 'No Saara inteiro, o período úmido foi ' + txt(nUmido.valor) + '; a régua mostra só o trecho em que a chuva alcançou o Egito. ' : '') +
-      'O avanço do verde, os lagos e os pontos são um esquema, não medidas: a pesquisa dá as datas do começo e do fim e diz que a seca chegou antes ao norte.');
+      'O avanço do verde, os lagos e os pontos são um esquema, não medidas: a pesquisa dá as datas do começo e do fim e diz que a seca chegou antes ao norte.' +
+      (gadoDiscutido ? ' O gado mais antigo, no sul, ainda é discutido.' : ''));
 
     // ----- o mapa -----
     var M = null; // peças móveis do mapa
@@ -802,7 +837,7 @@
       function X(lon) { return G.X(lon) * k; } function Y(lat) { return G.Y(lat) * k + MY; }
       function cam(pts, fecha) { return pts.map(function (p, j) { return (j ? 'L' : 'M') + f1(X(p[0])) + ' ' + f1(Y(p[1])); }).join('') + (fecha ? 'Z' : ''); }
       var svg = s('svg', { width: w, height: H, viewBox: '0 0 ' + w + ' ' + H, role: 'img',
-        'aria-label': 'Mapa do Egito ao longo do tempo. Quando a chuva chega, o deserto a oeste do Nilo vira savana, com lagos, gente e gado. Quando a chuva recua para o sul, o verde vira areia e os pontos de gente e de gado vão para o vale do Nilo, para os oásis e para o sul.' });
+        'aria-label': 'Mapa do Egito ao longo do tempo. Quando a chuva chega, o deserto a oeste do Nilo vira savana, com lagos e gente, e mais tarde gado. Quando a chuva recua para o sul, o verde vira areia e os pontos de gente e de gado vão para o vale do Nilo, para os oásis e para o sul.' });
       var faixaPx = 2 * FAIXA * GRAU * k; // altura, em px, da passagem do verde para a areia
       svg.appendChild(s('defs', null,
         s('clipPath', { id: id + 't' }, s('path', { d: cam(G.TERRA, true) })),
@@ -901,13 +936,13 @@
       // textos
       var ga = 0; for (i = 0; i < grupos.length; i++) if (grupos[i].t <= t + 1) ga = i;
       anoB.textContent = rotAno(ta);
-      anoS.textContent = (t < tCh ? 'a chuva chega' : t <= tRe ? 'savana, lagos e gado' : t < T1 ? 'a chuva recua para o sul' : 'o Saara volta a ser deserto') + ' · há ' + U.int(Math.round(U.anosAtras(ta) / 100) * 100) + ' anos';
+      anoS.textContent = (t < tCh ? 'a chuva chega' : t <= tRe ? (t < tG0 ? 'savana e lagos de chuva' : 'savana, lagos e gado') : t < T1 ? 'a chuva recua para o sul' : 'o Saara volta a ser deserto') + ' · há ' + U.int(Math.round(U.anosAtras(ta) / 100) * 100) + ' anos';
       if (String(range.value) !== String(ta)) range.value = ta;
       range.setAttribute('aria-valuetext', anoB.textContent + ': ' + anoS.textContent.split(' · ')[0]);
       if (ga !== grupoAtual || inteiro) {
         grupoAtual = ga; fatoTxt.textContent = '';
         grupos[ga].fs.forEach(function (f) {
-          var selo = f.certeza === 'baixa' ? 'de memória, sem fonte conferida' : f.certeza === 'media' ? 'conferido em parte' : '';
+          var selo = seloDe(f);
           fatoTxt.appendChild(h('p', null, h('i', null, txt(f.ano_txt) || U.ano(f.ano)), h('b', null, txt(f.titulo)), selo ? h('small', null, selo) : null));
         });
       }
@@ -929,15 +964,19 @@
         if (M.antes['l' + i] !== v) { M.antes['l' + i] = v; M.lagos[i].style.opacity = v; M.lagos[i].style.transform = 'scale(' + (.4 + v * .6).toFixed(2) + ')'; }
       }
       // gente e gado
-      for (i = 0; i < M.fixos.length; i++) { e = M.fixos[i]; v = t >= e.q.desde ? 1 : 0; if (e.v !== v) { e.v = v; e.e.style.opacity = v; if (e.b) e.b.style.opacity = v; } }
+      for (i = 0; i < M.fixos.length; i++) {
+        e = M.fixos[i]; v = t >= e.q.desde ? 1 : 0; if (e.v !== v) { e.v = v; e.e.style.opacity = v; }
+        if (e.b) { v = t >= Math.max(e.q.desde, tG1) ? 1 : 0; if (e.vb !== v) { e.vb = v; e.b.style.opacity = v; } }
+      }
       for (i = 0; i < M.grupos.length; i++) {
         e = M.grupos[i]; var g = e.g, u = suave((t - g.sai) / g.dura), x, y, op, w1 = Math.sin(t / 170 + g.fase), w2 = Math.cos(t / 230 + g.fase * 1.7);
         if (u <= 0) { x = e.a[0] + w1 * 3.4 * M.k; y = e.a[1] + w2 * 2.6 * M.k; }
         else { x = (1 - u) * (1 - u) * e.a[0] + 2 * u * (1 - u) * e.c[0] + u * u * e.b[0]; y = (1 - u) * (1 - u) * e.a[1] + 2 * u * (1 - u) * e.c[1] + u * u * e.b[1]; x += (1 - u) * w1 * 3.4 * M.k; y += (1 - u) * w2 * 2.6 * M.k; }
         op = lim((t - g.entra) / 160, 0, 1) * (g.sul ? 1 - suave((u - .45) / .45) : 1);
+        var opG = op * lim((t - g.tGado) / 160, 0, 1);
         for (j = 0; j < e.els.length; j++) {
           e.els[j].setAttribute('transform', 'translate(' + f1(x + (j ? (j === 1 ? M.rp * 2.3 : -M.rp * 1.6) : 0)) + ' ' + f1(y + (j ? (j === 1 ? M.rp * .9 : M.rp * 2) : 0)) + ')');
-          e.els[j].style.opacity = op.toFixed(2);
+          e.els[j].style.opacity = (j ? opG : op).toFixed(2);
         }
       }
       // lugar do fato da vez
@@ -977,8 +1016,8 @@
 
     colB.appendChild(painel); if (fimBox) colB.appendChild(fimBox);
     el.appendChild(nota);
-    el.appendChild(U.tabela('Ver os fatos da régua', ['Quando', 'O quê', 'Conferência'], grupos.reduce(function (r, g) {
-      return r.concat(g.fs.map(function (f) { return [txt(f.ano_txt), txt(f.titulo), f.certeza === 'baixa' ? 'de memória, sem fonte conferida' : f.certeza === 'media' ? 'conferido em parte' : 'conferido']; }));
+    el.appendChild(tabelaSegura(U, P, 'Ver os fatos da régua', ['Quando', 'O quê', 'Conferência'], grupos.reduce(function (r, g) {
+      return r.concat(g.fs.map(function (f) { return [txt(f.ano_txt), txt(f.titulo), seloDe(f) || 'conferido']; }));
     }, [])));
     var fonteDe = fFim && fFim.fonte ? fFim : fTese;
     if (fonteDe && fonteDe.fonte) el.appendChild(U.fonte(txt(fonteDe.fonte), fonteDe.url));
@@ -1089,7 +1128,7 @@
     if (nIdade) linhas.push([txt(nIdade.rotulo), txt(nIdade.valor), U.link(txt(nIdade.fonte), nIdade.url)]);
     if (some) linhas.push(['Fim dos numulitos no registro fóssil', 'há cerca de ' + some + ' milhões de anos', U.link(txt(fPedra.fonte), fPedra.url)]);
     [nBlocos, nAlt, nLado].forEach(function (n) { if (n) linhas.push([txt(n.rotulo), txt(n.valor), U.link(txt(n.fonte), n.url)]); });
-    el.appendChild(U.tabela('Ver os números', ['O quê', 'Valor', 'Fonte'], linhas));
+    el.appendChild(tabelaSegura(U, P, 'Ver os números', ['O quê', 'Valor', 'Fonte'], linhas));
     if (fPedra.fonte) el.appendChild(U.fonte(txt(fPedra.fonte), fPedra.url));
 
     // ----- o palco: três camadas, uma dentro da outra -----

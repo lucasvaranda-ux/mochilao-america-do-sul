@@ -108,7 +108,7 @@
   }
   /** tabela de U.tabela que, no celular, vira uma ficha por linha (cada célula leva o nome da coluna) */
   var CSS_TABELA =
-    '& .pc-tabela td,& .pc-tabela th{overflow-wrap:anywhere}' +
+    '& .pc-tabela td,& .pc-tabela th{overflow-wrap:break-word}& .pc-tabela table{max-width:980px}' +
     '@media (max-width:640px){& .pc-tabela thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}' +
     '& .pc-tabela table,& .pc-tabela tbody{display:block;width:100%}' +
     '& .pc-tabela tr{display:block;padding:10px 0;border-bottom:1px solid var(--linha)}' +
@@ -688,7 +688,7 @@
 
     // ---- o que os dados dizem ----
     var cron = itens.slice().reverse(); // do mais antigo para o mais novo (para o desenho)
-    var t0 = cron[0].ano, t1 = Math.max(HOJE, itens[0].ano);
+    var t0 = cron[0].ano, t1 = Math.max(HOJE, itens[0].ano, t0 + 1);
     var silencio = null;
     (function () {
       var fimH = null, dec = null;
@@ -735,7 +735,7 @@
     var W = 0, svg, pontos = [], gSel, tNum, contou = false;
     function poeLer() {
       ler.textContent = '';
-      if (selPt < 0) { ler.appendChild(document.createTextNode('Cada ponto é uma descoberta. Toque num ponto para ver qual.')); return; }
+      if (selPt < 0) { ler.appendChild(document.createTextNode('Cada ponto é uma descoberta. Toque num ponto, ou passe o mouse, para ver qual.')); return; }
       var x = cron[selPt];
       ler.appendChild(h('span', null, h('b', null, txt(x.ano_txt) || U.ano(x.ano)), ' · ' + txt(x.titulo) + ' · ' + tipoDe(x)));
       ler.appendChild(h('button', { type: 'button', class: K('ir'), onclick: function () { vaiPara(x); } }, 'ver na lista ↓'));
@@ -1536,7 +1536,7 @@
   // =====================================================================================================
   var CSS_NIL =
     '&{--pc-agua:#5aa6d8}&-claro{--pc-agua:#2a6fa8}' +
-    '&-bloco{margin:0 0 clamp(40px,7vh,64px)}&-bloco:last-of-type{margin-bottom:0}' +
+    '&-bloco{margin:0 0 clamp(44px,7vh,68px)}&-bloco:last-child{margin-bottom:0}' +
     '&-bloco>h3,&-lado>h3{font-size:clamp(22px,3vw,28px);margin:0 0 8px;text-wrap:balance}' +
     '&-sub{margin:0 0 16px;font-size:14.5px;line-height:1.5;color:var(--tinta2);max-width:42em}' +
     '&-a{display:grid;gap:14px 44px;align-items:start}&-a1 &-sub{margin-bottom:0}' +
@@ -1568,7 +1568,7 @@
     '&-tk span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}&-tk span:first-child{transform:none}' +
     '&-tk b{font-weight:700;color:var(--tinta)}' +
     '&-bt{display:flex;justify-content:space-between;gap:14px;align-items:baseline}' +
-    '&-bt b{font-family:var(--serifa);font-weight:600;font-size:19px}&-bt span{font-size:13px;color:var(--tinta2);margin-left:10px}' +
+    '&-bt b{font-family:var(--serifa);font-weight:600;font-size:19px}&-bt div span{font-size:13px;color:var(--tinta2);margin-left:10px}' +
     '&-bv{font-family:var(--serifa);font-weight:600;font-size:19px;white-space:nowrap;font-variant-numeric:tabular-nums}&-bv small{font-family:var(--sem);font-size:12px;font-weight:500;color:var(--tinta2);margin-left:4px}' +
     '&-tr{position:relative;height:20px;align-self:center}' +
     '&-gd{position:absolute;top:0;bottom:0;width:1px;background:var(--linha)}&-lim{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:var(--tinta);z-index:1}' +
@@ -1585,7 +1585,9 @@
     '&-qd{grid-column:1;font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--tinta2);font-variant-numeric:tabular-nums}' +
     '&-rt{grid-column:1;font-family:var(--serifa);font-size:19px;font-weight:600;line-height:1.2}' +
     '&-vl{grid-column:1;font-size:14.5px;line-height:1.4}' +
-    '&-corpo{padding:0 0 14px}&-corpo p{margin:0 0 8px;max-width:40em;font-size:15.5px}' +
+    '&-corpo{padding:0 0 4px}&-corpo p{margin:0 0 8px;max-width:40em;font-size:15.5px}' +
+    '&-lista summary{padding-bottom:6px}&-pf{margin:0;padding:0 32px 12px 0}&-lista .nota{margin:0 0 12px}' +
+    '&-semtexto{display:grid;gap:2px;padding:12px 0 6px}' +
     '&-mais{margin-top:14px;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--linha);background:var(--s1);font-weight:600;font-size:14.5px;cursor:pointer;color:var(--tinta)}&-mais:hover{border-color:var(--acento)}' +
     '& .pc-nota{margin:12px 0 0}' +
     '@media (prefers-reduced-motion: reduce){&-ba{transform:none;transition:none}}';
@@ -1631,13 +1633,13 @@
         sl ? sl.nota : null,
         h('p', { class: 'pc-nota' }, 'O que ver: ' + (nMax - nMin) + ' côvados separam a fome da fartura. ' + (covado ? 'O côvado real media cerca de ' + covado[1] + ' cm. ' : '') + 'O desenho é um esquema, sem as medidas da obra.'));
       palco.className = K('a0');
-      el.appendChild(h('div', { class: K('bloco') + ' ' + K('a') }, cab, palco, meio, resto));
+      el.appendChild(h('section', { class: K('bloco') + ' ' + K('a') }, cab, palco, meio, resto));
 
       var W = 0, u, yChao, gNivel, linhasM = [];
       function yDe(c) { return yChao - c * u; }
       function desenha(larg) {
         W = Math.min(larg, 470);
-        u = W < 330 ? 15.5 : 17.5;
+        u = W < 330 ? 15.5 : W < 440 ? 17.5 : 20;
         var topoC = nMax + 1.6, yTopo = 14, esp = 10, xPE = 24, xI0 = xPE + esp, largI = Math.round(limita(W * 0.36, 104, 168)), xI1 = xI0 + largI, xPD = xI1 + esp;
         yChao = yTopo + topoC * u;
         var Hh = Math.round(yChao + 30), xCol = xI1 - Math.round(largI * 0.26), lc = 13, xRot = xPD + 14, idC = unico(K('c'));
@@ -1772,10 +1774,11 @@
       var PRIMEIROS = 6, lista = h('ol', { class: K('lista') }), pe = h('div');
       function item(p) {
         var sl = selo(U, p);
-        return h('li', null, h('details', null,
-          h('summary', null, h('span', { class: K('qd') }, txt(p.ano_txt) || U.ano(p.ano)), h('span', { class: K('rt') }, txt(p.rotulo)), p.valor_txt ? h('span', { class: K('vl') }, txt(p.valor_txt)) : null),
-          h('div', { class: K('corpo') }, p.texto ? h('p', null, txt(p.texto)) : null,
-            h('div', { class: K('pe') }, p.fonte ? h('span', null, 'Fonte: ', U.link(txt(p.fonte), p.url)) : null, sl ? sl.marca : null), sl ? sl.nota : null)));
+        // o ano, o valor e a fonte ficam sempre à vista; o texto abre ao tocar
+        var resumo = h('summary', null, h('span', { class: K('qd') }, txt(p.ano_txt) || U.ano(p.ano)), h('span', { class: K('rt') }, txt(p.rotulo)), p.valor_txt ? h('span', { class: K('vl') }, txt(p.valor_txt)) : null);
+        return h('li', null,
+          p.texto ? h('details', null, resumo, h('div', { class: K('corpo') }, h('p', null, txt(p.texto)))) : h('div', { class: K('semtexto') }, resumo.childNodes[0], resumo.childNodes[0], resumo.childNodes[0]),
+          h('div', { class: K('pe') + ' ' + K('pf') }, p.fonte ? h('span', null, 'Fonte: ', U.link(txt(p.fonte), p.url)) : null, sl ? sl.marca : null), sl ? sl.nota : null);
       }
       var corte = marcos.length > PRIMEIROS + 2 ? PRIMEIROS : marcos.length;
       marcos.slice(0, corte).forEach(function (p) { lista.appendChild(item(p)); });
@@ -1788,7 +1791,7 @@
       }
       el.appendChild(h('section', { class: K('bloco') },
         h('h3', null, 'Outros marcos, da pedra gravada à represa'),
-        h('p', { class: K('sub') }, 'Do registro mais antigo ao mais novo. Toque num marco para ler o que ele conta e de onde vem.'),
+        h('p', { class: K('sub') }, 'Do registro mais antigo ao mais novo, cada um com o ano, o valor e a fonte. Toque num marco para ler o que ele conta.'),
         lista, pe));
     })();
   });
