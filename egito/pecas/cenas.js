@@ -149,7 +149,7 @@
     '&-chave{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;font-size:12.5px;color:var(--tinta2);margin:4px 0 0}' +
     '&-chave span{display:inline-flex;align-items:center;gap:6px}' +
     '&-chave svg{flex:none}' +
-    '@media (prefers-reduced-motion:reduce){&-fiada,&-tarde,&-boneco{opacity:1!important;animation:none!important}}';
+    '@media (prefers-reduced-motion:reduce),print{&-fiada,&-tarde,&-boneco{opacity:1!important;animation:none!important}}';
 
   E.peca('piramide', function (el, dados, U, args) {
     var h = U.h, s = U.s, c = args && args.camada; if (!c) return;
@@ -397,7 +397,7 @@
     '&-conta b{display:block;font-family:var(--serifa);font-size:clamp(24px,2.8vw,30px);font-weight:600;line-height:1.15;margin:3px 0 4px;font-variant-numeric:tabular-nums}' +
     '&-conta i{display:block;font-style:normal;font-size:13px;color:var(--tinta2);font-variant-numeric:tabular-nums;line-height:1.4}' +
     '&-nota{margin-top:22px}' +
-    '@media (prefers-reduced-motion:reduce){&-t{opacity:1!important;animation:none!important}&-sx,&-sy{transform:none!important;animation:none!important}}';
+    '@media (prefers-reduced-motion:reduce),print{&-t{opacity:1!important;animation:none!important}&-sx,&-sy{transform:none!important;animation:none!important}}';
 
   /** ano -> posição numa régua contínua (não existe ano zero: 1 a.C. fica em 0) */
   function eixo(a) { return a < 0 ? a + 1 : a; }
@@ -1068,7 +1068,8 @@
     if (fCheia) linhasT.push(['A cheia', txt(fCheia.ano_txt), '']);
     if (pFim) linhasT.push(['Fim da cheia', txt(pFim.ano_txt), txt(pFim.texto).split('. ')[0] + '.']);
     el.appendChild(U.tabela('Ver os dados', ['Estação', 'O que era', 'Meses de hoje'], linhasT));
-    var fo = fontes(U, [fCheia ? [txt(fCheia.fonte), fCheia.url] : null, pFim ? [txt(pFim.fonte), pFim.url] : null]);
+    var fo = fontes(U, [!incerto && fEst.fonte ? [txt(fEst.fonte).replace(/\s*\([^)]*\)\s*$/, ''), fEst.url] : null, // a fonte do calendário, sem o parêntese de bastidor
+      fCheia ? [txt(fCheia.fonte), fCheia.url] : null, pFim ? [txt(pFim.fonte), pFim.url] : null]);
     if (fo) el.appendChild(fo);
 
     medir(hostA, U, desenhaAnel);
@@ -1334,12 +1335,18 @@
     '&-inteiro &-pedra&-col{stroke:var(--pc-junta)}' +
     // antes: o templo inteiro, sem emendas; no corte, os blocos tomam o lugar dele e só então saem
     '&-inteiro{opacity:0;transition:opacity .35s ease}' +
-    '&-e0 &-inteiro{opacity:1;transition-delay:1.1s}' +
+    '&-e0 &-inteiro{opacity:1;transition-delay:1.45s}' +
     '&-blocos{opacity:1;transition:opacity .35s ease}' +
-    '&-e0 &-blocos{opacity:0;transition-delay:1.25s}' +
-    '&-bloco{transition:transform 1.15s cubic-bezier(.45,0,.2,1)}' +
-    '&-e1 &-bloco,&-e2 &-bloco{transform:translate(var(--pc-dx),var(--pc-dy))}' +
-    '&-e1 &-bloco{transition-delay:var(--pc-d)}' +
+    '&-e0 &-blocos{opacity:0;transition-delay:1.6s}' +
+    // cada bloco são dois grupos, um anda de lado (bx) e o outro na altura (by), com ritmos diferentes:
+    // na ida o bloco sobe primeiro e recua depois; na volta, anda de lado primeiro e desce depois
+    '&-bx,&-by{transition:transform 1.4s}' +
+    '&-bx{transition-timing-function:cubic-bezier(.12,.6,.4,1)}' +
+    '&-by{transition-timing-function:cubic-bezier(.6,0,.88,.4)}' +
+    '&-e1 &-bx,&-e2 &-bx{transform:translateX(var(--pc-dx));transition-timing-function:cubic-bezier(.6,0,.88,.4)}' +
+    '&-e1 &-by,&-e2 &-by{transform:translateY(var(--pc-dy));transition-timing-function:cubic-bezier(.12,.6,.4,1)}' +
+    '&-e1 &-bx,&-e1 &-by{transition-delay:var(--pc-d)}' +
+    '&-jato &-bx,&-jato &-by,&-jato &-agua,&-jato &-inteiro,&-jato &-blocos,&-jato [class*="pc-abu-simbel-so"]{transition:none!important}' +
     '&-novo{fill:none;stroke:var(--tinta2);stroke-width:1;stroke-dasharray:3 3}' +
     '&-guia{fill:none;stroke:var(--acento);stroke-width:1.3;stroke-dasharray:5 4}' +
     '&-seta{fill:var(--acento)}' +
@@ -1358,7 +1365,7 @@
     '&-ficha dd{margin:0;font-size:14px;color:var(--tinta2);line-height:1.45}' +
     '&-ficha dd b{font-family:var(--serifa);font-size:clamp(23px,2.5vw,29px);font-weight:600;color:var(--tinta);letter-spacing:-.01em;margin-right:7px;white-space:nowrap;line-height:1.15}' +
     '&-nota{margin-top:20px}' +
-    '@media (prefers-reduced-motion:reduce){&-bloco,&-agua,&-so0,&-so1,&-so2,&-so01,&-so12,&-inteiro,&-blocos{transition:none!important}}';
+    '@media (prefers-reduced-motion:reduce){&-bx,&-by,&-agua,&-so0,&-so1,&-so2,&-so01,&-so12,&-inteiro,&-blocos{transition:none!important}}';
   var nAbu = 0;
 
   E.peca('abu-simbel', function (el, dados, U, args) {
@@ -1382,8 +1389,17 @@
       [ma ? ma[1] + ' a ' + ma[2] : 'O corte', 'Os dois templos são serrados em ' + U.int(blocos) + ' blocos' + (mp ? ' de ' + mp[1] + ' a ' + mp[2] + ' toneladas' : '') + ' e levados para o alto da encosta.'],
       [ma ? 'Desde ' + ma[2] : 'Depois', (medidas ? 'Os templos estão remontados ' + U.int(sobe) + ' m mais alto e ' + (recuaAprox ? 'cerca de ' : '') + U.int(recua) + ' m para trás.' : 'Os templos estão remontados no alto da encosta.') + ' A água do lago cobriu o lugar antigo.']
     ];
-    var bt = U.botoes([{ id: '0', rotulo: 'antes' }, { id: '1', rotulo: 'o corte' }, { id: '2', rotulo: 'depois' }], String(estado), function (id) { para(); poe(+id); }, 'Momento da mudança');
+    var bt = U.botoes([{ id: '0', rotulo: 'antes' }, { id: '1', rotulo: 'o corte' }, { id: '2', rotulo: 'depois' }], String(estado), function (id) { para(); escolhe(+id); }, 'Momento da mudança');
     function para() { relogios.forEach(clearTimeout); relogios = []; }
+    function escolhe(n) {
+      if (n === 1 && estado === 2 && !U.reduz) { // de "depois" para "o corte": volta ao começo de uma vez e mostra a mudança de novo
+        el.classList.add(C('jato'));
+        [0, 1, 2].forEach(function (i) { el.classList.toggle(C('e' + i), i === 0); });
+        host.getBoundingClientRect(); // o estado de "antes" vale já, sem transição
+        el.classList.remove(C('jato'));
+      }
+      poe(n);
+    }
     function poe(n) {
       estado = n;
       [0, 1, 2].forEach(function (i) { el.classList.toggle(C('e' + i), i === n); });
@@ -1435,7 +1451,7 @@
       var gI = s('g', { class: C('inteiro') }, s('rect', { class: C('pedra'), x: oco.x, y: oco.y, width: oco.width, height: oco.height }), s('path', { class: C('sala'), d: dSalas }));
       COLOSSO.forEach(function (pp) { gI.appendChild(s('path', { class: C('pedra') + ' ' + C('col'), d: dPoli(pp) })); });
       var gB = s('g', { class: C('blocos') });
-      function bloco() { var g = s('g', { class: C('bloco'), style: '--pc-d:' + (700 + n * 150) + 'ms' }, Array.prototype.slice.call(arguments)); n++; return g; }
+      function bloco() { var g = s('g', { class: C('bx'), style: '--pc-d:' + (700 + n * 150) + 'ms' }, s('g', { class: C('by') }, Array.prototype.slice.call(arguments))); n++; return g; }
       COLOSSO.forEach(function (pp) { gB.appendChild(bloco(s('path', { class: C('pedra'), d: dPoli(pp) }))); });
       for (i = 0; i < nc; i++) for (j = nr - 1; j >= 0; j--) {
         var r = { x: f1(X(i * P / nc)), y: f1(Y((j + 1) * A / nr)), width: f1(P / nc * k), height: f1(A / nr * k) }, idc = uid + '-b' + i + j;
