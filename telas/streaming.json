@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-18",
+ "atualizado_em": "2026-11-20",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -148,12 +148,17 @@
   "a-odisseia-2026": {
    "tmdb": "movie/1368337",
    "imdb": "tt33764258",
-   "link": "",
-   "assinatura": [],
+   "link": "https://www.themoviedb.org/movie/1368337-the-odyssey/watch?locale=BR",
+   "assinatura": [
+    "Claro tv+"
+   ],
    "gratis": [],
    "anuncios": [],
    "aluguel": [],
-   "compra": []
+   "compra": [
+    "Apple TV (loja)",
+    "Prime Video (loja)"
+   ]
   },
   "a-place-further-than-the-universe-2018": {
    "tmdb": "tv/76059",
@@ -341,7 +346,6 @@
    "imdb": "tt3183660",
    "link": "https://www.themoviedb.org/movie/259316-fantastic-beasts-and-where-to-find-them/watch?locale=BR",
    "assinatura": [
-    "Cartoon Network (canal na Prime Video)",
     "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
@@ -479,7 +483,6 @@
    "imdb": "tt0381707",
    "link": "https://www.themoviedb.org/movie/12153-white-chicks/watch?locale=BR",
    "assinatura": [
-    "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
    "gratis": [],
@@ -691,7 +694,6 @@
    "imdb": "tt0134402",
    "link": "https://www.themoviedb.org/movie/86320-cabra-marcado-para-morrer/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "CurtaOn (canal na Prime Video)",
     "Doc Canal Brasil (canal na Prime Video)"
    ],
@@ -1805,7 +1807,6 @@
    "imdb": "tt1305826",
    "link": "https://www.themoviedb.org/tv/15260-adventure-time/watch?locale=BR",
    "assinatura": [
-    "Cartoon Network (canal na Prime Video)",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -1897,6 +1898,7 @@
    "imdb": "tt1392170",
    "link": "https://www.themoviedb.org/movie/70160-the-hunger-games/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "Diamond Films (canal na Prime Video)"
    ],
    "gratis": [],
@@ -2626,7 +2628,6 @@
    "imdb": "tt3718778",
    "link": "https://www.themoviedb.org/tv/61617-over-the-garden-wall/watch?locale=BR",
    "assinatura": [
-    "Cartoon Network (canal na Prime Video)",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
    ],
@@ -3872,7 +3873,6 @@
    "imdb": "tt0098800",
    "link": "https://www.themoviedb.org/tv/1892-the-fresh-prince-of-bel-air/watch?locale=BR",
    "assinatura": [
-    "Cartoon Network (canal na Prime Video)",
     "Globoplay",
     "HBO Max",
     "HBO Max (canal na Prime Video)"
