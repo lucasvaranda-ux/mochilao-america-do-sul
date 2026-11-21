@@ -129,6 +129,28 @@
     });
     return det;
   }
+  /** cartão que abre embaixo de uma linha do tempo: nome, período, texto, onde, exemplo, fonte e marca de certeza */
+  var CSS_CARTAO =
+    '&-det{margin:16px 0 0;padding:18px 18px 16px;background:var(--s1);border:1px solid var(--linha);border-radius:14px;max-width:46em}' +
+    '&-dc{display:flex;align-items:flex-start;gap:10px;justify-content:space-between}' +
+    '&-det h3{font-size:clamp(21px,2.6vw,26px);margin:0}' +
+    '&-fecha{flex:none;width:44px;height:44px;margin:-10px -10px 0 0;border:0;border-radius:50%;background:none;font-size:22px;line-height:1;cursor:pointer;color:var(--tinta2)}&-fecha:hover{background:var(--s2)}' +
+    '&-meta{margin:4px 0 12px;font-size:13px;line-height:1.4;color:var(--tinta2)}&-meta i{font-style:normal;display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:7px}' +
+    '&-det p{margin:0 0 10px;max-width:40em}&-det p b{font-weight:600}&-dl{font-size:15px}' +
+    '&-pe{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;margin-top:4px;font-size:12.5px;color:var(--tinta2)}&-pe a{color:inherit}' +
+    '&-det .nota{background:var(--s2)}' +
+    '&-dica{margin:14px 0 0;font-size:13.5px;color:var(--tinta2)}';
+  function cartao(U, K, x, cor, rotOnde, aoFechar) {
+    var h = U.h, sl = selo(U, x);
+    return h('div', { class: K('det') },
+      h('div', { class: K('dc') }, h('h3', null, txt(x.nome)), h('button', { type: 'button', class: K('fecha'), 'aria-label': 'Fechar o texto', onclick: aoFechar }, '×')),
+      h('p', { class: K('meta') }, cor ? h('i', { style: { background: cor }, 'aria-hidden': 'true' }) : null, [txt(x.tipo), txt(x.periodo_txt)].filter(Boolean).join(' · ')),
+      x.texto ? h('p', null, txt(x.texto)) : null,
+      x.onde ? h('p', { class: K('dl') }, h('b', null, rotOnde + ' '), txt(x.onde)) : null,
+      x.exemplo ? h('p', { class: K('dl') }, h('b', null, 'Exemplo: '), txt(x.exemplo)) : null,
+      h('div', { class: K('pe') }, x.fonte ? h('span', null, 'Fonte: ', U.link(txt(x.fonte), x.url)) : null, sl ? sl.marca : null),
+      sl ? sl.nota : null);
+  }
   /** refaz o desenho uma vez quando as fontes da página terminam de chegar (as larguras de texto mudam) */
   function aoChegarFontes(fn) {
     try {
@@ -549,10 +571,10 @@
     }
 
     painel();
+    if (U.reduz) { visto = true; el.classList.add(K('vis')); }
     U.aoMedir(palco, desenha);
     aoChegarFontes(function () { if (W) desenha(W); });
-    if (U.reduz) { visto = true; el.classList.add(K('vis')); }
-    else U.aoVer(palco, function () { el.classList.add(K('vis')); setTimeout(function () { visto = true; tiraMascara(); }, 3100); });
+    if (!U.reduz) U.aoVer(palco, function () { el.classList.add(K('vis')); setTimeout(function () { visto = true; tiraMascara(); }, 3100); });
 
     // ---- os números, para quem quer o dado ----
     el.appendChild(tabela(U, 'Ver os números (' + n + ' pontos, com fonte e grau de certeza)', ['Quando', 'Habitantes', 'Faixa ou outros números', 'Fonte', 'Conferência'],
@@ -848,10 +870,10 @@
     }
 
     poeLer(); refaz();
+    if (U.reduz) { contou = true; el.classList.add(K('vis')); }
     U.aoMedir(palco, desenha);
     aoChegarFontes(function () { if (W) desenha(W); });
-    if (U.reduz) { contou = true; el.classList.add(K('vis')); }
-    else U.aoVer(palco, function () { el.classList.add(K('vis')); contaAnos(); });
+    if (!U.reduz) U.aoVer(palco, function () { el.classList.add(K('vis')); contaAnos(); });
 
     // ---- o que ver ----
     var frases = ['O que ver: cada ponto é uma descoberta, uma leitura ou um exame.'];
@@ -864,5 +886,586 @@
       frases.push('Os de laboratório são todos de ' + prim + ' em diante.');
     }
     el.insertBefore(h('p', { class: 'pc-nota' }, frases.join(' ')), lista);
+  });
+
+  // =====================================================================================================
+  // 3. ESCRITAS — "A mesma língua, escrita de quatro jeitos"
+  // De onde vem cada número (lido em tempo de execução de dados.series.escritas.itens[]):
+  //   começo e fim de cada faixa ... inicio e fim (anos; negativos são a.C.)
+  //   faixa aberta à direita ....... ate_hoje (se o fim é anterior a hoje, sobra um fio fino até hoje: uso restrito)
+  //   família (as duas cores) ...... tipo: os que falam em "língua egípcia" são as escritas da língua do país; os outros, línguas de fora
+  //   ano em que a linha começa .... o "por volta de 200 a.C." do campo ideia_visual da série (senão, o ano com mais faixas juntas)
+  //   textos do cartão ............. nome, tipo, periodo_txt, texto, onde, exemplo, fonte, url, certeza, ressalva
+  // =====================================================================================================
+  var CSS_ESC =
+    '&-palco{position:relative}' +
+    '&-svg{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}' +
+    '&-gt{font:700 11.5px var(--sem);fill:var(--tinta2);letter-spacing:.09em}' +
+    '&-eg{fill:var(--acento)}&-fo{fill:var(--acento2)}' +
+    '&-bar{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .25s ease;transition-delay:var(--d,0s),0s}' +
+    '&-vis &-bar{transform:none}&-apagada{opacity:.3}' +
+    '&-b{cursor:pointer}&-b:focus{outline:none}' +
+    '&-bh{fill:transparent}&-bx{fill:var(--fundo)}&-bf{fill:none;stroke:var(--tinta);stroke-width:1.5;opacity:0}' +
+    '&-b:focus-visible &-bf{opacity:1}&-b[aria-expanded="true"] &-bf{opacity:.55}' +
+    '&-bn{font:600 12.5px var(--sem);fill:var(--tinta);stroke:var(--fundo);stroke-width:4px;stroke-linejoin:round;paint-order:stroke;opacity:0;transition:opacity .5s ease;transition-delay:var(--d,0s)}' +
+    '&-vis &-bn{opacity:1}&-vis &-b&-longe &-bn{opacity:.55;transition-delay:0s}' +
+    '&-bp{font-weight:500;font-size:11px;fill:var(--tinta2)}' +
+    '&-base{stroke:var(--tinta2);stroke-width:1;opacity:.6;shape-rendering:crispEdges}' +
+    '&-et{font:500 11px var(--sem);fill:var(--tinta2);font-variant-numeric:tabular-nums;stroke:var(--fundo);stroke-width:5px;stroke-linejoin:round;paint-order:stroke}' +
+    '&-lin{stroke:var(--tinta);stroke-width:1.5;pointer-events:none}' +
+    '&-cz{fill:var(--fundo);stroke:var(--tinta);stroke-width:1.6;pointer-events:none}' +
+    '&-pega{position:absolute;left:0;top:4px;z-index:2;display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 9px;border-radius:999px;background:var(--tinta);color:var(--fundo);font-size:13px;font-weight:700;white-space:nowrap;cursor:ew-resize;touch-action:none;-webkit-user-select:none;user-select:none;font-variant-numeric:tabular-nums}' +
+    '&-pega::after{content:"";position:absolute;left:-6px;right:-6px;top:-7px;height:46px}' +
+    '&-pega span{font-size:15px;line-height:1;opacity:.7}' +
+    '&-ano{margin:12px 0 0;font-size:14.5px;line-height:1.4}&-ano b{font-family:var(--serifa);font-size:19px;font-weight:600}' +
+    '&-uso{display:flex;flex-wrap:wrap;gap:10px 8px;margin:10px 0 0;min-height:38px}' +
+    '&-chip{position:relative;display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 13px;border:1px solid var(--linha);border-radius:999px;background:var(--s1);font-size:13.5px;font-weight:600;color:var(--tinta);cursor:pointer}' +
+    '&-chip::after{content:"";position:absolute;left:0;right:0;top:-5px;height:46px}&-chip:hover{border-color:var(--tinta2)}' +
+    '&-chip i{flex:none;width:10px;height:10px;border-radius:2px}&-chip small{font-weight:500;font-size:12px;color:var(--tinta2)}' +
+    '&-chip[data-f="eg"] i{background:var(--acento)}&-chip[data-f="fo"] i{background:var(--acento2)}' +
+    '&-leg{list-style:none;display:flex;flex-wrap:wrap;gap:6px 20px;margin:14px 0 0;padding:0;font-size:12.5px;line-height:1.3;color:var(--tinta2)}' +
+    '&-leg li{display:inline-flex;align-items:center;gap:8px}&-leg svg{flex:none;display:block}&-leg path,&-leg rect{fill:var(--tinta2)}' +
+    CSS_CARTAO +
+    '& .pc-nota{margin:14px 0 0}' +
+    CSS_TABELA +
+    '@media (prefers-reduced-motion: reduce){&-bar{transform:none;transition:none}&-bn{opacity:1;transition:none}}';
+
+  E.peca('escritas', function (el, dados, U, args) {
+    var s = U.s, h = U.h, K = fabrica('escritas');
+    var serie = args && args.serie;
+    if (!serie || !Array.isArray(serie.itens)) return;
+    var itens = serie.itens.filter(function (x) { return x && x.nome && typeof x.inicio === 'number' && typeof x.fim === 'number' && x.fim > x.inicio; });
+    var n = itens.length; if (n < 2) return;
+    poeEstilo('escritas', CSS_ESC);
+    el.classList.add(K());
+
+    // ---- o que os dados dizem ----
+    function fam(x) { return /língua egípcia/i.test(txt(x.tipo)) ? 'eg' : 'fo'; }
+    var grupos = [
+      { id: 'eg', itens: itens.filter(function (x) { return fam(x) === 'eg'; }) },
+      { id: 'fo', itens: itens.filter(function (x) { return fam(x) === 'fo'; }) }
+    ].filter(function (g) { return g.itens.length; });
+    grupos.forEach(function (g) { g.itens.sort(function (a, b) { return a.inicio - b.inicio; }); });
+    var EXT = ['', 'uma', 'duas', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez'];
+    function tituloGrupo(g) {
+      var q = g.itens.length;
+      return g.id === 'eg' ? 'A língua egípcia, em ' + (EXT[q] || q) + (q === 1 ? ' escrita' : ' escritas') : 'Línguas que vieram de fora';
+    }
+    var t0 = Math.min.apply(null, itens.map(function (x) { return x.inicio; })), t1 = HOJE;
+    function aberta(x) { return !!x.ate_hoje && x.fim >= t1 - 1; }
+    function cauda(x) { return !!x.ate_hoje && x.fim < t1 - 1; }
+    function estado(x, a) { return a >= x.inicio && a <= Math.min(x.fim, t1) ? 2 : cauda(x) && a > x.fim && a <= t1 ? 1 : 0; } // 2 em uso; 1 uso restrito; 0 fora
+    function quantos(a) { return itens.filter(function (x) { return estado(x, a) > 0; }).length; }
+    var ano = null, mm = /por volta de (\d{2,4}) a\.C\./.exec(txt(serie.ideia_visual) + ' ' + txt(serie.resumo));
+    if (mm && -mm[1] > t0) ano = -mm[1];
+    if (ano == null) { var best = -1, a; for (a = Math.ceil(t0 / 50) * 50; a <= t1; a += 50) if (quantos(a) > best) { best = quantos(a); ano = a; } }
+    var PASSO = 25, aberto = -1; // aberto: índice (em itens) do cartão aberto
+
+    // ---- esqueleto ----
+    var palco = h('div', { class: K('palco') });
+    var pega = h('div', { class: K('pega'), role: 'slider', tabindex: 0, 'aria-label': 'Em que ano? Arraste, ou use as setas do teclado', 'aria-orientation': 'horizontal',
+      'aria-valuemin': t0, 'aria-valuemax': t1 }, h('span', { 'aria-hidden': 'true' }, '‹'), h('b'), h('span', { 'aria-hidden': 'true' }, '›'));
+    var linAno = h('p', { class: K('ano'), 'aria-live': 'polite' }), uso = h('div', { class: K('uso') });
+    var det = h('div', { 'aria-live': 'polite' });
+    el.appendChild(palco); el.appendChild(linAno); el.appendChild(uso);
+    el.appendChild(h('ul', { class: K('leg'), 'aria-label': 'Legenda' },
+      h('li', null, s('svg', { width: 30, height: 12, viewBox: '0 0 30 12', 'aria-hidden': 'true' }, s('path', { d: 'M1 1H23L29 6L23 11H1Z' })), 'segue em uso hoje'),
+      itens.some(cauda) ? h('li', null, s('svg', { width: 30, height: 12, viewBox: '0 0 30 12', 'aria-hidden': 'true' }, s('path', { d: 'M1 4H24V1.5L29 6L24 10.5V8H1Z' })), 'hoje, só em uso restrito') : null,
+      h('li', null, s('svg', { width: 26, height: 12, viewBox: '0 0 26 12', 'aria-hidden': 'true' }, s('rect', { x: 1, y: 1, width: 24, height: 10, rx: 3 })), 'saiu de uso')));
+    el.appendChild(det);
+
+    // ---- desenho ----
+    var W = 0, x0, x1, yb, yTopo, svg, linha, gCz, linhasY = [], barras = [], bots = [], visto = false;
+    function xDe(a) { return x0 + (a - t0) / (t1 - t0) * (x1 - x0); }
+    function anoDe(x) { var a = Math.round((t0 + (x - x0) / (x1 - x0) * (t1 - t0)) / PASSO) * PASSO; return limita(a === 0 ? 1 : a, t0, t1); }
+    function desenha(larg) {
+      W = larg; x0 = 3; x1 = W - 3;
+      var ALT = 32, ESP = 14, y = 50, k = 0, largo = W >= 760;
+      svg = s('svg', { class: K('svg'), role: 'group', 'aria-label': 'Linha do tempo de ' + U.ano(t0) + ' até hoje, com ' + n + ' faixas: uma para cada escrita ou língua usada no Egito. As faixas se sobrepõem. Cada faixa abre um texto.' });
+      var gBar = s('g'), gBot = s('g'), gEixo = s('g');
+      linhasY = []; barras = []; bots = [];
+      var titulos = [];
+      grupos.forEach(function (g, gi) {
+        if (gi) y += 14;
+        titulos.push(s('text', { class: K('gt'), x: x0 + 17, y: y + 14 }, tituloGrupo(g).toUpperCase()));
+        gBar.appendChild(s('rect', { class: K(g.id), x: x0, y: y + 4.5, width: 11, height: 11, rx: 2 }));
+        y += 26;
+        g.itens.forEach(function (x) {
+          var i = itens.indexOf(x), cy = y + ALT / 2, xa = xDe(x.inicio), xf = xDe(Math.min(x.fim, t1)), cl = K(g.id) + ' ' + K('bar'), formas = [], d;
+          var atraso = 'transition-delay:' + (visto ? 0 : 0.1 + k * 0.07).toFixed(2) + 's,0s';
+          if (aberta(x)) {
+            d = 'M' + xa.toFixed(1) + ' ' + (cy - ESP / 2) + 'H' + (x1 - 6).toFixed(1) + 'L' + x1 + ' ' + cy + 'L' + (x1 - 6).toFixed(1) + ' ' + (cy + ESP / 2) + 'H' + xa.toFixed(1) + 'Z';
+            formas.push(s('path', { class: cl, d: d, style: atraso }));
+          } else {
+            formas.push(s('rect', { class: cl, x: xa.toFixed(1), y: cy - ESP / 2, width: Math.max(3, xf - xa).toFixed(1), height: ESP, rx: 3, style: atraso }));
+            if (cauda(x)) {
+              d = 'M' + (xf - 3).toFixed(1) + ' ' + (cy - 2) + 'H' + (x1 - 5.5).toFixed(1) + 'V' + (cy - 5) + 'L' + x1 + ' ' + cy + 'L' + (x1 - 5.5).toFixed(1) + ' ' + (cy + 5) + 'V' + (cy + 2) + 'H' + (xf - 3).toFixed(1) + 'Z';
+              formas.push(s('path', { class: cl, d: d, style: 'transition-delay:' + (visto ? 0 : 0.5 + k * 0.07).toFixed(2) + 's,0s' }));
+            }
+          }
+          formas.forEach(function (f) { gBar.appendChild(f); });
+          var nome = s('text', { class: K('bn'), y: cy + 4.5, style: '--d:' + (visto ? 0 : 0.5 + k * 0.07).toFixed(2) + 's' }, semParentese(x.nome));
+          var alvo = s('rect', { class: K('bh') }), foco = s('rect', { class: K('bf'), rx: 7 }), fundo = s('rect', { class: K('bx') });
+          var b = s('g', { class: K('b'), role: 'button', tabindex: 0, 'data-k': i, 'aria-expanded': i === aberto ? 'true' : 'false',
+            'aria-label': semParentese(x.nome) + ', ' + txt(x.periodo_txt) + '. Abrir o texto.' }, alvo, foco, fundo, nome);
+          gBot.appendChild(b);
+          barras[i] = formas; bots[i] = { g: b, nome: nome, alvo: alvo, foco: foco, fundo: fundo, cy: cy, xa: xa, xd: (aberta(x) || cauda(x)) ? x1 : xf, y: y, x: x };
+          linhasY[i] = cy; y += ALT; k++;
+        });
+      });
+      yb = y + 10; yTopo = 36;
+      var Hh = yb + 30;
+      svg.setAttribute('width', W); svg.setAttribute('height', Hh); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + Hh);
+      svg.appendChild(gBar);
+      svg.appendChild(s('line', { class: K('base'), x1: x0, x2: x1, y1: yb + 0.5, y2: yb + 0.5 }));
+      anosRedondos(t0, t1, 1000).forEach(function (a) { var x = Math.round(xDe(a)) + 0.5; gEixo.appendChild(s('line', { class: K('base'), x1: x, x2: x, y1: yb, y2: yb + 5 })); });
+      linha = s('line', { class: K('lin'), y1: yTopo, y2: yb });
+      var gTit = s('g'); titulos.forEach(function (t) { gTit.appendChild(t); });
+      svg.appendChild(linha); svg.appendChild(gEixo); svg.appendChild(gTit); svg.appendChild(gBot);
+      gCz = s('g'); svg.appendChild(gCz);
+      palco.textContent = ''; palco.appendChild(svg); palco.appendChild(pega);
+      eixoTempo(U, gEixo, anosRedondos(t0, t1, 1000), xDe, yb + 20, K('et'), x0, x1);
+      titulos.forEach(function (t, gi) { // a linha móvel passa por trás do título do grupo
+        try {
+          if (t.getComputedTextLength() > x1 - x0 - 20) { t.textContent = tituloGrupo(grupos[gi]); t.style.letterSpacing = '0'; t.style.fontSize = '12.5px'; } // tela estreita: sem caixa alta
+        } catch (e) {}
+        try { var bb = t.getBBox(); gTit.insertBefore(s('rect', { class: K('bx'), x: bb.x - 4, y: bb.y - 1, width: bb.width + 8, height: bb.height + 2 }), gTit.firstChild); } catch (e) {}
+      });
+      // nome de cada faixa: à direita dela, se couber; senão, à esquerda
+      bots.forEach(function (o) {
+        if (!o) return;
+        var w, wp = 0, per = null, e, d2;
+        if (largo) { per = s('tspan', { class: K('bp'), dx: 8 }, txt(o.x.periodo_txt).split(';')[0]); o.nome.appendChild(per); }
+        try { w = o.nome.getComputedTextLength(); } catch (err) { w = o.nome.textContent.length * 6.6; }
+        var cabeDir = o.xd + 9 + w <= x1, cabeEsq = o.xa - 9 - w >= x0;
+        if (per && !cabeDir && !cabeEsq) { per.remove(); try { w = o.nome.getComputedTextLength(); } catch (err) { w = o.nome.textContent.length * 6.6; } cabeDir = o.xd + 9 + w <= x1; cabeEsq = o.xa - 9 - w >= x0; }
+        if (cabeDir) { e = o.xd + 9; o.nome.setAttribute('x', e.toFixed(1)); }
+        else if (cabeEsq) { e = o.xa - 9 - w; o.nome.setAttribute('x', (o.xa - 9).toFixed(1)); o.nome.setAttribute('text-anchor', 'end'); }
+        else { e = limita(o.xa - 9 - w, x0, x1 - w); o.nome.setAttribute('x', e.toFixed(1)); o.nome.setAttribute('y', o.cy - ESP / 2 - 3); }
+        o.fundo.setAttribute('x', (e - 3).toFixed(1)); o.fundo.setAttribute('y', (parseFloat(o.nome.getAttribute('y')) - 12).toFixed(1)); o.fundo.setAttribute('width', (w + 6).toFixed(1)); o.fundo.setAttribute('height', 16);
+        d2 = Math.max(e + w, o.xd); e = Math.min(e, o.xa);
+        if (d2 - e < 44) { e -= (44 - (d2 - e)) / 2; d2 = e + 44; }
+        o.alvo.setAttribute('x', (e - 5).toFixed(1)); o.alvo.setAttribute('y', o.y); o.alvo.setAttribute('width', (d2 - e + 10).toFixed(1)); o.alvo.setAttribute('height', ALT);
+        o.foco.setAttribute('x', (e - 5).toFixed(1)); o.foco.setAttribute('y', o.y + 2); o.foco.setAttribute('width', (d2 - e + 10).toFixed(1)); o.foco.setAttribute('height', ALT - 4);
+      });
+      ligaToque(); poeAno(ano, false);
+    }
+
+    // ---- a linha móvel: em que ano? ----
+    function poeAno(a, anuncia) {
+      ano = limita(a, t0, t1);
+      var x = xDe(ano), rot = U.ano(ano) || String(ano), ativos = [];
+      if (ano > 0 && ano < 1000) rot = 'ano ' + ano;
+      if (linha) { linha.setAttribute('x1', x.toFixed(1)); linha.setAttribute('x2', x.toFixed(1)); }
+      pega.children[1].textContent = rot;
+      pega.setAttribute('aria-valuenow', ano);
+      var lp = pega.offsetWidth || 96;
+      pega.style.transform = 'translateX(' + limita(x - lp / 2, 0, Math.max(0, W - lp)).toFixed(1) + 'px)';
+      if (gCz) gCz.textContent = '';
+      itens.forEach(function (it, i) {
+        var e = estado(it, ano);
+        if (e) ativos.push({ it: it, i: i, e: e });
+        (barras[i] || []).forEach(function (f) { f.classList.toggle(K('apagada'), !e); });
+        if (bots[i]) bots[i].g.classList.toggle(K('longe'), !e);
+        if (e && gCz && linhasY[i] != null) gCz.appendChild(s('circle', { class: K('cz'), cx: x.toFixed(1), cy: linhasY[i], r: e === 2 ? 4.2 : 3 }));
+      });
+      var nomes = ativos.map(function (o) { return semParentese(o.it.nome) + (o.e === 1 ? ' (uso restrito)' : ''); });
+      pega.setAttribute('aria-valuetext', rot + ': ' + (nomes.length ? nomes.length + ' em uso: ' + nomes.join(', ') : 'nenhuma em uso'));
+      if (anuncia === false && linAno.firstChild) return;
+      linAno.textContent = '';
+      linAno.appendChild(document.createTextNode(ano > 0 && ano < 1000 ? 'No ' : 'Em '));
+      linAno.appendChild(h('b', null, rot));
+      linAno.appendChild(document.createTextNode(ativos.length ? ', ' + ativos.length + (ativos.length === 1 ? ' em uso:' : ' em uso ao mesmo tempo:') : ', nenhuma destas estava em uso.'));
+      uso.textContent = '';
+      ativos.forEach(function (o) {
+        uso.appendChild(h('button', { type: 'button', class: K('chip'), 'data-f': fam(o.it), onclick: function () { abre(o.i, true); } },
+          h('i', { 'aria-hidden': 'true' }), semParentese(o.it.nome), o.e === 1 ? h('small', null, 'uso restrito') : null));
+      });
+    }
+    function ligaToque() {
+      var ini = null;
+      function xEv(ev) { var rc = svg.getBoundingClientRect(), f = rc.width ? W / rc.width : 1; return (ev.clientX - rc.left) * f; }
+      svg.addEventListener('pointerdown', function (ev) {
+        if (ev.button) return;
+        var b = ev.target.closest ? ev.target.closest('[data-k]') : null;
+        ini = { x: ev.clientX, y: ev.clientY, k: b ? +b.getAttribute('data-k') : -1, moveu: false };
+        try { svg.setPointerCapture(ev.pointerId); } catch (e) {}
+      });
+      svg.addEventListener('pointermove', function (ev) {
+        if (!ini) return;
+        if (!ini.moveu && Math.abs(ev.clientX - ini.x) > 6 && Math.abs(ev.clientX - ini.x) > Math.abs(ev.clientY - ini.y)) ini.moveu = true;
+        if (ini.moveu) poeAno(anoDe(xEv(ev)));
+      });
+      svg.addEventListener('pointerup', function (ev) {
+        if (!ini) return;
+        var q = ini; ini = null;
+        if (q.moveu) return;
+        if (q.k >= 0) abre(q.k); else poeAno(anoDe(xEv(ev)));
+      });
+      svg.addEventListener('pointercancel', function () { ini = null; });
+      svg.addEventListener('keydown', function (ev) {
+        var b = ev.target.closest ? ev.target.closest('[data-k]') : null;
+        if (b && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); abre(+b.getAttribute('data-k')); }
+      });
+    }
+    (function () { // a alça: arrastar e teclado
+      var puxa = false;
+      function xEv(ev) { var rc = palco.getBoundingClientRect(); return ev.clientX - rc.left; }
+      pega.addEventListener('pointerdown', function (ev) { puxa = true; try { pega.setPointerCapture(ev.pointerId); } catch (e) {} });
+      pega.addEventListener('pointermove', function (ev) { if (puxa) poeAno(anoDe(xEv(ev))); });
+      pega.addEventListener('pointerup', function () { puxa = false; });
+      pega.addEventListener('pointercancel', function () { puxa = false; });
+      pega.addEventListener('keydown', function (ev) {
+        var k = ev.key, d = 0;
+        if (k === 'ArrowRight' || k === 'ArrowUp') d = PASSO; else if (k === 'ArrowLeft' || k === 'ArrowDown') d = -PASSO;
+        else if (k === 'PageUp') d = PASSO * 10; else if (k === 'PageDown') d = -PASSO * 10;
+        else if (k === 'Home') { poeAno(t0); ev.preventDefault(); return; } else if (k === 'End') { poeAno(t1); ev.preventDefault(); return; }
+        if (!d) return;
+        ev.preventDefault();
+        var a = Math.round(ano / PASSO) * PASSO + d; poeAno(a === 0 ? (d > 0 ? 1 : -PASSO) : a);
+      });
+    })();
+
+    // ---- o cartão de cada escrita ----
+    function abre(i, rola) {
+      if (i === aberto) i = -1;
+      aberto = i;
+      bots.forEach(function (o, k) { if (o) o.g.setAttribute('aria-expanded', k === aberto ? 'true' : 'false'); });
+      det.textContent = '';
+      if (aberto < 0) { det.appendChild(h('p', { class: K('dica') }, 'Toque numa faixa para ler sobre ela: o que era, onde se usava e um exemplo.')); return; }
+      var x = itens[aberto];
+      var cx = cartao(U, K, x, fam(x) === 'eg' ? 'var(--acento)' : 'var(--acento2)', 'Onde se usava:', function () { var b = bots[aberto]; abre(-1); if (b) try { b.g.focus(); } catch (e) {} });
+      det.appendChild(cx);
+      if (rola) { try { cx.scrollIntoView({ block: 'nearest', behavior: U.reduz ? 'auto' : 'smooth' }); } catch (e) {} }
+    }
+
+    abre(-1);
+    if (U.reduz) { visto = true; el.classList.add(K('vis')); }
+    U.aoMedir(palco, desenha);
+    aoChegarFontes(function () { if (W) desenha(W); });
+    if (!U.reduz) U.aoVer(palco, function () { el.classList.add(K('vis')); setTimeout(function () { visto = true; }, 2200); });
+
+    el.appendChild(h('p', { class: 'pc-nota' }, 'O que ver: as faixas não fazem fila, elas se sobrepõem. Por séculos, três, quatro ou cinco escritas e línguas conviveram, cada uma com o seu uso. Arraste a linha para ver quais estavam em uso em cada ano.'));
+    el.appendChild(tabela(U, 'Ver as datas (' + n + ' escritas e línguas)', ['Escrita ou língua', 'Quando', 'Onde se usava', 'Fonte', 'Conferência'],
+      itens.slice().sort(function (a, b) { return a.inicio - b.inicio; }).map(function (x) {
+        return [txt(x.nome), txt(x.periodo_txt), txt(x.onde), U.link(txt(x.fonte), x.url), certezaTxt(x.certeza)];
+      })));
+  });
+
+  // =====================================================================================================
+  // 4. RELIGIÕES — "Três maiorias em dois mil anos"
+  // De onde vem cada número (lido em tempo de execução de dados.series.religioes):
+  //   faixas e episódios ...... itens[] (inicio, fim, ate_hoje). Episódio = item de até 250 anos que já acabou
+  //                             (o culto de Aton, o xiismo fatímida); vai como moldura sobre a faixa que o contém.
+  //   as três maiorias ........ os itens "Cultos locais…", "Cristianismo" e "Islã"
+  //   trocas de maioria ....... os séculos escritos no resumo da série e nos textos dos itens:
+  //                             "cristã entre os séculos IV e V" (301 a 500) e "entre o século IX e o século XIV" (801 a 1400).
+  //                             Não há data certa: a faixa afina e engrossa ao longo da zona inteira, esfumada.
+  //   hoje, segundo quem conta . numeros_hoje[] (rotulo, valor_txt, pct_min, pct_max, ano, fonte, url) e numeros_hoje_nota
+  // A largura da faixa não mede gente: só diz quem era maioria (larga) e quem estava presente (fina).
+  // Cores: deuses antigos em --tinta2 (pedra), cristianismo em --acento2, islã em --acento; cada faixa tem o nome escrito.
+  // =====================================================================================================
+  var CSS_REL =
+    '&{--pc-ant:var(--tinta2);--pc-cri:var(--acento2);--pc-isl:var(--acento)}' +
+    '&-svg{display:block;width:100%;height:auto;overflow:visible;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}' +
+    '&-gt{font:700 11.5px var(--sem);fill:var(--tinta2);letter-spacing:.09em}' +
+    '&-zona{fill:var(--tinta);opacity:.07}' +
+    '&-zt{font:500 11px var(--sem);fill:var(--tinta2)}&-zt2{font:600 11px var(--sem);fill:var(--tinta)}' +
+    '&-zf{stroke:var(--tinta2);stroke-width:1;opacity:.6;shape-rendering:crispEdges}' +
+    '&-c-ant{fill:var(--pc-ant)}&-c-cri{fill:var(--pc-cri)}&-c-isl{fill:var(--pc-isl)}&-c-out{fill:var(--fundo);stroke:var(--tinta2);stroke-width:1.4}' +
+    '&-bar{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}' +
+    '&-vis &-bar{transform:none}' +
+    '&-ap{opacity:0;transition:opacity .6s ease;transition-delay:var(--d,0s)}&-vis &-ap{opacity:1}' +
+    '&-b{cursor:pointer}&-b:focus{outline:none}&-bh{fill:transparent}' +
+    '&-bf{fill:none;stroke:var(--tinta);stroke-width:1.5;opacity:0}&-b:focus-visible &-bf{opacity:1}&-b[aria-expanded="true"] &-bf{opacity:.55}' +
+    '&-bn{font:600 12.5px var(--sem);fill:var(--tinta)}&-bp{font-weight:500;font-size:11px;fill:var(--tinta2)}' +
+    '&-mai{font:700 11px var(--sem);fill:var(--fundo);letter-spacing:.1em;text-anchor:middle;pointer-events:none}' +
+    '&-epq{fill:none;stroke:var(--tinta);stroke-width:1.5}&-epf{stroke:var(--tinta);stroke-width:1;opacity:.7}' +
+    '&-ept{font:500 11px var(--sem);fill:var(--tinta)}' +
+    '&-base{stroke:var(--tinta2);stroke-width:1;opacity:.6;shape-rendering:crispEdges}' +
+    '&-et{font:500 11px var(--sem);fill:var(--tinta2);font-variant-numeric:tabular-nums}' +
+    '&-leg{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;margin:14px 0 0;padding:0;font-size:12.5px;line-height:1.3;color:var(--tinta2)}' +
+    '&-leg li{display:inline-flex;align-items:center;gap:8px}&-leg svg{flex:none;display:block;overflow:visible}' +
+    CSS_CARTAO +
+    '&-hoje{margin:38px 0 0;padding-top:30px;border-top:1px solid var(--linha)}' +
+    '&-hoje h3{font-size:clamp(23px,3.2vw,30px);margin:0 0 8px}' +
+    '&-sub{margin:0 0 20px;font-size:14.5px;line-height:1.5;color:var(--tinta2);max-width:42em}' +
+    '&-gr{max-width:860px}' +
+    '&-ln{display:grid;gap:6px 26px;padding:13px 0 12px;border-top:1px solid var(--linha)}&-ln:first-child{border-top:0;padding:0 0 4px}' +
+    '&-tk{position:relative;height:15px;font-size:11px;color:var(--tinta2);font-variant-numeric:tabular-nums}' +
+    '&-tk span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}&-tk span:first-child{transform:none}&-tk span:last-child{transform:translateX(-100%)}' +
+    '&-bt{display:flex;justify-content:space-between;gap:14px;align-items:baseline}&-bt b{font-weight:600;font-size:15.5px}' +
+    '&-bv{font-family:var(--serifa);font-weight:600;font-size:19px;white-space:nowrap;font-variant-numeric:tabular-nums}' +
+    '&-bd{margin:2px 0 0;font-size:13px;line-height:1.4;color:var(--tinta2)}' +
+    '&-fo{margin:4px 0 0;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:12px;line-height:1.4;color:var(--tinta2)}&-fo a{color:inherit}' +
+    '&-tr{position:relative;height:20px;align-self:center;background-image:linear-gradient(to right,var(--linha) 1px,transparent 1px);background-repeat:repeat-x;border-right:1px solid var(--linha)}' +
+    '&-ba,&-bx{position:absolute;top:4px;height:12px;background:var(--pc-cri)}' +
+    '&-ba{left:0;border-radius:0 4px 4px 0;transform-origin:left center;transform:scaleX(0);transition:transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}' +
+    '&-bx{border-radius:0 4px 4px 0;opacity:0;transition:opacity .5s ease;transition-delay:calc(var(--d,0s) + .7s)}' +
+    '&-hv &-ba{transform:none}&-hv &-bx{opacity:.42}' +
+    '&-ba&-comfx{border-radius:0}' +
+    '@media (min-width:760px){&-ln{grid-template-columns:minmax(0,340px) minmax(0,1fr);grid-template-areas:"cab tr" "inf tr"}&-bt{grid-area:cab}&-inf{grid-area:inf}&-tr{grid-area:tr}&-tk{grid-column:2}}' +
+    '&-mais{margin:18px 0 0;border:1px solid var(--linha);border-radius:14px;background:var(--s1);max-width:46em}' +
+    '&-mais summary{cursor:pointer;padding:0 18px;min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:600;font-size:14.5px;list-style:none}' +
+    '&-mais summary::-webkit-details-marker{display:none}&-mais summary::after{content:"+";font-size:22px;line-height:1;color:var(--acento)}&-mais[open] summary::after{content:"–"}' +
+    '&-mais div{padding:0 18px 16px}&-mais p{margin:0 0 10px;font-size:15.5px}&-mais .nota{background:var(--s2)}' +
+    '& .pc-nota{margin:14px 0 0}' +
+    CSS_TABELA +
+    '@media (prefers-reduced-motion: reduce){&-bar,&-ba{transform:none;transition:none}&-ap{opacity:1;transition:none}&-bx{opacity:.42;transition:none}}';
+
+  function romano(r) {
+    var m = { I: 1, V: 5, X: 10, L: 50, C: 100 }, total = 0, ant = 0, i, v;
+    r = txt(r).toUpperCase(); if (!r) return NaN;
+    for (i = r.length - 1; i >= 0; i--) { v = m[r.charAt(i)]; if (!v) return NaN; if (v < ant) total -= v; else { total += v; ant = v; } }
+    return total;
+  }
+
+  E.peca('religioes', function (el, dados, U, args) {
+    var s = U.s, h = U.h, K = fabrica('religioes');
+    var serie = args && args.serie;
+    if (!serie || !Array.isArray(serie.itens)) return;
+    var todos = serie.itens.filter(function (x) { return x && x.nome && typeof x.inicio === 'number' && typeof x.fim === 'number' && x.fim > x.inicio; });
+    var itHoje = todos.filter(function (x) { return /^Hoje\b/i.test(x.nome); })[0] || null;
+    var noTempo = todos.filter(function (x) { return x !== itHoje; });
+    var episodios = noTempo.filter(function (x) { return !x.ate_hoje && x.fim - x.inicio <= 250; });
+    var faixas = noTempo.filter(function (x) { return episodios.indexOf(x) < 0; }).sort(function (a, b) { return a.inicio - b.inicio; });
+    if (faixas.length < 2) return;
+    poeEstilo('religioes', CSS_REL);
+    el.classList.add(K());
+
+    // ---- o que os dados dizem ----
+    function acha(re) { return faixas.filter(function (x) { return re.test(x.nome); })[0] || null; }
+    var M1 = acha(/^Cultos/i), M2 = acha(/^Cristian/i), M3 = acha(/^Isl[ãa]/i);
+    var z1 = null, z2 = null;
+    (function () {
+      var texto = [txt(serie.resumo), M2 ? txt(M2.texto) : '', M3 ? txt(M3.texto) : ''].join(' '), m, a, b;
+      m = /crist\S* entre os séculos ([IVXLC]+) e ([IVXLC]+)/.exec(texto);
+      if (m) { a = romano(m[1]); b = romano(m[2]); if (a > 0 && b >= a) z1 = { de: (a - 1) * 100 + 1, ate: b * 100, a: m[1], b: m[2] }; }
+      m = /entre o século ([IVXLC]+) e (?:meados d)?o século ([IVXLC]+)/.exec(texto);
+      if (m) { a = romano(m[1]); b = romano(m[2]); if (a > 0 && b >= a) z2 = { de: (a - 1) * 100 + 1, ate: b * 100, a: m[1], b: m[2] }; }
+    })();
+    var comMaioria = !!(M1 && M2 && M3 && z1 && z2 && z1.ate <= z2.de);
+    var grupoA = comMaioria ? [M1, M2, M3] : [], grupoB = faixas.filter(function (x) { return grupoA.indexOf(x) < 0; });
+    var t0 = Math.min.apply(null, faixas.map(function (x) { return x.inicio; })), t1 = HOJE;
+    function hospedeiro(e) { // a faixa que contém o episódio e começou por último
+      var c = faixas.filter(function (x) { return x.inicio <= e.inicio && Math.min(x.fim, t1) >= e.fim; });
+      return c.length ? c[c.length - 1] : null;
+    }
+    function quanto(x, a) { // 1 = maioria; 0 = presente, em minoria; entre os dois, dentro das zonas de troca
+      if (!comMaioria) return 0;
+      if (x === M1) return a <= z1.de ? 1 : a >= z1.ate ? 0 : 1 - (a - z1.de) / (z1.ate - z1.de);
+      if (x === M2) return a <= z1.de ? 0 : a < z1.ate ? (a - z1.de) / (z1.ate - z1.de) : a <= z2.de ? 1 : a < z2.ate ? 1 - (a - z2.de) / (z2.ate - z2.de) : 0;
+      if (x === M3) return a <= z2.de ? 0 : a < z2.ate ? (a - z2.de) / (z2.ate - z2.de) : 1;
+      return 0;
+    }
+    function corDe(x) { return x === M2 ? 'cri' : x === M3 ? 'isl' : (x === M1 || /Ísis/i.test(x.nome)) ? 'ant' : 'out'; }
+    function corCss(x) { var c = corDe(x); return c === 'out' ? null : 'var(--pc-' + c + ')'; }
+    function curto(x) { return semParentese(x.nome).split(/,| e /)[0].trim(); }
+    var aberto = null;
+
+    // ---- esqueleto ----
+    var palco = h('div'), det = h('div', { 'aria-live': 'polite' }), idF = unico(K('f'));
+    el.appendChild(palco);
+    function amostra(d, w, f) { return s('svg', { width: w || 34, height: 16, viewBox: '0 0 ' + (w || 34) + ' 16', 'aria-hidden': 'true' }, d); }
+    if (comMaioria) {
+      el.appendChild(h('ul', { class: K('leg'), 'aria-label': 'Legenda' },
+        h('li', null, amostra(s('rect', { class: K('c-ant'), x: 1, y: 1, width: 32, height: 14, rx: 2 })), 'religião da maioria'),
+        h('li', null, amostra(s('rect', { class: K('c-ant'), x: 1, y: 5, width: 32, height: 6, rx: 2 })), 'presente, sem ser maioria'),
+        h('li', null, amostra(s('path', { class: K('c-ant'), d: 'M1 1H8L34 5V11L8 15H1Z', filter: 'url(#' + idF + ')' }), 36), 'troca de maioria: a data é incerta, e a faixa muda aos poucos'),
+        episodios.length ? h('li', null, amostra([s('rect', { class: K('c-ant'), x: 1, y: 5, width: 32, height: 6 }), s('rect', { class: K('epq'), x: 11, y: 2, width: 12, height: 12 })]), 'episódio curto') : null));
+    }
+    el.appendChild(det);
+
+    // ---- desenho ----
+    var W = 0, x0, x1, svg, bots = [], visto = false;
+    function xDe(a) { return x0 + (a - t0) / (t1 - t0) * (x1 - x0); }
+    function desenha(larg) {
+      W = larg; x0 = 3; x1 = W - 3;
+      var largo = W >= 700, T = 11, FINA = 3.5, y = comMaioria ? 44 : 6, k = 0;
+      svg = s('svg', { class: K('svg'), role: 'group', 'aria-label': 'Linha do tempo das religiões do Egito, de ' + U.ano(t0) + ' até hoje. ' +
+        (comMaioria ? 'Três maiorias: ' + grupoA.map(function (x) { return semParentese(x.nome); }).join(', depois ') + '. As duas trocas de maioria aparecem como zonas largas, porque a data é incerta. ' : '') + 'Cada faixa abre um texto.' });
+      svg.appendChild(s('defs', null, s('filter', { id: idF, x: '-30%', y: '-80%', width: '160%', height: '260%' }, s('feGaussianBlur', { stdDeviation: W < 480 ? 1.6 : 2.4 }))));
+      var gZona = s('g'), gBar = s('g'), gMarca = s('g'), gBot = s('g'), gEixo = s('g'), linhas = [], yA0 = y, yA1 = y;
+      bots = [];
+      function atraso(extra) { return visto ? '0s' : (0.15 + k * 0.16 + (extra || 0)).toFixed(2) + 's'; }
+      function fileira(x, grande) {
+        var meia = grande ? T : 6, cy = y + 20 + meia, eps = episodios.filter(function (e) { return hospedeiro(e) === x; });
+        var fimX = Math.min(x.fim, t1), abertaD = !!x.ate_hoje && x.fim >= t1 - 1, cor = corDe(x), g = s('g', { class: K('bar'), style: '--d:' + atraso() });
+        // pedaços da faixa entre as datas em que a largura muda; dentro das zonas de troca, o pedaço sai esfumado
+        var cortes = [x.inicio, fimX];
+        if (grande) [z1.de, z1.ate, z2.de, z2.ate].forEach(function (a) { if (a > x.inicio && a < fimX) cortes.push(a); });
+        cortes.sort(function (a, b) { return a - b; });
+        function meiaEm(a) { return grande ? FINA + (T - FINA) * quanto(x, a) : FINA; }
+        cortes.forEach(function (a, i) {
+          if (!i) return;
+          var a0 = cortes[i - 1], h0 = meiaEm(a0 + 0.001), h1 = meiaEm(a - 0.001), xa = xDe(a0), xb = xDe(a), ultimo = i === cortes.length - 1, d;
+          var muda = Math.abs(h0 - h1) > 0.01;
+          if (ultimo && abertaD) d = 'M' + xa.toFixed(1) + ' ' + (cy - h0).toFixed(1) + 'L' + (xb - 6).toFixed(1) + ' ' + (cy - h1).toFixed(1) + 'L' + xb.toFixed(1) + ' ' + cy + 'L' + (xb - 6).toFixed(1) + ' ' + (cy + h1).toFixed(1) + 'L' + xa.toFixed(1) + ' ' + (cy + h0).toFixed(1) + 'Z';
+          else d = 'M' + (xa - (i > 1 ? 0.4 : 0)).toFixed(1) + ' ' + (cy - h0).toFixed(1) + 'L' + xb.toFixed(1) + ' ' + (cy - h1).toFixed(1) + 'L' + xb.toFixed(1) + ' ' + (cy + h1).toFixed(1) + 'L' + (xa - (i > 1 ? 0.4 : 0)).toFixed(1) + ' ' + (cy + h0).toFixed(1) + 'Z';
+          g.appendChild(s('path', { class: K('c-' + cor), d: d, filter: muda ? 'url(#' + idF + ')' : null, 'stroke-linejoin': 'round' }));
+        });
+        gBar.appendChild(g);
+        // "maioria", escrito dentro do trecho largo quando cabe
+        var mai = null;
+        if (grande) {
+          var m0 = x === M1 ? x.inicio : x === M2 ? z1.ate : z2.ate, m1 = x === M1 ? z1.de : x === M2 ? z2.de : fimX;
+          eps.forEach(function (e) { // fica no maior trecho livre, sem cair em cima da moldura de um episódio
+            if (e.fim <= m0 || e.inicio >= m1) return;
+            if (e.inicio - m0 >= m1 - e.fim) m1 = e.inicio - 20; else m0 = e.fim + 20;
+          });
+          mai = s('text', { class: K('mai') + ' ' + K('ap'), x: ((xDe(m0) + xDe(m1)) / 2).toFixed(1), y: cy + 4, style: '--d:' + atraso(0.8) }, 'MAIORIA');
+          mai._larg = xDe(m1) - xDe(m0) - (abertaD ? 8 : 0);
+          gMarca.appendChild(mai);
+        }
+        var nome = s('text', { class: K('bn'), y: y + 13 }, semParentese(x.nome));
+        var per = largo ? s('tspan', { class: K('bp'), dx: 8 }, txt(x.periodo_txt).split(';')[0]) : null;
+        if (per) nome.appendChild(per);
+        var alvo = s('rect', { class: K('bh') }), foco = s('rect', { class: K('bf'), rx: 7 });
+        var i0 = todos.indexOf(x);
+        var b = s('g', { class: K('b') + ' ' + K('ap'), role: 'button', tabindex: 0, 'data-k': i0, 'aria-expanded': aberto === x ? 'true' : 'false', style: '--d:' + atraso(0.3),
+          'aria-label': semParentese(x.nome) + ', ' + txt(x.periodo_txt) + (grande ? '. Foi a religião da maioria.' : '.') + ' Abrir o texto.' }, alvo, foco, nome);
+        gBot.appendChild(b);
+        var o = { x: x, g: b, nome: nome, per: per, alvo: alvo, foco: foco, y: y, cy: cy, meia: meia, xa: xDe(x.inicio), xd: xDe(fimX), mai: mai, eps: [] };
+        // episódios: moldura sobre a faixa e nome embaixo
+        eps.forEach(function (e) {
+          var ea = xDe(e.inicio), eb = Math.max(xDe(e.fim), ea + 6), me = Math.max(meiaEm(e.inicio), meiaEm(e.fim)) + 3.5;
+          var quadro = s('rect', { class: K('epq'), x: ea.toFixed(1), y: (cy - me).toFixed(1), width: (eb - ea).toFixed(1), height: (me * 2).toFixed(1), rx: 2 });
+          var haste = s('line', { class: K('epf'), x1: ((ea + eb) / 2).toFixed(1), x2: ((ea + eb) / 2).toFixed(1), y1: (cy + me).toFixed(1), y2: (cy + meia + 9).toFixed(1) });
+          var rot = s('text', { class: K('ept'), y: cy + meia + 21 }, curto(e) + ' · ' + txt(e.periodo_txt));
+          var alvoE = s('rect', { class: K('bh') }), focoE = s('rect', { class: K('bf'), rx: 7 });
+          var be = s('g', { class: K('b') + ' ' + K('ap'), role: 'button', tabindex: 0, 'data-k': todos.indexOf(e), 'aria-expanded': aberto === e ? 'true' : 'false', style: '--d:' + atraso(0.9),
+            'aria-label': semParentese(e.nome) + ', ' + txt(e.periodo_txt) + '. Episódio curto. Abrir o texto.' }, alvoE, focoE, quadro, haste, rot);
+          gBot.appendChild(be);
+          o.eps.push({ x: e, g: be, rot: rot, alvo: alvoE, foco: focoE, ea: ea, eb: eb, cy: cy, me: me, meia: meia });
+        });
+        bots.push(o); linhas.push(o);
+        y += 20 + meia * 2 + (eps.length ? 26 : 0) + 12; k++;
+      }
+      var titulos = [];
+      if (comMaioria) {
+        titulos.push(s('text', { class: K('gt') + ' ' + K('ap'), x: x0, y: y + 12 }, 'AS TRÊS MAIORIAS')); y += 24; yA0 = y - 4;
+        grupoA.forEach(function (x) { fileira(x, true); });
+        yA1 = y - 6; y += 8;
+        if (grupoB.length) { titulos.push(s('text', { class: K('gt') + ' ' + K('ap'), x: x0, y: y + 12 }, 'TAMBÉM PRESENTES')); y += 24; }
+      }
+      grupoB.forEach(function (x) { fileira(x, false); });
+      var yb = y + 4, Hh = yb + 30;
+      svg.setAttribute('width', W); svg.setAttribute('height', Hh); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + Hh);
+      svg.appendChild(gZona); svg.appendChild(gBar); svg.appendChild(gMarca);
+      titulos.forEach(function (t) { svg.appendChild(t); });
+      svg.appendChild(s('line', { class: K('base'), x1: x0, x2: x1, y1: yb + 0.5, y2: yb + 0.5 }));
+      anosRedondos(t0, t1, 1000).forEach(function (a) { var x = Math.round(xDe(a)) + 0.5; gEixo.appendChild(s('line', { class: K('base'), x1: x, x2: x, y1: yb, y2: yb + 5 })); });
+      svg.appendChild(gEixo); svg.appendChild(gBot);
+      palco.textContent = ''; palco.appendChild(svg);
+      eixoTempo(U, gEixo, anosRedondos(t0, t1, 1000), xDe, yb + 20, K('et'), x0, x1);
+      function larguraDe(t) { try { return t.getComputedTextLength(); } catch (e) { return t.textContent.length * 6.4; } }
+      // zonas de troca de maioria: a de cima na fileira de cima, para as hastes não cruzarem os textos
+      var zonasPostas = [];
+      if (comMaioria) {
+        [[z2, 13, largo ? 'troca de maioria: entre o século ' + z2.a + ' e o ' + z2.b : 'do século ' + z2.a + ' ao ' + z2.b],
+         [z1, 29, (largo ? 'troca de maioria: ' : '') + (romano(z1.b) - romano(z1.a) === 1 ? 'séculos ' + z1.a + ' e ' + z1.b : 'do século ' + z1.a + ' ao ' + z1.b)]].forEach(function (q, qi) {
+          var z = q[0], xa = xDe(z.de), xb = xDe(z.ate), cx = (xa + xb) / 2, d = '--d:' + (visto ? '0s' : (0.9 + (1 - qi) * 0.5).toFixed(2) + 's');
+          var g = s('g', { class: K('ap'), style: d });
+          g.appendChild(s('rect', { class: K('zona'), x: xa.toFixed(1), y: yA0, width: (xb - xa).toFixed(1), height: yA1 - yA0, rx: 3 }));
+          var t = s('text', { class: K('zt'), y: q[1] }, q[2]); g.appendChild(t); gZona.appendChild(g);
+          var w = larguraDe(t), e = limita(cx - w / 2, x0, x1 - w);
+          t.setAttribute('x', e.toFixed(1));
+          g.appendChild(s('line', { class: K('zf'), x1: Math.round(cx) + 0.5, x2: Math.round(cx) + 0.5, y1: q[1] + 4, y2: yA0 }));
+          zonasPostas[qi] = { e: e, w: w };
+        });
+        if (!largo) { // no celular, o que as duas zonas são vai escrito uma vez, antes do rótulo da primeira
+          var tz = s('text', { class: K('zt2') + ' ' + K('ap'), y: 29, 'text-anchor': 'end' }, 'trocas de maioria:'); gZona.appendChild(tz);
+          var fimTz = zonasPostas[1].e - 6;
+          if (fimTz - larguraDe(tz) < x0) { tz.setAttribute('text-anchor', 'start'); tz.setAttribute('x', x0); tz.setAttribute('y', 13); }
+          else tz.setAttribute('x', fimTz.toFixed(1));
+        }
+      }
+      linhas.forEach(function (o) {
+        var w = larguraDe(o.nome), e;
+        if (o.per && o.xa + w > x1 && o.xa + (w = (o.per.remove(), larguraDe(o.nome))) > x1) { /* sem o período */ }
+        e = Math.min(o.xa, x1 - w); e = Math.max(x0, e);
+        o.nome.setAttribute('x', e.toFixed(1));
+        var esq = Math.min(e, o.xa) - 4, dir = Math.max(e + w, o.xd) + 4;
+        o.alvo.setAttribute('x', esq.toFixed(1)); o.alvo.setAttribute('y', o.y); o.alvo.setAttribute('width', (dir - esq).toFixed(1)); o.alvo.setAttribute('height', 20 + o.meia * 2 + 6);
+        o.foco.setAttribute('x', esq.toFixed(1)); o.foco.setAttribute('y', o.y - 1); o.foco.setAttribute('width', (dir - esq).toFixed(1)); o.foco.setAttribute('height', 20 + o.meia * 2 + 6);
+        if (o.mai && larguraDe(o.mai) + 12 > o.mai._larg) o.mai.remove();
+        o.eps.forEach(function (q) {
+          var we = larguraDe(q.rot), ce = (q.ea + q.eb) / 2, ee = limita(ce - we / 2, x0, x1 - we);
+          q.rot.setAttribute('x', ee.toFixed(1));
+          var l = Math.min(ee, q.ea) - 5, r = Math.max(ee + we, q.eb) + 5, topo = q.cy - q.me - 3, base = q.cy + q.meia + 27;
+          if (r - l < 44) { l -= (44 - (r - l)) / 2; r = l + 44; }
+          q.alvo.setAttribute('x', l.toFixed(1)); q.alvo.setAttribute('y', topo.toFixed(1)); q.alvo.setAttribute('width', (r - l).toFixed(1)); q.alvo.setAttribute('height', (base - topo).toFixed(1));
+          q.foco.setAttribute('x', l.toFixed(1)); q.foco.setAttribute('y', topo.toFixed(1)); q.foco.setAttribute('width', (r - l).toFixed(1)); q.foco.setAttribute('height', (base - topo).toFixed(1));
+        });
+      });
+      svg.addEventListener('click', function (ev) { var b = ev.target.closest ? ev.target.closest('[data-k]') : null; if (b) abre(todos[+b.getAttribute('data-k')]); });
+      svg.addEventListener('keydown', function (ev) {
+        var b = ev.target.closest ? ev.target.closest('[data-k]') : null;
+        if (b && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); abre(todos[+b.getAttribute('data-k')]); }
+      });
+    }
+    function abre(x) {
+      if (x === aberto) x = null;
+      aberto = x;
+      if (svg) Array.prototype.forEach.call(svg.querySelectorAll('[data-k]'), function (b) { b.setAttribute('aria-expanded', aberto && todos[+b.getAttribute('data-k')] === aberto ? 'true' : 'false'); });
+      det.textContent = '';
+      if (!aberto) { det.appendChild(h('p', { class: K('dica') }, 'Toque numa faixa, ou num episódio, para ler sobre ele.')); return; }
+      var ehEp = episodios.indexOf(aberto) >= 0, dono = ehEp ? hospedeiro(aberto) : aberto;
+      det.appendChild(cartao(U, K, aberto, dono ? corCss(dono) : null, 'Onde:', function () {
+        var k = todos.indexOf(aberto), b = svg ? svg.querySelector('[data-k="' + k + '"]') : null; abre(null); if (b) try { b.focus(); } catch (e) {}
+      }));
+    }
+
+    abre(null);
+    if (U.reduz) { visto = true; el.classList.add(K('vis')); }
+    U.aoMedir(palco, desenha);
+    aoChegarFontes(function () { if (W) desenha(W); });
+    if (!U.reduz) U.aoVer(palco, function () { el.classList.add(K('vis')); setTimeout(function () { visto = true; }, 2600); });
+
+    el.appendChild(h('p', { class: 'pc-nota' }, comMaioria
+      ? 'O que ver: a faixa larga é a religião da maioria. Ela muda de dono duas vezes, e nas duas a troca é uma zona, não um risco: ninguém sabe o ano. A largura não mede quantas pessoas; só diz quem era maioria.'
+      : 'O que ver: as tradições se sobrepõem no tempo; nenhuma some de uma vez.'));
+    el.appendChild(tabela(U, 'Ver as datas (' + noTempo.length + ' tradições e episódios)', ['Tradição', 'Quando', 'Onde', 'Fonte', 'Conferência'],
+      noTempo.slice().sort(function (a, b) { return a.inicio - b.inicio; }).map(function (x) {
+        return [txt(x.nome), txt(x.periodo_txt), txt(x.onde), U.link(txt(x.fonte), x.url), certezaTxt(x.certeza)];
+      })));
+
+    // ---- hoje, segundo quem conta ----
+    var nums = (Array.isArray(serie.numeros_hoje) ? serie.numeros_hoje : []).filter(function (q) { return q && q.rotulo && typeof q.pct_min === 'number' && typeof q.pct_max === 'number'; })
+      .slice().sort(function (a, b) { return a.pct_min - b.pct_min || a.pct_max - b.pct_max; });
+    if (!nums.length) return;
+    var teto = Math.max(5, Math.ceil(Math.max.apply(null, nums.map(function (q) { return q.pct_max; })) / 5) * 5), passos = teto / 5, i;
+    function pct(v) { return U.dec(v, 1) + '%'; }
+    var gr = h('div', { class: K('gr') }), tk = h('div', { class: K('tk'), 'aria-hidden': 'true' });
+    for (i = 0; i <= passos; i++) tk.appendChild(h('span', { style: { left: (i / passos * 100) + '%' } }, i * 5 + '%'));
+    gr.appendChild(h('div', { class: K('ln') }, tk));
+    nums.forEach(function (q, k) {
+      var conta = /milh/i.test(txt(q.valor_txt)), faixa = q.pct_max > q.pct_min, sl = q.certeza && q.certeza !== 'alta' ? h('span', { class: 'selo ' + (q.certeza === 'baixa' ? 'memoria' : 'parte') }, certezaTxt(q.certeza)) : null;
+      var tr = h('div', { class: K('tr'), 'aria-hidden': 'true', style: { 'background-size': (100 / passos) + '% 100%' } },
+        h('span', { class: K('ba') + (faixa ? ' ' + K('comfx') : ''), style: { width: (q.pct_min / teto * 100) + '%', '--d': (0.1 + k * 0.12).toFixed(2) + 's' } }),
+        faixa ? h('span', { class: K('bx'), style: { left: (q.pct_min / teto * 100) + '%', width: ((q.pct_max - q.pct_min) / teto * 100) + '%', '--d': (0.1 + k * 0.12).toFixed(2) + 's' } }) : null);
+      gr.appendChild(h('div', { class: K('ln') },
+        h('div', { class: K('bt') }, h('b', null, txt(q.rotulo)), h('span', { class: K('bv') }, (conta ? '≈ ' : '') + (faixa ? pct(q.pct_min) + ' a ' + pct(q.pct_max) : pct(q.pct_min)))),
+        tr,
+        h('div', { class: K('inf') },
+          h('p', { class: K('bd') }, txt(q.valor_txt) + (q.ano ? ' (' + q.ano + ')' : '')),
+          h('p', { class: K('fo') }, h('span', null, 'Fonte: ', U.link(txt(q.fonte), q.url)), sl))));
+    });
+    var hoje = h('section', { class: K('hoje') },
+      h('h3', null, 'Hoje, segundo quem conta'),
+      h('p', { class: K('sub') }, 'Quantos são os cristãos do Egito, em % da população. Cada barra é uma fonte. Os números não batem, e estão todos aqui: nenhum foi escolhido como o certo.'),
+      gr);
+    if (serie.numeros_hoje_nota) { // a nota dos dados fala nos nomes dos campos; para o leitor, o sinal ≈ diz a mesma coisa
+      var bruta = txt(serie.numeros_hoje_nota), limpa = bruta.replace(/^Os campos '[^']*' e '[^']*' foram calculados/, 'As porcentagens marcadas com ≈ foram calculadas');
+      hoje.appendChild(h('p', { class: 'pc-nota' }, limpa !== bruta ? limpa : 'O sinal ≈ marca conta nossa. ' + bruta));
+    }
+    if (itHoje && itHoje.texto) {
+      var sh = selo(U, itHoje);
+      hoje.appendChild(h('details', { class: K('mais') }, h('summary', null, 'O que cada fonte diz, por extenso'),
+        h('div', null, h('p', null, txt(itHoje.texto)),
+          h('div', { class: K('pe') }, itHoje.fonte ? h('span', null, 'Fonte: ', U.link(txt(itHoje.fonte), itHoje.url)) : null, sh ? sh.marca : null), sh ? sh.nota : null)));
+    }
+    el.appendChild(hoje);
+    if (U.reduz) hoje.classList.add(K('hv')); else U.aoVer(gr, function () { hoje.classList.add(K('hv')); });
   });
 })();

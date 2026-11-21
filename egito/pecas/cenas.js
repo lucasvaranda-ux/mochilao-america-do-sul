@@ -1098,7 +1098,7 @@
     '&-ficha dt{font-size:12.5px;color:var(--tinta2);margin:0 0 3px}' +
     '&-ficha dd{margin:0;font-size:14px;color:var(--tinta2);line-height:1.45}' +
     '&-ficha dd b{font-family:var(--serifa);font-size:clamp(24px,2.6vw,30px);font-weight:600;color:var(--tinta);letter-spacing:-.01em;margin-right:8px;white-space:nowrap;line-height:1.15}' +
-    '&-duas{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin-top:4px}' +
+    '&-duas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px 22px;margin-top:4px}' +
     '&-duas div b{display:block;margin:0 0 2px}' +
     '&-mini{display:grid;gap:5px;margin:8px 0 0;max-width:420px}' +
     '&-mini div{display:flex;align-items:center;gap:8px;font-size:12.5px}' +
@@ -1257,5 +1257,189 @@
         anda();
       }, { uma: false });
     }
+  });
+
+  // =====================================================================================================
+  // abu-simbel — "Mudar um templo de lugar" (camada republica)
+  // De onde vem cada número:
+  //   1.035 blocos de 7 a 30 toneladas .. número "Abu Simbel: blocos cortados"
+  //   65 m mais alto, cerca de 200 m para trás  o mesmo número (e o fato "Abu Simbel muda de lugar", de certeza alta;
+  //                                       se o fato passar a ter certeza baixa, as medidas deixam de ser escritas)
+  //   1964 a 1968 ....................... campo ano do mesmo número
+  //   1960, campanha da Unesco .......... texto do fato "Abu Simbel muda de lugar"
+  //   cerca de US$ 40 milhões ........... número "Abu Simbel: custo da mudança"
+  //   22 monumentos; cerca de 50 países . número "Campanha da Núbia"
+  // As duas distâncias estão na mesma escala. O tamanho do templo, o perfil da encosta e os níveis da água são
+  // só indicativos (não estão nos dados). Os blocos do desenho são poucos: cada um vale por dezenas dos de verdade.
+  // =====================================================================================================
+  var CSS_ABU =
+    '&{--pc-rocha:#6a583f;--pc-risco:#b89b6a;--pc-pedra:#e4c791;--pc-junta:#5a4830;--pc-oco:#33291d;--pc-agua:#5aa6d8}' +
+    '&-claro{--pc-rocha:#dcc594;--pc-risco:#a8905f;--pc-pedra:#f6e8c4;--pc-junta:#8a7447;--pc-oco:#9a8257;--pc-agua:#3a86bb}' +
+    '&-tit{font-size:clamp(25px,3.4vw,36px);margin:0 0 8px}' +
+    '&-sub{color:var(--tinta2);font-size:15px;max-width:42em;margin:0 0 20px}' +
+    '&-ctl{margin:0 0 16px}' +
+    '&-g{display:grid;gap:22px 48px;align-items:start}' +
+    '&-largo &-g{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}' +
+    '& svg{display:block;overflow:visible}' +
+    '& svg text{font-family:var(--sem);font-size:11.5px;fill:var(--tinta2)}' +
+    '& svg text&-forte{fill:var(--tinta);font-weight:600}' +
+    '& svg &-n{font-family:var(--serifa);font-weight:600;font-size:17px;fill:var(--tinta)}' +
+    '& svg text&-it{font-family:var(--serifa);font-style:italic;font-size:12.5px}' +
+    '&-rocha{fill:var(--pc-rocha)}' +
+    '&-perfil{fill:none;stroke:var(--pc-risco);stroke-width:1.2;stroke-linejoin:round}' +
+    '&-veio{fill:none;stroke:var(--pc-risco);stroke-width:1;opacity:.2}' +
+    '&-oco{fill:var(--pc-oco)}' +
+    '&-nivel{stroke:var(--pc-agua);stroke-width:1.2;stroke-dasharray:5 4}' +
+    '&-fundoagua{fill:var(--pc-agua);opacity:.8}' +
+    '&-tona{stroke:color-mix(in srgb,var(--pc-agua) 55%,#fff);stroke-width:1.2}' +
+    '&-agua{transform:translateY(var(--pc-y0));transition:transform 2.4s cubic-bezier(.4,0,.2,1)}' +
+    '&-e2 &-agua{transform:translateY(var(--pc-y2))}' +
+    '&-bloco{transition:transform 1.15s cubic-bezier(.45,0,.2,1)}' +
+    '&-bloco path,&-bloco rect{fill:var(--pc-pedra);stroke:var(--pc-pedra);stroke-width:.9;stroke-linejoin:round;transition:stroke .5s ease}' +
+    '&-e1 &-bloco path,&-e1 &-bloco rect,&-e2 &-bloco path,&-e2 &-bloco rect,&-bloco&-col path{stroke:var(--pc-junta)}' +
+    '&-e1 &-bloco,&-e2 &-bloco{transform:translate(var(--pc-dx),var(--pc-dy))}' +
+    '&-e1 &-bloco{transition-delay:var(--pc-d)}' +
+    '&-novo{fill:none;stroke:var(--tinta2);stroke-width:1;stroke-dasharray:3 3}' +
+    '&-guia{fill:none;stroke:var(--acento);stroke-width:1.3;stroke-dasharray:5 4}' +
+    '&-seta{fill:var(--acento)}' +
+    '&-cota{fill:none;stroke:var(--tinta);stroke-width:1}' +
+    '&-chamada{fill:none;stroke:var(--tinta2);stroke-width:.9;stroke-dasharray:2 3}' +
+    '&-fio{stroke:var(--tinta2);stroke-width:.9}' +
+    '&-so0,&-so1,&-so2,&-so01,&-so12{opacity:0;transition:opacity .6s ease}' +
+    '&-e0 &-so0,&-e1 &-so1,&-e2 &-so2,&-e0 &-so01,&-e1 &-so01,&-e1 &-so12,&-e2 &-so12{opacity:1}' +
+    '&-e2 &-so2{transition-delay:1.5s}' +
+    '&-leg{font-size:14.5px;line-height:1.5;margin:12px 0 0;min-height:4.6em;max-width:40em}' +
+    '&-leg b{font-family:var(--serifa);font-size:18px;font-weight:600}' +
+    '&-ficha{margin:0}' +
+    '&-ficha>div{padding:13px 0 14px;border-top:1px solid var(--linha)}' +
+    '&-ficha>div:last-child{border-bottom:1px solid var(--linha)}' +
+    '&-ficha dt{font-size:12.5px;color:var(--tinta2);margin:0 0 3px}' +
+    '&-ficha dd{margin:0;font-size:14px;color:var(--tinta2);line-height:1.45}' +
+    '&-ficha dd b{font-family:var(--serifa);font-size:clamp(23px,2.5vw,29px);font-weight:600;color:var(--tinta);letter-spacing:-.01em;margin-right:7px;white-space:nowrap;line-height:1.15}' +
+    '&-nota{margin-top:20px}' +
+    '&-tab td,&-tab th{overflow-wrap:anywhere}' +
+    '@media (prefers-reduced-motion:reduce){&-bloco,&-agua,&-so0,&-so1,&-so2,&-so01,&-so12,&-bloco path,&-bloco rect{transition:none!important}}';
+  var nAbu = 0;
+
+  E.peca('abu-simbel', function (el, dados, U, args) {
+    var h = U.h, s = U.s, c = args && args.camada; if (!c) return;
+    var N = c.numeros || [], C = prefixo('abu-simbel'), uid = 'pc-abu-simbel-' + (++nAbu);
+    var nBl = acha(N, 'rotulo', /abu simbel: blocos/i), fato = acha(c.fatos, 'titulo', /abu simbel muda/i) || acha(c.fatos, 'titulo', /abu simbel/i);
+    var base = nBl ? txt(nBl.valor) : (fato ? txt(fato.texto) : ''), blocos = pega(base, '#\\s*blocos'); if (!blocos) return;
+    var sobe = pega(base, '#\\s*m mais alto'), recua = pega(base, '#\\s*m para tr[áa]s'), recuaAprox = /cerca de\s+[\d.,]+\s*m para tr/i.test(base);
+    var medidas = sobe > 0 && recua > 0 && !(fato && fato.certeza === 'baixa'); // só escreve as medidas se a camada as confirma
+    var mp = /de\s+(\d+)\s+a\s+(\d+)\s+toneladas/i.exec(base), ma = /(\d{4})\s*a\s*(\d{4})/.exec(nBl && nBl.ano ? txt(nBl.ano) : (fato ? txt(fato.ano_txt) : ''));
+    var nCusto = acha(N, 'rotulo', /abu simbel: custo/i), nCamp = acha(N, 'rotulo', /campanha da n[úu]bia/i), mu = fato && /Unesco[^.]*?em (\d{4})/i.exec(txt(fato.texto));
+    var dZ = sobe > 0 ? sobe : 65, dX = recua > 0 ? recua : 200, A = 33, P = 62; // A e P: altura e fundo do templo no desenho, só indicativos
+
+    estilo('abu-simbel', CSS_ABU);
+    el.classList.add(C()); if (ehClaro(el, U)) el.classList.add(C('claro'));
+    U.aoMedir(el, function (w) { el.classList.toggle(C('largo'), w >= 860); });
+
+    var estado = U.reduz ? 2 : 0, relogios = [], leg = h('p', { class: C('leg'), 'aria-live': 'polite' });
+    var TXT = [
+      [ma ? 'Até ' + ma[1] : 'Antes', 'Os templos de Abu Simbel, cortados na rocha no tempo de Ramsés II, ficam à beira do Nilo. O lago da nova represa vai cobrir o lugar.'],
+      [ma ? ma[1] + ' a ' + ma[2] : 'O corte', 'Os dois templos são serrados em ' + U.int(blocos) + ' blocos' + (mp ? ' de ' + mp[1] + ' a ' + mp[2] + ' toneladas' : '') + ' e levados para o alto da encosta.'],
+      [ma ? 'Desde ' + ma[2] : 'Depois', (medidas ? 'Os templos estão remontados ' + U.int(sobe) + ' m mais alto e ' + (recuaAprox ? 'cerca de ' : '') + U.int(recua) + ' m para trás.' : 'Os templos estão remontados no alto da encosta.') + ' A água do lago cobriu o lugar antigo.']
+    ];
+    var bt = U.botoes([{ id: '0', rotulo: 'antes' }, { id: '1', rotulo: 'o corte' }, { id: '2', rotulo: 'depois' }], String(estado), function (id) { para(); poe(+id); }, 'Momento da mudança');
+    function para() { relogios.forEach(clearTimeout); relogios = []; }
+    function poe(n) {
+      estado = n;
+      [0, 1, 2].forEach(function (i) { el.classList.toggle(C('e' + i), i === n); });
+      Array.prototype.forEach.call(bt.children, function (b, i) { b.setAttribute('aria-pressed', i === n ? 'true' : 'false'); });
+      leg.textContent = ''; leg.appendChild(h('b', null, TXT[n][0] + '. ')); leg.appendChild(document.createTextNode(TXT[n][1]));
+    }
+
+    var host = h('div');
+    function desenha(w) {
+      host.textContent = '';
+      var XMIN = -48, XMAX = dX + P + 22, ZMAX = dZ + A + 14, k = w / (XMAX - XMIN), topo = 30, peq = w < 520;
+      function X(x) { return (x - XMIN) * k; } function Y(z) { return topo + (ZMAX - z) * k; }
+      var yH = Y(-15), H = Math.round(yH + (medidas ? 34 : 8)), zRio = -4, zLago = dZ - 6;
+      var T = [[XMIN, -17], [-38, -14], [-30, -6], [-22, 0], [0, 0], [0, A], [5, A + 8], [20, A + 19], [46, dZ - 5], [80, dZ - 1], [dX - 60, dZ], [dX, dZ],
+        [dX, dZ + A], [dX + 9, dZ + A + 8], [dX + 34, dZ + A + 12], [dX + P - 2, dZ + A + 7], [dX + P + 12, dZ + 22], [XMAX, dZ + 12]];
+      var linha = T.map(function (p, i) { return (i ? 'L' : 'M') + f1(X(p[0])) + ' ' + f1(Y(p[1])); }).join('');
+      var svg = s('svg', { width: w, height: H, viewBox: '0 0 ' + w + ' ' + H, role: 'img',
+        style: '--pc-dx:' + f1(dX * k) + 'px;--pc-dy:' + f1(-dZ * k) + 'px;--pc-y0:' + f1(Y(zRio)) + 'px;--pc-y2:' + f1(Y(zLago)) + 'px',
+        'aria-label': 'Corte de lado do vale em Abu Simbel, em três momentos. Antes: o templo cavado na rocha, à beira do Nilo. O corte: o templo é serrado em ' + U.int(blocos) +
+          ' blocos. Depois: o templo remontado ' + (medidas ? U.int(sobe) + ' metros mais alto e ' + (recuaAprox ? 'cerca de ' : '') + U.int(recua) + ' metros para trás' : 'no alto da encosta') + ', e a água do lago cobre o lugar antigo.' });
+      svg.appendChild(s('defs', null, s('clipPath', { id: uid + '-ar' }, s('path', { d: linha + 'V-60H0Z' })), s('clipPath', { id: uid + '-ro' }, s('path', { d: linha + 'V' + H + 'H0Z' }))));
+      svg.appendChild(s('path', { class: C('rocha'), d: linha + 'V' + H + 'H0Z' }));
+      var veios = '', z;
+      for (z = -9; z < ZMAX; z += 21) veios += 'M0 ' + f1(Y(z)) + 'H' + w;
+      svg.appendChild(s('path', { class: C('veio'), d: veios, 'clip-path': 'url(#' + uid + '-ro)' }));
+      // o vazio que fica na rocha, e a água que entra nele no fim
+      var oco = { x: f1(X(0)), y: f1(Y(A)), width: f1(P * k), height: f1(A * k) };
+      svg.appendChild(s('rect', { class: C('oco'), x: oco.x, y: oco.y, width: oco.width, height: oco.height }));
+      svg.appendChild(s('g', { class: C('so2') }, s('rect', { class: C('fundoagua'), x: oco.x, y: oco.y, width: oco.width, height: oco.height })));
+      svg.appendChild(s('g', { 'clip-path': 'url(#' + uid + '-ar)' },
+        s('g', { class: C('agua') }, s('rect', { class: C('fundoagua'), x: 0, y: 0, width: w, height: H + 80 }), s('line', { class: C('tona'), x1: 0, x2: w, y1: 0.6, y2: 0.6 }))));
+      svg.appendChild(s('path', { class: C('perfil'), d: linha }));
+      svg.appendChild(s('rect', { class: C('novo') + ' ' + C('so12'), x: oco.x, y: oco.y, width: oco.width, height: oco.height }));
+      // até onde a água vai subir (antes) e o lugar novo (durante)
+      svg.appendChild(s('g', { class: C('so01') }, s('line', { class: C('nivel'), x1: 0, x2: f1(X(42)), y1: f1(Y(zLago)), y2: f1(Y(zLago)) }),
+        s('text', { class: C('it'), x: 3, y: f1(Y(zLago) - 6) }, 'futuro lago')));
+      svg.appendChild(s('rect', { class: C('novo') + ' ' + C('so1'), x: f1(X(dX)), y: f1(Y(dZ + A)), width: f1(P * k), height: f1(A * k) }));
+      var g0 = [X(-4), Y(25)], g1 = [X(dX - 5), Y(dZ + 26)], gc = [X(dX * 0.36), Y(dZ + A + 46)];
+      svg.appendChild(s('g', { class: C('so1') }, s('path', { class: C('guia'), d: 'M' + f1(g0[0]) + ' ' + f1(g0[1]) + 'Q' + f1(gc[0]) + ' ' + f1(gc[1]) + ' ' + f1(g1[0]) + ' ' + f1(g1[1]) }),
+        s('path', { class: C('seta'), d: 'M2 0L-8 -4.4V4.4Z', transform: 'translate(' + f1(g1[0]) + ' ' + f1(g1[1]) + ') rotate(' + f1(Math.atan2(g1[1] - gc[1], g1[0] - gc[0]) * 180 / Math.PI) + ')' })));
+      // blocos: o colosso sentado (cabeça, tronco, pernas e trono) e o corpo do templo, da frente para o fundo
+      var n = 0, gB = s('g'), nc = 6, nr = 3, i, j;
+      function bloco(no, cl) { var g = s('g', { class: C('bloco') + (cl ? ' ' + C(cl) : ''), style: '--pc-d:' + (600 + n * 150) + 'ms' }, no); n++; return g; }
+      function poli(pts) { return s('path', { d: pts.map(function (p, q) { return (q ? 'L' : 'M') + f1(X(p[0])) + ' ' + f1(Y(p[1])); }).join('') + 'Z' }); }
+      [[[0, 14.9], [-5.3, 14.9], [-5.9, 15.1], [-5.4, 16], [-5.9, 16.7], [-5.3, 17.7], [-5.6, 18.1], [-4.6, 21.3], [-2.4, 21.7], [-1.8, 18.3], [-0.9, 17.3], [0, 15.6]],
+        [[0, 9.8], [-5, 9.8], [-5.2, 14.5], [-5.3, 14.9], [0, 14.9]],
+        [[0, 0], [-10.5, 0], [-10.5, 1.4], [-8.8, 1.4], [-8.8, 8.4], [-9.2, 8.8], [-9.2, 9.8], [0, 9.8]]].forEach(function (pp) { gB.appendChild(bloco(poli(pp), 'col')); });
+      for (i = 0; i < nc; i++) for (j = nr - 1; j >= 0; j--) {
+        gB.appendChild(bloco(s('rect', { x: f1(X(i * P / nc)), y: f1(Y((j + 1) * A / nr)), width: f1(P / nc * k), height: f1(A / nr * k) })));
+      }
+      svg.appendChild(gB);
+      // cotas (só no fim, e só se a camada confirma as medidas)
+      if (medidas) {
+        var xV = X(dX + 14), risco = function (x, y) { return 'M' + f1(x - 3.5) + ' ' + f1(y + 3.5) + 'L' + f1(x + 3.5) + ' ' + f1(y - 3.5); };
+        svg.appendChild(s('g', { class: C('so2') },
+          s('path', { class: C('chamada'), d: 'M' + f1(X(0)) + ' ' + f1(Y(0) + 3) + 'V' + f1(yH + 5) + 'M' + f1(X(dX)) + ' ' + f1(Y(dZ) + 3) + 'V' + f1(yH + 5) + 'M' + f1(X(P) + 3) + ' ' + f1(Y(0)) + 'H' + f1(xV + 5) }),
+          s('path', { class: C('cota'), d: 'M' + f1(X(0)) + ' ' + f1(yH) + 'H' + f1(X(dX)) + risco(X(0), yH) + risco(X(dX), yH) + 'M' + f1(xV) + ' ' + f1(Y(0)) + 'V' + f1(Y(dZ)) + risco(xV, Y(0)) + risco(xV, Y(dZ)) }),
+          s('text', { x: f1(X(dX / 2)), y: f1(yH + 22), 'text-anchor': 'middle' }, s('tspan', { class: C('n') }, (recuaAprox ? 'cerca de ' : '') + U.int(recua) + ' m'), ' para trás'),
+          s('text', { class: C('n'), x: f1(xV + 9), y: f1(Y(dZ / 2) + 2) }, U.int(sobe) + ' m'),
+          s('text', { x: f1(xV + 9), y: f1(Y(dZ / 2) + 17) }, 'mais alto')));
+      }
+      // rótulos de cada momento
+      svg.appendChild(s('text', { class: C('it') + ' ' + C('so01'), x: 3, y: f1(Y(zRio) - 6) }, 'Nilo'));
+      svg.appendChild(s('text', { class: C('it') + ' ' + C('so2'), x: 3, y: f1(Y(zLago) - 7) }, 'lago Nasser'));
+      svg.appendChild(s('text', { class: C('forte') + ' ' + C('so0'), x: f1(X(P) + 9), y: f1(Y(A / 2) + 4) }, 'o templo, cavado na rocha'));
+      svg.appendChild(s('text', { class: C('so1'), x: f1(X(dX + P / 2)), y: f1(Y(dZ + A + 19)), 'text-anchor': 'middle' }, 'lugar novo'));
+      svg.appendChild(s('text', { class: C('forte') + ' ' + C('so2'), x: f1(X(dX + P / 2)), y: f1(Y(dZ + A + 19)), 'text-anchor': 'middle' }, 'o templo hoje'));
+      svg.appendChild(s('g', { class: C('so2') }, s('text', { class: C('forte'), x: f1(X(-3)), y: f1(Y(A / 2) - 2), 'text-anchor': 'end' }, 'lugar'),
+        s('text', { class: C('forte'), x: f1(X(-3)), y: f1(Y(A / 2) + 12), 'text-anchor': 'end' }, 'antigo')));
+      host.appendChild(svg);
+    }
+
+    // ---- montagem ----
+    el.appendChild(h('h3', { class: C('tit') }, 'Mudar um templo de lugar'));
+    el.appendChild(h('p', { class: C('sub') }, 'Abu Simbel visto de lado, em três momentos' + (mu ? '. A Unesco lançou a campanha em ' + mu[1] : '') + (ma ? '; a mudança foi feita de ' + ma[1] + ' a ' + ma[2] : '') + '.'));
+    el.appendChild(h('div', { class: C('ctl') }, bt));
+    var ficha = h('dl', { class: C('ficha') });
+    ficha.appendChild(h('div', null, h('dt', null, 'Blocos cortados'), h('dd', null, h('b', null, U.int(blocos)), mp ? 'de ' + mp[1] + ' a ' + mp[2] + ' toneladas cada um' : '')));
+    if (medidas) ficha.appendChild(h('div', null, h('dt', null, 'Para onde foi'), h('dd', null, h('b', null, U.int(sobe) + ' m'), 'mais alto e ' + (recuaAprox ? 'cerca de ' : '') + U.int(recua) + ' m para trás')));
+    if (nCusto) { var pcu = /^(cerca de\s+)?(US\$\s*[\d.,]+\s*(?:milh[õo]es|bilh[õo]es)?)\s*(.*)$/i.exec(txt(nCusto.valor)); if (pcu) ficha.appendChild(h('div', null, h('dt', null, 'Custo'), h('dd', null, pcu[1] || '', h('b', null, pcu[2]), pcu[3].replace(/^\((.*)\)$/, '$1')))); }
+    if (nCamp) { var pp = /(cerca de\s+|mais de\s+)?(\d+)\s+pa[íi]ses/i.exec(txt(nCamp.valor)), pm = /(\d+)\s+monumentos[^;]*/i.exec(txt(nCamp.valor));
+      if (pp) ficha.appendChild(h('div', null, h('dt', null, 'Campanha da Núbia' + (nCamp.ano ? ', ' + txt(nCamp.ano) : '')), h('dd', null, pp[1] || '', h('b', null, pp[2] + ' países'), 'ajudaram a pagar' + (pm ? '; a campanha cuidou de ' + pm[0] : '') + '.'))); }
+    el.appendChild(h('div', { class: C('g') }, h('div', null, host, leg), ficha));
+    el.appendChild(h('p', { class: 'pc-nota ' + C('nota') }, 'O que ver aqui: o templo não foi arrastado, foi desmontado e montado de novo acima da linha da água. ' +
+      (medidas ? 'As duas distâncias estão na mesma escala; ' : '') + 'o tamanho do templo e o perfil da encosta são só indicativos, e cada bloco do desenho vale por dezenas dos de verdade.'));
+    var linhasT = [nBl, nCusto, nCamp].filter(Boolean).map(function (n) { return [txt(n.rotulo), txt(n.valor), txt(n.ano), txt(n.fonte)]; });
+    var tab = U.tabela('Ver os números', ['O quê', 'Valor', 'Quando', 'Fonte'], linhasT); tab.classList.add(C('tab')); el.appendChild(tab);
+    var fo = fontes(U, [fato ? [txt(fato.fonte), fato.url] : (nBl ? [txt(nBl.fonte), nBl.url] : null)]);
+    if (fo) el.appendChild(fo);
+
+    poe(estado);
+    medir(host, U, desenha);
+    if (!U.reduz) U.aoVer(host, function () {
+      if (estado !== 0) return;
+      relogios.push(setTimeout(function () { poe(1); }, 1500));
+      relogios.push(setTimeout(function () { poe(2); }, 1500 + 600 + 21 * 150 + 1700));
+    }, { margem: '0px 0px -25% 0px' });
   });
 })();

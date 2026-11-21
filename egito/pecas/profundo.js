@@ -252,7 +252,7 @@
     [32.4, 29.48], [33.3, 29.76], [34.4, 30.28], [35.6, 30.52], [36.9, 30.95], [37.9, 31.3]];
   function cssBaleias() {
     var p = 'pc-baleias';
-    return '.pc-baleias{--pcb-mar:color-mix(in srgb,#2a88ab 60%,var(--s1));--pcb-mar2:color-mix(in srgb,#2a88ab 32%,var(--s1));--pcb-terra:color-mix(in srgb,#c79a5a 24%,var(--s1))}' +
+    return '.pc-baleias{--pcb-mar:color-mix(in srgb,#2f93b5 62%,var(--s1));--pcb-mar2:color-mix(in srgb,#14506b 72%,var(--s1));--pcb-terra:color-mix(in srgb,#c79a5a 26%,var(--s1))}' +
       cssTopo(p) + cssBichos(p) +
       '.pc-baleias-g{display:grid;gap:36px 52px}' +
       '.pc-baleias.largo .pc-baleias-g{grid-template-columns:var(--pcb-a) minmax(0,1fr);align-items:start}' +
@@ -454,9 +454,9 @@
 
     // ----- coluna do tempo -----
     var larguraCol = 0;
-    function fazTempo(w) {
-      larguraCol = w;
-      var xE = 40, xT = 74, ppm = 4.1, y0 = 10, yFim = y0 + maxMa * ppm, i;
+    function fazTempo(w, ppm) {
+      larguraCol = w; ppm = ppm || 4.1; // px por milhão de anos; cresce se o nome do mar não couber
+      var xE = 40, xT = 74, y0 = 10, yFim = y0 + maxMa * ppm, i;
       function yT(t) { return y0 + t * ppm; }
       colBox.textContent = '';
       // rótulos (HTML, para o texto quebrar sozinho)
@@ -489,17 +489,19 @@
         'aria-label': 'Coluna do tempo, de hoje até ' + U.dec(maxMa) + ' milhões de anos atrás: ' + itens.map(function (it) { return it.nome + ', ' + it.q; }).join('; ') + '.' });
       // o mar de Tétis: faixa com a borda de cima ondulada
       if (mTet) {
-        var ya = yMar, yb = H, d = 'M0 ' + f1(ya), x;
-        for (x = 0; x < w; x += 22) d += 'q5.5 -4 11 0t11 0';
+        var ya = yMar, yb = H, d = 'M0 ' + f1(ya), x, nOndas = Math.max(4, Math.round(w / 22)), lo = w / nOndas;
+        for (x = 0; x < nOndas; x++) d += 'q' + f1(lo / 4) + ' -4 ' + f1(lo / 2) + ' 0t' + f1(lo / 2) + ' 0';
         svg.appendChild(s('path', { class: P + '-banda', d: d + 'V' + f1(yb - 12) + 'q0 12 -12 12H12q-12 0 -12 -12Z' }));
         // o nome do mar vai no maior vão entre os rótulos, dentro da faixa
         var melhor = null, a, b;
+        var tet = colBox.appendChild(h('div', { class: P + '-tet', style: { left: xT + 'px', width: (w - xT) + 'px' } }, 'mar de Tétis sobre o Egito', h('small', null, 'de ' + quando(mTet))));
+        var hTet = tet.offsetHeight || 40;
         for (i = 0; i <= top.length; i++) {
           a = i === 0 ? ya + 6 : Math.max(ya + 6, top[i - 1] + alt[i - 1]); b = i === top.length ? yb : Math.min(yb, top[i]);
-          if (b - a > 46 && (!melhor || b - a > melhor[1] - melhor[0])) melhor = [a, b];
+          if (b - a > hTet + 16 && (!melhor || b - a > melhor[1] - melhor[0])) melhor = [a, b];
         }
-        if (melhor) colBox.appendChild(h('div', { class: P + '-tet', style: { left: xT + 'px', top: f1((melhor[0] + melhor[1]) / 2 - 20) + 'px', width: (w - xT) + 'px' } },
-          'mar de Tétis sobre o Egito', h('small', null, 'de ' + quando(mTet))));
+        if (!melhor && ppm < 8) return fazTempo(w, ppm + .8);
+        if (melhor) tet.style.top = f1((melhor[0] + melhor[1] - hTet) / 2) + 'px'; else tet.remove();
       }
       svg.appendChild(s('path', { class: P + '-eixo', d: 'M' + xE + ' ' + y0 + 'V' + f1(yFim) }));
       for (i = 0; i <= maxMa; i += 20) {
@@ -532,7 +534,7 @@
       if (mBas) fazRegua(b);
       if (itens.length > 1) fazTempo(b);
     });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (larguraCol && el.isConnected) fazTempo(larguraCol); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (larguraCol && el.isConnected && itens.length > 1) fazTempo(larguraCol); });
     U.aoVer(cenaBox, function (v) {
       el.classList.toggle('vivo', !!v);
       vivo = !!v && !U.reduz; cancelAnimationFrame(raf);
@@ -584,7 +586,8 @@
       '.pc-saara-gente{fill:var(--tinta);stroke:var(--fundo);stroke-width:.9}' +
       '.pc-saara-gado{fill:var(--tinta);stroke:var(--fundo);stroke-width:.8;opacity:.9}' +
       // painel
-      '.pc-saara-ano{display:flex;align-items:center;gap:12px;justify-content:space-between}' +
+      '.pc-saara-ano{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;justify-content:space-between}' +
+      '.pc-saara-g>*{min-width:0}' +
       '.pc-saara-ano b{display:block;font:600 clamp(30px,5vw,44px)/1 var(--serifa);letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}' +
       '.pc-saara-st{font:500 13px/1.3 var(--sem);color:var(--tinta2);margin:8px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}' +
       '.pc-saara-bts{display:flex;gap:6px;flex:none}' +
@@ -606,7 +609,8 @@
       '.pc-saara-rt{font:500 11.5px var(--sem);fill:var(--tinta2);font-variant-numeric:tabular-nums}' +
       '.pc-saara-fm{fill:var(--tinta2);opacity:.55}.pc-saara-fm.foi{fill:var(--tinta);opacity:1}.pc-saara-fm.sel{fill:var(--acento);opacity:1}' +
       '.pc-saara-faixa{stroke:var(--linha);stroke-width:1}' +
-      '.pc-saara-fato{margin:14px 0 0;min-height:4.6em;border-left:2px solid var(--acento);padding:1px 0 1px 14px}' +
+      '.pc-saara-fato{margin:14px 0 0;min-height:5.2em;border-left:2px solid var(--acento);padding:1px 0 1px 14px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between}' +
+      '.pc-saara-fato>div{min-width:0}' +
       '.pc-saara-fato p{margin:0 0 8px}.pc-saara-fato p:last-child{margin:0}' +
       '.pc-saara-fato i{display:block;font:700 12.5px/1.3 var(--sem);font-style:normal;color:var(--tinta2);font-variant-numeric:tabular-nums}' +
       '.pc-saara-fato b{display:block;font:600 clamp(17px,2vw,20px)/1.22 var(--serifa);margin-top:2px;text-wrap:balance}' +
@@ -737,7 +741,7 @@
     var mapaBox = h('figure', { class: P + '-mapa' });
     var anoB = h('b'), anoS = h('p', { class: P + '-st' });
     var btToca = h('button', { type: 'button', class: P + '-bt' }), btAnt, btProx;
-    var fatoBox = h('div', { class: P + '-fato' });
+    var fatoTxt = h('div'), fatoBox = h('div', { class: P + '-fato' }, fatoTxt);
     var reguaBox = h('div', { class: P + '-regua' });
     var range = h('input', { type: 'range', class: P + '-range', min: T0, max: T1, step: PASSO, value: t, 'aria-label': 'Ano (arraste para andar no tempo)' });
     var tese = null, perg = null, fimBox = null;
@@ -754,6 +758,7 @@
     var IC_TOCA = 'M3 1.5v11l9-5.5z', IC_PARA = 'M2.5 1.5h3.2v11H2.5zM8.3 1.5h3.2v11H8.3z';
     btAnt = h('button', { type: 'button', class: P + '-bt so', 'aria-label': 'Fato anterior', title: 'Fato anterior' }, icone('M9.5 1.5L4 7l5.5 5.5 1.2-1.2L6.4 7l4.3-4.3z'));
     btProx = h('button', { type: 'button', class: P + '-bt so', 'aria-label': 'Próximo fato', title: 'Próximo fato' }, icone('M4.5 1.5L10 7l-5.5 5.5-1.2-1.2L7.6 7 3.3 2.7z'));
+    fatoBox.appendChild(h('div', { class: P + '-bts' }, btAnt, btProx));
     var leg = h('ul', { class: P + '-leg', 'aria-label': 'Legenda' });
     function chave(desenho, texto) { leg.appendChild(h('li', null, desenho, texto)); }
     chave(s('svg', { width: 22, height: 12 }, s('rect', { width: 22, height: 12, rx: 3, fill: 'var(--pcs-verde)' }), s('path', { class: P + '-arv', d: 'M7 9v-3M4.5 5.6h5M15 9.5v-3M12.5 6.1h5' })), 'savana, com chuva de verão');
@@ -765,7 +770,7 @@
 
     var intro = 'A chuva de verão chegou ao deserto egípcio, ficou por milênios e foi embora. Arraste a régua, ou deixe rodar.';
     var painel = h('div', { class: P + '-painel' },
-      h('div', { class: P + '-ano' }, anoB, h('div', { class: P + '-bts' }, btAnt, btProx, btToca)), anoS,
+      h('div', { class: P + '-ano' }, anoB, btToca), anoS,
       reguaBox, fatoBox);
     var cab = topo(U, P, 'De ' + U.int(Math.round(U.anosAtras(T0) / 1000)) + ' mil a ' + U.int(Math.round(U.anosAtras(T1) / 100) * 100) + ' anos atrás', 'Quando o Saara era verde', intro);
     var colA = h('div', { class: P + '-a' }, mapaBox, leg), colB = h('div', { class: P + '-b' });
@@ -887,10 +892,10 @@
       if (String(range.value) !== String(ta)) range.value = ta;
       range.setAttribute('aria-valuetext', anoB.textContent + ': ' + anoS.textContent.split(' · ')[0]);
       if (ga !== grupoAtual || inteiro) {
-        grupoAtual = ga; fatoBox.textContent = '';
+        grupoAtual = ga; fatoTxt.textContent = '';
         grupos[ga].fs.forEach(function (f) {
           var selo = f.certeza === 'baixa' ? 'de memória, sem fonte conferida' : f.certeza === 'media' ? 'conferido em parte' : '';
-          fatoBox.appendChild(h('p', null, h('i', null, txt(f.ano_txt) || U.ano(f.ano)), h('b', null, txt(f.titulo)), selo ? h('small', null, selo) : null));
+          fatoTxt.appendChild(h('p', null, h('i', null, txt(f.ano_txt) || U.ano(f.ano)), h('b', null, txt(f.titulo)), selo ? h('small', null, selo) : null));
         });
         btAnt.disabled = ga === 0 && t <= grupos[0].t; btProx.disabled = ga === grupos.length - 1;
       }
@@ -932,7 +937,7 @@
       btToca.textContent = ''; btToca.appendChild(icone(tocando ? IC_PARA : IC_TOCA));
       btToca.appendChild(document.createTextNode(tocando ? 'Pausar' : t >= T1 ? 'De novo' : 'Rodar'));
       btToca.setAttribute('aria-label', tocando ? 'Pausar a animação' : t >= T1 ? 'Rodar a animação de novo' : 'Rodar a animação');
-      fatoBox.setAttribute('aria-live', tocando ? 'off' : 'polite');
+      fatoTxt.setAttribute('aria-live', tocando ? 'off' : 'polite');
     }
     function para() { tocando = false; cancelAnimationFrame(rafA); rotuloToca(); }
     function vel(tt) { return tt < tCh ? (tCh - T0) / 1.8 : tt < tRe ? (tRe - tCh) / 7.5 : (T1 - tRe) / 8.5; } // anos por segundo
@@ -977,22 +982,324 @@
     }, { uma: false, margem: '0px 0px -25% 0px' });
   });
 
-  // ---------- peça de ensaio (some no fim) ----------
-  E.peca('_pf-sil', function (el, dados, U) {
-    s = U.s;
-    poeEstilo('pfs-css', cssBichos('pfs') + '.pfs svg{display:block;background:var(--s1);margin:0 0 12px}.pfs .nd{fill:var(--tinta)}');
-    el.classList.add('pfs');
-    function quadro(w, hh, fn) { var v = s('svg', { width: w, height: hh, viewBox: '0 0 ' + w + ' ' + hh }); fn(v); el.appendChild(v); }
-    function em(g, x, y) { var o = s('g', { transform: 'translate(' + x + ' ' + y + ')' }); o.appendChild(g); return o; }
-    quadro(360, 70, function (v) { v.appendChild(em(Bi.baleia('pfs', 348, 'basilo'), 6, 34)); });
-    quadro(360, 70, function (v) { v.appendChild(em(Bi.baleia('pfs', 116, 'doru'), 6, 34)); v.appendChild(em(Bi.pessoa('pfs', 40), 160, 60)); v.appendChild(em(Bi.baleia('pfs', 56, 'basilo'), 200, 34)); v.appendChild(em(Bi.baleia('pfs', 40, 'doru'), 280, 34)); });
-    quadro(360, 70, function (v) { v.appendChild(em(Bi.espino('pfs', .5), 6, 20)); v.appendChild(em(Bi.sauro('pfs', .46), 80, 20)); v.appendChild(em(Bi.macaco('pfs', .6), 160, 22)); v.appendChild(em(Bi.disco('pfs', 10), 230, 34)); v.appendChild(em(Bi.pessoa('pfs', 26), 270, 50)); });
-    quadro(900, 260, function (v) { v.appendChild(em(Bi.baleia('pfs', 880, 'basilo'), 10, 70)); v.appendChild(em(Bi.baleia('pfs', 420, 'doru'), 10, 190)); v.appendChild(em(Bi.pessoa('pfs', 150), 520, 250)); });
-    quadro(900, 300, function (v) { v.appendChild(em(Bi.espino('pfs', 3), 6, 10)); v.appendChild(em(Bi.sauro('pfs', 3), 350, 20)); v.appendChild(em(Bi.macaco('pfs', 3), 720, 60)); });
-    quadro(900, 300, function (v) {
-      var a = laco(250, 150, 200, 90, 0, .05), b = laco(650, 150, 120, 60, .1, .06);
-      v.appendChild(s('path', { class: 'nd', d: nadador(300, 13, true)(a, 300, 1) }));
-      v.appendChild(s('path', { class: 'nd', d: nadador(110, 10, false)(b, 100, -1) }));
-    });
+  // =====================================================================================================
+  // PEDRA-DE-MAR — "A pirâmide é feita de mar" (camada antes-dos-humanos; serve também na imperio-antigo)
+  // De onde vem cada número (tudo lido de dados.json na hora de desenhar; a peça procura as duas camadas pelo id):
+  //   idade do calcário ............... número "Idade do calcário de Gizé (Formação Mokattam)", da camada antes-dos-humanos:
+  //                                     as fontes divergem, então a peça mostra a faixa inteira (do menor ao maior valor)
+  //   fim dos numulitos ............... texto do fato "A pedra das pirâmides é fundo de mar" ("há cerca de 33,9 milhões de anos")
+  //   cerca de 2,3 milhões de blocos .. número "Blocos da Grande Pirâmide (estimativa)", da camada imperio-antigo
+  //   c. 2560 a.C. .................... ano do fato "A Grande Pirâmide em números" (imperio-antigo)
+  //   proporção da silhueta ........... números "Altura original da Grande Pirâmide" e "Lado da base da Grande Pirâmide"
+  //   "cerca de N mil vezes mais velha" é conta feita aqui: o meio da faixa de idade da pedra dividido pela idade da obra.
+  //   O bloco e o fóssil não têm medida nos dados: são desenhos, sem escala.
+  // =====================================================================================================
+  function cssPedra() {
+    var p = 'pc-pedra-de-mar';
+    return '.pc-pedra-de-mar{--pcp-pedra:color-mix(in srgb,#c9ad78 88%,var(--s2));--pcp-sombra:color-mix(in srgb,#a3854f 88%,var(--s2));--pcp-claro:color-mix(in srgb,#f1e5c4 92%,var(--s2));--pcp-traco:#57452a;--pcp-k:1}' +
+      cssTopo(p) +
+      '.pc-pedra-de-mar-gruda{display:grid;gap:14px 44px;align-items:center}' +
+      '.pc-pedra-de-mar.largo .pc-pedra-de-mar-gruda{grid-template-columns:var(--pcp-a) minmax(0,1fr)}' +
+      '.pc-pedra-de-mar-palco{margin:0;grid-row:span 2}' +
+      '.pc-pedra-de-mar:not(.largo) .pc-pedra-de-mar-palco{grid-row:auto;order:2}' +
+      '.pc-pedra-de-mar:not(.largo) .pc-pedra-de-mar-bts{order:1}.pc-pedra-de-mar:not(.largo) .pc-pedra-de-mar-leg{order:3}' +
+      '.pc-pedra-de-mar.largo .pc-pedra-de-mar-bts{align-self:end}.pc-pedra-de-mar.largo .pc-pedra-de-mar-leg{align-self:start}' +
+      '.pc-pedra-de-mar-bts .pc-botoes button{min-height:44px;padding:0 16px}' +
+      '.pc-pedra-de-mar-fundo{fill:var(--s1)}' +
+      '.pc-pedra-de-mar-borda{fill:none;stroke:var(--linha);stroke-width:1}' +
+      '.pc-pedra-de-mar-chao{fill:var(--pcp-pedra);opacity:.16}' +
+      '.pc-pedra-de-mar-pedra{fill:var(--pcp-pedra)}' +
+      '.pc-pedra-de-mar-sombra{fill:var(--pcp-sombra)}' +
+      '.pc-pedra-de-mar-viz{fill:color-mix(in srgb,var(--pcp-sombra) 45%,var(--pcp-pedra))}' +
+      '.pc-pedra-de-mar-claro{fill:var(--pcp-claro)}' +
+      '.pc-pedra-de-mar-l{fill:none;stroke:var(--pcp-traco);stroke-width:calc(var(--pcp-k) * 1px);stroke-linecap:round;stroke-linejoin:round}' +
+      '.pc-pedra-de-mar-l.f{opacity:.3}.pc-pedra-de-mar-l.m{opacity:.55}.pc-pedra-de-mar-l.g{stroke-width:calc(var(--pcp-k) * 1.8px)}' +
+      '.pc-pedra-de-mar-junta{fill:var(--s1)}' +
+      '.pc-pedra-de-mar-disco{fill:var(--pcp-claro);stroke:var(--pcp-traco);stroke-opacity:.5;stroke-width:calc(var(--pcp-k) * .8px)}' +
+      '.pc-pedra-de-mar-alvo{fill:none;stroke:var(--acento);stroke-width:calc(var(--pcp-k) * 2px);stroke-linejoin:round}' +
+      '.pc-pedra-de-mar-halo{fill:none;stroke:var(--s1);stroke-width:calc(var(--pcp-k) * 5px);stroke-linejoin:round;opacity:.9}' +
+      '.pc-pedra-de-mar-rt{font:600 11.5px var(--sem);fill:var(--tinta)}' +
+      '.pc-pedra-de-mar-fio{fill:none;stroke:var(--tinta2);stroke-width:1}' +
+      '.pc-pedra-de-mar-rt.s{fill:#3b2e17;paint-order:stroke;stroke:var(--pcp-claro);stroke-width:3.5px;stroke-linejoin:round}' +
+      '.pc-pedra-de-mar-fio.s{stroke:#3b2e17;opacity:.8}' +
+      '.pc-pedra-de-mar-leg{margin:0;padding:0;list-style:none;display:grid;gap:14px}' +
+      '.pc-pedra-de-mar-leg li{border-left:2px solid var(--linha);padding:2px 0 2px 16px;opacity:.5;transition:opacity .35s ease,border-color .35s ease}' +
+      '.pc-pedra-de-mar-leg li.at{opacity:1;border-color:var(--acento)}' +
+      '.pc-pedra-de-mar-leg b{display:block;font:600 clamp(19px,2.2vw,23px)/1.2 var(--serifa)}' +
+      '.pc-pedra-de-mar-leg i{font:700 12px var(--sem);font-style:normal;letter-spacing:.12em;color:var(--tinta2);display:block;margin-bottom:3px}' +
+      '.pc-pedra-de-mar-leg p{margin:6px 0 0;font-size:15.5px;line-height:1.5;color:var(--tinta);max-width:32em}' +
+      '.pc-pedra-de-mar.uma .pc-pedra-de-mar-leg{display:block;min-height:var(--pcp-leg,0)}' +
+      '.pc-pedra-de-mar.uma .pc-pedra-de-mar-leg li{display:none}.pc-pedra-de-mar.uma .pc-pedra-de-mar-leg li.at{display:block}' +
+      '.pc-pedra-de-mar-trilho{position:relative}' +
+      '@media (prefers-reduced-motion: reduce){.pc-pedra-de-mar-leg li{transition:none}}';
+  }
+
+  E.peca('pedra-de-mar', function (el, dados, U, args) {
+    s = U.s; var h = U.h, P = 'pc-pedra-de-mar';
+    var cm = camadaDe(dados, 'antes-dos-humanos'), cp = camadaDe(dados, 'imperio-antigo');
+    if (args && args.camada && args.camada.id === 'antes-dos-humanos') cm = args.camada;
+    if (!cm) return;
+    var fPedra = acha(cm.fatos, /pedra das pir[âa]mides/i) || acha(cm.fatos, /numulit/i, 'texto');
+    var nIdade = acha(cm.numeros, /calc[áa]rio de Giz[ée]/i, 'rotulo');
+    var idades = numeros(nIdade ? nIdade.valor : fPedra ? fPedra.ano_txt : '').filter(function (n) { return n > 1 && n < 500; });
+    if (!fPedra || idades.length < 2) return;
+    var idMin = Math.min.apply(null, idades), idMax = Math.max.apply(null, idades);
+    var some = (/h[áa] cerca de (\d+(?:,\d+)?) milh[õo]es de anos/.exec(txt(fPedra.texto)) || [])[1];
+    var nBlocos = cp && acha(cp.numeros, /^Blocos da Grande Pir/i, 'rotulo'), fPir = cp && acha(cp.fatos, /Grande Pir[âa]mide em n[úu]meros/i);
+    var nAlt = cp && acha(cp.numeros, /^Altura original da Grande Pir/i, 'rotulo'), nLado = cp && acha(cp.numeros, /^Lado da base da Grande Pir/i, 'rotulo');
+    var alt = nAlt ? numeros(nAlt.valor)[0] : 0, lado = nLado ? numeros(nLado.valor)[0] : 0;
+    var razao = alt > 50 && lado > 50 ? alt / lado : .64; // sem os números, a silhueta fica só como desenho
+    var anoPir = fPir && typeof fPir.ano === 'number' ? fPir.ano : null;
+
+    poeEstilo('pc-pedra-de-mar-css', cssPedra());
+    el.classList.add(P);
+    var faixaTxt = 'entre ' + U.dec(idMin) + ' e ' + U.dec(idMax) + ' milhões de anos';
+    var quadros = [
+      { rot: 'pirâmide', tit: 'A obra', txt: 'A Grande Pirâmide de Gizé' + (anoPir ? ', de c. ' + U.ano(anoPir) + ',' : '') + (nBlocos ? ' tem ' + txt(nBlocos.valor) + ' de blocos. ' : ' é feita de blocos. ') + 'A pedra é o calcário do próprio planalto.' },
+      { rot: 'bloco', tit: 'A pedra', txt: 'De perto, o bloco está cheio de discos em forma de moeda. É fundo de mar endurecido, e muito mais velho que a obra: tem ' + faixaTxt + ', conforme a fonte.' },
+      { rot: 'fóssil', tit: 'O fóssil', txt: 'Cada disco é um numulito: a carapaça de um ser marinho de uma célula só, que vivia no mar de Tétis. Por dentro, uma espiral de pequenas câmaras.' + (some ? ' Os numulitos somem do registro fóssil há cerca de ' + some + ' milhões de anos.' : '') }
+    ];
+    var z = 0, alvoZ = 0, rafZ = 0, preso = false, manual = false, topoPx = 20, Pc = null;
+    var palcoBox = h('figure', { class: P + '-palco' });
+    var leg = h('ol', { class: P + '-leg' }, quadros.map(function (q, i) {
+      return h('li', null, h('i', null, (i + 1) + ' de 3'), h('b', null, q.tit), h('p', null, q.txt));
+    }));
+    var bts = U.botoes(quadros.map(function (q, i) { return { id: i, rotulo: q.rot }; }), 0, function (i) { manual = true; irPara(i); }, 'Aproximação');
+    var gruda = h('div', { class: P + '-gruda' }, palcoBox, h('div', { class: P + '-bts' }, bts), leg);
+    var trilho = h('div', { class: P + '-trilho' }, gruda);
+    var introP = h('p', { class: P + '-intro' });
+    var cab = h('header', { class: P + '-topo' }, h('p', { class: P + '-rot' }, 'De ' + U.dec(idMax) + ' a ' + U.dec(idMin) + ' milhões de anos atrás'), h('h3', { class: P + '-tit' }, 'A pirâmide é feita de mar'), introP);
+    el.appendChild(cab); el.appendChild(trilho);
+    var obra = anoPir ? Math.round(U.anosAtras(anoPir) / 100) * 100 : 0;
+    el.appendChild(h('p', { class: 'pc-nota' }, 'O que ver aqui: três aproximações da mesma pedra, sem escala. ' +
+      (obra ? 'A obra tem cerca de ' + U.int(obra) + ' anos; a pedra é cerca de ' + U.int(Math.round((idMin + idMax) / 2 * 1e6 / obra / 1000)) + ' mil vezes mais velha. ' : '') +
+      'Em Gizé, os discos se veem a olho nu nos blocos.'));
+    var linhas = [];
+    if (nIdade) linhas.push([txt(nIdade.rotulo), txt(nIdade.valor), U.link(txt(nIdade.fonte), nIdade.url)]);
+    if (some) linhas.push(['Fim dos numulitos no registro fóssil', 'há cerca de ' + some + ' milhões de anos', U.link(txt(fPedra.fonte), fPedra.url)]);
+    [nBlocos, nAlt, nLado].forEach(function (n) { if (n) linhas.push([txt(n.rotulo), txt(n.valor), U.link(txt(n.fonte), n.url)]); });
+    el.appendChild(U.tabela('Ver os números', ['O quê', 'Valor', 'Fonte'], linhas));
+    if (fPedra.fonte) el.appendChild(U.fonte(txt(fPedra.fonte), fPedra.url));
+
+    // ----- o palco: três camadas, uma dentro da outra -----
+    function fazPalco(w) {
+      var H = Math.round(w * .76), C = [w / 2, H / 2], id = 'pcp' + (++UID), R = semente(41), e = w / 350, i;
+      var svg = s('svg', { width: w, height: H, viewBox: '0 0 ' + w + ' ' + H, role: 'img',
+        'aria-label': 'Três aproximações: a silhueta da Grande Pirâmide; um bloco de calcário cheio de discos; e um desses discos visto por dentro, um numulito, com a espiral dividida em câmaras.' });
+      svg.appendChild(s('defs', null, s('clipPath', { id: id + 'q' }, s('rect', { x: .5, y: .5, width: w - 1, height: H - 1, rx: 14 }))));
+      var cena = s('g', { 'clip-path': 'url(#' + id + 'q)' });
+      cena.appendChild(s('rect', { class: P + '-fundo', x: 0, y: 0, width: w, height: H }));
+
+      // B: o bloco (desenhado em volta de 0,0)
+      var wB = w * .7, hB = H * .56, junta = 5 * e;
+      // A: a pirâmide
+      var yG = H * .84, bw = w * .74, ph = bw * razao; if (ph > H * .66) { ph = H * .66; bw = ph / razao; }
+      var ax = w * .5, apice = [ax, yG - ph], bl = [ax - bw / 2, yG], br = [ax + bw / 2, yG], quina = [ax + bw * .2, yG];
+      var mw = Math.max(13, 15 * e), mh = mw * hB / wB, FA = [ax - bw * .13, yG - ph * .3];
+      var A = s('g');
+      A.appendChild(s('rect', { class: P + '-chao', x: -w, y: f1(yG), width: w * 3, height: H }));
+      A.appendChild(s('path', { class: P + '-pedra', d: 'M' + f1(bl[0]) + ' ' + f1(bl[1]) + 'L' + f1(apice[0]) + ' ' + f1(apice[1]) + 'L' + f1(br[0]) + ' ' + f1(br[1]) + 'Z' }));
+      A.appendChild(s('path', { class: P + '-sombra', d: 'M' + f1(quina[0]) + ' ' + f1(quina[1]) + 'L' + f1(apice[0]) + ' ' + f1(apice[1]) + 'L' + f1(br[0]) + ' ' + f1(br[1]) + 'Z' }));
+      var fiadas = '', f, n = 15;
+      for (i = 1; i < n; i++) { f = i / n; fiadas += 'M' + f1(mix(bl[0], apice[0], f)) + ' ' + f1(yG - ph * f) + 'H' + f1(mix(br[0], apice[0], f)); }
+      A.appendChild(s('path', { class: P + '-l f', d: fiadas }));
+      A.appendChild(s('path', { class: P + '-l m', d: 'M' + f1(-w) + ' ' + f1(yG) + 'H' + f1(w * 2) }));
+      A.appendChild(s('rect', { class: P + '-halo', x: f1(FA[0] - mw / 2), y: f1(FA[1] - mh / 2), width: f1(mw), height: f1(mh), rx: f1(mw * .08) }));
+      A.appendChild(s('rect', { class: P + '-alvo', x: f1(FA[0] - mw / 2), y: f1(FA[1] - mh / 2), width: f1(mw), height: f1(mh), rx: f1(mw * .08) }));
+
+      var B = s('g');
+      function bloco(x, y, ww, hh, cl) { // contorno um pouco torto, de pedra cortada à mão
+        var p = [], k2, nn, t2;
+        nn = Math.max(2, Math.round(ww / (34 * e))); for (k2 = 0; k2 <= nn; k2++) { t2 = k2 / nn; p.push([x + lim(ww * t2, 7 * e, ww - 7 * e), y + (R() - .5) * 2.4 * e]); }
+        nn = Math.max(2, Math.round(hh / (34 * e))); for (k2 = 0; k2 <= nn; k2++) { t2 = k2 / nn; p.push([x + ww + (R() - .5) * 2.4 * e, y + lim(hh * t2, 7 * e, hh - 7 * e)]); }
+        nn = Math.max(2, Math.round(ww / (34 * e))); for (k2 = 0; k2 <= nn; k2++) { t2 = k2 / nn; p.push([x + ww - lim(ww * t2, 7 * e, ww - 7 * e), y + hh + (R() - .5) * 2.4 * e]); }
+        nn = Math.max(2, Math.round(hh / (34 * e))); for (k2 = 0; k2 <= nn; k2++) { t2 = k2 / nn; p.push([x + (R() - .5) * 2.4 * e, y + hh - lim(hh * t2, 7 * e, hh - 7 * e)]); }
+        return s('path', { class: P + '-' + cl, d: curva(p, true) });
+      }
+      // a parede em volta: fiadas com as juntas desencontradas
+      var x0 = -wB / 2, y0 = -hB / 2;
+      [[x0 - wB * .62 - junta, y0 - hB - junta, wB * 1.02, hB], [x0 + wB * .4, y0 - hB - junta, wB * 1.25, hB],
+       [x0 - wB - junta, y0, wB, hB], [x0 + wB + junta, y0, wB, hB],
+       [x0 - wB * .75 - junta, y0 + hB + junta, wB * 1.03, hB], [x0 + wB * .28, y0 + hB + junta, wB * 1.3, hB]].forEach(function (q) { B.appendChild(bloco(q[0], q[1], q[2], q[3], 'viz')); });
+      B.appendChild(bloco(x0, y0, wB, hB, 'pedra'));
+      // veios e discos
+      var veios = '';
+      for (i = 0; i < 3; i++) { var yv = y0 + hB * (.22 + i * .28) + (R() - .5) * 8 * e; veios += 'M' + f1(x0 + 10 * e) + ' ' + f1(yv) + 'q' + f1(wB * .25) + ' ' + f1((R() - .5) * 10 * e) + ' ' + f1(wB * .5 - 10 * e) + ' ' + f1((R() - .5) * 6 * e) + 't' + f1(wB * .5 - 10 * e) + ' ' + f1((R() - .5) * 6 * e); }
+      B.appendChild(s('path', { class: P + '-l f', d: veios }));
+      var FB = [wB * .14, -hB * .04], rB = 9 * e, postos = [[FB[0], FB[1], rB * 2.4]], v = 0, dx, dy, rr, ok, de, x, y;
+      function espiralzinha(cx2, cy2, r2, voltas) { var d2 = '', j, a2, q2; for (j = 0; j <= 40; j++) { a2 = j / 40 * Math.PI * 2 * voltas + 1; q2 = r2 * (.14 + .72 * j / 40); d2 += (j ? 'L' : 'M') + f1(cx2 + Math.cos(a2) * q2) + ' ' + f1(cy2 + Math.sin(a2) * q2); } return d2; }
+      var nDiscos = 0;
+      while (nDiscos < 64 && v++ < 3000) {
+        x = (R() - .5) * (w + 40); y = (R() - .5) * (H + 40); rr = (3.4 + R() * R() * 6) * e; de = Math.abs(x) < wB / 2 && Math.abs(y) < hB / 2;
+        // nada em cima das juntas
+        dx = Math.abs(Math.abs(x) - wB / 2 - junta / 2); dy = Math.abs(Math.abs(y) - hB / 2 - junta / 2);
+        if (dx < rr + junta || dy < rr + junta) continue;
+        if (!de && Math.abs(y) < hB / 2 === false && Math.abs(x - (y < 0 ? x0 + wB * .4 - junta / 2 : x0 + wB * .28 - junta / 2)) < rr + junta) continue;
+        ok = postos.every(function (q) { return Math.hypot(q[0] - x, q[1] - y) > q[2] + rr + 2.5 * e; });
+        if (!ok) continue;
+        postos.push([x, y, rr]); nDiscos++;
+        if (R() < .58) {
+          B.appendChild(s('circle', { class: P + '-disco', cx: f1(x), cy: f1(y), r: f1(rr), opacity: de ? 1 : .7 }));
+          if (rr > 5.5 * e) B.appendChild(s('path', { class: P + '-l f', d: espiralzinha(x, y, rr, 1.6) }));
+        } else B.appendChild(s('ellipse', { class: P + '-disco', cx: f1(x), cy: f1(y), rx: f1(rr * 1.15), ry: f1(rr * .36), transform: 'rotate(' + Math.round(R() * 180) + ' ' + f1(x) + ' ' + f1(y) + ')', opacity: de ? 1 : .7 }));
+      }
+      B.appendChild(s('circle', { class: P + '-disco', cx: f1(FB[0]), cy: f1(FB[1]), r: f1(rB) }));
+      B.appendChild(s('path', { class: P + '-l f', d: espiralzinha(FB[0], FB[1], rB, 2.2) }));
+      var anel = B.appendChild(s('circle', { class: P + '-alvo', cx: f1(FB[0]), cy: f1(FB[1]), r: f1(rB + 3.5 * e) }));
+
+      // C: o numulito por dentro (em volta de 0,0)
+      var RC = Math.min(w, H) * .4, Cg = s('g'), r0 = RC * .06, voltas = 6, borda = RC * .955, passo = (borda - r0) / voltas, d = '', a, q, sep = '', ang, r1, r2, da;
+      function raio(t2) { return r0 + passo * t2 / (Math.PI * 2); }
+      function pol(r3, t2) { return f1(Math.cos(t2) * r3) + ' ' + f1(Math.sin(t2) * r3); }
+      Cg.appendChild(s('circle', { class: P + '-claro', cx: 0, cy: 0, r: f1(RC) }));
+      for (i = 0; i <= voltas * 72; i++) { a = i / 72 * Math.PI * 2; d += (i ? 'L' : 'M') + pol(raio(a), a); }
+      Cg.appendChild(s('path', { class: P + '-l g', d: d }));
+      ang = Math.PI * .6;
+      while (ang < voltas * Math.PI * 2) {
+        r1 = raio(ang); r2 = Math.min(borda, r1 + passo); da = Math.min(1.1, passo * .92 / r1);
+        if (ang > Math.PI * 2 * (voltas - 1)) r2 = borda;
+        sep += 'M' + pol(r1, ang) + 'Q' + pol(mix(r1, r2, .55), ang + da * .16) + ' ' + pol(r2, ang - da * .3);
+        ang += da;
+      }
+      Cg.appendChild(s('path', { class: P + '-l', d: sep }));
+      Cg.appendChild(s('circle', { class: P + '-l g', cx: 0, cy: 0, r: f1(RC) }));
+      Cg.appendChild(s('circle', { class: P + '-sombra', cx: 0, cy: 0, r: f1(r0 * 1.15) }));
+
+      cena.appendChild(A); cena.appendChild(B); cena.appendChild(Cg);
+      // rótulos, por cima (não entram no zoom)
+      var rotA = s('g');
+      rotA.appendChild(s('path', { class: P + '-fio', d: 'M' + f1(FA[0] - mw / 2 - 3) + ' ' + f1(FA[1] - mh / 2 - 3) + 'L' + f1(w * .17) + ' ' + f1(H * .3) }));
+      rotA.appendChild(s('text', { class: P + '-rt', x: f1(w * .17 - 2), y: f1(H * .3 - 7), 'text-anchor': 'middle' }, 'um bloco'));
+      var rotB = s('g');
+      rotB.appendChild(s('path', { class: P + '-fio s', d: 'M' + f1(C[0] + FB[0] + rB * 1.1) + ' ' + f1(C[1] + FB[1] - rB * 1.1) + 'L' + f1(C[0] + wB * .33) + ' ' + f1(C[1] - hB * .5 + 20 * e) }));
+      rotB.appendChild(s('text', { class: P + '-rt s', x: f1(C[0] + wB * .33 + 3), y: f1(C[1] - hB * .5 + 17 * e) }, 'um disco'));
+      var rotC = s('g'), aC = -.62, rC2 = raio(Math.PI * 2 * 4.4), xc = C[0] + Math.cos(aC) * (rC2 + passo * .5), yc2 = C[1] + Math.sin(aC) * (rC2 + passo * .5);
+      rotC.appendChild(s('path', { class: P + '-fio s', d: 'M' + f1(xc) + ' ' + f1(yc2) + 'L' + f1(C[0] + RC + 10 * e) + ' ' + f1(C[1] - RC * .78) }));
+      rotC.appendChild(s('text', { class: P + '-rt s', x: f1(C[0] + RC + 13 * e), y: f1(C[1] - RC * .78 + 4) }, 'câmara'));
+      rotC.appendChild(s('path', { class: P + '-fio s', d: 'M' + f1(C[0] - r0 * 1.6) + ' ' + f1(C[1] + r0 * 1.6) + 'L' + f1(C[0] - RC - 10 * e) + ' ' + f1(C[1] + RC * .8) }));
+      rotC.appendChild(s('text', { class: P + '-rt s', x: f1(C[0] - RC - 12 * e), y: f1(C[1] + RC * .8 + 15), 'text-anchor': 'middle' }, 'começo'));
+      cena.appendChild(rotA); cena.appendChild(rotB); cena.appendChild(rotC);
+      svg.appendChild(cena);
+      svg.appendChild(s('rect', { class: P + '-borda', x: .5, y: .5, width: w - 1, height: H - 1, rx: 14 }));
+      palcoBox.textContent = ''; palcoBox.appendChild(svg);
+      var G1 = wB / mw, G2 = RC / rB;
+      Pc = { A: A, B: B, C: Cg, anel: anel, rotA: rotA, rotB: rotB, rotC: rotC, G1: G1, G2: G2, FA: FA, FB: FB, Cc: C,
+        P1: [(G1 * FA[0] - C[0]) / (G1 - 1), (G1 * FA[1] - C[1]) / (G1 - 1)],
+        P2: [(G2 * (C[0] + FB[0]) - C[0]) / (G2 - 1), (G2 * (C[1] + FB[1]) - C[1]) / (G2 - 1)] };
+    }
+    function poe(g, tx, ty, k, op) {
+      if (op <= .004) { if (g.style.display !== 'none') g.style.display = 'none'; return; }
+      if (g.style.display === 'none') g.style.display = '';
+      g.setAttribute('transform', 'translate(' + f1(tx) + ' ' + f1(ty) + ') scale(' + k.toFixed(4) + ')');
+      g.style.opacity = op >= .996 ? '' : op.toFixed(3);
+    }
+    function desenha() {
+      if (!Pc) return;
+      var e1 = lim(z, 0, 1), e2 = lim(z - 1, 0, 1), g1 = Math.pow(Pc.G1, e1), g2 = Math.pow(Pc.G2, e2), C = Pc.Cc, sx, sy;
+      // A: cresce em volta do ponto que mantém o bloco marcado no rumo do centro
+      Pc.A.style.setProperty('--pcp-k', (1 / g1).toFixed(4));
+      poe(Pc.A, Pc.P1[0] * (1 - g1), Pc.P1[1] * (1 - g1), g1, 1 - suave((e1 - .5) / .42));
+      if (z <= 1) {
+        sx = Pc.P1[0] + g1 * (Pc.FA[0] - Pc.P1[0]); sy = Pc.P1[1] + g1 * (Pc.FA[1] - Pc.P1[1]);
+        Pc.B.style.setProperty('--pcp-k', '1');
+        poe(Pc.B, sx, sy, g1 / Pc.G1, suave((e1 - .2) / .45));
+        poe(Pc.C, 0, 0, 1, 0);
+      } else {
+        Pc.B.style.setProperty('--pcp-k', (1 / g2).toFixed(4));
+        poe(Pc.B, Pc.P2[0] * (1 - g2) + g2 * C[0], Pc.P2[1] * (1 - g2) + g2 * C[1], g2, 1); // o bloco fica: é a pedra em volta do fóssil
+        sx = Pc.P2[0] + g2 * (C[0] + Pc.FB[0] - Pc.P2[0]); sy = Pc.P2[1] + g2 * (C[1] + Pc.FB[1] - Pc.P2[1]);
+        poe(Pc.C, sx, sy, g2 / Pc.G2, suave((e2 - .2) / .45));
+      }
+      Pc.anel.style.opacity = (1 - suave(e2 / .6)).toFixed(3);
+      Pc.rotA.style.opacity = (1 - suave(e1 / .18)).toFixed(3);
+      Pc.rotB.style.opacity = (suave((e1 - .86) / .14) * (1 - suave(e2 / .18))).toFixed(3);
+      Pc.rotC.style.opacity = suave((e2 - .86) / .14).toFixed(3);
+    }
+    var atual = -1;
+    function marca() {
+      var i = lim(Math.round(z), 0, 2);
+      if (i === atual) return; atual = i;
+      Array.prototype.forEach.call(leg.children, function (li, j) { li.classList.toggle('at', j === i); });
+      Array.prototype.forEach.call(bts.children, function (b, j) { b.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+    }
+    function anima(alvo) {
+      cancelAnimationFrame(rafZ); alvoZ = alvo;
+      if (U.reduz) { z = alvo; desenha(); marca(); return; }
+      var de = z, t0 = 0, dur = 1050 * Math.max(.7, Math.abs(alvo - de));
+      rafZ = requestAnimationFrame(function passo(ts) {
+        if (!t0) t0 = ts;
+        var u = Math.min(1, (ts - t0) / dur), ee = u < .5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+        z = de + (alvo - de) * ee; desenha(); marca();
+        if (u < 1) rafZ = requestAnimationFrame(passo);
+      });
+    }
+
+    // ----- rolagem: preso (o palco fica parado e o zoom segue a rolagem) ou solto (o zoom dispara pela posição) -----
+    var PARADAS = [.03, .51, .97];
+    function zDaRolagem(p) { return p < .1 ? 0 : p < .44 ? suave((p - .1) / .34) : p < .58 ? 1 : p < .9 ? 1 + suave((p - .58) / .32) : 2; }
+    function faixaPresa() { return Math.max(1, trilho.offsetHeight - gruda.offsetHeight); }
+    function irPara(i) {
+      if (preso) {
+        var r = trilho.getBoundingClientRect();
+        window.scrollTo({ top: Math.max(0, window.pageYOffset + r.top - topoPx + PARADAS[i] * faixaPresa()), behavior: 'smooth' });
+      } else anima(i);
+    }
+    var pedido = false, ouvindo = false;
+    function aoRolar() {
+      if (pedido) return; pedido = true;
+      requestAnimationFrame(function () {
+        pedido = false;
+        if (preso) {
+          var r = trilho.getBoundingClientRect(), fx = faixaPresa();
+          var cabe = Math.min(1, (document.documentElement.scrollHeight - window.innerHeight - (window.pageYOffset + r.top) + topoPx) / fx); // se a página acaba antes, o fim da faixa vira o fim da rolagem
+          var p = lim((topoPx - r.top) / fx, 0, 1); if (cabe > .2 && cabe < 1) p = lim(p / cabe, 0, 1);
+          cancelAnimationFrame(rafZ); z = zDaRolagem(p); desenha(); marca();
+        } else if (!U.reduz && !manual) {
+          var q = palcoBox.getBoundingClientRect(), meio = (q.top + q.height / 2) / window.innerHeight, alvo = meio > .66 ? 0 : meio > .4 ? 1 : 2;
+          if (q.bottom < 0 || q.top > window.innerHeight) return;
+          if (alvo !== alvoZ) anima(alvo);
+        }
+      });
+    }
+    function semCorte() { // algum pai com rolagem própria ou corte impede o "sticky"
+      for (var p = el.parentElement; p && p !== document.body && p !== document.documentElement; p = p.parentElement) {
+        var o = getComputedStyle(p); if (/(auto|scroll|hidden|clip)/.test(o.overflowY + o.overflowX)) return false;
+      }
+      return true;
+    }
+    var alturaJanela = 0;
+    function arma(larg) {
+      var largo = larg >= 860, a = largo ? Math.min(560, Math.round((larg - 44) * .52)) : Math.min(larg, 560);
+      el.classList.toggle('largo', largo); el.style.setProperty('--pcp-a', a + 'px');
+      fazPalco(a);
+      // tenta prender: só se o conjunto couber inteiro na janela
+      alturaJanela = window.innerHeight;
+      var barra = window.innerWidth < 1000 ? 58 : 16;
+      trilho.style.height = ''; gruda.style.position = ''; gruda.style.top = '';
+      el.classList.toggle('uma', !largo && !U.reduz);
+      el.style.removeProperty('--pcp-leg');
+      if (!largo && !U.reduz) { // no celular, uma legenda por vez: reserva a altura da maior
+        var maior = 0; Array.prototype.forEach.call(leg.children, function (li) { li.style.display = 'block'; maior = Math.max(maior, li.offsetHeight); li.style.display = ''; });
+        el.style.setProperty('--pcp-leg', maior + 'px');
+      }
+      var hG = gruda.offsetHeight;
+      preso = !U.reduz && hG + barra + 12 <= alturaJanela && semCorte() && !!(window.CSS && CSS.supports && CSS.supports('position', 'sticky'));
+      if (preso) {
+        topoPx = Math.max(barra, Math.round((alturaJanela - hG) / 2));
+        var passoPx = lim(Math.round(alturaJanela * .62), 380, 640);
+        trilho.style.height = (hG + 2 * passoPx) + 'px'; gruda.style.position = 'sticky'; gruda.style.top = topoPx + 'px';
+      } else el.classList.remove('uma');
+      introP.textContent = preso ? 'Três aproximações da mesma pedra. Role a página, ou use os botões.' : 'Três aproximações da mesma pedra. Use os botões.';
+      desenha(); atual = -1; marca();
+      if (preso) aoRolar();
+    }
+    var ultimaLarg = 0;
+    U.aoMedir(el, function (larg) { ultimaLarg = larg; arma(larg); });
+    window.addEventListener('resize', function () { if (ultimaLarg && el.isConnected && Math.abs(window.innerHeight - alturaJanela) > 140) arma(ultimaLarg); });
+    U.aoVer(trilho, function (v) {
+      if (v && !ouvindo) { ouvindo = true; window.addEventListener('scroll', aoRolar, { passive: true }); aoRolar(); }
+      else if (!v && ouvindo) { ouvindo = false; window.removeEventListener('scroll', aoRolar); manual = false; }
+    }, { uma: false, margem: '200px 0px 200px 0px' });
   });
+
 })();

@@ -193,6 +193,7 @@ Tudo em `index.html`:
 - Sem frameworks: JS puro (vanilla). Manter assim.
 - Câmbio base usado nas estimativas: US$ 1 ≈ R$ 5,00 (maio/2026). Preços são estimativas 2025–2026.
 - Datas/idioma: tudo em pt-BR.
+- **No computador, web é web (pedido do Lucas, 20/11/2026, vale em todos os projetos):** "o web tem que ser web e não uma réplica do iPhone; quero aproveitamento de tela, não quero coisa vertical". A versão de computador usa a tela: a largura inteira, tabelas com colunas, painéis lado a lado, o detalhe ao lado da lista. Nunca é a do celular esticada nem uma coluna única de cartões empilhados. O celular tem o desenho dele e o computador tem o dele. Menu no computador é sobretela presa ao botão, não menu lateral (pedido de 12/10/2026 no Telas). Conferir toda tela nova em 1.280, 1.440 e 1.920 px antes de mostrar.
 - **Como o Lucas escreve (pedido dele, 08/11/2026, vale em todos os chats):** duas linhas em branco antes de uma linha = essa linha é título (começa um item novo); `_x` = quebra de assunto; `_qb` = quebra de linha dentro do mesmo assunto; uma linha em branco só separa parágrafos. Ler a mensagem com essa estrutura e responder item por item, na ordem dele; quando duas leituras mudam o sentido de um item, perguntar.
 
 ## Ideias de próximos passos (pendências/possíveis)
