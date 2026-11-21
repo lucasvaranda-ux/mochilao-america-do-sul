@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste de peça</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/egito/egito.css">
+</head>
+<body>
+<!-- Banco de prova das peças visuais: /egito/pecas/teste.html?p=<peça>&era=<era>&camada=<id da camada>&serie=<id da série>
+     Mostra a peça sozinha, dentro de uma seção da era pedida, com os dados de verdade. -->
+<section class="entre" id="palco" data-era="moderno" style="min-height:100vh">
+  <div class="miolo">
+    <p class="rot" id="rot"></p>
+    <div class="peca" id="p"></div>
+  </div>
+</section>
+<script src="/egito/base.js"></script>
+<script src="/egito/pecas/mapa.js"></script>
+<script src="/egito/pecas/graficos.js"></script>
+<script src="/egito/pecas/cenas.js"></script>
+<script src="/egito/pecas/profundo.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), nome = q.get('p') || 'mapa', era = q.get('era') || 'moderno';
+  document.getElementById('palco').setAttribute('data-era', era);
+  document.getElementById('rot').textContent = 'peça: ' + nome + ' · era: ' + era;
+  fetch('/egito/dados.json').then(function (r) { return r.json(); }).then(function (d) {
+    var el = document.getElementById('p'), args = {};
+    var c = d.camadas.filter(function (x) { return x.id === q.get('camada'); })[0];
+    if (c) args.camada = c;
+    if (q.get('serie') && d.series) args.serie = d.series[q.get('serie')];
+    if (nome === 'mapa') args = { pontos: (c || d.camadas[0]).onde, numerar: !q.get('grande'), grande: !!q.get('grande') };
+    var fn = window.EGITO.pecas[nome];
+    if (!fn) { el.textContent = 'peça não registrada: ' + nome; return; }
+    window.EGITO.dados = d;
+    fn(el, d, window.EGITO.util, args);
+    document.body.setAttribute('data-pronto', '1');
+  }).catch(function (e) { document.getElementById('p').textContent = 'erro: ' + e.message; });
+})();
+</script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 // Apps com endereço próprio saídos deste repositório: na raiz do endereço, abre a página do app.
 // Whatch (whatch.madeinbr.app e os endereços de teste) → /telas; Inv (inv.madeinbr.app) → /inv;
 // Estudos (estudos.madeinbr.app) → /estudos (estante particular: a página é só a porta, o conteúdo é cifrado).
+// Egito (egito.madeinbr.app) → /egito (estudo público, de hoje para trás).
 // A regra de reescrita do vercel.json não basta: na raiz, o index.html do mochilão vence. Aqui roda antes dos arquivos.
 // O HTML sai com o título, a descrição e a imagem do app já no código, para a prévia do link (WhatsApp, iMessage),
 // que não roda o JavaScript da página. Nos outros endereços (mochilao.madeinbr.app), não faz nada.
@@ -26,6 +27,13 @@ const APPS = [
     icone: '/estudos/icone.svg', apple: '/estudos/icone-180.png', og: '/estudos/icone-512.png',
     // cabeçalhos a mais na resposta: fora dos buscadores, sem poder ser embutida em outro site, sem mandar o endereço adiante
     cab: { 'x-robots-tag': 'noindex, nofollow', 'x-frame-options': 'DENY', 'referrer-policy': 'no-referrer', 'x-content-type-options': 'nosniff' }
+  },
+  {
+    re: /^egito(\.|-|$)/, path: '/egito', interno: 'x-egito-interno',
+    titulo: 'Egito, de hoje para trás',
+    desc: 'O Egito lido como se escava: de 2026 até antes de existir o Nilo, camada por camada, com fotos, mapas e fontes.',
+    icone: '/egito/icone.svg', apple: '/egito/icone-180.png', og: '/egito/og.jpg',
+    cab: { 'x-robots-tag': 'noindex' }
   }
 ];
 
