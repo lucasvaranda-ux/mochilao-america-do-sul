@@ -20,11 +20,16 @@
   /** nome de classe com o prefixo da peça: C() -> 'pc-nome', C('x') -> 'pc-nome-x' */
   function prefixo(nome) { var p = 'pc-' + nome; return function (x) { return x ? p + '-' + x : p; }; }
   var postos = {};
+  // os botões comuns têm 36 px de altura: uma área invisível completa os 44 px de toque, sem mudar o desenho;
+  // nas tabelas, palavra comprida quebra em vez de empurrar a página para o lado
+  var TOQUE = '& .pc-botoes button,& .pc-tabela summary{position:relative}' +
+    '& .pc-botoes button::after,& .pc-tabela summary::after{content:"";position:absolute;left:0;right:0;top:-5px;bottom:-5px}' +
+    '& .pc-tabela td,& .pc-tabela th{overflow-wrap:anywhere}';
   /** estilo da peça, posto uma vez; no texto, & vale '.pc-nome' */
   function estilo(nome, css) {
     if (postos[nome]) return; postos[nome] = 1;
     var st = document.createElement('style'); st.setAttribute('data-peca', nome);
-    st.textContent = css.replace(/&/g, '.pc-' + nome); document.head.appendChild(st);
+    st.textContent = (css + TOQUE).replace(/&/g, '.pc-' + nome); document.head.appendChild(st);
   }
   function ehClaro(el, U) {
     var c = U.cor(el, 'fundo'), m = /^#([0-9a-f]{6})$/i.exec(c); if (!m) return false;
@@ -42,10 +47,15 @@
     } catch (e) {}
   }
   function f1(n) { return (Math.round(n * 10) / 10).toString(); }
+  /** fração do elemento que precisa estar na tela para a animação começar (menos, se ele for mais alto que a janela) */
+  function limiarDe(host, fracao) {
+    var a = host.getBoundingClientRect().height || 1, j = window.innerHeight || 700;
+    return Math.max(0.05, Math.min(fracao, j * 0.7 / a));
+  }
   /** relógio de uma animação de entrada: quando o desenho é refeito (largura, fontes), ela segue de onde estava */
   function relogio() {
     var t0 = 0;
-    return { liga: function () { if (!t0) t0 = performance.now(); }, ja: function () { return t0 ? performance.now() - t0 : 0; }, ligado: function () { return !!t0; } };
+    return { liga: function () { if (!t0) t0 = performance.now(); }, ja: function () { return t0 ? performance.now() - t0 : 0; } };
   }
   /** "cerca de 2,3 milhões" -> { aprox: 'cerca de', grande: '2,3 milhões', resto: '' } */
   function parte(v) {
@@ -278,7 +288,7 @@
         vTeto && vTeto > vArq ? h('span', null, boneco(1, C('boneco') + ' ' + C('oco'), true), 'até ' + U.int(vTeto) + ' mil, o alto da faixa') : null);
       quem.appendChild(chave);
       var fq = acha(c.fatos, 'titulo', /quantos constru[íi]ram/i), lehner = fq && /(Lehner sugere[^.]*\.)/.exec(txt(fq.texto));
-      if (lehner || tempo) quem.appendChild(h('p', { class: 'pc-nota', style: { 'margin-top': '14px' } }, [lehner ? lehner[1] : '', tempo ? tempo.t : ''].filter(Boolean).join(' ')));
+      if (lehner || tempo) quem.appendChild(h('p', { class: 'pc-nota', style: { 'margin-top': '14px' } }, [lehner ? lehner[1].replace(/^Lehner sugere/, 'O arqueólogo Mark Lehner sugere') : '', tempo ? tempo.t : ''].filter(Boolean).join(' ')));
       el.appendChild(quem);
       filas.forEach(function (f) { medir(f.host, U, function (w) { desenhaFila(f, w); }); });
     }
@@ -317,7 +327,7 @@
     var fo = fontes(U, [fato ? [txt(fato.fonte), fato.url] : (nOrig ? [txt(nOrig.fonte), nOrig.url] : null), nHer ? [txt(nHer.fonte), nHer.url] : null]);
     if (fo) el.appendChild(fo);
 
-    U.aoVer(hostD, function () { rel.liga(); el.classList.add(C('vis')); });
+    U.aoVer(hostD, function () { rel.liga(); el.classList.add(C('vis')); }, { limiar: limiarDe(hostD, 0.8) });
     if (quem) U.aoVer(quem, function () { relG.liga(); el.classList.add(C('gente-vis')); });
   });
 
@@ -407,9 +417,9 @@
     var total = eixo(HOJE) - eixo(pir.ano), vA = eixo(cleo.ano) - eixo(pir.ano), vB = eixo(HOJE) - eixo(cleo.ano);
     if (!(vA > vB)) return; // se os dados mudarem e a frase deixar de valer, a peça não aparece
     function anoTxt(a, c) { return (c ? 'c. ' : '') + U.ano(a); }
-    var CL = { nasc: ['nasce Cleópatra VII', ['nasce', 'Cleópatra VII'], 'o nascimento de Cleópatra VII'],
-      trono: ['Cleópatra VII vira rainha', ['Cleópatra VII', 'vira rainha'], 'o ano em que Cleópatra VII virou rainha'],
-      morte: ['morre Cleópatra VII', ['morre', 'Cleópatra VII'], 'a morte de Cleópatra VII'] }[cleo.tipo];
+    var CL = { nasc: ['nasce Cleópatra VII', ['nasce', 'Cleópatra VII'], 'o nascimento de Cleópatra VII', 'ao nascimento de Cleópatra VII'],
+      trono: ['Cleópatra VII vira rainha', ['Cleópatra VII', 'vira rainha'], 'o ano em que Cleópatra VII virou rainha', 'ao ano em que Cleópatra VII virou rainha'],
+      morte: ['morre Cleópatra VII', ['morre', 'Cleópatra VII'], 'a morte de Cleópatra VII', 'à morte de Cleópatra VII'] }[cleo.tipo];
     var men = [];
     [['imperio-novo', /tutanc[âa]mon/i, 'Tutancâmon', 'Tutancâmon'], ['ptolemaico', /alexandre no egito/i, 'Alexandre', 'Alexandre toma o Egito'],
       ['islamico-inicial', /alexandria se rende|babil[ôo]nia se rende/i, 'conquista árabe', 'conquista árabe'],
@@ -425,7 +435,7 @@
     el.classList.add(C());
     U.aoMedir(el, function (w) { el.classList.toggle(C('largo'), w >= 600); });
     var rel = relogio(), host = h('div');
-    var rotulo = 'Régua do tempo de ' + anoTxt(pir.ano, pir.c) + ' a ' + HOJE + '. Da Grande Pirâmide a ' + CL[2] + ', em ' + U.ano(cleo.ano) + ': ' + U.int(vA) +
+    var rotulo = 'Régua do tempo de ' + anoTxt(pir.ano, pir.c) + ' a ' + HOJE + '. Da Grande Pirâmide ' + CL[3] + ', em ' + U.ano(cleo.ano) + ': ' + U.int(vA) +
       ' anos. Daí até hoje: ' + U.int(vB) + ' anos.' + (men.length ? ' Outras marcas: ' + men.map(function (m) { return m.longo + ', ' + m.quando; }).join('; ') + '.' : '');
 
     function compr(t, chute) { var n = 0; try { n = t.getComputedTextLength(); } catch (e) {} return n || chute || txt(t.textContent).length * 6.6; }
@@ -539,7 +549,8 @@
     if (fo) el.appendChild(fo);
 
     medir(host, U, desenha);
-    U.aoVer(host, function () { rel.liga(); el.classList.add(C('vis')); });
+    // deitada, começa com a régua quase toda à vista; em pé, assim que o alto (hoje) aparece
+    U.aoVer(host, function () { rel.liga(); el.classList.add(C('vis')); }, { limiar: host.getBoundingClientRect().height > 400 ? 0 : limiarDe(host, 0.7) });
   });
 
   // =====================================================================================================
@@ -569,8 +580,7 @@
     '&-mapa canvas{display:block}' +
     '&-mapa svg{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}' +
     '&-mapa text{font-family:var(--sem);font-size:11px;fill:var(--pc-rot);paint-order:stroke;stroke:var(--pc-halo);stroke-width:3px;stroke-linejoin:round}' +
-    '&-mapa text&-mar{font-family:var(--serifa);font-style:italic;font-size:12px;letter-spacing:.06em;opacity:.8}' +
-    '&-mapa &-pt{fill:var(--pc-rot)}';
+    '&-mapa text&-mar{font-family:var(--serifa);font-style:italic;font-size:12px;letter-spacing:.06em;opacity:.8}';
 
   function sorteio(a) { // mulberry32
     return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
@@ -635,7 +645,8 @@
     el.classList.add(C()); if (!escuro) el.classList.add(C('claro'));
     U.aoMedir(el, function (w) { el.classList.toggle(C('largo'), w >= 820); });
 
-    var estado = 'real', prog = U.reduz ? 1 : 0, alvo = prog, raf = 0, visto = false, naTela = false, tUlt = 0, larg = 0, k = 1, ctx = null, cores = null;
+    // começa espalhado por igual; ao entrar na tela, os pontos se juntam (com movimento reduzido, já começa no fim)
+    var estado = U.reduz ? 'real' : 'igual', prog = U.reduz ? 1 : 0, alvo = prog, raf = 0, visto = false, mexeu = false, naTela = false, tUlt = 0, k = 1, ctx = null, cores = null;
     var apoio = h('p', { class: C('apoio'), 'aria-live': 'polite' });
     var TEXTO = {
       igual: (pop > 1e7 ? 'Cada ponto vale cerca de ' + U.int(CADA / 1000) + ' mil pessoas. ' : '') + 'Se a população se espalhasse por igual, os pontos cobririam o mapa inteiro' +
@@ -643,11 +654,11 @@
       real: (pop > 1e7 ? 'Cada ponto vale cerca de ' + U.int(CADA / 1000) + ' mil pessoas. ' : '') + 'De cada 100 pontos, ' + U.int(pct) +
         ' ficam numa faixa junto ao Nilo e no delta. O resto do mapa é deserto: os poucos pontos de fora marcam o canal de Suez e os oásis.'
     };
-    var bt = U.botoes([{ id: 'real', rotulo: 'onde vivem' }, { id: 'igual', rotulo: 'se fosse por igual' }], 'real', function (id) { vai(id, true); }, 'O que o mapa mostra');
+    var bt = U.botoes([{ id: 'real', rotulo: 'onde vivem' }, { id: 'igual', rotulo: 'se fosse por igual' }], estado, function (id) { vai(id, true); }, 'O que o mapa mostra');
     function marca(id) { Array.prototype.forEach.call(bt.children, function (b, i) { b.setAttribute('aria-pressed', (i === 0) === (id === 'real') ? 'true' : 'false'); }); }
     function vai(id, daPessoa) {
       estado = id; alvo = id === 'real' ? 1 : 0; marca(id); apoio.textContent = TEXTO[id];
-      if (daPessoa) visto = true;
+      if (daPessoa) mexeu = true;
       if (U.reduz) { prog = alvo; pinta(); return; }
       anda();
     }
@@ -678,7 +689,7 @@
     var mapa = h('div', { class: C('mapa'), role: 'img', 'aria-label': 'Mapa do Egito à noite, em desenho: milhares de pontos de luz se juntam numa faixa ao longo do Nilo e no delta, e o deserto fica vazio. ' +
       txt(nPct.valor) + ' da população vive junto ao rio e no delta.' });
     function desenha(w) {
-      larg = w; k = (w - 12) / G.W;
+      k = (w - 12) / G.W;
       var H = Math.round(G.H * k + 12), dpr = Math.min(2, window.devicePixelRatio || 1);
       mapa.textContent = '';
       var cv = h('canvas', { width: Math.round(w * dpr), height: Math.round(H * dpr), 'aria-hidden': 'true', style: { width: w + 'px', height: H + 'px' } });
@@ -706,7 +717,7 @@
         h('p', { class: C('frase') }, 'da população do Egito vive junto ao Nilo e no delta.'),
         bt),
       mapa, apoio));
-    apoio.textContent = TEXTO.real;
+    apoio.textContent = TEXTO[estado];
     el.appendChild(h('p', { class: 'pc-nota ' + C('nota') }, 'O que ver aqui: as luzes desenham o rio sem que ele precise ser traçado. É um desenho feito a partir do número, não uma foto de satélite nem um mapa de censo.'));
     var linhasT = [nPct, nPop, nDens].filter(Boolean).map(function (n) { return [txt(n.rotulo), txt(n.valor), txt(n.ano), txt(n.fonte)]; });
     linhasT.push(['Pontos no desenho', U.int(nP) + ' (' + U.int(nRio) + ' junto ao rio e no delta)', '', 'conta: população dividida por ' + U.int(CADA)]);
@@ -718,9 +729,9 @@
     U.aoVer(mapa, function (dentroDaTela) {
       naTela = dentroDaTela;
       if (!naTela) { if (raf) { cancelAnimationFrame(raf); raf = 0; } return; }
-      if (!visto && !U.reduz) { visto = true; setTimeout(function () { if (estado === 'real') { alvo = 1; anda(); } }, 700); }
+      if (!visto && !U.reduz) { visto = true; setTimeout(function () { if (!mexeu) vai('real'); }, 800); }
       else anda();
-    }, { uma: false });
+    }, { uma: false, limiar: limiarDe(mapa, 0.45) });
   });
 
   // =====================================================================================================
@@ -746,6 +757,7 @@
     '&-g{display:grid;gap:14px 44px;align-items:center;justify-items:center}' +
     '&-largo &-g{grid-template-columns:auto minmax(0,1fr);justify-items:stretch}' +
     '&-anel{width:100%;max-width:400px}' +
+    '&-lado{justify-self:stretch;min-width:0}' +
     '&-largo &-anel{width:380px}' +
     '& svg{display:block;overflow:visible}' +
     '& svg text{font-family:var(--sem);font-size:11px;fill:var(--tinta2)}' +
@@ -780,8 +792,7 @@
     '&-leg b{font-family:var(--serifa);font-size:18px;font-weight:600}' +
     '&-chave{font-size:12.5px;color:var(--tinta2);margin:8px 0 0}' +
     '&-so{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}' +
-    '&-nota{margin-top:20px}' +
-    '&-tab td,&-tab th{overflow-wrap:anywhere}';
+    '&-nota{margin-top:20px}';
 
   var MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
   var MES3 = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
@@ -843,7 +854,7 @@
       var e = EST[i];
       return [e.nome + ', ' + e.desc, ['A água sobe no verão, cobre os campos por semanas e baixa no outono.',
         'A água baixa e deixa o lodo. Semeia-se na terra úmida e as plantas crescem.',
-        'Colhe-se na estação seca, com o rio no nível mais baixo do ano.'][i] + (e.de ? ' Mais ou menos de ' + e.de + ' a ' + e.ate + '.' : '')];
+        'Colhe-se na estação seca, com o rio baixo.'][i] + (e.de ? ' Mais ou menos de ' + e.de + ' a ' + e.ate + '.' : '')];
     }
     function legenda(falar) {
       var i = estacaoDe(u), dep = bAlvo > 0.5, chave = dep ? 9 : i;
@@ -1025,7 +1036,7 @@
     el.appendChild(h('p', { class: C('sub') }, 'O calendário dos antigos egípcios seguia o rio: três estações' + (mm ? ' de ' + mm[1].toLowerCase() + ' meses' : '') + '.' +
       (incerto ? ' Os nomes e os meses vêm dos manuais.' : '') + (quandoFim ? ' ' + quandoFim : '')));
     el.appendChild(h('div', { class: C('ctl') }, btRep, btEst, btTocar));
-    el.appendChild(h('div', { class: C('g') }, hostA, h('div', null, hostC, leg,
+    el.appendChild(h('div', { class: C('g') }, hostA, h('div', { class: C('lado') }, hostC, leg,
       h('p', { class: C('chave') }, 'No anel, a faixa azul mostra o nível do rio ao longo do ano. No corte, a mesma água vista de lado.'))));
     el.appendChild(fala);
     el.appendChild(h('p', { class: 'pc-nota ' + C('nota') }, 'O que ver aqui: a cheia fazia duas coisas de uma vez, regava e adubava os campos. ' +
@@ -1036,8 +1047,7 @@
     if (mm) linhasT.push(['Cada estação', mm[1].toLowerCase() + ' meses de ' + mm[2] + ' dias' + (extras ? '; ' + extras + ' dias extras fecham o ano de ' + ANO : ''), '']);
     if (fCheia) linhasT.push(['A cheia', txt(fCheia.ano_txt), '']);
     if (pFim) linhasT.push(['Fim da cheia', txt(pFim.ano_txt), txt(pFim.texto).split('. ')[0] + '.']);
-    var tab = U.tabela('Ver os dados', ['Estação', 'O que era', 'Meses de hoje'], linhasT); tab.classList.add(C('tab'));
-    el.appendChild(tab);
+    el.appendChild(U.tabela('Ver os dados', ['Estação', 'O que era', 'Meses de hoje'], linhasT));
     var fo = fontes(U, [fCheia ? [txt(fCheia.fonte), fCheia.url] : null, pFim ? [txt(pFim.fonte), pFim.url] : null]);
     if (fo) el.appendChild(fo);
 
@@ -1099,7 +1109,7 @@
     '&-ficha dd{margin:0;font-size:14px;color:var(--tinta2);line-height:1.45}' +
     '&-ficha dd b{font-family:var(--serifa);font-size:clamp(24px,2.6vw,30px);font-weight:600;color:var(--tinta);letter-spacing:-.01em;margin-right:8px;white-space:nowrap;line-height:1.15}' +
     '&-duas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px 22px;margin-top:4px}' +
-    '&-duas div b{display:block;margin:0 0 2px}' +
+    '&-duas div b{display:block;margin:0 0 2px;white-space:normal;font-size:clamp(22px,2.4vw,27px)}' +
     '&-mini{display:grid;gap:5px;margin:8px 0 0;max-width:420px}' +
     '&-mini div{display:flex;align-items:center;gap:8px;font-size:12.5px}' +
     '&-mini i{display:block;height:8px;border-radius:2px;background:var(--tinta2);opacity:.55;flex:none}' +
@@ -1116,7 +1126,6 @@
     '&-trilho span{font-family:var(--serifa);font-size:19px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}' +
     '&-vis &-barra{animation:pc-suez-cresce .9s cubic-bezier(.2,.7,.2,1) both}' +
     '&-nota{margin-top:20px}' +
-    '&-tab td,&-tab th{overflow-wrap:anywhere}' +
     '@media (prefers-reduced-motion:reduce){&-barra{animation:none!important}}';
 
   E.peca('suez', function (el, dados, U, args) {
@@ -1127,7 +1136,7 @@
     var nCusto = acha(N, 'rotulo', /custo do canal/i), nMortos = acha(N, 'rotulo', /mortos na obra/i), nConc = acha(N, 'rotulo', /concess[ãa]o do canal/i), nConv = acha(N, 'rotulo', /convidados/i);
     var gasto = nCusto && pega(nCusto.valor, '#\\s*milh[õo]es de francos'), previsto = nCusto && pega(nCusto.valor, 'previs[ãa]o[^;]*?#\\s*milh[õo]es'), libras = nCusto && pega(nCusto.valor, '#\\s*libras');
     var quemGasto = nCusto && /milh[õo]es de francos\s*\(([^)]+)\)/i.exec(txt(nCusto.valor));
-    if (!anos && !nCusto && !nMortos) return;
+    if (!(anos > 0) && !(gasto > 0)) return; // sem o tempo de obra nem o custo, a peça não aparece
     var temMapa = !!(G && G.CANAL && G.CANAL.length > 2 && G.TERRA);
 
     estilo('suez', CSS_SUEZ);
@@ -1191,7 +1200,7 @@
     if (anos > 0) ficha.appendChild(h('div', null, h('dt', null, 'Tempo de obra'), h('dd', null, h('b', null, anos + ' anos'), 'de ' + mo[1] + ' a ' + mo[2] + '.' +
       (fInaug && fInaug.ano_txt ? ' O canal abriu em ' + txt(fInaug.ano_txt) + (nConv ? ', numa festa com ' + txt(nConv.valor) + ' convidados' : '') + '.' : ''))));
     if (gasto > 0) {
-      var dd = h('dd', null, h('b', null, U.int(gasto) + ' milhões'), 'de francos' + (quemGasto ? ', segundo ' + quemGasto[1].replace(/^o\s+/i, '') : '') + '.' +
+      var dd = h('dd', null, h('b', null, U.int(gasto) + ' milhões'), 'de francos' + (quemGasto ? ' (fonte: ' + quemGasto[1] + ')' : '') + '.' +
         (previsto > 0 ? ' A previsão era de ' + U.int(previsto) + ' milhões' + (gasto > 2 * previsto ? ': custou mais que o dobro.' : '.') : '') +
         (libras > 0 ? ' Na conta de Lesseps, que dirigiu a obra, foram ' + U.int(libras) + ' libras.' : ''));
       if (previsto > 0) dd.appendChild(h('div', { class: C('mini'), 'aria-hidden': 'true' },
@@ -1202,12 +1211,12 @@
     if (nMortos) {
       var vs = txt(nMortos.valor).split(';').map(function (x) { return x.trim(); }).filter(Boolean), duas = h('div', { class: C('duas') });
       vs.slice(0, 2).forEach(function (v) {
-        var m = /^(.*?)\s*,?\s*segundo\s+(.*)$/i.exec(v), q = m ? m[1].replace(/^n[úu]meros\s+/i, '') : v;
-        duas.appendChild(h('div', null, h('b', null, q), m ? 'segundo ' + m[2] : ''));
+        var m = /^(.*?)\s*,?\s*segundo\s+(.*)$/i.exec(v);
+        if (m) duas.appendChild(h('div', null, h('b', null, m[1].replace(/^n[úu]meros\s+/i, '')), 'segundo ' + m[2]));
       });
-      ficha.appendChild(h('div', null, h('dt', null, 'Mortos na obra: não há número certo'), h('dd', null, duas)));
+      if (duas.children.length) ficha.appendChild(h('div', null, h('dt', null, 'Mortos na obra: não há número certo'), h('dd', null, duas)));
     }
-    if (nConc) { var pc = parte(nConc.valor); if (pc) ficha.appendChild(h('div', null, h('dt', null, 'Concessão'), h('dd', null, h('b', null, pc.grande + (pc.resto ? ' ' + pc.resto : '')), 'era o prazo dado em ' + txt(nConc.ano) + ' para a companhia explorar o canal.'))); }
+    if (nConc) { var pc = parte(nConc.valor); if (pc) ficha.appendChild(h('div', null, h('dt', null, 'Concessão'), h('dd', null, h('b', null, pc.grande + (pc.resto ? ' ' + pc.resto : '')), 'era o prazo da concessão dada em ' + txt(nConc.ano) + ' para cavar e explorar o canal.'))); }
 
     var pe = null, btNav = null;
     if (temMapa) {
@@ -1245,7 +1254,7 @@
     if (anos > 0) linhasT.push(['Obra', txt(fObra.ano_txt), txt(fObra.fonte)]);
     [nCusto, nMortos, nConc, nConv].forEach(function (n) { if (n) linhasT.push([txt(n.rotulo), txt(n.valor), txt(n.fonte)]); });
     barras.forEach(function (x) { linhasT.push([txt(x.n.rotulo) + ' (' + txt(x.n.ano) + ')', txt(x.n.valor), txt(x.n.fonte)]); });
-    var tab = U.tabela('Ver os números', ['O quê', 'Valor', 'Fonte'], linhasT); tab.classList.add(C('tab')); el.appendChild(tab);
+    el.appendChild(U.tabela('Ver os números', ['O quê', 'Valor', 'Fonte'], linhasT));
     var fo = fontes(U, [fObra ? [txt(fObra.fonte), fObra.url] : null, nUlt ? [txt(nUlt.fonte), nUlt.url] : (nRec ? [txt(nRec.fonte), nRec.url] : null)]);
     if (fo) el.appendChild(fo);
 
@@ -1317,7 +1326,6 @@
     '&-ficha dd{margin:0;font-size:14px;color:var(--tinta2);line-height:1.45}' +
     '&-ficha dd b{font-family:var(--serifa);font-size:clamp(23px,2.5vw,29px);font-weight:600;color:var(--tinta);letter-spacing:-.01em;margin-right:7px;white-space:nowrap;line-height:1.15}' +
     '&-nota{margin-top:20px}' +
-    '&-tab td,&-tab th{overflow-wrap:anywhere}' +
     '@media (prefers-reduced-motion:reduce){&-bloco,&-agua,&-so0,&-so1,&-so2,&-so01,&-so12,&-bloco path,&-bloco rect{transition:none!important}}';
   var nAbu = 0;
 
@@ -1354,7 +1362,7 @@
     var host = h('div');
     function desenha(w) {
       host.textContent = '';
-      var XMIN = -48, XMAX = dX + P + 22, ZMAX = dZ + A + 14, k = w / (XMAX - XMIN), topo = 30, peq = w < 520;
+      var XMIN = -48, XMAX = dX + P + 22, ZMAX = dZ + A + 14, k = w / (XMAX - XMIN), topo = 30;
       function X(x) { return (x - XMIN) * k; } function Y(z) { return topo + (ZMAX - z) * k; }
       var yH = Y(-15), H = Math.round(yH + (medidas ? 34 : 8)), zRio = -4, zLago = dZ - 6;
       var T = [[XMIN, -17], [-38, -14], [-30, -6], [-22, 0], [0, 0], [0, A], [5, A + 8], [20, A + 19], [46, dZ - 5], [80, dZ - 1], [dX - 60, dZ], [dX, dZ],
@@ -1430,7 +1438,7 @@
     el.appendChild(h('p', { class: 'pc-nota ' + C('nota') }, 'O que ver aqui: o templo não foi arrastado, foi desmontado e montado de novo acima da linha da água. ' +
       (medidas ? 'As duas distâncias estão na mesma escala; ' : '') + 'o tamanho do templo e o perfil da encosta são só indicativos, e cada bloco do desenho vale por dezenas dos de verdade.'));
     var linhasT = [nBl, nCusto, nCamp].filter(Boolean).map(function (n) { return [txt(n.rotulo), txt(n.valor), txt(n.ano), txt(n.fonte)]; });
-    var tab = U.tabela('Ver os números', ['O quê', 'Valor', 'Quando', 'Fonte'], linhasT); tab.classList.add(C('tab')); el.appendChild(tab);
+    el.appendChild(U.tabela('Ver os números', ['O quê', 'Valor', 'Quando', 'Fonte'], linhasT));
     var fo = fontes(U, [fato ? [txt(fato.fonte), fato.url] : (nBl ? [txt(nBl.fonte), nBl.url] : null)]);
     if (fo) el.appendChild(fo);
 

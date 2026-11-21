@@ -1,10 +1,17 @@
-// Peças do tempo profundo e da pré-história: "saara", "baleias" e "pedra-de-mar".
+// Peças do tempo profundo e da pré-história do estudo "Egito, de hoje para trás".
+//   saara ......... "Quando o Saara era verde": mapa com régua de tempo (camada saara-verde)
+//   baleias ....... "Baleias no deserto": o mar de Tétis sobre o norte do Egito, régua de comprimento e coluna do tempo (antes-dos-humanos)
+//   pedra-de-mar .. "A pirâmide é feita de mar": pirâmide, bloco e fóssil, com zoom (antes-dos-humanos ou imperio-antigo)
 // Cada peça lê os números em dados.json na hora de desenhar; a tabela "de onde vem cada número" fica no começo de cada uma.
+// O que não está nos dados e mesmo assim aparece é desenho de situação, e a própria peça avisa: a linha da costa, o avanço
+// do verde, a posição dos lagos e dos pontos de gente e de gado, a pessoa que serve de escala.
+// Todas usam EGITO.geo (publicado por mapa.js) e só as variáveis de cor da era; as cores "do mundo" (água, areia, verde,
+// pedra) são misturadas com essas variáveis para funcionar em era clara e em era escura.
 (function () {
   'use strict';
   var E = window.EGITO; if (!E) return;
   var UID = 0;
-  var s; // U.s, posto na primeira chamada de cada peça
+  var s = E.util && E.util.s; // fábrica de elementos SVG (cada peça confirma com U.s ao começar)
 
   // ---------- comum ----------
   function f1(n) { return (Math.round(n * 10) / 10).toString(); }
@@ -20,6 +27,8 @@
     return null;
   }
   function camadaDe(dados, id) { return acha(dados && dados.camadas, new RegExp('^' + id + '$'), 'id'); }
+  /** a camada da peça: a que a página passou, se for a certa; senão, a que tem esse id nos dados */
+  function camadaCerta(dados, args, id) { var c = args && args.camada; return c && c.id === id ? c : camadaDe(dados, id); }
   /** números de um texto em português: "41,3 a 37,2" -> [41.3, 37.2]; "14.800" -> [14800] */
   function numeros(t) {
     return (txt(t).match(/\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:,\d+)?/g) || []).map(function (x) { return parseFloat(x.replace(/\./g, '').replace(',', '.')); });
@@ -205,44 +214,41 @@
   /** devolve a função que desenha (o atributo d) uma baleia de comprimento L e meia largura w, com a cabeça na distância d0 do laço */
   function nadador(L, w, basilo) {
     var per = perfil(basilo
-      ? [[0, .16], [.03, .34], [.07, .52], [.105, .47], [.16, .80], [.24, 1], [.40, .95], [.60, .72], [.80, .42], [.92, .22], [1, .13]]
-      : [[0, .16], [.05, .40], [.11, .62], [.16, .58], [.30, 1], [.46, .95], [.70, .56], [.90, .24], [1, .15]]);
-    var n = basilo ? 26 : 14, uN = basilo ? .15 : .25, uP = basilo ? .72 : .68, cN = w * (basilo ? 1.55 : 1.9), cP = w * (basilo ? .9 : .7), env = w * (basilo ? 1.7 : 2.1);
+      ? [[0, .10], [.025, .26], [.06, .44], [.095, .50], [.125, .46], [.18, .82], [.26, 1], [.42, .95], [.60, .72], [.80, .42], [.92, .22], [1, .13]]
+      : [[0, .12], [.05, .36], [.11, .60], [.16, .58], [.30, 1], [.46, .95], [.70, .56], [.90, .24], [1, .15]]);
+    var n = basilo ? 26 : 14, uN = basilo ? .165 : .25, uP = basilo ? .72 : .68, cN = w * (basilo ? 1.4 : 1.55), cP = w * (basilo ? .9 : .7), env = w * (basilo ? 1.7 : 1.9);
     return function (lc, d0, sent) {
       function pt(u) {
         var p = lc.em(d0 - sent * u * L), q = lc.em(d0 - sent * (u * L - 1.5)), tx = q[0] - p[0], ty = q[1] - p[1], m = Math.hypot(tx, ty) || 1;
         return [p[0], p[1], tx / m, ty / m];
       }
-      var A = [], Z = [], i, u, p, hw, d;
-      for (i = 0; i <= n; i++) {
-        u = i / n; p = pt(u); hw = w * per(u);
-        A.push(f1(p[0] - p[3] * hw) + ' ' + f1(p[1] + p[2] * hw)); Z.push(f1(p[0] + p[3] * hw) + ' ' + f1(p[1] - p[2] * hw));
-      }
-      p = pt(0);
-      d = 'M' + f1(p[0] + p[2] * w * .35) + ' ' + f1(p[1] + p[3] * w * .35) + 'L' + A.join('L') + 'L' + Z.reverse().join('L') + 'Z';
-      function P(q, a, b) { return f1(q[0] + q[2] * a - q[3] * b) + ' ' + f1(q[1] + q[3] * a + q[2] * b); } // a: para a frente; b: para o lado
-      // nadadeiras da frente e pernas de trás, dos dois lados
-      var qn = pt(uN), hn = w * per(uN) * .8, qp = pt(uP), hp = w * per(uP) * .9, qc = pt(1), k;
+      function P(q, a, b) { return [q[0] + q[2] * a - q[3] * b, q[1] + q[3] * a + q[2] * b]; } // a: para a frente; b: para o lado
+      var A = [], Z = [], i, u, p, hw, d, k;
+      for (i = 0; i <= n; i++) { u = i / n; p = pt(u); hw = w * per(u); A.push(P(p, 0, hw)); Z.push(P(p, 0, -hw)); }
+      d = curva(A.concat(Z.reverse()), true);
+      // nadadeiras da frente (remos) e pernas de trás (mínimas), dos dois lados
+      var qn = pt(uN), hn = w * per(uN) * .85, qp = pt(uP), hp = w * per(uP) * .9, qc = pt(1);
       for (k = -1; k <= 1; k += 2) {
-        d += 'M' + P(qn, cN * .28, k * hn) + 'Q' + P(qn, cN * .05, k * (hn + cN * .95)) + ' ' + P(qn, -cN * .75, k * (hn + cN * .72)) + 'Q' + P(qn, -cN * .55, k * (hn + cN * .2)) + ' ' + P(qn, -cN * .32, k * hn) + 'Z';
-        d += 'M' + P(qp, cP * .3, k * hp) + 'L' + P(qp, -cP * .8, k * (hp + cP)) + 'L' + P(qp, -cP * .3, k * hp) + 'Z';
+        d += curva([P(qn, cN * .34, k * hn), P(qn, cN * .16, k * (hn + cN * .55)), P(qn, -cN * .42, k * (hn + cN * .98)), P(qn, -cN * .72, k * (hn + cN * .62)), P(qn, -cN * .36, k * hn)], true);
+        p = [P(qp, cP * .3, k * hp), P(qp, -cP * .8, k * (hp + cP)), P(qp, -cP * .3, k * hp)];
+        d += 'M' + f1(p[0][0]) + ' ' + f1(p[0][1]) + 'L' + f1(p[1][0]) + ' ' + f1(p[1][1]) + 'L' + f1(p[2][0]) + ' ' + f1(p[2][1]) + 'Z';
       }
-      // cauda: dois lobos
+      // cauda: dois lobos arredondados, com o entalhe no meio
       hw = w * per(1);
-      d += 'M' + P(qc, env * .35, hw) + 'Q' + P(qc, env * .02, env * .5) + ' ' + P(qc, -env * .5, env) + 'Q' + P(qc, -env * .3, env * .3) + ' ' + P(qc, -env * .24, 0) +
-        'Q' + P(qc, -env * .3, -env * .3) + ' ' + P(qc, -env * .5, -env) + 'Q' + P(qc, env * .02, -env * .5) + ' ' + P(qc, env * .35, -hw) + 'Z';
+      d += curva([P(qc, env * .34, hw), P(qc, -env * .06, env * .56), P(qc, -env * .5, env), P(qc, -env * .56, env * .52), P(qc, -env * .3, 0),
+        P(qc, -env * .56, -env * .52), P(qc, -env * .5, -env), P(qc, -env * .06, -env * .56), P(qc, env * .34, -hw)], true);
       return d;
     };
   }
 
   // =====================================================================================================
-  // BALEIAS — "Baleias no deserto" (camada antes-dos-humanos)
+  // BALEIAS: "Baleias no deserto" (camada antes-dos-humanos)
   // De onde vem cada número (tudo lido de dados.json na hora de desenhar):
   //   40 a 37 milhões de anos ........ fato "As baleias com pernas de Wadi al-Hitan" (ano_txt)
   //   Basilosaurus, mais de 15 m ..... número "Comprimento do Basilosaurus isis adulto"
   //   Dorudon, cerca de 5 m .......... ressalva do mesmo fato ("vem de memória"): entra com esse aviso
   //   pino de Wadi al-Hitan .......... onde "Wadi al-Hitan (Vale das Baleias)" (lat, lon)
-  //   coluna do tempo ................ ano_txt dos fatos "O mar de Tétis cobria o Egito", "Spinosaurus…", "Paralititan…",
+  //   coluna do tempo ................ ano_txt dos fatos "O mar de Tétis cobria o Egito", "Spinosaurus…", "Paralititan…", "Mansourasaurus…",
   //                                    "A pedra das pirâmides é fundo de mar", "As baleias com pernas…" e "Aegyptopithecus…";
   //                                    a régua vai até o começo da camada (inicio); "gente" usa o começo da camada paleolitico
   //   A pessoa da régua de comprimento é só referência visual (não há medida de pessoa nos dados).
@@ -305,7 +311,7 @@
 
   E.peca('baleias', function (el, dados, U, args) {
     s = U.s; var h = U.h, G = E.geo, P = 'pc-baleias';
-    var c = (args && args.camada) || camadaDe(dados, 'antes-dos-humanos');
+    var c = camadaCerta(dados, args, 'antes-dos-humanos');
     if (!c || !G || !c.fatos) return;
     var fBal = acha(c.fatos, /baleias com pernas/i) || acha(c.fatos, /Hitan/i);
     var lugar = acha(c.onde, /Hitan/i, 'lugar');
@@ -324,6 +330,7 @@
       return ce + U.dec(m.de) + ' a ' + U.dec(m.a) + ' milhões de anos atrás';
     }
     [[/^Spinosaurus/i, 'Spinosaurus', /Bahariya/, ', em Bahariya', 'espino'], [/^Paralititan/i, 'Paralititan', /Bahariya/, ', em Bahariya', 'sauro'],
+     [/^Mansourasaurus/i, 'Mansourasaurus', /Dakhla/, ', em Dakhla', 'sauro'],
      [/pedra das pir[âa]mides/i, 'Numulitos', /fundo de mar/, ', no fundo do mar', 'disco'], [/baleias com pernas/i, 'Baleias com pernas', null, '', 'baleia'],
      [/^Aegyptopithecus/i, 'Aegyptopithecus', /macaco do Fayum/, ', macaco do Fayum', 'macaco']].forEach(function (d) {
       var f = acha(c.fatos, d[0]), m = milhoes(f);
@@ -359,10 +366,10 @@
     // ----- a cena -----
     var bichos = [], vivo = false, raf = 0, antes = 0, relogio = 0;
     function pinta() { for (var i = 0; i < bichos.length; i++) { var b = bichos[i]; b.el.setAttribute('d', b.faz(b.lc, b.d0 + b.vel * relogio, b.vel < 0 ? -1 : 1)); } }
-    function quadro(ts) {
+    function quadro(ts) { // nado lento: 30 quadros por segundo bastam
       if (!vivo) return;
-      if (antes) relogio += Math.min(80, ts - antes) / 1000;
-      antes = ts; pinta(); raf = requestAnimationFrame(quadro);
+      if (!antes || ts - antes >= 30) { if (antes) relogio += Math.min(80, ts - antes) / 1000; antes = ts; pinta(); }
+      raf = requestAnimationFrame(quadro);
     }
     function fazCena(w) {
       var k = w / G.W, TOPO = 76, H = Math.round((G.H + TOPO) * k), id = 'pcb' + (++UID);
@@ -403,6 +410,7 @@
       var cx = X(31.24), cy = Y(30.04);
       g.appendChild(s('circle', { class: P + '-pt', cx: f1(cx), cy: f1(cy), r: 2 }));
       g.appendChild(s('text', { class: P + '-lug', x: f1(cx + 6), y: f1(cy + 4) }, 'Cairo, hoje'));
+      if (k >= 1.05) g.appendChild(s('text', { class: P + '-lug', x: f1(X(31.62) - 7), y: f1(Y(26.5) + 4), 'text-anchor': 'end' }, 'Nilo, hoje')); // no celular não cabe: a legenda explica
       svg.appendChild(g);
       svg.appendChild(s('rect', { class: P + '-borda', x: .5, y: .5, width: w - 1, height: H - 1, rx: 14 }));
       // pino
@@ -521,9 +529,10 @@
     // ----- tabela e fonte -----
     var linhas = [];
     if (nBas) linhas.push([txt(nBas.rotulo), txt(nBas.valor), U.link(txt(nBas.fonte), nBas.url)]);
-    if (mDor) linhas.push(['Comprimento do Dorudon', 'cerca de ' + U.dec(mDor) + ' m' + (dorMemoria ? ' (de memória, sem fonte conferida)' : ''), '']);
+    if (mDor) linhas.push(['Comprimento do Dorudon', 'cerca de ' + U.dec(mDor) + ' m', dorMemoria ? 'de memória, sem fonte conferida' : '']);
     if (mTet) linhas.push([txt(fTet.titulo), txt(fTet.ano_txt), U.link(txt(fTet.fonte), fTet.url)]);
     itens.slice().reverse().forEach(function (it) { if (it.f) linhas.push([txt(it.f.titulo), txt(it.f.ano_txt), U.link(txt(it.f.fonte), it.f.url)]); });
+    if (pal && typeof pal.inicio === 'number' && pal.inicio < 0) linhas.push(['Gente no Egito (camada ' + txt(pal.titulo) + ')', txt(pal.periodo_txt), '']);
     el.appendChild(U.tabela('Ver os números', ['O quê', 'Medida ou data', 'Fonte'], linhas));
     if (fBal.fonte) el.appendChild(U.fonte(txt(fBal.fonte), fBal.url));
 
@@ -543,11 +552,11 @@
   });
 
   // =====================================================================================================
-  // SAARA — "Quando o Saara era verde" (camada saara-verde)
+  // SAARA: "Quando o Saara era verde" (camada saara-verde)
   // De onde vem cada número (tudo lido de dados.json na hora de desenhar):
   //   começo da régua (c. 9000 a.C.) ... inicio da camada; é quando o fato "As chuvas chegam ao deserto egípcio" começa (ano_txt)
   //   fim da régua (c. 3500 a.C.) ...... ano do fato "Fim do Período Úmido Africano"
-  //   período úmido no Saara inteiro ... número "Duração do Período Úmido Africano" (valor), citado no texto de abertura
+  //   período úmido no Saara inteiro ... número "Duração do Período Úmido Africano" (valor), citado na nota de leitura
   //   marcas e títulos na régua ........ ano, ano_txt e titulo de cada fato da camada que cai dentro da régua
   //   começo do recuo da chuva ......... fim da camada (c. 5000 a.C.); o resumo diz só "depois as chuvas recuaram"
   //   lugares com rótulo ............... onde da camada (lat, lon), sem os museus
@@ -569,7 +578,7 @@
       '.pc-saara-pts{fill:var(--pcs-duna);opacity:.5}' +
       '.pc-saara-v0{stop-color:var(--pcs-verde);stop-opacity:0}.pc-saara-v1{stop-color:var(--pcs-verde);stop-opacity:1}' +
       '.pc-saara-vale{fill:none;stroke:var(--pcs-verde);stroke-linecap:round;stroke-linejoin:round}' +
-      '.pc-saara-delta{fill:var(--pcs-verde)}' +
+      '.pc-saara-delta,.pc-saara-cv{fill:var(--pcs-verde)}' +
       '.pc-saara-rio{fill:none;stroke:var(--pcs-agua);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}' +
       '.pc-saara-lago{fill:var(--pcs-agua);stroke:var(--pcs-mato);stroke-width:.6;transform-box:fill-box;transform-origin:center}' +
       '.pc-saara-arv{fill:none;stroke:var(--pcs-mato);stroke-width:1.3;stroke-linecap:round}' +
@@ -635,7 +644,7 @@
 
   E.peca('saara', function (el, dados, U, args) {
     s = U.s; var h = U.h, G = E.geo, P = 'pc-saara';
-    var c = (args && args.camada) || camadaDe(dados, 'saara-verde');
+    var c = camadaCerta(dados, args, 'saara-verde');
     if (!c || !G || !c.fatos || typeof c.inicio !== 'number') return;
     var fFim = acha(c.fatos, /Fim do Per[íi]odo [ÚU]mido/i), fTese = acha(c.fatos, /\btese\b/i), fChuva = acha(c.fatos, /chuvas chegam/i);
     var T0 = c.inicio, T1 = fFim && typeof fFim.ano === 'number' ? fFim.ano : c.fim;
@@ -690,13 +699,14 @@
       return null;
     }
     var R = semente(7031), nabta = acha(c.onde, /Nabta/i, 'lugar');
-    var LAGOS = [[25.9, 23.45, 1], [27.7, 22.6, .8], [28.9, 24.25, .9], [26.6, 25.7, .8], [29.5, 23.2, .7], [27.5, 27.25, .7], [26.2, 28.2, .6], [30.2, 26.5, .6], [33.7, 24.7, .5], [33.2, 27.3, .45]];
+    var LAGOS = [[26.55, 23.0, 1], [27.9, 22.45, .8], [28.9, 24.25, .9], [26.6, 25.7, .8], [29.5, 23.2, .7], [27.5, 27.25, .7], [26.2, 28.2, .6], [30.2, 26.5, .6], [33.7, 24.7, .5], [33.2, 27.3, .45]];
     if (nabta && typeof nabta.lat === 'number') LAGOS.push([nabta.lon - .05, nabta.lat + .12, .9]);
     function sorteia(n, peso) { // pontos em terra, longe do rio e do Sinai; peso(lon, lat) = chance de ficar
       var r = [], lon, lat, v = 0;
       while (r.length < n && v++ < 6000) {
         lon = 24.9 + R() * 10.6; lat = 21.8 + R() * 9.6;
-        if (!dentroDe(G.TERRA, lon, lat) || (lon > 32.4 && lat > 28.3) || Math.abs(lon - lonDoRio(lat)) < .55 || R() > peso(lon, lat)) continue;
+        if (!dentroDe(G.TERRA, lon, lat) || !dentroDe(G.TERRA, lon - .35, lat) || !dentroDe(G.TERRA, lon + .45, lat) || !dentroDe(G.TERRA, lon, lat + .3) || !dentroDe(G.TERRA, lon, lat - .3) ||
+          (lon > 32.4 && lat > 28.3) || Math.abs(lon - lonDoRio(lat)) < .55 || R() > peso(lon, lat)) continue;
         r.push([lon, lat]);
       }
       return r;
@@ -708,10 +718,10 @@
     LAGOS.slice(0, 6).concat(LAGOS.slice(-1)).forEach(function (l, i) { if (casas[i]) casas[i] = [l[0] + (R() - .5) * .9, l[1] + (R() - .3) * .7]; });
     casas.forEach(function (cs, i) {
       var lon = cs[0], lat = cs[1], g = { casa: cs, fase: R() * 6.28, gado: 1 + (R() < .35 ? 1 : 0), sul: false }, d, k, o, melhor = null;
-      if (lat < 23.9 && lon < 29.2 && R() < .6) { g.dest = [lon + (R() - .3) * 1.2, 21.1]; g.sul = true; }
+      if (lat < 23.9 && lon < 29.2 && R() < .6) { g.dest = [lon + (R() - .3) * 1.2, 21.72]; g.sul = true; } // some na fronteira do sul
       else {
         for (k = 0; k < G.OASIS.length; k++) { o = G.OASIS[k]; d = Math.hypot((o[1] - lon) * .9, o[2] - lat); if (d < 2.3 && (cheios[k] || 0) < 2 && (!melhor || d < melhor[0])) melhor = [d, k]; }
-        if (melhor && lon < lonDoRio(lat) && R() < .4) { o = G.OASIS[melhor[1]]; cheios[melhor[1]] = (cheios[melhor[1]] || 0) + 1; g.dest = [o[1] + (cheios[melhor[1]] === 1 ? -.28 : .3), o[2] + (cheios[melhor[1]] === 1 ? .18 : -.2)]; }
+        if (melhor && lon < lonDoRio(lat) && R() < .4) { o = G.OASIS[melhor[1]]; cheios[melhor[1]] = (cheios[melhor[1]] || 0) + 1; g.dest = [o[1] + (cheios[melhor[1]] === 1 ? -.3 : -.36), o[2] + (cheios[melhor[1]] === 1 ? .2 : -.16)]; }
         else { d = lim(lat + (R() * 2 - .5), 22.4, 30.05); g.rio = d; }
       }
       g.entra = quandoPassa(lat, .6, true) + R() * 420;
@@ -724,20 +734,25 @@
     var FIXOS = [], LATS_FIXAS = [22.9, 24.6, 25.9, 27.2, 28.5, 29.7];
     LATS_FIXAS.forEach(function (lat, i) { FIXOS.push({ p: [lonDoRio(lat) + (i % 2 ? -.2 : .2), lat], desde: T0 - 1 }); });
     // quem vai para o rio: espalha ao longo do vale, alternando as margens, sem cair em cima de quem já estava lá
-    var ultima = 0;
+    var ultima = 0, nDelta = 0;
     GRUPOS.filter(function (g) { return g.rio != null; }).sort(function (a, b) { return a.rio - b.rio; }).forEach(function (g, i) {
       var lat = Math.max(g.rio, ultima + .3), v = 0;
       while (v++ < 8 && LATS_FIXAS.some(function (f) { return Math.abs(f - lat) < .2; })) lat += .14;
-      ultima = g.rio = Math.min(30.3, lat);
-      g.dest = [lonDoRio(g.rio) + (i % 2 ? .2 : -.2), g.rio];
+      ultima = g.rio = lat;
+      if (lat <= 30.05) g.dest = [lonDoRio(lat) + (i % 2 ? .2 : -.2), lat];
+      else { // passou do Cairo: vai para o delta, ao longo de um dos braços
+        var ramo = nDelta % 2 ? G.DAMIETA : G.ROSETA, f = Math.min(.92, .22 + Math.floor(nDelta / 2) * .26), k = Math.min(ramo.length - 2, Math.floor(f * (ramo.length - 1))), u = f * (ramo.length - 1) - k;
+        g.dest = [mix(ramo[k][0], ramo[k + 1][0], u) + (nDelta % 2 ? .16 : -.16), mix(ramo[k][1], ramo[k + 1][1], u)]; nDelta++;
+      }
     });
-    FIXOS.push({ p: [31.05, 30.75], desde: T0 - 1 });
+    FIXOS.push({ p: [31.2, 30.62], desde: T0 - 1 });
     G.OASIS.forEach(function (o, i) { if (i % 2 === 0 || i === 3) FIXOS.push({ p: [o[1] + .05, o[2] - .2], desde: quandoPassa(o[2], .6, true) + 150 + i * 60 }); });
 
     // ----- montagem -----
     poeEstilo('pc-saara-css', cssSaara());
     el.classList.add(P);
-    var t = U.reduz ? T1 : T0, tocando = false, mexeu = false, rafA = 0, antesA = 0, visto = false, naTela = false;
+    var t = U.reduz ? T1 : T0, tocando = false, mexeu = false, rafA = 0, antesA = 0, visto = false;
+    function rotAno(a) { return (a > -11000 ? 'c. ' : '') + U.ano(a); } // U.ano já escreve "há N mil anos" para datas mais velhas
     var mapaBox = h('figure', { class: P + '-mapa' });
     var anoB = h('b'), anoS = h('p', { class: P + '-st' });
     var btToca = h('button', { type: 'button', class: P + '-bt' }), btAnt, btProx;
@@ -746,10 +761,10 @@
     var range = h('input', { type: 'range', class: P + '-range', min: T0, max: T1, step: PASSO, value: t, 'aria-label': 'Ano (arraste para andar no tempo)' });
     var tese = null, perg = null, fimBox = null;
     if (fTese) {
-      var autores = /Kuper e Kr[öo]pelin/.exec(txt(fTese.texto));
+      var autores = /(?:Em (\d{4}),\s*)?(Kuper e Kr[öo]pelin)/.exec(txt(fTese.texto));
       tese = h('div', { class: P + '-tese' },
         h('b', null, 'Uma hipótese forte: a seca empurrou os pastores para o vale do Nilo.'),
-        h('span', null, (autores ? 'É a tese de ' + autores[0] + ' (2006), não um fato fechado. ' : 'É uma tese, não um fato fechado. ') +
+        h('span', null, (autores ? 'É a tese de ' + autores[2] + (autores[1] ? ' (' + autores[1] + ')' : '') + ', não um fato fechado. ' : 'É uma tese, não um fato fechado. ') +
           'O grosso do abandono do deserto fica ' + txt(fTese.ano_txt) + ', pouco antes das culturas que deram no Egito dos faraós.'));
       perg = h('p', { class: P + '-perg' }, 'Quando a chuva for embora, para onde vai essa gente?');
       fimBox = h('div', { class: P + '-fim' }, perg, tese);
@@ -761,8 +776,8 @@
     fatoBox.appendChild(h('div', { class: P + '-bts' }, btAnt, btProx));
     var leg = h('ul', { class: P + '-leg', 'aria-label': 'Legenda' });
     function chave(desenho, texto) { leg.appendChild(h('li', null, desenho, texto)); }
-    chave(s('svg', { width: 22, height: 12 }, s('rect', { width: 22, height: 12, rx: 3, fill: 'var(--pcs-verde)' }), s('path', { class: P + '-arv', d: 'M7 9v-3M4.5 5.6h5M15 9.5v-3M12.5 6.1h5' })), 'savana, com chuva de verão');
-    chave(s('svg', { width: 22, height: 12 }, s('rect', { width: 22, height: 12, rx: 3, fill: 'var(--pcs-areia)' }), s('path', { class: P + '-duna', d: 'M4 8q3.5 -4 7 0M12 6.5q3 -3.4 6 0' })), 'deserto');
+    chave(s('svg', { width: 22, height: 12 }, s('rect', { class: P + '-cv', width: 22, height: 12, rx: 3 }), s('path', { class: P + '-arv', d: 'M7 9v-3M4.5 5.6h5M15 9.5v-3M12.5 6.1h5' })), 'savana, com chuva de verão');
+    chave(s('svg', { width: 22, height: 12 }, s('rect', { class: P + '-terra', width: 22, height: 12, rx: 3 }), s('path', { class: P + '-duna', d: 'M4 8q3.5 -4 7 0M12 6.5q3 -3.4 6 0' })), 'deserto');
     chave(s('svg', { width: 16, height: 12 }, s('ellipse', { class: P + '-lago', cx: 8, cy: 6, rx: 7, ry: 3.6 })), 'lago de chuva');
     chave(s('svg', { width: 12, height: 12 }, s('circle', { class: P + '-gente', cx: 6, cy: 6, r: 3.4 })), 'gente');
     chave(s('svg', { width: 12, height: 12 }, s('path', { class: P + '-gado', d: 'M6 2.2L9.8 6 6 9.8 2.2 6z' })), 'gado');
@@ -867,16 +882,14 @@
       // fatos datados: uma marca por data
       var marcas = grupos.map(function (g) { return svg.appendChild(s('circle', { class: P + '-fm', cx: f1(xT(g.t)), cy: yF - 9, r: 3 })); });
       // milênios
-      var fimRot = U.ano(T1), ultimoX = -99;
       for (a = Math.ceil(T0 / 1000) * 1000; a <= T1; a += 1000) {
         svg.appendChild(s('path', { class: P + '-eixo', d: 'M' + f1(xT(a)) + ' ' + (yF + 16) + 'v5' }));
         if (xT(a) > x1 - 62 && a !== T1) continue; // perto do fim, fica só o rótulo do fim
         if (a === T1) continue;
         svg.appendChild(s('text', { class: P + '-rt', x: f1(xT(a) - (a === T0 ? POL - 1 : 0)), y: yF + 36, 'text-anchor': a === T0 ? 'start' : 'middle' }, U.ano(a).replace(' a.C.', '')));
-        ultimoX = xT(a);
       }
       svg.appendChild(s('path', { class: P + '-eixo', d: 'M' + f1(x1) + ' ' + (yF + 16) + 'v5' }));
-      svg.appendChild(s('text', { class: P + '-rt', x: f1(x1 + POL - 1), y: yF + 36, 'text-anchor': 'end' }, fimRot));
+      svg.appendChild(s('text', { class: P + '-rt', x: f1(x1 + POL - 1), y: yF + 36, 'text-anchor': 'end' }, U.ano(T1)));
       reguaBox.textContent = ''; reguaBox.appendChild(svg); reguaBox.appendChild(range);
       Rg = { marcas: marcas };
     }
@@ -887,7 +900,7 @@
       var F = frente(t), i, j, v, e, ta = Math.round(t / PASSO) * PASSO;
       // textos
       var ga = 0; for (i = 0; i < grupos.length; i++) if (grupos[i].t <= t + 1) ga = i;
-      anoB.textContent = 'c. ' + U.ano(ta);
+      anoB.textContent = rotAno(ta);
       anoS.textContent = (t < tCh ? 'a chuva chega' : t <= tRe ? 'savana, lagos e gado' : t < T1 ? 'a chuva recua para o sul' : 'o Saara volta a ser deserto') + ' · há ' + U.int(Math.round(U.anosAtras(ta) / 100) * 100) + ' anos';
       if (String(range.value) !== String(ta)) range.value = ta;
       range.setAttribute('aria-valuetext', anoB.textContent + ': ' + anoS.textContent.split(' · ')[0]);
@@ -897,8 +910,8 @@
           var selo = f.certeza === 'baixa' ? 'de memória, sem fonte conferida' : f.certeza === 'media' ? 'conferido em parte' : '';
           fatoTxt.appendChild(h('p', null, h('i', null, txt(f.ano_txt) || U.ano(f.ano)), h('b', null, txt(f.titulo)), selo ? h('small', null, selo) : null));
         });
-        btAnt.disabled = ga === 0 && t <= grupos[0].t; btProx.disabled = ga === grupos.length - 1;
       }
+      btAnt.disabled = t <= T0; btProx.disabled = ga === grupos.length - 1 && t >= T1;
       if (fimBox) {
         v = t >= (typeof fTese.ano === 'number' ? fTese.ano : T1);
         if (fimBox.classList.contains(P + '-vis') !== v || inteiro) { fimBox.classList.toggle(P + '-vis', v); tese.setAttribute('aria-hidden', v ? 'false' : 'true'); perg.setAttribute('aria-hidden', v ? 'true' : 'false'); }
@@ -921,7 +934,7 @@
         e = M.grupos[i]; var g = e.g, u = suave((t - g.sai) / g.dura), x, y, op, w1 = Math.sin(t / 170 + g.fase), w2 = Math.cos(t / 230 + g.fase * 1.7);
         if (u <= 0) { x = e.a[0] + w1 * 3.4 * M.k; y = e.a[1] + w2 * 2.6 * M.k; }
         else { x = (1 - u) * (1 - u) * e.a[0] + 2 * u * (1 - u) * e.c[0] + u * u * e.b[0]; y = (1 - u) * (1 - u) * e.a[1] + 2 * u * (1 - u) * e.c[1] + u * u * e.b[1]; x += (1 - u) * w1 * 3.4 * M.k; y += (1 - u) * w2 * 2.6 * M.k; }
-        op = lim((t - g.entra) / 160, 0, 1) * (g.sul ? 1 - suave((u - .7) / .3) : 1);
+        op = lim((t - g.entra) / 160, 0, 1) * (g.sul ? 1 - suave((u - .45) / .45) : 1);
         for (j = 0; j < e.els.length; j++) {
           e.els[j].setAttribute('transform', 'translate(' + f1(x + (j ? (j === 1 ? M.rp * 2.3 : -M.rp * 1.6) : 0)) + ' ' + f1(y + (j ? (j === 1 ? M.rp * .9 : M.rp * 2) : 0)) + ')');
           e.els[j].style.opacity = op.toFixed(2);
@@ -976,14 +989,14 @@
       fazMapa(a); fazRegua(Math.min(b, 720)); mostra(true); rotuloToca();
     });
     U.aoVer(mapaBox, function (v) {
-      naTela = !!v;
       if (v && !visto && !U.reduz && !mexeu) { visto = true; toca(); }
       else if (!v && tocando) { para(); if (!mexeu) visto = false; } // saiu da tela no meio: recomeça de onde parou quando voltar
     }, { uma: false, margem: '0px 0px -25% 0px' });
   });
 
   // =====================================================================================================
-  // PEDRA-DE-MAR — "A pirâmide é feita de mar" (camada antes-dos-humanos; serve também na imperio-antigo)
+  // PEDRA-DE-MAR: "A pirâmide é feita de mar" (camada antes-dos-humanos; serve também na imperio-antigo)
+  // args.solto = true desliga o modo em que o palco fica preso na tela enquanto a página rola (ver "rolagem", mais abaixo).
   // De onde vem cada número (tudo lido de dados.json na hora de desenhar; a peça procura as duas camadas pelo id):
   //   idade do calcário ............... número "Idade do calcário de Gizé (Formação Mokattam)", da camada antes-dos-humanos:
   //                                     as fontes divergem, então a peça mostra a faixa inteira (do menor ao maior valor)
@@ -1014,7 +1027,6 @@
       '.pc-pedra-de-mar-claro{fill:var(--pcp-claro)}' +
       '.pc-pedra-de-mar-l{fill:none;stroke:var(--pcp-traco);stroke-width:calc(var(--pcp-k) * 1px);stroke-linecap:round;stroke-linejoin:round}' +
       '.pc-pedra-de-mar-l.pc-pedra-de-mar-lf{opacity:.3}.pc-pedra-de-mar-l.pc-pedra-de-mar-lm{opacity:.55}.pc-pedra-de-mar-l.pc-pedra-de-mar-lg{stroke-width:calc(var(--pcp-k) * 1.8px)}' +
-      '.pc-pedra-de-mar-junta{fill:var(--s1)}' +
       '.pc-pedra-de-mar-disco{fill:var(--pcp-claro);stroke:var(--pcp-traco);stroke-opacity:.5;stroke-width:calc(var(--pcp-k) * .8px)}' +
       '.pc-pedra-de-mar-alvo{fill:none;stroke:var(--acento);stroke-width:calc(var(--pcp-k) * 2px);stroke-linejoin:round}' +
       '.pc-pedra-de-mar-halo{fill:none;stroke:var(--s1);stroke-width:calc(var(--pcp-k) * 5px);stroke-linejoin:round;opacity:.9}' +
@@ -1036,8 +1048,7 @@
 
   E.peca('pedra-de-mar', function (el, dados, U, args) {
     s = U.s; var h = U.h, P = 'pc-pedra-de-mar';
-    var cm = camadaDe(dados, 'antes-dos-humanos'), cp = camadaDe(dados, 'imperio-antigo');
-    if (args && args.camada && args.camada.id === 'antes-dos-humanos') cm = args.camada;
+    var cm = camadaCerta(dados, args, 'antes-dos-humanos'), cp = camadaCerta(dados, args, 'imperio-antigo');
     if (!cm) return;
     var fPedra = acha(cm.fatos, /pedra das pir[âa]mides/i) || acha(cm.fatos, /numulit/i, 'texto');
     var nIdade = acha(cm.numeros, /calc[áa]rio de Giz[ée]/i, 'rotulo');
@@ -1073,7 +1084,7 @@
     var obra = anoPir ? Math.round(U.anosAtras(anoPir) / 100) * 100 : 0;
     el.appendChild(h('p', { class: 'pc-nota' }, 'O que ver aqui: três aproximações da mesma pedra, sem escala. ' +
       (obra ? 'A obra tem cerca de ' + U.int(obra) + ' anos; a pedra é cerca de ' + U.int(Math.round((idMin + idMax) / 2 * 1e6 / obra / 1000)) + ' mil vezes mais velha. ' : '') +
-      'Em Gizé, os discos se veem a olho nu nos blocos.'));
+      'Em Gizé, dá para procurar esses discos nos blocos, de perto.'));
     var linhas = [];
     if (nIdade) linhas.push([txt(nIdade.rotulo), txt(nIdade.valor), U.link(txt(nIdade.fonte), nIdade.url)]);
     if (some) linhas.push(['Fim dos numulitos no registro fóssil', 'há cerca de ' + some + ' milhões de anos', U.link(txt(fPedra.fonte), fPedra.url)]);
@@ -1148,7 +1159,7 @@
       var anel = B.appendChild(s('circle', { class: P + '-alvo', cx: f1(FB[0]), cy: f1(FB[1]), r: f1(rB + 3.5 * e) }));
 
       // C: o numulito por dentro (em volta de 0,0)
-      var RC = Math.min(w, H) * .4, Cg = s('g'), r0 = RC * .06, voltas = 6, borda = RC * .955, passo = (borda - r0) / voltas, d = '', a, q, sep = '', ang, r1, r2, da;
+      var RC = Math.min(w, H) * .4, Cg = s('g'), r0 = RC * .06, voltas = 6, borda = RC * .955, passo = (borda - r0) / voltas, d = '', a, sep = '', ang, r1, r2, da;
       function raio(t2) { return r0 + passo * t2 / (Math.PI * 2); }
       function pol(r3, t2) { return f1(Math.cos(t2) * r3) + ' ' + f1(Math.sin(t2) * r3); }
       Cg.appendChild(s('circle', { class: P + '-claro', cx: 0, cy: 0, r: f1(RC) }));
@@ -1240,8 +1251,8 @@
     function faixaPresa() { return Math.max(1, trilho.offsetHeight - gruda.offsetHeight); }
     function irPara(i) {
       if (preso) {
-        var r = trilho.getBoundingClientRect();
-        window.scrollTo({ top: Math.max(0, window.pageYOffset + r.top - topoPx + PARADAS[i] * faixaPresa()), behavior: 'smooth' });
+        var r = trilho.getBoundingClientRect(), y = Math.max(0, window.pageYOffset + r.top - topoPx + PARADAS[i] * faixaPresa());
+        if ('scrollBehavior' in document.documentElement.style) window.scrollTo({ top: y, behavior: 'smooth' }); else window.scrollTo(0, y);
       } else anima(i);
     }
     var pedido = false, ouvindo = false;
@@ -1283,22 +1294,23 @@
         el.style.setProperty('--pcp-leg', maior + 'px');
       }
       var hG = gruda.offsetHeight;
-      preso = !U.reduz && hG + barra + 12 <= alturaJanela && semCorte() && !!(window.CSS && CSS.supports && CSS.supports('position', 'sticky'));
+      preso = !U.reduz && !(args && args.solto) && hG + barra + 12 <= alturaJanela && semCorte() && !!(window.CSS && CSS.supports && CSS.supports('position', 'sticky'));
       if (preso) {
         topoPx = Math.max(barra, Math.round((alturaJanela - hG) / 2));
-        var passoPx = lim(Math.round(alturaJanela * .62), 380, 640);
+        var passoPx = lim(Math.round(alturaJanela * .55), 360, 600); // rolagem pedida por cada aproximação
         trilho.style.height = (hG + 2 * passoPx) + 'px'; gruda.style.position = 'sticky'; gruda.style.top = topoPx + 'px';
       } else el.classList.remove(P + '-uma');
-      introP.textContent = preso ? 'Três aproximações da mesma pedra. Role a página, ou use os botões.' : 'Três aproximações da mesma pedra. Use os botões.';
+      introP.textContent = U.reduz ? 'Três aproximações da mesma pedra. Use os botões.' : 'Três aproximações da mesma pedra. Role a página, ou use os botões.';
       desenha(); atual = -1; marca();
       if (preso) aoRolar();
     }
     var ultimaLarg = 0;
     U.aoMedir(el, function (larg) { ultimaLarg = larg; arma(larg); });
     window.addEventListener('resize', function () { if (ultimaLarg && el.isConnected && Math.abs(window.innerHeight - alturaJanela) > 140) arma(ultimaLarg); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (ultimaLarg && el.isConnected) arma(ultimaLarg); });
     U.aoVer(trilho, function (v) {
-      if (v && !ouvindo) { ouvindo = true; window.addEventListener('scroll', aoRolar, { passive: true }); aoRolar(); }
-      else if (!v && ouvindo) { ouvindo = false; window.removeEventListener('scroll', aoRolar); manual = false; }
+      if (v && !ouvindo) { ouvindo = true; document.addEventListener('scroll', aoRolar, { passive: true, capture: true }); aoRolar(); }
+      else if (!v && ouvindo) { ouvindo = false; document.removeEventListener('scroll', aoRolar, { capture: true }); manual = false; }
     }, { uma: false, margem: '200px 0px 200px 0px' });
   });
 
