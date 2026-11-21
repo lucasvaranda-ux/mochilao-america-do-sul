@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-20T10:25:59.390Z",
+ "gerado_em": "2026-11-21T10:25:23.415Z",
  "fonte": "TMDB, e a Wikipedia (via Wikidata) para o que faltar",
  "itens": {
   "007-a-servico-secreto-de-sua-majestade-1969": {
@@ -883,14 +883,14 @@
    "local": "/telas/cartazes/39784c9c6e8bce63.webp"
   },
   "a-hora-do-pesadelo-1984": {
-   "img": "https://image.tmdb.org/t/p/w500/wGTpGGRMZmyFCcrY2YoxVTIBlli.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/b9rMHAAKISRmIonaQd9Cccx0S4X.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/377",
    "fonte": "tmdb",
-   "tmdb": "/wGTpGGRMZmyFCcrY2YoxVTIBlli.jpg",
+   "tmdb": "/b9rMHAAKISRmIonaQd9Cccx0S4X.jpg",
    "imdb": "tt0087800",
-   "local": "/telas/cartazes/dc29d854ba976ebc.webp"
+   "local": "/telas/cartazes/62befad22923ade1.webp"
   },
   "a-hora-do-pesadelo-2-a-vinganca-de-freddy-1985": {
    "img": "https://image.tmdb.org/t/p/w500/53kxYw0G3o55yJ23K7s7KMaOyAM.jpg",
@@ -9923,14 +9923,14 @@
    "local": "/telas/cartazes/b1c7c1bdcd38a1ad.webp"
   },
   "o-novico-rebelde-1997": {
-   "img": "https://image.tmdb.org/t/p/w500/p2mNObUhU3DJXyQtDL1ZsKsiScv.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/lVLicKCamlqVqERsraJTP6CEjT3.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/254384",
    "fonte": "tmdb",
-   "tmdb": "/p2mNObUhU3DJXyQtDL1ZsKsiScv.jpg",
+   "tmdb": "/lVLicKCamlqVqERsraJTP6CEjT3.jpg",
    "imdb": "tt0136436",
-   "local": "/telas/cartazes/9311a019f67a1a56.webp"
+   "local": "/telas/cartazes/8d58e7cf9333ec49.webp"
   },
   "o-novo-mundo-2005": {
    "img": "https://image.tmdb.org/t/p/w500/dPyWMlQd54r3pK17GKG3iqjvNZ7.jpg",
@@ -10743,14 +10743,14 @@
    "local": "/telas/cartazes/55c77859bdd68512.webp"
   },
   "os-fantasmas-trapalhoes-1987": {
-   "img": "https://image.tmdb.org/t/p/w500/6vg0PfhA56MJgVZM7RMFdiXjdC0.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/svvgfm2XPb74Wlzai8TCSzjXOIC.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/133007",
    "fonte": "tmdb",
-   "tmdb": "/6vg0PfhA56MJgVZM7RMFdiXjdC0.jpg",
+   "tmdb": "/svvgfm2XPb74Wlzai8TCSzjXOIC.jpg",
    "imdb": "tt0138434",
-   "local": "/telas/cartazes/81dd7b68938f68c0.webp"
+   "local": "/telas/cartazes/20e8cdb9c3135454.webp"
   },
   "os-farofeiros-2-2024": {
    "img": "https://image.tmdb.org/t/p/w500/gn10uF6keUD1lwLvdc9JU1eH1CT.jpg",
@@ -10793,14 +10793,14 @@
    "local": "/telas/cartazes/0285ea094d3403e0.webp"
   },
   "os-herois-trapalhoes-uma-aventura-na-selva-1988": {
-   "img": "https://image.tmdb.org/t/p/w500/lzMEN8amxrPMN4TlENgH7DOi0q3.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/1DxJXUAi7Ika2Hr2gFvQIjbXxFo.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/100988",
    "fonte": "tmdb",
-   "tmdb": "/lzMEN8amxrPMN4TlENgH7DOi0q3.jpg",
+   "tmdb": "/1DxJXUAi7Ika2Hr2gFvQIjbXxFo.jpg",
    "imdb": "tt0139361",
-   "local": "/telas/cartazes/6aa64b6571de602e.webp"
+   "local": "/telas/cartazes/098324eb87c0dbcf.webp"
   },
   "os-incompreendidos-1959": {
    "img": "https://image.tmdb.org/t/p/w500/12PuU23kkDLvTd0nb8hMlE3oShB.jpg",
@@ -11053,14 +11053,14 @@
    "local": "/telas/cartazes/4c221d2fbb92f0a7.webp"
   },
   "os-tres-mosqueteiros-trapalhoes-1980": {
-   "img": "https://image.tmdb.org/t/p/w500/aWvE2QfjyRMQVUPiiiU0CLVO8xL.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/qQ6Im3UXGRgqPDJzQ8Lfu6Sw2T6.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/172501",
    "fonte": "tmdb",
-   "tmdb": "/aWvE2QfjyRMQVUPiiiU0CLVO8xL.jpg",
+   "tmdb": "/qQ6Im3UXGRgqPDJzQ8Lfu6Sw2T6.jpg",
    "imdb": "tt0081653",
-   "local": "/telas/cartazes/634ef0e170a74023.webp"
+   "local": "/telas/cartazes/65a4308b2aea4992.webp"
   },
   "os-vagabundos-trapalhoes-1982": {
    "img": "https://image.tmdb.org/t/p/w500/ujUGAGdxM7fPc0LwooYq7FyG8Qq.jpg",
@@ -12323,14 +12323,14 @@
    "local": "/telas/cartazes/a034b34bd0ad2826.webp"
   },
   "saga-a-hora-do-pesadelo": {
-   "img": "https://image.tmdb.org/t/p/w500/wGTpGGRMZmyFCcrY2YoxVTIBlli.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/b9rMHAAKISRmIonaQd9Cccx0S4X.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/movie/377",
    "fonte": "tmdb",
-   "tmdb": "/wGTpGGRMZmyFCcrY2YoxVTIBlli.jpg",
+   "tmdb": "/b9rMHAAKISRmIonaQd9Cccx0S4X.jpg",
    "imdb": "tt0087800",
-   "local": "/telas/cartazes/dc29d854ba976ebc.webp"
+   "local": "/telas/cartazes/62befad22923ade1.webp"
   },
   "saga-a-hora-do-rush": {
    "img": "https://image.tmdb.org/t/p/w500/nwPhAsfnb7f46bZkWLG7IRP5HXr.jpg",
@@ -16401,14 +16401,14 @@
    "local": "/telas/cartazes/d14c1da10416faaf.webp"
   },
   "wandavision-2021": {
-   "img": "https://image.tmdb.org/t/p/w500/ijWWwINc8h71NQ8j1LTJMFSj5wr.jpg",
+   "img": "https://image.tmdb.org/t/p/w500/glKDfE6btIRcVB5zrjspRIs4r52.jpg",
    "w": 500,
    "h": 750,
    "pagina": "https://www.themoviedb.org/tv/85271",
    "fonte": "tmdb",
-   "tmdb": "/ijWWwINc8h71NQ8j1LTJMFSj5wr.jpg",
+   "tmdb": "/glKDfE6btIRcVB5zrjspRIs4r52.jpg",
    "imdb": "tt9140560",
-   "local": "/telas/cartazes/ece8801682a0365d.webp"
+   "local": "/telas/cartazes/e9b6c64eb5e78040.webp"
   },
   "wandinha-2022": {
    "img": "https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",

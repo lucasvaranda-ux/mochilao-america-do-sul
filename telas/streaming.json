@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-20",
+ "atualizado_em": "2026-11-21",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -3193,6 +3193,7 @@
    "imdb": "tt1119646",
    "link": "https://www.themoviedb.org/movie/18785-the-hangover/watch?locale=BR",
    "assinatura": [
+    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Universal+ (canal na Prime Video)"

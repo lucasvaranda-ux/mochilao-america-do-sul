@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-20T10:23:04.511Z",
+ "gerado_em": "2026-11-21T10:23:01.196Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -244,18 +244,6 @@
   }
  ],
  "episodios": [
-  {
-   "imdb_id": "tt31510819",
-   "tvmaze_id": 3708489,
-   "serie": "MobLand",
-   "temporada": 2,
-   "episodio": 9,
-   "titulo": "Nervous Breakdown",
-   "data": "2026-11-13",
-   "airstamp": "2026-11-13T12:00:00+00:00",
-   "plataforma": "Paramount+",
-   "alerta": true
-  },
   {
    "imdb_id": "tt7631058",
    "tvmaze_id": 3682721,
