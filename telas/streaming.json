@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-21",
+ "atualizado_em": "2026-11-22",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -2401,7 +2401,8 @@
    "imdb": "tt0271383",
    "link": "https://www.themoviedb.org/movie/40096-o-auto-da-compadecida/watch?locale=BR",
    "assinatura": [
-    "Globoplay"
+    "Globoplay",
+    "Telecine (canal na Prime Video)"
    ],
    "gratis": [],
    "anuncios": [],
@@ -3584,7 +3585,9 @@
     "Paramount+ (canal na Apple TV)",
     "Paramount+ (canal na Prime Video)"
    ],
-   "gratis": [],
+   "gratis": [
+    "Prime Video"
+   ],
    "anuncios": [],
    "aluguel": [],
    "compra": []
