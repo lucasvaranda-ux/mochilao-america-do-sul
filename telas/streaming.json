@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-22",
+ "atualizado_em": "2026-11-23",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -482,9 +482,7 @@
    "tmdb": "movie/12153",
    "imdb": "tt0381707",
    "link": "https://www.themoviedb.org/movie/12153-white-chicks/watch?locale=BR",
-   "assinatura": [
-    "HBO Max (canal na Prime Video)"
-   ],
+   "assinatura": [],
    "gratis": [],
    "anuncios": [],
    "aluguel": [
@@ -2612,6 +2610,7 @@
    "link": "https://www.themoviedb.org/movie/265297-le-sel-de-la-terre/watch?locale=BR",
    "assinatura": [
     "Aquarius (canal na Prime Video)",
+    "Claro tv+",
     "CurtaOn (canal na Prime Video)",
     "Reserva Imovision (canal na Prime Video)"
    ],
