@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-23",
+ "atualizado_em": "2026-11-26",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -1339,7 +1339,6 @@
    "imdb": "tt4772188",
    "link": "https://www.themoviedb.org/movie/823219-straume/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "Filmelier Plus (canal na Prime Video)"
    ],
    "gratis": [],
@@ -3193,7 +3192,6 @@
    "imdb": "tt1119646",
    "link": "https://www.themoviedb.org/movie/18785-the-hangover/watch?locale=BR",
    "assinatura": [
-    "Claro tv+",
     "HBO Max",
     "HBO Max (canal na Prime Video)",
     "Universal+ (canal na Prime Video)"

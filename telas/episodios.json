@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-25T10:23:52.046Z",
+ "gerado_em": "2026-11-26T10:23:49.431Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -245,30 +245,6 @@
  ],
  "episodios": [
   {
-   "imdb_id": "tt7631058",
-   "tvmaze_id": 3682721,
-   "serie": "The Lord of the Rings: The Rings of Power",
-   "temporada": 3,
-   "episodio": 5,
-   "titulo": "The Lady of Lórien",
-   "data": "2026-11-18",
-   "airstamp": "2026-11-18T12:00:00+00:00",
-   "plataforma": "Prime Video",
-   "alerta": false
-  },
-  {
-   "imdb_id": "tt7631058",
-   "tvmaze_id": 3682722,
-   "serie": "The Lord of the Rings: The Rings of Power",
-   "temporada": 3,
-   "episodio": 6,
-   "titulo": "From Valinor",
-   "data": "2026-11-18",
-   "airstamp": "2026-11-18T12:00:00+00:00",
-   "plataforma": "Prime Video",
-   "alerta": false
-  },
-  {
    "imdb_id": "tt31510819",
    "tvmaze_id": 3708490,
    "serie": "MobLand",
@@ -317,6 +293,30 @@
    "alerta": false
   },
   {
+   "imdb_id": "tt13918446",
+   "tvmaze_id": 3834939,
+   "serie": "Harry Potter",
+   "temporada": 1,
+   "episodio": 2,
+   "titulo": "TBA",
+   "data": "2027-01-03",
+   "airstamp": "2027-01-03T17:00:00+00:00",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13918446",
+   "tvmaze_id": 3834940,
+   "serie": "Harry Potter",
+   "temporada": 1,
+   "episodio": 3,
+   "titulo": "TBA",
+   "data": "2027-01-10",
+   "airstamp": "2027-01-10T17:00:00+00:00",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
    "imdb_id": "tt13016388",
    "tvmaze_id": 3823004,
    "serie": "3 Body Problem",
@@ -326,6 +326,18 @@
    "data": "2027-01-14",
    "airstamp": "2027-01-14T12:00:00+00:00",
    "plataforma": "Netflix",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13918446",
+   "tvmaze_id": 3834941,
+   "serie": "Harry Potter",
+   "temporada": 1,
+   "episodio": 4,
+   "titulo": "TBA",
+   "data": "2027-01-17",
+   "airstamp": "2027-01-17T17:00:00+00:00",
+   "plataforma": "HBO",
    "alerta": false
   },
   {
@@ -341,6 +353,18 @@
    "alerta": false
   },
   {
+   "imdb_id": "tt13918446",
+   "tvmaze_id": 3834942,
+   "serie": "Harry Potter",
+   "temporada": 1,
+   "episodio": 5,
+   "titulo": "TBA",
+   "data": "2027-01-24",
+   "airstamp": "2027-01-24T17:00:00+00:00",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
    "imdb_id": "tt28093628",
    "tvmaze_id": 3784688,
    "serie": "Common Side Effects",
@@ -350,6 +374,42 @@
    "data": "2027-01-24",
    "airstamp": "2027-01-25T04:00:00+00:00",
    "plataforma": "Adult Swim",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13918446",
+   "tvmaze_id": 3834943,
+   "serie": "Harry Potter",
+   "temporada": 1,
+   "episodio": 6,
+   "titulo": "TBA",
+   "data": "2027-01-31",
+   "airstamp": "2027-01-31T17:00:00+00:00",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13918446",
+   "tvmaze_id": 3834944,
+   "serie": "Harry Potter",
+   "temporada": 1,
+   "episodio": 7,
+   "titulo": "TBA",
+   "data": "2027-02-07",
+   "airstamp": "2027-02-07T17:00:00+00:00",
+   "plataforma": "HBO",
+   "alerta": false
+  },
+  {
+   "imdb_id": "tt13918446",
+   "tvmaze_id": 3834945,
+   "serie": "Harry Potter",
+   "temporada": 1,
+   "episodio": 8,
+   "titulo": "TBA",
+   "data": "2027-02-14",
+   "airstamp": "2027-02-14T17:00:00+00:00",
+   "plataforma": "HBO",
    "alerta": false
   },
   {
