@@ -242,6 +242,30 @@ async function confereRota(){
 var SETA_FORA='<path d="M5 11l6-6M6 5h5v5"/>', SETA='<path d="M6 3l5 5-5 5"/>';
 function svg(caminhos,vb){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb||'0 0 16 16');s.setAttribute('aria-hidden','true');s.innerHTML=caminhos;return s}
 
+// ---------- SEM INTERNET ----------
+// Guarda neste aparelho, ainda cifrados, o catálogo e os estudos que moram no app. O /estudos/sw.js serve essas
+// cópias quando falta rede (e o app e o leitor também). A chave continua à parte, no IndexedDB.
+async function guardaNoAparelho(K,cat){
+  try{
+    if(!('serviceWorker' in navigator)||!window.caches)return;
+    await navigator.serviceWorker.register('/estudos/sw.js',{scope:HOST_APP?'/':'/estudos'});
+    var est=(cat.estudos||[]).filter(function(e){return e.onde==='app'});
+    var urls=['/estudos/dados/'+await Cofre.nomeDe(K,'catalogo')+'.bin'];
+    for(var i=0;i<est.length;i++)urls.push('/estudos/dados/'+await Cofre.nomeDe(K,'estudo:'+est[i].slug)+'.bin');
+    var c=await caches.open('estudos-dados'),feitos=0;
+    for(var j=0;j<urls.length;j++){
+      var abs=location.origin+urls[j];
+      try{var r=await fetch(urls[j],{cache:'no-cache'});if(r.ok){await c.put(abs,r);feitos++;continue}}catch(e){}
+      if(await c.match(abs))feitos++;
+    }
+    // esquece o que saiu da estante (ou era de outra chave)
+    var ks=await c.keys();
+    for(var k=0;k<ks.length;k++){if(urls.indexOf(new URL(ks[k].url).pathname)<0)await c.delete(ks[k])}
+    var s=$('#sobre');
+    if(s&&feitos===urls.length)s.textContent='Estante · atualizada em '+dataBr(cat.atualizada_em)+' · '+(navigator.onLine?'guardada neste aparelho, abre sem internet':'sem internet: abrindo a cópia deste aparelho');
+  }catch(e){}
+}
+
 // ---------- PORTA ----------
 var AVISOS={chave:'Essa chave não abre a estante.',formato:'A chave tem 43 letras e números. Cole a chave inteira ou o link-chave.',rede:'Sem conexão agora. Tente de novo.',navegador:'Este navegador é antigo demais para abrir a estante. Atualize o sistema ou use outro navegador.'};
 function portaAviso(t){var a=$('#porta-aviso');if(a)a.textContent=t||''}
@@ -256,6 +280,7 @@ async function tenta(chaveTxt){
     await Cofre.guarda(chaveTxt);
     await confereRota();
     entra(cat);
+    guardaNoAparelho(K,cat);
     return '';
   }catch(e){
     var m=String(e&&e.message||'');
@@ -409,6 +434,7 @@ try{
     var b=this,av=$('#trancar-aviso');
     if(Date.now()-armado>6000){armado=Date.now();b.textContent='Toque de novo para trancar';av.textContent='Para abrir de novo, vai precisar da chave.';setTimeout(function(){if(Date.now()-armado>=6000){b.textContent='Trancar este aparelho';av.textContent=''}},6100);return}
     armado=0;b.textContent='Trancar este aparelho';av.textContent='';
+    try{if(window.caches)caches.delete('estudos-dados')}catch(e){}
     Cofre.apaga().then(function(){CAT=null;$$('.prat').forEach(function(p){p.remove()});$('#fios').textContent='';try{localStorage.removeItem('estudos_ui')}catch(e){}mostraPorta('')});
   });
 }catch(e){}
@@ -439,7 +465,7 @@ window.addEventListener('hashchange',function(){
     }
     var K=await Cofre.le();
     if(!K){mostraPorta(avLink);return}
-    try{var cat0=JSON.parse(await Cofre.busca(K,'catalogo'));await confereRota();entra(cat0)}
+    try{var cat0=JSON.parse(await Cofre.busca(K,'catalogo'));await confereRota();entra(cat0);guardaNoAparelho(K,cat0)}
     catch(e){
       var m=String(e&&e.message||'');
       if(m==='rede'){mostraPorta(AVISOS.rede+' A chave continua guardada: é só recarregar a página.');return}
