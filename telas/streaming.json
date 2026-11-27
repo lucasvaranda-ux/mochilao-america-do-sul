@@ -1,7 +1,7 @@
 {
  "pais": "BR",
  "fonte": "JustWatch, via API do TMDB",
- "atualizado_em": "2026-11-26",
+ "atualizado_em": "2026-11-27",
  "titulos": {
   "a-amiga-genial-2018": {
    "tmdb": "tv/78154",
@@ -3341,8 +3341,7 @@
    "gratis": [],
    "anuncios": [],
    "aluguel": [
-    "Apple TV (loja)",
-    "Prime Video (loja)"
+    "Apple TV (loja)"
    ],
    "compra": [
     "Apple TV (loja)",
@@ -3582,9 +3581,7 @@
     "Paramount+ (canal na Apple TV)",
     "Paramount+ (canal na Prime Video)"
    ],
-   "gratis": [
-    "Prime Video"
-   ],
+   "gratis": [],
    "anuncios": [],
    "aluguel": [],
    "compra": []
