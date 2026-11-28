@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-27T10:23:42.675Z",
+ "gerado_em": "2026-11-28T10:22:43.798Z",
  "fonte": "TVmaze (tvmaze.com)",
  "series": [
   {
@@ -244,18 +244,6 @@
   }
  ],
  "episodios": [
-  {
-   "imdb_id": "tt31510819",
-   "tvmaze_id": 3708490,
-   "serie": "MobLand",
-   "temporada": 2,
-   "episodio": 10,
-   "titulo": "The Queen Is Dead",
-   "data": "2026-11-20",
-   "airstamp": "2026-11-20T12:00:00+00:00",
-   "plataforma": "Paramount+",
-   "alerta": true
-  },
   {
    "imdb_id": "tt7631058",
    "tvmaze_id": 3682723,
